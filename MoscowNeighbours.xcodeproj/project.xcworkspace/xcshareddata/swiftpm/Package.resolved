@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "UltraDrawerView",
+        "repositoryURL": "https://github.com/super-ultra/UltraDrawerView",
+        "state": {
+          "branch": null,
+          "revision": "0c72ab15709dc461b19446b1aaa7422d59d9994a",
+          "version": "0.6.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
