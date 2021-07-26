@@ -13,13 +13,23 @@
 		7402661826A7637A006242FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7402661726A7637A006242FE /* Assets.xcassets */; };
 		7402661B26A7637A006242FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7402661926A7637A006242FE /* LaunchScreen.storyboard */; };
 		7402662426A765AC006242FE /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402662326A765AC006242FE /* UIView+Layout.swift */; };
-		7402662926A76C10006242FE /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 7402662826A76C10006242FE /* UltraDrawerView */; };
-		746BCCC326A8BA6C009CC823 /* ShapeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCBF26A8BA6C009CC823 /* ShapeCell.swift */; };
+		746192D426AC446100CCCB71 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D326AC446100CCCB71 /* RouteCell.swift */; };
+		746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D526AC549400CCCB71 /* UITableView+Reuse.swift */; };
+		746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */; };
+		746192DB26AC54C800CCCB71 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192DA26AC54C800CCCB71 /* CellView.swift */; };
+		746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192DC26AC554D00CCCB71 /* TableCellWrapper.swift */; };
+		746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192DE26AC556000CCCB71 /* CollectionCellWrapper.swift */; };
+		746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E026AC557100CCCB71 /* CollectionReuseViewWrapper.swift */; };
+		746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */; };
+		746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */; };
 		746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC126A8BA6C009CC823 /* RouteViewController.swift */; };
-		746BCCC626A8BA6C009CC823 /* ShapeCell+DefaultInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC226A8BA6C009CC823 /* ShapeCell+DefaultInfos.swift */; };
 		746BCCC826A8BD59009CC823 /* RouteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* RouteHeaderView.swift */; };
 		746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */; };
-		748299DF26AA0A1A00573DC3 /* RouteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748299DE26AA0A1A00573DC3 /* RouteData.swift */; };
+		748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748299DE26AA0A1A00573DC3 /* RoutesData.swift */; };
+		74D4AB5526AF39A9009CAD3A /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74D4AB5426AF39A9009CAD3A /* UltraDrawerView */; };
+		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
+		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
+		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,12 +41,22 @@
 		7402661A26A7637A006242FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7402661C26A7637A006242FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7402662326A765AC006242FE /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
-		746BCCBF26A8BA6C009CC823 /* ShapeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeCell.swift; sourceTree = "<group>"; };
+		746192D326AC446100CCCB71 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
+		746192D526AC549400CCCB71 /* UITableView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reuse.swift"; sourceTree = "<group>"; };
+		746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reuse.swift"; sourceTree = "<group>"; };
+		746192DA26AC54C800CCCB71 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		746192DC26AC554D00CCCB71 /* TableCellWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellWrapper.swift; sourceTree = "<group>"; };
+		746192DE26AC556000CCCB71 /* CollectionCellWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellWrapper.swift; sourceTree = "<group>"; };
+		746192E026AC557100CCCB71 /* CollectionReuseViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReuseViewWrapper.swift; sourceTree = "<group>"; };
+		746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterViewWrapper.swift; sourceTree = "<group>"; };
+		746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		746BCCC126A8BA6C009CC823 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
-		746BCCC226A8BA6C009CC823 /* ShapeCell+DefaultInfos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShapeCell+DefaultInfos.swift"; sourceTree = "<group>"; };
 		746BCCC726A8BD59009CC823 /* RouteHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
-		748299DE26AA0A1A00573DC3 /* RouteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteData.swift; sourceTree = "<group>"; };
+		748299DE26AA0A1A00573DC3 /* RoutesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesData.swift; sourceTree = "<group>"; };
+		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
+		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
+		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7402662926A76C10006242FE /* UltraDrawerView in Frameworks */,
+				74D4AB5526AF39A9009CAD3A /* UltraDrawerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				7402662626A765E7006242FE /* UI */,
+				74D4AB5626AF3E5A009CAD3A /* MockData */,
 				7402662226A7659F006242FE /* Helpers */,
 				7402662526A765BA006242FE /* Utility */,
 				7402661726A7637A006242FE /* Assets.xcassets */,
@@ -85,6 +106,9 @@
 			children = (
 				7402662326A765AC006242FE /* UIView+Layout.swift */,
 				746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */,
+				746192D526AC549400CCCB71 /* UITableView+Reuse.swift */,
+				746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */,
+				74D4AB5D26AF4870009CAD3A /* Action.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -101,22 +125,68 @@
 		7402662626A765E7006242FE /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				7402661226A76379006242FE /* MapViewController.swift */,
-				746BCCBE26A8BA6C009CC823 /* RoutesViewController */,
+				746192D926AC54BF00CCCB71 /* Common */,
+				74D4AB5726AF3E92009CAD3A /* Map */,
+				746BCCBE26A8BA6C009CC823 /* Routes */,
+				74D4AB5826AF3F16009CAD3A /* RouteDescription */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		746BCCBE26A8BA6C009CC823 /* RoutesViewController */ = {
+		746192D926AC54BF00CCCB71 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				746BCCBF26A8BA6C009CC823 /* ShapeCell.swift */,
-				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
-				746BCCC226A8BA6C009CC823 /* ShapeCell+DefaultInfos.swift */,
-				746BCCC726A8BD59009CC823 /* RouteHeaderView.swift */,
-				748299DE26AA0A1A00573DC3 /* RouteData.swift */,
+				746192E426AC560800CCCB71 /* BaseCells */,
+				746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */,
 			);
-			path = RoutesViewController;
+			path = Common;
+			sourceTree = "<group>";
+		};
+		746192E426AC560800CCCB71 /* BaseCells */ = {
+			isa = PBXGroup;
+			children = (
+				746192DA26AC54C800CCCB71 /* CellView.swift */,
+				746192DC26AC554D00CCCB71 /* TableCellWrapper.swift */,
+				746192DE26AC556000CCCB71 /* CollectionCellWrapper.swift */,
+				746192E026AC557100CCCB71 /* CollectionReuseViewWrapper.swift */,
+				746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */,
+			);
+			path = BaseCells;
+			sourceTree = "<group>";
+		};
+		746BCCBE26A8BA6C009CC823 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
+				746BCCC726A8BD59009CC823 /* RouteHeaderView.swift */,
+				746192D326AC446100CCCB71 /* RouteCell.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		74D4AB5626AF3E5A009CAD3A /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				748299DE26AA0A1A00573DC3 /* RoutesData.swift */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
+		74D4AB5726AF3E92009CAD3A /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7402661226A76379006242FE /* MapViewController.swift */,
+				74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		74D4AB5826AF3F16009CAD3A /* RouteDescription */ = {
+			isa = PBXGroup;
+			children = (
+				74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */,
+			);
+			path = RouteDescription;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +206,7 @@
 			);
 			name = MoscowNeighbours;
 			packageProductDependencies = (
-				7402662826A76C10006242FE /* UltraDrawerView */,
+				74D4AB5426AF39A9009CAD3A /* UltraDrawerView */,
 			);
 			productName = MoscowNeighbours;
 			productReference = 7402660B26A76379006242FE /* MoscowNeighbours.app */;
@@ -166,7 +236,7 @@
 			);
 			mainGroup = 7402660226A76379006242FE;
 			packageReferences = (
-				7402662726A76C10006242FE /* XCRemoteSwiftPackageReference "UltraDrawerView" */,
+				74D4AB5326AF39A9009CAD3A /* XCRemoteSwiftPackageReference "UltraDrawerView" */,
 			);
 			productRefGroup = 7402660C26A76379006242FE /* Products */;
 			projectDirPath = "";
@@ -197,12 +267,22 @@
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
-				748299DF26AA0A1A00573DC3 /* RouteData.swift in Sources */,
+				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
+				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
+				748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */,
+				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
+				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
+				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
+				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
+				746192D426AC446100CCCB71 /* RouteCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* RouteHeaderView.swift in Sources */,
-				746BCCC326A8BA6C009CC823 /* ShapeCell.swift in Sources */,
+				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
+				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
+				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
+				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */,
 				7402661126A76379006242FE /* SceneDelegate.swift in Sources */,
-				746BCCC626A8BA6C009CC823 /* ShapeCell+DefaultInfos.swift in Sources */,
+				74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */,
 				746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,7 +479,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7402662726A76C10006242FE /* XCRemoteSwiftPackageReference "UltraDrawerView" */ = {
+		74D4AB5326AF39A9009CAD3A /* XCRemoteSwiftPackageReference "UltraDrawerView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/super-ultra/UltraDrawerView";
 			requirement = {
@@ -410,9 +490,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7402662826A76C10006242FE /* UltraDrawerView */ = {
+		74D4AB5426AF39A9009CAD3A /* UltraDrawerView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7402662726A76C10006242FE /* XCRemoteSwiftPackageReference "UltraDrawerView" */;
+			package = 74D4AB5326AF39A9009CAD3A /* XCRemoteSwiftPackageReference "UltraDrawerView" */;
 			productName = UltraDrawerView;
 		};
 /* End XCSwiftPackageProductDependency section */

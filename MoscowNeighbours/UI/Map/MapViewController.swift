@@ -7,12 +7,11 @@
 
 import UIKit
 import MapKit
-import UltraDrawerView
 
 class MapViewController: UIViewController {
     
     enum State {
-        case showFirstTime
+        case showLocationAtFirstTime
         case showCurrentLocation
         case `default`
     }
@@ -30,9 +29,17 @@ class MapViewController: UIViewController {
         return manager
     }()
     
-    private let routeController: RouteViewController = .init()
+    private lazy var manager: BottomSheetsManager = {
+        let controllers: [BottomSheetViewController] = [routesController, routeDescriptionController]
+        let manager = BottomSheetsManager(controllers: controllers, presenter: self)
+        return manager
+    }()
     
-    private var state: State = .showFirstTime
+    private let routesController: RouteViewController = .init()
+    
+    private let routeDescriptionController: RouteDescriptionViewController = .init()
+    
+    private var state: State = .showLocationAtFirstTime
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +49,30 @@ class MapViewController: UIViewController {
     private func commonInit() {
         locationManager.startUpdatingLocation()
         
-        addChild(routeController)
+        routesController.showRouteCompletion = showRoute(_:)
         
         view.addSubview(map)
         map.stickToSuperviewEdges(.all)
         
-        view.addSubview(routeController.view)
-        routeController.view.stickToSuperviewEdges(.all)
+        addChild(routesController)
+        view.addSubview(routesController.view)
+        routesController.view.stickToSuperviewEdges(.all)
+        
+        addChild(routeDescriptionController)
+        view.addSubview(routeDescriptionController.view)
+        routeDescriptionController.view.stickToSuperviewEdges(.all)
+        routeDescriptionController.drawerView.setState(.dismissed, animated: false)
+        
+        view.bringSubviewToFront(routesController.view)
+    }
+    
+    private func showRoute(_ route: Route) {
+        routeDescriptionController.updateRoute(route, closeAction: closeRouteDescription)
+        manager.show(routeDescriptionController, state: .middle, states: [.middle, .top])
+    }
+    
+    private func closeRouteDescription() {
+        manager.show(routesController, state: .middle)
     }
     
 }
@@ -73,7 +97,7 @@ extension MapViewController: CLLocationManagerDelegate {
     /// move camera to current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
-        if state == .showFirstTime {
+        if state == .showLocationAtFirstTime {
             showPlaceOnMap(with: location.coordinate, animated: false, meters: 3000)
         } else if state == .showCurrentLocation {
             showPlaceOnMap(with: location.coordinate)
