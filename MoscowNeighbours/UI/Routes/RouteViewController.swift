@@ -16,10 +16,11 @@ final class RouteViewController: BottomSheetViewController {
         tableView.backgroundColor = .white
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
         return tableView
     }()
     
-    private let headerView = RouteHeaderView()
+    private let headerView = HeaderView()
     
     // MARK: - internal properties
     
@@ -44,10 +45,12 @@ final class RouteViewController: BottomSheetViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
+        
         setUp(scrollView: tableView, headerView: headerView)
         drawerView.setState(.middle, animated: false)
         
-        headerView.update(text: "Маршруты")
+        headerView.update(text: "Маршруты", showSeparator: false)
         
         tableView.register(RouteCell.self)
     }
@@ -63,6 +66,7 @@ extension RouteViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RouteCell.self, for: indexPath)
+        cell.selectionStyle = .none
         cell.configureView = { [weak self] view in
             guard let `self` = self else { return }
             view.update(with: self.routes[indexPath.item])

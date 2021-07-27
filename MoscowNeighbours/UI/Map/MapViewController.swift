@@ -30,8 +30,9 @@ class MapViewController: UIViewController {
     }()
     
     private lazy var manager: BottomSheetsManager = {
-        let controllers: [BottomSheetViewController] = [routesController, routeDescriptionController]
-        let manager = BottomSheetsManager(controllers: controllers, presenter: self)
+        let manager = BottomSheetsManager(presenter: self)
+        manager.addController(routesController)
+        manager.addController(routeDescriptionController, availableStates: [.middle, .top])
         return manager
     }()
     
@@ -68,7 +69,7 @@ class MapViewController: UIViewController {
     
     private func showRoute(_ route: Route) {
         routeDescriptionController.updateRoute(route, closeAction: closeRouteDescription)
-        manager.show(routeDescriptionController, state: .middle, states: [.middle, .top])
+        manager.show(routeDescriptionController, state: .middle)
     }
     
     private func closeRouteDescription() {

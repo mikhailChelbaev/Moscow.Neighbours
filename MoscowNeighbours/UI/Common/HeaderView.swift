@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RouteHeaderView: UIView {
+final class HeaderView: CellView {
     
     enum Settings {
         static var buttonSide: CGFloat = 28
@@ -37,9 +37,7 @@ final class RouteHeaderView: UIView {
     
     private var buttonCloseAction: Action?
     
-    init() {
-        super.init(frame: .zero)
-        
+    override func commonInit() {
         backgroundColor = .systemBackground
         
         addSubview(closeButton)
@@ -58,12 +56,9 @@ final class RouteHeaderView: UIView {
         separator.height(0.5)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func update(text: String, buttonCloseAction: Action? = nil) {
+    func update(text: String, showSeparator: Bool = true, buttonCloseAction: Action? = nil) {
         label.text = text
+        separator.isHidden = !showSeparator
         if buttonCloseAction != nil {
             self.buttonCloseAction = buttonCloseAction
             buttonWidthConstraint?.constant = Settings.buttonSide
