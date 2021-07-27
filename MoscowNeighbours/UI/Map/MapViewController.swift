@@ -64,7 +64,7 @@ class MapViewController: UIViewController {
         routeDescriptionController.view.stickToSuperviewEdges(.all)
         routeDescriptionController.drawerView.setState(.dismissed, animated: false)
         
-        view.bringSubviewToFront(routesController.view)
+        manager.show(routesController, state: .middle, animated: false)
     }
     
     private func showRoute(_ route: Route) {
@@ -73,7 +73,7 @@ class MapViewController: UIViewController {
     }
     
     private func closeRouteDescription() {
-        manager.show(routesController, state: .middle)
+        manager.closeCurrent()
     }
     
 }

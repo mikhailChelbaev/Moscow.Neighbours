@@ -32,8 +32,7 @@ final class RouteDescriptionViewController: BottomSheetViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        setUp(scrollView: tableView, headerView: headerView, states: [.dismissed, .middle, .top])
-        drawerView.setState(.dismissed, animated: false)
+        setUp(scrollView: tableView, headerView: headerView)
     }
     
     required init?(coder: NSCoder) {

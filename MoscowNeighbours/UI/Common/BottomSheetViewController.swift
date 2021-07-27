@@ -56,7 +56,7 @@ class BottomSheetViewController: UIViewController {
         scrollView?.contentInset.bottom = view.safeAreaInsets.bottom
     }
     
-    func setUp(scrollView: UIScrollView, headerView: UIView, states: Set<DrawerView.State> = [.top, .middle, .bottom]) {
+    func setUp(scrollView: UIScrollView, headerView: UIView) {
         drawerView = DrawerView(scrollView: scrollView, delegate: scrollView.delegate, headerView: headerView)
         drawerView.translatesAutoresizingMaskIntoConstraints = false
         drawerView.cornerRadius = Settings.cornerRadius
@@ -74,8 +74,6 @@ class BottomSheetViewController: UIViewController {
             drawerView.rightAnchor.constraint(equalTo: view.rightAnchor),
         ]
         portraitConstraints.forEach({ $0.isActive = true })
-        
-        drawerView.availableStates = states
         
         self.scrollView = scrollView
         

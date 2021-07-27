@@ -48,7 +48,6 @@ final class RouteViewController: BottomSheetViewController {
         tableView.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
         
         setUp(scrollView: tableView, headerView: headerView)
-        drawerView.setState(.middle, animated: false)
         
         headerView.update(text: "Маршруты", showSeparator: false)
         

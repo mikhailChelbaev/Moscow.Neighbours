@@ -18,6 +18,8 @@ class BottomSheetsManager {
     
     private var stack: Stack = Stack<(BottomSheetViewController, DrawerView.State)>()
     
+    private var currentController: BottomSheetViewController?
+    
     init(presenter: UIViewController) {
         self.presenter = presenter
     }
@@ -40,49 +42,31 @@ class BottomSheetsManager {
     
     func show(
         _ controller: BottomSheetViewController,
-        state: DrawerView.State
+        state: DrawerView.State,
+        animated: Bool = true
     ) {
         guard let presenter = presenter else { return }
+        
+        if let currentController = currentController {
+            stack.push(item: (currentController, currentController.drawerView.state ?? .top))
+        }
         controllers.forEach({
             if $0 != controller {
                 $0.drawerView.availableStates = [.dismissed]
-                $0.drawerView.setState(.dismissed, animated: true)
+                $0.drawerView.setState(.dismissed, animated: animated)
             }
         })
         presenter.view.bringSubviewToFront(controller.view)
         controller.drawerView.availableStates = states[controller] ?? []
-        controller.drawerView.setState(state, animated: true)
-        stack.push(item: (controller, state))
+        controller.drawerView.setState(state, animated: animated)
+        
+        currentController = controller
     }
     
     func closeCurrent() {
-        stack.pop()
-    }
-    
-}
-
-struct Stack<T> {
-    
-    private var items: [T] = []
-    
-    mutating func push(item: T) {
-        items.append(item)
-    }
-    
-    @discardableResult mutating func pop() -> T {
-        return items.removeLast()
-    }
-    
-    mutating func last() -> T? {
-        return items.last
-    }
-    
-    func count() -> Int {
-        return items.count
-    }
-    
-    func isEmpty() -> Bool {
-        return items.isEmpty
+        currentController = nil
+        let (previousController, state) = stack.pop()
+        show(previousController, state: state)
     }
     
 }

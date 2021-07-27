@@ -32,6 +32,7 @@
 		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
+		74FD656926B0ABDA00F824DD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FD656826B0ABDA00F824DD /* Stack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		74FD656826B0ABDA00F824DD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				746192D526AC549400CCCB71 /* UITableView+Reuse.swift */,
 				746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */,
 				74D4AB5D26AF4870009CAD3A /* Action.swift */,
+				74FD656826B0ABDA00F824DD /* Stack.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
 				7415479526B0968D006931DC /* RouteDescriptionCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
+				74FD656926B0ABDA00F824DD /* Stack.swift in Sources */,
 				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				746192D426AC446100CCCB71 /* RouteCell.swift in Sources */,
