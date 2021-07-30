@@ -79,7 +79,7 @@ class RouteCell: CellView {
     func update(with route: Route) {
         headerLabel.text = route.name
         descriptionLabel.text = route.description
-        heroesNumberLabel.text = "\(route.persons.count) героев"
+        heroesNumberLabel.text = "\(route.personsInfo.count) героев"
         routeInfoLabel.text = "\(route.distance) • \(route.duration)"
         containerView.backgroundColor = route.color
     }

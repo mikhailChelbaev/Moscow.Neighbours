@@ -28,6 +28,8 @@
 		746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* HeaderView.swift */; };
 		746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */; };
 		748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748299DE26AA0A1A00573DC3 /* RoutesData.swift */; };
+		749E662D26B4958800621BDB /* PlaceClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749E662C26B4958800621BDB /* PlaceClusterView.swift */; };
+		749E662F26B4A04300621BDB /* PlaceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749E662E26B4A04300621BDB /* PlaceAnnotationView.swift */; };
 		74D4AB5526AF39A9009CAD3A /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74D4AB5426AF39A9009CAD3A /* UltraDrawerView */; };
 		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
@@ -59,6 +61,8 @@
 		746BCCC726A8BD59009CC823 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
 		748299DE26AA0A1A00573DC3 /* RoutesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesData.swift; sourceTree = "<group>"; };
+		749E662C26B4958800621BDB /* PlaceClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceClusterView.swift; sourceTree = "<group>"; };
+		749E662E26B4A04300621BDB /* PlaceAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotationView.swift; sourceTree = "<group>"; };
 		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 			children = (
 				7402661226A76379006242FE /* MapViewController.swift */,
 				74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */,
+				749E662C26B4958800621BDB /* PlaceClusterView.swift */,
+				749E662E26B4A04300621BDB /* PlaceAnnotationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -292,6 +298,8 @@
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
+				749E662F26B4A04300621BDB /* PlaceAnnotationView.swift in Sources */,
+				749E662D26B4958800621BDB /* PlaceClusterView.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
 				748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */,

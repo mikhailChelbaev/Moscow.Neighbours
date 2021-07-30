@@ -71,7 +71,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return [1, route.persons.count][section]
+        return [1, route.personsInfo.count][section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,7 +86,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
             let cell = tableView.dequeue(PersonCell.self, for: indexPath)
             cell.configureView = { [weak self] view in
                 guard let `self` = self else { return }
-                view.update(person: self.route.persons[indexPath.item], number: indexPath.item + 1, backgroundColor: self.route.color)
+                view.update(person: self.route.personsInfo[indexPath.item].person, number: indexPath.item + 1, backgroundColor: self.route.color)
             }
             return cell
         }
