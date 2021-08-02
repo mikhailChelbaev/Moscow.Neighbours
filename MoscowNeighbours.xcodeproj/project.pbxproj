@@ -13,6 +13,8 @@
 		7402661826A7637A006242FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7402661726A7637A006242FE /* Assets.xcassets */; };
 		7402661B26A7637A006242FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7402661926A7637A006242FE /* LaunchScreen.storyboard */; };
 		7402662426A765AC006242FE /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402662326A765AC006242FE /* UIView+Layout.swift */; };
+		7404A61126B87FAF00524453 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404A61026B87FAF00524453 /* TextCell.swift */; };
+		7404A61426B8874A00524453 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404A61326B8874A00524453 /* PersonViewController.swift */; };
 		7415479326B08C8A006931DC /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* PersonCell.swift */; };
 		7415479526B0968D006931DC /* RouteDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479426B0968D006931DC /* RouteDescriptionCell.swift */; };
 		746192D426AC446100CCCB71 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D326AC446100CCCB71 /* RouteCell.swift */; };
@@ -46,6 +48,8 @@
 		7402661A26A7637A006242FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7402661C26A7637A006242FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7402662326A765AC006242FE /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		7404A61026B87FAF00524453 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
+		7404A61326B8874A00524453 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		7415479226B08C89006931DC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		7415479426B0968D006931DC /* RouteDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCell.swift; sourceTree = "<group>"; };
 		746192D326AC446100CCCB71 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
@@ -140,8 +144,17 @@
 				74D4AB5726AF3E92009CAD3A /* Map */,
 				746BCCBE26A8BA6C009CC823 /* Routes */,
 				74D4AB5826AF3F16009CAD3A /* RouteDescription */,
+				7404A61226B8873500524453 /* Person */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		7404A61226B8873500524453 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				7404A61326B8874A00524453 /* PersonViewController.swift */,
+			);
+			path = Person;
 			sourceTree = "<group>";
 		};
 		7415479626B0974A006931DC /* Cells */ = {
@@ -167,6 +180,7 @@
 				746192E426AC560800CCCB71 /* BaseCells */,
 				746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */,
 				746BCCC726A8BD59009CC823 /* HeaderView.swift */,
+				7404A61026B87FAF00524453 /* TextCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -298,6 +312,7 @@
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
+				7404A61126B87FAF00524453 /* TextCell.swift in Sources */,
 				749E662F26B4A04300621BDB /* PlaceAnnotationView.swift in Sources */,
 				749E662D26B4958800621BDB /* PlaceClusterView.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
@@ -310,6 +325,7 @@
 				74FD656926B0ABDA00F824DD /* Stack.swift in Sources */,
 				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
+				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
 				746192D426AC446100CCCB71 /* RouteCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,

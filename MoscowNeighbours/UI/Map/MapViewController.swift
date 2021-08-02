@@ -33,6 +33,7 @@ class MapViewController: UIViewController {
         let manager = BottomSheetsManager(presenter: self)
         manager.addController(routesController)
         manager.addController(routeDescriptionController, availableStates: [.middle, .top])
+        manager.addController(personController, availableStates: [.middle, .top])
         return manager
     }()
     
@@ -40,7 +41,13 @@ class MapViewController: UIViewController {
     
     private let routeDescriptionController: RouteDescriptionViewController = .init()
     
+    private let personController: PersonViewController = .init()
+    
     private var state: State = .showLocationAtFirstTime
+    
+    private var currentlySelectedRoute: Route?
+    
+    private var currentlySelectedPerson: PersonInfo?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,10 +67,12 @@ class MapViewController: UIViewController {
         view.addSubview(routesController.view)
         routesController.view.stickToSuperviewEdges(.all)
         
-        addChild(routeDescriptionController)
-        view.addSubview(routeDescriptionController.view)
-        routeDescriptionController.view.stickToSuperviewEdges(.all)
-        routeDescriptionController.drawerView.setState(.dismissed, animated: false)
+        [routeDescriptionController, personController].forEach { controller in
+            addChild(controller)
+            view.addSubview(controller.view)
+            controller.view.stickToSuperviewEdges(.all)
+            controller.drawerView.setState(.dismissed, animated: false)
+        }
         
         manager.show(routesController, state: .middle, animated: false)
     }
@@ -73,16 +82,46 @@ class MapViewController: UIViewController {
         mapView.register(PlaceClusterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
     }
     
+}
+
+// MARK: - extension MapViewController (Route)
+
+extension MapViewController {
+    
     private func showRoute(_ route: Route) {
         routeDescriptionController.updateRoute(route, closeAction: closeRouteDescription)
         manager.show(routeDescriptionController, state: .middle)
         mapView.addAnnotations(route.personsInfo)
+        currentlySelectedRoute = route
     }
     
     private func closeRouteDescription() {
+        currentlySelectedRoute = nil
         manager.closeCurrent()
         let annotations = mapView.annotations
         mapView.removeAnnotations(annotations)
+    }
+    
+}
+
+// MARK: - extension MapViewController (Person)
+
+extension MapViewController {
+    
+    private func showPerson(_ info: PersonInfo) {
+        if currentlySelectedPerson != nil {
+            closePersonController()
+        }
+ 
+        personController.update(info, color: currentlySelectedRoute?.color ?? .systemBackground, closeAction: closePersonController)
+        manager.show(personController, state: .middle)
+        currentlySelectedPerson = info
+    }
+    
+    private func closePersonController() {
+        manager.closeCurrent()
+        mapView.deselectAnnotation(currentlySelectedPerson, animated: true)
+        currentlySelectedPerson = nil
     }
     
 }
@@ -143,9 +182,10 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        if let place = view.annotation as? Place {
+        if let info = view.annotation as? PersonInfo {
 //            mapDelegate?.showPlace(place)
-//        } else {
+            showPerson(info)
+        } else {
             if let cluster = view.annotation as? MKClusterAnnotation {
                 
                 var zoomRect: MKMapRect = MKMapRect.null
@@ -162,7 +202,7 @@ extension MapViewController: MKMapViewDelegate {
                 
                 mapView.setVisibleMapRect(zoomRect, animated: true)
             }
-//        }
+        }
     }
     
 }
