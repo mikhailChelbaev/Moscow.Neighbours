@@ -8,7 +8,11 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+protocol MapPresentable: AnyObject {
+    var mapView: MKMapView { get }
+}
+
+final class MapViewController: UIViewController, MapPresentable {
     
     enum State {
         case showLocationAtFirstTime
@@ -16,11 +20,22 @@ class MapViewController: UIViewController {
         case `default`
     }
     
-    private let mapView: MKMapView = {
+    private enum Settings {
+        static let buttonSide: CGFloat = 48
+        static let locationButtonTopInset: CGFloat = 40
+        static let buttonsTrailingInset: CGFloat = 20
+        static let buttonsSpacing: CGFloat = 20
+    }
+    
+    let mapView: MKMapView = {
         let map = MKMapView()
         map.showsUserLocation = true
         return map
     }()
+    
+    private var locationButton: UIButton!
+    
+    private var cameraButton: UIButton!
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -32,7 +47,7 @@ class MapViewController: UIViewController {
     private lazy var manager: BottomSheetsManager = {
         let manager = BottomSheetsManager(presenter: self)
         manager.addController(routesController)
-        manager.addController(routeDescriptionController, availableStates: [.middle, .top])
+        manager.addController(routeDescriptionController)
         manager.addController(personController, availableStates: [.middle, .top])
         return manager
     }()
@@ -52,10 +67,29 @@ class MapViewController: UIViewController {
     private let routeOptimizer: RouteFinder = NearestCoordinatesFinder()
     
     private var currentLocation: CLLocationCoordinate2D?
+    
+    override func loadView() {
+        view = mapView
+        locationButton = createButton(image: UIImage(systemName: "location.fill"))
+        cameraButton = createButton(image: UIImage(systemName: "camera.fill"))
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerAnnotationViews()
         commonInit()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        locationButton.layer.shadowColor = UIColor.shadow.cgColor
+        cameraButton.layer.shadowColor = UIColor.shadow.cgColor
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        locationButton.updateShadowPath()
+        cameraButton.updateShadowPath()
     }
     
     private func commonInit() {
@@ -63,9 +97,19 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         
         routesController.showRouteCompletion = showRoute(_:)
+        routeDescriptionController.mapPresenter = self
         
-        view.addSubview(mapView)
-        mapView.stickToSuperviewEdges(.all)
+        locationButton.addTarget(self, action: #selector(updateCurrentLocation), for: .touchUpInside)
+        cameraButton.isEnabled = false
+        
+        view.addSubview(cameraButton)
+        cameraButton.stickToSuperviewSafeEdges([.top, .right], insets: .init(top: Settings.locationButtonTopInset, left: 0, bottom: 0, right: Settings.buttonsTrailingInset))
+        cameraButton.exactSize(.init(width: Settings.buttonSide, height: Settings.buttonSide))
+        
+        view.addSubview(locationButton)
+        locationButton.trailing(Settings.buttonsTrailingInset)
+        locationButton.top(Settings.buttonsSpacing, to: cameraButton)
+        locationButton.exactSize(.init(width: Settings.buttonSide, height: Settings.buttonSide))
         
         addChild(routesController)
         view.addSubview(routesController.view)
@@ -82,8 +126,27 @@ class MapViewController: UIViewController {
     }
     
     private func registerAnnotationViews() {
-        mapView.register(PlaceAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        mapView.register(PlaceClusterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+    }
+    
+}
+
+// MARK: - extension MapViewController (buttons)
+
+extension MapViewController {
+    
+    private func createButton(image: UIImage?) -> UIButton {
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.backgroundColor = .systemBackground
+        button.layer.cornerRadius = Settings.buttonSide / 2
+        button.addShadow()
+        return button
+    }
+    
+    @objc private func updateCurrentLocation() {
+        state = .showCurrentLocation
+        locationManager.startUpdatingLocation()
     }
     
 }
@@ -93,10 +156,11 @@ class MapViewController: UIViewController {
 extension MapViewController {
     
     private func showRoute(_ route: Route) {
-        routeDescriptionController.updateRoute(route, closeAction: closeRouteDescription)
-        manager.show(routeDescriptionController, state: .middle)
-        mapView.addAnnotations(route.personsInfo)
         currentlySelectedRoute = route
+        
+        routeDescriptionController.updateRoute(route, closeAction: closeRouteDescription)
+        manager.show(routeDescriptionController, state: .bottom)
+        mapView.addAnnotations(route.personsInfo)
         
         var coordinates: [CLLocationCoordinate2D] = route.personsInfo.compactMap({ $0.coordinate })
         
@@ -116,6 +180,8 @@ extension MapViewController {
                 self?.drawRoute(p1: points.p1, p2: points.p2)
             }
         }
+        
+        zoomAnnotations(route.personsInfo)
     }
     
     private func closeRouteDescription() {
@@ -162,14 +228,15 @@ extension MapViewController {
 
 extension MapViewController {
     
-    private func showPerson(_ info: PersonInfo) {
+    func showPerson(_ info: PersonInfo) {
         if currentlySelectedPerson != nil {
             closePersonController()
         }
+        currentlySelectedPerson = info
  
         personController.update(info, color: currentlySelectedRoute?.color ?? .systemBackground, closeAction: closePersonController)
         manager.show(personController, state: .middle)
-        currentlySelectedPerson = info
+        showPlaceOnMap(with: info.coordinates)
     }
     
     private func closePersonController() {
@@ -191,10 +258,31 @@ extension MapViewController {
     ) {
         let coordinateRegion = MKCoordinateRegion(center: coordinates, latitudinalMeters: meters, longitudinalMeters: meters)
         let centerPoint = coordinateRegion.center
-//        let centerYOffset = 2 * CGFloat(coordinateRegion.span.latitudeDelta) * currentBottomSheet.height(for: currentBottomSheet.position) / (height * 2)
-        let centerPointOfNewRegion = CLLocationCoordinate2DMake(centerPoint.latitude, centerPoint.longitude)
+        
+        var centerYOffset: Double = 0
+        if manager.currentController?.drawerView.state == .middle {
+            centerYOffset = coordinateRegion.span.latitudeDelta * Double(BottomSheetViewController.Settings.middleInsetFromBottom) / Double(UIScreen.main.bounds.height)
+        }
+        
+        let centerPointOfNewRegion = CLLocationCoordinate2DMake(centerPoint.latitude - Double(centerYOffset), centerPoint.longitude)
         let newCoordinateRegion = MKCoordinateRegion(center: centerPointOfNewRegion, span: coordinateRegion.span)
         mapView.setRegion(newCoordinateRegion, animated: animated)
+    }
+    
+    private func zoomAnnotations(_ annotations: [MKAnnotation]) {
+        var zoomRect: MKMapRect = .null
+        for annotation in annotations {
+            let annotationPoint = MKMapPoint(annotation.coordinate)
+            let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
+            zoomRect = zoomRect.union(pointRect)
+        }
+        
+        let offset = zoomRect.size.width / 2
+        let origin = MKMapPoint(x: zoomRect.origin.x - offset / 2, y: zoomRect.origin.y)
+        let size = MKMapSize(width: zoomRect.width + offset, height: zoomRect.height)
+        zoomRect = MKMapRect(origin: origin, size: size)
+        
+        mapView.setVisibleMapRect(zoomRect, animated: true)
     }
     
 }
@@ -227,45 +315,27 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let _ = annotation as? PersonInfo {
-            let view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+            let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as! MKMarkerAnnotationView
             view.displayPriority = .required
+            view.markerTintColor = currentlySelectedRoute?.color
             return view
-        } else
-        if let userLocation = annotation as? MKUserLocation {
-            userLocation.title = ""
-        } else if let cluster = annotation as? MKClusterAnnotation {
-            cluster.title = ""
         }
         return nil
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let info = view.annotation as? PersonInfo {
-//            mapDelegate?.showPlace(place)
             showPerson(info)
         } else {
             if let cluster = view.annotation as? MKClusterAnnotation {
-                
-                var zoomRect: MKMapRect = .null
-                for annotation in cluster.memberAnnotations {
-                    let annotationPoint = MKMapPoint(annotation.coordinate)
-                    let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
-                    zoomRect = zoomRect.union(pointRect)
-                }
-                
-                let offset = zoomRect.size.width / 2
-                let origin = MKMapPoint(x: zoomRect.origin.x - offset / 2, y: zoomRect.origin.y)
-                let size = MKMapSize(width: zoomRect.width + offset, height: zoomRect.height)
-                zoomRect = MKMapRect(origin: origin, size: size)
-                
-                mapView.setVisibleMapRect(zoomRect, animated: true)
+                zoomAnnotations(cluster.memberAnnotations)
             }
         }
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = .systemRed
+        renderer.strokeColor = currentlySelectedRoute?.color
         renderer.lineWidth = 4.0
         return renderer
     }

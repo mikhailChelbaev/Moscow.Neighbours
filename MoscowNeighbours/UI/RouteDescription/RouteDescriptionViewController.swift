@@ -22,6 +22,10 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     
     private let headerView = HeaderView()
     
+    // MARK: - internal properties
+    
+    weak var mapPresenter: MapPresentable?
+    
     // MARK: - private properties
     
     private var route: Route = .dummy
@@ -81,6 +85,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
                 guard let `self` = self else { return }
                 view.update(with: self.route)
             }
+            cell.selectionStyle = .none
             return cell
         } else {
             let cell = tableView.dequeue(PersonCell.self, for: indexPath)
@@ -88,6 +93,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
                 guard let `self` = self else { return }
                 view.update(person: self.route.personsInfo[indexPath.item].person, number: indexPath.item + 1, backgroundColor: self.route.color)
             }
+            cell.selectionStyle = .none
             return cell
         }
     }
@@ -99,7 +105,9 @@ extension RouteDescriptionViewController: UITableViewDataSource {
 extension RouteDescriptionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 1 {
+            mapPresenter?.mapView.selectAnnotation(route.personsInfo[indexPath.item], animated: true)
+        }
     }
     
 }

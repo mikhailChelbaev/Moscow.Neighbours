@@ -18,7 +18,7 @@ class BottomSheetsManager {
     
     private var stack: Stack = Stack<(BottomSheetViewController, DrawerView.State)>()
     
-    private var currentController: BottomSheetViewController?
+    var currentController: BottomSheetViewController?
     
     init(presenter: UIViewController) {
         self.presenter = presenter

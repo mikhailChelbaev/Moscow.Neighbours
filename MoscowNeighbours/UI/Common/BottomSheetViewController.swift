@@ -12,7 +12,7 @@ class BottomSheetViewController: UIViewController {
     
     // MARK: - Settings
 
-    private enum Settings {
+    enum Settings {
         static let topInsetPortrait: CGFloat = 36
         static let topInsetLandscape: CGFloat = 20
         static let middleInsetFromBottom: CGFloat = 280

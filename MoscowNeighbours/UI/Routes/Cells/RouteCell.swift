@@ -39,10 +39,7 @@ class RouteCell: CellView {
     let containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.layer.shadowColor = UIColor(red: 195/255, green: 195/255, blue: 195/255, alpha: 0.55).cgColor
-        view.layer.shadowRadius = 10
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .init(width: 0, height: 4)
+        view.addShadow()
         return view
     }()
     
@@ -73,7 +70,12 @@ class RouteCell: CellView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        containerView.layer.shadowPath = UIBezierPath(rect: containerView.bounds).cgPath
+        containerView.updateShadowPath()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        containerView.layer.shadowColor = UIColor.shadow.cgColor
     }
     
     func update(with route: Route) {
