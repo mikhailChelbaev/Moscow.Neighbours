@@ -48,6 +48,10 @@ class MapViewController: UIViewController {
     private var currentlySelectedRoute: Route?
     
     private var currentlySelectedPerson: PersonInfo?
+    
+    private let routeOptimizer: RouteFinder = NearestCoordinatesFinder()
+    
+    private var currentLocation: CLLocationCoordinate2D?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,13 +97,63 @@ extension MapViewController {
         manager.show(routeDescriptionController, state: .middle)
         mapView.addAnnotations(route.personsInfo)
         currentlySelectedRoute = route
+        
+        var coordinates: [CLLocationCoordinate2D] = route.personsInfo.compactMap({ $0.coordinate })
+        
+        guard coordinates.count > 0 else { return }
+        
+        var nearestCoordinate: CLLocationCoordinate2D?
+        if let currentLocation = currentLocation {
+            nearestCoordinate = routeOptimizer.findNearestCoordinate(from: currentLocation, coordinates: coordinates)
+        } else {
+            nearestCoordinate = coordinates.removeFirst()
+        }
+        
+        guard let nearestCoordinate = nearestCoordinate else { return }
+        
+        routeOptimizer.findRoute(from: nearestCoordinate, coordinates: coordinates) { [weak self] route in
+            for points in route {
+                self?.drawRoute(p1: points.p1, p2: points.p2)
+            }
+        }
     }
     
     private func closeRouteDescription() {
         currentlySelectedRoute = nil
         manager.closeCurrent()
+        
+        // remove annotations
         let annotations = mapView.annotations
         mapView.removeAnnotations(annotations)
+        
+        // remove overlays
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
+    }
+    
+    private func drawRoute(p1: CLLocationCoordinate2D?, p2: CLLocationCoordinate2D?) {
+        guard let p1 = p1, let p2 = p2 else { return }
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = .init(placemark: .init(coordinate: p1))
+        directionRequest.destination = .init(placemark: .init(coordinate: p2))
+        directionRequest.transportType = .walking
+                
+        let direction = MKDirections(request: directionRequest)
+        direction.calculate { (response, error) in
+            guard let response = response else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            guard let route = response.routes.first else { return }
+            self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
+            
+//            let rect = route.polyline.boundingMapRect
+            
+//            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
     }
     
 }
@@ -151,14 +205,18 @@ extension MapViewController: CLLocationManagerDelegate {
     
     /// move camera to current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last! as CLLocation
+        defer { locationManager.stopUpdatingLocation() }
+        guard let location = locations.last else { return }
+        
+        currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
         if state == .showLocationAtFirstTime {
             showPlaceOnMap(with: location.coordinate, animated: false, meters: 3000)
         } else if state == .showCurrentLocation {
             showPlaceOnMap(with: location.coordinate)
         }
+        
         state = .default
-        locationManager.stopUpdatingLocation()
     }
     
 }
@@ -188,7 +246,7 @@ extension MapViewController: MKMapViewDelegate {
         } else {
             if let cluster = view.annotation as? MKClusterAnnotation {
                 
-                var zoomRect: MKMapRect = MKMapRect.null
+                var zoomRect: MKMapRect = .null
                 for annotation in cluster.memberAnnotations {
                     let annotationPoint = MKMapPoint(annotation.coordinate)
                     let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
@@ -205,5 +263,11 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .systemRed
+        renderer.lineWidth = 4.0
+        return renderer
+    }
+    
 }
-
