@@ -22,6 +22,8 @@
 		742283BE26BB29AB003F814E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742283BD26BB29AB003F814E /* Colors.xcassets */; };
 		742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */; };
 		742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283C126BB2AC4003F814E /* UIView+Shadow.swift */; };
+		7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7422A9C226BC707A00FE995E /* ARPersonPerview.swift */; };
+		7422A9C526BC751500FE995E /* CosmonautSuit.reality in Resources */ = {isa = PBXBuildFile; fileRef = 7422A9C426BC751500FE995E /* CosmonautSuit.reality */; };
 		746192D426AC446100CCCB71 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D326AC446100CCCB71 /* RouteCell.swift */; };
 		746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D526AC549400CCCB71 /* UITableView+Reuse.swift */; };
 		746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */; };
@@ -60,6 +62,8 @@
 		742283BD26BB29AB003F814E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ProjectColors.swift"; sourceTree = "<group>"; };
 		742283C126BB2AC4003F814E /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		7422A9C226BC707A00FE995E /* ARPersonPerview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPersonPerview.swift; sourceTree = "<group>"; };
+		7422A9C426BC751500FE995E /* CosmonautSuit.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = CosmonautSuit.reality; sourceTree = "<group>"; };
 		746192D326AC446100CCCB71 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
 		746192D526AC549400CCCB71 /* UITableView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reuse.swift"; sourceTree = "<group>"; };
 		746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reuse.swift"; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 		742283BC26BB2998003F814E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7422A9C426BC751500FE995E /* CosmonautSuit.reality */,
 				742283BD26BB29AB003F814E /* Colors.xcassets */,
 				742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */,
 			);
@@ -245,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				7402661226A76379006242FE /* MapViewController.swift */,
+				7422A9C226BC707A00FE995E /* ARPersonPerview.swift */,
 				7420CE1F26BAAE170034533F /* Helpers */,
 			);
 			path = Map;
@@ -322,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7422A9C526BC751500FE995E /* CosmonautSuit.reality in Resources */,
 				742283BE26BB29AB003F814E /* Colors.xcassets in Resources */,
 				7402661B26A7637A006242FE /* LaunchScreen.storyboard in Resources */,
 				7402661826A7637A006242FE /* Assets.xcassets in Resources */,
@@ -358,6 +365,7 @@
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
+				7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */,

@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import ARKit
 
 protocol MapPresentable: AnyObject {
     var mapView: MKMapView { get }
@@ -68,6 +69,8 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private var currentLocation: CLLocationCoordinate2D?
     
+    private let arPersonPreview: ARPersonPerview = .init()
+    
     override func loadView() {
         view = mapView
         locationButton = createButton(image: UIImage(systemName: "location.fill"))
@@ -78,6 +81,14 @@ final class MapViewController: UIViewController, MapPresentable {
         super.viewDidLoad()
         registerAnnotationViews()
         commonInit()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // this code hides apple logo
+        if let currentControllerView = manager.currentController?.view {
+            view.bringSubviewToFront(currentControllerView)
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -100,7 +111,8 @@ final class MapViewController: UIViewController, MapPresentable {
         routeDescriptionController.mapPresenter = self
         
         locationButton.addTarget(self, action: #selector(updateCurrentLocation), for: .touchUpInside)
-        cameraButton.isEnabled = false
+        cameraButton.addTarget(self, action: #selector(showPersonModel), for: .touchUpInside)
+//        cameraButton.isEnabled = false
         
         view.addSubview(cameraButton)
         cameraButton.stickToSuperviewSafeEdges([.top, .right], insets: .init(top: Settings.locationButtonTopInset, left: 0, bottom: 0, right: Settings.buttonsTrailingInset))
@@ -147,6 +159,12 @@ extension MapViewController {
     @objc private func updateCurrentLocation() {
         state = .showCurrentLocation
         locationManager.startUpdatingLocation()
+    }
+    
+    @objc private func showPersonModel() {
+        let previewController = QLPreviewController()
+        previewController.dataSource = arPersonPreview
+        present(previewController, animated: true, completion: nil)
     }
     
 }
