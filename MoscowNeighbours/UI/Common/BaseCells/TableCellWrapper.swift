@@ -20,7 +20,7 @@ class TableCellWrapper<T>: UITableViewCell where T: CellView {
         view = T.init()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpLayout()
-        backgroundColor = .systemBackground
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

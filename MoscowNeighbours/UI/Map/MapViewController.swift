@@ -11,6 +11,9 @@ import ARKit
 
 protocol MapPresentable: AnyObject {
     var mapView: MKMapView { get }
+    
+    func startRoute(_ route: Route)
+    func endRoute()
 }
 
 final class MapViewController: UIViewController, MapPresentable {
@@ -180,7 +183,24 @@ extension MapViewController {
         manager.show(routeDescriptionController, state: .bottom)
         mapView.addAnnotations(route.personsInfo)
         
-        var coordinates: [CLLocationCoordinate2D] = route.personsInfo.compactMap({ $0.coordinate })
+        drawRoute(annotations: route.personsInfo, withUserLocation: false)
+    }
+    
+    private func closeRouteDescription() {
+        currentlySelectedRoute = nil
+        manager.closeCurrent()
+        
+        // remove annotations
+        let annotations = mapView.annotations
+        mapView.removeAnnotations(annotations)
+        
+        // remove overlays
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
+    }
+    
+    private func drawRoute(annotations: [MKAnnotation], withUserLocation: Bool) {
+        var coordinates: [CLLocationCoordinate2D] = annotations.map({ $0.coordinate })
         
         guard coordinates.count > 0 else { return }
         
@@ -197,22 +217,19 @@ extension MapViewController {
             for points in route {
                 self?.drawRoute(p1: points.p1, p2: points.p2)
             }
+            if withUserLocation {
+                if let p1 = self?.currentLocation, let p2 = route.first?.p1 {
+                    self?.drawRoute(p1: p1, p2: p2)
+                }
+            }
         }
         
-        zoomAnnotations(route.personsInfo)
-    }
-    
-    private func closeRouteDescription() {
-        currentlySelectedRoute = nil
-        manager.closeCurrent()
+        var allAnnotations: [MKAnnotation] = annotations
+        if withUserLocation {
+            allAnnotations.append(mapView.userLocation)
+        }
         
-        // remove annotations
-        let annotations = mapView.annotations
-        mapView.removeAnnotations(annotations)
-        
-        // remove overlays
-        let overlays = mapView.overlays
-        mapView.removeOverlays(overlays)
+        zoomAnnotations(allAnnotations)
     }
     
     private func drawRoute(p1: CLLocationCoordinate2D?, p2: CLLocationCoordinate2D?) {
@@ -233,10 +250,18 @@ extension MapViewController {
             
             guard let route = response.routes.first else { return }
             self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
-            
-//            let rect = route.polyline.boundingMapRect
-            
-//            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
+    }
+    
+    func startRoute(_ route: Route) {
+        drawRoute(annotations: route.personsInfo, withUserLocation: true)
+        manager.currentController?.drawerView.setState(.bottom, animated: true)
+    }
+    
+    func endRoute() {
+        mapView.removeAllOverlays()
+        if let currentRoute = currentlySelectedRoute {
+            drawRoute(annotations: currentRoute.personsInfo, withUserLocation: false)
         }
     }
     
@@ -252,9 +277,9 @@ extension MapViewController {
         }
         currentlySelectedPerson = info
  
-        personController.update(info, color: currentlySelectedRoute?.color ?? .systemBackground, closeAction: closePersonController)
+        personController.update(info, color: currentlySelectedRoute?.color.value ?? .systemBackground, closeAction: closePersonController)
         manager.show(personController, state: .middle)
-        showPlaceOnMap(with: info.coordinates)
+        showPlaceOnMap(with: info.coordinate)
     }
     
     private func closePersonController() {
@@ -325,6 +350,10 @@ extension MapViewController: CLLocationManagerDelegate {
         state = .default
     }
     
+//    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+//
+//    }
+    
 }
 
 // MARK: - protocol MKMapViewDelegate
@@ -335,7 +364,7 @@ extension MapViewController: MKMapViewDelegate {
         if let _ = annotation as? PersonInfo {
             let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as! MKMarkerAnnotationView
             view.displayPriority = .required
-            view.markerTintColor = currentlySelectedRoute?.color
+            view.markerTintColor = currentlySelectedRoute?.color.value
             return view
         }
         return nil
@@ -353,9 +382,21 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = currentlySelectedRoute?.color
+        renderer.strokeColor = currentlySelectedRoute?.color.value
         renderer.lineWidth = 4.0
         return renderer
+    }
+    
+}
+
+extension MKMapView {
+    
+    func removeAllAnnotations() {
+        removeAnnotations(annotations)
+    }
+    
+    func removeAllOverlays() {
+        removeOverlays(overlays)
     }
     
 }

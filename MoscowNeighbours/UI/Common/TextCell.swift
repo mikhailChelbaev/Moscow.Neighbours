@@ -17,6 +17,8 @@ final class TextCell: CellView {
     private var labelConstraints: AnchoredConstraints?
     
     override func commonInit() {
+        backgroundColor = .clear
+        
         addSubview(label)
         labelConstraints = label.stickToSuperviewEdges(.all, insets: .init(top: 12, left: 16, bottom: 12, right: 16))
     }
@@ -27,7 +29,6 @@ final class TextCell: CellView {
         font: UIFont = .mainFont(ofSize: 17, weight: .regular),
         textColor: UIColor = .label,
         numberOfLines: Int = 0,
-        backgroundColor: UIColor = .systemBackground,
         insets: UIEdgeInsets = .init(top: 12, left: 16, bottom: 12, right: 16)
     ) {
         if let attributedText = attributedText {

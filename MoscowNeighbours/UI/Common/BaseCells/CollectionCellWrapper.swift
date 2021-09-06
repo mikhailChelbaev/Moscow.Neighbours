@@ -21,7 +21,7 @@ class CollectionCellWrapper<T>: UICollectionViewCell where T: CellView {
         view = T.init()
         super.init(frame: frame)
         setUpLayout()
-        backgroundColor = .systemBackground
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

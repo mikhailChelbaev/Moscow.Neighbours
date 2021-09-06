@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-struct Route {
+struct Route: Codable {
     
     let name: String
     let description: String
@@ -18,20 +18,32 @@ struct Route {
     
     let personsInfo: [PersonInfo]
     
-    let color: UIColor
+    let color: Color
     
 }
 
-class PersonInfo: NSObject {
+struct Color: Codable {
+    let r, g, b, a: CGFloat
+    
+    var value: UIColor {
+        .init(red: r, green: g, blue: b, alpha: a)
+    }
+}
+
+class PersonInfo: NSObject, Codable {
     let person: Person
     let place: Place
-    let coordinates: CLLocationCoordinate2D
+    let coordinates: LocationCoordinates
     
-    init(person: Person, place: Place, coordinates: CLLocationCoordinate2D) {
+    init(person: Person, place: Place, coordinates: LocationCoordinates) {
         self.person = person
         self.place = place
         self.coordinates = coordinates
     }
+}
+
+struct LocationCoordinates: Codable {
+    let latitude, longitude: Double
 }
 
 extension PersonInfo: MKAnnotation {
@@ -45,7 +57,7 @@ extension PersonInfo: MKAnnotation {
     }
     
     var coordinate: CLLocationCoordinate2D {
-        return coordinates
+        return .init(latitude: coordinates.latitude, longitude: coordinates.longitude)
     }
     
 }
@@ -54,10 +66,10 @@ extension PersonInfo {
     static var dummy: PersonInfo = personsInfo.first!.value
 }
 
-struct Place {
+struct Place: Codable {
 }
 
-struct Person {
+struct Person: Codable {
     let name: String
     let address: String
     let description: String
@@ -76,6 +88,7 @@ let personsInfo: [String: PersonInfo] = [
                 «Мы жили в коренной части Москвы, в окружении садов и старинных церквей. Мы, дети лучших лет Армянского переулка, гордились прошлым, так плотно обступившим наш старый дом».
                 «Наш дом обладал не только тремя фасадами, но и двумя дворами. Я жил во втором дворе, а в Армянский переулок выходил длинной, как тоннель, подворотней первый двор, и все же мы числились и писались не по Сверчкову или Телеграфному, а по Армянскому, о чем ничуть не жалели.
                 В нашем дворе находились самые большие винные склады Москвы. И с раннего утра до позднего вечера сюда доставляли - зимой на санях, летом на телегах - бочки с вином, рогожные кули с сахаром, ящики с пустыми бутылками. Во дворе восхитительно пахло навозом, конским потом, соломой, сеном, колесным дегтем. «Тырить» бутылки было таким же обязательным, освященным традицией промыслом для всех поколений мальчиков нашего дома, каким в иных селах являлось извозное дело или иконопись».
+            
                 Юрий Маркович Нагибин, писатель, сценарист.
             """
         ),
@@ -186,7 +199,7 @@ let data: [Route] = [
         duration: "15 минут",
         distance: "2 км",
         personsInfo: ["Юрий Нагибин", "Борис Пастернак", "Василий Поленов", "Илья Кабаков", "Паоло Трубецкой"].compactMap({ personsInfo[$0] }),
-        color: UIColor(red: 0.969, green: 0.627, blue: 0.533, alpha: 1)
+        color: Color(r: 0.969, g: 0.627, b: 0.533, a: 1)
     ),
     Route(
         name: "Рядом с поэтами и писателями",
@@ -194,7 +207,7 @@ let data: [Route] = [
         duration: "35 минут",
         distance: "4 км",
         personsInfo: ["Фёдор Тютчев", "Борис Пастернак", "Сергей Есенин", "Владимир Маяковский", "Юрий Нагибин"].compactMap({ personsInfo[$0] }),
-        color: UIColor(red: 0.929, green: 0.859, blue: 0.824, alpha: 1)
+        color: Color(r: 0.929, g: 0.859, b: 0.824, a: 1)
     ),
     Route(
         name: "Деятели искусства",
@@ -202,6 +215,6 @@ let data: [Route] = [
         duration: "20 минут",
         distance: "1,6 км",
         personsInfo: ["Василий Поленов", "Илья Кабаков", "Паоло Трубецкой", "Александр Лабас"].compactMap({ personsInfo[$0] }),
-        color: UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        color: Color(r: 0.8, g: 0.8, b: 0.8, a: 1)
     ),
 ]

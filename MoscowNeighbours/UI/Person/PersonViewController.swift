@@ -50,7 +50,6 @@ final class PersonViewController: BottomSheetViewController {
     func update(_ info: PersonInfo, color: UIColor, closeAction: Action?) {
         self.personInfo = info
         headerView.update(text: info.person.name, buttonCloseAction: closeAction)
-        tableView.backgroundColor = color
         tableView.reloadData()
     }
     
@@ -58,6 +57,7 @@ final class PersonViewController: BottomSheetViewController {
     
     private func commonInit() {
         tableView.register(TextCell.self)
+        tableView.register(ImagesCell.self)
     }
 }
 
@@ -65,20 +65,26 @@ final class PersonViewController: BottomSheetViewController {
 
 extension PersonViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(TextCell.self, for: indexPath)
-        cell.configureView = { [weak self] view in
-            view.update(text: self?.personInfo.person.description, backgroundColor: self?.tableView.backgroundColor ?? .systemBackground)
+        if indexPath.item == 0 {
+            let cell = tableView.dequeue(ImagesCell.self, for: indexPath)
+            cell.configureView = { view in
+                view.update(image: #imageLiteral(resourceName: "nagibin_002"))
+            }
+            cell.selectionStyle = .none
+            return cell
+        } else {
+            let cell = tableView.dequeue(TextCell.self, for: indexPath)
+            cell.configureView = { [weak self] view in
+                view.update(text: self?.personInfo.person.description)
+            }
+            cell.selectionStyle = .none
+            return cell
         }
-        return cell
     }
     
 }

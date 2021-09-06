@@ -21,6 +21,7 @@ class TableViewHeaderFooterViewWrapper<T>: UITableViewHeaderFooterView where T: 
         view = T.init()
         super.init(reuseIdentifier: T.reuseId)
         setUpLayout()
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

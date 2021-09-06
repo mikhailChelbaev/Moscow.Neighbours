@@ -67,13 +67,13 @@ class BottomSheetViewController: UIViewController {
         drawerView.topPosition = .fromTop(Settings.topInsetPortrait)
         drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottom)
         
-        portraitConstraints = [
-            drawerView.topAnchor.constraint(equalTo: view.topAnchor),
-            drawerView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            drawerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            drawerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-        ]
-        portraitConstraints.forEach({ $0.isActive = true })
+//        portraitConstraints = [
+//            drawerView.topAnchor.constraint(equalTo: view.topAnchor),
+//            drawerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+//            drawerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            drawerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+//        ]
+//        portraitConstraints.forEach({ $0.isActive = true })
         
         self.scrollView = scrollView
         

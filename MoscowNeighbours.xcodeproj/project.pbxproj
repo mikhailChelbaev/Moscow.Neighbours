@@ -17,6 +17,7 @@
 		7404A61426B8874A00524453 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404A61326B8874A00524453 /* PersonViewController.swift */; };
 		7415479326B08C8A006931DC /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* PersonCell.swift */; };
 		7415479526B0968D006931DC /* RouteDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479426B0968D006931DC /* RouteDescriptionCell.swift */; };
+		7419E1D526BEB0FA00E31BDD /* ImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */; };
 		7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2026BAAE290034533F /* RouteFinder.swift */; };
 		7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */; };
 		742283BE26BB29AB003F814E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742283BD26BB29AB003F814E /* Colors.xcassets */; };
@@ -24,6 +25,12 @@
 		742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283C126BB2AC4003F814E /* UIView+Shadow.swift */; };
 		7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7422A9C226BC707A00FE995E /* ARPersonPerview.swift */; };
 		7422A9C526BC751500FE995E /* CosmonautSuit.reality in Resources */ = {isa = PBXBuildFile; fileRef = 7422A9C426BC751500FE995E /* CosmonautSuit.reality */; };
+		7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988126E6B80F003FC860 /* BaseNetworkService.swift */; };
+		7443988426E6B9C7003FC860 /* RequestPreparation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988326E6B9C7003FC860 /* RequestPreparation.swift */; };
+		7443988826E6B9EA003FC860 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988726E6B9EA003FC860 /* Request.swift */; };
+		7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988926E6B9F5003FC860 /* RequestResult.swift */; };
+		7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988B26E6BAA4003FC860 /* RoutesService.swift */; };
+		7443988E26E6BB3F003FC860 /* RequestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988D26E6BB3F003FC860 /* RequestConstants.swift */; };
 		746192D426AC446100CCCB71 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D326AC446100CCCB71 /* RouteCell.swift */; };
 		746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D526AC549400CCCB71 /* UITableView+Reuse.swift */; };
 		746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */; };
@@ -37,6 +44,10 @@
 		746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* HeaderView.swift */; };
 		746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */; };
 		748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748299DE26AA0A1A00573DC3 /* RoutesData.swift */; };
+		748FFD9626E55535009CA688 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9526E55535009CA688 /* Logger.swift */; };
+		748FFD9926E55594009CA688 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9826E55594009CA688 /* RequestSender.swift */; };
+		748FFD9B26E555CB009CA688 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9A26E555CB009CA688 /* Parser.swift */; };
+		74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6CFC926BF1E0D00104457 /* ButtonCell.swift */; };
 		74D4AB5526AF39A9009CAD3A /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74D4AB5426AF39A9009CAD3A /* UltraDrawerView */; };
 		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
@@ -57,6 +68,7 @@
 		7404A61326B8874A00524453 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		7415479226B08C89006931DC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		7415479426B0968D006931DC /* RouteDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCell.swift; sourceTree = "<group>"; };
+		7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCell.swift; sourceTree = "<group>"; };
 		7420CE2026BAAE290034533F /* RouteFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFinder.swift; sourceTree = "<group>"; };
 		7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
 		742283BD26BB29AB003F814E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -64,6 +76,12 @@
 		742283C126BB2AC4003F814E /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		7422A9C226BC707A00FE995E /* ARPersonPerview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPersonPerview.swift; sourceTree = "<group>"; };
 		7422A9C426BC751500FE995E /* CosmonautSuit.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = CosmonautSuit.reality; sourceTree = "<group>"; };
+		7443988126E6B80F003FC860 /* BaseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkService.swift; sourceTree = "<group>"; };
+		7443988326E6B9C7003FC860 /* RequestPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPreparation.swift; sourceTree = "<group>"; };
+		7443988726E6B9EA003FC860 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		7443988926E6B9F5003FC860 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
+		7443988B26E6BAA4003FC860 /* RoutesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesService.swift; sourceTree = "<group>"; };
+		7443988D26E6BB3F003FC860 /* RequestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConstants.swift; sourceTree = "<group>"; };
 		746192D326AC446100CCCB71 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
 		746192D526AC549400CCCB71 /* UITableView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reuse.swift"; sourceTree = "<group>"; };
 		746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reuse.swift"; sourceTree = "<group>"; };
@@ -77,6 +95,11 @@
 		746BCCC726A8BD59009CC823 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
 		748299DE26AA0A1A00573DC3 /* RoutesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesData.swift; sourceTree = "<group>"; };
+		748FFD9526E55535009CA688 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		748FFD9826E55594009CA688 /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		748FFD9A26E555CB009CA688 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		7498640226C0188300AF4E0E /* point.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = point.gpx; sourceTree = "<group>"; };
+		74C6CFC926BF1E0D00104457 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -98,6 +121,7 @@
 		7402660226A76379006242FE = {
 			isa = PBXGroup;
 			children = (
+				7498640226C0188300AF4E0E /* point.gpx */,
 				7402660D26A76379006242FE /* MoscowNeighbours */,
 				7402660C26A76379006242FE /* Products */,
 			);
@@ -115,11 +139,11 @@
 			isa = PBXGroup;
 			children = (
 				7402662626A765E7006242FE /* UI */,
+				748FFD9426E55193009CA688 /* Network */,
 				74D4AB5626AF3E5A009CAD3A /* MockData */,
 				7402662226A7659F006242FE /* Helpers */,
 				742283BC26BB2998003F814E /* Assets */,
 				7402662526A765BA006242FE /* Utility */,
-				7402661726A7637A006242FE /* Assets.xcassets */,
 				7402661926A7637A006242FE /* LaunchScreen.storyboard */,
 				7402661C26A7637A006242FE /* Info.plist */,
 			);
@@ -137,6 +161,7 @@
 				74FD656826B0ABDA00F824DD /* Stack.swift */,
 				7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */,
 				742283C126BB2AC4003F814E /* UIView+Shadow.swift */,
+				748FFD9526E55535009CA688 /* Logger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -166,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				7404A61326B8874A00524453 /* PersonViewController.swift */,
+				7419E1D326BEB0BF00E31BDD /* Cells */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -187,6 +213,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7419E1D326BEB0BF00E31BDD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7420CE1F26BAAE170034533F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,8 +236,19 @@
 				7422A9C426BC751500FE995E /* CosmonautSuit.reality */,
 				742283BD26BB29AB003F814E /* Colors.xcassets */,
 				742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */,
+				7402661726A7637A006242FE /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		7443988026E6B802003FC860 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				7443988D26E6BB3F003FC860 /* RequestConstants.swift */,
+				7443988126E6B80F003FC860 /* BaseNetworkService.swift */,
+				7443988B26E6BAA4003FC860 /* RoutesService.swift */,
+			);
+			path = NetworkServices;
 			sourceTree = "<group>";
 		};
 		746192D926AC54BF00CCCB71 /* Common */ = {
@@ -213,6 +258,7 @@
 				746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */,
 				746BCCC726A8BD59009CC823 /* HeaderView.swift */,
 				7404A61026B87FAF00524453 /* TextCell.swift */,
+				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -236,6 +282,27 @@
 				7415479726B09754006931DC /* Cells */,
 			);
 			path = Routes;
+			sourceTree = "<group>";
+		};
+		748FFD9426E55193009CA688 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				748FFD9726E55587009CA688 /* RequestSender */,
+				7443988026E6B802003FC860 /* NetworkServices */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		748FFD9726E55587009CA688 /* RequestSender */ = {
+			isa = PBXGroup;
+			children = (
+				7443988926E6B9F5003FC860 /* RequestResult.swift */,
+				7443988726E6B9EA003FC860 /* Request.swift */,
+				748FFD9A26E555CB009CA688 /* Parser.swift */,
+				748FFD9826E55594009CA688 /* RequestSender.swift */,
+				7443988326E6B9C7003FC860 /* RequestPreparation.swift */,
+			);
+			path = RequestSender;
 			sourceTree = "<group>";
 		};
 		74D4AB5626AF3E5A009CAD3A /* MockData */ = {
@@ -343,14 +410,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
+				7443988826E6B9EA003FC860 /* Request.swift in Sources */,
+				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
+				748FFD9926E55594009CA688 /* RequestSender.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
 				7404A61126B87FAF00524453 /* TextCell.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
+				74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */,
+				7419E1D526BEB0FA00E31BDD /* ImagesCell.swift in Sources */,
+				7443988426E6B9C7003FC860 /* RequestPreparation.swift in Sources */,
 				7415479326B08C8A006931DC /* PersonCell.swift in Sources */,
 				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
 				7415479526B0968D006931DC /* RouteDescriptionCell.swift in Sources */,
@@ -365,8 +438,13 @@
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
+				748FFD9B26E555CB009CA688 /* Parser.swift in Sources */,
+				7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */,
+				7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
+				7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */,
+				7443988E26E6BB3F003FC860 /* RequestConstants.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */,
 				7402661126A76379006242FE /* SceneDelegate.swift in Sources */,
@@ -511,13 +589,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QTSV772M5;
+				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.MoscowNeighbours;
+				PRODUCT_BUNDLE_IDENTIFIER = com.machelbaev.neighbours.moscow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -530,13 +608,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QTSV772M5;
+				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.MoscowNeighbours;
+				PRODUCT_BUNDLE_IDENTIFIER = com.machelbaev.neighbours.moscow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

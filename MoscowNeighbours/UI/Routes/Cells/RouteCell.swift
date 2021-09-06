@@ -83,7 +83,7 @@ class RouteCell: CellView {
         descriptionLabel.text = route.description
         heroesNumberLabel.text = "\(route.personsInfo.count) героев"
         routeInfoLabel.text = "\(route.distance) • \(route.duration)"
-        containerView.backgroundColor = route.color
+        containerView.backgroundColor = route.color.value
     }
     
 }

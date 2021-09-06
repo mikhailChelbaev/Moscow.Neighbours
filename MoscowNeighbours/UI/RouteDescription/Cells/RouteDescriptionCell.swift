@@ -25,9 +25,4 @@ final class RouteDescriptionCell: RouteCell {
         heroesNumberLabel.bottom(16)
     }
     
-    override func update(with route: Route) {
-        super.update(with: route)
-        backgroundColor = route.color
-    }
-    
 }

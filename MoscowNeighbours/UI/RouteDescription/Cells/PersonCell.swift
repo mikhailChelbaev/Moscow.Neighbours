@@ -33,6 +33,8 @@ final class PersonCell: CellView {
         return iv
     }()
     
+    private var number: Int = 0
+    
     override func commonInit() {
         addSubview(numberImageView)
         numberImageView.leading(16)
@@ -54,10 +56,15 @@ final class PersonCell: CellView {
         
     }
     
-    private func drawImage(number: Int) -> UIImage {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        numberImageView.image = drawImage()
+    }
+    
+    private func drawImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: Settings.imageSize)
         return renderer.image { _ in
-            UIColor.black.setFill()
+            UIColor.label.setFill()
             UIBezierPath(rect: .init(origin: .zero, size: Settings.imageSize)).fill()
             
             let font: UIFont = .mainFont(ofSize: 14, weight: .regular)
@@ -66,21 +73,21 @@ final class PersonCell: CellView {
 
             let attrs = [NSAttributedString.Key.font: font,
                          NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                         NSAttributedString.Key.foregroundColor: UIColor.white]
+                         NSAttributedString.Key.foregroundColor: UIColor.systemBackground]
 
             let yOffset = (Settings.imageSize.height - font.lineHeight) / 2
 
-            let string = "\(number)"
+            let string = "\(self.number)"
             string.draw(with: CGRect(x: 0, y: yOffset, width: Settings.imageSize.width, height: Settings.imageSize.height), options: .usesLineFragmentOrigin, attributes: attrs, context: nil)
             
         }
     }
     
-    func update(person: Person, number: Int, backgroundColor: UIColor) {
+    func update(person: Person, number: Int) {
         titleLabel.text = person.name
         subtitleLabel.text = person.address
-        numberImageView.image = drawImage(number: number)
-        self.backgroundColor = backgroundColor
+        self.number = number
+        numberImageView.image = drawImage()
     }
     
 }
