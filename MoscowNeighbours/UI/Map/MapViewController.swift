@@ -214,12 +214,32 @@ extension MapViewController {
         guard let nearestCoordinate = nearestCoordinate else { return }
         
         routeOptimizer.findRoute(from: nearestCoordinate, coordinates: coordinates) { [weak self] route in
+            let group = DispatchGroup()
+            var routes: [MKRoute?] = []
             for points in route {
-                self?.drawRoute(p1: points.p1, p2: points.p2)
+                group.enter()
+                self?.findRoute(p1: points.p1, p2: points.p2) { route in
+                    routes.append(route)
+                    group.leave()
+                }
             }
             if withUserLocation {
                 if let p1 = self?.currentLocation, let p2 = route.first?.p1 {
-                    self?.drawRoute(p1: p1, p2: p2)
+                    group.enter()
+                    self?.findRoute(p1: p1, p2: p2) { route in
+                        routes.append(route)
+                        group.leave()
+                    }
+                }
+            }
+            group.notify(queue: .main) {
+                if routes.contains(nil) {
+                    // TODO: - show error
+                    Logger.log("Failed to load full route")
+                } else {
+                    routes.compactMap(\.?.polyline).forEach { polyline in
+                        self?.mapView.addOverlay(polyline, level: MKOverlayLevel.aboveRoads)
+                    }
                 }
             }
         }
@@ -232,7 +252,11 @@ extension MapViewController {
         zoomAnnotations(allAnnotations)
     }
     
-    private func drawRoute(p1: CLLocationCoordinate2D?, p2: CLLocationCoordinate2D?) {
+    private func findRoute(
+        p1: CLLocationCoordinate2D?,
+        p2: CLLocationCoordinate2D?,
+        completion: @escaping (MKRoute?) -> Void
+    ) {
         guard let p1 = p1, let p2 = p2 else { return }
         let directionRequest = MKDirections.Request()
         directionRequest.source = .init(placemark: .init(coordinate: p1))
@@ -243,13 +267,13 @@ extension MapViewController {
         direction.calculate { (response, error) in
             guard let response = response else {
                 if let error = error {
-                    print(error.localizedDescription)
+                    Logger.log(error.localizedDescription)
                 }
+                completion(nil)
                 return
             }
             
-            guard let route = response.routes.first else { return }
-            self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
+            completion(response.routes.first)
         }
     }
     

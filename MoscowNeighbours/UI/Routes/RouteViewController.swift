@@ -28,7 +28,11 @@ final class RouteViewController: BottomSheetViewController {
     
     // MARK: - private properties
     
-    private let routes: [Route] = data
+    private var routes: [Route] = []
+    
+    private let service = RoutesService()
+    
+    // MARK: - init
     
     override init() {
         super.init()
@@ -37,6 +41,13 @@ final class RouteViewController: BottomSheetViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - internal methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchData()
     }
     
     // MARK: - private methods
@@ -53,6 +64,14 @@ final class RouteViewController: BottomSheetViewController {
         
         tableView.register(RouteCell.self)
     }
+    
+    private func fetchData() {
+        service.fetchRoutes() { [weak self] routes in
+            self?.routes = routes ?? []
+            self?.tableView.reloadData()
+        }
+    }
+    
 }
 
 // MARK: - extension UITableViewDataSource

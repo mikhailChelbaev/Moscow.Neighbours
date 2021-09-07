@@ -32,7 +32,9 @@ class DefaultRequestSender: RequestSender {
                 Logger.log("Error happened when queried \(url.url!.absoluteString)")
                 Logger.log(String(data: data ?? String("no data").data(using: .utf8)!, encoding: .utf8)!)
                 Logger.log(err.localizedDescription)
-                completionHandler?(.failure(err.localizedDescription))
+                DispatchQueue.main.async {
+                    completionHandler?(.failure(err.localizedDescription))
+                }
                 return
             }
 
@@ -40,10 +42,14 @@ class DefaultRequestSender: RequestSender {
                 if !(200...300).contains(httpResponse.statusCode) {
                     Logger.log("Not 200(\(httpResponse.statusCode)) status code for \(url)")
                     guard let unwrappedData = data, let message = try? JSONSerialization.jsonObject(with: unwrappedData, options: .allowFragments) as? [String: Any] else {
-                        completionHandler?(.failure("\(httpResponse.statusCode) status code"))
+                        DispatchQueue.main.async {
+                            completionHandler?(.failure("\(httpResponse.statusCode) status code"))
+                        }
                         return
                     }
-                    completionHandler?(.failure(message["message"] as! String))
+                    DispatchQueue.main.async {
+                        completionHandler?(.failure(message["message"] as! String))
+                    }
                     return
                 }
             } else {
@@ -53,10 +59,12 @@ class DefaultRequestSender: RequestSender {
             
             guard let unwrappedData = data,
                   let parsedModel: ResultModel = self.parser.parse(data: unwrappedData)
-                else {
-                    Logger.log(String(data: data!, encoding: .utf8)!)
+            else {
+                Logger.log(String(data: data!, encoding: .utf8)!)
+                DispatchQueue.main.async {
                     completionHandler?(.failure("received data can't be parsed"))
-                    return
+                }
+                return
             }
             
 //            if let pageRequest = config.request as? IPaginationRequest {
@@ -67,7 +75,9 @@ class DefaultRequestSender: RequestSender {
 //                    PaginationHandler.main.submitCount(requestId: pageRequest.requestUUID, count: pageResponse.content.count)
 //                }
 //            }
-            completionHandler?(.success(parsedModel))
+            DispatchQueue.main.async {
+                completionHandler?(.success(parsedModel))
+            }
         }
         task.resume();
     }
