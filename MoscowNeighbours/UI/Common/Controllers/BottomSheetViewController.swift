@@ -20,7 +20,7 @@ class BottomSheetViewController: UIViewController {
         static let cornerRadius: CGFloat = 16
         static let shadowRadius: CGFloat = 4
         static let shadowOpacity: Float = 0.2
-        static let shadowOffset = CGSize.zero
+        static let shadowOffset: CGSize = .zero
     }
     
     // MARK: - UI
@@ -56,16 +56,26 @@ class BottomSheetViewController: UIViewController {
         scrollView?.contentInset.bottom = view.safeAreaInsets.bottom
     }
     
-    func setUp(scrollView: UIScrollView, headerView: UIView) {
+    func setUp(
+        scrollView: UIScrollView,
+        headerView: UIView,
+        topInsetPortrait: CGFloat = Settings.topInsetPortrait,
+        middleInsetFromBottom: CGFloat = Settings.middleInsetFromBottom,
+        headerHeight: CGFloat = Settings.headerHeight,
+        cornerRadius: CGFloat = Settings.cornerRadius,
+        shadowRadius: CGFloat = Settings.shadowRadius,
+        shadowOpacity: Float = Settings.shadowOpacity,
+        shadowOffset: CGSize = Settings.shadowOffset
+    ) {
         drawerView = DrawerView(scrollView: scrollView, delegate: scrollView.delegate, headerView: headerView)
         drawerView.translatesAutoresizingMaskIntoConstraints = false
-        drawerView.cornerRadius = Settings.cornerRadius
+        drawerView.cornerRadius = cornerRadius
         drawerView.containerView.backgroundColor = .systemBackground
-        drawerView.layer.shadowRadius = Settings.shadowRadius
-        drawerView.layer.shadowOpacity = Settings.shadowOpacity
-        drawerView.layer.shadowOffset = Settings.shadowOffset
-        drawerView.topPosition = .fromTop(Settings.topInsetPortrait)
-        drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottom)
+        drawerView.layer.shadowRadius = shadowRadius
+        drawerView.layer.shadowOpacity = shadowOpacity
+        drawerView.layer.shadowOffset = shadowOffset
+        drawerView.topPosition = .fromTop(topInsetPortrait)
+        drawerView.middlePosition = .fromBottom(middleInsetFromBottom)
         
 //        portraitConstraints = [
 //            drawerView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -77,7 +87,7 @@ class BottomSheetViewController: UIViewController {
         
         self.scrollView = scrollView
         
-        headerView.height(Settings.headerHeight)
+        headerView.height(headerHeight)
     }
 
 }

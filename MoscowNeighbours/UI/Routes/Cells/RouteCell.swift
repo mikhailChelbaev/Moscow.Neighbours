@@ -44,6 +44,7 @@ class RouteCell: CellView {
     }()
     
     override func commonInit() {
+        backgroundColor = .background
         clipsToBounds = false
         
         containerView.addSubview(headerLabel)

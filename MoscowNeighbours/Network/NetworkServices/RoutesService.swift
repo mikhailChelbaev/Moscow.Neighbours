@@ -26,15 +26,16 @@ extension Requests {
 final class RoutesService: BaseNetworkService {
     
     func fetchRoutes(completion: @escaping ([Route]?) -> Void) {
-        requestSender.send(request: Requests.RoutesRequest(), type: [Route].self) { result in
-            switch result {
-            case .success(let routes):
-                completion(routes)
-            case .failure(let err):
-                print(err)
-                completion(nil)
-            }
-        }
+//        requestSender.send(request: Requests.RoutesRequest(), type: [Route].self) { result in
+//            switch result {
+//            case .success(let routes):
+//                completion(routes)
+//            case .failure(let err):
+//                print(err)
+//                completion(nil)
+//            }
+//        }
+        completion(data)
     }
     
 }

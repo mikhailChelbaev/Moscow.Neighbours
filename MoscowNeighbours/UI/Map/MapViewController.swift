@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import ARKit
+import UltraDrawerView
 
 protocol MapPresentable: AnyObject {
     var mapView: MKMapView { get }
@@ -24,11 +25,10 @@ final class MapViewController: UIViewController, MapPresentable {
         case `default`
     }
     
-    private enum Settings {
+    private enum Layout {
         static let buttonSide: CGFloat = 48
-        static let locationButtonTopInset: CGFloat = 40
-        static let buttonsTrailingInset: CGFloat = 20
-        static let buttonsSpacing: CGFloat = 20
+        static let locationButtonTopInset: CGFloat = 20
+        static let locationButtonTrailingInset: CGFloat = 20
     }
     
     let mapView: MKMapView = {
@@ -37,9 +37,17 @@ final class MapViewController: UIViewController, MapPresentable {
         return map
     }()
     
+    private let cover: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
     private var locationButton: UIButton!
     
-    private var cameraButton: UIButton!
+//    private var cameraButton: UIButton!
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -50,8 +58,8 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private lazy var manager: BottomSheetsManager = {
         let manager = BottomSheetsManager(presenter: self)
-        manager.addController(routesController)
-        manager.addController(routeDescriptionController)
+        manager.addController(routesController, availableStates: [.middle, .top])
+        manager.addController(routeDescriptionController, availableStates: [.middle, .top])
         manager.addController(personController, availableStates: [.middle, .top])
         return manager
     }()
@@ -74,10 +82,14 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private let arPersonPreview: ARPersonPerview = .init()
     
+    deinit {
+        manager.controllers.forEach({ $0.drawerView.removeListener(self) })
+    }
+    
     override func loadView() {
         view = mapView
-        locationButton = createButton(image: UIImage(systemName: "location.fill"))
-        cameraButton = createButton(image: UIImage(systemName: "camera.fill"))
+        locationButton = createButton(image: #imageLiteral(resourceName: "location").withTintColor(.inversedBackground, renderingMode: .alwaysOriginal))
+//        cameraButton = createButton(image: UIImage(systemName: "camera.fill"))
     }
 
     override func viewDidLoad() {
@@ -97,34 +109,39 @@ final class MapViewController: UIViewController, MapPresentable {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         locationButton.layer.shadowColor = UIColor.shadow.cgColor
-        cameraButton.layer.shadowColor = UIColor.shadow.cgColor
+//        cameraButton.layer.shadowColor = UIColor.shadow.cgColor
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         locationButton.updateShadowPath()
-        cameraButton.updateShadowPath()
+//        cameraButton.updateShadowPath()
     }
     
     private func commonInit() {
         locationManager.startUpdatingLocation()
         mapView.delegate = self
         
+        manager.controllers.forEach({ $0.drawerView.addListener(self) })
+        
         routesController.showRouteCompletion = showRoute(_:)
         routeDescriptionController.mapPresenter = self
         
         locationButton.addTarget(self, action: #selector(updateCurrentLocation), for: .touchUpInside)
-        cameraButton.addTarget(self, action: #selector(showPersonModel), for: .touchUpInside)
+//        cameraButton.addTarget(self, action: #selector(showPersonModel), for: .touchUpInside)
 //        cameraButton.isEnabled = false
         
-        view.addSubview(cameraButton)
-        cameraButton.stickToSuperviewSafeEdges([.top, .right], insets: .init(top: Settings.locationButtonTopInset, left: 0, bottom: 0, right: Settings.buttonsTrailingInset))
-        cameraButton.exactSize(.init(width: Settings.buttonSide, height: Settings.buttonSide))
+        view.addSubview(cover)
+        cover.stickToSuperviewEdges(.all)
+        
+//        view.addSubview(cameraButton)
+//        cameraButton.stickToSuperviewSafeEdges([.top, .right], insets: .init(top: Layout.locationButtonTopInset, left: 0, bottom: 0, right: Layout.buttonsTrailingInset))
+//        cameraButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
         
         view.addSubview(locationButton)
-        locationButton.trailing(Settings.buttonsTrailingInset)
-        locationButton.top(Settings.buttonsSpacing, to: cameraButton)
-        locationButton.exactSize(.init(width: Settings.buttonSide, height: Settings.buttonSide))
+        locationButton.trailing(Layout.locationButtonTrailingInset)
+        locationButton.safeTop(Layout.locationButtonTopInset)
+        locationButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
         
         addChild(routesController)
         view.addSubview(routesController.view)
@@ -152,9 +169,10 @@ extension MapViewController {
     
     private func createButton(image: UIImage?) -> UIButton {
         let button = UIButton()
+        button.backgroundColor = .background
         button.setImage(image, for: .normal)
         button.backgroundColor = .systemBackground
-        button.layer.cornerRadius = Settings.buttonSide / 2
+        button.layer.cornerRadius = Layout.buttonSide / 2
         button.addShadow()
         return button
     }
@@ -180,7 +198,7 @@ extension MapViewController {
         currentlySelectedRoute = route
         
         routeDescriptionController.updateRoute(route, closeAction: closeRouteDescription)
-        manager.show(routeDescriptionController, state: .bottom)
+        manager.show(routeDescriptionController, state: .top)
         mapView.addAnnotations(route.personsInfo)
         
         drawRoute(annotations: route.personsInfo, withUserLocation: false)
@@ -301,7 +319,7 @@ extension MapViewController {
         }
         currentlySelectedPerson = info
  
-        personController.update(info, color: currentlySelectedRoute?.color.value ?? .systemBackground, closeAction: closePersonController)
+        personController.update(info, color: currentlySelectedRoute?.color.value ?? .systemBackground, closeAction: { [weak self] in self?.closePersonController() })
         manager.show(personController, state: .middle)
         showPlaceOnMap(with: info.coordinate)
     }
@@ -413,14 +431,47 @@ extension MapViewController: MKMapViewDelegate {
     
 }
 
-extension MKMapView {
+// MARK: - protocol DrawerViewListener
+
+extension MapViewController: DrawerViewListener {
     
-    func removeAllAnnotations() {
-        removeAnnotations(annotations)
+    func drawerView(_ drawerView: DrawerView, willBeginUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) { }
+    
+    func drawerView(_ drawerView: DrawerView, didUpdateOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
+        recalculateCoverAlpha(for: origin, drawerView: drawerView)
     }
     
-    func removeAllOverlays() {
-        removeOverlays(overlays)
+    func drawerView(_ drawerView: DrawerView, didEndUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
+        recalculateCoverAlpha(for: origin, drawerView: drawerView)
+    }
+    
+    func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
+        // scroll to top
+//        if state == .dismissed {
+//            if drawerView == mainBottomSheet.drawerView {
+//                mainBottomSheet.sectionsView.scrollToTop()
+//            } else if drawerView == placeBottomSheet.drawerView {
+//                placeBottomSheet.tableView.scrollToTop()
+//            }
+//        }
+    }
+    
+    func drawerView(_ drawerView: DrawerView, willBeginAnimationToState state: DrawerView.State?, source: DrawerOriginChangeSource) { }
+    
+    private func recalculateCoverAlpha(for origin: CGFloat, drawerView: DrawerView) {
+        guard drawerView == manager.currentController?.drawerView else { return }
+        var value: CGFloat = 0
+        defer {
+            cover.alpha = value
+        }
+        guard let states = manager.currentController?.drawerView.availableStates else { return }
+        let heights: [CGFloat] = states.compactMap({ manager.currentController?.drawerView.origin(for: $0) }).sorted(by: { $0 > $1 })
+    
+        guard heights.count > 1 else { return }
+        
+        let top = heights.first!
+        let bottom = heights.last!
+        value = 0.7 * (origin - top) / (bottom - top)
     }
     
 }

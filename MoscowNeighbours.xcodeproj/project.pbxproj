@@ -16,7 +16,6 @@
 		7404A61126B87FAF00524453 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404A61026B87FAF00524453 /* TextCell.swift */; };
 		7404A61426B8874A00524453 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404A61326B8874A00524453 /* PersonViewController.swift */; };
 		7415479326B08C8A006931DC /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* PersonCell.swift */; };
-		7415479526B0968D006931DC /* RouteDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479426B0968D006931DC /* RouteDescriptionCell.swift */; };
 		7419E1D526BEB0FA00E31BDD /* ImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */; };
 		7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2026BAAE290034533F /* RouteFinder.swift */; };
 		7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */; };
@@ -25,6 +24,11 @@
 		742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283C126BB2AC4003F814E /* UIView+Shadow.swift */; };
 		7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7422A9C226BC707A00FE995E /* ARPersonPerview.swift */; };
 		7422A9C526BC751500FE995E /* CosmonautSuit.reality in Resources */ = {isa = PBXBuildFile; fileRef = 7422A9C426BC751500FE995E /* CosmonautSuit.reality */; };
+		742EFE8D26F14168009A5126 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EFE8C26F14168009A5126 /* GradientView.swift */; };
+		74346FB526F3E0B70060357A /* helveticaneuecyr-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */; };
+		74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */; };
+		74346FB826F3E24D0060357A /* helveticaneuecyr-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */; };
+		74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */; };
 		7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988126E6B80F003FC860 /* BaseNetworkService.swift */; };
 		7443988426E6B9C7003FC860 /* RequestPreparation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988326E6B9C7003FC860 /* RequestPreparation.swift */; };
 		7443988826E6B9EA003FC860 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988726E6B9EA003FC860 /* Request.swift */; };
@@ -40,6 +44,10 @@
 		746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E026AC557100CCCB71 /* CollectionReuseViewWrapper.swift */; };
 		746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */; };
 		746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */; };
+		746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100D26F6192F002CB7E2 /* ChipsLayout.swift */; };
+		746A101026F619AF002CB7E2 /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100F26F619AF002CB7E2 /* SeparatorCell.swift */; };
+		746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */; };
+		746A101426F6276E002CB7E2 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A101326F6276E002CB7E2 /* AlertCell.swift */; };
 		746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC126A8BA6C009CC823 /* RouteViewController.swift */; };
 		746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* HeaderView.swift */; };
 		746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */; };
@@ -48,11 +56,18 @@
 		748FFD9926E55594009CA688 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9826E55594009CA688 /* RequestSender.swift */; };
 		748FFD9B26E555CB009CA688 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9A26E555CB009CA688 /* Parser.swift */; };
 		74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6CFC926BF1E0D00104457 /* ButtonCell.swift */; };
-		74D4AB5526AF39A9009CAD3A /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74D4AB5426AF39A9009CAD3A /* UltraDrawerView */; };
 		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
+		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
+		74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* RouteHeaderCell.swift */; };
+		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
+		74EBC3A126F512EE0002EEAE /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74EBC3A026F512EE0002EEAE /* UltraDrawerView */; };
 		74FD656926B0ABDA00F824DD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FD656826B0ABDA00F824DD /* Stack.swift */; };
+		74FFB59426EFE55B0060D948 /* ModernRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59326EFE55B0060D948 /* ModernRouteCell.swift */; };
+		74FFB59726EFE64E0060D948 /* ImageView in Frameworks */ = {isa = PBXBuildFile; productRef = 74FFB59626EFE64E0060D948 /* ImageView */; };
+		74FFB59926EFE9190060D948 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59826EFE9190060D948 /* InfoView.swift */; };
+		74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59B26EFEE510060D948 /* SFSymbol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +82,6 @@
 		7404A61026B87FAF00524453 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		7404A61326B8874A00524453 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		7415479226B08C89006931DC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
-		7415479426B0968D006931DC /* RouteDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCell.swift; sourceTree = "<group>"; };
 		7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCell.swift; sourceTree = "<group>"; };
 		7420CE2026BAAE290034533F /* RouteFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFinder.swift; sourceTree = "<group>"; };
 		7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
@@ -76,6 +90,11 @@
 		742283C126BB2AC4003F814E /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		7422A9C226BC707A00FE995E /* ARPersonPerview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPersonPerview.swift; sourceTree = "<group>"; };
 		7422A9C426BC751500FE995E /* CosmonautSuit.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = CosmonautSuit.reality; sourceTree = "<group>"; };
+		742EFE8C26F14168009A5126 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-roman.ttf"; sourceTree = "<group>"; };
+		74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bold.ttf"; sourceTree = "<group>"; };
+		74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-medium.ttf"; sourceTree = "<group>"; };
+		74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Annotations.swift"; sourceTree = "<group>"; };
 		7443988126E6B80F003FC860 /* BaseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkService.swift; sourceTree = "<group>"; };
 		7443988326E6B9C7003FC860 /* RequestPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPreparation.swift; sourceTree = "<group>"; };
 		7443988726E6B9EA003FC860 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -91,6 +110,10 @@
 		746192E026AC557100CCCB71 /* CollectionReuseViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReuseViewWrapper.swift; sourceTree = "<group>"; };
 		746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterViewWrapper.swift; sourceTree = "<group>"; };
 		746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		746A100D26F6192F002CB7E2 /* ChipsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsLayout.swift; sourceTree = "<group>"; };
+		746A100F26F619AF002CB7E2 /* SeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
+		746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeaderCell.swift; sourceTree = "<group>"; };
+		746A101326F6276E002CB7E2 /* AlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
 		746BCCC126A8BA6C009CC823 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		746BCCC726A8BD59009CC823 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
@@ -103,7 +126,13 @@
 		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
+		74E729B426F2978200775D37 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
+		74EBC36726F503500002EEAE /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
 		74FD656826B0ABDA00F824DD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		74FFB59326EFE55B0060D948 /* ModernRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernRouteCell.swift; sourceTree = "<group>"; };
+		74FFB59826EFE9190060D948 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		74FFB59B26EFEE510060D948 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +140,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74D4AB5526AF39A9009CAD3A /* UltraDrawerView in Frameworks */,
+				74FFB59726EFE64E0060D948 /* ImageView in Frameworks */,
+				74EBC3A126F512EE0002EEAE /* UltraDrawerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +192,9 @@
 				7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */,
 				742283C126BB2AC4003F814E /* UIView+Shadow.swift */,
 				748FFD9526E55535009CA688 /* Logger.swift */,
+				74FFB59B26EFEE510060D948 /* SFSymbol.swift */,
+				74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */,
+				746A100D26F6192F002CB7E2 /* ChipsLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -199,8 +232,8 @@
 		7415479626B0974A006931DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				74E729B426F2978200775D37 /* RouteHeaderCell.swift */,
 				7415479226B08C89006931DC /* PersonCell.swift */,
-				7415479426B0968D006931DC /* RouteDescriptionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -209,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				746192D326AC446100CCCB71 /* RouteCell.swift */,
+				74FFB59326EFE55B0060D948 /* ModernRouteCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -216,6 +250,7 @@
 		7419E1D326BEB0BF00E31BDD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */,
 				7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */,
 			);
 			path = Cells;
@@ -233,12 +268,62 @@
 		742283BC26BB2998003F814E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				74346FB226F3E0A10060357A /* Colors */,
+				74346FB126F3E0980060357A /* Fonts */,
 				7422A9C426BC751500FE995E /* CosmonautSuit.reality */,
-				742283BD26BB29AB003F814E /* Colors.xcassets */,
-				742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */,
 				7402661726A7637A006242FE /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		742EFE8926F14132009A5126 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		742EFE8A26F14138009A5126 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				746BCCC726A8BD59009CC823 /* HeaderView.swift */,
+				74FFB59826EFE9190060D948 /* InfoView.swift */,
+				742EFE8C26F14168009A5126 /* GradientView.swift */,
+				74EBC36726F503500002EEAE /* HandlerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		742EFE8B26F1413F009A5126 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
+				7404A61026B87FAF00524453 /* TextCell.swift */,
+				74E729B226F2946800775D37 /* EntityHeaderCell.swift */,
+				746A100F26F619AF002CB7E2 /* SeparatorCell.swift */,
+				746A101326F6276E002CB7E2 /* AlertCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		74346FB126F3E0980060357A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */,
+				74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */,
+				74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		74346FB226F3E0A10060357A /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				742283BD26BB29AB003F814E /* Colors.xcassets */,
+				742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		7443988026E6B802003FC860 /* NetworkServices */ = {
@@ -254,11 +339,10 @@
 		746192D926AC54BF00CCCB71 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				742EFE8926F14132009A5126 /* Controllers */,
+				742EFE8A26F14138009A5126 /* Views */,
+				742EFE8B26F1413F009A5126 /* Cells */,
 				746192E426AC560800CCCB71 /* BaseCells */,
-				746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */,
-				746BCCC726A8BD59009CC823 /* HeaderView.swift */,
-				7404A61026B87FAF00524453 /* TextCell.swift */,
-				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -280,6 +364,7 @@
 			children = (
 				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
 				7415479726B09754006931DC /* Cells */,
+				74FFB59A26EFE91D0060D948 /* Views */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -332,6 +417,13 @@
 			path = RouteDescription;
 			sourceTree = "<group>";
 		};
+		74FFB59A26EFE91D0060D948 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -349,7 +441,8 @@
 			);
 			name = MoscowNeighbours;
 			packageProductDependencies = (
-				74D4AB5426AF39A9009CAD3A /* UltraDrawerView */,
+				74FFB59626EFE64E0060D948 /* ImageView */,
+				74EBC3A026F512EE0002EEAE /* UltraDrawerView */,
 			);
 			productName = MoscowNeighbours;
 			productReference = 7402660B26A76379006242FE /* MoscowNeighbours.app */;
@@ -366,6 +459,7 @@
 				TargetAttributes = {
 					7402660A26A76379006242FE = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -379,7 +473,8 @@
 			);
 			mainGroup = 7402660226A76379006242FE;
 			packageReferences = (
-				74D4AB5326AF39A9009CAD3A /* XCRemoteSwiftPackageReference "UltraDrawerView" */,
+				74FFB59526EFE64E0060D948 /* XCRemoteSwiftPackageReference "ImageView" */,
+				74EBC39F26F512EE0002EEAE /* XCRemoteSwiftPackageReference "UltraDrawerView" */,
 			);
 			productRefGroup = 7402660C26A76379006242FE /* Products */;
 			projectDirPath = "";
@@ -395,8 +490,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */,
 				7422A9C526BC751500FE995E /* CosmonautSuit.reality in Resources */,
 				742283BE26BB29AB003F814E /* Colors.xcassets in Resources */,
+				74346FB526F3E0B70060357A /* helveticaneuecyr-bold.ttf in Resources */,
+				74346FB826F3E24D0060357A /* helveticaneuecyr-medium.ttf in Resources */,
 				7402661B26A7637A006242FE /* LaunchScreen.storyboard in Resources */,
 				7402661826A7637A006242FE /* Assets.xcassets in Resources */,
 			);
@@ -413,6 +511,7 @@
 				7443988826E6B9EA003FC860 /* Request.swift in Sources */,
 				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
+				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				748FFD9926E55594009CA688 /* RequestSender.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
@@ -421,24 +520,34 @@
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
 				74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
+				74FFB59426EFE55B0060D948 /* ModernRouteCell.swift in Sources */,
 				748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */,
 				7419E1D526BEB0FA00E31BDD /* ImagesCell.swift in Sources */,
 				7443988426E6B9C7003FC860 /* RequestPreparation.swift in Sources */,
 				7415479326B08C8A006931DC /* PersonCell.swift in Sources */,
+				742EFE8D26F14168009A5126 /* GradientView.swift in Sources */,
 				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
-				7415479526B0968D006931DC /* RouteDescriptionCell.swift in Sources */,
+				746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
 				74FD656926B0ABDA00F824DD /* Stack.swift in Sources */,
+				74EBC36826F503500002EEAE /* HandlerView.swift in Sources */,
 				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
 				742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */,
+				746A101426F6276E002CB7E2 /* AlertCell.swift in Sources */,
+				746A101026F619AF002CB7E2 /* SeparatorCell.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
+				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
+				74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */,
+				74FFB59926EFE9190060D948 /* InfoView.swift in Sources */,
 				746192D426AC446100CCCB71 /* RouteCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				748FFD9B26E555CB009CA688 /* Parser.swift in Sources */,
+				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
+				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */,
 				7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */,
@@ -588,6 +697,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
@@ -597,6 +707,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.machelbaev.neighbours.moscow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -607,6 +718,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
@@ -645,7 +757,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		74D4AB5326AF39A9009CAD3A /* XCRemoteSwiftPackageReference "UltraDrawerView" */ = {
+		74EBC39F26F512EE0002EEAE /* XCRemoteSwiftPackageReference "UltraDrawerView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/super-ultra/UltraDrawerView";
 			requirement = {
@@ -653,13 +765,26 @@
 				minimumVersion = 0.6.3;
 			};
 		};
+		74FFB59526EFE64E0060D948 /* XCRemoteSwiftPackageReference "ImageView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mikhailChelbaev/ImageView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		74D4AB5426AF39A9009CAD3A /* UltraDrawerView */ = {
+		74EBC3A026F512EE0002EEAE /* UltraDrawerView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 74D4AB5326AF39A9009CAD3A /* XCRemoteSwiftPackageReference "UltraDrawerView" */;
+			package = 74EBC39F26F512EE0002EEAE /* XCRemoteSwiftPackageReference "UltraDrawerView" */;
 			productName = UltraDrawerView;
+		};
+		74FFB59626EFE64E0060D948 /* ImageView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74FFB59526EFE64E0060D948 /* XCRemoteSwiftPackageReference "ImageView" */;
+			productName = ImageView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,88 +6,154 @@
 //
 
 import UIKit
+import ImageView
 
 final class PersonCell: CellView {
     
-    enum Settings {
-        static let imageSize: CGSize = .init(width: 28, height: 28)
+    enum Layout {
+        static let imageSize: CGSize = .init(width: 32, height: 32)
+        static let containerHeight: CGFloat = 115
+        static let personContainerHeight: CGFloat = 77
+        static let dotTopInset: CGFloat = 109
+        static let dotBottomInset: CGFloat = 75
+        static let dotSide: CGFloat = 10
+        static var totalHeight: CGFloat {
+            dotTopInset + dotSide + dotBottomInset
+        }
+        static let dashWidth: CGFloat = 2
+        static let dashHeight: CGFloat = 5
     }
     
-    private let titleLabel: UILabel = {
+    let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .background
+        view.layer.cornerRadius = 18
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.separator.cgColor
+        return view
+    }()
+    
+    let personContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .inversedBackground
+        view.layer.cornerRadius = 18
+        return view
+    }()
+    
+    let houseTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .mainFont(ofSize: 16, weight: .medium)
+        label.font = .mainFont(ofSize: 18, weight: .bold)
         return label
     }()
     
-    private let subtitleLabel: UILabel = {
+    let addressLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 14, weight: .regular)
+        label.textColor = .secondaryLabel
         return label
     }()
     
-    private let numberImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.clipsToBounds = true
-        iv.layer.cornerRadius = Settings.imageSize.width / 2
-        iv.contentMode = .scaleAspectFit
+    let personNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .mainFont(ofSize: 18, weight: .bold)
+        label.numberOfLines = 2
+        label.textColor = .reversedLabel
+        return label
+    }()
+    
+    let imageView: ImageView = {
+        let iv = ImageView()
+        iv.placeholder = .symbol(name: "person.crop.circle", tintColor: .white)
+        iv.layer.cornerRadius = Layout.imageSize.height / 2
         return iv
     }()
     
-    private var number: Int = 0
+    let routeLineImageView = UIImageView()
+    
+    var isFirst: Bool = false, isLast: Bool = false
     
     override func commonInit() {
-        addSubview(numberImageView)
-        numberImageView.leading(16)
-        numberImageView.centerVertically()
-        numberImageView.exactSize(Settings.imageSize)
+        backgroundColor = .background
         
-        addSubview(titleLabel)
-        titleLabel.top(9)
-        titleLabel.leading(16, to: numberImageView)
-        titleLabel.trailing(16)
+        addSubview(containerView)
+        containerView.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 20, left: 40, bottom: 0, right: 20))
+        containerView.height(Layout.containerHeight)
         
-        addSubview(subtitleLabel)
-        subtitleLabel.leading(16, to: numberImageView)
-        subtitleLabel.top(4, to: titleLabel)
-        subtitleLabel.trailing(16)
-        subtitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -11).isActive = true
+        addSubview(personContainerView)
+        personContainerView.stickToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 40, bottom: 20, right: 20))
+        personContainerView.top(-Layout.personContainerHeight / 2, to: containerView)
+        personContainerView.height(Layout.personContainerHeight)
         
-        heightAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
+        containerView.addSubview(houseTitleLabel)
+        houseTitleLabel.stickToSuperviewEdges([.left, .top, .right], insets: .init(top: 20, left: 20, bottom: 0, right: 20))
         
+        containerView.addSubview(addressLabel)
+        addressLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        addressLabel.top(5, to: houseTitleLabel)
+        
+        personContainerView.addSubview(imageView)
+        imageView.leading(16)
+        imageView.exactSize(Layout.imageSize)
+        imageView.centerVertically()
+        
+        personContainerView.addSubview(personNameLabel)
+        personNameLabel.leading(6, to: imageView)
+        personNameLabel.trailing(16)
+        personNameLabel.centerVertically()
+        
+        addSubview(routeLineImageView)
+        routeLineImageView.stickToSuperviewEdges([.left, .top, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 0))
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        numberImageView.image = drawImage()
+        containerView.layer.borderColor = UIColor.separator.cgColor
+        routeLineImageView.image = drawImage(withBegining: !isFirst, withEnding: !isLast)
     }
     
-    private func drawImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: Settings.imageSize)
+    private func drawImage(withBegining: Bool, withEnding: Bool) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: .init(width: Layout.dotSide, height: Layout.totalHeight))
         return renderer.image { _ in
-            UIColor.label.setFill()
-            UIBezierPath(rect: .init(origin: .zero, size: Settings.imageSize)).fill()
+            UIColor.systemRed.setFill()
+            UIBezierPath(ovalIn: .init(origin: .init(x: 0, y: Layout.dotTopInset), size: .init(width: Layout.dotSide, height: Layout.dotSide))).fill()
             
-            let font: UIFont = .mainFont(ofSize: 14, weight: .regular)
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-
-            let attrs = [NSAttributedString.Key.font: font,
-                         NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                         NSAttributedString.Key.foregroundColor: UIColor.systemBackground]
-
-            let yOffset = (Settings.imageSize.height - font.lineHeight) / 2
-
-            let string = "\(self.number)"
-            string.draw(with: CGRect(x: 0, y: yOffset, width: Settings.imageSize.width, height: Settings.imageSize.height), options: .usesLineFragmentOrigin, attributes: attrs, context: nil)
+            let xOffset: CGFloat = (Layout.dotSide - Layout.dashWidth) / 2
             
+            if withBegining {
+                var yOffset: CGFloat = 0
+                
+                while yOffset < Layout.dotTopInset {
+                    UIColor.separator.setFill()
+                    UIBezierPath(rect: .init(origin: .init(x: xOffset, y: yOffset), size: .init(width: Layout.dashWidth, height: Layout.dashHeight))).fill()
+                    yOffset += 2 * Layout.dashHeight
+                }
+            }
+            
+            if withEnding {
+                var yOffset: CGFloat = Layout.dotTopInset + Layout.dotSide + Layout.dashHeight
+                
+                while yOffset < Layout.totalHeight {
+                    UIColor.separator.setFill()
+                    UIBezierPath(rect: .init(origin: .init(x: xOffset, y: yOffset), size: .init(width: Layout.dashWidth, height: Layout.dashHeight))).fill()
+                    yOffset += 2 * Layout.dashHeight
+                }
+            }
+
         }
     }
     
-    func update(person: Person, number: Int) {
-        titleLabel.text = person.name
-        subtitleLabel.text = person.address
-        self.number = number
-        numberImageView.image = drawImage()
+    func update(person: Person, isFirst: Bool, isLast: Bool) {
+        personNameLabel.text = person.name
+        addressLabel.text = person.address
+        houseTitleLabel.text = "Дом крутого человека" // change later
+        routeLineImageView.image = drawImage(withBegining: !isFirst, withEnding: !isLast)
+        
+        self.isFirst = isFirst
+        self.isLast = isLast
+        
+//        subtitleLabel.text = person.address
+//        self.number = number
+//        numberImageView.image = drawImage()
     }
     
 }

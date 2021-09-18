@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ImageView",
+        "repositoryURL": "https://github.com/mikhailChelbaev/ImageView",
+        "state": {
+          "branch": null,
+          "revision": "cae7b77565060fb03ef39cccc4eed4d853cee34d",
+          "version": "1.1.1"
+        }
+      },
+      {
         "package": "UltraDrawerView",
         "repositoryURL": "https://github.com/super-ultra/UltraDrawerView",
         "state": {

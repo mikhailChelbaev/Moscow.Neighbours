@@ -10,7 +10,7 @@ import UltraDrawerView
 
 class BottomSheetsManager {
     
-    private var controllers: [BottomSheetViewController] = []
+    private(set) var controllers: [BottomSheetViewController] = []
     
     private weak var presenter: UIViewController?
     

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// NOTE: - depricated
 final class ImagesCell: CellView {
     
     private let imageView: UIImageView = {
