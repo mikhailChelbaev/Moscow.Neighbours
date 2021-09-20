@@ -123,7 +123,7 @@ extension PersonViewController: UITableViewDataSource {
             let cell = tableView.dequeue(PersonHeaderCell.self, for: indexPath)
             cell.configureView = { [weak self] view in
                 guard let `self` = self else { return }
-                view.update(name: self.personInfo.person.name, image: #imageLiteral(resourceName: "nagibin_002"))
+                view.update(name: self.personInfo.person.name, image: UIImage(data: self.personInfo.person.image)!)
             }
             cell.selectionStyle = .none
             return cell
@@ -139,7 +139,7 @@ extension PersonViewController: UITableViewDataSource {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
                     guard let `self` = self else { return }
-                    view.update(text: self.personInfo.person.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .secondaryLabel, insets: .init(top: 5, left: 20, bottom: 20, right: 20))
+                    view.update(text: self.personInfo.person.shortDescription, font: .mainFont(ofSize: 18, weight: .regular), textColor: .secondaryLabel, insets: .init(top: 5, left: 20, bottom: 20, right: 20))
                 }
                 cell.selectionStyle = .none
                 return cell

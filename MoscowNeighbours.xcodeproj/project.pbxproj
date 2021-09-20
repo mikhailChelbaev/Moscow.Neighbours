@@ -44,6 +44,7 @@
 		746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E026AC557100CCCB71 /* CollectionReuseViewWrapper.swift */; };
 		746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */; };
 		746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */; };
+		746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746769EB26F922B400158FFC /* RoutePassingViewController.swift */; };
 		746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100D26F6192F002CB7E2 /* ChipsLayout.swift */; };
 		746A101026F619AF002CB7E2 /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100F26F619AF002CB7E2 /* SeparatorCell.swift */; };
 		746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */; };
@@ -110,6 +111,7 @@
 		746192E026AC557100CCCB71 /* CollectionReuseViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReuseViewWrapper.swift; sourceTree = "<group>"; };
 		746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterViewWrapper.swift; sourceTree = "<group>"; };
 		746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		746769EB26F922B400158FFC /* RoutePassingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingViewController.swift; sourceTree = "<group>"; };
 		746A100D26F6192F002CB7E2 /* ChipsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsLayout.swift; sourceTree = "<group>"; };
 		746A100F26F619AF002CB7E2 /* SeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeaderCell.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				746BCCBE26A8BA6C009CC823 /* Routes */,
 				74D4AB5826AF3F16009CAD3A /* RouteDescription */,
 				7404A61226B8873500524453 /* Person */,
+				746769EA26F9229900158FFC /* RoutePassing */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -357,6 +360,14 @@
 				746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */,
 			);
 			path = BaseCells;
+			sourceTree = "<group>";
+		};
+		746769EA26F9229900158FFC /* RoutePassing */ = {
+			isa = PBXGroup;
+			children = (
+				746769EB26F922B400158FFC /* RoutePassingViewController.swift */,
+			);
+			path = RoutePassing;
 			sourceTree = "<group>";
 		};
 		746BCCBE26A8BA6C009CC823 /* Routes */ = {
@@ -550,6 +561,7 @@
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */,
+				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
 				7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
 				7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */,

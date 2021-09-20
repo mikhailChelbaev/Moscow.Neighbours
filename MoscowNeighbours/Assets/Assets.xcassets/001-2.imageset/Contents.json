@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "nagibin_002.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "001.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },

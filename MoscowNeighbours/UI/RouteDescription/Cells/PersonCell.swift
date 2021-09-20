@@ -61,10 +61,12 @@ final class PersonCell: CellView {
         return label
     }()
     
-    let imageView: ImageView = {
+    let personAvatar: ImageView = {
         let iv = ImageView()
         iv.placeholder = .symbol(name: "person.crop.circle", tintColor: .white)
         iv.layer.cornerRadius = Layout.imageSize.height / 2
+        iv.clipsToBounds = true
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
@@ -91,13 +93,13 @@ final class PersonCell: CellView {
         addressLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         addressLabel.top(5, to: houseTitleLabel)
         
-        personContainerView.addSubview(imageView)
-        imageView.leading(16)
-        imageView.exactSize(Layout.imageSize)
-        imageView.centerVertically()
+        personContainerView.addSubview(personAvatar)
+        personAvatar.leading(16)
+        personAvatar.exactSize(Layout.imageSize)
+        personAvatar.centerVertically()
         
         personContainerView.addSubview(personNameLabel)
-        personNameLabel.leading(6, to: imageView)
+        personNameLabel.leading(6, to: personAvatar)
         personNameLabel.trailing(16)
         personNameLabel.centerVertically()
         
@@ -142,11 +144,13 @@ final class PersonCell: CellView {
         }
     }
     
-    func update(person: Person, isFirst: Bool, isLast: Bool) {
+    func update(personInfo: PersonInfo, isFirst: Bool, isLast: Bool) {
+        let person = personInfo.person
         personNameLabel.text = person.name
         addressLabel.text = person.address
-        houseTitleLabel.text = "Дом крутого человека" // change later
+        houseTitleLabel.text = personInfo.place.name
         routeLineImageView.image = drawImage(withBegining: !isFirst, withEnding: !isLast)
+        personAvatar.image = UIImage(data: person.image) ?? personAvatar.placeholder.image
         
         self.isFirst = isFirst
         self.isLast = isLast

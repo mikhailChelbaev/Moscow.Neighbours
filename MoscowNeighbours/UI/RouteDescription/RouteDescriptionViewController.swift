@@ -177,10 +177,10 @@ extension RouteDescriptionViewController: UITableViewDataSource {
                 cell.configureView = { [weak self] view in
                     guard let `self` = self else { return }
                     let index = indexPath.item - 1
-                    let person = self.route.personsInfo[index].person
+                    let personInfo = self.route.personsInfo[index]
                     let isFirst = index == 0
                     let isLast = index == self.route.personsInfo.count - 1
-                    view.update(person: person, isFirst: isFirst, isLast: isLast)
+                    view.update(personInfo: personInfo, isFirst: isFirst, isLast: isLast)
                 }
                 cell.selectionStyle = .none
                 return cell
