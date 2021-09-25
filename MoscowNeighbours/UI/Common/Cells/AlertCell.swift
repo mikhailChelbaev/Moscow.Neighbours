@@ -9,6 +9,15 @@ import UIKit
 
 final class AlertCell: CellView {
     
+    enum Image: String {
+        case exclamationMark = "exclamationmark.circle"
+        case checkmark = "checkmark.circle"
+        
+        var value: UIImage? {
+            sfSymbol(rawValue, tintColor: .inversedBackground)
+        }
+    }
+    
     let container: UIView = {
         let view = UIView()
         view.backgroundColor = .grayBackground
@@ -20,7 +29,7 @@ final class AlertCell: CellView {
         let iv = UIImageView()
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFit
-        iv.image = sfSymbol("exclamationmark.circle", tintColor: .inversedBackground)
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -40,6 +49,7 @@ final class AlertCell: CellView {
         container.addSubview(imageView)
         imageView.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
         imageView.bottomAnchor.constraint(lessThanOrEqualTo: container.bottomAnchor, constant: -20).isActive = true
+        imageView.exactSize(.init(width: 20, height: 20))
         
         container.addSubview(label)
         label.stickToSuperviewEdges([.top, .right], insets: .init(top: 20, left: 0, bottom: 0, right: 20))
@@ -47,8 +57,13 @@ final class AlertCell: CellView {
         label.bottomAnchor.constraint(lessThanOrEqualTo: container.bottomAnchor, constant: -20).isActive = true
     }
     
-    func update(text: String, containerInsets: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)) {
+    func update(
+        text: String,
+        image: Image = .exclamationMark,
+        containerInsets: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
+    ) {
         label.text = text
+        imageView.image = image.value
         containerConstraints?.updateInsets(containerInsets)
     }
     

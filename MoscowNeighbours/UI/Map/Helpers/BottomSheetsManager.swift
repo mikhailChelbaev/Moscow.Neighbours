@@ -43,7 +43,8 @@ class BottomSheetsManager {
     func show(
         _ controller: BottomSheetViewController,
         state: DrawerView.State,
-        animated: Bool = true
+        animated: Bool = true,
+        completion: ((Bool) -> Void)? = nil
     ) {
         guard let presenter = presenter else { return }
         
@@ -58,7 +59,7 @@ class BottomSheetsManager {
         })
         presenter.view.bringSubviewToFront(controller.view)
         controller.drawerView.availableStates = states[controller] ?? []
-        controller.drawerView.setState(state, animated: animated)
+        controller.drawerView.setState(state, animated: animated, completion: completion)
         
         currentController = controller
     }

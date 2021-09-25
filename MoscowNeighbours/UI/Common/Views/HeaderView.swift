@@ -38,7 +38,7 @@ final class HeaderView: CellView {
     private var buttonCloseAction: Action?
     
     override func commonInit() {
-        backgroundColor = .systemBackground
+        backgroundColor = .background
         
         addSubview(closeButton)
         closeButton.height(Settings.buttonSide)

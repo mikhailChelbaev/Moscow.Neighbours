@@ -35,6 +35,7 @@
 		7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988926E6B9F5003FC860 /* RequestResult.swift */; };
 		7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988B26E6BAA4003FC860 /* RoutesService.swift */; };
 		7443988E26E6BB3F003FC860 /* RequestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988D26E6BB3F003FC860 /* RequestConstants.swift */; };
+		74569EDF26FA8BBF00D58821 /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74569EDE26FA8BBF00D58821 /* UltraDrawerView */; };
 		746192D426AC446100CCCB71 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D326AC446100CCCB71 /* RouteCell.swift */; };
 		746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D526AC549400CCCB71 /* UITableView+Reuse.swift */; };
 		746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */; };
@@ -52,18 +53,23 @@
 		746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC126A8BA6C009CC823 /* RouteViewController.swift */; };
 		746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* HeaderView.swift */; };
 		746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */; };
+		747A0E5A26FE1F8400EB1973 /* PageIndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5926FE1F8400EB1973 /* PageIndexCell.swift */; };
+		747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */; };
+		747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */; };
+		747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */; };
 		748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748299DE26AA0A1A00573DC3 /* RoutesData.swift */; };
 		748FFD9626E55535009CA688 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9526E55535009CA688 /* Logger.swift */; };
 		748FFD9926E55594009CA688 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9826E55594009CA688 /* RequestSender.swift */; };
 		748FFD9B26E555CB009CA688 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9A26E555CB009CA688 /* Parser.swift */; };
+		74C5D8D326FD237700034432 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C5D8D226FD237700034432 /* Button.swift */; };
 		74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6CFC926BF1E0D00104457 /* ButtonCell.swift */; };
+		74CD387926FF3E4600D5CCDE /* PagerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CD387826FF3E4600D5CCDE /* PagerProtocols.swift */; };
 		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
 		74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* RouteHeaderCell.swift */; };
 		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
-		74EBC3A126F512EE0002EEAE /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74EBC3A026F512EE0002EEAE /* UltraDrawerView */; };
 		74FD656926B0ABDA00F824DD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FD656826B0ABDA00F824DD /* Stack.swift */; };
 		74FFB59426EFE55B0060D948 /* ModernRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59326EFE55B0060D948 /* ModernRouteCell.swift */; };
 		74FFB59726EFE64E0060D948 /* ImageView in Frameworks */ = {isa = PBXBuildFile; productRef = 74FFB59626EFE64E0060D948 /* ImageView */; };
@@ -119,12 +125,18 @@
 		746BCCC126A8BA6C009CC823 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		746BCCC726A8BD59009CC823 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
+		747A0E5926FE1F8400EB1973 /* PageIndexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndexCell.swift; sourceTree = "<group>"; };
+		747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRouteButtonView.swift; sourceTree = "<group>"; };
+		747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointCell.swift; sourceTree = "<group>"; };
+		747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointsCollectionCell.swift; sourceTree = "<group>"; };
 		748299DE26AA0A1A00573DC3 /* RoutesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesData.swift; sourceTree = "<group>"; };
 		748FFD9526E55535009CA688 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		748FFD9826E55594009CA688 /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		748FFD9A26E555CB009CA688 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		7498640226C0188300AF4E0E /* point.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = point.gpx; sourceTree = "<group>"; };
+		74C5D8D226FD237700034432 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		74C6CFC926BF1E0D00104457 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		74CD387826FF3E4600D5CCDE /* PagerProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerProtocols.swift; sourceTree = "<group>"; };
 		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -143,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74FFB59726EFE64E0060D948 /* ImageView in Frameworks */,
-				74EBC3A126F512EE0002EEAE /* UltraDrawerView in Frameworks */,
+				74569EDF26FA8BBF00D58821 /* UltraDrawerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +306,7 @@
 				74FFB59826EFE9190060D948 /* InfoView.swift */,
 				742EFE8C26F14168009A5126 /* GradientView.swift */,
 				74EBC36726F503500002EEAE /* HandlerView.swift */,
+				74C5D8D226FD237700034432 /* Button.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,11 +314,11 @@
 		742EFE8B26F1413F009A5126 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
 				7404A61026B87FAF00524453 /* TextCell.swift */,
 				74E729B226F2946800775D37 /* EntityHeaderCell.swift */,
 				746A100F26F619AF002CB7E2 /* SeparatorCell.swift */,
 				746A101326F6276E002CB7E2 /* AlertCell.swift */,
+				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -366,6 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				746769EB26F922B400158FFC /* RoutePassingViewController.swift */,
+				74CD387826FF3E4600D5CCDE /* PagerProtocols.swift */,
+				747A0E5826FE1F0800EB1973 /* Cells */,
 			);
 			path = RoutePassing;
 			sourceTree = "<group>";
@@ -378,6 +393,17 @@
 				74FFB59A26EFE91D0060D948 /* Views */,
 			);
 			path = Routes;
+			sourceTree = "<group>";
+		};
+		747A0E5826FE1F0800EB1973 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */,
+				747A0E5926FE1F8400EB1973 /* PageIndexCell.swift */,
+				747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */,
+				747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		748FFD9426E55193009CA688 /* Network */ = {
@@ -453,7 +479,7 @@
 			name = MoscowNeighbours;
 			packageProductDependencies = (
 				74FFB59626EFE64E0060D948 /* ImageView */,
-				74EBC3A026F512EE0002EEAE /* UltraDrawerView */,
+				74569EDE26FA8BBF00D58821 /* UltraDrawerView */,
 			);
 			productName = MoscowNeighbours;
 			productReference = 7402660B26A76379006242FE /* MoscowNeighbours.app */;
@@ -485,7 +511,7 @@
 			mainGroup = 7402660226A76379006242FE;
 			packageReferences = (
 				74FFB59526EFE64E0060D948 /* XCRemoteSwiftPackageReference "ImageView" */,
-				74EBC39F26F512EE0002EEAE /* XCRemoteSwiftPackageReference "UltraDrawerView" */,
+				74569EDD26FA8BBF00D58821 /* XCRemoteSwiftPackageReference "UltraDrawerView" */,
 			);
 			productRefGroup = 7402660C26A76379006242FE /* Products */;
 			projectDirPath = "";
@@ -518,10 +544,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74CD387926FF3E4600D5CCDE /* PagerProtocols.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				7443988826E6B9EA003FC860 /* Request.swift in Sources */,
 				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
+				747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */,
 				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				748FFD9926E55594009CA688 /* RequestSender.swift in Sources */,
@@ -550,9 +578,11 @@
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
+				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */,
 				74FFB59926EFE9190060D948 /* InfoView.swift in Sources */,
 				746192D426AC446100CCCB71 /* RouteCell.swift in Sources */,
+				747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
@@ -560,7 +590,9 @@
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */,
+				747A0E5A26FE1F8400EB1973 /* PageIndexCell.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPerview.swift in Sources */,
+				74C5D8D326FD237700034432 /* Button.swift in Sources */,
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
 				7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
@@ -711,6 +743,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -732,6 +765,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -769,7 +803,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		74EBC39F26F512EE0002EEAE /* XCRemoteSwiftPackageReference "UltraDrawerView" */ = {
+		74569EDD26FA8BBF00D58821 /* XCRemoteSwiftPackageReference "UltraDrawerView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/super-ultra/UltraDrawerView";
 			requirement = {
@@ -788,9 +822,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		74EBC3A026F512EE0002EEAE /* UltraDrawerView */ = {
+		74569EDE26FA8BBF00D58821 /* UltraDrawerView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 74EBC39F26F512EE0002EEAE /* XCRemoteSwiftPackageReference "UltraDrawerView" */;
+			package = 74569EDD26FA8BBF00D58821 /* XCRemoteSwiftPackageReference "UltraDrawerView" */;
 			productName = UltraDrawerView;
 		};
 		74FFB59626EFE64E0060D948 /* ImageView */ = {

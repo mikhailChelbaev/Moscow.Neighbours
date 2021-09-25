@@ -20,7 +20,7 @@ final class PersonViewController: BottomSheetViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -34,7 +34,7 @@ final class PersonViewController: BottomSheetViewController {
         button.backgroundColor = .white
         button.setImage(#imageLiteral(resourceName: "backButton"), for: .normal)
         button.layer.cornerRadius = Layout.buttonSide / 2
-        button.addShadow()
+        button.makeShadow()
         return button
     }()
     
@@ -43,6 +43,16 @@ final class PersonViewController: BottomSheetViewController {
     private var personInfo: PersonInfo = .dummy
     
     private var closeAction: Action?
+    
+    private var state: UserState = .default
+    
+    // MARK: - internal properties
+    
+    var closePerson: PersonInfo? {
+        didSet { updatePersonInfo() }
+    }
+    
+    // MARK: - init
     
     override init() {
         super.init()
@@ -72,8 +82,13 @@ final class PersonViewController: BottomSheetViewController {
         backButton.updateShadowPath()
     }
     
-    func update(_ info: PersonInfo, color: UIColor, closeAction: Action?) {
+    func update(
+        _ info: PersonInfo,
+        userState: UserState,
+        closeAction: Action?
+    ) {
         self.personInfo = info
+        self.state = userState
         self.closeAction = closeAction
         
         tableView.reloadData()
@@ -104,6 +119,12 @@ final class PersonViewController: BottomSheetViewController {
         closeAction?()
     }
     
+    private func updatePersonInfo() {
+        if closePerson == nil || closePerson == personInfo {
+            tableView.reloadData()
+        }
+    }
+    
 }
 
 // MARK: - extension UITableViewDataSource
@@ -115,7 +136,7 @@ extension PersonViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return [1, 4][section]
+        return (closePerson == personInfo ? [1, 1] : [1, 4])[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -128,6 +149,15 @@ extension PersonViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         } else {
+            if closePerson == personInfo {
+                let cell = tableView.dequeue(TextCell.self, for: indexPath)
+                cell.configureView = { [weak self] view in
+                    guard let `self` = self else { return }
+                    view.update(text: self.personInfo.person.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .secondaryLabel, insets: .init(top: 5, left: 20, bottom: 20, right: 20))
+                }
+                cell.selectionStyle = .none
+                return cell
+            }
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { view in
@@ -149,8 +179,10 @@ extension PersonViewController: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeue(AlertCell.self, for: indexPath)
-                cell.configureView = { view in
-                    view.update(text: "Чтобы узнать о человеке больше, пройдите маршрут", containerInsets: .init(top: 20, left: 20, bottom: 20, right: 20))
+                cell.configureView = { [weak self] view in
+                    guard let `self` = self else { return }
+                    let text: String = self.state == .passingRoute ? "Чтобы начать знакомство, подойдите ближе к локации" : "Чтобы узнать о человеке больше, пройдите маршрут"
+                    view.update(text: text, containerInsets: .init(top: 20, left: 20, bottom: 20, right: 20))
                 }
                 cell.selectionStyle = .none
                 return cell

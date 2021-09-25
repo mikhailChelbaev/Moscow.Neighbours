@@ -70,7 +70,7 @@ class BottomSheetViewController: UIViewController {
         drawerView = DrawerView(scrollView: scrollView, delegate: scrollView.delegate, headerView: headerView)
         drawerView.translatesAutoresizingMaskIntoConstraints = false
         drawerView.cornerRadius = cornerRadius
-        drawerView.containerView.backgroundColor = .systemBackground
+        drawerView.containerView.backgroundColor = .background
         drawerView.layer.shadowRadius = shadowRadius
         drawerView.layer.shadowOpacity = shadowOpacity
         drawerView.layer.shadowOffset = shadowOffset

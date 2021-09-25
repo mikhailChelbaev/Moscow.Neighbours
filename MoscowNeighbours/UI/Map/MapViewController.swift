@@ -15,6 +15,12 @@ protocol MapPresentable: AnyObject {
     
     func startRoute(_ route: Route)
     func endRoute()
+    func showPerson(_ info: PersonInfo)
+}
+
+enum UserState {
+    case passingRoute
+    case `default`
 }
 
 final class MapViewController: UIViewController, MapPresentable {
@@ -34,6 +40,7 @@ final class MapViewController: UIViewController, MapPresentable {
     let mapView: MKMapView = {
         let map = MKMapView()
         map.showsUserLocation = true
+        map.showsCompass = false
         return map
     }()
     
@@ -61,6 +68,7 @@ final class MapViewController: UIViewController, MapPresentable {
         manager.addController(routesController, availableStates: [.middle, .top])
         manager.addController(routeDescriptionController, availableStates: [.middle, .top])
         manager.addController(personController, availableStates: [.middle, .top])
+        manager.addController(routePassing, availableStates: [.bottom, .top])
         return manager
     }()
     
@@ -69,6 +77,8 @@ final class MapViewController: UIViewController, MapPresentable {
     private let routeDescriptionController: RouteDescriptionViewController = .init()
     
     private let personController: PersonViewController = .init()
+    
+    private let routePassing: RoutePassingViewController = .init()
     
     private var state: State = .showLocationAtFirstTime
     
@@ -81,6 +91,10 @@ final class MapViewController: UIViewController, MapPresentable {
     private var currentLocation: CLLocationCoordinate2D?
     
     private let arPersonPreview: ARPersonPerview = .init()
+    
+    private var userState: UserState = .default
+    
+    private var monitoringRegions: [CLCircularRegion] = []
     
     deinit {
         manager.controllers.forEach({ $0.drawerView.removeListener(self) })
@@ -126,6 +140,7 @@ final class MapViewController: UIViewController, MapPresentable {
         
         routesController.showRouteCompletion = showRoute(_:)
         routeDescriptionController.mapPresenter = self
+        routePassing.mapPresenter = self
         
         locationButton.addTarget(self, action: #selector(updateCurrentLocation), for: .touchUpInside)
 //        cameraButton.addTarget(self, action: #selector(showPersonModel), for: .touchUpInside)
@@ -147,7 +162,7 @@ final class MapViewController: UIViewController, MapPresentable {
         view.addSubview(routesController.view)
         routesController.view.stickToSuperviewEdges(.all)
         
-        [routeDescriptionController, personController].forEach { controller in
+        [routeDescriptionController, personController, routePassing].forEach { controller in
             addChild(controller)
             view.addSubview(controller.view)
             controller.view.stickToSuperviewEdges(.all)
@@ -171,9 +186,9 @@ extension MapViewController {
         let button = UIButton()
         button.backgroundColor = .background
         button.setImage(image, for: .normal)
-        button.backgroundColor = .systemBackground
+        button.backgroundColor = .background
         button.layer.cornerRadius = Layout.buttonSide / 2
-        button.addShadow()
+        button.makeShadow()
         return button
     }
     
@@ -296,15 +311,43 @@ extension MapViewController {
     }
     
     func startRoute(_ route: Route) {
-        drawRoute(annotations: route.personsInfo, withUserLocation: true)
-        manager.currentController?.drawerView.setState(.bottom, animated: true)
+        userState = .passingRoute
+        routePassing.update(route: currentlySelectedRoute)
+        drawRoute(annotations: route.personsInfo, withUserLocation: false)
+        manager.show(routePassing, state: .top)
+        cover.isHidden = true
+        createRegions(for: currentlySelectedRoute)
     }
     
     func endRoute() {
+        userState = .default
         mapView.removeAllOverlays()
         if let currentRoute = currentlySelectedRoute {
             drawRoute(annotations: currentRoute.personsInfo, withUserLocation: false)
         }
+        manager.closeCurrent()
+        cover.isHidden = false
+        removeRegions()
+    }
+    
+    private func createRegions(for route: Route?) {
+        guard let route = route else { return }
+        monitoringRegions = route.personsInfo.map({ info in
+            let coordinate = info.coordinate
+            let regionRadius: Double = 10
+            let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: info.id)
+            return region
+        })
+        monitoringRegions.forEach({ locationManager.startMonitoring(for: $0) })
+    }
+    
+    private func removeRegions() {
+        for region in monitoringRegions {
+            locationManager.stopMonitoring(for: region)
+        }
+        monitoringRegions = []
+        personController.closePerson = nil
+        routePassing.closePerson = nil
     }
     
 }
@@ -319,7 +362,7 @@ extension MapViewController {
         }
         currentlySelectedPerson = info
  
-        personController.update(info, color: currentlySelectedRoute?.color.value ?? .systemBackground, closeAction: { [weak self] in self?.closePersonController() })
+        personController.update(info, userState: userState, closeAction: { [weak self] in self?.closePersonController() })
         manager.show(personController, state: .middle)
         showPlaceOnMap(with: info.coordinate)
     }
@@ -392,9 +435,17 @@ extension MapViewController: CLLocationManagerDelegate {
         state = .default
     }
     
-//    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-//
-//    }
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+//        let closePerson = currentlySelectedRoute?.personsInfo.first(where: { $0.id == region.identifier })
+        let closePerson = currentlySelectedRoute?.personsInfo.first(where: { $0.coordinate == (region as? CLCircularRegion)?.center })
+        personController.closePerson = closePerson
+        routePassing.closePerson = closePerson
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        personController.closePerson = nil
+        routePassing.closePerson = nil
+    }
     
 }
 
@@ -439,6 +490,7 @@ extension MapViewController: DrawerViewListener {
     
     func drawerView(_ drawerView: DrawerView, didUpdateOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
         recalculateCoverAlpha(for: origin, drawerView: drawerView)
+        routePassing.drawerView(didUpdateOrigin: origin)
     }
     
     func drawerView(_ drawerView: DrawerView, didEndUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
@@ -446,6 +498,7 @@ extension MapViewController: DrawerViewListener {
     }
     
     func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
+        routePassing.drawerView(didChangeState: state)
         // scroll to top
 //        if state == .dismissed {
 //            if drawerView == mainBottomSheet.drawerView {

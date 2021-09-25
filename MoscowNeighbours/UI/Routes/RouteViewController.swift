@@ -9,11 +9,17 @@ import UIKit
 
 final class RouteViewController: BottomSheetViewController {
     
+    // MARK: - Layout constraints
+    
+    enum Layout {
+        static let topInset: CGFloat = 10
+    }
+    
     // MARK: - UI
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -58,7 +64,7 @@ final class RouteViewController: BottomSheetViewController {
         
         tableView.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
         
-        setUp(scrollView: tableView, headerView: headerView)
+        setUp(scrollView: tableView, headerView: headerView, topInsetPortrait: Layout.topInset)
         
         headerView.update(text: "Маршруты", showSeparator: false)
         

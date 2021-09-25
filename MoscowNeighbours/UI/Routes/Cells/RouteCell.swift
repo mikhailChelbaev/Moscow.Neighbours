@@ -39,7 +39,7 @@ class RouteCell: CellView {
     let containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.addShadow()
+        view.makeShadow()
         return view
     }()
     

@@ -19,4 +19,6 @@ extension UIColor {
     
     static var grayBackground = UIColor(named: "grayBackground")!
     
+    static var projectRed: UIColor = UIColor(named: "red")!
+    
 }

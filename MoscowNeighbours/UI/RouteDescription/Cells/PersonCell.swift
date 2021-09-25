@@ -116,7 +116,7 @@ final class PersonCell: CellView {
     private func drawImage(withBegining: Bool, withEnding: Bool) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: .init(width: Layout.dotSide, height: Layout.totalHeight))
         return renderer.image { _ in
-            UIColor.systemRed.setFill()
+            UIColor.projectRed.setFill()
             UIBezierPath(ovalIn: .init(origin: .init(x: 0, y: Layout.dotTopInset), size: .init(width: Layout.dotSide, height: Layout.dotSide))).fill()
             
             let xOffset: CGFloat = (Layout.dotSide - Layout.dashWidth) / 2
@@ -145,12 +145,11 @@ final class PersonCell: CellView {
     }
     
     func update(personInfo: PersonInfo, isFirst: Bool, isLast: Bool) {
-        let person = personInfo.person
-        personNameLabel.text = person.name
-        addressLabel.text = person.address
+        personNameLabel.text = personInfo.person.name
+        addressLabel.text = personInfo.place.address
         houseTitleLabel.text = personInfo.place.name
         routeLineImageView.image = drawImage(withBegining: !isFirst, withEnding: !isLast)
-        personAvatar.image = UIImage(data: person.image) ?? personAvatar.placeholder.image
+        personAvatar.image = UIImage(data: personInfo.person.image) ?? personAvatar.placeholder.image
         
         self.isFirst = isFirst
         self.isLast = isLast

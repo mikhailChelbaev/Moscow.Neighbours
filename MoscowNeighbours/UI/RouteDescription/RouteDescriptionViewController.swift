@@ -28,7 +28,7 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
@@ -42,7 +42,7 @@ final class RouteDescriptionViewController: BottomSheetViewController {
         button.backgroundColor = .white
         button.setImage(#imageLiteral(resourceName: "backButton"), for: .normal)
         button.layer.cornerRadius = Layout.buttonSide / 2
-        button.addShadow()
+        button.makeShadow()
         return button
     }()
     
@@ -100,7 +100,6 @@ final class RouteDescriptionViewController: BottomSheetViewController {
         tableView.register(RouteHeaderCell.self)
         tableView.register(TextCell.self)
         tableView.register(PersonCell.self)
-        tableView.register(ButtonCell.self)
         tableView.register(SeparatorCell.self)
         
         drawerView.containerView.backgroundColor = .clear
@@ -139,7 +138,9 @@ extension RouteDescriptionViewController: UITableViewDataSource {
             let cell = tableView.dequeue(RouteHeaderCell.self, for: indexPath)
             cell.configureView = { [weak self] view in
                 guard let `self` = self else { return }
-                view.update(with: self.route)
+                view.update(with: self.route) {
+                    self.mapPresenter?.startRoute(self.route)
+                }
             }
             cell.selectionStyle = .none
             return cell
@@ -164,7 +165,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
                 cell.selectionStyle = .none
                 return cell
             }
-        } else if indexPath.section == 2 {
+        } else {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { view in
@@ -185,36 +186,6 @@ extension RouteDescriptionViewController: UITableViewDataSource {
                 cell.selectionStyle = .none
                 return cell
             }
-        } else {
-            let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
-            var title: String
-            var buttonColor: UIColor
-            switch state  {
-            case .default:
-                title = "Пройти маршрут"
-                buttonColor = route.color.value
-            case .routeInProgress:
-                title = "Завершить маршрут"
-                buttonColor = .systemRed
-            }
-            cell.configureView = { [weak self] view in
-                guard let `self` = self else { return }
-                view.update(title: title, insets: .init(top: 40, left: 16, bottom: 10, right: 16), color: buttonColor) { button in
-                    switch self.state {
-                    case .default:
-                        self.mapPresenter?.startRoute(self.route)
-//                        self.headerView.update(text: self.route.name, buttonCloseAction: nil)
-                        self.state = .routeInProgress
-                    case .routeInProgress:
-                        self.mapPresenter?.endRoute()
-//                        self.headerView.update(text: self.route.name, buttonCloseAction: self.closeAction)
-                        self.state = .default
-                    }
-                    self.tableView.reloadRows(at: [indexPath], with: .fade)
-                }
-            }
-            cell.selectionStyle = .none
-            return cell
         }
     }
     
