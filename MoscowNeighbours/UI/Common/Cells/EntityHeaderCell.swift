@@ -17,7 +17,7 @@ class EntityHeaderCell: CellView {
     
     var imageView: ImageView = {
         let iv = ImageView()
-        iv.placeholder = .image(#imageLiteral(resourceName: "route_placeholder"))
+//        iv.placeholder = .image(#imageLiteral(resourceName: "route_placeholder"))
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = Layout.cornerRadius

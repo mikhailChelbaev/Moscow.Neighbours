@@ -68,7 +68,7 @@ final class RouteViewController: BottomSheetViewController {
         
         headerView.update(text: "Маршруты", showSeparator: false)
         
-        tableView.register(ModernRouteCell.self)
+        tableView.register(RouteCell.self)
     }
     
     private func fetchData() {
@@ -89,7 +89,7 @@ extension RouteViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(ModernRouteCell.self, for: indexPath)
+        let cell = tableView.dequeue(RouteCell.self, for: indexPath)
         cell.selectionStyle = .none
         cell.configureView = { [weak self] view in
             guard let `self` = self else { return }

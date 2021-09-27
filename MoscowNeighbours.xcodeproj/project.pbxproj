@@ -36,7 +36,6 @@
 		7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988B26E6BAA4003FC860 /* RoutesService.swift */; };
 		7443988E26E6BB3F003FC860 /* RequestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988D26E6BB3F003FC860 /* RequestConstants.swift */; };
 		74569EDF26FA8BBF00D58821 /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74569EDE26FA8BBF00D58821 /* UltraDrawerView */; };
-		746192D426AC446100CCCB71 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D326AC446100CCCB71 /* RouteCell.swift */; };
 		746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D526AC549400CCCB71 /* UITableView+Reuse.swift */; };
 		746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */; };
 		746192DB26AC54C800CCCB71 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192DA26AC54C800CCCB71 /* CellView.swift */; };
@@ -71,7 +70,7 @@
 		74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* RouteHeaderCell.swift */; };
 		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
 		74FD656926B0ABDA00F824DD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FD656826B0ABDA00F824DD /* Stack.swift */; };
-		74FFB59426EFE55B0060D948 /* ModernRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59326EFE55B0060D948 /* ModernRouteCell.swift */; };
+		74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59326EFE55B0060D948 /* RouteCell.swift */; };
 		74FFB59726EFE64E0060D948 /* ImageView in Frameworks */ = {isa = PBXBuildFile; productRef = 74FFB59626EFE64E0060D948 /* ImageView */; };
 		74FFB59926EFE9190060D948 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59826EFE9190060D948 /* InfoView.swift */; };
 		74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59B26EFEE510060D948 /* SFSymbol.swift */; };
@@ -108,7 +107,6 @@
 		7443988926E6B9F5003FC860 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		7443988B26E6BAA4003FC860 /* RoutesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesService.swift; sourceTree = "<group>"; };
 		7443988D26E6BB3F003FC860 /* RequestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConstants.swift; sourceTree = "<group>"; };
-		746192D326AC446100CCCB71 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
 		746192D526AC549400CCCB71 /* UITableView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reuse.swift"; sourceTree = "<group>"; };
 		746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reuse.swift"; sourceTree = "<group>"; };
 		746192DA26AC54C800CCCB71 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
@@ -144,7 +142,7 @@
 		74E729B426F2978200775D37 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
 		74EBC36726F503500002EEAE /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
 		74FD656826B0ABDA00F824DD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		74FFB59326EFE55B0060D948 /* ModernRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernRouteCell.swift; sourceTree = "<group>"; };
+		74FFB59326EFE55B0060D948 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
 		74FFB59826EFE9190060D948 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		74FFB59B26EFEE510060D948 /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,8 +254,7 @@
 		7415479726B09754006931DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				746192D326AC446100CCCB71 /* RouteCell.swift */,
-				74FFB59326EFE55B0060D948 /* ModernRouteCell.swift */,
+				74FFB59326EFE55B0060D948 /* RouteCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -390,7 +387,6 @@
 			children = (
 				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
 				7415479726B09754006931DC /* Cells */,
-				74FFB59A26EFE91D0060D948 /* Views */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -452,13 +448,6 @@
 				7415479626B0974A006931DC /* Cells */,
 			);
 			path = RouteDescription;
-			sourceTree = "<group>";
-		};
-		74FFB59A26EFE91D0060D948 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,7 +548,7 @@
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
 				74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
-				74FFB59426EFE55B0060D948 /* ModernRouteCell.swift in Sources */,
+				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */,
 				7419E1D526BEB0FA00E31BDD /* ImagesCell.swift in Sources */,
 				7443988426E6B9C7003FC860 /* RequestPreparation.swift in Sources */,
@@ -581,7 +570,6 @@
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */,
 				74FFB59926EFE9190060D948 /* InfoView.swift in Sources */,
-				746192D426AC446100CCCB71 /* RouteCell.swift in Sources */,
 				747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
@@ -743,7 +731,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -765,7 +753,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

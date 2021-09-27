@@ -48,13 +48,19 @@ final class AlertCell: CellView {
         
         container.addSubview(imageView)
         imageView.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
-        imageView.bottomAnchor.constraint(lessThanOrEqualTo: container.bottomAnchor, constant: -20).isActive = true
         imageView.exactSize(.init(width: 20, height: 20))
         
         container.addSubview(label)
         label.stickToSuperviewEdges([.top, .right], insets: .init(top: 20, left: 0, bottom: 0, right: 20))
         label.leading(9, to: imageView)
         label.bottomAnchor.constraint(lessThanOrEqualTo: container.bottomAnchor, constant: -20).isActive = true
+        let labelBottomContraint = label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20)
+        labelBottomContraint.priority = UILayoutPriority(600)
+        labelBottomContraint.isActive = true
+        
+        let heightConstraint = heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
+        heightConstraint.priority = UILayoutPriority(900)
+        heightConstraint.isActive = true
     }
     
     func update(

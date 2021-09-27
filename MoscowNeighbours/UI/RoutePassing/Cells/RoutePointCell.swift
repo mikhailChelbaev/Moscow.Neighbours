@@ -49,9 +49,7 @@ final class RoutePointCell: CellView {
         
         addSubview(alertView)
         alertView.stickToSuperviewEdges([.left, .right])
-//        alertView.topAnchor.constraint(greaterThanOrEqualTo: addressLabel.bottomAnchor, constant: 10).isActive = true
-        let constraint = alertView.top(10, to: addressLabel)
-        constraint.priority = .defaultLow
+        alertView.topAnchor.constraint(greaterThanOrEqualTo: addressLabel.bottomAnchor, constant: 10).isActive = true
         
         addSubview(button)
         button.stickToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 20, bottom: 20, right: 20))

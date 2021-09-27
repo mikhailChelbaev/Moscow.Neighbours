@@ -88,7 +88,7 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private let routeOptimizer: RouteFinder = NearestCoordinatesFinder()
     
-    private var currentLocation: CLLocationCoordinate2D?
+//    private var currentLocation: CLLocationCoordinate2D?
     
     private let arPersonPreview: ARPersonPerview = .init()
     
@@ -238,7 +238,7 @@ extension MapViewController {
         guard coordinates.count > 0 else { return }
         
         var nearestCoordinate: CLLocationCoordinate2D?
-        if let currentLocation = currentLocation {
+        if let currentLocation = locationManager.location?.coordinate {
             nearestCoordinate = routeOptimizer.findNearestCoordinate(from: currentLocation, coordinates: coordinates)
         } else {
             nearestCoordinate = coordinates.removeFirst()
@@ -257,7 +257,7 @@ extension MapViewController {
                 }
             }
             if withUserLocation {
-                if let p1 = self?.currentLocation, let p2 = route.first?.p1 {
+                if let p1 = self?.locationManager.location?.coordinate, let p2 = route.first?.p1 {
                     group.enter()
                     self?.findRoute(p1: p1, p2: p2) { route in
                         routes.append(route)
@@ -331,6 +331,7 @@ extension MapViewController {
     }
     
     private func createRegions(for route: Route?) {
+        // TODO: - регионы могут пересекаться
         guard let route = route else { return }
         monitoringRegions = route.personsInfo.map({ info in
             let coordinate = info.coordinate
@@ -339,6 +340,15 @@ extension MapViewController {
             return region
         })
         monitoringRegions.forEach({ locationManager.startMonitoring(for: $0) })
+        
+        // check is user already in some region
+        if let currentLocation = locationManager.location?.coordinate {
+            monitoringRegions.forEach({
+                if $0.contains(currentLocation) {
+                    self.locationManager(self.locationManager, didEnterRegion: $0)
+                }
+            })
+        }
     }
     
     private func removeRegions() {
@@ -421,18 +431,19 @@ extension MapViewController: CLLocationManagerDelegate {
     
     /// move camera to current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        defer { locationManager.stopUpdatingLocation() }
+        defer {
+            state = .default
+            locationManager.stopUpdatingLocation()
+        }
         guard let location = locations.last else { return }
         
-        currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
         if state == .showLocationAtFirstTime {
             showPlaceOnMap(with: location.coordinate, animated: false, meters: 3000)
         } else if state == .showCurrentLocation {
             showPlaceOnMap(with: location.coordinate)
         }
-        
-        state = .default
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -457,7 +468,7 @@ extension MapViewController: MKMapViewDelegate {
         if let _ = annotation as? PersonInfo {
             let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as! MKMarkerAnnotationView
             view.displayPriority = .required
-            view.markerTintColor = currentlySelectedRoute?.color.value
+            view.markerTintColor = .projectRed//currentlySelectedRoute?.color.value
             return view
         }
         return nil
@@ -475,7 +486,7 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = currentlySelectedRoute?.color.value
+        renderer.strokeColor = .projectRed//currentlySelectedRoute?.color.value
         renderer.lineWidth = 4.0
         return renderer
     }

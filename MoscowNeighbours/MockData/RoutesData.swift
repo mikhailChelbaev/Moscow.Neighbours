@@ -12,13 +12,12 @@ struct Route: Codable {
     
     let name: String
     let description: String
+    let image: Data
     
     let duration: String
     let distance: String
     
     let personsInfo: [PersonInfo]
-    
-    let color: Color
     
 }
 
@@ -338,9 +337,10 @@ let data: [Route] = [
     Route(
         name: "Окрестности Армянского переулка ",
         description: "Маршрут по местам писателей, художников, поэтов и инженеров. Можно познакомиться с выдающимися деятелями разных сфер жизни.",
+        image: #imageLiteral(resourceName: "cover").pngData()!,
         duration: "26 минут",
         distance: "2.2 км",
-        personsInfo: ["Федор Тютчев", "Борис Пастернак", "Василий Поленов", "Александр Лабас", "Паоло Трубецкой", "Владимир Шухов"].compactMap({ personsInfo[$0] }),
-        color: Color(r: 0.969, g: 0.627, b: 0.533, a: 1)
+        personsInfo: ["Федор Тютчев", "Борис Пастернак", "Василий Поленов", "Александр Лабас", "Паоло Трубецкой", "Владимир Шухов"].compactMap({ personsInfo[$0] })
+//        color: Color(r: 0.969, g: 0.627, b: 0.533, a: 1)
     ),
 ]

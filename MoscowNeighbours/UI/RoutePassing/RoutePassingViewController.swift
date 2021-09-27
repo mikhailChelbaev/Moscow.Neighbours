@@ -15,7 +15,7 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     enum Layout {
         static let cornerRadius: CGFloat = 22
         static var topInsetFromBottom: CGFloat {
-            EndRouteButtonView.Layout.totalHeight + RoutePointsCollectionCell.Layout.height + PageIndexCell.Layout.height
+            EndRouteButtonView.Settigns.totalHeight + RoutePointsCollectionCell.Layout.height + PageIndexCell.Layout.height
         }
     }
     
@@ -136,6 +136,9 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
 //
     func drawerView(didChangeState state: DrawerView.State?) {
 //        headerView.updateOpenDrawerButtonState(isHidden: state == .top)
+        if let state = state {
+            headerView.changeViewState(state)
+        }
     }
     
 }

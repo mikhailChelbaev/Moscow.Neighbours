@@ -2,89 +2,87 @@
 //  RouteCell.swift
 //  MoscowNeighbours
 //
-//  Created by Mikhail on 24.07.2021.
+//  Created by Mikhail on 13.09.2021.
 //
 
 import UIKit
+import ImageView
 
 class RouteCell: CellView {
     
-    let headerLabel: UILabel = {
+    let containerView: ImageView = {
+        let iv = ImageView()
+        iv.placeholder = .image(#imageLiteral(resourceName: "cover"))
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        iv.layer.cornerRadius = 18
+        return iv
+    }()
+    
+    let titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
-        label.font = .mainFont(ofSize: 26, weight: .semibold)
+        label.numberOfLines = 2
+        label.font = .mainFont(ofSize: 24, weight: .bold)
+        label.textColor = .white
         return label
     }()
     
-    let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = .mainFont(ofSize: 16, weight: .regular)
-        return label
-    }()
-    
-    let heroesNumberLabel: UILabel = {
-        let label = UILabel()
-        label.font = .mainFont(ofSize: 16, weight: .regular)
-        return label
-    }()
-    
-    let routeInfoLabel: UILabel = {
-        let label = UILabel()
-        label.font = .mainFont(ofSize: 16, weight: .regular)
-        label.textAlignment = .right
-        return label
-    }()
-    
-    let containerView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10
-        view.makeShadow()
+    let gradientView: GradientView = {
+        let view = GradientView()
+        if let layer = view.layer as? CAGradientLayer {
+            layer.colors = [
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
+                UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor
+            ]
+        }
         return view
     }()
+    
+//    let distanceInfo: InfoView = .init()
+    
+    let durationInfo: InfoView = .init()
     
     override func commonInit() {
         backgroundColor = .background
         clipsToBounds = false
         
-        containerView.addSubview(headerLabel)
-        headerLabel.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 16, left: 16, bottom: 0, right: 16))
-        
-        containerView.addSubview(descriptionLabel)
-        descriptionLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 16, bottom: 0, right: 16))
-        descriptionLabel.top(12, to: headerLabel)
-        
-        containerView.addSubview(routeInfoLabel)
-        routeInfoLabel.top(12, to: descriptionLabel)
-        routeInfoLabel.trailing(16)
-        routeInfoLabel.bottom(16)
-        
-        containerView.addSubview(heroesNumberLabel)
-        heroesNumberLabel.top(12, to: descriptionLabel)
-        heroesNumberLabel.leading(16)
-        heroesNumberLabel.trailing(8, to: routeInfoLabel)
-        heroesNumberLabel.bottom(16)
-        
         addSubview(containerView)
-        containerView.stickToSuperviewEdges(.all, insets: .init(top: 6, left: 16, bottom: 6, right: 16))
+        containerView.stickToSuperviewEdges(.all, insets: .init(top: 5, left: 20, bottom: 5, right: 20))
+        containerView.height(194)
+        
+        containerView.addSubview(gradientView)
+        gradientView.stickToSuperviewEdges([.left, .bottom, .right])
+        gradientView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        containerView.addSubview(titleLabel)
+        titleLabel.stickToSuperviewEdges([.left, .bottom, .right], insets: .init(top: 0, left: 20, bottom: 20, right: 20))
+        
+//        containerView.addSubview(distanceInfo)
+//        distanceInfo.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
+        
+//        containerView.addSubview(durationInfo)
+//        durationInfo.leading(5, to: distanceInfo)
+//        durationInfo.top(20)
+        
+        containerView.addSubview(durationInfo)
+        durationInfo.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        containerView.updateShadowPath()
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        containerView.updateShadowPath()
+//    }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        containerView.layer.shadowColor = UIColor.shadow.cgColor
-    }
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//        containerView.layer.shadowColor = UIColor.shadow.cgColor
+//    }
     
     func update(with route: Route) {
-        headerLabel.text = route.name
-        descriptionLabel.text = route.description
-        heroesNumberLabel.text = "\(route.personsInfo.count) героев"
-        routeInfoLabel.text = "\(route.distance) • \(route.duration)"
-        containerView.backgroundColor = route.color.value
+        containerView.image = UIImage(data: route.image)
+        titleLabel.text = route.name
+//        distanceInfo.update(text: "200 m", image: sfSymbol("location.fill", tintColor: .white))
+        durationInfo.update(text: "\(route.distance) • \(route.duration)", image: nil)
     }
     
 }
