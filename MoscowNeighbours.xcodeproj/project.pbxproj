@@ -17,6 +17,9 @@
 		7404A61426B8874A00524453 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404A61326B8874A00524453 /* PersonViewController.swift */; };
 		7415479326B08C8A006931DC /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* PersonCell.swift */; };
 		7419E1D526BEB0FA00E31BDD /* ImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */; };
+		741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */; };
+		741D407E270655560051A518 /* PersonSimpleInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407D270655560051A518 /* PersonSimpleInfoCell.swift */; };
+		741EF4882708F28200F84986 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741EF4872708F28200F84986 /* NotificationService.swift */; };
 		7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2026BAAE290034533F /* RouteFinder.swift */; };
 		7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */; };
 		742283BE26BB29AB003F814E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742283BD26BB29AB003F814E /* Colors.xcassets */; };
@@ -89,6 +92,9 @@
 		7404A61326B8874A00524453 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		7415479226B08C89006931DC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCell.swift; sourceTree = "<group>"; };
+		741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+SetAttributedText.swift"; sourceTree = "<group>"; };
+		741D407D270655560051A518 /* PersonSimpleInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonSimpleInfoCell.swift; sourceTree = "<group>"; };
+		741EF4872708F28200F84986 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		7420CE2026BAAE290034533F /* RouteFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFinder.swift; sourceTree = "<group>"; };
 		7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
 		742283BD26BB29AB003F814E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 				74FFB59B26EFEE510060D948 /* SFSymbol.swift */,
 				74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */,
 				746A100D26F6192F002CB7E2 /* ChipsLayout.swift */,
+				741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -264,8 +271,17 @@
 			children = (
 				746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */,
 				7419E1D426BEB0FA00E31BDD /* ImagesCell.swift */,
+				741D407D270655560051A518 /* PersonSimpleInfoCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		741EF4862708F27100F84986 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				741EF4872708F28200F84986 /* NotificationService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		7420CE1F26BAAE170034533F /* Helpers */ = {
@@ -437,6 +453,7 @@
 				7402661226A76379006242FE /* MapViewController.swift */,
 				7422A9C226BC707A00FE995E /* ARPersonPerview.swift */,
 				7420CE1F26BAAE170034533F /* Helpers */,
+				741EF4862708F27100F84986 /* Services */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -547,6 +564,7 @@
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
 				74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */,
+				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */,
@@ -563,6 +581,7 @@
 				742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */,
 				746A101426F6276E002CB7E2 /* AlertCell.swift in Sources */,
 				746A101026F619AF002CB7E2 /* SeparatorCell.swift in Sources */,
+				741D407E270655560051A518 /* PersonSimpleInfoCell.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
@@ -583,6 +602,7 @@
 				74C5D8D326FD237700034432 /* Button.swift in Sources */,
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
 				7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */,
+				741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
 				7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */,
 				7443988E26E6BB3F003FC860 /* RequestConstants.swift in Sources */,
@@ -731,7 +751,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -753,7 +773,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

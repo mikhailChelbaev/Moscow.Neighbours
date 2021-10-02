@@ -39,27 +39,17 @@ final class EndRouteButtonView: CellView {
     
     private var state: DrawerView.State = .top
     
-    private var endRouteWidthAnimationConstraint: NSLayoutConstraint?
-    
     override func commonInit() {
         addSubview(endRouteButton)
         endRouteButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settigns.borderInsers, left: 0, bottom: Settigns.borderInsers, right: 0))
         endRouteButton.centerHorizontally()
         endRouteButton.height(Settigns.buttonHeight)
-        endRouteWidthAnimationConstraint = endRouteButton.width(Settigns.buttonHeight)
-        endRouteWidthAnimationConstraint?.isActive = false
         
         addSubview(openDrawerButton)
         openDrawerButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settigns.borderInsers, left: 0, bottom: Settigns.borderInsers, right: 0))
         openDrawerButton.centerHorizontally()
         openDrawerButton.exactSize(.init(width: Settigns.buttonHeight , height: Settigns.buttonHeight ))
         sendSubviewToBack(openDrawerButton)
-        
-        
-//        addSubview(openDrawerButton)
-//        openDrawerButton.trailing(20)
-//        openDrawerButton.centerVertically(to: endRouteButton)
-//        openDrawerButton.exactSize(.init(width: Layout.buttonHeight , height: Layout.buttonHeight ))
     }
     
     func update(endRouteAction: Button.Action?, opendDrawerButtonAction: Button.Action?) {
@@ -67,18 +57,12 @@ final class EndRouteButtonView: CellView {
         openDrawerButton.action = opendDrawerButtonAction
     }
     
-//    func updateOpenDrawerButtonState(isHidden: Bool) {
-//        UIView.transition(with: openDrawerButton, duration: 0.3, options: .transitionCrossDissolve) {
-//            self.openDrawerButton.isHidden = isHidden
-//        }
-//    }
-    
     func changeViewState(_ newState: DrawerView.State) {
         guard state != newState else { return }
 
         if newState == .bottom {
             UIView.animate(withDuration: 0.2) {
-                self.endRouteWidthAnimationConstraint?.isActive = true
+                self.endRouteButton.transform = .init(translationX: 0.4, y: 1)
                 self.endRouteButton.setTitle("", for: .normal)
                 self.layoutIfNeeded()
             } completion: { _ in
@@ -90,10 +74,10 @@ final class EndRouteButtonView: CellView {
         } else {
             UIView.animate(withDuration: 0.3) {
                 self.endRouteButton.isHidden = false
-                self.endRouteWidthAnimationConstraint?.isActive = false
-                self.endRouteButton.setTitle(Settigns.endRouteButtonText, for: .normal)
+                self.endRouteButton.transform = .identity
                 self.layoutIfNeeded()
             } completion: { _ in
+                self.endRouteButton.setTitle(Settigns.endRouteButtonText, for: .normal)
                 self.openDrawerButton.isHidden = true
             }
         }

@@ -83,9 +83,12 @@ struct Person: Codable {
     let name: String
     let shortDescription, description: String
     let image: Data
-    var born: String?
-    var died: String?
-    var work: String?
+    let info: [ShortInfo]
+}
+
+struct ShortInfo: Codable {
+    let title: String
+    let subtitle: String
 }
 
 extension Route {
@@ -132,9 +135,11 @@ let personsInfo: [String: PersonInfo] = [
             Ольга Всеволодовна Ивинская, редактор, переводчик.
             """,
             image: #imageLiteral(resourceName: "001-1").pngData()!,
-            born: "1890",
-            died: "1960",
-            work: "поэт, писатель и переводчик"
+            info: [
+                ShortInfo(title: "Родился", subtitle: "1890"),
+                ShortInfo(title: "Умер", subtitle: "1960"),
+                ShortInfo(title: "Род деятельности", subtitle: "поэт, писатель и переводчик")
+            ]
         ), place: .init(
             name: "Дом Ольги Ивинской",
             description: """
@@ -165,9 +170,11 @@ let personsInfo: [String: PersonInfo] = [
                 Врубель, Коровин, Левитан, Пастернак, Репин, Суриков и др. учились, дружили, вдохновлялись, создавали картины на рисовальных вечерах у Поленовых дома.
             """,
             image: #imageLiteral(resourceName: "001-2").pngData()!,
-            born: "1844",
-            died: "1927",
-            work: "художник, занимался исторической, пейзажной и жанровой живописью"
+            info: [
+                ShortInfo(title: "Родился", subtitle: "1844"),
+                ShortInfo(title: "Умер", subtitle: "1927"),
+                ShortInfo(title: "Род деятельности", subtitle: "художник, занимался исторической, пейзажной и жанровой живописью")
+            ]
         ), place: .init(
             name: "Центр света художественного",
             description: """
@@ -199,9 +206,11 @@ let personsInfo: [String: PersonInfo] = [
             Александр Пастернак, архитектор, сосед по Мясницкой улице
             """,
             image: #imageLiteral(resourceName: "002").pngData()!,
-            born: "1866",
-            died: "1938",
-            work: "скульптор и художник"
+            info: [
+                ShortInfo(title: "Родился", subtitle: "1866"),
+                ShortInfo(title: "Умер", subtitle: "1938"),
+                ShortInfo(title: "Род деятельности", subtitle: "скульптор и художник")
+            ]
         ), place: .init(
             name: "Мастерская скульпторов",
             description: """
@@ -227,9 +236,11 @@ let personsInfo: [String: PersonInfo] = [
             В. А. Соллогуб – граф, писатель
             """,
             image: #imageLiteral(resourceName: "001").pngData()!,
-            born: "1803",
-            died: "1873",
-            work: "поэт, публицист, политический деятель, дипломат, переводчик"
+            info: [
+                ShortInfo(title: "Родился", subtitle: "1803"),
+                ShortInfo(title: "Умер", subtitle: "1873"),
+                ShortInfo(title: "Род деятельности", subtitle: "поэт, публицист, политический деятель, дипломат, переводчик")
+            ]
         ), place: .init(
             name: "Усадьба Фёдора Тютчева",
             description: """
@@ -271,9 +282,11 @@ let personsInfo: [String: PersonInfo] = [
             Юлий Лабас, биолог, из книги «Перекрёстки судеб. Мясницкая, 21»
             """,
             image: #imageLiteral(resourceName: "003").pngData()!,
-            born: "1900",
-            died: "1983",
-            work: "художник, представитель русского авангарда 1920-х — 1930-х годов"
+            info: [
+                ShortInfo(title: "Родился", subtitle: "1900"),
+                ShortInfo(title: "Умер", subtitle: "1983"),
+                ShortInfo(title: "Род деятельности", subtitle: "художник, представитель русского авангарда 1920-х — 1930-х годов")
+            ]
         ), place: .init(
             name: "Дом ВХУТЕМАСА",
             description: """
@@ -296,9 +309,11 @@ let personsInfo: [String: PersonInfo] = [
             Вера Владимировна, дочь инженера Шухова
             """,
             image: #imageLiteral(resourceName: "003-1").pngData()!,
-            born: "1853",
-            died: "1939",
-            work: "инженер, архитектор, изобретатель, учёный"
+            info: [
+                ShortInfo(title: "Родился", subtitle: "1853"),
+                ShortInfo(title: "Умер", subtitle: "1939"),
+                ShortInfo(title: "Род деятельности", subtitle: "инженер, архитектор, изобретатель, учёный")
+            ]
         ), place: .init(
             name: "Строительная контора инженера А.В. Бари",
             description: """

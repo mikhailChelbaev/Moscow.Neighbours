@@ -17,7 +17,7 @@ final class RouteViewController: BottomSheetViewController {
     
     // MARK: - UI
     
-    private let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never

@@ -52,7 +52,7 @@ final class MapViewController: UIViewController, MapPresentable {
         return view
     }()
     
-    private var locationButton: UIButton!
+    private var locationButton: Button!
     
 //    private var cameraButton: UIButton!
     
@@ -60,6 +60,7 @@ final class MapViewController: UIViewController, MapPresentable {
         let manager = CLLocationManager()
         manager.requestWhenInUseAuthorization()
         manager.delegate = self
+        manager.activityType = .fitness
         return manager
     }()
     
@@ -71,6 +72,8 @@ final class MapViewController: UIViewController, MapPresentable {
         manager.addController(routePassing, availableStates: [.bottom, .top])
         return manager
     }()
+    
+    private let notificationService: NotificationService = .init()
     
     private let routesController: RouteViewController = .init()
     
@@ -87,8 +90,6 @@ final class MapViewController: UIViewController, MapPresentable {
     private var currentlySelectedPerson: PersonInfo?
     
     private let routeOptimizer: RouteFinder = NearestCoordinatesFinder()
-    
-//    private var currentLocation: CLLocationCoordinate2D?
     
     private let arPersonPreview: ARPersonPerview = .init()
     
@@ -182,12 +183,13 @@ final class MapViewController: UIViewController, MapPresentable {
 
 extension MapViewController {
     
-    private func createButton(image: UIImage?) -> UIButton {
-        let button = UIButton()
+    private func createButton(image: UIImage?) -> Button {
+        let button = Button()
         button.backgroundColor = .background
         button.setImage(image, for: .normal)
         button.backgroundColor = .background
         button.layer.cornerRadius = Layout.buttonSide / 2
+        button.contentEdgeInsets = .zero
         button.makeShadow()
         return button
     }
@@ -311,6 +313,8 @@ extension MapViewController {
     }
     
     func startRoute(_ route: Route) {
+        notificationService.requestAuthorization()
+        
         userState = .passingRoute
         routePassing.update(route: currentlySelectedRoute)
         drawRoute(annotations: route.personsInfo, withUserLocation: false)
@@ -437,8 +441,6 @@ extension MapViewController: CLLocationManagerDelegate {
         }
         guard let location = locations.last else { return }
         
-//        currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        
         if state == .showLocationAtFirstTime {
             showPlaceOnMap(with: location.coordinate, animated: false, meters: 3000)
         } else if state == .showCurrentLocation {
@@ -447,10 +449,12 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-//        let closePerson = currentlySelectedRoute?.personsInfo.first(where: { $0.id == region.identifier })
-        let closePerson = currentlySelectedRoute?.personsInfo.first(where: { $0.coordinate == (region as? CLCircularRegion)?.center })
-        personController.closePerson = closePerson
-        routePassing.closePerson = closePerson
+        guard let personInfo = currentlySelectedRoute?.personsInfo.first(where: { $0.coordinate == (region as? CLCircularRegion)?.center }) else { return }
+        personController.closePerson = personInfo
+        routePassing.closePerson = personInfo
+        notificationService.fireNotification(title: personInfo.person.name) { [weak self] in
+            self?.showPerson(personInfo)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -468,7 +472,7 @@ extension MapViewController: MKMapViewDelegate {
         if let _ = annotation as? PersonInfo {
             let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as! MKMarkerAnnotationView
             view.displayPriority = .required
-            view.markerTintColor = .projectRed//currentlySelectedRoute?.color.value
+            view.markerTintColor = .projectRed
             return view
         }
         return nil
@@ -486,7 +490,7 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = .projectRed//currentlySelectedRoute?.color.value
+        renderer.strokeColor = .projectRed
         renderer.lineWidth = 4.0
         return renderer
     }
@@ -511,13 +515,15 @@ extension MapViewController: DrawerViewListener {
     func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
         routePassing.drawerView(didChangeState: state)
         // scroll to top
-//        if state == .dismissed {
-//            if drawerView == mainBottomSheet.drawerView {
-//                mainBottomSheet.sectionsView.scrollToTop()
-//            } else if drawerView == placeBottomSheet.drawerView {
-//                placeBottomSheet.tableView.scrollToTop()
-//            }
-//        }
+        if state == .dismissed {
+            [
+                routesController.tableView,
+                routeDescriptionController.tableView,
+                personController.tableView
+            ].forEach { scrollView in
+                scrollView.setContentOffset(.init(x: 0, y: 0), animated: true)
+            }
+        }
     }
     
     func drawerView(_ drawerView: DrawerView, willBeginAnimationToState state: DrawerView.State?, source: DrawerOriginChangeSource) { }

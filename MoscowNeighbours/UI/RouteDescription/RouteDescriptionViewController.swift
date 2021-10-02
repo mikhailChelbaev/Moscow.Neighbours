@@ -26,7 +26,7 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     
     // MARK: - UI
     
-    private let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never
@@ -156,7 +156,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
                     guard let `self` = self else { return }
-                    view.update(text: self.route.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .secondaryLabel, insets: .init(top: 5, left: 20, bottom: 20, right: 20))
+                    view.update(text: self.route.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .darkGray, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
                 }
                 cell.selectionStyle = .none
                 return cell
