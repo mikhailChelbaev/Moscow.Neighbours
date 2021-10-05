@@ -1,5 +1,5 @@
 //
-//  PersonSimpleInfoCell.swift
+//  PersonInfoBaseCell.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 30.09.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PersonSimpleInfoCell: CellView {
+class PersonInfoBaseCell: CellView {
     
     let stack: UIStackView = {
         let stack = UIStackView()
@@ -37,7 +37,7 @@ final class PersonSimpleInfoCell: CellView {
     
     func update(info: [ShortInfo]) {
         var subviews = stack.arrangedSubviews
-        subviews.forEach({ stack.removeArrangedSubview($0) })
+        subviews.forEach({ stack.removeArrangedSubview($0); $0.removeFromSuperview() })
         
         subviews = info.map({ createLabel(title: $0.title, subtitle: $0.subtitle) })
         subviews.forEach({ stack.addArrangedSubview($0) })

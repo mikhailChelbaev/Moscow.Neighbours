@@ -44,6 +44,12 @@ final class NotificationService: NSObject {
         notificationCenter.add(request) { err in
             if let err = err { Logger.log(err.localizedDescription) }
         }
+        
+//        let viewAction = UNNotificationAction(identifier: "View", title: "Посмотреть", options: [])
+//        let deleteAction = UNNotificationAction(identifier: "Delete", title: "Удалить", options: [.destructive])
+//        let category = UNNotificationCategory(identifier: "userActions", actions: [viewAction, deleteAction], intentIdentifiers: [], options: [])
+//
+//        notificationCenter.setNotificationCategories([category])
     }
     
 }

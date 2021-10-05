@@ -33,6 +33,7 @@ final class RoutePointsCollectionCell: CellView, PagerPresentable {
         cv.isPagingEnabled = true
         cv.showsVerticalScrollIndicator = false
         cv.showsHorizontalScrollIndicator = false
+        cv.backgroundColor = .background
         return cv
     }()
     
@@ -76,7 +77,7 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
             guard let personInfo = self?.route?.personsInfo[indexPath.item] else { return }
             let state: RoutePointCell.State = personInfo == self?.closePerson ? .onTheSpot : .going
             view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
-                self?.mapPresenter?.showPerson(personInfo)
+                self?.mapPresenter?.showPerson(personInfo, state: .middle)
             })
         }
         return cell

@@ -72,12 +72,14 @@ final class EndRouteButtonView: CellView {
                 }
             }
         } else {
+            endRouteButton.isHidden = false
+            endRouteButton.setTitle(Settigns.endRouteButtonText, for: .normal)
+            endRouteButton.setTitleColor(.clear, for: .normal)
             UIView.animate(withDuration: 0.3) {
-                self.endRouteButton.isHidden = false
                 self.endRouteButton.transform = .identity
                 self.layoutIfNeeded()
             } completion: { _ in
-                self.endRouteButton.setTitle(Settigns.endRouteButtonText, for: .normal)
+                self.endRouteButton.setTitleColor(.label, for: .normal)
                 self.openDrawerButton.isHidden = true
             }
         }

@@ -15,7 +15,7 @@ protocol MapPresentable: AnyObject {
     
     func startRoute(_ route: Route)
     func endRoute()
-    func showPerson(_ info: PersonInfo)
+    func showPerson(_ info: PersonInfo, state: DrawerView.State)
 }
 
 enum UserState {
@@ -143,8 +143,9 @@ final class MapViewController: UIViewController, MapPresentable {
         routeDescriptionController.mapPresenter = self
         routePassing.mapPresenter = self
         
-        locationButton.addTarget(self, action: #selector(updateCurrentLocation), for: .touchUpInside)
-//        cameraButton.addTarget(self, action: #selector(showPersonModel), for: .touchUpInside)
+        locationButton.action = { [weak self] _ in
+            self?.updateCurrentLocation()
+        }
 //        cameraButton.isEnabled = false
         
         view.addSubview(cover)
@@ -194,7 +195,7 @@ extension MapViewController {
         return button
     }
     
-    @objc private func updateCurrentLocation() {
+    private func updateCurrentLocation() {
         state = .showCurrentLocation
         locationManager.startUpdatingLocation()
     }
@@ -319,7 +320,6 @@ extension MapViewController {
         routePassing.update(route: currentlySelectedRoute)
         drawRoute(annotations: route.personsInfo, withUserLocation: false)
         manager.show(routePassing, state: .top)
-        cover.isHidden = true
         createRegions(for: currentlySelectedRoute)
     }
     
@@ -330,7 +330,6 @@ extension MapViewController {
             drawRoute(annotations: currentRoute.personsInfo, withUserLocation: false)
         }
         manager.closeCurrent()
-        cover.isHidden = false
         removeRegions()
     }
     
@@ -370,14 +369,14 @@ extension MapViewController {
 
 extension MapViewController {
     
-    func showPerson(_ info: PersonInfo) {
+    func showPerson(_ info: PersonInfo, state: DrawerView.State = .middle) {
         if currentlySelectedPerson != nil {
             closePersonController()
         }
         currentlySelectedPerson = info
  
         personController.update(info, userState: userState, closeAction: { [weak self] in self?.closePersonController() })
-        manager.show(personController, state: .middle)
+        manager.show(personController, state: state)
         showPlaceOnMap(with: info.coordinate)
     }
     
@@ -453,7 +452,7 @@ extension MapViewController: CLLocationManagerDelegate {
         personController.closePerson = personInfo
         routePassing.closePerson = personInfo
         notificationService.fireNotification(title: personInfo.person.name) { [weak self] in
-            self?.showPerson(personInfo)
+            self?.showPerson(personInfo, state: .top)
         }
     }
     
@@ -534,6 +533,7 @@ extension MapViewController: DrawerViewListener {
         defer {
             cover.alpha = value
         }
+        if manager.currentController == routePassing { return }
         guard let states = manager.currentController?.drawerView.availableStates else { return }
         let heights: [CGFloat] = states.compactMap({ manager.currentController?.drawerView.origin(for: $0) }).sorted(by: { $0 > $1 })
     

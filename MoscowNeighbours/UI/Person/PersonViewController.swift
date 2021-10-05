@@ -101,7 +101,8 @@ final class PersonViewController: BottomSheetViewController {
         tableView.register(TextCell.self)
         tableView.register(SeparatorCell.self)
         tableView.register(AlertCell.self)
-        tableView.register(PersonSimpleInfoCell.self)
+        tableView.register(PersonInfoBaseCell.self)
+        tableView.register(PersonInfoCell.self)
         
         drawerView.containerView.backgroundColor = .clear
         
@@ -137,7 +138,7 @@ extension PersonViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (closePerson == personInfo ? [1, 1] : [1, 3, 3])[section]
+        return (closePerson == personInfo ? [1, 2] : [1, 3, 3])[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -151,13 +152,23 @@ extension PersonViewController: UITableViewDataSource {
             return cell
         }
         if closePerson == personInfo {
-            let cell = tableView.dequeue(TextCell.self, for: indexPath)
-            cell.configureView = { [weak self] view in
-                guard let `self` = self else { return }
-                view.update(text: self.personInfo.person.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .darkGray, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+            if indexPath.item == 0 {
+                let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
+                cell.configureView = { [weak self] view in
+                    guard let info = self?.personInfo.person.info else { return }
+                    view.update(info: info)
+                }
+                cell.selectionStyle = .none
+                return cell
+            } else {
+                let cell = tableView.dequeue(TextCell.self, for: indexPath)
+                cell.configureView = { [weak self] view in
+                    guard let `self` = self else { return }
+                    view.update(text: self.personInfo.person.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .darkGray, insets: .init(top: 0, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+                }
+                cell.selectionStyle = .none
+                return cell
             }
-            cell.selectionStyle = .none
-            return cell
         }
         
         if indexPath.section == 1 {
@@ -183,7 +194,7 @@ extension PersonViewController: UITableViewDataSource {
             }
         } else {
             if indexPath.item == 0 {
-                let cell = tableView.dequeue(PersonSimpleInfoCell.self, for: indexPath)
+                let cell = tableView.dequeue(PersonInfoBaseCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
                     guard let info = self?.personInfo.person.info else { return }
                     view.update(info: info)
