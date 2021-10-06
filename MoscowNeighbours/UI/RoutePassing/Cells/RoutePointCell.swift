@@ -14,7 +14,7 @@ final class RoutePointCell: CellView {
         case going
     }
     
-    let placeNameLabel: UILabel = {
+    let personNameLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 24, weight: .bold)
         label.numberOfLines = 0
@@ -40,12 +40,12 @@ final class RoutePointCell: CellView {
     }()
     
     override func commonInit() {
-        addSubview(placeNameLabel)
-        placeNameLabel.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 10, left: 20, bottom: 0, right: 20))
+        addSubview(personNameLabel)
+        personNameLabel.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 10, left: 20, bottom: 0, right: 20))
         
         addSubview(addressLabel)
         addressLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
-        addressLabel.top(4, to: placeNameLabel)
+        addressLabel.top(4, to: personNameLabel)
         
         addSubview(alertView)
         alertView.stickToSuperviewEdges([.left, .right])
@@ -63,7 +63,7 @@ final class RoutePointCell: CellView {
         state: State,
         action: Button.Action?
     ) {
-        placeNameLabel.text = personInfo.place.name
+        personNameLabel.text = personInfo.person.name
         addressLabel.text = personInfo.place.address
         
         if state == .onTheSpot {
