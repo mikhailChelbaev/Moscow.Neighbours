@@ -40,7 +40,7 @@ class DefaultRequestSender: RequestSender {
 
             if let httpResponse = resp as? HTTPURLResponse {
                 if !(200...300).contains(httpResponse.statusCode) {
-                    Logger.log("Not 200(\(httpResponse.statusCode)) status code for \(url)")
+                    Logger.log("\(httpResponse.statusCode) status code for \(url)")
                     guard let unwrappedData = data, let message = try? JSONSerialization.jsonObject(with: unwrappedData, options: .allowFragments) as? [String: Any] else {
                         DispatchQueue.main.async {
                             completionHandler?(.failure("\(httpResponse.statusCode) status code"))

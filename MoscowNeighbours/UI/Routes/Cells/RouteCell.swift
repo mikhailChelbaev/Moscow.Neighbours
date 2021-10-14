@@ -79,7 +79,7 @@ class RouteCell: CellView {
 //    }
     
     func update(with route: Route) {
-        containerView.image = UIImage(data: route.image)
+        containerView.loadImage(route.coverUrl)
         titleLabel.text = route.name
 //        distanceInfo.update(text: "200 m", image: sfSymbol("location.fill", tintColor: .white))
         durationInfo.update(text: "\(route.distance) • \(route.duration)", image: nil)

@@ -61,6 +61,12 @@
 		747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */; };
 		748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748299DE26AA0A1A00573DC3 /* RoutesData.swift */; };
 		7485E3792709BD52008DAB99 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485E3782709BD52008DAB99 /* PersonInfoCell.swift */; };
+		748EE633270F911800301552 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE632270F911800301552 /* Route.swift */; };
+		748EE635270F913000301552 /* PersonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE634270F913000301552 /* PersonInfo.swift */; };
+		748EE637270F914600301552 /* LocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE636270F914600301552 /* LocationCoordinates.swift */; };
+		748EE639270F915C00301552 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE638270F915C00301552 /* Place.swift */; };
+		748EE63B270F916800301552 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63A270F916800301552 /* Person.swift */; };
+		748EE63D270F917600301552 /* ShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63C270F917600301552 /* ShortInfo.swift */; };
 		748FFD9626E55535009CA688 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9526E55535009CA688 /* Logger.swift */; };
 		748FFD9926E55594009CA688 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9826E55594009CA688 /* RequestSender.swift */; };
 		748FFD9B26E555CB009CA688 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9A26E555CB009CA688 /* Parser.swift */; };
@@ -136,6 +142,12 @@
 		747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointsCollectionCell.swift; sourceTree = "<group>"; };
 		748299DE26AA0A1A00573DC3 /* RoutesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesData.swift; sourceTree = "<group>"; };
 		7485E3782709BD52008DAB99 /* PersonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCell.swift; sourceTree = "<group>"; };
+		748EE632270F911800301552 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		748EE634270F913000301552 /* PersonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfo.swift; sourceTree = "<group>"; };
+		748EE636270F914600301552 /* LocationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinates.swift; sourceTree = "<group>"; };
+		748EE638270F915C00301552 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		748EE63A270F916800301552 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		748EE63C270F917600301552 /* ShortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfo.swift; sourceTree = "<group>"; };
 		748FFD9526E55535009CA688 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		748FFD9826E55594009CA688 /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		748FFD9A26E555CB009CA688 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -190,6 +202,7 @@
 			children = (
 				7402662626A765E7006242FE /* UI */,
 				748FFD9426E55193009CA688 /* Network */,
+				748EE631270F910B00301552 /* Models */,
 				74D4AB5626AF3E5A009CAD3A /* MockData */,
 				7402662226A7659F006242FE /* Helpers */,
 				742283BC26BB2998003F814E /* Assets */,
@@ -421,6 +434,19 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		748EE631270F910B00301552 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				748EE632270F911800301552 /* Route.swift */,
+				748EE634270F913000301552 /* PersonInfo.swift */,
+				748EE638270F915C00301552 /* Place.swift */,
+				748EE63A270F916800301552 /* Person.swift */,
+				748EE636270F914600301552 /* LocationCoordinates.swift */,
+				748EE63C270F917600301552 /* ShortInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		748FFD9426E55193009CA688 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -553,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
 				74CD387926FF3E4600D5CCDE /* PagerProtocols.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				7443988826E6B9EA003FC860 /* Request.swift in Sources */,
@@ -561,6 +588,7 @@
 				747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */,
 				7485E3792709BD52008DAB99 /* PersonInfoCell.swift in Sources */,
 				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,
+				748EE639270F915C00301552 /* Place.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				748FFD9926E55594009CA688 /* RequestSender.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
@@ -579,6 +607,7 @@
 				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
 				746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
+				748EE63B270F916800301552 /* Person.swift in Sources */,
 				74FD656926B0ABDA00F824DD /* Stack.swift in Sources */,
 				74EBC36826F503500002EEAE /* HandlerView.swift in Sources */,
 				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
@@ -599,6 +628,7 @@
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				748FFD9B26E555CB009CA688 /* Parser.swift in Sources */,
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
+				748EE635270F913000301552 /* PersonInfo.swift in Sources */,
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */,
 				747A0E5A26FE1F8400EB1973 /* PageIndexCell.swift in Sources */,
@@ -607,6 +637,8 @@
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
 				7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */,
 				741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */,
+				748EE63D270F917600301552 /* ShortInfo.swift in Sources */,
+				748EE633270F911800301552 /* Route.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
 				7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */,
 				7443988E26E6BB3F003FC860 /* RequestConstants.swift in Sources */,

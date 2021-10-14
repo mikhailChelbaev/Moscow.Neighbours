@@ -40,7 +40,7 @@ final class RouteHeaderCell: EntityHeaderCell {
     }
     
     func update(with route: Route, beginRouteAction: Action?) {
-        imageView.image = UIImage(data: route.image)
+        imageView.loadImage(route.coverUrl)
         titleLabel.text = route.name
         distanceInfo.update(text: "200 m", image: sfSymbol("location.fill", tintColor: .white))
         durationInfo.update(text: "\(route.distance) • \(route.duration)", image: nil)

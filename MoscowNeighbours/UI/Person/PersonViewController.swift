@@ -146,7 +146,7 @@ extension PersonViewController: UITableViewDataSource {
             let cell = tableView.dequeue(PersonHeaderCell.self, for: indexPath)
             cell.configureView = { [weak self] view in
                 guard let `self` = self else { return }
-                view.update(name: self.personInfo.person.name, image: UIImage(data: self.personInfo.person.image)!)
+                view.update(name: self.personInfo.person.name, imageUrl: self.personInfo.person.avatarUrl)
             }
             cell.selectionStyle = .none
             return cell

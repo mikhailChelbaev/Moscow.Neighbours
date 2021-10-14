@@ -17,9 +17,9 @@ final class PersonHeaderCell: EntityHeaderCell {
         titleLabel.stickToSuperviewEdges([.left, .bottom, .right], insets: .init(top: 0, left: 20, bottom: 30, right: 20))
     }
     
-    func update(name: String, image: UIImage) {
+    func update(name: String, imageUrl: String?) {
         titleLabel.text = name
-        imageView.image = image
+        imageView.loadImage(imageUrl)
     }
     
 }

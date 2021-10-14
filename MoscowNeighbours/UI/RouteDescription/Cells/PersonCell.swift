@@ -149,7 +149,7 @@ final class PersonCell: CellView {
         addressLabel.text = personInfo.place.address
         houseTitleLabel.text = personInfo.place.name
         routeLineImageView.image = drawImage(withBegining: !isFirst, withEnding: !isLast)
-        personAvatar.image = UIImage(data: personInfo.person.image) ?? personAvatar.placeholder.image
+        personAvatar.loadImage(personInfo.person.avatarUrl)
         
         self.isFirst = isFirst
         self.isLast = isLast
