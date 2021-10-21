@@ -12,7 +12,7 @@ class RouteCell: CellView {
     
     let containerView: ImageView = {
         let iv = ImageView()
-        iv.placeholder = .image(#imageLiteral(resourceName: "cover"))
+//        iv.placeholder = .image(#imageLiteral(resourceName: "cover"))
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 18
