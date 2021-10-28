@@ -31,18 +31,19 @@ class TextCell: CellView {
         lineSpacing: CGFloat? = nil,
         lineHeightMultiple: CGFloat? = nil
     ) {
-        if let attributedText = attributedText {
-            label.text = nil
-            label.attributedText = attributedText
-        } else {
-            label.setAttributedText(text, kern: kern, lineSpacing: lineSpacing, lineHeightMultiple: lineHeightMultiple)
-        }
         if let font = font {
             label.font = font
         }
         label.textColor = textColor
         label.numberOfLines = numberOfLines
         labelConstraints?.updateInsets(insets)
+        
+        if let attributedText = attributedText {
+            label.text = nil
+            label.attributedText = attributedText
+        } else {
+            label.setAttributedText(text, kern: kern, lineSpacing: lineSpacing, lineHeightMultiple: lineHeightMultiple)
+        }
         
         self.backgroundColor = backgroundColor
     }

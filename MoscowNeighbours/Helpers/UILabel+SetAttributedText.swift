@@ -18,7 +18,6 @@ extension UILabel {
         var attributes: [NSAttributedString.Key : Any] = [
             .font: font ?? .mainFont(ofSize: 17, weight: .regular),
             .foregroundColor: textColor ?? .label,
-            
         ]
         
         if let kern = kern {
@@ -27,6 +26,7 @@ extension UILabel {
         
         let style: NSMutableParagraphStyle = .init()
         style.alignment = textAlignment
+        
         if let lineSpacing = lineSpacing {
             style.lineSpacing = lineSpacing
         }

@@ -46,6 +46,13 @@ final class PersonViewController: BottomSheetViewController {
     
     private var state: UserState = .default
     
+    private let parser: MarkdownParser = {
+        var config: MarkdownConfigurator = .default
+        let parser = DefaultMarkdownParser()
+        parser.configurator = config
+        return parser
+    }()
+    
     // MARK: - internal properties
     
     var closePerson: PersonInfo? {
@@ -127,6 +134,10 @@ final class PersonViewController: BottomSheetViewController {
         }
     }
     
+    private func handleMarkdown(for text: String) -> NSAttributedString {
+        return parser.parse(text: text)
+    }
+    
 }
 
 // MARK: - extension UITableViewDataSource
@@ -164,7 +175,8 @@ extension PersonViewController: UITableViewDataSource {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
                     guard let `self` = self else { return }
-                    view.update(text: self.personInfo.person.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .darkGray, insets: .init(top: 0, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+                    let description = self.personInfo.person.description
+                    view.update(text: nil, attributedText: self.handleMarkdown(for: description), insets: .init(top: 0, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
                 }
                 cell.selectionStyle = .none
                 return cell
@@ -183,7 +195,8 @@ extension PersonViewController: UITableViewDataSource {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
                     guard let `self` = self else { return }
-                    view.update(text: self.personInfo.person.shortDescription, font: .mainFont(ofSize: 18, weight: .regular), textColor: .darkGray, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+                    let description = self.personInfo.person.shortDescription
+                    view.update(text: nil, attributedText: self.handleMarkdown(for: description), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
                 }
                 cell.selectionStyle = .none
                 return cell

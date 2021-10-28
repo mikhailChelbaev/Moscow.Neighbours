@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
@@ -37,6 +37,8 @@
 	<string>Пожалуйста, поделитесь геопозицией, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>helveticaneuecyr-italic.ttf</string>
+		<string>helveticaneuecyr-bolditalic.ttf</string>
 		<string>helveticaneuecyr-medium.ttf</string>
 		<string>helveticaneuecyr-bold.ttf</string>
 		<string>helveticaneuecyr-roman.ttf</string>

@@ -58,6 +58,13 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     
     private var closeAction: Action?
     
+    private let parser: MarkdownParser = {
+        var config: MarkdownConfigurator = .default
+        let parser = DefaultMarkdownParser()
+        parser.configurator = config
+        return parser
+    }()
+    
     // MARK: - init
     
     override init() {
@@ -119,6 +126,10 @@ final class RouteDescriptionViewController: BottomSheetViewController {
         closeAction?()
     }
     
+    private func handleMarkdown(for text: String) -> NSAttributedString {
+        return parser.parse(text: text)
+    }
+    
 }
 
 // MARK: - extension UITableViewDataSource
@@ -156,7 +167,8 @@ extension RouteDescriptionViewController: UITableViewDataSource {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
                     guard let `self` = self else { return }
-                    view.update(text: self.route.description, font: .mainFont(ofSize: 18, weight: .regular), textColor: .darkGray, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+                    let description = self.route.description
+                    view.update(text: nil, attributedText: self.handleMarkdown(for: description), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
                 }
                 cell.selectionStyle = .none
                 return cell
@@ -169,7 +181,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { view in
-                    view.update(text: "Локации:", font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 30, left: 20, bottom: 5, right: 20))
+                    view.update(text: "Куда пойдем:", font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 30, left: 20, bottom: 5, right: 20))
                 }
                 cell.selectionStyle = .none
                 return cell

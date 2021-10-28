@@ -16,7 +16,7 @@ final class HeaderView: CellView {
     private let label: UILabel = {
         let label = UILabel()
         label.adjustsFontSizeToFitWidth = true
-        label.font = .mainFont(ofSize: 22, weight: .semibold)
+        label.font = .mainFont(ofSize: 22, weight: .medium)
         return label
     }()
     
