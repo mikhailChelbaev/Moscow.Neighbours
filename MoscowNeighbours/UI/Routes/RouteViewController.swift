@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class RouteViewController: BottomSheetViewController {
+extension RouteViewController.Settings {
+    static let middleInsetFromBottomError: CGFloat = 350
+}
+
+final class RouteViewController: BottomSheetViewController, LoadingStatusProvider {
     
     // MARK: - Layout constraints
     
@@ -17,8 +21,8 @@ final class RouteViewController: BottomSheetViewController {
     
     // MARK: - UI
     
-    let tableView: UITableView = {
-        let tableView = UITableView()
+    let tableView: BaseTableView = {
+        let tableView = BaseTableView()
         tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
@@ -31,6 +35,13 @@ final class RouteViewController: BottomSheetViewController {
     // MARK: - internal properties
     
     var showRouteCompletion: ((Route) -> Void)?
+    
+    var status: LoadingStatus = .loading {
+        didSet {
+            if oldValue != status { changeStateSize() }
+            tableView.reloadData()
+        }
+    }
     
     // MARK: - private properties
     
@@ -59,10 +70,10 @@ final class RouteViewController: BottomSheetViewController {
     // MARK: - private methods
     
     private func commonInit() {        
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.successDataSource = self
+        tableView.statusProvider = self
         
-        tableView.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 10, right: 0)
         
         setUp(scrollView: tableView, headerView: headerView, topInsetPortrait: Layout.topInset)
         
@@ -72,23 +83,46 @@ final class RouteViewController: BottomSheetViewController {
     }
     
     private func fetchData() {
-        service.fetchRoutes() { [weak self] routes in
-            self?.routes = routes ?? []
-            self?.tableView.reloadData()
+        status = .loading
+        service.fetchRoutes() { [weak self] result in
+            switch result {
+            case .success(let routes):
+                self?.routes = routes
+                self?.status = .success
+            case .failure:
+                self?.status = .error(DefaultEmptyStateProviders.mainError(action: {
+                    self?.fetchData()
+                }))
+            }
         }
+    }
+    
+    private func changeStateSize() {
+        switch status {
+        case .success:
+            drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottom)
+            drawerView.topPosition = .fromTop(Settings.topInsetPortrait)
+            drawerView.availableStates = [.middle, .top]
+        case .error:
+            drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottomError)
+            drawerView.availableStates = [.middle]
+        default:
+            break
+        }
+        drawerView.setState(.middle, animated: true)
     }
     
 }
 
 // MARK: - extension UITableViewDataSource
 
-extension RouteViewController: UITableViewDataSource {
+extension RouteViewController: TableSuccessDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routes.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RouteCell.self, for: indexPath)
         cell.selectionStyle = .none
         cell.configureView = { [weak self] view in
@@ -98,13 +132,7 @@ extension RouteViewController: UITableViewDataSource {
         return cell
     }
     
-}
-
-// MARK: - extension UITableViewDelegate
-
-extension RouteViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showRouteCompletion?(routes[indexPath.item])
     }
     

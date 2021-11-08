@@ -25,7 +25,7 @@ final class Button: UIButton {
     
     var scale: CGFloat = 0.97
     
-    var animationDuration: Double = 0.1
+    var animationDuration: Double = 0.05
     
     var style: Style = .filled {
         didSet { updateUI() }

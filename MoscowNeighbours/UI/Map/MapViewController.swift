@@ -54,15 +54,7 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private var locationButton: Button!
     
-//    private var cameraButton: UIButton!
-    
-    private lazy var locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.requestWhenInUseAuthorization()
-        manager.delegate = self
-        manager.activityType = .fitness
-        return manager
-    }()
+    private let locationService: LocationService = .init()
     
     private lazy var manager: BottomSheetsManager = {
         let manager = BottomSheetsManager(presenter: self)
@@ -104,7 +96,6 @@ final class MapViewController: UIViewController, MapPresentable {
     override func loadView() {
         view = mapView
         locationButton = createButton(image: #imageLiteral(resourceName: "location").withTintColor(.inversedBackground, renderingMode: .alwaysOriginal))
-//        cameraButton = createButton(image: UIImage(systemName: "camera.fill"))
     }
 
     override func viewDidLoad() {
@@ -124,17 +115,15 @@ final class MapViewController: UIViewController, MapPresentable {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         locationButton.layer.shadowColor = UIColor.shadow.cgColor
-//        cameraButton.layer.shadowColor = UIColor.shadow.cgColor
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         locationButton.updateShadowPath()
-//        cameraButton.updateShadowPath()
     }
     
     private func commonInit() {
-        locationManager.startUpdatingLocation()
+        locationService.delegate = self
         mapView.delegate = self
         
         manager.controllers.forEach({ $0.drawerView.addListener(self) })
@@ -146,14 +135,9 @@ final class MapViewController: UIViewController, MapPresentable {
         locationButton.action = { [weak self] _ in
             self?.updateCurrentLocation()
         }
-//        cameraButton.isEnabled = false
         
         view.addSubview(cover)
         cover.stickToSuperviewEdges(.all)
-        
-//        view.addSubview(cameraButton)
-//        cameraButton.stickToSuperviewSafeEdges([.top, .right], insets: .init(top: Layout.locationButtonTopInset, left: 0, bottom: 0, right: Layout.buttonsTrailingInset))
-//        cameraButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
         
         view.addSubview(locationButton)
         locationButton.trailing(Layout.locationButtonTrailingInset)
@@ -172,6 +156,7 @@ final class MapViewController: UIViewController, MapPresentable {
         }
         
         manager.show(routesController, state: .middle, animated: false)
+        locationService.requestLocationUpdate()
     }
     
     private func registerAnnotationViews() {
@@ -197,7 +182,7 @@ extension MapViewController {
     
     private func updateCurrentLocation() {
         state = .showCurrentLocation
-        locationManager.startUpdatingLocation()
+        locationService.requestLocationUpdate()
     }
     
     @objc private func showPersonModel() {
@@ -241,7 +226,7 @@ extension MapViewController {
         guard coordinates.count > 0 else { return }
         
         var nearestCoordinate: CLLocationCoordinate2D?
-        if let currentLocation = locationManager.location?.coordinate {
+        if let currentLocation = locationService.currentLocation?.coordinate {
             nearestCoordinate = routeOptimizer.findNearestCoordinate(from: currentLocation, coordinates: coordinates)
         } else {
             nearestCoordinate = coordinates.removeFirst()
@@ -260,7 +245,7 @@ extension MapViewController {
                 }
             }
             if withUserLocation {
-                if let p1 = self?.locationManager.location?.coordinate, let p2 = route.first?.p1 {
+                if let p1 = self?.locationService.currentLocation?.coordinate, let p2 = route.first?.p1 {
                     group.enter()
                     self?.findRoute(p1: p1, p2: p2) { route in
                         routes.append(route)
@@ -293,7 +278,10 @@ extension MapViewController {
         p2: CLLocationCoordinate2D?,
         completion: @escaping (MKRoute?) -> Void
     ) {
-        guard let p1 = p1, let p2 = p2 else { return }
+        guard let p1 = p1, let p2 = p2 else {
+            completion(nil)
+            return
+        }
         let directionRequest = MKDirections.Request()
         directionRequest.source = .init(placemark: .init(coordinate: p1))
         directionRequest.destination = .init(placemark: .init(coordinate: p2))
@@ -334,7 +322,6 @@ extension MapViewController {
     }
     
     private func createRegions(for route: Route?) {
-        // TODO: - регионы могут пересекаться
         guard let route = route else { return }
         monitoringRegions = route.personsInfo.map({ info in
             let coordinate = info.coordinate
@@ -342,25 +329,14 @@ extension MapViewController {
             let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: info.id)
             return region
         })
-        monitoringRegions.forEach({ locationManager.startMonitoring(for: $0) })
-        
-        // check is user already in some region
-        if let currentLocation = locationManager.location?.coordinate {
-            monitoringRegions.forEach({
-                if $0.contains(currentLocation) {
-                    self.locationManager(self.locationManager, didEnterRegion: $0)
-                }
-            })
-        }
+        locationService.startMonitoring(for: monitoringRegions)
     }
     
     private func removeRegions() {
-        for region in monitoringRegions {
-            locationManager.stopMonitoring(for: region)
-        }
+        locationService.stopMonitoring()
         monitoringRegions = []
-        personController.closePerson = nil
-        routePassing.closePerson = nil
+        personController.closePersons = []
+        routePassing.closePersons = []
     }
     
 }
@@ -428,18 +404,13 @@ extension MapViewController {
     
 }
 
-// MARK: - protocol CLLocationManagerDelegate
-
-extension MapViewController: CLLocationManagerDelegate {
+extension MapViewController: LocationServiceDelegate {
     
-    /// move camera to current location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func didUpdateLocation(location: CLLocation) {
         defer {
             state = .default
-            locationManager.stopUpdatingLocation()
         }
-        guard let location = locations.last else { return }
-        
+
         if state == .showLocationAtFirstTime {
             showPlaceOnMap(with: location.coordinate, animated: false, meters: 3000)
         } else if state == .showCurrentLocation {
@@ -447,18 +418,39 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        guard let personInfo = currentlySelectedRoute?.personsInfo.first(where: { $0.coordinate == (region as? CLCircularRegion)?.center }) else { return }
-        personController.closePerson = personInfo
-        routePassing.closePerson = personInfo
-        notificationService.fireNotification(title: personInfo.person.name) { [weak self] in
-            self?.showPerson(personInfo, state: .top)
-        }
+    func didFailWithError(error: Error) {
+        state = .default
     }
     
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        personController.closePerson = nil
-        routePassing.closePerson = nil
+    func didUpdateCurrentRegions(_ regions: [CLRegion]) {
+        var personsInfo: [PersonInfo] = []
+        for info in currentlySelectedRoute?.personsInfo ?? [] {
+            for region in regions {
+                if info.coordinate == (region as? CLCircularRegion)?.center {
+                    personsInfo.append(info)
+                }
+            }
+        }
+        personController.closePersons = personsInfo
+        routePassing.closePersons = personsInfo
+    }
+    
+    func didEnterNewRegions(_ regions: [CLRegion]) {
+        let personInfo: PersonInfo? = regions.compactMap { region in
+            for info in currentlySelectedRoute?.personsInfo ?? [] {
+                if info.coordinate == (region as? CLCircularRegion)?.center {
+                    return info
+                }
+            }
+            return nil
+        }.first
+        
+        if let personInfo = personInfo {
+            routePassing.scrollToPerson(personInfo)
+            notificationService.fireNotification(title: personInfo.person.name) { [weak self] in
+                self?.showPerson(personInfo, state: .top)
+            }
+        }
     }
     
 }

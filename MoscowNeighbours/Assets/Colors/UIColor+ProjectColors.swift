@@ -17,8 +17,10 @@ extension UIColor {
     
     static let reversedLabel: UIColor = .init(named: "reversedLabel")!
     
-    static var grayBackground = UIColor(named: "grayBackground")!
+    static let grayBackground = UIColor(named: "grayBackground")!
     
-    static var projectRed: UIColor = UIColor(named: "red")!
+    static let projectRed: UIColor = UIColor(named: "red")!
+    
+    static let imageBackground: UIColor = .systemGray3
     
 }

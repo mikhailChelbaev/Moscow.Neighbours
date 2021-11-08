@@ -12,7 +12,7 @@ class RouteCell: CellView {
     
     let containerView: ImageView = {
         let iv = ImageView()
-//        iv.placeholder = .image(#imageLiteral(resourceName: "cover"))
+        iv.backgroundColor = .imageBackground
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 18
@@ -67,16 +67,6 @@ class RouteCell: CellView {
         containerView.addSubview(durationInfo)
         durationInfo.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
     }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        containerView.updateShadowPath()
-//    }
-    
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        containerView.layer.shadowColor = UIColor.shadow.cgColor
-//    }
     
     func update(with route: Route) {
         containerView.loadImage(route.coverUrl)

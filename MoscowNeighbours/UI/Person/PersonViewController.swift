@@ -55,7 +55,7 @@ final class PersonViewController: BottomSheetViewController {
     
     // MARK: - internal properties
     
-    var closePerson: PersonInfo? {
+    var closePersons: [PersonInfo] = [] {
         didSet { updatePersonInfo() }
     }
     
@@ -129,7 +129,7 @@ final class PersonViewController: BottomSheetViewController {
     }
     
     private func updatePersonInfo() {
-        if closePerson == nil || closePerson == personInfo {
+        if closePersons.isEmpty || closePersons.contains(personInfo) {
             tableView.reloadData()
         }
     }
@@ -145,11 +145,11 @@ final class PersonViewController: BottomSheetViewController {
 extension PersonViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return closePerson == personInfo ? 2 : 3
+        return closePersons.contains(personInfo) ? 2 : 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (closePerson == personInfo ? [1, 2] : [1, 3, 3])[section]
+        return (closePersons.contains(personInfo) ? [1, 2] : [1, 3, 3])[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,7 +162,7 @@ extension PersonViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         }
-        if closePerson == personInfo {
+        if closePersons.contains(personInfo) {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in

@@ -106,7 +106,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         case .success:
             return successDataSource?.successTableView?(tableView, heightForRowAt: indexPath) ?? UITableView.automaticDimension
         default:
-            return tableView.visibleSize.height
+            return UITableView.automaticDimension//tableView.visibleSize.height
         }
     }
     
@@ -115,7 +115,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         
         switch statusProvider.status {
         case .success:
-            return successDataSource?.successTableView?(tableView, heightForHeaderInSection: section) ?? UITableView.automaticDimension
+            return successDataSource?.successTableView?(tableView, heightForHeaderInSection: section) ?? .leastNonzeroMagnitude
         default:
             return .leastNonzeroMagnitude
         }
@@ -126,7 +126,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         
         switch statusProvider.status {
         case .success:
-            return successDataSource?.successTableView?(tableView, heightForFooterInSection: section) ?? UITableView.automaticDimension
+            return successDataSource?.successTableView?(tableView, heightForFooterInSection: section) ?? .leastNonzeroMagnitude
         default:
             return .leastNonzeroMagnitude
         }

@@ -41,8 +41,8 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     
     var pageIndicator: PagerPresentable?
     
-    var closePerson: PersonInfo? {
-        didSet { didSetClosePerson() }
+    var closePersons: [PersonInfo] = [] {
+        didSet { tableView.reloadData() }
     }
     
     // MARK: - private properties
@@ -118,11 +118,10 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
         present(alertController, animated: true, completion: nil)
     }
     
-    private func didSetClosePerson() {
-        if let index = route?.personsInfo.firstIndex(where: { $0 == closePerson }) {
+    func scrollToPerson(_ personInfo: PersonInfo) {
+        if let index = route?.personsInfo.firstIndex(where: { $0 == personInfo }) {
             currentIndex = index
         }
-        tableView.reloadData()
         scrollView?.changePage(newIndex: currentIndex, animated: true)
         pageIndicator?.changePage(newIndex: currentIndex, animated: true)
         drawerView.setState(.top, animated: true, completion: nil)
@@ -169,7 +168,7 @@ extension RoutePassingViewController: UITableViewDataSource {
                 self?.scrollView = view
                 view.pagerDelegate = self
                 view.mapPresenter = self?.mapPresenter
-                view.update(with: self?.route, closePerson: self?.closePerson)
+                view.update(with: self?.route, closePersons: self?.closePersons ?? [])
             }
             return cell
         }

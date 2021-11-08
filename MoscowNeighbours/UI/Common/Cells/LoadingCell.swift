@@ -21,6 +21,8 @@ final  class LoadingCell: CellView {
         
         indicator.startAnimating()
         indicator.hidesWhenStopped = false
+        
+        height(190)
     }
     
     func update() {

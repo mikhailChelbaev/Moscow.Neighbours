@@ -25,6 +25,11 @@ class BaseTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        
+        if #available(iOS 15.0, *) {
+            sectionHeaderTopPadding = .leastNonzeroMagnitude
+        }
+        
         dataSource = dataSourceImpl
         delegate = dataSourceImpl
         

@@ -35,7 +35,7 @@ final class NotificationService: NSObject {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = "Вы можете начать свое знакомство с героем"
-        content.sound = UNNotificationSound.defaultCritical
+        content.sound = UNNotificationSound.default
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         
