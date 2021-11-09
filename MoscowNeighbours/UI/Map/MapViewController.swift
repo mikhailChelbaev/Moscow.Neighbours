@@ -325,7 +325,7 @@ extension MapViewController {
         guard let route = route else { return }
         monitoringRegions = route.personsInfo.map({ info in
             let coordinate = info.coordinate
-            let regionRadius: Double = 10
+            let regionRadius: Double = 20
             let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: info.id)
             return region
         })

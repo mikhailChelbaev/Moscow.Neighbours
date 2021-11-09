@@ -89,6 +89,11 @@ final class PersonViewController: BottomSheetViewController {
         backButton.updateShadowPath()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        tableView.reloadData()
+    }
+    
     func update(
         _ info: PersonInfo,
         userState: UserState,

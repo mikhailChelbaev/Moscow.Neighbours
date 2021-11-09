@@ -9,15 +9,11 @@ import UIKit
 
 extension RouteViewController.Settings {
     static let middleInsetFromBottomError: CGFloat = 350
+    static let topInset: CGFloat = 10
+    static let minimumFetchingDuration: Double = 1
 }
 
 final class RouteViewController: BottomSheetViewController, LoadingStatusProvider {
-    
-    // MARK: - Layout constraints
-    
-    enum Layout {
-        static let topInset: CGFloat = 10
-    }
     
     // MARK: - UI
     
@@ -49,6 +45,8 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
     private let service = RoutesService()
     
+    private var startFetchingDate: Date = .init()
+    
     // MARK: - init
     
     override init() {
@@ -75,7 +73,7 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
         
         tableView.contentInset = .init(top: 0, left: 0, bottom: 10, right: 0)
         
-        setUp(scrollView: tableView, headerView: headerView, topInsetPortrait: Layout.topInset)
+        setUp(scrollView: tableView, headerView: headerView, topInsetPortrait: Settings.topInset)
         
         headerView.update(text: "Маршруты", showSeparator: false)
         
@@ -84,15 +82,20 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
     private func fetchData() {
         status = .loading
+        startFetchingDate = .init()
         service.fetchRoutes() { [weak self] result in
-            switch result {
-            case .success(let routes):
-                self?.routes = routes
-                self?.status = .success
-            case .failure:
-                self?.status = .error(DefaultEmptyStateProviders.mainError(action: {
-                    self?.fetchData()
-                }))
+            guard let self = self else { return }
+            let remainingTime: Double = max(0, Settings.minimumFetchingDuration - Date().timeIntervalSince(self.startFetchingDate))
+            DispatchQueue.main.asyncAfter(deadline: .now() + remainingTime) {
+                switch result {
+                case .success(let routes):
+                    self.routes = routes
+                    self.status = .success
+                case .failure:
+                    self.status = .error(DefaultEmptyStateProviders.mainError(action: {
+                        self.fetchData()
+                    }))
+                }
             }
         }
     }

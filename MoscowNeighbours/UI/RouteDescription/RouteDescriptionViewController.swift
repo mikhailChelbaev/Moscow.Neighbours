@@ -86,13 +86,17 @@ final class RouteDescriptionViewController: BottomSheetViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         commonInit()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backButton.updateShadowPath()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        tableView.reloadData()
     }
     
     func updateRoute(_ route: Route, closeAction: Action?) {

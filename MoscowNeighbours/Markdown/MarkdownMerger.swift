@@ -33,7 +33,10 @@ final class DefaultMarkdownMerger: MarkdownMerger {
             case .italic(let string):
                 result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .italic))))
             case .quote(let string):
-                result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .boldItalic), textColor: .label)))
+                let quoteImage: UIImage = drawQuoteText(for: string)
+                let attachment: NSTextAttachment = .init(image: quoteImage)
+                let imageString: NSAttributedString = .init(attachment: attachment)
+                result.append(imageString)
             case .header(let string):
                 result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.headerSize, weight: .bold), textColor: .label)))
             case .subheader(let string):
@@ -60,6 +63,42 @@ final class DefaultMarkdownMerger: MarkdownMerger {
         attributes[.paragraphStyle] = style
         
         return attributes
+    }
+    
+    private func drawQuoteText(for text: String) -> UIImage {
+        let attributes = createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .boldItalic), textColor: .label)
+        
+        let width: CGFloat = UIScreen.main.bounds.width - 20 * 2
+        let lineImageWidth: CGFloat = 22
+        let lineWidth: CGFloat = 2
+        let textWidth: CGFloat = width - lineImageWidth
+        let textHeight: CGFloat = calculateTextHeight(width: textWidth, text: text, attributes: attributes)
+        let textTopOffset: CGFloat = 10
+        let height: CGFloat = textHeight + textTopOffset * 2
+        
+        let renderer = UIGraphicsImageRenderer(size: .init(width: width, height: height))
+        return renderer.image { _ in
+            UIColor.background.setFill()
+            UIBezierPath(rect: .init(x: 0, y: 0, width: width, height: height)).fill()
+            
+            UIColor.label.setFill()
+            UIBezierPath(rect: .init(x: 0, y: 0, width: lineWidth, height: height)).fill()
+            
+            let rect = CGRect(x: lineImageWidth, y: textTopOffset, width: textWidth, height: textHeight)
+            text.draw(with: rect, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+        }
+    }
+    
+    private func calculateTextHeight(
+        width: CGFloat,
+        text: String,
+        attributes: [NSAttributedString.Key : Any]
+    ) -> CGFloat {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.attributedText = NSAttributedString(string: text, attributes: attributes)
+        let estimatedSize = label.systemLayoutSizeFitting(.init(width: width, height: .greatestFiniteMagnitude), withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        return estimatedSize.height
     }
     
 }
