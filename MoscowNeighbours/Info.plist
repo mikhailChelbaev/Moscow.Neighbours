@@ -50,6 +50,8 @@
 	<string>Разрешите доступ к геопозиции, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Разрешите доступ к геопозиции, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Разрешите доступ к геопозиции, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>helveticaneuecyr-italic.ttf</string>

@@ -156,6 +156,7 @@ final class MapViewController: UIViewController, MapPresentable {
         }
         
         manager.show(routesController, state: .middle, animated: false)
+        locationService.requestAuthorization()
         locationService.requestLocationUpdate()
     }
     
@@ -325,7 +326,7 @@ extension MapViewController {
         guard let route = route else { return }
         monitoringRegions = route.personsInfo.map({ info in
             let coordinate = info.coordinate
-            let regionRadius: Double = 20
+            let regionRadius: Double = 30
             let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: info.id)
             return region
         })
@@ -453,6 +454,11 @@ extension MapViewController: LocationServiceDelegate {
         }
     }
     
+    func didChangeAuthorization() {
+        state = .showLocationAtFirstTime
+        locationService.requestLocationUpdate()
+    }
+    
 }
 
 // MARK: - protocol MKMapViewDelegate
@@ -496,7 +502,6 @@ extension MapViewController: DrawerViewListener {
     
     func drawerView(_ drawerView: DrawerView, didUpdateOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
         recalculateCoverAlpha(for: origin, drawerView: drawerView)
-        routePassing.drawerView(didUpdateOrigin: origin)
     }
     
     func drawerView(_ drawerView: DrawerView, didEndUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) {

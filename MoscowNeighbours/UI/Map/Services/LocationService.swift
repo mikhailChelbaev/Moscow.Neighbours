@@ -16,6 +16,8 @@ protocol LocationServiceDelegate: AnyObject {
     
     func didUpdateCurrentRegions(_ regions: [CLRegion])
     func didEnterNewRegions(_ regions: [CLRegion])
+    
+    func didChangeAuthorization()
 }
 
 // MARK: - LocationService
@@ -24,10 +26,10 @@ final class LocationService: NSObject {
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.requestAlwaysAuthorization()
         manager.delegate = self
         manager.activityType = .fitness
         manager.allowsBackgroundLocationUpdates = true
+        manager.desiredAccuracy = kCLLocationAccuracyBest
         return manager
     }()
     
@@ -37,6 +39,8 @@ final class LocationService: NSObject {
     
     private var currentRegions: [CLRegion] = []
     
+    private var isMonitoringRegions: Bool = false
+    
     var currentLocation: CLLocation? {
         locationManager.location
     }
@@ -45,25 +49,35 @@ final class LocationService: NSObject {
     
     override init() {
         super.init()
-        locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
     }
     
+    func requestAuthorization() {
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
     func requestLocationUpdate() {
-        isUpdateRequested = true
-        locationManager.startUpdatingLocation()
+        if isMonitoringRegions, let location = locationManager.location {
+            delegate?.didUpdateLocation(location: location)
+        } else {
+            isUpdateRequested = true
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func startMonitoring(for regions: [CLRegion]) {
+        guard !regions.isEmpty else { return }
         monitoringRegions = regions
         updateCurrentRegions()
         locationManager.startUpdatingLocation()
+        isMonitoringRegions = true
     }
     
     func stopMonitoring() {
         monitoringRegions = []
         currentRegions = []
         locationManager.stopUpdatingLocation()
+        isMonitoringRegions = false
     }
     
 }
@@ -96,6 +110,10 @@ extension LocationService: CLLocationManagerDelegate {
         if monitoringRegions.isEmpty {
             locationManager.stopUpdatingLocation()
         }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        delegate?.didChangeAuthorization()
     }
     
 }

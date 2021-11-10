@@ -128,13 +128,7 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     }
     
     // TODO: - fix
-    func drawerView(didUpdateOrigin origin: CGFloat) {
-//        let isOpenDrawerButtonHidden: Bool = origin < drawerView.origin(for: .bottom)
-//        headerView.updateOpenDrawerButtonState(isHidden: isOpenDrawerButtonHidden)
-    }
-//
     func drawerView(didChangeState state: DrawerView.State?) {
-//        headerView.updateOpenDrawerButtonState(isHidden: state == .top)
         if let state = state {
             headerView.changeViewState(state)
         }
