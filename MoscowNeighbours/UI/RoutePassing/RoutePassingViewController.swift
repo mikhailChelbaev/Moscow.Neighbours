@@ -41,15 +41,13 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     
     var pageIndicator: PagerPresentable?
     
-    var closePersons: [PersonInfo] = [] {
-        didSet { tableView.reloadData() }
-    }
-    
     // MARK: - private properties
     
     private var route: Route?
     
     private var currentIndex: Int = 0
+    
+    private var viewedPersons: [PersonInfo] = []
     
     // MARK: - init
     
@@ -66,6 +64,10 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     
     func update(route: Route?) {
         self.route = route
+        tableView.reloadData()
+    }
+    
+    func update() {
         tableView.reloadData()
     }
     
@@ -110,6 +112,7 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     private func stopRoute() {
         let alertController = UIAlertController(title: "Подтвердите действие", message: "Вы уверены, что хотите закончить маршрут?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
+            self?.viewedPersons = []
             self?.mapPresenter?.endRoute()
         }
         let no = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
@@ -162,21 +165,11 @@ extension RoutePassingViewController: UITableViewDataSource {
                 self?.scrollView = view
                 view.pagerDelegate = self
                 view.mapPresenter = self?.mapPresenter
-                view.update(with: self?.route, closePersons: self?.closePersons ?? [])
+                view.update(with: self?.route)
             }
             return cell
         }
     }
     
 }
-
-// MARK: - extension UITableViewDelegate
-
-//extension RoutePassingViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        showRouteCompletion?(routes[indexPath.item])
-//    }
-//
-//}
 

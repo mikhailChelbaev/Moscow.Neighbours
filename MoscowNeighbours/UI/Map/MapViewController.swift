@@ -13,6 +13,9 @@ import UltraDrawerView
 protocol MapPresentable: AnyObject {
     var mapView: MKMapView { get }
     
+    var visitedPersons: [PersonInfo] { get }
+    var viewedPersons: [PersonInfo] { get }
+    
     func startRoute(_ route: Route)
     func endRoute()
     func showPerson(_ info: PersonInfo, state: DrawerView.State)
@@ -89,6 +92,10 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private var monitoringRegions: [CLCircularRegion] = []
     
+    var visitedPersons: [PersonInfo] = []
+    
+    var viewedPersons: [PersonInfo] = []
+    
     deinit {
         manager.controllers.forEach({ $0.drawerView.removeListener(self) })
     }
@@ -131,6 +138,7 @@ final class MapViewController: UIViewController, MapPresentable {
         routesController.showRouteCompletion = showRoute(_:)
         routeDescriptionController.mapPresenter = self
         routePassing.mapPresenter = self
+        personController.mapPresenter = self
         
         locationButton.action = { [weak self] _ in
             self?.updateCurrentLocation()
@@ -336,8 +344,8 @@ extension MapViewController {
     private func removeRegions() {
         locationService.stopMonitoring()
         monitoringRegions = []
-        personController.closePersons = []
-        routePassing.closePersons = []
+        visitedPersons = []
+        viewedPersons = []
     }
     
 }
@@ -347,6 +355,7 @@ extension MapViewController {
 extension MapViewController {
     
     func showPerson(_ info: PersonInfo, state: DrawerView.State = .middle) {
+        viewedPersons.append(info)
         if currentlySelectedPerson != nil {
             closePersonController()
         }
@@ -361,6 +370,7 @@ extension MapViewController {
         manager.closeCurrent()
         mapView.deselectAnnotation(currentlySelectedPerson, animated: true)
         currentlySelectedPerson = nil
+        routePassing.update()
     }
     
 }
@@ -432,21 +442,24 @@ extension MapViewController: LocationServiceDelegate {
                 }
             }
         }
-        personController.closePersons = personsInfo
-        routePassing.closePersons = personsInfo
+        if currentlySelectedPerson != nil {
+            personController.update()
+        }
+        routePassing.update()
     }
     
     func didEnterNewRegions(_ regions: [CLRegion]) {
-        let personInfo: PersonInfo? = regions.compactMap { region in
+        let personsInfo: [PersonInfo] = regions.compactMap { region in
             for info in currentlySelectedRoute?.personsInfo ?? [] {
                 if info.coordinate == (region as? CLCircularRegion)?.center {
                     return info
                 }
             }
             return nil
-        }.first
+        }
+        visitedPersons.append(contentsOf: personsInfo)
         
-        if let personInfo = personInfo {
+        if let personInfo = personsInfo.first {
             routePassing.scrollToPerson(personInfo)
             notificationService.fireNotification(title: personInfo.person.name) { [weak self] in
                 self?.showPerson(personInfo, state: .top)

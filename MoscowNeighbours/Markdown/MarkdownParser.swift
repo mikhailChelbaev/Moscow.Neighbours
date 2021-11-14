@@ -19,14 +19,19 @@ final class DefaultMarkdownParser: MarkdownParser {
     
     private var merger: MarkdownMerger = DefaultMarkdownMerger()
     
+    private var cache: [Int: NSAttributedString] = [:]
+    
+    private var withCache: Bool
+    
     var configurator: MarkdownConfigurator = .default {
         didSet {
             merger.configurator = configurator
         }
     }
     
-    init(configurator: MarkdownConfigurator = .default) {
+    init(configurator: MarkdownConfigurator = .default, withCache: Bool = true) {
         self.configurator = configurator
+        self.withCache = withCache
         merger.configurator = configurator
     }
     
@@ -35,9 +40,17 @@ final class DefaultMarkdownParser: MarkdownParser {
             return .init(string: "")
         }
         
+        if withCache, let cacheResult = cache[text.hash] {
+            return cacheResult
+        }
+        
         let blocks: [String] = split(text: text)
         let nodes: [MarkdownNode] = blocks.map({ blockParser.parse(text: $0) })
         let strings: NSAttributedString = merger.merge(nodes: nodes)
+        
+        if withCache {
+            cache[text.hash] = strings
+        }
         
         return strings
     }

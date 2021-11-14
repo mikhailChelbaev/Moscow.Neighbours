@@ -48,6 +48,7 @@
 		746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */; };
 		746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */; };
 		746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746769EB26F922B400158FFC /* RoutePassingViewController.swift */; };
+		74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */; };
 		746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100D26F6192F002CB7E2 /* ChipsLayout.swift */; };
 		746A101026F619AF002CB7E2 /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100F26F619AF002CB7E2 /* SeparatorCell.swift */; };
 		746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */; };
@@ -148,6 +149,7 @@
 		746192E226AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterViewWrapper.swift; sourceTree = "<group>"; };
 		746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		746769EB26F922B400158FFC /* RoutePassingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingViewController.swift; sourceTree = "<group>"; };
+		74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+SetAttributedText.swift"; sourceTree = "<group>"; };
 		746A100D26F6192F002CB7E2 /* ChipsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsLayout.swift; sourceTree = "<group>"; };
 		746A100F26F619AF002CB7E2 /* SeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeaderCell.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */,
 				746A100D26F6192F002CB7E2 /* ChipsLayout.swift */,
 				741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */,
+				74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */,
 				74C51A2B2725EFF90066C43E /* String+Subscript.swift */,
 			);
 			path = Helpers;
@@ -703,6 +706,7 @@
 				748299DF26AA0A1A00573DC3 /* RoutesData.swift in Sources */,
 				7443988426E6B9C7003FC860 /* RequestPreparation.swift in Sources */,
 				7415479326B08C8A006931DC /* PersonCell.swift in Sources */,
+				74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */,
 				74F739FD272B50DE007C5450 /* CustomTableViewDataSource.swift in Sources */,
 				742EFE8D26F14168009A5126 /* GradientView.swift in Sources */,
 				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
@@ -903,7 +907,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -926,7 +930,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

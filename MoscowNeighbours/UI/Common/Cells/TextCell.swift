@@ -9,15 +9,27 @@ import UIKit
 
 class TextCell: CellView {
     
-    let label = UILabel()
+    let textView: UITextView = {
+        let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.isSelectable = false
+        textView.dataDetectorTypes = .link
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+        textView.tintColor = UIColor.projectRed
+        textView.textContainer.lineBreakMode = .byTruncatingTail
+        textView.backgroundColor = .clear
+        return textView
+    }()
     
     var labelConstraints: AnchoredConstraints?
     
     override func commonInit() {
         backgroundColor = .background
         
-        addSubview(label)
-        labelConstraints = label.stickToSuperviewEdges(.all, insets: .init(top: 12, left: 16, bottom: 12, right: 16))
+        addSubview(textView)
+        labelConstraints = textView.stickToSuperviewEdges(.all, insets: .init(top: 12, left: 16, bottom: 12, right: 16))
     }
     
     func update(
@@ -32,17 +44,17 @@ class TextCell: CellView {
         lineHeightMultiple: CGFloat? = nil
     ) {
         if let font = font {
-            label.font = font
+            textView.font = font
         }
-        label.textColor = textColor
-        label.numberOfLines = numberOfLines
+        textView.textColor = textColor
+        textView.textContainer.maximumNumberOfLines = numberOfLines
         labelConstraints?.updateInsets(insets)
         
         if let attributedText = attributedText {
-            label.text = nil
-            label.attributedText = attributedText
+            textView.text = nil
+            textView.attributedText = attributedText
         } else {
-            label.setAttributedText(text, kern: kern, lineSpacing: lineSpacing, lineHeightMultiple: lineHeightMultiple)
+            textView.setAttributedText(text, kern: kern, lineSpacing: lineSpacing, lineHeightMultiple: lineHeightMultiple)
         }
         
         self.backgroundColor = backgroundColor

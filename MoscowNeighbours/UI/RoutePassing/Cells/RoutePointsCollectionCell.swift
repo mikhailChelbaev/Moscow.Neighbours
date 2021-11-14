@@ -13,8 +13,6 @@ final class RoutePointsCollectionCell: CellView, PagerPresentable {
     
     var pagerDelegate: PagerDelegate?
     
-    var closePersons: [PersonInfo] = []
-    
     var mapPresenter: MapPresentable?
     
     enum Layout {
@@ -51,11 +49,9 @@ final class RoutePointsCollectionCell: CellView, PagerPresentable {
     }
     
     func update(
-        with route: Route?,
-        closePersons: [PersonInfo]
+        with route: Route?
     ) {
         self.route = route
-        self.closePersons = closePersons
         collectionView.reloadData()
     }
     
@@ -75,7 +71,12 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
         let cell = collectionView.dequeue(RoutePointCell.self, for: indexPath)
         cell.configureView = { [weak self] view in
             guard let personInfo = self?.route?.personsInfo[indexPath.item] else { return }
-            let state: RoutePointCell.State = self?.closePersons.contains(personInfo) == true ? .onTheSpot : .going
+            var state: RoutePointCell.State = .notVisited
+            if self?.mapPresenter?.viewedPersons.contains(where: { $0 == personInfo }) == true {
+                state = .review
+            } else if self?.mapPresenter?.visitedPersons.contains(where: { $0 == personInfo }) == true {
+                state = .firstTime
+            }
             view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
                 self?.mapPresenter?.showPerson(personInfo, state: .middle)
             })

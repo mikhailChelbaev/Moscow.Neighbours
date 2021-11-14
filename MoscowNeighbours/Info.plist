@@ -46,11 +46,11 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>AR</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Разрешите доступ к геопозиции, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Разрешите доступ к геопозиции, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Разрешите доступ к геопозиции, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Разрешите доступ к геопозиции, чтобы мы смогли корректно отображать ваше местоположение на карте</string>
 	<key>UIAppFonts</key>
 	<array>

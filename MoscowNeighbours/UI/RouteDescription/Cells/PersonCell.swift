@@ -63,7 +63,7 @@ final class PersonCell: CellView {
     
     let personAvatar: ImageView = {
         let iv = ImageView()
-        iv.placeholder = .symbol(name: "person.crop.circle", tintColor: .white)
+        iv.placeholder = .symbol(name: "person.crop.circle", tintColor: .reversedLabel)
         iv.layer.cornerRadius = Layout.imageSize.height / 2
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill

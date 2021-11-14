@@ -10,8 +10,9 @@ import UIKit
 final class RoutePointCell: CellView {
     
     enum State {
-        case onTheSpot
-        case going
+        case firstTime
+        case review
+        case notVisited
     }
     
     let personNameLabel: UILabel = {
@@ -66,16 +67,25 @@ final class RoutePointCell: CellView {
         personNameLabel.text = personInfo.person.name
         addressLabel.text = personInfo.place.address
         
-        if state == .onTheSpot {
+        switch state {
+        case .firstTime:
             button.style = .filled
             alertView.update(text: "Вы можете начать свое знакомство с героем", image: .checkmark)
             button.isEnabled = true
             button.action = action
-        } else {
+            button.setTitle("Познакомиться с соседом", for: .normal)
+        case .review:
+            button.style = .filled
+            alertView.update(text: "Вы можете прочитать про этого героя в любой момент", image: .checkmark)
+            button.isEnabled = true
+            button.action = action
+            button.setTitle("Посмотреть еще раз", for: .normal)
+        case .notVisited:
             button.style = .custom(title: .label.withAlphaComponent(0.5), background: .grayBackground)
             alertView.update(text: "Чтобы начать знакомство, подойдите ближе к локации", image: .exclamationMark)
             button.isEnabled = false
             button.action = nil
+            button.setTitle("Познакомиться с соседом", for: .normal)
         }
     }
     

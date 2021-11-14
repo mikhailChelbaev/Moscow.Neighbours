@@ -12,7 +12,7 @@ enum Requests {
     struct Constants {
         
 //        static let host: String = "http://localhost"
-        static let host: String = "http://91.134.120.135"
+        static let host: String = "http://msk-sosedi.ru"
         static let port: Int = 8080
         private static let ports: String = ":\(port)"
         private static let prefix: String = host + ports

@@ -33,8 +33,10 @@ final class DefaultMarkdownMerger: MarkdownMerger {
             case .italic(let string):
                 result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .italic))))
             case .quote(let string):
-                let quoteImage: UIImage = drawQuoteText(for: string)
-                let attachment: NSTextAttachment = .init(image: quoteImage)
+                let (quoteImage, size) = drawQuoteText(for: string)
+                let attachment: NSTextAttachment = .init()
+                attachment.image = quoteImage
+                attachment.bounds = .init(origin: .zero, size: size)
                 let imageString: NSAttributedString = .init(attachment: attachment)
                 result.append(imageString)
             case .header(let string):
@@ -65,7 +67,7 @@ final class DefaultMarkdownMerger: MarkdownMerger {
         return attributes
     }
     
-    private func drawQuoteText(for text: String) -> UIImage {
+    private func drawQuoteText(for text: String) -> (UIImage, CGSize) {
         let attributes = createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .boldItalic), textColor: .label)
         
         let width: CGFloat = UIScreen.main.bounds.width - 20 * 2
@@ -77,7 +79,7 @@ final class DefaultMarkdownMerger: MarkdownMerger {
         let height: CGFloat = textHeight + textTopOffset * 2
         
         let renderer = UIGraphicsImageRenderer(size: .init(width: width, height: height))
-        return renderer.image { _ in
+        let image = renderer.image { _ in
             UIColor.background.setFill()
             UIBezierPath(rect: .init(x: 0, y: 0, width: width, height: height)).fill()
             
@@ -87,6 +89,7 @@ final class DefaultMarkdownMerger: MarkdownMerger {
             let rect = CGRect(x: lineImageWidth, y: textTopOffset, width: textWidth, height: textHeight)
             text.draw(with: rect, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
         }
+        return (image, .init(width: width, height: height))
     }
     
     private func calculateTextHeight(

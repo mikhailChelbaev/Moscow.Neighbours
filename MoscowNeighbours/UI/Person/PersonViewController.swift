@@ -55,9 +55,7 @@ final class PersonViewController: BottomSheetViewController {
     
     // MARK: - internal properties
     
-    var closePersons: [PersonInfo] = [] {
-        didSet { updatePersonInfo() }
-    }
+    weak var mapPresenter: MapPresentable?
     
     // MARK: - init
     
@@ -106,6 +104,10 @@ final class PersonViewController: BottomSheetViewController {
         tableView.reloadData()
     }
     
+    func update() {
+        tableView.reloadData()
+    }
+    
     // MARK: - private methods
     
     private func commonInit() {
@@ -115,6 +117,7 @@ final class PersonViewController: BottomSheetViewController {
         tableView.register(AlertCell.self)
         tableView.register(PersonInfoBaseCell.self)
         tableView.register(PersonInfoCell.self)
+        tableView.register(ButtonCell.self)
         
         drawerView.containerView.backgroundColor = .clear
         
@@ -130,13 +133,8 @@ final class PersonViewController: BottomSheetViewController {
     }
     
     @objc private func closeController() {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         closeAction?()
-    }
-    
-    private func updatePersonInfo() {
-        if closePersons.isEmpty || closePersons.contains(personInfo) {
-            tableView.reloadData()
-        }
     }
     
     private func handleMarkdown(for text: String) -> NSAttributedString {
@@ -150,11 +148,11 @@ final class PersonViewController: BottomSheetViewController {
 extension PersonViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return closePersons.contains(personInfo) ? 2 : 3
+        return mapPresenter?.visitedPersons.contains(personInfo) == true ? 2 : 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (closePersons.contains(personInfo) ? [1, 2] : [1, 3, 3])[section]
+        return (mapPresenter?.visitedPersons.contains(personInfo) == true ? [1, 3] : [1, 3, 3])[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -167,7 +165,7 @@ extension PersonViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         }
-        if closePersons.contains(personInfo) {
+        if mapPresenter?.visitedPersons.contains(personInfo) == true {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
@@ -176,7 +174,7 @@ extension PersonViewController: UITableViewDataSource {
                 }
                 cell.selectionStyle = .none
                 return cell
-            } else {
+            } else if indexPath.item == 1 {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
                 cell.configureView = { [weak self] view in
                     guard let `self` = self else { return }
@@ -184,6 +182,14 @@ extension PersonViewController: UITableViewDataSource {
                     view.update(text: nil, attributedText: self.handleMarkdown(for: description), insets: .init(top: 0, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
                 }
                 cell.selectionStyle = .none
+                return cell
+            } else {
+                let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
+                cell.configureView = { [weak self] view in
+                    view.update(title: "Готов идти дальше", roundedCornders: true, height: 42) { _ in
+                        self?.closeController()
+                    }
+                }
                 return cell
             }
         }

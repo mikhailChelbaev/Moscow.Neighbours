@@ -127,7 +127,11 @@ extension LocationService {
         let regions = findRegions(for: location)
         var newRegions: [CLRegion] = []
         
-        regions.difference(from: currentRegions).forEach { change in
+        let difference = regions.difference(from: currentRegions)
+        
+        guard !difference.isEmpty else { return }
+        
+        difference.forEach { change in
             if case .insert(offset: _, element: let region, associatedWith: _) = change {
                 newRegions.append(region)
             }
