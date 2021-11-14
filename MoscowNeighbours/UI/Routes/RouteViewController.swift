@@ -104,7 +104,6 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
         switch status {
         case .success:
             drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottom)
-            drawerView.topPosition = .fromTop(Settings.topInsetPortrait)
             drawerView.availableStates = [.middle, .top]
         case .error:
             drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottomError)
