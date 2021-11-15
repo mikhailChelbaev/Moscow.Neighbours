@@ -355,7 +355,9 @@ extension MapViewController {
 extension MapViewController {
     
     func showPerson(_ info: PersonInfo, state: DrawerView.State = .middle) {
-        viewedPersons.append(info)
+        if visitedPersons.contains(info) {
+            viewedPersons.append(info)
+        }
         if currentlySelectedPerson != nil {
             closePersonController()
         }

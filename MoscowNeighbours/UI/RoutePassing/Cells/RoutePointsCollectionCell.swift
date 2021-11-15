@@ -72,9 +72,9 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
         cell.configureView = { [weak self] view in
             guard let personInfo = self?.route?.personsInfo[indexPath.item] else { return }
             var state: RoutePointCell.State = .notVisited
-            if self?.mapPresenter?.viewedPersons.contains(where: { $0 == personInfo }) == true {
+            if self?.mapPresenter?.viewedPersons.contains(personInfo) == true {
                 state = .review
-            } else if self?.mapPresenter?.visitedPersons.contains(where: { $0 == personInfo }) == true {
+            } else if self?.mapPresenter?.visitedPersons.contains(personInfo) == true {
                 state = .firstTime
             }
             view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
