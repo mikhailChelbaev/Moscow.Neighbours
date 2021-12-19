@@ -89,6 +89,7 @@ final class PersonViewController: BottomSheetViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        parser.clearCache()
         tableView.reloadData()
     }
     
@@ -158,37 +159,26 @@ extension PersonViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeue(PersonHeaderCell.self, for: indexPath)
-            cell.configureView = { [weak self] view in
-                guard let `self` = self else { return }
-                view.update(name: self.personInfo.person.name, imageUrl: self.personInfo.person.avatarUrl)
-            }
+            cell.view.update(name: personInfo.person.name,
+                             imageUrl: personInfo.person.avatarUrl)
             cell.selectionStyle = .none
             return cell
         }
         if mapPresenter?.visitedPersons.contains(personInfo) == true {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    guard let info = self?.personInfo.person.info else { return }
-                    view.update(info: info)
-                }
+                cell.view.info = personInfo.person.info
                 cell.selectionStyle = .none
                 return cell
             } else if indexPath.item == 1 {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    guard let `self` = self else { return }
-                    let description = self.personInfo.person.description
-                    view.update(text: nil, attributedText: self.handleMarkdown(for: description), insets: .init(top: 0, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
-                }
+                cell.view.update(text: nil, attributedText: handleMarkdown(for: personInfo.person.description), insets: .init(top: 0, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
                 cell.selectionStyle = .none
                 return cell
             } else {
                 let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    view.update(title: "Готов идти дальше", roundedCornders: true, height: 42) { _ in
-                        self?.closeController()
-                    }
+                cell.view.update(title: "Готов идти дальше", roundedCornders: true, height: 42) { [weak self] _ in
+                    self?.closeController()
                 }
                 return cell
             }
@@ -197,18 +187,12 @@ extension PersonViewController: UITableViewDataSource {
         if indexPath.section == 1 {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.configureView = { view in
-                    view.update(text: "Информация:", font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 20, left: 20, bottom: 5, right: 20))
-                }
+                cell.view.update(text: "Информация:", font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 20, left: 20, bottom: 5, right: 20))
                 cell.selectionStyle = .none
                 return cell
             } else if indexPath.item == 1 {
                 let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    guard let `self` = self else { return }
-                    let description = self.personInfo.person.shortDescription
-                    view.update(text: nil, attributedText: self.handleMarkdown(for: description), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
-                }
+                cell.view.update(text: nil, attributedText: handleMarkdown(for: personInfo.person.shortDescription), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
                 cell.selectionStyle = .none
                 return cell
             } else {
@@ -219,10 +203,7 @@ extension PersonViewController: UITableViewDataSource {
         } else {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(PersonInfoBaseCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    guard let info = self?.personInfo.person.info else { return }
-                    view.update(info: info)
-                }
+                cell.view.info = personInfo.person.info
                 cell.selectionStyle = .none
                 return cell
             } else if indexPath.item == 1 {
@@ -231,11 +212,8 @@ extension PersonViewController: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeue(AlertCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    guard let `self` = self else { return }
-                    let text: String = self.state == .passingRoute ? "Чтобы начать знакомство, подойдите ближе к локации" : "Чтобы узнать о человеке больше, пройдите маршрут"
-                    view.update(text: text, containerInsets: .init(top: 20, left: 20, bottom: 20, right: 20))
-                }
+                let text: String = state == .passingRoute ? "Чтобы начать знакомство, подойдите ближе к локации" : "Чтобы узнать о человеке больше, пройдите маршрут"
+                cell.view.update(text: text, containerInsets: .init(top: 20, left: 20, bottom: 20, right: 20))
                 cell.selectionStyle = .none
                 return cell
             }

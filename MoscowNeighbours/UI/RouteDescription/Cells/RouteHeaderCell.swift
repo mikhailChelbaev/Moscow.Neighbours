@@ -9,6 +9,12 @@ import UIKit
 
 final class RouteHeaderCell: EntityHeaderCell {
     
+    var route: Route? {
+        didSet { update() }
+    }
+    
+    var beginRouteAction: Action?
+    
     let distanceInfo: InfoView = .init()
     
     let durationInfo: InfoView = .init()
@@ -39,13 +45,17 @@ final class RouteHeaderCell: EntityHeaderCell {
         durationInfo.leading(20)
     }
     
-    func update(with route: Route, beginRouteAction: Action?) {
+    func update() {
+        guard let route = route else {
+            return
+        }
+        
         imageView.loadImage(route.coverUrl)
         titleLabel.text = route.name
         distanceInfo.update(text: "200 m", image: sfSymbol("location.fill", tintColor: .white))
         durationInfo.update(text: "\(route.distance) • \(route.duration)", image: nil)
-        startRouteButton.action = { _ in
-            beginRouteAction?()
+        startRouteButton.action = { [weak self] _ in
+            self?.beginRouteAction?()
         }
     }
     

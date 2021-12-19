@@ -9,6 +9,10 @@ import UIKit
 
 class PersonInfoBaseCell: CellView {
     
+    var info: [ShortInfo] = [] {
+        didSet { update() }
+    }
+    
     let stack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -35,7 +39,7 @@ class PersonInfoBaseCell: CellView {
         return label
     }
     
-    func update(info: [ShortInfo]) {
+    func update() {
         var subviews = stack.arrangedSubviews
         subviews.forEach({ stack.removeArrangedSubview($0); $0.removeFromSuperview() })
         

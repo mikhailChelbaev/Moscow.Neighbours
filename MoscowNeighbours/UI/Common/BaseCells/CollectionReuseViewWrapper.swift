@@ -8,14 +8,7 @@
 import UIKit
 
 class CollectionReuseViewWrapper<T>: UICollectionReusableView where T: CellView {
-    
-    private let view: T
-    
-    var configureView: ((T) -> ())? {
-        didSet {
-            configureView?(view)
-        }
-    }
+    let view: T
     
     override init(frame: CGRect) {
         view = T.init()
@@ -35,7 +28,6 @@ class CollectionReuseViewWrapper<T>: UICollectionReusableView where T: CellView 
         const.priority = UILayoutPriority(999)
         let const2 = view.trailing()
         const2.priority = UILayoutPriority(999)
-    }
-    
+    }    
 }
 

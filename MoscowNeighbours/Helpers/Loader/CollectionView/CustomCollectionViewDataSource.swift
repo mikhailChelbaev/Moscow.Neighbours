@@ -48,15 +48,11 @@ extension CustomCollectionViewDataSourceImpl: CustomCollectionViewDataSource {
         switch statusProvider.status {
         case .error(let data), .noData(let data):
             let cell = collectionView.dequeue(EmptyStateCell.self, for: indexPath)
-            cell.configureView = {
-                $0.dataProvider = data
-            }
+            cell.view.dataProvider = data
             return cell
         case .loading:
             let cell = collectionView.dequeue(LoadingCell.self, for: indexPath)
-            cell.configureView = {
-                $0.update()
-            }
+            cell.view.update()
             return cell
         case .success:
             return successDataSource.successCollectionView(collectionView, cellForItemAt: indexPath)

@@ -9,14 +9,10 @@ import Foundation
 
 extension Requests {
     
-    struct RoutesRequest: Request {
+    struct RoutesRequest: RequestPresentable {
         
         var url: URLRequest? {
-            if let url = URL(string: Constants.routes) {
-                return RequestPreparation.get(url: url, params: nil)
-            } else {
-                return nil
-            }
+            RequestPreparation.makeRequest(url: Constants.routes, method: .get)
         }
         
     }

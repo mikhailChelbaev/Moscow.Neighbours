@@ -8,13 +8,7 @@
 import UIKit
 
 class TableCellWrapper<T>: UITableViewCell where T: CellView {
-    private(set) var view: T
-    
-    var configureView: ((T) -> ())? {
-        didSet {
-            configureView?(view)
-        }
-    }
+    let view: T
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         view = T.init()

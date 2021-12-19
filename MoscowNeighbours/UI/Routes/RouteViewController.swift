@@ -15,6 +15,10 @@ extension RouteViewController.Settings {
 
 final class RouteViewController: BottomSheetViewController, LoadingStatusProvider {
     
+    enum Sections: Int {
+        case route = 0
+    }
+    
     // MARK: - UI
     
     let tableView: BaseTableView = {
@@ -125,17 +129,29 @@ extension RouteViewController: TableSuccessDataSource {
     }
     
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(RouteCell.self, for: indexPath)
-        cell.selectionStyle = .none
-        cell.configureView = { [weak self] view in
-            guard let `self` = self else { return }
-            view.update(with: self.routes[indexPath.item])
+        guard let section = Sections(rawValue: indexPath.section) else {
+            fatalError("Unexpected section value")
         }
-        return cell
+        
+        switch section {
+        case .route:
+            return createRouteCell(for: indexPath)
+        }
     }
     
     func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showRouteCompletion?(routes[indexPath.item])
+    }
+    
+}
+
+extension RouteViewController {
+    
+    private func createRouteCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(RouteCell.self, for: indexPath)
+        cell.selectionStyle = .none
+        cell.view.route = routes[indexPath.item]
+        return cell
     }
     
 }

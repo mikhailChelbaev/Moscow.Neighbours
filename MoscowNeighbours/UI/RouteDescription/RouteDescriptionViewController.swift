@@ -10,6 +10,14 @@ import UltraDrawerView
 
 final class RouteDescriptionViewController: BottomSheetViewController {
     
+    // MARK: - Sections
+    
+    enum Sections: Int, CaseIterable {
+        case header
+        case information
+        case persons
+    }
+    
     // MARK: - Layout constraints
     
     enum Layout {
@@ -136,86 +144,117 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     
 }
 
-// MARK: - extension UITableViewDataSource
+// MARK: - protocol UITableViewDataSource
 
 extension RouteDescriptionViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        Sections.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return [1, 3, route.personsInfo.count + 1][section]
+        guard let section = Sections(rawValue: section) else {
+            fatalError("Sections out of bounds")
+        }
+        
+        switch section {
+        case .header:
+            return 1
+            
+        case .information:
+            return 3
+            
+        case .persons:
+            return route.personsInfo.count + 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeue(RouteHeaderCell.self, for: indexPath)
-            cell.configureView = { [weak self] view in
-                guard let `self` = self else { return }
-                view.update(with: self.route) {
-                    self.mapPresenter?.startRoute(self.route)
-                }
-            }
-            cell.selectionStyle = .none
-            return cell
-        } else if indexPath.section == 1 {
+        guard let section = Sections(rawValue: indexPath.section) else {
+            fatalError("Sections out of bounds")
+        }
+        
+        switch section {
+        case .header:
+            return createRouteHeader(for: indexPath)
+            
+        case .information:
             if indexPath.item == 0 {
-                let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.configureView = { view in
-                    view.update(text: "Информация:", font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 20, left: 20, bottom: 5, right: 20))
-                }
-                cell.selectionStyle = .none
-                return cell
+                return createTextHeaderCell(text: "Информация:", for: indexPath)
+                
             } else if indexPath.item == 1 {
-                let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    guard let `self` = self else { return }
-                    let description = self.route.description
-                    view.update(text: nil, attributedText: self.handleMarkdown(for: description), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
-                }
-                cell.selectionStyle = .none
-                return cell
+                return createRouteDescriptionCell(for: indexPath)
+                
             } else {
-                let cell = tableView.dequeue(SeparatorCell.self, for: indexPath)
-                cell.selectionStyle = .none
-                return cell
+                return createSeparatorCell(for: indexPath)
             }
-        } else {
+            
+        case .persons:
             if indexPath.item == 0 {
-                let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.configureView = { view in
-                    view.update(text: "Куда пойдем:", font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 30, left: 20, bottom: 5, right: 20))
-                }
-                cell.selectionStyle = .none
-                return cell
+                return createTextHeaderCell(text: "Куда пойдем:", for: indexPath)
+                
             } else {
-                let cell = tableView.dequeue(PersonCell.self, for: indexPath)
-                cell.configureView = { [weak self] view in
-                    guard let `self` = self else { return }
-                    let index = indexPath.item - 1
-                    let personInfo = self.route.personsInfo[index]
-                    let isFirst = index == 0
-                    let isLast = index == self.route.personsInfo.count - 1
-                    view.update(personInfo: personInfo, isFirst: isFirst, isLast: isLast)
-                }
-                cell.selectionStyle = .none
-                return cell
+                return createPersonCell(for: indexPath)
             }
         }
     }
     
 }
 
-// MARK: - extension UITableViewDelegate
+// MARK: - protocol UITableViewDelegate
 
 extension RouteDescriptionViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 && indexPath.item > 0 {
             mapPresenter?.mapView.selectAnnotation(route.personsInfo[indexPath.item - 1], animated: true)
         }
     }
-    
 }
 
+// MARK: - extension Cells Creation
+
+extension RouteDescriptionViewController {
+    private func createRouteHeader(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(RouteHeaderCell.self, for: indexPath)
+        cell.view.route = route
+        cell.view.beginRouteAction = { [weak self] in
+            guard let `self` = self else { return }
+            self.mapPresenter?.startRoute(self.route)
+        }
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func createTextHeaderCell(text: String, for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(TextCell.self, for: indexPath)
+        cell.view.update(text: text, font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 20, left: 20, bottom: 5, right: 20))
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func createRouteDescriptionCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(TextCell.self, for: indexPath)
+        cell.view.update(text: nil, attributedText: handleMarkdown(for: route.description), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func createSeparatorCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(SeparatorCell.self, for: indexPath)
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func createPersonCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(PersonCell.self, for: indexPath)
+        let index = indexPath.item - 1
+        
+        cell.view.isFirst = index == 0
+        cell.view.isLast = index == route.personsInfo.count - 1
+        // do not change order
+        cell.view.personInfo = route.personsInfo[index]
+        
+        cell.selectionStyle = .none
+        return cell
+    }
+}

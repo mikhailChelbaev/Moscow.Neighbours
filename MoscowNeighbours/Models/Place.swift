@@ -13,7 +13,7 @@ struct Place: Codable {
     
     let name: String
     
-    let description: String
+    let description: String?
     
     let address: String
     

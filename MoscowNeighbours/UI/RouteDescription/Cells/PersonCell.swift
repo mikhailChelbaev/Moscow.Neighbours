@@ -74,6 +74,10 @@ final class PersonCell: CellView {
     
     var isFirst: Bool = false, isLast: Bool = false
     
+    var personInfo: PersonInfo? {
+        didSet { update() }
+    }
+    
     override func commonInit() {
         backgroundColor = .background
         
@@ -144,19 +148,16 @@ final class PersonCell: CellView {
         }
     }
     
-    func update(personInfo: PersonInfo, isFirst: Bool, isLast: Bool) {
+    func update() {
+        guard let personInfo = personInfo else {
+            return
+        }
+        
         personNameLabel.text = personInfo.person.name
         addressLabel.text = personInfo.place.address
         houseTitleLabel.text = personInfo.place.name
         routeLineImageView.image = drawImage(withBegining: !isFirst, withEnding: !isLast)
         personAvatar.loadImage(personInfo.person.avatarUrl)
-        
-        self.isFirst = isFirst
-        self.isLast = isLast
-        
-//        subtitleLabel.text = person.address
-//        self.number = number
-//        numberImageView.image = drawImage()
     }
     
 }

@@ -8,14 +8,7 @@
 import UIKit
 
 class CollectionCellWrapper<T>: UICollectionViewCell where T: CellView {
-    
-    private let view: T
-    
-    var configureView: ((T) -> ())? {
-        didSet {
-            configureView?(view)
-        }
-    }
+    let view: T
     
     override init(frame: CGRect) {
         view = T.init()

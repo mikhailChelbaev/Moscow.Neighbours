@@ -9,12 +9,6 @@ import UIKit
 
 final class RoutePointsCollectionCell: CellView, PagerPresentable {
     
-    var currentIndex: Int = 0
-    
-    var pagerDelegate: PagerDelegate?
-    
-    var mapPresenter: MapPresentable?
-    
     enum Layout {
         static let height: CGFloat = 240
         static var cellSize: CGSize = .init(width: UIScreen.main.bounds.width, height: height)
@@ -35,7 +29,15 @@ final class RoutePointsCollectionCell: CellView, PagerPresentable {
         return cv
     }()
     
-    private var route: Route?
+    var currentIndex: Int = 0
+    
+    var pagerDelegate: PagerDelegate?
+    
+    var mapPresenter: MapPresentable?
+    
+    var route: Route? {
+        didSet { collectionView.reloadData() }
+    }
     
     override func commonInit() {
         collectionView.dataSource = self
@@ -46,13 +48,6 @@ final class RoutePointsCollectionCell: CellView, PagerPresentable {
         addSubview(collectionView)
         collectionView.stickToSuperviewEdges(.all)
         collectionView.height(Layout.height)
-    }
-    
-    func update(
-        with route: Route?
-    ) {
-        self.route = route
-        collectionView.reloadData()
     }
     
     func changePage(newIndex: Int, animated: Bool) {
@@ -69,18 +64,21 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(RoutePointCell.self, for: indexPath)
-        cell.configureView = { [weak self] view in
-            guard let personInfo = self?.route?.personsInfo[indexPath.item] else { return }
-            var state: RoutePointCell.State = .notVisited
-            if self?.mapPresenter?.viewedPersons.contains(personInfo) == true {
-                state = .review
-            } else if self?.mapPresenter?.visitedPersons.contains(personInfo) == true {
-                state = .firstTime
-            }
-            view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
-                self?.mapPresenter?.showPerson(personInfo, state: .middle)
-            })
+        var state: RoutePointCell.State = .notVisited
+        
+        guard let personInfo = route?.personsInfo[indexPath.item] else {
+            fatalError("There is no person info for index path: \(indexPath)")
         }
+        
+        if mapPresenter?.viewedPersons.contains(personInfo) == true {
+            state = .review
+        } else if mapPresenter?.visitedPersons.contains(personInfo) == true {
+            state = .firstTime
+        }
+        cell.view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
+            self?.mapPresenter?.showPerson(personInfo, state: .middle)
+        })
+        
         return cell
     }
     

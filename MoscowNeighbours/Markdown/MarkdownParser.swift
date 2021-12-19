@@ -8,9 +8,8 @@
 import Foundation
 
 protocol MarkdownParser {
-    
     func parse(text: String) -> NSAttributedString
-    
+    func clearCache()
 }
 
 final class DefaultMarkdownParser: MarkdownParser {
@@ -53,6 +52,10 @@ final class DefaultMarkdownParser: MarkdownParser {
         }
         
         return strings
+    }
+    
+    func clearCache() {
+        cache = [:]
     }
     
     /// Method to split text into blocks by `\n\n` separator

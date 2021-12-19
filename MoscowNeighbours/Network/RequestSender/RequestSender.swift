@@ -11,7 +11,7 @@ import Combine
 typealias RequestCompletion<T> = (RequestResult<T>) -> Void
 
 protocol RequestSender {
-    func send<ResultModel: Decodable>(request: Request, type: ResultModel.Type, completionHandler: RequestCompletion<ResultModel>?)
+    func send<ResultModel: Decodable>(request: RequestPresentable, type: ResultModel.Type, completionHandler: RequestCompletion<ResultModel>?)
 }
 
 class DefaultRequestSender: RequestSender {
@@ -20,7 +20,7 @@ class DefaultRequestSender: RequestSender {
     
     private var parser: Parser = DefaultParser()
     
-    func send<ResultModel: Decodable>(request: Request, type: ResultModel.Type, completionHandler: ((RequestResult<ResultModel>) -> Void)?) {
+    func send<ResultModel: Decodable>(request: RequestPresentable, type: ResultModel.Type, completionHandler: ((RequestResult<ResultModel>) -> Void)?) {
         guard let url = request.url else {
             completionHandler?(.failure("url string can't be parsed to URL"))
             return
@@ -48,7 +48,7 @@ class DefaultRequestSender: RequestSender {
                         return
                     }
                     DispatchQueue.main.async {
-                        completionHandler?(.failure(message["message"] as! String))
+                        completionHandler?(.failure((message["message"] as? String) ?? "Error \(httpResponse.statusCode)"))
                     }
                     return
                 }
@@ -60,7 +60,9 @@ class DefaultRequestSender: RequestSender {
             guard let unwrappedData = data,
                   let parsedModel: ResultModel = self.parser.parse(data: unwrappedData)
             else {
-                Logger.log(String(data: data!, encoding: .utf8)!)
+                if let data = data, let message = String(data: data, encoding: .utf8) {
+                    Logger.log(message)
+                }
                 DispatchQueue.main.async {
                     completionHandler?(.failure("received data can't be parsed"))
                 }

@@ -7,41 +7,44 @@
 
 import Foundation
 
-struct HttpMethods {
-    static let post = "POST"
-    static let get = "GET"
-    static let put = "PUT"
-    static let delete = "DELETE"
+enum HttpMethods: String {
+    case post = "POST"
+    case get = "GET"
+    case put = "PUT"
+    case delete = "DELETE"
 }
 
 struct RequestPreparation {
     
-    static func post<T: Encodable>(url: URL, body: T?, params: [String: String]? = nil) -> URLRequest? {
-        makeRequest(url: url, params: dictToTuplesList(params), body: body, method: HttpMethods.post)
+    static func makeRequest<T: Encodable>(
+        url urlString: String,
+        params: [(String, String)]? = nil,
+        body: T?,
+        method: HttpMethods
+    ) -> URLRequest? {
+        guard let url = URL(string: urlString) else { return nil }
+        
+        var request = makeBaseRequest(url: url, params: params, method: method.rawValue)
+        
+        if let dto = body {
+            do {
+                request?.httpBody = try JSONEncoder().encode(dto)
+            } catch {
+                Logger.log("Can't encode request body")
+            }
+        }
+        
+        return request
     }
     
-    static func post(url: URL) -> URLRequest? {
-        makeBaseRequest(url: url, params: nil, method: HttpMethods.post)
-    }
-    
-    static func put<T: Encodable>(url: URL, body: T?) -> URLRequest? {
-        makeRequest(url: url, params: nil, body: body, method: HttpMethods.put)
-    }
-    
-    static func put(url: URL) -> URLRequest? {
-        makeBaseRequest(url: url, params: nil, method: HttpMethods.put)
-    }
-    
-    static func get(url: URL, params: [String: String]?) -> URLRequest? {
-        makeBaseRequest(url: url, params: dictToTuplesList(params), method: HttpMethods.get)
-    }
-    
-    static func get(url: URL, params: [(String, String)]) -> URLRequest? {
-        makeBaseRequest(url: url, params: params, method: HttpMethods.get)
-    }
-    
-    static func delete(url: URL, params: [String: String]?) -> URLRequest? {
-        makeBaseRequest(url: url, params: dictToTuplesList(params), method: HttpMethods.delete)
+    static func makeRequest(
+        url urlString: String,
+        params: [(String, String)]? = nil,
+        method: HttpMethods
+    ) -> URLRequest? {
+        guard let url = URL(string: urlString) else { return nil }
+        
+        return makeBaseRequest(url: url, params: params, method: method.rawValue)
     }
     
     static func multipart(url: URL, params: [String: String]?, formParams: [String: String]?, data: Data) -> URLRequest? {
@@ -60,6 +63,7 @@ struct RequestPreparation {
         
         var request = URLRequest(url: components.url!)
         request.httpMethod = method
+        request.cachePolicy = .reloadIgnoringCacheData
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         
@@ -68,20 +72,6 @@ struct RequestPreparation {
 //        }
         
         request.timeoutInterval = TimeInterval(exactly: 2000)!
-        return request
-    }
-    
-    private static func makeRequest<T: Encodable>(url: URL, params: [(String, String)]?, body: T?, method: String) -> URLRequest? {
-        var request = makeBaseRequest(url: url, params: params, method: method)
-        
-        if let dto = body {
-            do {
-                request?.httpBody = try JSONEncoder().encode(dto)
-            } catch {
-                Logger.log("Can't encode request body")
-            }
-        }
-        
         return request
     }
     
@@ -125,11 +115,13 @@ struct RequestPreparation {
 }
 
 extension NSMutableData {
+    
     func appendString(string: String) {
         let data = string.data(using: .utf8, allowLossyConversion: true)
         if let data = data {
             append(data)
         }
     }
+    
 }
 

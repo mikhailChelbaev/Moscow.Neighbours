@@ -25,6 +25,15 @@ final class PageIndexCell: CellView, PagerPresentable {
     
     var pagerDelegate: PagerDelegate?
     
+    var numberOfPages: Int {
+        set {
+            indicator.numberOfPages = newValue
+        }
+        get {
+            indicator.numberOfPages
+        }
+    }
+    
     override func commonInit() {
         addSubview(indicator)
         indicator.stickToSuperviewEdges([.top, .bottom], insets: .init(top: 10, left: 0, bottom: 10, right: 0))
@@ -39,10 +48,6 @@ final class PageIndexCell: CellView, PagerPresentable {
     
     @objc private func handlePageChange() {
         pagerDelegate?.pageDidChange(indicator.currentPage, source: .pageIndicator)
-    }
-    
-    func update(numberOfPages: Int) {
-        indicator.numberOfPages = numberOfPages
     }
     
 }

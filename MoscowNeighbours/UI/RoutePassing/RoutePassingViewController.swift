@@ -151,22 +151,17 @@ extension RoutePassingViewController: UITableViewDataSource {
         if indexPath.item == 0 {
             let cell = tableView.dequeue(PageIndexCell.self, for: indexPath)
             cell.selectionStyle = .none
-            cell.configureView = { [weak self] view in
-                guard let `self` = self else { return }
-                self.pageIndicator = view
-                view.pagerDelegate = self
-                view.update(numberOfPages: self.route?.personsInfo.count ?? 0)
-            }
+            pageIndicator = cell.view
+            cell.view.numberOfPages = route?.personsInfo.count ?? 0
+            cell.view.pagerDelegate = self
             return cell
         } else {
             let cell = tableView.dequeue(RoutePointsCollectionCell.self, for: indexPath)
             cell.selectionStyle = .none
-            cell.configureView = { [weak self] view in
-                self?.scrollView = view
-                view.pagerDelegate = self
-                view.mapPresenter = self?.mapPresenter
-                view.update(with: self?.route)
-            }
+            scrollView = cell.view
+            cell.view.mapPresenter = mapPresenter
+            cell.view.pagerDelegate = self
+            cell.view.route = route
             return cell
         }
     }

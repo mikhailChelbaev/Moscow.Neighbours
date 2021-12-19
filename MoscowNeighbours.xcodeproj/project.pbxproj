@@ -34,7 +34,7 @@
 		74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */; };
 		7443988226E6B80F003FC860 /* BaseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988126E6B80F003FC860 /* BaseNetworkService.swift */; };
 		7443988426E6B9C7003FC860 /* RequestPreparation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988326E6B9C7003FC860 /* RequestPreparation.swift */; };
-		7443988826E6B9EA003FC860 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988726E6B9EA003FC860 /* Request.swift */; };
+		7443988826E6B9EA003FC860 /* RequestPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988726E6B9EA003FC860 /* RequestPresentable.swift */; };
 		7443988A26E6B9F5003FC860 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988926E6B9F5003FC860 /* RequestResult.swift */; };
 		7443988C26E6BAA4003FC860 /* RoutesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988B26E6BAA4003FC860 /* RoutesService.swift */; };
 		7443988E26E6BB3F003FC860 /* RequestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443988D26E6BB3F003FC860 /* RequestConstants.swift */; };
@@ -136,7 +136,7 @@
 		74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Annotations.swift"; sourceTree = "<group>"; };
 		7443988126E6B80F003FC860 /* BaseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkService.swift; sourceTree = "<group>"; };
 		7443988326E6B9C7003FC860 /* RequestPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPreparation.swift; sourceTree = "<group>"; };
-		7443988726E6B9EA003FC860 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		7443988726E6B9EA003FC860 /* RequestPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPresentable.swift; sourceTree = "<group>"; };
 		7443988926E6B9F5003FC860 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		7443988B26E6BAA4003FC860 /* RoutesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesService.swift; sourceTree = "<group>"; };
 		7443988D26E6BB3F003FC860 /* RequestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConstants.swift; sourceTree = "<group>"; };
@@ -518,7 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				7443988926E6B9F5003FC860 /* RequestResult.swift */,
-				7443988726E6B9EA003FC860 /* Request.swift */,
+				7443988726E6B9EA003FC860 /* RequestPresentable.swift */,
 				748FFD9A26E555CB009CA688 /* Parser.swift */,
 				748FFD9826E55594009CA688 /* RequestSender.swift */,
 				7443988326E6B9C7003FC860 /* RequestPreparation.swift */,
@@ -685,7 +685,7 @@
 				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
 				74CD387926FF3E4600D5CCDE /* PagerProtocols.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
-				7443988826E6B9EA003FC860 /* Request.swift in Sources */,
+				7443988826E6B9EA003FC860 /* RequestPresentable.swift in Sources */,
 				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
 				747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */,
@@ -907,14 +907,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.machelbaev.neighbours.moscow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -930,14 +930,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.machelbaev.neighbours.moscow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -10,6 +10,10 @@ import ImageView
 
 class RouteCell: CellView {
     
+    var route: Route? {
+        didSet { update() }
+    }
+    
     let containerView: ImageView = {
         let iv = ImageView()
         iv.backgroundColor = .imageBackground
@@ -68,7 +72,9 @@ class RouteCell: CellView {
         durationInfo.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
     }
     
-    func update(with route: Route) {
+    private func update() {
+        guard let route = route else { return }
+        
         containerView.loadImage(route.coverUrl)
         titleLabel.text = route.name
 //        distanceInfo.update(text: "200 m", image: sfSymbol("location.fill", tintColor: .white))

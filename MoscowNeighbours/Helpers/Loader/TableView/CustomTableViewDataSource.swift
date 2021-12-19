@@ -49,16 +49,12 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         switch statusProvider.status {
         case .error(let data), .noData(let data):
             let cell = tableView.dequeue(EmptyStateCell.self, for: indexPath)
-            cell.configureView = {
-                $0.dataProvider = data
-            }
+            cell.view.dataProvider = data
             cell.selectionStyle = .none
             return cell
         case .loading:
             let cell = tableView.dequeue(LoadingCell.self, for: indexPath)
-            cell.configureView = {
-                $0.update()
-            }
+            cell.view.update()
             cell.selectionStyle = .none
             return cell
         case .success:
