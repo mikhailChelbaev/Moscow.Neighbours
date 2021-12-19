@@ -1,22 +1,16 @@
-//
-//  Parser.swift
-//  MoscowNeighbours
-//
-//  Created by Mikhail on 05.09.2021.
-//
-
 import Foundation
 
-protocol Parser {
+protocol Parser: AnyObject {
     func parse<Model: Decodable>(data: Data) -> Model?
+    func parseHttpErrorMessage(data: Data?) -> String?
 }
 
-class DefaultParser: Parser {
+class DefaultJsonParser: Parser {
     
     func parse<T: Decodable>(data: Data) -> T? {
         do {
             let coder = JSONDecoder()
-            //coder.keyDecodingStrategy = .convertFromSnakeCase
+            coder.keyDecodingStrategy = .convertFromSnakeCase
             let parsedObject = try coder.decode(T.self, from: data)
             return parsedObject
         }
@@ -36,10 +30,21 @@ class DefaultParser: Parser {
             Logger.log("type: \(type), context: \(context)")
             return nil
         }
-        catch let err {
+        catch let error {
             Logger.log("cant parse object of type \(T.self)")
-            Logger.log(err.localizedDescription)
+            Logger.log(error.localizedDescription)
             return nil
         }
     }
+    
+    func parseHttpErrorMessage(data: Data?) -> String? {
+        guard let data = data else {
+            return nil
+        }
+        
+        let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        let dictionary = jsonObject as? [String: Any]
+        return dictionary?["message"] as? String
+    }
+    
 }

@@ -7,13 +7,23 @@
 
 import UIKit
 
+enum RouteDataState {
+    case success(routes: [Route])
+    case error(error: NetworkError)
+}
+
+protocol RouteInterface: UIViewController {
+    var state: RouteDataState? { set get }
+    
+    func reloadData()
+}
+
 extension RouteViewController.Settings {
     static let middleInsetFromBottomError: CGFloat = 350
     static let topInset: CGFloat = 10
-    static let minimumFetchingDuration: Double = 1
 }
 
-final class RouteViewController: BottomSheetViewController, LoadingStatusProvider {
+final class RouteViewController: BottomSheetViewController, LoadingStatusProvider, RouteInterface {
     
     enum Sections: Int {
         case route = 0
@@ -49,11 +59,14 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
     private let service = RoutesService()
     
-    private var startFetchingDate: Date = .init()
+    let eventHandler: RoutesEventHandler
+    
+    var state: RouteDataState?
     
     // MARK: - init
     
-    override init() {
+    init(eventHander: RoutesEventHandler) {
+        self.eventHandler = eventHander
         super.init()
         commonInit()
     }
@@ -67,6 +80,25 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+    }
+    
+    func reloadData() {
+        guard let state = state else {
+            return
+        }
+
+        switch state {
+        case .success(routes: let model):
+            routes = model
+            status = .success
+            
+        case .error:
+            status = .error(DefaultEmptyStateProviders.mainError(action: { [weak self] in
+                self?.reloadData()
+            }))
+        }
+        
+        tableView.reloadData()
     }
     
     // MARK: - private methods
@@ -86,22 +118,10 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
     private func fetchData() {
         status = .loading
-        startFetchingDate = .init()
-        service.fetchRoutes() { [weak self] result in
-            guard let self = self else { return }
-            let remainingTime: Double = max(0, Settings.minimumFetchingDuration - Date().timeIntervalSince(self.startFetchingDate))
-            DispatchQueue.main.asyncAfter(deadline: .now() + remainingTime) {
-                switch result {
-                case .success(let routes):
-                    self.routes = routes
-                    self.status = .success
-                case .failure:
-                    self.status = .error(DefaultEmptyStateProviders.mainError(action: {
-                        self.fetchData()
-                    }))
-                }
-            }
-        }
+        eventHandler.onFetchData()
+//        startFetchingDate = .init()
+//        let remainingTime: Double = max(0, Settings.minimumFetchingDuration - Date().timeIntervalSince(self.startFetchingDate))
+        
     }
     
     private func changeStateSize() {
@@ -145,13 +165,13 @@ extension RouteViewController: TableSuccessDataSource {
     
 }
 
+// MARK: - Cells Creation
+
 extension RouteViewController {
-    
     private func createRouteCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RouteCell.self, for: indexPath)
         cell.selectionStyle = .none
         cell.view.route = routes[indexPath.item]
         return cell
     }
-    
 }

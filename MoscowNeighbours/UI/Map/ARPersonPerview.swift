@@ -22,7 +22,8 @@ final class ARPersonPerview: NSObject, QLPreviewControllerDataSource {
     }
 
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        guard let path = Bundle.main.path(forResource: "CosmonautSuit", ofType: "reality") else { fatalError("Couldn't find the supported input file.") }
+        guard let path = Bundle.main.path(forResource: "CosmonautSuit", ofType: "reality") else { fatalError("Couldn't find the supported input file.")
+        }
         let url = URL(fileURLWithPath: path)
         return url as QLPreviewItem
     }

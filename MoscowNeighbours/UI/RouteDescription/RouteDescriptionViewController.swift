@@ -154,7 +154,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = Sections(rawValue: section) else {
-            fatalError("Sections out of bounds")
+            fatalError("Section out of bounds")
         }
         
         switch section {
@@ -171,7 +171,7 @@ extension RouteDescriptionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = Sections(rawValue: indexPath.section) else {
-            fatalError("Sections out of bounds")
+            fatalError("Section out of bounds")
         }
         
         switch section {

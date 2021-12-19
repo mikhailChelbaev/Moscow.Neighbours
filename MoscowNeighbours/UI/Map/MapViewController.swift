@@ -70,7 +70,8 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private let notificationService: NotificationService = .init()
     
-    private let routesController: RouteViewController = .init()
+    private let routesPresenter = RoutesPresenter(service: RoutesService())
+    private lazy var routesController: RouteViewController = .init(eventHander: routesPresenter)
     
     private let routeDescriptionController: RouteDescriptionViewController = .init()
     
@@ -130,6 +131,8 @@ final class MapViewController: UIViewController, MapPresentable {
     }
     
     private func commonInit() {
+        routesPresenter.viewController = routesController
+        
         locationService.delegate = self
         mapView.delegate = self
         
