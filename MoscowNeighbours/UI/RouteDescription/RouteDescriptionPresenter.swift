@@ -8,8 +8,11 @@
 import Foundation
 
 protocol RouteDescriptionEventHandler: AnyObject {
-    func getRoute() -> Route
+    func getRoute() -> RouteViewModel
+    func onTraitCollectionDidChange()
     func onBackButtonTap()
+    func onPersonCellTap(personInfo: PersonInfo)
+    func onBeginRouteButtonTap()
 }
 
 class RouteDescriptionPresenter: RouteDescriptionEventHandler {
@@ -18,23 +21,37 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     
     weak var viewController: RouteDescriptionView?
     
+    private let personBuilder: PersonBuilder
     private let route: Route
     
     // MARK: - Init
     
-    init(route: Route) {
-        self.route = route
-//        routesService = service
-//        routesService.register(WeakRef(self))
+    init(storage: RouteDescriptionStorage) {
+        route = storage.route
+        personBuilder = storage.personBuilder
     }
     
-    // MARK: - RoutesEventHandler methods
+    // MARK: - RouteDescriptionEventHandler methods
     
-    func getRoute() -> Route {
-        return route
+    func getRoute() -> RouteViewModel {
+        return RouteViewModel(from: route)
+    }
+    
+    func onTraitCollectionDidChange() {
+        viewController?.route.update()
+        viewController?.reloadData()
     }
     
     func onBackButtonTap() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func onPersonCellTap(personInfo: PersonInfo) {
+        let controller = personBuilder.buildPersonViewController(personInfo: personInfo, userState: .default)
+        viewController?.present(controller, state: .top)
+    }
+    
+    func onBeginRouteButtonTap() {
         
     }
     

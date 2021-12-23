@@ -23,7 +23,7 @@ final class EndRouteButtonView: CellView {
         button.titleLabel?.font = .mainFont(ofSize: 14, weight: .bold)
         button.backgroundColor = .background
         button.setTitleColor(.label, for: .normal)
-        button.roundedCornders = true
+        button.roundedCorners = true
         return button
     }()
     

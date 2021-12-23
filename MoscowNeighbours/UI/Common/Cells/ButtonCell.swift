@@ -23,7 +23,7 @@ final class ButtonCell: CellView {
         title: String,
         insets: UIEdgeInsets = .init(top: 10, left: 16, bottom: 10, right: 16),
         color: UIColor = .projectRed,
-        roundedCornders: Bool = true,
+        roundedCorners: Bool = true,
         height: CGFloat = 48,
         action: Button.Action?
     ) {
@@ -31,7 +31,7 @@ final class ButtonCell: CellView {
         buttonConstraints?.updateInsets(insets)
         button.backgroundColor = color
         button.action = action
-        button.roundedCornders = roundedCornders
+        button.roundedCorners = roundedCorners
         buttonConstraints?.height?.constant = height
     }
     

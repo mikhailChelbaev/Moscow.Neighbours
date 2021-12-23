@@ -9,7 +9,9 @@ import UIKit
 import UltraDrawerView
 
 protocol RouteDescriptionView: BottomSheetViewController {
-    var route: Route { set get }
+    var route: RouteViewModel { set get }
+    
+    func reloadData()
 }
 
 final class RouteDescriptionViewController: BottomSheetViewController, RouteDescriptionView {
@@ -26,13 +28,6 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     enum Layout {
         static let buttonSide: CGFloat = 46
-    }
-    
-    // MARK: - State
-    
-    enum State {
-        case `default`
-        case routeInProgress
     }
     
     // MARK: - UI
@@ -57,24 +52,11 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
         return button
     }()
     
-    // MARK: - internal properties
+    // MARK: - Internal properties
     
-    weak var mapPresenter: MapPresentable?
-    
-    var route: Route
+    var route: RouteViewModel
     
     let eventHandler: RouteDescriptionEventHandler
-    
-    // MARK: - private properties
-    
-    private var state: State = .default
-    
-    private let parser: MarkdownParser = {
-        var config: MarkdownConfigurator = .default
-        let parser = DefaultMarkdownParser()
-        parser.configurator = config
-        return parser
-    }()
     
     // MARK: - init
     
@@ -87,19 +69,23 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
         tableView.delegate = self
         tableView.dataSource = self
         
-        backButton.addTarget(self, action: #selector(closeController), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - internal methods
+    // MARK: - Internal methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        commonInit()
-        tableView.reloadData()
+        
+        setUpViews()
+        setUpLayout()
+        setUpTableView()
+        
+        reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -109,8 +95,16 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        eventHandler.onTraitCollectionDidChange()
+    }
+    
+    // MARK: - RouteDescriptionView
+    
+    func reloadData() {
         tableView.reloadData()
     }
+    
+    // MARK: - Get Bottom Sheet Components
     
     override func getScrollView() -> UIScrollView {
         return tableView
@@ -122,36 +116,38 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration(topInset: .fromTop(0),
-                                        availableStates: [.top, .middle])
+                                        availableStates: [.top, .middle],
+                                        cornerRadius: RouteHeaderCell.Layout.cornerRadius)
     }
     
-    // MARK: - private methods
+    // MARK: - Private methods
     
-    private func commonInit() {
-        tableView.register(RouteHeaderCell.self)
-        tableView.register(TextCell.self)
-        tableView.register(PersonCell.self)
-        tableView.register(SeparatorCell.self)
-        
+    private func setUpViews() {
         bottomSheet.containerView.backgroundColor = .clear
-        
-        bottomSheet.cornerRadius = RouteHeaderCell.Layout.cornerRadius
         bottomSheet.containerView.clipsToBounds = true
+        
         tableView.layer.cornerRadius = RouteHeaderCell.Layout.cornerRadius
         tableView.clipsToBounds = true
-        
+    }
+    
+    private func setUpLayout() {
         bottomSheet.containerView.addSubview(backButton)
         backButton.leading(20)
         backButton.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
         backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
     }
     
-    @objc private func closeController() {
-        dismiss(animated: true, completion: nil)
+    private func setUpTableView() {
+        tableView.register(RouteHeaderCell.self)
+        tableView.register(TextCell.self)
+        tableView.register(PersonCell.self)
+        tableView.register(SeparatorCell.self)
     }
     
-    private func handleMarkdown(for text: String) -> NSAttributedString {
-        return parser.parse(text: text)
+    // MARK: - Back button handler
+    
+    @objc private func handleBackButton() {
+        eventHandler.onBackButtonTap()
     }
     
 }
@@ -217,8 +213,12 @@ extension RouteDescriptionViewController: UITableViewDataSource {
 
 extension RouteDescriptionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 && indexPath.item > 0 {
-            mapPresenter?.mapView.selectAnnotation(route.personsInfo[indexPath.item - 1], animated: true)
+        guard let section = Sections(rawValue: indexPath.section) else {
+            fatalError("Section out of bounds")
+        }
+        
+        if case .persons = section, indexPath.item > 0 {
+            eventHandler.onPersonCellTap(personInfo: route.personsInfo[indexPath.item - 1])
         }
     }
 }
@@ -231,7 +231,7 @@ extension RouteDescriptionViewController {
         cell.view.route = route
         cell.view.beginRouteAction = { [weak self] in
             guard let `self` = self else { return }
-            self.mapPresenter?.startRoute(self.route)
+            self.eventHandler.onBeginRouteButtonTap()
         }
         cell.selectionStyle = .none
         return cell
@@ -246,7 +246,7 @@ extension RouteDescriptionViewController {
     
     private func createRouteDescriptionCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(TextCell.self, for: indexPath)
-        cell.view.update(text: nil, attributedText: handleMarkdown(for: route.description), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+        cell.view.update(text: nil, attributedText: route.description, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
         cell.selectionStyle = .none
         return cell
     }

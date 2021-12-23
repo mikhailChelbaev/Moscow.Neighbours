@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class PersonViewController: BottomSheetViewController {
+protocol PersonView: BottomSheetViewController { }
+
+final class PersonViewController: BottomSheetViewController, PersonView {
     
     // MARK: - Layout constraints
     
@@ -23,8 +25,11 @@ final class PersonViewController: BottomSheetViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         return tableView
     }()
+    
+    let headerView = HandlerView()
     
     private let backButton: UIButton = {
         let button = UIButton()
@@ -37,12 +42,6 @@ final class PersonViewController: BottomSheetViewController {
     
     // MARK: - private properties
     
-    private var personInfo: PersonInfo = .dummy
-    
-    private var closeAction: Action?
-    
-    private var state: UserState = .default
-    
     private let parser: MarkdownParser = {
         var config: MarkdownConfigurator = .default
         let parser = DefaultMarkdownParser()
@@ -54,15 +53,25 @@ final class PersonViewController: BottomSheetViewController {
     
     weak var mapPresenter: MapPresentable?
     
+    let eventHandler: PersonEventHandler
+    
+    let personInfo: PersonInfo
+    let userState: UserState
+    
     // MARK: - init
     
-    override init() {
+    init(eventHandler: PersonEventHandler) {
+        self.eventHandler = eventHandler
+        personInfo = eventHandler.getPersonInfo()
+        userState = eventHandler.getUserState()
+        
         super.init()
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.reloadData()
         
-        backButton.addTarget(self, action: #selector(closeController), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(handlerBackButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -85,18 +94,6 @@ final class PersonViewController: BottomSheetViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         parser.clearCache()
-        tableView.reloadData()
-    }
-    
-    func update(
-        _ info: PersonInfo,
-        userState: UserState,
-        closeAction: Action?
-    ) {
-        self.personInfo = info
-        self.state = userState
-        self.closeAction = closeAction
-        
         tableView.reloadData()
     }
     
@@ -128,9 +125,8 @@ final class PersonViewController: BottomSheetViewController {
         backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
     }
     
-    @objc private func closeController() {
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        closeAction?()
+    @objc private func handlerBackButton() {
+        eventHandler.onBackButtonTap()
     }
     
     private func handleMarkdown(for text: String) -> NSAttributedString {
@@ -143,11 +139,12 @@ final class PersonViewController: BottomSheetViewController {
     }
     
     override func getHeaderView() -> UIView? {
-        return nil
+        return headerView
     }
     
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
-        return BottomSheetConfiguration(topInset: .fromTop(0))
+        return BottomSheetConfiguration(topInset: .fromTop(0),
+                                        availableStates: [.top, .middle])
     }
     
 }
@@ -185,8 +182,8 @@ extension PersonViewController: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
-                cell.view.update(title: "Готов идти дальше", roundedCornders: true, height: 42) { [weak self] _ in
-                    self?.closeController()
+                cell.view.update(title: "Готов идти дальше", roundedCorners: true, height: 42) { [weak self] _ in
+                    self?.handlerBackButton()
                 }
                 return cell
             }
@@ -220,22 +217,12 @@ extension PersonViewController: UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeue(AlertCell.self, for: indexPath)
-                let text: String = state == .passingRoute ? "Чтобы начать знакомство, подойдите ближе к локации" : "Чтобы узнать о человеке больше, пройдите маршрут"
+                let text: String = userState == .passingRoute ? "Чтобы начать знакомство, подойдите ближе к локации" : "Чтобы узнать о человеке больше, пройдите маршрут"
                 cell.view.update(text: text, containerInsets: .init(top: 20, left: 20, bottom: 20, right: 20))
                 cell.selectionStyle = .none
                 return cell
             }
         }
-    }
-    
-}
-
-// MARK: - extension UITableViewDelegate
-
-extension PersonViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

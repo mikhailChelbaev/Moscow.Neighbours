@@ -9,19 +9,17 @@ import UIKit
 
 final class RouteHeaderCell: EntityHeaderCell {
     
-    var route: Route? {
+    var route: RouteViewModel? {
         didSet { update() }
     }
     
     var beginRouteAction: Action?
     
-    let distanceInfo: InfoView = .init()
-    
-    let durationInfo: InfoView = .init()
+    let routeInfo: InfoView = .init()
     
     let startRouteButton: Button = {
         let button = Button()
-        button.roundedCornders = true
+        button.roundedCorners = true
         button.titleLabel?.font = .mainFont(ofSize: 17, weight: .bold)
         button.setTitle("Начать маршрут", for: .normal)
         return button
@@ -40,9 +38,9 @@ final class RouteHeaderCell: EntityHeaderCell {
         titleLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         titleLabel.bottom(15, to: startRouteButton)
         
-        addSubview(durationInfo)
-        durationInfo.bottom(10, to: titleLabel)
-        durationInfo.leading(20)
+        addSubview(routeInfo)
+        routeInfo.bottom(10, to: titleLabel)
+        routeInfo.leading(20)
     }
     
     func update() {
@@ -52,8 +50,7 @@ final class RouteHeaderCell: EntityHeaderCell {
         
         imageView.loadImage(route.coverUrl)
         titleLabel.text = route.name
-        distanceInfo.update(text: "200 m", image: sfSymbol("location.fill", tintColor: .white))
-        durationInfo.update(text: "\(route.distance) • \(route.duration)", image: nil)
+        routeInfo.update(text: route.routeInformation, image: nil)
         startRouteButton.action = { [weak self] _ in
             self?.beginRouteAction?()
         }

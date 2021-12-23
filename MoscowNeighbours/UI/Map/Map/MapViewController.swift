@@ -59,8 +59,8 @@ final class MapViewController: UIViewController, MapPresentable, MapView {
         let manager = BottomSheetsManager(presenter: self)
 //        manager.addController(routesController, availableStates: [.middle, .top])
 //        manager.addController(routeDescriptionController, availableStates: [.middle, .top])
-        manager.addController(personController, availableStates: [.middle, .top])
-        manager.addController(routePassing, availableStates: [.bottom, .top])
+//        manager.addController(personController, availableStates: [.middle, .top])
+//        manager.addController(routePassing, availableStates: [.bottom, .top])
         return manager
     }()
     
@@ -68,7 +68,7 @@ final class MapViewController: UIViewController, MapPresentable, MapView {
     
 //    private let routeDescriptionController: RouteDescriptionViewController = .init()
     
-    private let personController: PersonViewController = .init()
+//    private let personController: PersonViewController = .init()
     
     private let routePassing: RoutePassingViewController = .init()
     
@@ -137,7 +137,7 @@ final class MapViewController: UIViewController, MapPresentable, MapView {
 //        routesController.showRouteCompletion = showRoute(_:)
 //        routeDescriptionController.mapPresenter = self
         routePassing.mapPresenter = self
-        personController.mapPresenter = self
+//        personController.mapPresenter = self
         
         locationButton.action = { [weak self] _ in
             self?.updateCurrentLocation()
@@ -362,8 +362,8 @@ extension MapViewController {
         }
         currentlySelectedPerson = info
  
-        personController.update(info, userState: userState, closeAction: { [weak self] in self?.closePersonController() })
-        manager.show(personController, state: state)
+//        personController.update(info, userState: userState, closeAction: { [weak self] in self?.closePersonController() })
+//        manager.show(personController, state: state)
         showPlaceOnMap(with: info.coordinate)
     }
     
@@ -445,7 +445,7 @@ extension MapViewController: LocationServiceDelegate {
             }
         }
         if currentlySelectedPerson != nil {
-            personController.update()
+//            personController.update()
         }
         routePassing.update()
     }

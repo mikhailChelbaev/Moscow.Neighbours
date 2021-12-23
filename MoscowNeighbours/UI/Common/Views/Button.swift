@@ -21,7 +21,7 @@ final class Button: UIButton {
     
     var action: Action?
     
-    var roundedCornders: Bool = false
+    var roundedCorners: Bool = false
     
     var scale: CGFloat = 0.97
     
@@ -49,7 +49,7 @@ final class Button: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if roundedCornders {
+        if roundedCorners {
             layer.cornerRadius = frame.height / 2
         }
     }

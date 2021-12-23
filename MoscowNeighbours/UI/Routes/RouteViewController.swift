@@ -20,6 +20,8 @@ protocol RouteView: BottomSheetViewController {
 
 final class RouteViewController: BottomSheetViewController, LoadingStatusProvider, RouteView {
     
+    // MARK: - Sections
+    
     enum Sections: Int {
         case route = 0
     }
@@ -51,8 +53,6 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     // MARK: - private properties
     
     private var routes: [Route] = []
-    
-    private let service = RoutesService()
     
     let eventHandler: RoutesEventHandler
     
@@ -94,10 +94,11 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
             
         case .error:
             status = .error(DefaultEmptyStateProviders.mainError(action: { [weak self] in
-                self?.reloadData()
+                self?.fetchData()
             }))
         }
         
+        changeStateSize()
         tableView.reloadData()
     }
     
@@ -145,10 +146,9 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
 }
 
-// MARK: - extension UITableViewDataSource
+// MARK: - protocol UITableViewDataSource
 
 extension RouteViewController: TableSuccessDataSource {
-    
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routes.count
     }
@@ -167,7 +167,6 @@ extension RouteViewController: TableSuccessDataSource {
     func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         eventHandler.onRouteCellTap(route: routes[indexPath.item])
     }
-    
 }
 
 // MARK: - Cells Creation

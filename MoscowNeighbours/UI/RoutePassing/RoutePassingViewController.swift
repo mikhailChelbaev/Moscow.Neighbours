@@ -41,6 +41,10 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     
     var pageIndicator: PagerPresentable?
     
+    override var screenDimEffect: Bool {
+        false
+    }
+    
     // MARK: - private properties
     
     private var route: Route?

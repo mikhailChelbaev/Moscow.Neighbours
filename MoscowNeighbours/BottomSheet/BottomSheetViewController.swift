@@ -36,6 +36,11 @@ class BottomSheetViewController: UIViewController {
     // use this property to hide and show presenting bs controller
     var presentingControllerState: BottomSheet.State = .dismissed
     
+    // override this property to disable dim
+    var screenDimEffect: Bool {
+        return true
+    }
+    
     // MARK: - Init
     
     init() {
@@ -148,6 +153,10 @@ extension BottomSheetViewController: DrawerViewListener {
     // MARK: - Cover Alpha
     
     private func recalculateCoverAlpha(for origin: CGFloat) {
+        guard screenDimEffect else {
+            return
+        }
+        
         var value: CGFloat = 0
         defer {
             cover.alpha = value

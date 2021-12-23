@@ -8,33 +8,11 @@
 import Foundation
 
 struct Route: Codable {
-    
     let id: String
-    
     let name: String
-    
     let description: String
-    
     let coverUrl: String?
-    
     let duration: String
-    
     let distance: String
-    
     let personsInfo: [PersonInfo]
-    
-}
-
-extension Route {
-    
-    static var dummy: Route = .init(
-        id: "",
-        name: "",
-        description: "",
-        coverUrl: nil,
-        duration: "",
-        distance: "",
-        personsInfo: []
-    )
-    
 }

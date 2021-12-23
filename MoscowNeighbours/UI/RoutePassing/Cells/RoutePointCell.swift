@@ -36,7 +36,7 @@ final class RoutePointCell: CellView {
         let button = Button()
         button.titleLabel?.font = .mainFont(ofSize: 18, weight: .bold)
         button.setTitle("Познакомиться с соседом", for: .normal)
-        button.roundedCornders = true
+        button.roundedCorners = true
         return button
     }()
     

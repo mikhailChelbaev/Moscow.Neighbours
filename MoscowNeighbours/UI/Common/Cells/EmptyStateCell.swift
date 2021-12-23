@@ -57,7 +57,7 @@ final class EmptyStateCell: CellView {
     
     private var button: Button = {
         let button = Button()
-        button.roundedCornders = true
+        button.roundedCorners = true
         return button
     }()
     
