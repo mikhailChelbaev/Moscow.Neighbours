@@ -9,23 +9,27 @@ import UIKit
 
 protocol RoutesEventHandler {    
     func onFetchData()
+    func onRouteCellTap(route: Route)
 }
 
 class RoutesPresenter: RoutesEventHandler {
     
     // MARK: - Properties
     
-    weak var viewController: RouteInterface?
+    weak var viewController: RouteView?
     
     private let routesService: RoutesService
+    private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
     private let minimumFetchingDuration: TimeInterval = 1.0
     private var startFetchingDate: Date = .init()
     
     // MARK: - Init
     
-    init(service: RoutesService) {
-        routesService = service
+    init(storage: RoutesStorage) {
+        routesService = storage.routesService
+        routesDescriptionBuilder = storage.routesDescriptionBuilder
+        
         routesService.register(WeakRef(self))
     }
     
@@ -34,6 +38,11 @@ class RoutesPresenter: RoutesEventHandler {
     func onFetchData() {
         startFetchingDate = .init()
         routesService.fetchRoutes()
+    }
+    
+    func onRouteCellTap(route: Route) {
+        let controller = routesDescriptionBuilder.buildRouteDescriptionViewController(route: route)
+        viewController?.present(controller, state: .top, completion: nil)
     }
 }
 

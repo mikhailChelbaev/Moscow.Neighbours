@@ -12,18 +12,13 @@ enum RouteDataState {
     case error(error: NetworkError)
 }
 
-protocol RouteInterface: UIViewController {
+protocol RouteView: BottomSheetViewController {
     var state: RouteDataState? { set get }
     
     func reloadData()
 }
 
-extension RouteViewController.Settings {
-    static let middleInsetFromBottomError: CGFloat = 350
-    static let topInset: CGFloat = 10
-}
-
-final class RouteViewController: BottomSheetViewController, LoadingStatusProvider, RouteInterface {
+final class RouteViewController: BottomSheetViewController, LoadingStatusProvider, RouteView {
     
     enum Sections: Int {
         case route = 0
@@ -40,9 +35,9 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
         return tableView
     }()
     
-    private let headerView = HeaderView()
+    let headerView = HeaderView()
     
-    // MARK: - internal properties
+    // MARK: - Internal properties
     
     var showRouteCompletion: ((Route) -> Void)?
     
@@ -63,23 +58,28 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
     var state: RouteDataState?
     
-    // MARK: - init
+    // MARK: - Init
     
-    init(eventHander: RoutesEventHandler) {
-        self.eventHandler = eventHander
+    init(eventHandler: RoutesEventHandler) {
+        self.eventHandler = eventHandler
         super.init()
-        commonInit()
+        setUpTableView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - internal methods
+    // MARK: - Internal methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+    }
+    
+    func fetchData() {
+        status = .loading
+        eventHandler.onFetchData()
     }
     
     func reloadData() {
@@ -101,41 +101,46 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
         tableView.reloadData()
     }
     
-    // MARK: - private methods
+    // MARK: - Get Bottom Sheet Components
     
-    private func commonInit() {        
+    override func getScrollView() -> UIScrollView {
+        return tableView
+    }
+    
+    override func getHeaderView() -> UIView? {
+        headerView.update(text: "Маршруты", showSeparator: false)
+        return headerView
+    }
+    
+    override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+        return BottomSheetConfiguration(topInset: .fromTop(10),
+                                        availableStates: [.middle, .top])
+    }
+    
+    // MARK: - Private methods
+    
+    private func setUpTableView() {
         tableView.successDataSource = self
         tableView.statusProvider = self
         
         tableView.contentInset = .init(top: 0, left: 0, bottom: 10, right: 0)
         
-        setUp(scrollView: tableView, headerView: headerView, topInsetPortrait: Settings.topInset)
-        
-        headerView.update(text: "Маршруты", showSeparator: false)
-        
         tableView.register(RouteCell.self)
     }
     
-    private func fetchData() {
-        status = .loading
-        eventHandler.onFetchData()
-//        startFetchingDate = .init()
-//        let remainingTime: Double = max(0, Settings.minimumFetchingDuration - Date().timeIntervalSince(self.startFetchingDate))
-        
-    }
-    
     private func changeStateSize() {
+        let config = getBottomSheetConfiguration()
         switch status {
         case .success:
-            drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottom)
-            drawerView.availableStates = [.middle, .top]
+            bottomSheet.middlePosition = config.middleInset
+            bottomSheet.availableStates = [.middle, .top]
         case .error:
-            drawerView.middlePosition = .fromBottom(Settings.middleInsetFromBottomError)
-            drawerView.availableStates = [.middle]
+            bottomSheet.middlePosition = .fromBottom(350)
+            bottomSheet.availableStates = [.middle]
         default:
             break
         }
-        drawerView.setState(.middle, animated: true)
+        bottomSheet.setState(.middle, animated: true)
     }
     
 }
@@ -160,7 +165,7 @@ extension RouteViewController: TableSuccessDataSource {
     }
     
     func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showRouteCompletion?(routes[indexPath.item])
+        eventHandler.onRouteCellTap(route: routes[indexPath.item])
     }
     
 }

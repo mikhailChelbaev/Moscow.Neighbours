@@ -91,26 +91,30 @@ final class InfoView: UIVisualEffectView {
             NSLayoutConstraint.activate(constraints.compactMap({ $0 }))
         }
         
-        func deactivate(_ constraints: [NSLayoutConstraint?]) {
-            NSLayoutConstraint.deactivate(constraints.compactMap({ $0 }))
-        }
-        
         if text != nil && image != nil {
             updateConstraints(active: [
                 imageViewLeadingConstraint,
                 titleLabelLeadingToImageViewConstraint,
                 titleLabelTrailingConstraint
             ])
+            titleLabel.isHidden = false
+            imageView.isHidden = false
+            
         } else if text != nil {
             updateConstraints(active: [
                 titleLabelLeadingToViewConstraint,
                 titleLabelTrailingConstraint
             ])
+            titleLabel.isHidden = false
+            imageView.isHidden = true
+            
         } else {
             updateConstraints(active: [
                 imageViewTrailingConstraint,
                 imageViewTrailingConstraint
             ])
+            titleLabel.isHidden = true
+            imageView.isHidden = false
         }
     }
     

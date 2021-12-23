@@ -85,18 +85,18 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     
     private func commonInit() {
         setUpTableView()
-        setUp(scrollView: tableView, headerView: headerView)
-        drawerView.topPosition = .fromBottom(Layout.topInsetFromBottom, ignoresSafeArea: false)
+        
+        bottomSheet.topPosition = .fromBottom(Layout.topInsetFromBottom, ignoresSafeArea: false)
         headerView.update { [weak self] _ in
             self?.stopRoute()
         } opendDrawerButtonAction: { [weak self] _ in
-            self?.drawerView.setState(.top, animated: true, completion: nil)
+            self?.bottomSheet.setState(.top, animated: true, completion: nil)
         }
         
-        drawerView.containerView.backgroundColor = .clear
+        bottomSheet.containerView.backgroundColor = .clear
         
-        drawerView.cornerRadius = Layout.cornerRadius
-        drawerView.containerView.clipsToBounds = true
+        bottomSheet.cornerRadius = Layout.cornerRadius
+        bottomSheet.containerView.clipsToBounds = true
         tableView.layer.cornerRadius = Layout.cornerRadius
         tableView.clipsToBounds = true
     }
@@ -127,11 +127,23 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
         }
         scrollView?.changePage(newIndex: currentIndex, animated: true)
         pageIndicator?.changePage(newIndex: currentIndex, animated: true)
-        drawerView.setState(.top, animated: true, completion: nil)
+        bottomSheet.setState(.top, animated: true, completion: nil)
+    }
+    
+    override func getScrollView() -> UIScrollView {
+        return tableView
+    }
+    
+    override func getHeaderView() -> UIView? {
+        return headerView
+    }
+    
+    override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+        return BottomSheetConfiguration(topInset: .fromBottom(Layout.topInsetFromBottom))
     }
     
     // TODO: - fix
-    func drawerView(didChangeState state: DrawerView.State?) {
+    func bottomSheet(didChangeState state: BottomSheet.State?) {
         if let state = state {
             headerView.changeViewState(state)
         }

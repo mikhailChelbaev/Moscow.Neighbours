@@ -8,7 +8,11 @@
 import UIKit
 import UltraDrawerView
 
-final class RouteDescriptionViewController: BottomSheetViewController {
+protocol RouteDescriptionView: BottomSheetViewController {
+    var route: Route { set get }
+}
+
+final class RouteDescriptionViewController: BottomSheetViewController, RouteDescriptionView {
     
     // MARK: - Sections
     
@@ -21,7 +25,6 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     // MARK: - Layout constraints
     
     enum Layout {
-        static let topInset: CGFloat = 0
         static let buttonSide: CGFloat = 46
     }
     
@@ -43,9 +46,9 @@ final class RouteDescriptionViewController: BottomSheetViewController {
         return tableView
     }()
     
-    private let headerView = HandlerView()
+    let headerView = HandlerView()
     
-    private let backButton: UIButton = {
+    let backButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
         button.setImage(#imageLiteral(resourceName: "backButton"), for: .normal)
@@ -58,13 +61,13 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     
     weak var mapPresenter: MapPresentable?
     
+    var route: Route
+    
+    let eventHandler: RouteDescriptionEventHandler
+    
     // MARK: - private properties
     
-    private var route: Route = .dummy
-    
     private var state: State = .default
-    
-    private var closeAction: Action?
     
     private let parser: MarkdownParser = {
         var config: MarkdownConfigurator = .default
@@ -75,15 +78,16 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     
     // MARK: - init
     
-    override init() {
+    init(eventHandler: RouteDescriptionEventHandler) {
+        self.eventHandler = eventHandler
+        self.route = eventHandler.getRoute()
+        
         super.init()
         
         tableView.delegate = self
         tableView.dataSource = self
         
         backButton.addTarget(self, action: #selector(closeController), for: .touchUpInside)
-        
-        setUp(scrollView: tableView, headerView: headerView, topInsetPortrait: Layout.topInset)
     }
     
     required init?(coder: NSCoder) {
@@ -95,6 +99,7 @@ final class RouteDescriptionViewController: BottomSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
+        tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,10 +112,17 @@ final class RouteDescriptionViewController: BottomSheetViewController {
         tableView.reloadData()
     }
     
-    func updateRoute(_ route: Route, closeAction: Action?) {
-        self.route = route
-        self.closeAction = closeAction
-        tableView.reloadData()
+    override func getScrollView() -> UIScrollView {
+        return tableView
+    }
+    
+    override func getHeaderView() -> UIView? {
+        return headerView
+    }
+    
+    override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+        return BottomSheetConfiguration(topInset: .fromTop(0),
+                                        availableStates: [.top, .middle])
     }
     
     // MARK: - private methods
@@ -121,21 +133,21 @@ final class RouteDescriptionViewController: BottomSheetViewController {
         tableView.register(PersonCell.self)
         tableView.register(SeparatorCell.self)
         
-        drawerView.containerView.backgroundColor = .clear
+        bottomSheet.containerView.backgroundColor = .clear
         
-        drawerView.cornerRadius = RouteHeaderCell.Layout.cornerRadius
-        drawerView.containerView.clipsToBounds = true
+        bottomSheet.cornerRadius = RouteHeaderCell.Layout.cornerRadius
+        bottomSheet.containerView.clipsToBounds = true
         tableView.layer.cornerRadius = RouteHeaderCell.Layout.cornerRadius
         tableView.clipsToBounds = true
         
-        drawerView.containerView.addSubview(backButton)
+        bottomSheet.containerView.addSubview(backButton)
         backButton.leading(20)
         backButton.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
         backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
     }
     
     @objc private func closeController() {
-        closeAction?()
+        dismiss(animated: true, completion: nil)
     }
     
     private func handleMarkdown(for text: String) -> NSAttributedString {

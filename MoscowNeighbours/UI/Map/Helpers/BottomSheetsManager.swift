@@ -49,17 +49,17 @@ class BottomSheetsManager {
         guard let presenter = presenter else { return }
         
         if let currentController = currentController {
-            stack.push(item: (currentController, currentController.drawerView.state ?? .top))
+            stack.push(item: (currentController, currentController.bottomSheet.state ?? .top))
         }
         controllers.forEach({
             if $0 != controller {
-                $0.drawerView.availableStates = [.dismissed]
-                $0.drawerView.setState(.dismissed, animated: animated)
+                $0.bottomSheet.availableStates = [.dismissed]
+                $0.bottomSheet.setState(.dismissed, animated: animated)
             }
         })
         presenter.view.bringSubviewToFront(controller.view)
-        controller.drawerView.availableStates = states[controller] ?? []
-        controller.drawerView.setState(state, animated: animated, completion: completion)
+        controller.bottomSheet.availableStates = states[controller] ?? []
+        controller.bottomSheet.setState(state, animated: animated, completion: completion)
         
         currentController = controller
     }

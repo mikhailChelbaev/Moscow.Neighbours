@@ -54,6 +54,8 @@ final class HeaderView: CellView {
         addSubview(separator)
         separator.stickToSuperviewEdges([.left, .right, .bottom])
         separator.height(0.5)
+        
+        height(64)
     }
     
     func update(text: String, showSeparator: Bool = true, buttonCloseAction: Action? = nil) {

@@ -9,7 +9,7 @@ import UIKit
 import QuickLook
 import ARKit
 
-final class ARPersonPerview: NSObject, QLPreviewControllerDataSource {
+final class ARPersonPreview: NSObject, QLPreviewControllerDataSource {
     
 //    override func viewDidAppear(_ animated: Bool) {
 //        let previewController = QLPreviewController()

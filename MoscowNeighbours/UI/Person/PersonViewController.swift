@@ -12,7 +12,6 @@ final class PersonViewController: BottomSheetViewController {
     // MARK: - Layout constraints
     
     enum Layout {
-        static let topInset: CGFloat = 0
         static let buttonSide: CGFloat = 46
     }
     
@@ -26,8 +25,6 @@ final class PersonViewController: BottomSheetViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
-    
-    private let headerView = HandlerView()
     
     private let backButton: UIButton = {
         let button = UIButton()
@@ -66,8 +63,6 @@ final class PersonViewController: BottomSheetViewController {
         tableView.dataSource = self
         
         backButton.addTarget(self, action: #selector(closeController), for: .touchUpInside)
-        
-        setUp(scrollView: tableView, headerView: headerView, topInsetPortrait: Layout.topInset)
     }
     
     required init?(coder: NSCoder) {
@@ -120,14 +115,14 @@ final class PersonViewController: BottomSheetViewController {
         tableView.register(PersonInfoCell.self)
         tableView.register(ButtonCell.self)
         
-        drawerView.containerView.backgroundColor = .clear
+        bottomSheet.containerView.backgroundColor = .clear
         
-        drawerView.cornerRadius = PersonHeaderCell.Layout.cornerRadius
-        drawerView.containerView.clipsToBounds = true
+        bottomSheet.cornerRadius = PersonHeaderCell.Layout.cornerRadius
+        bottomSheet.containerView.clipsToBounds = true
         tableView.layer.cornerRadius = PersonHeaderCell.Layout.cornerRadius
         tableView.clipsToBounds = true
         
-        drawerView.containerView.addSubview(backButton)
+        bottomSheet.containerView.addSubview(backButton)
         backButton.leading(20)
         backButton.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
         backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
@@ -140,6 +135,19 @@ final class PersonViewController: BottomSheetViewController {
     
     private func handleMarkdown(for text: String) -> NSAttributedString {
         return parser.parse(text: text)
+    }
+    
+    
+    override func getScrollView() -> UIScrollView {
+        return tableView
+    }
+    
+    override func getHeaderView() -> UIView? {
+        return nil
+    }
+    
+    override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+        return BottomSheetConfiguration(topInset: .fromTop(0))
     }
     
 }

@@ -26,7 +26,11 @@ enum UserState {
     case `default`
 }
 
-final class MapViewController: UIViewController, MapPresentable {
+protocol MapView: UIViewController {
+    
+}
+
+final class MapViewController: UIViewController, MapPresentable, MapView {
     
     enum State {
         case showLocationAtFirstTime
@@ -47,22 +51,14 @@ final class MapViewController: UIViewController, MapPresentable {
         return map
     }()
     
-    private let cover: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.alpha = 0
-        view.isUserInteractionEnabled = true
-        return view
-    }()
-    
     private var locationButton: Button!
     
     private let locationService: LocationService = .init()
     
     private lazy var manager: BottomSheetsManager = {
         let manager = BottomSheetsManager(presenter: self)
-        manager.addController(routesController, availableStates: [.middle, .top])
-        manager.addController(routeDescriptionController, availableStates: [.middle, .top])
+//        manager.addController(routesController, availableStates: [.middle, .top])
+//        manager.addController(routeDescriptionController, availableStates: [.middle, .top])
         manager.addController(personController, availableStates: [.middle, .top])
         manager.addController(routePassing, availableStates: [.bottom, .top])
         return manager
@@ -70,10 +66,7 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private let notificationService: NotificationService = .init()
     
-    private let routesPresenter = RoutesPresenter(service: RoutesService())
-    private lazy var routesController: RouteViewController = .init(eventHander: routesPresenter)
-    
-    private let routeDescriptionController: RouteDescriptionViewController = .init()
+//    private let routeDescriptionController: RouteDescriptionViewController = .init()
     
     private let personController: PersonViewController = .init()
     
@@ -87,7 +80,7 @@ final class MapViewController: UIViewController, MapPresentable {
     
     private let routeOptimizer: RouteFinder = NearestCoordinatesFinder()
     
-    private let arPersonPreview: ARPersonPerview = .init()
+    private let arPersonPreview: ARPersonPreview = .init()
     
     private var userState: UserState = .default
     
@@ -97,8 +90,15 @@ final class MapViewController: UIViewController, MapPresentable {
     
     var viewedPersons: [PersonInfo] = []
     
-    deinit {
-        manager.controllers.forEach({ $0.drawerView.removeListener(self) })
+    var eventHandler: MapEventHandler
+    
+    init(eventHandler: MapEventHandler) {
+        self.eventHandler = eventHandler
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
@@ -114,10 +114,7 @@ final class MapViewController: UIViewController, MapPresentable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // this code hides apple logo
-        if let currentControllerView = manager.currentController?.view {
-            view.bringSubviewToFront(currentControllerView)
-        }
+        eventHandler.onViewDidAppear()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -130,16 +127,15 @@ final class MapViewController: UIViewController, MapPresentable {
         locationButton.updateShadowPath()
     }
     
-    private func commonInit() {
-        routesPresenter.viewController = routesController
+    private func commonInit() {        
+//        routeDescriptionController.bottomSheet.availableStates = [.top, .middle]
+//        routesPresenter.viewController = routesController
         
         locationService.delegate = self
         mapView.delegate = self
         
-        manager.controllers.forEach({ $0.drawerView.addListener(self) })
-        
-        routesController.showRouteCompletion = showRoute(_:)
-        routeDescriptionController.mapPresenter = self
+//        routesController.showRouteCompletion = showRoute(_:)
+//        routeDescriptionController.mapPresenter = self
         routePassing.mapPresenter = self
         personController.mapPresenter = self
         
@@ -147,28 +143,27 @@ final class MapViewController: UIViewController, MapPresentable {
             self?.updateCurrentLocation()
         }
         
-        view.addSubview(cover)
-        cover.stickToSuperviewEdges(.all)
-        
         view.addSubview(locationButton)
         locationButton.trailing(Layout.locationButtonTrailingInset)
         locationButton.safeTop(Layout.locationButtonTopInset)
         locationButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
         
-        addChild(routesController)
-        view.addSubview(routesController.view)
-        routesController.view.stickToSuperviewEdges(.all)
+//        addChild(routesController)
+//        view.addSubview(routesController.view)
+//        routesController.view.stickToSuperviewEdges(.all)
         
-        [routeDescriptionController, personController, routePassing].forEach { controller in
-            addChild(controller)
-            view.addSubview(controller.view)
-            controller.view.stickToSuperviewEdges(.all)
-            controller.drawerView.setState(.dismissed, animated: false)
-        }
+//        [personController, routePassing].forEach { controller in
+//            addChild(controller)
+//            view.addSubview(controller.view)
+//            controller.view.stickToSuperviewEdges(.all)
+//            controller.bottomSheet.setState(.dismissed, animated: false)
+//        }
         
-        manager.show(routesController, state: .middle, animated: false)
+//        manager.show(routesController, state: .middle, animated: false)
         locationService.requestAuthorization()
         locationService.requestLocationUpdate()
+        
+        
     }
     
     private func registerAnnotationViews() {
@@ -212,8 +207,9 @@ extension MapViewController {
     private func showRoute(_ route: Route) {
         currentlySelectedRoute = route
         
-        routeDescriptionController.updateRoute(route, closeAction: closeRouteDescription)
-        manager.show(routeDescriptionController, state: .top)
+//        routeDescriptionController.updateRoute(route)
+//        manager.show(routeDescriptionController, state: .top)
+        
         mapView.addAnnotations(route.personsInfo)
         
         drawRoute(annotations: route.personsInfo, withUserLocation: false)
@@ -393,8 +389,9 @@ extension MapViewController {
         let centerPoint = coordinateRegion.center
         
         var centerYOffset: Double = 0
-        if manager.currentController?.drawerView.state == .middle {
-            centerYOffset = coordinateRegion.span.latitudeDelta * Double(BottomSheetViewController.Settings.middleInsetFromBottom) / Double(UIScreen.main.bounds.height)
+        if manager.currentController?.bottomSheet.state == .middle {
+            let middleInset = manager.currentController?.getBottomSheetConfiguration().middleInset.offset ?? 0
+            centerYOffset = coordinateRegion.span.latitudeDelta * Double(middleInset) / Double(UIScreen.main.bounds.height)
         }
         
         let centerPointOfNewRegion = CLLocationCoordinate2DMake(centerPoint.latitude - Double(centerYOffset), centerPoint.longitude)
@@ -508,55 +505,6 @@ extension MapViewController: MKMapViewDelegate {
         renderer.strokeColor = .projectRed
         renderer.lineWidth = 4.0
         return renderer
-    }
-    
-}
-
-// MARK: - protocol DrawerViewListener
-
-extension MapViewController: DrawerViewListener {
-    
-    func drawerView(_ drawerView: DrawerView, willBeginUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) { }
-    
-    func drawerView(_ drawerView: DrawerView, didUpdateOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
-        recalculateCoverAlpha(for: origin, drawerView: drawerView)
-    }
-    
-    func drawerView(_ drawerView: DrawerView, didEndUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
-        recalculateCoverAlpha(for: origin, drawerView: drawerView)
-    }
-    
-    func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
-        routePassing.drawerView(didChangeState: state)
-        // scroll to top
-        if state == .dismissed {
-            [
-                routesController.tableView,
-                routeDescriptionController.tableView,
-                personController.tableView
-            ].forEach { scrollView in
-                scrollView.setContentOffset(.init(x: 0, y: 0), animated: true)
-            }
-        }
-    }
-    
-    func drawerView(_ drawerView: DrawerView, willBeginAnimationToState state: DrawerView.State?, source: DrawerOriginChangeSource) { }
-    
-    private func recalculateCoverAlpha(for origin: CGFloat, drawerView: DrawerView) {
-        guard drawerView == manager.currentController?.drawerView else { return }
-        var value: CGFloat = 0
-        defer {
-            cover.alpha = value
-        }
-        if manager.currentController == routePassing { return }
-        guard let states = manager.currentController?.drawerView.availableStates else { return }
-        let heights: [CGFloat] = states.compactMap({ manager.currentController?.drawerView.origin(for: $0) }).sorted(by: { $0 > $1 })
-    
-        guard heights.count > 1 else { return }
-        
-        let top = heights.first!
-        let bottom = heights.last!
-        value = 0.7 * (origin - top) / (bottom - top)
     }
     
 }
