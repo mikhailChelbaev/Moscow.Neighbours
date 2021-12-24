@@ -33,8 +33,6 @@ final class RoutePointsCollectionCell: CellView, PagerPresentable {
     
     var pagerDelegate: PagerDelegate?
     
-    var mapPresenter: MapPresentable?
-    
     var route: Route? {
         didSet { collectionView.reloadData() }
     }
@@ -70,14 +68,14 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
             fatalError("There is no person info for index path: \(indexPath)")
         }
         
-        if mapPresenter?.viewedPersons.contains(personInfo) == true {
-            state = .review
-        } else if mapPresenter?.visitedPersons.contains(personInfo) == true {
-            state = .firstTime
-        }
-        cell.view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
-            self?.mapPresenter?.showPerson(personInfo, state: .middle)
-        })
+//        if mapPresenter?.viewedPersons.contains(personInfo) == true {
+//            state = .review
+//        } else if mapPresenter?.visitedPersons.contains(personInfo) == true {
+//            state = .firstTime
+//        }
+//        cell.view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
+//            self?.mapPresenter?.showPerson(personInfo, state: .middle)
+//        })
         
         return cell
     }

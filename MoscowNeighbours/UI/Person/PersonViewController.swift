@@ -51,8 +51,6 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     // MARK: - internal properties
     
-    weak var mapPresenter: MapPresentable?
-    
     let eventHandler: PersonEventHandler
     
     let personInfo: PersonInfo
@@ -67,7 +65,6 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         
         super.init()
         
-        tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
         
@@ -154,11 +151,12 @@ final class PersonViewController: BottomSheetViewController, PersonView {
 extension PersonViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return mapPresenter?.visitedPersons.contains(personInfo) == true ? 2 : 3
+        return 2//mapPresenter?.visitedPersons.contains(personInfo) == true ? 2 : 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (mapPresenter?.visitedPersons.contains(personInfo) == true ? [1, 3] : [1, 3, 3])[section]
+//        return (mapPresenter?.visitedPersons.contains(personInfo) == true ? [1, 3] : [1, 3, 3])[section]
+        return [1, 3][section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -169,7 +167,8 @@ extension PersonViewController: UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         }
-        if mapPresenter?.visitedPersons.contains(personInfo) == true {
+//        if mapPresenter?.visitedPersons.contains(personInfo) == true {
+        if true {
             if indexPath.item == 0 {
                 let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
                 cell.view.info = personInfo.person.info

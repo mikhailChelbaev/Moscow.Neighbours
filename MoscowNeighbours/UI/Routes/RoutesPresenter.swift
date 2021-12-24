@@ -18,7 +18,7 @@ class RoutesPresenter: RoutesEventHandler {
     
     weak var viewController: RouteView?
     
-    private let routesService: RoutesService
+    private var routesService: RoutesService
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
     private let minimumFetchingDuration: TimeInterval = 1.0

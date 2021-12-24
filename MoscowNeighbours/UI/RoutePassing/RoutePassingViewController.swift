@@ -35,8 +35,6 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     
     // MARK: - internal properties
     
-    var mapPresenter: MapPresentable?
-    
     var scrollView: PagerPresentable?
     
     var pageIndicator: PagerPresentable?
@@ -117,7 +115,7 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
         let alertController = UIAlertController(title: "Подтвердите действие", message: "Вы уверены, что хотите закончить маршрут?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
             self?.viewedPersons = []
-            self?.mapPresenter?.endRoute()
+//            self?.mapPresenter?.endRoute()
         }
         let no = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alertController.addAction(yes)
@@ -175,7 +173,6 @@ extension RoutePassingViewController: UITableViewDataSource {
             let cell = tableView.dequeue(RoutePointsCollectionCell.self, for: indexPath)
             cell.selectionStyle = .none
             scrollView = cell.view
-            cell.view.mapPresenter = mapPresenter
             cell.view.pagerDelegate = self
             cell.view.route = route
             return cell

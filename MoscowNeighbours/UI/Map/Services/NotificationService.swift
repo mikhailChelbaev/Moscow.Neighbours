@@ -37,9 +37,12 @@ final class NotificationService: NSObject {
         content.body = "Вы можете начать свое знакомство с героем"
         content.sound = UNNotificationSound.default
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1,
+                                                        repeats: false)
         
-        let request = UNNotificationRequest(identifier: "id", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "close_to_person_notification",
+                                            content: content,
+                                            trigger: trigger)
         
         notificationCenter.add(request) { err in
             if let err = err { Logger.log(err.localizedDescription) }

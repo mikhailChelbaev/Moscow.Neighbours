@@ -37,6 +37,9 @@
 		74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */; };
 		74346FB826F3E24D0060357A /* helveticaneuecyr-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */; };
 		74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */; };
+		743DE7262775D80500B5CED8 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE7252775D80500B5CED8 /* MapService.swift */; };
+		743DE7282776097100B5CED8 /* ObservableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE7272776097100B5CED8 /* ObservableService.swift */; };
+		743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
 		744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* RouteViewModel.swift */; };
@@ -154,6 +157,9 @@
 		74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bold.ttf"; sourceTree = "<group>"; };
 		74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-medium.ttf"; sourceTree = "<group>"; };
 		74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Annotations.swift"; sourceTree = "<group>"; };
+		743DE7252775D80500B5CED8 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
+		743DE7272776097100B5CED8 /* ObservableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableService.swift; sourceTree = "<group>"; };
+		743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Map.swift"; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
 		744B6EC82775033D008BDF37 /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
@@ -370,6 +376,7 @@
 			children = (
 				741EF4872708F28200F84986 /* NotificationService.swift */,
 				748C94CD272FEFAF00202D47 /* LocationService.swift */,
+				743DE7252775D80500B5CED8 /* MapService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -544,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				74967F7A276F55640096AA77 /* BaseNetworkService.swift */,
+				743DE7272776097100B5CED8 /* ObservableService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -643,6 +651,7 @@
 				7402661226A76379006242FE /* MapViewController.swift */,
 				74D7DFB027746CB00087B7F6 /* MapPresenter.swift */,
 				74D7DFB427746D1A0087B7F6 /* MapBuilder.swift */,
+				743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -848,8 +857,11 @@
 				74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */,
 				740B53612773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
+				743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */,
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
 				748EE635270F913000301552 /* PersonInfo.swift in Sources */,
+				743DE7262775D80500B5CED8 /* MapService.swift in Sources */,
+				743DE7282776097100B5CED8 /* ObservableService.swift in Sources */,
 				740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */,
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,

@@ -63,7 +63,6 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     init(eventHandler: RoutesEventHandler) {
         self.eventHandler = eventHandler
         super.init()
-        setUpTableView()
     }
     
     required init?(coder: NSCoder) {
@@ -74,6 +73,7 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
         fetchData()
     }
     

@@ -10,7 +10,7 @@ import MapKit
 
 // MARK: - LocationServiceDelegate
 
-protocol LocationServiceDelegate: AnyObject {
+protocol LocationServiceOutput: AnyObject {
     func didUpdateLocation(location: CLLocation)
     func didFailWithError(error: Error)
     
@@ -22,7 +22,7 @@ protocol LocationServiceDelegate: AnyObject {
 
 // MARK: - LocationService
 
-final class LocationService: NSObject {
+final class LocationService: NSObject, ObservableService {
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -45,7 +45,7 @@ final class LocationService: NSObject {
         locationManager.location
     }
     
-    weak var delegate: LocationServiceDelegate?
+    var observers: [String : LocationServiceOutput] = [:]
     
     override init() {
         super.init()
@@ -58,7 +58,7 @@ final class LocationService: NSObject {
     
     func requestLocationUpdate() {
         if isMonitoringRegions, let location = locationManager.location {
-            delegate?.didUpdateLocation(location: location)
+            observers.forEach({ $1.didUpdateLocation(location: location) })
         } else {
             isUpdateRequested = true
             locationManager.startUpdatingLocation()
@@ -90,7 +90,7 @@ extension LocationService: CLLocationManagerDelegate {
         guard let location = locations.first else { return }
         
         if isUpdateRequested {
-            delegate?.didUpdateLocation(location: location)
+            observers.forEach({ $1.didUpdateLocation(location: location) })
             isUpdateRequested = false
         }
         
@@ -104,7 +104,7 @@ extension LocationService: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if isUpdateRequested {
-            delegate?.didFailWithError(error: error)
+            observers.forEach({ $1.didFailWithError(error: error) })
             isUpdateRequested = false
         }
         if monitoringRegions.isEmpty {
@@ -113,12 +113,12 @@ extension LocationService: CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        delegate?.didChangeAuthorization()
+        observers.forEach({ $1.didChangeAuthorization() })
     }
     
 }
 
-// MARK: - regions handle
+// MARK: - Regions handle
 
 extension LocationService {
     
@@ -137,8 +137,8 @@ extension LocationService {
             }
         }
         
-        delegate?.didUpdateCurrentRegions(regions)
-        delegate?.didEnterNewRegions(newRegions)
+        observers.forEach({ $1.didUpdateCurrentRegions(regions) })
+        observers.forEach({ $1.didEnterNewRegions(newRegions) })
         
         currentRegions = regions
     }

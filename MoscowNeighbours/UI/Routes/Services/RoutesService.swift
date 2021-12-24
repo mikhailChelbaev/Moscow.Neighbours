@@ -21,10 +21,10 @@ class RoutesService: BaseNetworkService<RoutesServiceOutput> {
                            type: [Route].self) { [weak self] result in
             switch result {
             case .success(let model):
-                self?.outputs.forEach({ $0.value.fetchDataSucceeded(model) })
+                self?.observers.forEach({ $0.value.fetchDataSucceeded(model) })
                 
             case .failure(let error):
-                self?.outputs.forEach({ $0.value.fetchDataFailed(error) })
+                self?.observers.forEach({ $0.value.fetchDataFailed(error) })
             }
         }
     }

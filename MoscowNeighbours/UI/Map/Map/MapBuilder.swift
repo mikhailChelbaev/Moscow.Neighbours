@@ -9,6 +9,10 @@ import Foundation
 
 struct MapStorage {
     let routesBuilder: RoutesBuilder
+    let personBuilder: PersonBuilder
+    
+    let locationService: LocationService
+    let notificationService: NotificationService
 }
 
 protocol MapBuilder {
@@ -24,6 +28,9 @@ extension Builder: MapBuilder {
     }
     
     private func makeStorage() -> MapStorage {
-        return MapStorage(routesBuilder: self)
+        return MapStorage(routesBuilder: self,
+                          personBuilder: self,
+                          locationService: LocationService(),
+                          notificationService: NotificationService())
     }
 }
