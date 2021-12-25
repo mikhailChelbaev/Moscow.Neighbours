@@ -7,7 +7,11 @@
 
 import UIKit
 
-protocol PersonView: BottomSheetViewController { }
+protocol PersonView: BottomSheetViewController {
+    var personInfo: PersonInfo { set get }
+    
+    func reloadData()
+}
 
 final class PersonViewController: BottomSheetViewController, PersonView {
     
@@ -53,7 +57,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     let eventHandler: PersonEventHandler
     
-    let personInfo: PersonInfo
+    var personInfo: PersonInfo
     let userState: UserState
     
     // MARK: - init
@@ -94,7 +98,11 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         tableView.reloadData()
     }
     
-    func update() {
+    func updatePerson(personInfo: PersonInfo) {
+        eventHandler.onPersonUpdate(personInfo: personInfo)
+    }
+    
+    func reloadData() {
         tableView.reloadData()
     }
     

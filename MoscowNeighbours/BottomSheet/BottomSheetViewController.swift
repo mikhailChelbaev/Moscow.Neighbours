@@ -149,7 +149,7 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     // MARK: - Cover Alpha
     
-    private func recalculateCoverAlpha(for origin: CGFloat) {
+    func recalculateCoverAlpha(for origin: CGFloat) {
         guard shouldDimBackground else {
             return
         }

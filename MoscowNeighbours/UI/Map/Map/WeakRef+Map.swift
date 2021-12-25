@@ -8,6 +8,8 @@
 import Foundation
 import MapKit
 
+// MARK: - LocationServiceOutput
+
 extension WeakRef: LocationServiceOutput where T: LocationServiceOutput {
     func didUpdateLocation(location: CLLocation) {
         object?.didUpdateLocation(location: location)
@@ -27,5 +29,25 @@ extension WeakRef: LocationServiceOutput where T: LocationServiceOutput {
     
     func didChangeAuthorization() {
         object?.didChangeAuthorization()
+    }
+}
+
+// MARK: - MapServiceOutput
+
+extension WeakRef: MapServiceOutput where T: MapServiceOutput {
+    func showAnnotations(_ annotations: [MKAnnotation]) {
+        object?.showAnnotations(annotations)
+    }
+    
+    func addOverlays(_ overlays: [MKOverlay]) {
+        object?.addOverlays(overlays)
+    }
+    
+    func removeAnnotations(_ annotations: [MKAnnotation]) {
+        object?.removeAnnotations(annotations)
+    }
+    
+    func removeOverlays(_ overlays: [MKOverlay]) {
+        object?.removeOverlays(overlays)
     }
 }

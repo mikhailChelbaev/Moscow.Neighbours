@@ -16,10 +16,14 @@ enum UserState {
 }
 
 protocol MapView: UIViewController {
+    func addOverlays(_ overlays: [MKOverlay])
+    func showAnnotations(_ annotations: [MKAnnotation])
     func zoomAnnotations(_ annotations: [MKAnnotation])
     func showPlaceOnMap(with coordinates: CLLocationCoordinate2D,
                         animated: Bool,
                         meters: CLLocationDegrees)
+    func removeAnnotations(_ annotations: [MKAnnotation])
+    func removeOverlays(_ overlays: [MKOverlay])
 }
 
 final class MapViewController: UIViewController {
@@ -129,6 +133,14 @@ extension MapViewController {
 // MARK: - protocol MapView
 
 extension MapViewController: MapView {
+    func addOverlays(_ overlays: [MKOverlay]) {
+        mapView.addOverlays(overlays, level: MKOverlayLevel.aboveRoads)
+    }
+    
+    func showAnnotations(_ annotations: [MKAnnotation]) {
+        mapView.addAnnotations(annotations)
+    }
+    
     func showPlaceOnMap(with coordinates: CLLocationCoordinate2D,
                         animated: Bool,
                         meters: CLLocationDegrees) {
@@ -161,6 +173,14 @@ extension MapViewController: MapView {
         zoomRect = MKMapRect(origin: origin, size: size)
         
         mapView.setVisibleMapRect(zoomRect, animated: true)
+    }
+    
+    func removeAnnotations(_ annotations: [MKAnnotation]) {
+        mapView.removeAnnotations(annotations)
+    }
+    
+    func removeOverlays(_ overlays: [MKOverlay]) {
+        mapView.removeOverlays(overlays)
     }
 }
 

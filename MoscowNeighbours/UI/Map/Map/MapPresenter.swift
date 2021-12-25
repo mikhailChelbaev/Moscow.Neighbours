@@ -34,6 +34,7 @@ class MapPresenter: MapEventHandler {
     
     private var locationService: LocationService
     private let notificationService: NotificationService
+    private var mapService: MapService
     
     private var locationState: LocationState
     
@@ -45,10 +46,12 @@ class MapPresenter: MapEventHandler {
         
         locationService = storage.locationService
         notificationService = storage.notificationService
+        mapService = storage.mapService
         
         locationState = .showLocationAtFirstTime
         
         locationService.register(WeakRef(self))
+        mapService.register(WeakRef(self))
     }
     
     // MARK: - MapEventHandler methods
@@ -64,15 +67,20 @@ class MapPresenter: MapEventHandler {
     }
     
     func onLocationButtonTap() {
+        locationState = .showCurrentLocation
         locationService.requestLocationUpdate()
     }
     
     func didSelectAnnotation(_ view: MKAnnotationView) {
         if let personInfo = view.annotation as? PersonInfo {
             let controller = viewController?.getTopController()
-            let personViewController = personBuilder.buildPersonViewController(personInfo: personInfo,
-                                                                               userState: .default)
-            controller?.present(personViewController, state: .top, completion: nil)
+            if let personController = controller as? PersonViewController {
+                personController.updatePerson(personInfo: personInfo)
+            } else {
+                let personViewController = personBuilder.buildPersonViewController(personInfo: personInfo,
+                                                                                       userState: .default)
+                controller?.present(personViewController, state: .top, completion: nil)
+            }
         } else {
             if let cluster = view.annotation as? MKClusterAnnotation {
                 viewController?.zoomAnnotations(cluster.memberAnnotations)
@@ -143,12 +151,21 @@ extension MapPresenter: LocationServiceOutput {
     }
 }
 
-extension UIViewController {
-    func getTopController() -> UIViewController {
-        var controller = self
-        while let presentedController = controller.presentedViewController {
-            controller = presentedController
-        }
-        return controller
+extension MapPresenter: MapServiceOutput {
+    func showAnnotations(_ annotations: [MKAnnotation]) {
+        viewController?.showAnnotations(annotations)
+        viewController?.zoomAnnotations(annotations)
+    }
+    
+    func addOverlays(_ overlays: [MKOverlay]) {
+        viewController?.addOverlays(overlays)
+    }
+    
+    func removeAnnotations(_ annotations: [MKAnnotation]) {
+        viewController?.removeAnnotations(annotations)
+    }
+    
+    func removeOverlays(_ overlays: [MKOverlay]) {
+        viewController?.removeOverlays(overlays)
     }
 }

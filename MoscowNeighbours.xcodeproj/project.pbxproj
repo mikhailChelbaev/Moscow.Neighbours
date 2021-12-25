@@ -105,6 +105,7 @@
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
 		74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* RouteHeaderCell.swift */; };
 		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
+		74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F3153B277740F600006217 /* UIViewController+TopController.swift */; };
 		74F52A31272593CC00343334 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F52A30272593CC00343334 /* MarkdownParser.swift */; };
 		74F52A332725946700343334 /* BlockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F52A322725946700343334 /* BlockParser.swift */; };
 		74F52A352725947100343334 /* FragmentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F52A342725947100343334 /* FragmentParser.swift */; };
@@ -225,6 +226,7 @@
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
 		74E729B426F2978200775D37 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
 		74EBC36726F503500002EEAE /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
+		74F3153B277740F600006217 /* UIViewController+TopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopController.swift"; sourceTree = "<group>"; };
 		74F52A30272593CC00343334 /* MarkdownParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		74F52A322725946700343334 /* BlockParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockParser.swift; sourceTree = "<group>"; };
 		74F52A342725947100343334 /* FragmentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentParser.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */,
 				74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */,
 				74C51A2B2725EFF90066C43E /* String+Subscript.swift */,
+				74F3153B277740F600006217 /* UIViewController+TopController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */,
 				74F739FC272B50DE007C5450 /* TableSuccessDataSource.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
+				74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */,
 				74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */,
 				74C5D8D326FD237700034432 /* Button.swift in Sources */,
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,

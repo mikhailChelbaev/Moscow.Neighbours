@@ -114,8 +114,7 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     }
     
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
-        return BottomSheetConfiguration(topInset: .fromTop(10),
-                                        availableStates: [.middle, .top])
+        return BottomSheetConfiguration(topInset: .fromTop(10))
     }
     
     // MARK: - Private methods
@@ -134,16 +133,29 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
         switch status {
         case .success:
             bottomSheet.middlePosition = config.middleInset
-            bottomSheet.availableStates = [.middle, .top]
+            bottomSheet.availableStates = [.top, .middle, .bottom]
         case .error:
             bottomSheet.middlePosition = .fromBottom(350)
-            bottomSheet.availableStates = [.middle]
+            bottomSheet.availableStates = [.middle, .bottom]
         default:
             break
         }
         bottomSheet.setState(.middle, animated: true)
     }
     
+    override func recalculateCoverAlpha(for origin: CGFloat) {
+        var value: CGFloat = 0
+        defer {
+            cover.alpha = value
+        }
+    
+        if bottomSheet.availableStates.contains(.top) &&
+            bottomSheet.availableStates.contains(.middle) {
+            let bottom = bottomSheet.origin(for: .top)
+            let top = bottomSheet.origin(for: .middle)
+            value = 0.7 * (origin - top) / (bottom - top)
+        }
+    }
 }
 
 // MARK: - protocol UITableViewDataSource

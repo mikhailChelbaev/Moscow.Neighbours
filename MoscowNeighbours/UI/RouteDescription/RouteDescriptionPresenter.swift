@@ -27,6 +27,8 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private let route: Route
     private var routeViewModel: RouteViewModel
     
+    private let mapService: MapService
+    
     // MARK: - Init
     
     init(storage: RouteDescriptionStorage) {
@@ -35,6 +37,10 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         
         personBuilder = storage.personBuilder
         routePassingBuilder = storage.routePassingBuilder
+        
+        mapService = storage.mapService
+        
+        mapService.showRoute(route)
     }
     
     // MARK: - RouteDescriptionEventHandler methods
@@ -49,6 +55,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     }
     
     func onBackButtonTap() {
+        mapService.hideRoute()
         viewController?.closeController(animated: true, completion: nil)
     }
     

@@ -11,6 +11,7 @@ protocol PersonEventHandler {
     func getPersonInfo() -> PersonInfo
     func getUserState() -> UserState
     func onBackButtonTap()
+    func onPersonUpdate(personInfo: PersonInfo)
 }
 
 class PersonPresenter: PersonEventHandler {
@@ -41,6 +42,11 @@ class PersonPresenter: PersonEventHandler {
     
     func onBackButtonTap() {
         viewController?.closeController(animated: true, completion: nil)
+    }
+    
+    func onPersonUpdate(personInfo: PersonInfo) {
+        viewController?.personInfo = personInfo
+        viewController?.reloadData()
     }
     
 }
