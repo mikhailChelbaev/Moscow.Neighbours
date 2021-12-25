@@ -20,7 +20,7 @@ class PersonInfoBaseCell: CellView {
         return stack
     }()
     
-    override func commonInit() {
+    override func setUpView() {
         addSubview(stack)
         stack.stickToSuperviewEdges([.all], insets: .init(top: 20, left: 20, bottom: 20, right: 20))
     }

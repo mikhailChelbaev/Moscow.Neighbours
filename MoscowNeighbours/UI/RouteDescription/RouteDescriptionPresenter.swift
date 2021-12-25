@@ -22,28 +22,34 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     weak var viewController: RouteDescriptionView?
     
     private let personBuilder: PersonBuilder
+    private let routePassingBuilder: RoutePassingBuilder
+    
     private let route: Route
+    private var routeViewModel: RouteViewModel
     
     // MARK: - Init
     
     init(storage: RouteDescriptionStorage) {
         route = storage.route
+        routeViewModel = RouteViewModel(from: route)
+        
         personBuilder = storage.personBuilder
+        routePassingBuilder = storage.routePassingBuilder
     }
     
     // MARK: - RouteDescriptionEventHandler methods
     
     func getRoute() -> RouteViewModel {
-        return RouteViewModel(from: route)
+        return routeViewModel
     }
     
     func onTraitCollectionDidChange() {
-        viewController?.route.update()
+        routeViewModel.update()
         viewController?.reloadData()
     }
     
     func onBackButtonTap() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.closeController(animated: true, completion: nil)
     }
     
     func onPersonCellTap(personInfo: PersonInfo) {
@@ -52,7 +58,8 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     }
     
     func onBeginRouteButtonTap() {
-        
+        let controller = routePassingBuilder.buildRoutePassingViewController(route: routeViewModel)
+        viewController?.present(controller, state: .top, completion: nil)
     }
     
 }

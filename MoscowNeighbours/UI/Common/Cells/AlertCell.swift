@@ -42,7 +42,7 @@ final class AlertCell: CellView {
     
     var containerConstraints: AnchoredConstraints?
     
-    override func commonInit() {
+    override func setUpView() {
         addSubview(container)
         containerConstraints = container.stickToSuperviewEdges([.left, .right, .top, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         

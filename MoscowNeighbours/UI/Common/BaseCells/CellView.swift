@@ -16,13 +16,13 @@ class CellView: UIView {
     required init() {
         super.init(frame: .zero)
         backgroundColor = .clear
-        commonInit()
+        setUpView()
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
     
-    func commonInit() { }
+    func setUpView() { }
     
 }

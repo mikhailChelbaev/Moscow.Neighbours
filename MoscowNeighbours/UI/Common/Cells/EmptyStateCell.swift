@@ -70,7 +70,7 @@ final class EmptyStateCell: CellView {
         return stack
     }()
     
-    override func commonInit() {
+    override func setUpView() {
         addSubview(imageView)
         imageView.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         imageView.height(150)

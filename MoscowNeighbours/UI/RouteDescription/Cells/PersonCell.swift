@@ -78,7 +78,7 @@ final class PersonCell: CellView {
         didSet { update() }
     }
     
-    override func commonInit() {
+    override func setUpView() {
         backgroundColor = .background
         
         addSubview(containerView)

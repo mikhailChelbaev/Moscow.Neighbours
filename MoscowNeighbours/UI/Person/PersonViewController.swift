@@ -68,7 +68,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         tableView.dataSource = self
         tableView.reloadData()
         
-        backButton.addTarget(self, action: #selector(handlerBackButton), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -122,7 +122,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
     }
     
-    @objc private func handlerBackButton() {
+    @objc private func handleBackButton() {
         eventHandler.onBackButtonTap()
     }
     
@@ -182,7 +182,7 @@ extension PersonViewController: UITableViewDataSource {
             } else {
                 let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
                 cell.view.update(title: "Готов идти дальше", roundedCorners: true, height: 42) { [weak self] _ in
-                    self?.handlerBackButton()
+                    self?.handleBackButton()
                 }
                 return cell
             }

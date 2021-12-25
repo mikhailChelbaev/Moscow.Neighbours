@@ -13,7 +13,11 @@ protocol MapServiceOutput {
 
 class MapService {
     
-    private let routeOptimizer: RouteFinder = NearestCoordinatesFinder()
+    private let routeFinder: RouteFinder
+    
+    init(routeFinder: RouteFinder) {
+        self.routeFinder = routeFinder
+    }
     
     func showRoute(_ route: Route) {
             // add annotations

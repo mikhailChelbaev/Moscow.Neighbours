@@ -25,7 +25,7 @@ class TextCell: CellView {
     
     var labelConstraints: AnchoredConstraints?
     
-    override func commonInit() {
+    override func setUpView() {
         backgroundColor = .background
         
         addSubview(textView)

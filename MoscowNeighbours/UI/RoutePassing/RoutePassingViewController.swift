@@ -8,14 +8,20 @@
 import UIKit
 import UltraDrawerView
 
-final class RoutePassingViewController: BottomSheetViewController, PagerMediator {
+protocol RoutePassingView: BottomSheetViewController {
+    var selectedIndex: Int { set get }
+    
+    func reloadData()
+}
+
+final class RoutePassingViewController: BottomSheetViewController, RoutePassingView {
     
     // MARK: - Layout
     
     enum Layout {
         static let cornerRadius: CGFloat = 22
         static var topInsetFromBottom: CGFloat {
-            EndRouteButtonView.Settigns.totalHeight + RoutePointsCollectionCell.Layout.height + PageIndexCell.Layout.height
+            EndRouteButtonView.Settings.totalHeight + RoutePointsCollectionCell.Layout.totalHeight
         }
     }
     
@@ -33,119 +39,86 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
     
     private let headerView = EndRouteButtonView()
     
-    // MARK: - internal properties
+    // MARK: - Internal properties
     
-    var scrollView: PagerPresentable?
+    let eventHandler: RoutePassingEventHandler
     
-    var pageIndicator: PagerPresentable?
+    var selectedIndex: Int = 0
     
-    override var screenDimEffect: Bool {
+    override var shouldDimBackground: Bool {
         false
     }
     
-    // MARK: - private properties
+    // MARK: - Private properties
     
-    private var route: Route?
+    private var route: RouteViewModel
     
-    private var currentIndex: Int = 0
+    // MARK: - Init
     
-    private var viewedPersons: [PersonInfo] = []
-    
-    // MARK: - init
-    
-    override init() {
+    init(eventHandler: RoutePassingEventHandler) {
+        self.eventHandler = eventHandler
+        route = eventHandler.getRoute()
         super.init()
-        commonInit()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - internal methods
+    // MARK: - Internal methods
     
-    func update(route: Route?) {
-        self.route = route
-        tableView.reloadData()
-    }
-    
-    func update() {
-        tableView.reloadData()
-    }
-    
-    func pageDidChange(_ index: Int, source: PagerSource) {
-        switch source {
-        case .scrollView:
-            pageIndicator?.changePage(newIndex: index, animated: true)
-        case .pageIndicator:
-            scrollView?.changePage(newIndex: index, animated: true)
-        }
-        currentIndex = index
-    }
-    
-    // MARK: - private methods
-    
-    private func commonInit() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         setUpTableView()
+        setUpViews()
         
-        bottomSheet.topPosition = .fromBottom(Layout.topInsetFromBottom, ignoresSafeArea: false)
-        headerView.update { [weak self] _ in
-            self?.stopRoute()
-        } opendDrawerButtonAction: { [weak self] _ in
-            self?.bottomSheet.setState(.top, animated: true, completion: nil)
-        }
-        
+        reloadData()
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setUpViews() {
         bottomSheet.containerView.backgroundColor = .clear
-        
         bottomSheet.cornerRadius = Layout.cornerRadius
         bottomSheet.containerView.clipsToBounds = true
+        
         tableView.layer.cornerRadius = Layout.cornerRadius
         tableView.clipsToBounds = true
     }
     
     private func setUpTableView() {
-//        tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(PageIndexCell.self)
         tableView.register(RoutePointsCollectionCell.self)
     }
     
-    private func stopRoute() {
-        let alertController = UIAlertController(title: "Подтвердите действие", message: "Вы уверены, что хотите закончить маршрут?", preferredStyle: .alert)
-        let yes = UIAlertAction(title: "Да", style: .default) { [weak self] _ in
-            self?.viewedPersons = []
-//            self?.mapPresenter?.endRoute()
-        }
-        let no = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        alertController.addAction(yes)
-        alertController.addAction(no)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func scrollToPerson(_ personInfo: PersonInfo) {
-        if let index = route?.personsInfo.firstIndex(where: { $0 == personInfo }) {
-            currentIndex = index
-        }
-        scrollView?.changePage(newIndex: currentIndex, animated: true)
-        pageIndicator?.changePage(newIndex: currentIndex, animated: true)
-        bottomSheet.setState(.top, animated: true, completion: nil)
-    }
+    // MARK: - Bottom Sheet set up
     
     override func getScrollView() -> UIScrollView {
         return tableView
     }
     
     override func getHeaderView() -> UIView? {
+        headerView.update { [weak self] _ in
+            self?.eventHandler.onEndRouteButtonTap()
+        } arrowUpButtonAction: { [weak self] _ in
+            self?.eventHandler.onArrowUpButtonTap()
+        }
         return headerView
     }
     
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
-        return BottomSheetConfiguration(topInset: .fromBottom(Layout.topInsetFromBottom))
+        return BottomSheetConfiguration(topInset: .fromBottom(Layout.topInsetFromBottom, ignoresSafeArea: false),
+                                        availableStates: [.top, .bottom])
     }
     
-    // TODO: - fix
-    func bottomSheet(didChangeState state: BottomSheet.State?) {
+    override func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
+        super.drawerView(drawerView, didChangeState: state)
         if let state = state {
             headerView.changeViewState(state)
         }
@@ -156,28 +129,27 @@ final class RoutePassingViewController: BottomSheetViewController, PagerMediator
 // MARK: - extension UITableViewDataSource
 
 extension RoutePassingViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.item == 0 {
-            let cell = tableView.dequeue(PageIndexCell.self, for: indexPath)
-            cell.selectionStyle = .none
-            pageIndicator = cell.view
-            cell.view.numberOfPages = route?.personsInfo.count ?? 0
-            cell.view.pagerDelegate = self
-            return cell
-        } else {
-            let cell = tableView.dequeue(RoutePointsCollectionCell.self, for: indexPath)
-            cell.selectionStyle = .none
-            scrollView = cell.view
-            cell.view.pagerDelegate = self
-            cell.view.route = route
-            return cell
-        }
+        return createRoutePointsCollectionCell(for: indexPath)
     }
-    
+}
+
+// MARK: - Cells Creation
+
+extension RoutePassingViewController {
+    func createRoutePointsCollectionCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(RoutePointsCollectionCell.self, for: indexPath)
+        cell.selectionStyle = .none
+        cell.view.update(route: route, currentIndex: selectedIndex) { [weak self] personInfo in
+            self?.eventHandler.onBecomeAcquaintedButtonTap(personInfo)
+        } indexDidChange: { [weak self] newIndex in
+            self?.eventHandler.onIndexChange(newIndex)
+        }
+        return cell
+    }
 }
 

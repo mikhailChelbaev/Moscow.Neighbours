@@ -10,8 +10,8 @@ import UIKit
 // TODO: - add image placeholder
 final class PersonHeaderCell: EntityHeaderCell {
     
-    override func commonInit() {
-        super.commonInit()
+    override func setUpView() {
+        super.setUpView()
          
         addSubview(titleLabel)
         titleLabel.stickToSuperviewEdges([.left, .bottom, .right], insets: .init(top: 0, left: 20, bottom: 30, right: 20))

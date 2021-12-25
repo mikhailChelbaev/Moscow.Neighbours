@@ -46,7 +46,7 @@ class RouteCell: CellView {
     
     let durationInfo: InfoView = .init()
     
-    override func commonInit() {
+    override func setUpView() {
         backgroundColor = .background
         clipsToBounds = false
         

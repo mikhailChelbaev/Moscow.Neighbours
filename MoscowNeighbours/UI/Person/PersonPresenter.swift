@@ -40,7 +40,7 @@ class PersonPresenter: PersonEventHandler {
     }
     
     func onBackButtonTap() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.closeController(animated: true, completion: nil)
     }
     
 }

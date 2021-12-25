@@ -40,6 +40,8 @@
 		743DE7262775D80500B5CED8 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE7252775D80500B5CED8 /* MapService.swift */; };
 		743DE7282776097100B5CED8 /* ObservableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE7272776097100B5CED8 /* ObservableService.swift */; };
 		743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */; };
+		743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */; };
+		743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
 		744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* RouteViewModel.swift */; };
@@ -61,7 +63,6 @@
 		746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC126A8BA6C009CC823 /* RouteViewController.swift */; };
 		746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* HeaderView.swift */; };
 		746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */; };
-		747A0E5A26FE1F8400EB1973 /* PageIndexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5926FE1F8400EB1973 /* PageIndexCell.swift */; };
 		747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */; };
 		747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */; };
 		747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */; };
@@ -96,7 +97,6 @@
 		74C5D8D326FD237700034432 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C5D8D226FD237700034432 /* Button.swift */; };
 		74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6CFC926BF1E0D00104457 /* ButtonCell.swift */; };
 		74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */; };
-		74CD387926FF3E4600D5CCDE /* PagerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CD387826FF3E4600D5CCDE /* PagerProtocols.swift */; };
 		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
@@ -160,6 +160,8 @@
 		743DE7252775D80500B5CED8 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
 		743DE7272776097100B5CED8 /* ObservableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableService.swift; sourceTree = "<group>"; };
 		743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Map.swift"; sourceTree = "<group>"; };
+		743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingPresenter.swift; sourceTree = "<group>"; };
+		743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingBuilder.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
 		744B6EC82775033D008BDF37 /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
@@ -180,7 +182,6 @@
 		746BCCC126A8BA6C009CC823 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		746BCCC726A8BD59009CC823 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
-		747A0E5926FE1F8400EB1973 /* PageIndexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndexCell.swift; sourceTree = "<group>"; };
 		747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRouteButtonView.swift; sourceTree = "<group>"; };
 		747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointCell.swift; sourceTree = "<group>"; };
 		747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointsCollectionCell.swift; sourceTree = "<group>"; };
@@ -216,7 +217,6 @@
 		74C5D8D226FD237700034432 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		74C6CFC926BF1E0D00104457 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConfigurator.swift; sourceTree = "<group>"; };
-		74CD387826FF3E4600D5CCDE /* PagerProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerProtocols.swift; sourceTree = "<group>"; };
 		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -502,7 +502,8 @@
 			isa = PBXGroup;
 			children = (
 				746769EB26F922B400158FFC /* RoutePassingViewController.swift */,
-				74CD387826FF3E4600D5CCDE /* PagerProtocols.swift */,
+				743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */,
+				743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */,
 				747A0E5826FE1F0800EB1973 /* Cells */,
 			);
 			path = RoutePassing;
@@ -526,7 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */,
-				747A0E5926FE1F8400EB1973 /* PageIndexCell.swift */,
 				747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */,
 				747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */,
 			);
@@ -793,7 +793,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
-				74CD387926FF3E4600D5CCDE /* PagerProtocols.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
@@ -855,6 +854,7 @@
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
 				74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */,
+				743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */,
 				740B53612773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */,
@@ -866,9 +866,9 @@
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,
 				74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */,
+				743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */,
 				74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */,
 				74F739FC272B50DE007C5450 /* TableSuccessDataSource.swift in Sources */,
-				747A0E5A26FE1F8400EB1973 /* PageIndexCell.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
 				74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */,
 				74C5D8D326FD237700034432 /* Button.swift in Sources */,

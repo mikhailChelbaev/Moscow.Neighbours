@@ -10,9 +10,9 @@ import UltraDrawerView
 
 // MARK: - Bottom Sheet Dismiss
 
-extension BottomSheetViewController {
-    override func dismiss(animated flag: Bool,
-                          completion: (() -> Void)? = nil) {
+extension BottomSheetViewController {    
+    func closeController(animated flag: Bool,
+                            completion: (() -> Void)? = nil) {
         let states = bottomSheet.availableStates
         bottomSheet.availableStates = states.union([.dismissed])
         
@@ -23,7 +23,7 @@ extension BottomSheetViewController {
         
         // hide bottom sheet and dismiss controller
         bottomSheet.setState(.dismissed, animated: flag) { _ in
-            super.dismiss(animated: false) {
+            self.dismiss(animated: false) {
                 self.bottomSheet.availableStates = states
                 completion?()
             }

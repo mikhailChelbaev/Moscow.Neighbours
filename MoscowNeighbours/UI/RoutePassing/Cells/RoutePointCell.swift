@@ -40,7 +40,7 @@ final class RoutePointCell: CellView {
         return button
     }()
     
-    override func commonInit() {
+    override func setUpView() {
         addSubview(personNameLabel)
         personNameLabel.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 10, left: 20, bottom: 0, right: 20))
         

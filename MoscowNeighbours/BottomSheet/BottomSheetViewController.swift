@@ -10,7 +10,7 @@ import UltraDrawerView
 
 typealias BottomSheet = DrawerView
 
-class BottomSheetViewController: UIViewController {
+class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     // MARK: - UI
     
@@ -37,7 +37,7 @@ class BottomSheetViewController: UIViewController {
     var presentingControllerState: BottomSheet.State = .dismissed
     
     // override this property to disable dim
-    var screenDimEffect: Bool {
+    var shouldDimBackground: Bool {
         return true
     }
     
@@ -126,11 +126,8 @@ class BottomSheetViewController: UIViewController {
         return bottomSheet
     }
 
-}
-
-// MARK: - protocol DrawerViewListener
-
-extension BottomSheetViewController: DrawerViewListener {
+    // MARK: - protocol DrawerViewListener
+    
     func drawerView(_ drawerView: DrawerView, willBeginUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) { }
     
     func drawerView(_ drawerView: DrawerView, didUpdateOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
@@ -153,7 +150,7 @@ extension BottomSheetViewController: DrawerViewListener {
     // MARK: - Cover Alpha
     
     private func recalculateCoverAlpha(for origin: CGFloat) {
-        guard screenDimEffect else {
+        guard shouldDimBackground else {
             return
         }
         

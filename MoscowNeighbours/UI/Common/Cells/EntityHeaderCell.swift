@@ -39,7 +39,7 @@ class EntityHeaderCell: CellView {
         return label
     }()
     
-    override func commonInit() {
+    override func setUpView() {
         addSubview(imageView)
         imageView.stickToSuperviewEdges(.all)
         

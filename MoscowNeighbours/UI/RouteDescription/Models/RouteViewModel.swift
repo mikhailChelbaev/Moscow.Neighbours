@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RouteViewModel {
+class RouteViewModel {
     private let parser: MarkdownParser = {
         var config: MarkdownConfigurator = .default
         return DefaultMarkdownParser(configurator: config, withCache: false)
@@ -32,7 +32,7 @@ struct RouteViewModel {
         personsInfo = route.personsInfo
     }
     
-    mutating func update() {
+    func update() {
         description = parser.parse(text: route.description)
     }
 }

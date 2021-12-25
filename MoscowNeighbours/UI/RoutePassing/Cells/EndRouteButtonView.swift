@@ -10,16 +10,16 @@ import UltraDrawerView
 
 final class EndRouteButtonView: CellView {
     
-    enum Settigns {
+    enum Settings {
         static let buttonHeight: CGFloat = 38
-        static let borderInsers: CGFloat = 10
-        static var totalHeight = buttonHeight + 2 * borderInsers
+        static let borderInsets: CGFloat = 10
+        static var totalHeight = buttonHeight + 2 * borderInsets
         static let endRouteButtonText: String = "Завершить маршрут"
     }
 
     let endRouteButton: Button = {
         let button = Button()
-        button.setTitle(Settigns.endRouteButtonText, for: .normal)
+        button.setTitle(Settings.endRouteButtonText, for: .normal)
         button.titleLabel?.font = .mainFont(ofSize: 14, weight: .bold)
         button.backgroundColor = .background
         button.setTitleColor(.label, for: .normal)
@@ -27,11 +27,11 @@ final class EndRouteButtonView: CellView {
         return button
     }()
     
-    let openDrawerButton: Button = {
+    let         arrowUpButton: Button = {
         let button = Button()
         button.setImage(sfSymbol("arrow.up", tintColor: .inversedBackground), for: .normal)
         button.contentEdgeInsets = .zero
-        button.layer.cornerRadius = Settigns.buttonHeight / 2
+        button.layer.cornerRadius = Settings.buttonHeight / 2
         button.backgroundColor = .background
         button.isHidden = true
         return button
@@ -39,22 +39,23 @@ final class EndRouteButtonView: CellView {
     
     private var state: DrawerView.State = .top
     
-    override func commonInit() {
+    override func setUpView() {
         addSubview(endRouteButton)
-        endRouteButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settigns.borderInsers, left: 0, bottom: Settigns.borderInsers, right: 0))
+        endRouteButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
         endRouteButton.centerHorizontally()
-        endRouteButton.height(Settigns.buttonHeight)
+        endRouteButton.height(Settings.buttonHeight)
         
-        addSubview(openDrawerButton)
-        openDrawerButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settigns.borderInsers, left: 0, bottom: Settigns.borderInsers, right: 0))
-        openDrawerButton.centerHorizontally()
-        openDrawerButton.exactSize(.init(width: Settigns.buttonHeight , height: Settigns.buttonHeight ))
-        sendSubviewToBack(openDrawerButton)
+        addSubview(        arrowUpButton)
+                arrowUpButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
+                arrowUpButton.centerHorizontally()
+                arrowUpButton.exactSize(.init(width: Settings.buttonHeight , height: Settings.buttonHeight ))
+        sendSubviewToBack(        arrowUpButton)
     }
     
-    func update(endRouteAction: Button.Action?, opendDrawerButtonAction: Button.Action?) {
+    func update(endRouteAction: Button.Action?,
+                arrowUpButtonAction: Button.Action?) {
         endRouteButton.action = endRouteAction
-        openDrawerButton.action = opendDrawerButtonAction
+        arrowUpButton.action = arrowUpButtonAction
     }
     
     func changeViewState(_ newState: DrawerView.State) {
@@ -68,19 +69,19 @@ final class EndRouteButtonView: CellView {
             } completion: { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.endRouteButton.isHidden = true
-                    self.openDrawerButton.isHidden = false
+                    self.arrowUpButton.isHidden = false
                 }
             }
         } else {
             endRouteButton.isHidden = false
-            endRouteButton.setTitle(Settigns.endRouteButtonText, for: .normal)
+            endRouteButton.setTitle(Settings.endRouteButtonText, for: .normal)
             endRouteButton.setTitleColor(.clear, for: .normal)
             UIView.animate(withDuration: 0.3) {
                 self.endRouteButton.transform = .identity
                 self.layoutIfNeeded()
             } completion: { _ in
                 self.endRouteButton.setTitleColor(.label, for: .normal)
-                self.openDrawerButton.isHidden = true
+                self.arrowUpButton.isHidden = true
             }
         }
         

@@ -37,7 +37,7 @@ final class HeaderView: CellView {
     
     private var buttonCloseAction: Action?
     
-    override func commonInit() {
+    override func setUpView() {
         backgroundColor = .background
         
         addSubview(closeButton)

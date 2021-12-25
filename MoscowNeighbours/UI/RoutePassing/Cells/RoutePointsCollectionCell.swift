@@ -7,11 +7,15 @@
 
 import UIKit
 
-final class RoutePointsCollectionCell: CellView, PagerPresentable {
+final class RoutePointsCollectionCell: CellView {
     
     enum Layout {
-        static let height: CGFloat = 240
-        static var cellSize: CGSize = .init(width: UIScreen.main.bounds.width, height: height)
+        static let collectionHeight: CGFloat = 240
+        static let indicatorHeight: CGFloat = 46
+        static var cellSize: CGSize = .init(width: UIScreen.main.bounds.width, height: collectionHeight)
+        static var totalHeight: CGFloat {
+            return collectionHeight + indicatorHeight
+        }
     }
     
     let collectionView: UICollectionView = {
@@ -29,27 +33,63 @@ final class RoutePointsCollectionCell: CellView, PagerPresentable {
         return cv
     }()
     
-    var currentIndex: Int = 0
+    let indicator: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.pageIndicatorTintColor = .grayBackground
+        pc.currentPageIndicatorTintColor = .projectRed
+        return pc
+    }()
     
-    var pagerDelegate: PagerDelegate?
+    private var route: RouteViewModel?
+    private var buttonTapCallback: ((PersonInfo) -> Void)?
+    private var indexDidChange: ((Int) -> Void)?
     
-    var route: Route? {
-        didSet { collectionView.reloadData() }
-    }
-    
-    override func commonInit() {
+    override func setUpView() {
+        // collection set up
         collectionView.dataSource = self
         collectionView.delegate = self
         
         collectionView.register(RoutePointCell.self)
         
+        // indicator set up
+        indicator.addTarget(self, action: #selector(handlePageChange), for: .valueChanged)
+        
+        // layout
+        addSubview(indicator)
+        indicator.top(10)
+        indicator.centerHorizontally()
+        
         addSubview(collectionView)
-        collectionView.stickToSuperviewEdges(.all)
-        collectionView.height(Layout.height)
+        collectionView.top(10, to: indicator)
+        collectionView.stickToSuperviewEdges([.left, .right, .bottom])
+        collectionView.height(Layout.collectionHeight)
     }
     
-    func changePage(newIndex: Int, animated: Bool) {
+    func changeCollectionPage(newIndex: Int, animated: Bool) {
         collectionView.setContentOffset(CGPoint(x: CGFloat(newIndex) * frame.width, y: collectionView.contentOffset.y), animated: animated)
+    }
+    
+    @objc private func handlePageChange() {
+        let newIndex = indicator.currentPage
+        changeCollectionPage(newIndex: newIndex, animated: true)
+        indexDidChange?(newIndex)
+    }
+    
+    func update(route: RouteViewModel,
+                currentIndex: Int,
+                buttonTapCallback: @escaping (PersonInfo) -> Void,
+                indexDidChange: @escaping (Int) -> Void) {
+        self.route = route
+        self.buttonTapCallback = buttonTapCallback
+        self.indexDidChange = indexDidChange
+        
+        indicator.numberOfPages = route.personsInfo.count
+        
+        collectionView.reloadData()
+        
+        changeCollectionPage(newIndex: currentIndex, animated: true)
+        indicator.currentPage = currentIndex
     }
     
 }
@@ -73,9 +113,11 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
 //        } else if mapPresenter?.visitedPersons.contains(personInfo) == true {
 //            state = .firstTime
 //        }
-//        cell.view.update(personInfo: personInfo, state: state, action: { [weak self] _ in
-//            self?.mapPresenter?.showPerson(personInfo, state: .middle)
-//        })
+        cell.view.update(personInfo: personInfo,
+                         state: state,
+                         action: { [weak self] _ in
+            self?.buttonTapCallback?(personInfo)
+        })
         
         return cell
     }
@@ -90,10 +132,8 @@ extension RoutePointsCollectionCell: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let newIndex: Int = getIndex(for: scrollView.contentOffset.x)
-        if newIndex != currentIndex {
-            pagerDelegate?.pageDidChange(newIndex, source: .scrollView)
-            currentIndex = newIndex
-        }
+        indicator.currentPage = newIndex
+        indexDidChange?(newIndex)
     }
     
 }

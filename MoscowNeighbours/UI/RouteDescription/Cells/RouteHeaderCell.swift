@@ -25,8 +25,8 @@ final class RouteHeaderCell: EntityHeaderCell {
         return button
     }()
     
-    override func commonInit() {
-        super.commonInit()
+    override func setUpView() {
+        super.setUpView()
         
         titleLabel.numberOfLines = 2
         
