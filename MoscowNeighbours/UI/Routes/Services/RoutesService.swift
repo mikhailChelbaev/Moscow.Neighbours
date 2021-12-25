@@ -8,8 +8,8 @@
 import UIKit
 
 protocol RoutesServiceOutput: AnyObject {
-    func fetchDataSucceeded(_ model: [Route])
-    func fetchDataFailed(_ error: NetworkError)
+    @MainActor func fetchDataSucceeded(_ model: [Route])
+    @MainActor func fetchDataFailed(_ error: NetworkError)
 }
 
 class RoutesService: BaseNetworkService<RoutesServiceOutput> {
@@ -17,14 +17,19 @@ class RoutesService: BaseNetworkService<RoutesServiceOutput> {
     // MARK: - Internal Methods
     
     func fetchRoutes() {
-        requestSender.send(request: ApiRequestsFactory.main.routesRequest,
-                           type: [Route].self) { [weak self] result in
+        Task {
+            let result = await requestSender.send(request: ApiRequestsFactory.main.routesRequest,
+                                                  type: [Route].self)
             switch result {
             case .success(let model):
-                self?.observers.forEach({ $0.value.fetchDataSucceeded(model) })
+                for observer in observers {
+                    await observer.value.fetchDataSucceeded(model)
+                }
                 
             case .failure(let error):
-                self?.observers.forEach({ $0.value.fetchDataFailed(error) })
+                for observer in observers {
+                    await observer.value.fetchDataFailed(error)
+                }
             }
         }
     }
