@@ -97,11 +97,14 @@ final class DefaultMarkdownMerger: MarkdownMerger {
         text: String,
         attributes: [NSAttributedString.Key : Any]
     ) -> CGFloat {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.attributedText = NSAttributedString(string: text, attributes: attributes)
-        let estimatedSize = label.systemLayoutSizeFitting(.init(width: width, height: .greatestFiniteMagnitude), withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-        return estimatedSize.height
+        let constraintRect = CGSize(width: width,
+                                    height: .greatestFiniteMagnitude)
+        let boundingBox = text.boundingRect(with: constraintRect,
+                                            options: .usesLineFragmentOrigin,
+                                            attributes: attributes,
+                                            context: nil)
+            
+        return boundingBox.height
     }
     
 }
