@@ -38,7 +38,6 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         routePassingBuilder = storage.routePassingBuilder
         
         mapService = storage.mapService
-        mapService.showRoute(storage.route)
         
         route = storage.route
     }
@@ -50,6 +49,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
             viewController?.status = .loading
             let routeViewModel = await RouteViewModel(from: route)
             await setRoute(routeViewModel)
+            await mapService.showRoute(routeViewModel)
         }
     }
     
@@ -62,10 +62,15 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     }
     
     func onTraitCollectionDidChange(route: RouteViewModel?) {
+        guard let route = route else {
+            return
+        }
+        
         viewController?.status = .loading
         Task {
-            await route?.update()
+            await route.update()
             await setUpdatedRoute(route)
+            await mapService.showRoute(route)
         }
     }
     

@@ -36,15 +36,20 @@ class MapService: ObservableService {
         self.locationService = locationService
     }
     
-    func showRoute(_ route: Route) {
+    @MainActor func showRoute(_ route: RouteViewModel) {
+        // clear map
+        for observer in observers {
+            observer.value.removeAnnotations(annotations)
+            observer.value.removeOverlays(overlays)
+        }
         // add annotations
-        annotations = route.personsInfo
+        annotations = route.persons
         observers.forEach({ $1.showAnnotations(annotations) })
         // draw route overlay
         Task {
             overlays = await getOverlays(annotations: annotations)
             for observer in observers {
-                await observer.value.addOverlays(overlays)
+                observer.value.addOverlays(overlays)
             }
         }
     }
