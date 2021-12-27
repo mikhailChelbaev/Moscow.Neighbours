@@ -10,9 +10,14 @@ import MapKit
 
 protocol MapServiceOutput {
     func showAnnotations(_ annotations: [MKAnnotation])
-    @MainActor func addOverlays(_ overlays: [MKOverlay])
     func removeAnnotations(_ annotations: [MKAnnotation])
+    
+    @MainActor func addOverlays(_ overlays: [MKOverlay])
     func removeOverlays(_ overlays: [MKOverlay])
+    
+    func selectAnnotation(_ annotation: MKAnnotation)
+    func deselectAnnotation(_ annotation: MKAnnotation)
+    func centerAnnotation(_ annotation: MKAnnotation)
 }
 
 class MapService: ObservableService {
@@ -54,34 +59,17 @@ class MapService: ObservableService {
         overlays = []
     }
     
-    func startRoutePassing(_ route: Route) {
-        // create Regions
-//        createRegions(for: currentlySelectedRoute)
+    func selectAnnotation(_ annotation: MKAnnotation) {
+        observers.forEach({ $0.value.selectAnnotation(annotation) })
     }
     
-    func stopRoutePassing() {
-        // remove regions
-        removeRegions()
+    func deselectAnnotation(_ annotation: MKAnnotation) {
+        observers.forEach({ $0.value.deselectAnnotation(annotation) })
     }
     
-    private func createRegions(for route: Route?) {
-//        guard let route = route else { return }
-//        monitoringRegions = route.personsInfo.map({ info in
-//            let coordinate = info.coordinate
-//            let regionRadius: Double = 30
-//            let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: info.id)
-//            return region
-//        })
-//        locationService.startMonitoring(for: monitoringRegions)
+    func centerAnnotation(_ annotation: MKAnnotation) {
+        observers.forEach({ $0.value.centerAnnotation(annotation) })
     }
-    
-    private func removeRegions() {
-//        locationService.stopMonitoring()
-//        monitoringRegions = []
-//        visitedPersons = []
-//        viewedPersons = []
-    }
-    
 }
 
 extension MapService {

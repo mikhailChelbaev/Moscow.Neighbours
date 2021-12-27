@@ -21,6 +21,12 @@ class BaseTableView: UITableView {
         }
     }
     
+    weak var loadingDelegate: LoadingDelegate? {
+        didSet {
+            dataSourceImpl.loadingDelegate = loadingDelegate
+        }
+    }
+    
     private var dataSourceImpl: CustomTableViewDataSource = CustomTableViewDataSourceImpl()
     
     override init(frame: CGRect, style: UITableView.Style) {

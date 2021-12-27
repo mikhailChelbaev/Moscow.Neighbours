@@ -17,7 +17,8 @@ protocol RouteFinder {
 
 extension RouteFinder {
     
-    func findNearestCoordinate(from coordinate: CLLocationCoordinate2D, coordinates: [CLLocationCoordinate2D]) -> CLLocationCoordinate2D? {
+    func findNearestCoordinate(from coordinate: CLLocationCoordinate2D,
+                               coordinates: [CLLocationCoordinate2D]) -> CLLocationCoordinate2D? {
         var minValue: Double = .greatestFiniteMagnitude
         var nearestCoordinate: CLLocationCoordinate2D?
         for coord in coordinates {
@@ -51,7 +52,7 @@ extension RouteFinder {
 
 class NearestCoordinatesFinder: RouteFinder {
     
-    private let queue = DispatchQueue(label: "NearestCoordinatesFinder", qos: .background)
+    private let queue = DispatchQueue(label: "NearestCoordinatesFinder", qos: .userInitiated)
     
     func findRoute(from coordinate: CLLocationCoordinate2D,
                    coordinates: [CLLocationCoordinate2D]) async -> RouteCoordinates {

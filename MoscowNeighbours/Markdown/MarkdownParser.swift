@@ -5,7 +5,7 @@
 //  Created by Mikhail on 24.10.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol MarkdownParser {
     func parse(text: String) -> NSAttributedString
@@ -18,9 +18,12 @@ final class DefaultMarkdownParser: MarkdownParser {
     
     private var merger: MarkdownMerger = DefaultMarkdownMerger()
     
-    private var cache: [Int: NSAttributedString] = [:]
-    
+    private var cache: [UIUserInterfaceStyle : [Int: NSAttributedString]]
     private var withCache: Bool
+    
+    private var interfaceStyle: UIUserInterfaceStyle {
+        UITraitCollection.current.userInterfaceStyle
+    }
     
     var configurator: MarkdownConfigurator = .default {
         didSet {
@@ -31,6 +34,9 @@ final class DefaultMarkdownParser: MarkdownParser {
     init(configurator: MarkdownConfigurator = .default, withCache: Bool = true) {
         self.configurator = configurator
         self.withCache = withCache
+        
+        cache = [.dark: [:], .light: [:]]
+        
         merger.configurator = configurator
     }
     
@@ -39,7 +45,7 @@ final class DefaultMarkdownParser: MarkdownParser {
             return .init(string: "")
         }
         
-        if withCache, let cacheResult = cache[text.hash] {
+        if withCache, let cacheResult = cache[interfaceStyle]?[text.hash] {
             return cacheResult
         }
         
@@ -48,7 +54,7 @@ final class DefaultMarkdownParser: MarkdownParser {
         let strings: NSAttributedString = merger.merge(nodes: nodes)
         
         if withCache {
-            cache[text.hash] = strings
+            cache[interfaceStyle]?[text.hash] = strings
         }
         
         return strings

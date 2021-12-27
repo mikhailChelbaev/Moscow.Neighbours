@@ -35,5 +35,5 @@ extension LoadingStatus: Equatable {
 }
 
 protocol LoadingStatusProvider: AnyObject {
-    var status: LoadingStatus { get }
+    var status: LoadingStatus { set get }
 }

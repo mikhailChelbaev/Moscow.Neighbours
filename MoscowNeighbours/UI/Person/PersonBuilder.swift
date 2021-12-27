@@ -8,19 +8,22 @@
 import Foundation
 
 struct PersonStorage {
-    let personInfo: PersonInfo
-    let userState: UserState
+    let person: PersonViewModel
+    let personPresentationState: PersonPresentationState
+    let mapService: MapService
 }
 
 protocol PersonBuilder {
-    func buildPersonViewController(personInfo: PersonInfo,
-                                   userState: UserState) -> PersonViewController
+    func buildPersonViewController(person: PersonViewModel,
+                                   personPresentationState: PersonPresentationState) -> PersonViewController
 }
 
 extension Builder: PersonBuilder {
-    func buildPersonViewController(personInfo: PersonInfo,
-                                   userState: UserState) -> PersonViewController {
-        let storage = PersonStorage(personInfo: personInfo, userState: userState)
+    func buildPersonViewController(person: PersonViewModel,
+                                   personPresentationState: PersonPresentationState) -> PersonViewController {
+        let storage = PersonStorage(person: person,
+                                    personPresentationState: personPresentationState,
+                                    mapService: mapService)
         let presenter = PersonPresenter(storage: storage)
         let viewController = PersonViewController(eventHandler: presenter)
         presenter.viewController = viewController

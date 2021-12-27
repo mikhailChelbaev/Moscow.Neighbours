@@ -50,4 +50,16 @@ extension WeakRef: MapServiceOutput where T: MapServiceOutput {
     func removeOverlays(_ overlays: [MKOverlay]) {
         object?.removeOverlays(overlays)
     }
+    
+    func selectAnnotation(_ annotation: MKAnnotation) {
+        object?.selectAnnotation(annotation)
+    }
+    
+    func deselectAnnotation(_ annotation: MKAnnotation) {
+        object?.deselectAnnotation(annotation)
+    }
+    
+    func centerAnnotation(_ annotation: MKAnnotation) {
+        object?.centerAnnotation(annotation)
+    }
 }

@@ -8,7 +8,15 @@
 import Foundation
 
 class Builder {
-    let locationService: LocationService = .init()
-    lazy var mapService: MapService = .init(routeFinder: NearestCoordinatesFinder(),
-                                            locationService: locationService)
+    let locationService: LocationService
+    let mapService: MapService
+    let routePassingService: RoutePassingService
+    
+    init() {
+        locationService = .init()
+        mapService = .init(routeFinder: NearestCoordinatesFinder(),
+                           locationService: locationService)
+        routePassingService = .init(locationService: locationService,
+                                    notificationService: NotificationService())
+    }
 }

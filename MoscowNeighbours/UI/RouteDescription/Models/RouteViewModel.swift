@@ -12,27 +12,54 @@ class RouteViewModel {
         var config: MarkdownConfigurator = .default
         return DefaultMarkdownParser(configurator: config, withCache: false)
     }()
+    private let queue: DispatchQueue
     
-    let id: String
     let name: String
-    lazy var description: NSAttributedString = parser.parse(text: route.description)
+    var description: NSAttributedString
     let coverUrl: String?
     let routeInformation: String
-    let personsInfo: [PersonInfo]
+    var persons: [PersonViewModel]
     
-    private let route: Route
+    let route: Route
     
-    init(from route: Route) {
+    init(from route: Route) async {
         self.route = route
         
-        id = route.id
+        queue = DispatchQueue(label: "Route_MarkdownParserQueue", qos: .userInitiated, attributes: .concurrent)
+        
         name = route.name
+        description = NSAttributedString()
         coverUrl = route.coverUrl
         routeInformation = "\(route.distance) • \(route.duration)"
-        personsInfo = route.personsInfo
+        persons = []
+        
+        await withTaskGroup(of: PersonViewModel.self) { group in
+            for person in route.personsInfo {
+                group.addTask(priority: .userInitiated) {
+                    return await PersonViewModel(from: person)
+                }
+            }
+            
+            for await person in group {
+                persons.append(person)
+            }
+        }
+        
+        description = await parse(text: route.description)
     }
     
-    func update() {
-        description = parser.parse(text: route.description)
+    func update() async {
+        description = await parse(text: route.description)
+        for person in persons {
+            await person.update()
+        }
+    }
+    
+    func parse(text: String) async -> NSAttributedString {
+        await withCheckedContinuation { continuation in
+            queue.async {
+                continuation.resume(returning: self.parser.parse(text: text))
+            }
+        }
     }
 }

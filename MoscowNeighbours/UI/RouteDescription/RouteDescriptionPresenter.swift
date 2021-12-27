@@ -8,11 +8,11 @@
 import Foundation
 
 protocol RouteDescriptionEventHandler: AnyObject {
-    func getRoute() -> RouteViewModel
-    func onTraitCollectionDidChange()
+    func onViewDidLoad()
+    func onTraitCollectionDidChange(route: RouteViewModel?)
     func onBackButtonTap()
-    func onPersonCellTap(personInfo: PersonInfo)
-    func onBeginRouteButtonTap()
+    func onPersonCellTap(person: PersonViewModel)
+    func onBeginRouteButtonTap(route: RouteViewModel?)
 }
 
 class RouteDescriptionPresenter: RouteDescriptionEventHandler {
@@ -24,33 +24,55 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private let personBuilder: PersonBuilder
     private let routePassingBuilder: RoutePassingBuilder
     
-    private let route: Route
-    private var routeViewModel: RouteViewModel
+    private var route: Route
     
     private let mapService: MapService
+    
+    private let minimumFetchingDuration: TimeInterval = 1.0
+    private var startFetchingDate: Date = .init()
     
     // MARK: - Init
     
     init(storage: RouteDescriptionStorage) {
-        route = storage.route
-        routeViewModel = RouteViewModel(from: route)
-        
         personBuilder = storage.personBuilder
         routePassingBuilder = storage.routePassingBuilder
         
         mapService = storage.mapService
+        mapService.showRoute(storage.route)
         
-        mapService.showRoute(route)
+        route = storage.route
     }
     
     // MARK: - RouteDescriptionEventHandler methods
     
-    func getRoute() -> RouteViewModel {
-        return routeViewModel
+    func onViewDidLoad() {
+        Task {
+            viewController?.status = .loading
+            let routeViewModel = await RouteViewModel(from: route)
+            await setRoute(routeViewModel)
+        }
     }
     
-    func onTraitCollectionDidChange() {
-        routeViewModel.update()
+    @MainActor
+    private func setRoute(_ route: RouteViewModel) {
+        completeWithDelay {
+            self.viewController?.route = route
+            self.viewController?.status = .success
+        }
+    }
+    
+    func onTraitCollectionDidChange(route: RouteViewModel?) {
+        viewController?.status = .loading
+        Task {
+            await route?.update()
+            await setUpdatedRoute(route)
+        }
+    }
+    
+    @MainActor
+    private func setUpdatedRoute(_ route: RouteViewModel?) {
+        viewController?.route = route
+        viewController?.status = .success
         viewController?.reloadData()
     }
     
@@ -59,14 +81,27 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         viewController?.closeController(animated: true, completion: nil)
     }
     
-    func onPersonCellTap(personInfo: PersonInfo) {
-        let controller = personBuilder.buildPersonViewController(personInfo: personInfo, userState: .default)
+    func onPersonCellTap(person: PersonViewModel) {
+        mapService.selectAnnotation(person)
+        mapService.centerAnnotation(person)
+        let controller = personBuilder.buildPersonViewController(person: person,
+                                                                 personPresentationState: .shortDescription)
         viewController?.present(controller, state: .top)
     }
     
-    func onBeginRouteButtonTap() {
-        let controller = routePassingBuilder.buildRoutePassingViewController(route: routeViewModel)
-        viewController?.present(controller, state: .top, completion: nil)
+    func onBeginRouteButtonTap(route: RouteViewModel?) {
+        guard let route = route else {
+            return
+        }
+
+        let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
+        viewController?.present(controller, state: .middle, completion: nil)
     }
     
+    private func completeWithDelay(_ completion: Action?) {
+        let delay: TimeInterval = max(0, minimumFetchingDuration - Date().timeIntervalSince(startFetchingDate))
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            completion?()
+        }
+    }    
 }

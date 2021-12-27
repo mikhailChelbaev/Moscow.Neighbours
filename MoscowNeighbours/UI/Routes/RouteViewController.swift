@@ -44,10 +44,7 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     var showRouteCompletion: ((Route) -> Void)?
     
     var status: LoadingStatus = .loading {
-        didSet {
-            if oldValue != status { changeStateSize() }
-            tableView.reloadData()
-        }
+        didSet { update(oldValue: oldValue, newValue: status) }
     }
     
     // MARK: - private properties
@@ -98,7 +95,6 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
             }))
         }
         
-        changeStateSize()
         tableView.reloadData()
     }
     
@@ -156,9 +152,17 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
             value = 0.7 * (origin - top) / (bottom - top)
         }
     }
+    
+    private func update(oldValue: LoadingStatus,
+                        newValue: LoadingStatus) {
+        if oldValue != newValue {
+            changeStateSize()
+        }
+        tableView.reloadData()
+    }
 }
 
-// MARK: - protocol UITableViewDataSource
+// MARK: - protocol TableSuccessDataSource
 
 extension RouteViewController: TableSuccessDataSource {
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

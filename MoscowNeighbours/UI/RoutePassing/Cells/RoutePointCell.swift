@@ -12,7 +12,6 @@ final class RoutePointCell: CellView {
     enum State {
         case firstTime
         case review
-        case notVisited
     }
     
     let personNameLabel: UILabel = {
@@ -60,12 +59,12 @@ final class RoutePointCell: CellView {
     }
     
     func update(
-        personInfo: PersonInfo,
+        person: PersonViewModel,
         state: State,
         action: Button.Action?
     ) {
-        personNameLabel.text = personInfo.person.name
-        addressLabel.text = personInfo.place.address
+        personNameLabel.text = person.name
+        addressLabel.text = person.address
         
         switch state {
         case .firstTime:
@@ -80,12 +79,12 @@ final class RoutePointCell: CellView {
             button.isEnabled = true
             button.action = action
             button.setTitle("Посмотреть еще раз", for: .normal)
-        case .notVisited:
-            button.style = .custom(title: .label.withAlphaComponent(0.5), background: .grayBackground)
-            alertView.update(text: "Чтобы начать знакомство, подойдите ближе к локации", image: .exclamationMark)
-            button.isEnabled = false
-            button.action = nil
-            button.setTitle("Познакомиться с соседом", for: .normal)
+//        case .notVisited:
+//            button.style = .custom(title: .label.withAlphaComponent(0.5), background: .grayBackground)
+//            alertView.update(text: "Чтобы начать знакомство, подойдите ближе к локации", image: .exclamationMark)
+//            button.isEnabled = false
+//            button.action = nil
+//            button.setTitle("Познакомиться с соседом", for: .normal)
         }
     }
     

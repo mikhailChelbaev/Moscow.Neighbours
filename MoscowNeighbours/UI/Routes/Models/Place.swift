@@ -8,24 +8,8 @@
 import Foundation
 
 struct Place: Codable {
-    
     let id: String
-    
     let name: String
-    
     let description: String?
-    
-    let address: String
-    
-}
-
-extension Place {
-    
-    static var dummy: Place = .init(
-        id: "",
-        name: "",
-        description: "",
-        address: ""
-    )
-    
+    let address: String    
 }

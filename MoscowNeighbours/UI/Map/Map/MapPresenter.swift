@@ -33,10 +33,12 @@ class MapPresenter: MapEventHandler {
     private let personBuilder: PersonBuilder
     
     private var locationService: LocationService
-    private let notificationService: NotificationService
     private var mapService: MapService
+    private let routePassingService: RoutePassingService
     
     private var locationState: LocationState
+    
+    private var annotationSelectedProgrammatically = false
     
     // MARK: - Init
     
@@ -45,8 +47,8 @@ class MapPresenter: MapEventHandler {
         personBuilder = storage.personBuilder
         
         locationService = storage.locationService
-        notificationService = storage.notificationService
         mapService = storage.mapService
+        routePassingService = storage.routePassingService
         
         locationState = .showLocationAtFirstTime
         
@@ -72,13 +74,18 @@ class MapPresenter: MapEventHandler {
     }
     
     func didSelectAnnotation(_ view: MKAnnotationView) {
-        if let personInfo = view.annotation as? PersonInfo {
+        guard !annotationSelectedProgrammatically else {
+            annotationSelectedProgrammatically = false
+            return
+        }
+        
+        if let person = view.annotation as? PersonViewModel {
             let controller = viewController?.getTopController()
+            let state: PersonPresentationState = routePassingService.isPassingRoute ? .fullDescription : .shortDescription
             if let personController = controller as? PersonViewController {
-                personController.updatePerson(personInfo: personInfo)
+                personController.updatePerson(person: person, personPresentationState: state)
             } else {
-                let personViewController = personBuilder.buildPersonViewController(personInfo: personInfo,
-                                                                                       userState: .default)
+                let personViewController = personBuilder.buildPersonViewController(person: person, personPresentationState: state)
                 controller?.present(personViewController, state: .top, completion: nil)
             }
         } else {
@@ -86,6 +93,10 @@ class MapPresenter: MapEventHandler {
                 viewController?.zoomAnnotations(cluster.memberAnnotations)
             }
         }
+    }
+    
+    func centerAnnotation(_ annotation: MKAnnotation) {
+        viewController?.showPlaceOnMap(with: annotation.coordinate, animated: true, meters: 800)
     }
     
 }
@@ -111,39 +122,9 @@ extension MapPresenter: LocationServiceOutput {
         locationState = .default
     }
     
-    func didUpdateCurrentRegions(_ regions: [CLRegion]) {
-//        var personsInfo: [PersonInfo] = []
-//        for info in currentlySelectedRoute?.personsInfo ?? [] {
-//            for region in regions {
-//                if info.coordinate == (region as? CLCircularRegion)?.center {
-//                    personsInfo.append(info)
-//                }
-//            }
-//        }
-//        if currentlySelectedPerson != nil {
-//            personController.update()
-//        }
-//        routePassing.update()
-    }
+    func didUpdateCurrentRegions(_ regions: [CLRegion]) { }
     
-    func didEnterNewRegions(_ regions: [CLRegion]) {
-//        let personsInfo: [PersonInfo] = regions.compactMap { region in
-//            for info in currentlySelectedRoute?.personsInfo ?? [] {
-//                if info.coordinate == (region as? CLCircularRegion)?.center {
-//                    return info
-//                }
-//            }
-//            return nil
-//        }
-//        visitedPersons.append(contentsOf: personsInfo)
-//
-//        if let personInfo = personsInfo.first {
-//            routePassing.scrollToPerson(personInfo)
-//            notificationService.fireNotification(title: personInfo.person.name) { [weak self] in
-//                self?.showPerson(personInfo, state: .top)
-//            }
-//        }
-    }
+    func didEnterNewRegions(_ regions: [CLRegion]) { }
     
     func didChangeAuthorization() {
         locationState = .showLocationAtFirstTime
@@ -167,5 +148,14 @@ extension MapPresenter: MapServiceOutput {
     
     func removeOverlays(_ overlays: [MKOverlay]) {
         viewController?.removeOverlays(overlays)
+    }
+    
+    func selectAnnotation(_ annotation: MKAnnotation) {
+        annotationSelectedProgrammatically = true
+        viewController?.selectAnnotation(annotation)
+    }
+    
+    func deselectAnnotation(_ annotation: MKAnnotation) {
+        viewController?.deselectAnnotation(annotation)
     }
 }

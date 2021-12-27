@@ -8,10 +8,11 @@
 import UIKit
 
 protocol PersonEventHandler {
-    func getPersonInfo() -> PersonInfo
-    func getUserState() -> UserState
+    func getPersonInfo() -> PersonViewModel
+    func onTraitCollectionDidChange()
+    func getPersonPresentationState() -> PersonPresentationState
     func onBackButtonTap()
-    func onPersonUpdate(personInfo: PersonInfo)
+    func onPersonUpdate(person: PersonViewModel, personPresentationState: PersonPresentationState)
 }
 
 class PersonPresenter: PersonEventHandler {
@@ -20,32 +21,53 @@ class PersonPresenter: PersonEventHandler {
     
     weak var viewController: PersonView?
     
-    private let personInfo: PersonInfo
-    private let userState: UserState
+    private var person: PersonViewModel
+    private let personPresentationState: PersonPresentationState
+    
+    private let mapService: MapService
     
     // MARK: - Init
     
     init(storage: PersonStorage) {
-        personInfo = storage.personInfo
-        userState = storage.userState
+        person = storage.person
+        personPresentationState = storage.personPresentationState
+        mapService = storage.mapService
     }
     
     // MARK: - PersonEventHandler methods
     
-    func getPersonInfo() -> PersonInfo {
-        return personInfo
+    func getPersonInfo() -> PersonViewModel {
+        return person
     }
     
-    func getUserState() -> UserState {
-        return userState
+    func onTraitCollectionDidChange() {
+        viewController?.status = .loading
+        Task {
+            await person.update()
+            await setUpdatedPerson(person)
+        }
+    }
+    
+    @MainActor
+    private func setUpdatedPerson(_ person: PersonViewModel) {
+        viewController?.person = person
+        viewController?.status = .success
+        viewController?.reloadData()
+    }
+    
+    func getPersonPresentationState() -> PersonPresentationState {
+        return personPresentationState
     }
     
     func onBackButtonTap() {
+        mapService.deselectAnnotation(person)
         viewController?.closeController(animated: true, completion: nil)
     }
     
-    func onPersonUpdate(personInfo: PersonInfo) {
-        viewController?.personInfo = personInfo
+    func onPersonUpdate(person: PersonViewModel, personPresentationState: PersonPresentationState) {
+        self.person = person
+        viewController?.person = person
+        viewController?.personPresentationState = personPresentationState
         viewController?.reloadData()
     }
     

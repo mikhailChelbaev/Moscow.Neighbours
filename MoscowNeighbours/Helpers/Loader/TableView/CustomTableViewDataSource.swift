@@ -10,11 +10,13 @@ import UIKit
 protocol CustomTableViewDataSource: UITableViewDataSource, UITableViewDelegate {
     var statusProvider: LoadingStatusProvider? { set get }
     var successDataSource: TableSuccessDataSource? { set get }
+    var loadingDelegate: LoadingDelegate? { set get }
 }
 
 class CustomTableViewDataSourceImpl: NSObject {
     weak var statusProvider: LoadingStatusProvider?
     weak var successDataSource: TableSuccessDataSource?
+    weak var loadingDelegate: LoadingDelegate?
 }
 
 extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
@@ -101,8 +103,10 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         switch statusProvider.status {
         case .success:
             return successDataSource?.successTableView?(tableView, heightForRowAt: indexPath) ?? UITableView.automaticDimension
+        case .loading:
+            return loadingDelegate?.loadingTableView(tableView, heightForRowAt: indexPath) ?? UITableView.automaticDimension
         default:
-            return UITableView.automaticDimension//tableView.visibleSize.height
+            return UITableView.automaticDimension
         }
     }
     

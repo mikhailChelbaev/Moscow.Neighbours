@@ -74,7 +74,7 @@ final class PersonCell: CellView {
     
     var isFirst: Bool = false, isLast: Bool = false
     
-    var personInfo: PersonInfo? {
+    var person: PersonViewModel? {
         didSet { update() }
     }
     
@@ -149,15 +149,15 @@ final class PersonCell: CellView {
     }
     
     func update() {
-        guard let personInfo = personInfo else {
+        guard let person = person else {
             return
         }
         
-        personNameLabel.text = personInfo.person.name
-        addressLabel.text = personInfo.place.address
-        houseTitleLabel.text = personInfo.place.name
+        personNameLabel.text = person.name
+        addressLabel.text = person.address
+        houseTitleLabel.text = person.placeName
         routeLineImageView.image = drawImage(withBegining: !isFirst, withEnding: !isLast)
-        personAvatar.loadImage(personInfo.person.avatarUrl)
+        personAvatar.loadImage(person.avatarUrl)
     }
     
 }

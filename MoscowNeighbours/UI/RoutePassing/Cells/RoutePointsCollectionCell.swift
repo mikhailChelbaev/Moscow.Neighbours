@@ -42,7 +42,7 @@ final class RoutePointsCollectionCell: CellView {
     }()
     
     private var route: RouteViewModel?
-    private var buttonTapCallback: ((PersonInfo) -> Void)?
+    private var buttonTapCallback: ((PersonViewModel) -> Void)?
     private var indexDidChange: ((Int) -> Void)?
     
     override func setUpView() {
@@ -78,13 +78,13 @@ final class RoutePointsCollectionCell: CellView {
     
     func update(route: RouteViewModel,
                 currentIndex: Int,
-                buttonTapCallback: @escaping (PersonInfo) -> Void,
+                buttonTapCallback: @escaping (PersonViewModel) -> Void,
                 indexDidChange: @escaping (Int) -> Void) {
         self.route = route
         self.buttonTapCallback = buttonTapCallback
         self.indexDidChange = indexDidChange
         
-        indicator.numberOfPages = route.personsInfo.count
+        indicator.numberOfPages = route.persons.count
         
         collectionView.reloadData()
         
@@ -97,14 +97,14 @@ final class RoutePointsCollectionCell: CellView {
 extension RoutePointsCollectionCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return route?.personsInfo.count ?? 0
+        return route?.persons.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(RoutePointCell.self, for: indexPath)
-        var state: RoutePointCell.State = .notVisited
+        var state: RoutePointCell.State = .firstTime
         
-        guard let personInfo = route?.personsInfo[indexPath.item] else {
+        guard let person = route?.persons[indexPath.item] else {
             fatalError("There is no person info for index path: \(indexPath)")
         }
         
@@ -113,10 +113,10 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
 //        } else if mapPresenter?.visitedPersons.contains(personInfo) == true {
 //            state = .firstTime
 //        }
-        cell.view.update(personInfo: personInfo,
+        cell.view.update(person: person,
                          state: state,
                          action: { [weak self] _ in
-            self?.buttonTapCallback?(personInfo)
+            self?.buttonTapCallback?(person)
         })
         
         return cell

@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc protocol TableSuccessDataSource: AnyObject {
+@objc protocol TableSuccessDataSource: AnyObject {    
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     
@@ -26,3 +26,5 @@ import UIKit
     
     @objc optional func successScrollViewDidScroll(_ scrollView: UIScrollView)
 }
+
+

@@ -10,11 +10,6 @@ import MapKit
 import ARKit
 import UltraDrawerView
 
-enum UserState {
-    case passingRoute
-    case `default`
-}
-
 protocol MapView: UIViewController {
     func addOverlays(_ overlays: [MKOverlay])
     func showAnnotations(_ annotations: [MKAnnotation])
@@ -24,6 +19,8 @@ protocol MapView: UIViewController {
                         meters: CLLocationDegrees)
     func removeAnnotations(_ annotations: [MKAnnotation])
     func removeOverlays(_ overlays: [MKOverlay])
+    func selectAnnotation(_ annotation: MKAnnotation)
+    func deselectAnnotation(_ annotation: MKAnnotation)
 }
 
 final class MapViewController: UIViewController {
@@ -145,6 +142,7 @@ extension MapViewController: MapView {
                         animated: Bool,
                         meters: CLLocationDegrees) {
         let coordinateRegion = MKCoordinateRegion(center: coordinates, latitudinalMeters: meters, longitudinalMeters: meters)
+        
         let centerPoint = coordinateRegion.center
         
         var centerYOffset: Double = 0
@@ -154,9 +152,12 @@ extension MapViewController: MapView {
             centerYOffset = coordinateRegion.span.latitudeDelta * Double(middleInset) / Double(UIScreen.main.bounds.height)
         }
         
-        let centerPointOfNewRegion = CLLocationCoordinate2DMake(centerPoint.latitude - Double(centerYOffset), centerPoint.longitude)
-        let newCoordinateRegion = MKCoordinateRegion(center: centerPointOfNewRegion, span: coordinateRegion.span)
-        mapView.setRegion(newCoordinateRegion, animated: animated)
+        let centerPointOfNewRegion = CLLocationCoordinate2DMake(centerPoint.latitude - Double(centerYOffset),
+                                                                centerPoint.longitude)
+        let newCoordinateRegion = MKCoordinateRegion(center: centerPointOfNewRegion,
+                                                     span: coordinateRegion.span)
+        mapView.setRegion(newCoordinateRegion,
+                          animated: animated)
     }
     
     func zoomAnnotations(_ annotations: [MKAnnotation]) {
@@ -181,6 +182,14 @@ extension MapViewController: MapView {
     
     func removeOverlays(_ overlays: [MKOverlay]) {
         mapView.removeOverlays(overlays)
+    }
+    
+    func selectAnnotation(_ annotation: MKAnnotation) {
+        mapView.selectAnnotation(annotation, animated: true)
+    }
+    
+    func deselectAnnotation(_ annotation: MKAnnotation) {
+        mapView.deselectAnnotation(annotation, animated: true)
     }
 }
 

@@ -25,6 +25,9 @@
 		741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */; };
 		741D407E270655560051A518 /* PersonInfoBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407D270655560051A518 /* PersonInfoBaseCell.swift */; };
 		741EF4882708F28200F84986 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741EF4872708F28200F84986 /* NotificationService.swift */; };
+		741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE2FE2777A8A70065126A /* PersonPresentationState.swift */; };
+		741FE3032777A9350065126A /* RoutePassingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE3022777A9350065126A /* RoutePassingService.swift */; };
+		741FE3052777B4780065126A /* WeakRef+RoutePassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE3042777B4780065126A /* WeakRef+RoutePassing.swift */; };
 		7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2026BAAE290034533F /* RouteFinder.swift */; };
 		7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */; };
 		742283BE26BB29AB003F814E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742283BD26BB29AB003F814E /* Colors.xcassets */; };
@@ -102,6 +105,8 @@
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
 		74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB027746CB00087B7F6 /* MapPresenter.swift */; };
 		74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB427746D1A0087B7F6 /* MapBuilder.swift */; };
+		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
+		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
 		74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* RouteHeaderCell.swift */; };
 		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
@@ -146,6 +151,9 @@
 		741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+SetAttributedText.swift"; sourceTree = "<group>"; };
 		741D407D270655560051A518 /* PersonInfoBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoBaseCell.swift; sourceTree = "<group>"; };
 		741EF4872708F28200F84986 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		741FE2FE2777A8A70065126A /* PersonPresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresentationState.swift; sourceTree = "<group>"; };
+		741FE3022777A9350065126A /* RoutePassingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingService.swift; sourceTree = "<group>"; };
+		741FE3042777B4780065126A /* WeakRef+RoutePassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+RoutePassing.swift"; sourceTree = "<group>"; };
 		7420CE2026BAAE290034533F /* RouteFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFinder.swift; sourceTree = "<group>"; };
 		7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
 		742283BD26BB29AB003F814E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -223,6 +231,8 @@
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		74D7DFB027746CB00087B7F6 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		74D7DFB427746D1A0087B7F6 /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
+		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
+		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
 		74E729B426F2978200775D37 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
 		74EBC36726F503500002EEAE /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
@@ -343,6 +353,7 @@
 				744B6EC22774E348008BDF37 /* PersonPresenter.swift */,
 				744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */,
 				7419E1D326BEB0BF00E31BDD /* Cells */,
+				741FE3002777A8C20065126A /* Helpers */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -377,11 +388,27 @@
 		741EF4862708F27100F84986 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				741EF4872708F28200F84986 /* NotificationService.swift */,
 				748C94CD272FEFAF00202D47 /* LocationService.swift */,
 				743DE7252775D80500B5CED8 /* MapService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		741FE3002777A8C20065126A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				741FE2FE2777A8A70065126A /* PersonPresentationState.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		741FE3012777A9280065126A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				741EF4872708F28200F84986 /* NotificationService.swift */,
+				741FE3022777A9350065126A /* RoutePassingService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		7420CE1F26BAAE170034533F /* Helpers */ = {
@@ -475,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				744B6EC82775033D008BDF37 /* RouteViewModel.swift */,
+				74E146992779DB59007D00D1 /* PersonViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -507,7 +535,9 @@
 				746769EB26F922B400158FFC /* RoutePassingViewController.swift */,
 				743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */,
 				743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */,
+				741FE3042777B4780065126A /* WeakRef+RoutePassing.swift */,
 				747A0E5826FE1F0800EB1973 /* Cells */,
+				741FE3012777A9280065126A /* Service */,
 			);
 			path = RoutePassing;
 			sourceTree = "<group>";
@@ -694,6 +724,7 @@
 			isa = PBXGroup;
 			children = (
 				74F739F4272B50DE007C5450 /* TableSuccessDataSource.swift */,
+				74E146952779D174007D00D1 /* LoadingDelegate.swift */,
 				74F739F5272B50DE007C5450 /* CustomTableViewDataSource.swift */,
 				74F739F6272B50DE007C5450 /* BaseTableView.swift */,
 			);
@@ -860,6 +891,7 @@
 				743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */,
 				740B53612773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
+				74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */,
 				743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */,
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
 				748EE635270F913000301552 /* PersonInfo.swift in Sources */,
@@ -874,14 +906,17 @@
 				74F739FC272B50DE007C5450 /* TableSuccessDataSource.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
 				74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */,
+				741FE3032777A9350065126A /* RoutePassingService.swift in Sources */,
 				74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */,
 				74C5D8D326FD237700034432 /* Button.swift in Sources */,
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
 				741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */,
 				744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */,
+				741FE3052777B4780065126A /* WeakRef+RoutePassing.swift in Sources */,
 				74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */,
 				748EE63D270F917600301552 /* ShortInfo.swift in Sources */,
 				744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */,
+				74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */,
 				74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */,
 				74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */,
 				748EE633270F911800301552 /* Route.swift in Sources */,
@@ -891,6 +926,7 @@
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,
 				74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */,
+				741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */,

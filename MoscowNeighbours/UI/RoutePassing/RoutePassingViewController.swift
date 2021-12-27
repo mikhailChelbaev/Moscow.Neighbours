@@ -113,8 +113,9 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
     }
     
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
-        return BottomSheetConfiguration(topInset: .fromBottom(Layout.topInsetFromBottom, ignoresSafeArea: false),
-                                        availableStates: [.top, .bottom])
+        return BottomSheetConfiguration(middleInset: .fromBottom(Layout.topInsetFromBottom,
+                                                                 ignoresSafeArea: false),
+                                        availableStates: [.middle, .bottom])
     }
     
     override func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
@@ -144,8 +145,8 @@ extension RoutePassingViewController {
     func createRoutePointsCollectionCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RoutePointsCollectionCell.self, for: indexPath)
         cell.selectionStyle = .none
-        cell.view.update(route: route, currentIndex: selectedIndex) { [weak self] personInfo in
-            self?.eventHandler.onBecomeAcquaintedButtonTap(personInfo)
+        cell.view.update(route: route, currentIndex: selectedIndex) { [weak self] person in
+            self?.eventHandler.onBecomeAcquaintedButtonTap(person)
         } indexDidChange: { [weak self] newIndex in
             self?.eventHandler.onIndexChange(newIndex)
         }

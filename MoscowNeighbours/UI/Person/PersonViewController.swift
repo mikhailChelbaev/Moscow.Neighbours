@@ -7,13 +7,30 @@
 
 import UIKit
 
-protocol PersonView: BottomSheetViewController {
-    var personInfo: PersonInfo { set get }
+protocol PersonView: BottomSheetViewController, LoadingStatusProvider {
+    var person: PersonViewModel { set get }
+    var personPresentationState: PersonPresentationState { set get }
     
     func reloadData()
 }
 
 final class PersonViewController: BottomSheetViewController, PersonView {
+    
+    // MARK: - Sections
+    
+    enum ShortInfoSections: Int, CaseIterable {
+        case header
+        case description
+        case information
+        case alert
+    }
+    
+    enum FullInfoSections: Int, CaseIterable {
+        case header
+        case information
+        case description
+        case readyToGo
+    }
     
     // MARK: - Layout constraints
     
@@ -23,8 +40,8 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     // MARK: - UI
     
-    let tableView: UITableView = {
-        let tableView = UITableView()
+    let tableView: BaseTableView = {
+        let tableView = BaseTableView()
         tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
@@ -44,35 +61,25 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         return button
     }()
     
-    // MARK: - private properties
-    
-    private let parser: MarkdownParser = {
-        var config: MarkdownConfigurator = .default
-        let parser = DefaultMarkdownParser()
-        parser.configurator = config
-        return parser
-    }()
-    
     // MARK: - internal properties
     
     let eventHandler: PersonEventHandler
     
-    var personInfo: PersonInfo
-    let userState: UserState
+    var person: PersonViewModel
+    var personPresentationState: PersonPresentationState
+    
+    var status: LoadingStatus = .success {
+        didSet { reloadData() }
+    }
     
     // MARK: - init
     
     init(eventHandler: PersonEventHandler) {
         self.eventHandler = eventHandler
-        personInfo = eventHandler.getPersonInfo()
-        userState = eventHandler.getUserState()
+        person = eventHandler.getPersonInfo()
+        personPresentationState = eventHandler.getPersonPresentationState()
         
         super.init()
-        
-        tableView.dataSource = self
-        tableView.reloadData()
-        
-        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -84,7 +91,11 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        commonInit()
+        setUpViews()
+        setUpLayout()
+        setUpTableView()
+        
+        reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -94,12 +105,12 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        parser.clearCache()
-        tableView.reloadData()
+        eventHandler.onTraitCollectionDidChange()
     }
     
-    func updatePerson(personInfo: PersonInfo) {
-        eventHandler.onPersonUpdate(personInfo: personInfo)
+    func updatePerson(person: PersonViewModel,
+                      personPresentationState: PersonPresentationState) {
+        eventHandler.onPersonUpdate(person: person, personPresentationState: personPresentationState)
     }
     
     func reloadData() {
@@ -108,7 +119,18 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     // MARK: - private methods
     
-    private func commonInit() {
+    private func setUpLayout() {
+        bottomSheet.containerView.addSubview(backButton)
+        backButton.leading(20)
+        backButton.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
+        backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
+    }
+    
+    private func setUpTableView() {
+        tableView.successDataSource = self
+        tableView.statusProvider = self
+        tableView.loadingDelegate = self
+        
         tableView.register(PersonHeaderCell.self)
         tableView.register(TextCell.self)
         tableView.register(SeparatorCell.self)
@@ -116,28 +138,18 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         tableView.register(PersonInfoBaseCell.self)
         tableView.register(PersonInfoCell.self)
         tableView.register(ButtonCell.self)
-        
+    }
+    
+    private func setUpViews() {
         bottomSheet.containerView.backgroundColor = .clear
-        
-        bottomSheet.cornerRadius = PersonHeaderCell.Layout.cornerRadius
         bottomSheet.containerView.clipsToBounds = true
         tableView.layer.cornerRadius = PersonHeaderCell.Layout.cornerRadius
         tableView.clipsToBounds = true
         
-        bottomSheet.containerView.addSubview(backButton)
-        backButton.leading(20)
-        backButton.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
-        backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
+        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     }
     
-    @objc private func handleBackButton() {
-        eventHandler.onBackButtonTap()
-    }
-    
-    private func handleMarkdown(for text: String) -> NSAttributedString {
-        return parser.parse(text: text)
-    }
-    
+    // MARK: - Get Bottom Sheet Components
     
     override func getScrollView() -> UIScrollView {
         return tableView
@@ -149,88 +161,229 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration(topInset: .fromTop(0),
-                                        availableStates: [.top, .middle])
+                                        availableStates: [.top, .middle],
+                                        cornerRadius: PersonHeaderCell.Layout.cornerRadius)
+    }
+    
+    // MARK: - Handler back button
+    
+    @objc private func handleBackButton() {
+        eventHandler.onBackButtonTap()
     }
     
 }
 
-// MARK: - extension UITableViewDataSource
+// MARK: - protocol TableSuccessDataSource
 
-extension PersonViewController: UITableViewDataSource {
+extension PersonViewController: TableSuccessDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2//mapPresenter?.visitedPersons.contains(personInfo) == true ? 2 : 3
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return (mapPresenter?.visitedPersons.contains(personInfo) == true ? [1, 3] : [1, 3, 3])[section]
-        return [1, 3][section]
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeue(PersonHeaderCell.self, for: indexPath)
-            cell.view.update(name: personInfo.person.name,
-                             imageUrl: personInfo.person.avatarUrl)
-            cell.selectionStyle = .none
-            return cell
+    func successNumberOfSections(in tableView: UITableView) -> Int {
+        switch personPresentationState {
+        case .shortDescription:
+            return ShortInfoSections.allCases.count
+            
+        case .fullDescription:
+            return FullInfoSections.allCases.count
         }
-//        if mapPresenter?.visitedPersons.contains(personInfo) == true {
-        if true {
-            if indexPath.item == 0 {
-                let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
-                cell.view.info = personInfo.person.info
-                cell.selectionStyle = .none
-                return cell
-            } else if indexPath.item == 1 {
-                let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.view.update(text: nil, attributedText: handleMarkdown(for: personInfo.person.description), insets: .init(top: 0, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
-                cell.selectionStyle = .none
-                return cell
-            } else {
-                let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
-                cell.view.update(title: "Готов идти дальше", roundedCorners: true, height: 42) { [weak self] _ in
-                    self?.handleBackButton()
+    }
+    
+    func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch personPresentationState {
+        case .shortDescription:
+            guard let section = ShortInfoSections(rawValue: section) else {
+                fatalError("Section out of bounds")
+            }
+            
+            switch section {
+            case .header:
+                return 1
+                
+            case .description:
+                return 3
+                
+            case .information:
+                return 2
+                
+            case .alert:
+                return 1
+            }
+            
+        case .fullDescription:
+            guard let section = FullInfoSections(rawValue: section) else {
+                fatalError("Section out of bounds")
+            }
+            
+            switch section {
+            case .header:
+                return 1
+                
+            case .information:
+                return 1
+                
+            case .description:
+                return 1
+                
+            case .readyToGo:
+                return 1
+            }
+        }
+    }
+    
+    func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch personPresentationState {
+        case .shortDescription:
+            guard let section = ShortInfoSections(rawValue: indexPath.section) else {
+                fatalError("Section out of bounds")
+            }
+            
+            switch section {
+            case .header:
+                if indexPath.item == 0 {
+                    return createPersonHeaderCell(person: person, for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
                 }
-                return cell
+                
+            case .description:
+                if indexPath.item == 0 {
+                    return createTitleCell(text: "Информация:", for: indexPath)
+                     
+                } else if indexPath.item == 1 {
+                    return createDescriptionCell(text: person.shortDescription,
+                                                 for: indexPath)
+                    
+                } else if indexPath.item == 2 {
+                    return createSeparatorCell(for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
+                }
+                
+            case .information:
+                if indexPath.item == 0 {
+                    return createPersonInfoBaseCell(info: person.info, for: indexPath)
+                     
+                } else if indexPath.item == 1 {
+                    return createSeparatorCell(for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
+                }
+                
+            case .alert:
+                if indexPath.item == 0 {
+                    return createAlertCell(text: "Чтобы узнать о человеке больше, пройдите маршрут",
+                                           for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
+                }
             }
-        }
-        
-        if indexPath.section == 1 {
-            if indexPath.item == 0 {
-                let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.view.update(text: "Информация:", font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 20, left: 20, bottom: 5, right: 20))
-                cell.selectionStyle = .none
-                return cell
-            } else if indexPath.item == 1 {
-                let cell = tableView.dequeue(TextCell.self, for: indexPath)
-                cell.view.update(text: nil, attributedText: handleMarkdown(for: personInfo.person.shortDescription), insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
-                cell.selectionStyle = .none
-                return cell
-            } else {
-                let cell = tableView.dequeue(SeparatorCell.self, for: indexPath)
-                cell.selectionStyle = .none
-                return cell
+            
+        case .fullDescription:
+            guard let section = FullInfoSections(rawValue: indexPath.section) else {
+                fatalError("Section out of bounds")
             }
-        } else {
-            if indexPath.item == 0 {
-                let cell = tableView.dequeue(PersonInfoBaseCell.self, for: indexPath)
-                cell.view.info = personInfo.person.info
-                cell.selectionStyle = .none
-                return cell
-            } else if indexPath.item == 1 {
-                let cell = tableView.dequeue(SeparatorCell.self, for: indexPath)
-                cell.selectionStyle = .none
-                return cell
-            } else {
-                let cell = tableView.dequeue(AlertCell.self, for: indexPath)
-                let text: String = userState == .passingRoute ? "Чтобы начать знакомство, подойдите ближе к локации" : "Чтобы узнать о человеке больше, пройдите маршрут"
-                cell.view.update(text: text, containerInsets: .init(top: 20, left: 20, bottom: 20, right: 20))
-                cell.selectionStyle = .none
-                return cell
+            
+            switch section {
+            case .header:
+                if indexPath.item == 0 {
+                    return createPersonHeaderCell(person: person, for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
+                }
+                
+            case .information:
+                if indexPath.item == 0 {
+                    return createPersonInfoCell(info: person.info, for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
+                }
+                
+            case .description:
+                if indexPath.item == 0 {
+                    return createDescriptionCell(text: person.fullDescription,
+                                                 for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
+                }
+                
+            case .readyToGo:
+                if indexPath.item == 0 {
+                    return createButtonCell(text: "Готов идти дальше", action: { [weak self] _ in
+                        self?.handleBackButton()
+                    }, for: indexPath)
+                    
+                } else {
+                    fatalError("Row out of bounds")
+                }
             }
         }
     }
+}
+
+// MARK: - protocol LoadingDelegate
+
+extension PersonViewController: LoadingDelegate {
+    func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle)
+    }
+}
+
+// MARK: - Cells Creation
+
+extension PersonViewController {
+    private func createPersonHeaderCell(person: PersonViewModel, for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(PersonHeaderCell.self, for: indexPath)
+        cell.view.update(name: person.name,
+                         imageUrl: person.avatarUrl)
+        return cell
+    }
     
+    private func createTitleCell(text: String, for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(TextCell.self, for: indexPath)
+        cell.view.update(text: text, font: .mainFont(ofSize: 24, weight: .bold), insets: .init(top: 20, left: 20, bottom: 5, right: 20))
+        return cell
+    }
+    
+    private func createDescriptionCell(text: NSAttributedString, for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(TextCell.self, for: indexPath)
+        cell.view.update(text: nil, attributedText: text, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+        return cell
+    }
+    
+    private func createSeparatorCell(for indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeue(SeparatorCell.self, for: indexPath)
+    }
+    
+    private func createPersonInfoBaseCell(info: [ShortInfo], for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(PersonInfoBaseCell.self, for: indexPath)
+        cell.view.info = info
+        return cell
+    }
+    
+    private func createAlertCell(text: String, for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(AlertCell.self, for: indexPath)
+        cell.view.update(text: text, containerInsets: .init(top: 20, left: 20, bottom: 20, right: 20))
+        return cell
+    }
+    
+    private func createPersonInfoCell(info: [ShortInfo], for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
+        cell.view.info = info
+        return cell
+    }
+    
+    private func createButtonCell(text: String,
+                                  action: Button.Action?,
+                                  for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
+        cell.view.update(title: text, roundedCorners: true, height: 42, action: action)
+        return cell
+    }
 }
 

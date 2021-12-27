@@ -12,8 +12,8 @@ struct MapStorage {
     let personBuilder: PersonBuilder
     
     let locationService: LocationService
-    let notificationService: NotificationService
     let mapService: MapService
+    let routePassingService: RoutePassingService
 }
 
 protocol MapBuilder {
@@ -32,7 +32,7 @@ extension Builder: MapBuilder {
         return MapStorage(routesBuilder: self,
                           personBuilder: self,
                           locationService: locationService,
-                          notificationService: NotificationService(),
-                          mapService: mapService)
+                          mapService: mapService,
+                          routePassingService: routePassingService)
     }
 }

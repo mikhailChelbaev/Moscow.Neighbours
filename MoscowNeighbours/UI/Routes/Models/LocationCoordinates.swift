@@ -8,18 +8,6 @@
 import Foundation
 
 struct LocationCoordinates: Codable {
-    
     let latitude: Double
-    
-    let longitude: Double
-    
-}
-
-extension LocationCoordinates {
-    
-    static var dummy: LocationCoordinates = .init(
-        latitude: 0,
-        longitude: 0
-    )
-    
+    let longitude: Double    
 }

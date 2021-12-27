@@ -8,10 +8,10 @@
 import UIKit
 import UltraDrawerView
 
-protocol RouteDescriptionView: BottomSheetViewController {
-    var route: RouteViewModel { set get }
+protocol RouteDescriptionView: BottomSheetViewController, LoadingStatusProvider {
+    var route: RouteViewModel? { set get }
     
-    func reloadData()
+    @MainActor func reloadData()
 }
 
 final class RouteDescriptionViewController: BottomSheetViewController, RouteDescriptionView {
@@ -32,8 +32,8 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     // MARK: - UI
     
-    let tableView: UITableView = {
-        let tableView = UITableView()
+    let tableView: BaseTableView = {
+        let tableView = BaseTableView()
         tableView.backgroundColor = .background
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
@@ -54,22 +54,20 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     // MARK: - Internal properties
     
-    var route: RouteViewModel
+    var route: RouteViewModel?
     
     let eventHandler: RouteDescriptionEventHandler
+    
+    var status: LoadingStatus = .loading {
+        didSet { reloadData() }
+    }
     
     // MARK: - init
     
     init(eventHandler: RouteDescriptionEventHandler) {
         self.eventHandler = eventHandler
-        self.route = eventHandler.getRoute()
         
         super.init()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -85,7 +83,7 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
         setUpLayout()
         setUpTableView()
         
-        reloadData()
+        eventHandler.onViewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
@@ -95,7 +93,7 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        eventHandler.onTraitCollectionDidChange()
+        eventHandler.onTraitCollectionDidChange(route: route)
     }
     
     // MARK: - RouteDescriptionView
@@ -128,6 +126,8 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
         
         tableView.layer.cornerRadius = RouteHeaderCell.Layout.cornerRadius
         tableView.clipsToBounds = true
+        
+        backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     }
     
     private func setUpLayout() {
@@ -138,6 +138,10 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     }
     
     private func setUpTableView() {
+        tableView.successDataSource = self
+        tableView.loadingDelegate = self
+        tableView.statusProvider = self
+        
         tableView.register(RouteHeaderCell.self)
         tableView.register(TextCell.self)
         tableView.register(PersonCell.self)
@@ -152,15 +156,15 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
 }
 
-// MARK: - protocol UITableViewDataSource
+// MARK: - protocol TableSuccessDataSource
 
-extension RouteDescriptionViewController: UITableViewDataSource {
+extension RouteDescriptionViewController: TableSuccessDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func successNumberOfSections(in tableView: UITableView) -> Int {
         Sections.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = Sections(rawValue: section) else {
             fatalError("Section out of bounds")
         }
@@ -173,11 +177,11 @@ extension RouteDescriptionViewController: UITableViewDataSource {
             return 3
             
         case .persons:
-            return route.personsInfo.count + 1
+            return (route?.persons.count ?? 0) + 1
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = Sections(rawValue: indexPath.section) else {
             fatalError("Section out of bounds")
         }
@@ -207,19 +211,25 @@ extension RouteDescriptionViewController: UITableViewDataSource {
         }
     }
     
-}
-
-// MARK: - protocol UITableViewDelegate
-
-extension RouteDescriptionViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let section = Sections(rawValue: indexPath.section) else {
             fatalError("Section out of bounds")
         }
+        guard let persons = route?.persons else {
+            return
+        }
         
         if case .persons = section, indexPath.item > 0 {
-            eventHandler.onPersonCellTap(personInfo: route.personsInfo[indexPath.item - 1])
+            eventHandler.onPersonCellTap(person: persons[indexPath.item - 1])
         }
+    }
+}
+
+// MARK: - protocol LoadingDelegate
+
+extension RouteDescriptionViewController: LoadingDelegate {
+    func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle)
     }
 }
 
@@ -231,7 +241,7 @@ extension RouteDescriptionViewController {
         cell.view.route = route
         cell.view.beginRouteAction = { [weak self] in
             guard let `self` = self else { return }
-            self.eventHandler.onBeginRouteButtonTap()
+            self.eventHandler.onBeginRouteButtonTap(route: self.route)
         }
         cell.selectionStyle = .none
         return cell
@@ -246,7 +256,7 @@ extension RouteDescriptionViewController {
     
     private func createRouteDescriptionCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(TextCell.self, for: indexPath)
-        cell.view.update(text: nil, attributedText: route.description, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
+        cell.view.update(text: nil, attributedText: route?.description, insets: .init(top: 5, left: 20, bottom: 20, right: 20), lineHeightMultiple: 1.11)
         cell.selectionStyle = .none
         return cell
     }
@@ -258,13 +268,17 @@ extension RouteDescriptionViewController {
     }
     
     private func createPersonCell(for indexPath: IndexPath) -> UITableViewCell {
+        guard let persons = route?.persons else {
+            return UITableViewCell()
+        }
+        
         let cell = tableView.dequeue(PersonCell.self, for: indexPath)
         let index = indexPath.item - 1
         
         cell.view.isFirst = index == 0
-        cell.view.isLast = index == route.personsInfo.count - 1
+        cell.view.isLast = index == persons.count - 1
         // do not change order
-        cell.view.personInfo = route.personsInfo[index]
+        cell.view.person = persons[index]
         
         cell.selectionStyle = .none
         return cell
