@@ -42,9 +42,10 @@ class PersonPresenter: PersonEventHandler {
     
     func onTraitCollectionDidChange() {
         viewController?.status = .loading
-        Task {
-            await person.update()
-            await setUpdatedPerson(person)
+        Task.detached { [weak self] in
+            guard let self = self else { return }
+            await self.person.update()
+            await self.setUpdatedPerson(self.person)
         }
     }
     

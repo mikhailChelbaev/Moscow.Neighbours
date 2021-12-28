@@ -56,7 +56,8 @@ class RouteViewModel {
     }
     
     func parse(text: String) async -> NSAttributedString {
-        await withCheckedContinuation { continuation in
+        await withCheckedContinuation { [weak self] continuation in
+            guard let self = self else { return }
             queue.async {
                 continuation.resume(returning: self.parser.parse(text: text))
             }

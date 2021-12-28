@@ -28,6 +28,8 @@ class MapService: ObservableService {
     private var annotations: [MKAnnotation] = []
     private var overlays: [MKOverlay] = []
     
+    private var isRouteVisible: Bool = false
+    
     var observers: [String : MapServiceOutput] = [:]
     
     init(routeFinder: RouteFinder,
@@ -37,6 +39,8 @@ class MapService: ObservableService {
     }
     
     @MainActor func showRoute(_ route: RouteViewModel) {
+        isRouteVisible = true
+        
         // clear map
         for observer in observers {
             observer.value.removeAnnotations(annotations)
@@ -46,15 +50,22 @@ class MapService: ObservableService {
         annotations = route.persons
         observers.forEach({ $1.showAnnotations(annotations) })
         // draw route overlay
-        Task {
-            overlays = await getOverlays(annotations: annotations)
-            for observer in observers {
-                observer.value.addOverlays(overlays)
+        Task.detached { [weak self] in
+            guard let self = self else { return }
+            self.overlays = await self.getOverlays(annotations: self.annotations)
+            
+            // check that route was not hidden
+            guard self.isRouteVisible else { return }
+            
+            for observer in self.observers {
+                await observer.value.addOverlays(self.overlays)
             }
         }
     }
     
     func hideRoute() {
+        isRouteVisible = false
+        
         // remove annotations
         observers.forEach({ $0.value.removeAnnotations(annotations) })
         annotations = []

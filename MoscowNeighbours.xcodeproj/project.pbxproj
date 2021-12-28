@@ -334,6 +334,7 @@
 				74D4AB5826AF3F16009CAD3A /* RouteDescription */,
 				7404A61226B8873500524453 /* Person */,
 				746769EA26F9229900158FFC /* RoutePassing */,
+				74C72A4A277BB4F700B73560 /* Profile */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -653,6 +654,13 @@
 				746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */,
 			);
 			path = Collections;
+			sourceTree = "<group>";
+		};
+		74C72A4A277BB4F700B73560 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		74D4AB5726AF3E92009CAD3A /* Map */ = {
@@ -1075,7 +1083,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1098,7 +1106,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
