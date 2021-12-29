@@ -10,6 +10,7 @@ import Foundation
 struct MapStorage {
     let routesBuilder: RoutesBuilder
     let personBuilder: PersonBuilder
+    let menuBuilder: MenuBuilder
     
     let locationService: LocationService
     let mapService: MapService
@@ -31,6 +32,7 @@ extension Builder: MapBuilder {
     private func makeStorage() -> MapStorage {
         return MapStorage(routesBuilder: self,
                           personBuilder: self,
+                          menuBuilder: self,
                           locationService: locationService,
                           mapService: mapService,
                           routePassingService: routePassingService)

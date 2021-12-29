@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "menu.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "пастернак.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

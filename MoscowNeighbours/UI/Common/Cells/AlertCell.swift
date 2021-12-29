@@ -14,7 +14,7 @@ final class AlertCell: CellView {
         case checkmark = "checkmark.circle"
         
         var value: UIImage? {
-            sfSymbol(rawValue, tintColor: .inversedBackground)
+            sfSymbol(rawValue, tintColor: .reversedBackground)
         }
     }
     

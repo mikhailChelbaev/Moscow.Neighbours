@@ -9,8 +9,6 @@ import UIKit
 
 final class Button: UIButton {
     
-    typealias Action = (UIButton) -> Void
-    
     enum Style {
         case filled
         case tinted
@@ -57,7 +55,7 @@ final class Button: UIButton {
     private func setUpGestureRecognizer() {
         let longPressRecognizer: UILongPressGestureRecognizer = .init()
         longPressRecognizer.minimumPressDuration = 0
-        longPressRecognizer.addTarget(self, action: #selector(handleAnimation(_:)))
+        longPressRecognizer.addTarget(self, action: #selector(handleGesture(_:)))
         addGestureRecognizer(longPressRecognizer)
     }
     
@@ -81,42 +79,59 @@ final class Button: UIButton {
         }
     }
     
-    @objc private func handleAnimation(_ sender: UIGestureRecognizer) {
-        UIView.animate(withDuration: 0.1) {
-            switch sender.state {
-            case .began:
-                self.animate(for: .began)
-            case .ended:
-                let location = sender.location(in: self)
-                self.animate(for: .ended, completion: { _ in
-                    if location.x >= 0 &&
-                        location.x <= self.bounds.width &&
-                        location.y >= 0 &&
-                        location.y <= self.bounds.height {
-                        self.action?(self)
-                    }
+    private var isPerformingAnimation: Bool = false
+    private var nextAnimationBlock: (() -> Void)?
+    
+    // MARK: - handle touches
+    @objc private func handleGesture(_ recognizer: UILongPressGestureRecognizer) {
+        let location = recognizer.location(in: self)
+        if recognizer.state == .began {
+            let animationBlock = { [weak self] in
+                guard let self = self else { return }
+                UIView.animate(withDuration: self.animationDuration, delay: 0, options: [], animations: {
+                    self.isPerformingAnimation = true
+                    self.transform = CGAffineTransform(scaleX: self.scale, y: self.scale)
+                }) { _ in
+                    self.isPerformingAnimation = false
+                    self.nextAnimationBlock?()
+                    self.nextAnimationBlock = nil
+                }
+            }
+            
+            if isPerformingAnimation {
+                nextAnimationBlock = animationBlock
+            } else {
+                animationBlock()
+            }
+            
+        } else if recognizer.state == .ended {
+            let animationBlock = { [weak self] in
+                guard let self = self else { return }
+                UIView.animate(withDuration: self.animationDuration, delay: 0, options: [], animations: {
+                    self.isPerformingAnimation = true
+                    self.transform = .identity
+                }, completion: { _ in
+                    self.animationCompletion(for: location)
+                    self.isPerformingAnimation = false
+                    self.nextAnimationBlock?()
+                    self.nextAnimationBlock = nil
                 })
-            case .cancelled:
-                self.transform = .identity
-            default:
-                break
+            }
+            
+            if isPerformingAnimation {
+                nextAnimationBlock = animationBlock
+            } else {
+                animationBlock()
             }
         }
     }
     
-    // MARK: - touches animation
-    
-    private func animate(for state: UIGestureRecognizer.State, completion: Action? = nil) {
-        if state == .began {
-            UIView.animate(withDuration: animationDuration, delay: 0, options: [], animations: {
-                self.transform = CGAffineTransform(scaleX: self.scale, y: self.scale)
-            })
-        } else if state == .ended {
-            UIView.animate(withDuration: animationDuration, delay: 0, options: [], animations: {
-                self.transform = .identity
-            }, completion: { _ in
-                completion?(self)
-            })
+    private func animationCompletion(for location: CGPoint) {
+        if location.x >= 0 &&
+            location.x <= bounds.width &&
+            location.y >= 0 &&
+            location.y <= bounds.height {
+            self.action?()
         }
     }
     

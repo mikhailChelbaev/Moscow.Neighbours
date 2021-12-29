@@ -104,9 +104,9 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
     }
     
     override func getHeaderView() -> UIView? {
-        headerView.update { [weak self] _ in
+        headerView.update { [weak self] in
             self?.eventHandler.onEndRouteButtonTap()
-        } arrowUpButtonAction: { [weak self] _ in
+        } arrowUpButtonAction: { [weak self] in
             self?.eventHandler.onArrowUpButtonTap()
         }
         return headerView

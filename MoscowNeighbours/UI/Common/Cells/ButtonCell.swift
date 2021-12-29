@@ -25,7 +25,7 @@ final class ButtonCell: CellView {
         color: UIColor = .projectRed,
         roundedCorners: Bool = true,
         height: CGFloat = 48,
-        action: Button.Action?
+        action: Action?
     ) {
         button.setTitle(title, for: .normal)
         buttonConstraints?.updateInsets(insets)

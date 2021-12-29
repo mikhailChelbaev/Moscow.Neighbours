@@ -160,12 +160,12 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
         }
         
         let states = bottomSheet.availableStates.subtracting([.dismissed])
-        let heights: [CGFloat] = states.compactMap({ bottomSheet.origin(for: $0) }).sorted(by: { $0 > $1 })
+        let heights: [CGFloat] = states.compactMap({ bottomSheet.origin(for: $0) }).sorted(by: { $0 < $1 })
     
         guard heights.count > 1 else { return }
         
         let top = heights.first!
         let bottom = heights.last!
-        value = 0.7 * (origin - top) / (bottom - top)
+        value = 0.7 * (origin - bottom) / (top - bottom)
     }
 }

@@ -29,7 +29,7 @@ final class EndRouteButtonView: CellView {
     
     let         arrowUpButton: Button = {
         let button = Button()
-        button.setImage(sfSymbol("arrow.up", tintColor: .inversedBackground), for: .normal)
+        button.setImage(sfSymbol("arrow.up", tintColor: .reversedBackground), for: .normal)
         button.contentEdgeInsets = .zero
         button.layer.cornerRadius = Settings.buttonHeight / 2
         button.backgroundColor = .background
@@ -52,8 +52,8 @@ final class EndRouteButtonView: CellView {
         sendSubviewToBack(        arrowUpButton)
     }
     
-    func update(endRouteAction: Button.Action?,
-                arrowUpButtonAction: Button.Action?) {
+    func update(endRouteAction: Action?,
+                arrowUpButtonAction: Action?) {
         endRouteButton.action = endRouteAction
         arrowUpButton.action = arrowUpButtonAction
     }

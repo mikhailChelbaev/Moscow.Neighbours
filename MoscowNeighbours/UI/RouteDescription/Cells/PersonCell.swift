@@ -35,7 +35,7 @@ final class PersonCell: CellView {
     
     let personContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .inversedBackground
+        view.backgroundColor = .reversedBackground
         view.layer.cornerRadius = 18
         return view
     }()

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "fire.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "тютчев.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

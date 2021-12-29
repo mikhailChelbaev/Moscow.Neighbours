@@ -40,6 +40,9 @@
 		74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */; };
 		74346FB826F3E24D0060357A /* helveticaneuecyr-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */; };
 		74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */; };
+		743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743C3ABC277CF85800D4CB1C /* AuthorizationViewController.swift */; };
+		743C3ABF277CF9A800D4CB1C /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743C3ABE277CF9A800D4CB1C /* AuthorizationPresenter.swift */; };
+		743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743C3AC0277CF9B300D4CB1C /* AuthorizationBuilder.swift */; };
 		743DE7262775D80500B5CED8 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE7252775D80500B5CED8 /* MapService.swift */; };
 		743DE7282776097100B5CED8 /* ObservableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE7272776097100B5CED8 /* ObservableService.swift */; };
 		743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */; };
@@ -91,6 +94,8 @@
 		74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F81276F57A20096AA77 /* RoutesPresenter.swift */; };
 		74967F89276F5A300096AA77 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F88276F5A300096AA77 /* WeakRef.swift */; };
 		74967F8B276F5A4E0096AA77 /* WeakRef+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F8A276F5A4E0096AA77 /* WeakRef+Routes.swift */; };
+		7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8C9277C57C700BBCF6A /* MenuItemCell.swift */; };
+		7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
@@ -99,6 +104,10 @@
 		74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A2B2725EFF90066C43E /* String+Subscript.swift */; };
 		74C5D8D326FD237700034432 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C5D8D226FD237700034432 /* Button.swift */; };
 		74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6CFC926BF1E0D00104457 /* ButtonCell.swift */; };
+		74C72A4D277BBC1800B73560 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A4C277BBC1800B73560 /* MenuViewController.swift */; };
+		74C72A4F277BBC1F00B73560 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A4E277BBC1F00B73560 /* MenuPresenter.swift */; };
+		74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A50277BBC2500B73560 /* MenuBuilder.swift */; };
+		74C72A54277BC17D00B73560 /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A53277BC17D00B73560 /* MenuHeaderView.swift */; };
 		74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */; };
 		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
@@ -166,6 +175,9 @@
 		74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bold.ttf"; sourceTree = "<group>"; };
 		74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-medium.ttf"; sourceTree = "<group>"; };
 		74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Annotations.swift"; sourceTree = "<group>"; };
+		743C3ABC277CF85800D4CB1C /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		743C3ABE277CF9A800D4CB1C /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
+		743C3AC0277CF9B300D4CB1C /* AuthorizationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationBuilder.swift; sourceTree = "<group>"; };
 		743DE7252775D80500B5CED8 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
 		743DE7272776097100B5CED8 /* ObservableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableService.swift; sourceTree = "<group>"; };
 		743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Map.swift"; sourceTree = "<group>"; };
@@ -217,6 +229,8 @@
 		74967F88276F5A300096AA77 /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
 		74967F8A276F5A4E0096AA77 /* WeakRef+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Routes.swift"; sourceTree = "<group>"; };
 		7498640226C0188300AF4E0E /* point.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = point.gpx; sourceTree = "<group>"; };
+		7499D8C9277C57C700BBCF6A /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
+		7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdvantagesCell.swift; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
@@ -225,6 +239,10 @@
 		74C51A2B2725EFF90066C43E /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
 		74C5D8D226FD237700034432 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		74C6CFC926BF1E0D00104457 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		74C72A4C277BBC1800B73560 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		74C72A4E277BBC1F00B73560 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
+		74C72A50277BBC2500B73560 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
+		74C72A53277BC17D00B73560 /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConfigurator.swift; sourceTree = "<group>"; };
 		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
@@ -334,6 +352,8 @@
 				74D4AB5826AF3F16009CAD3A /* RouteDescription */,
 				7404A61226B8873500524453 /* Person */,
 				746769EA26F9229900158FFC /* RoutePassing */,
+				74C72A4B277BBC0800B73560 /* Menu */,
+				743C3ABB277CF84500D4CB1C /* Authorization */,
 				74C72A4A277BB4F700B73560 /* Profile */,
 			);
 			path = UI;
@@ -488,6 +508,16 @@
 				742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		743C3ABB277CF84500D4CB1C /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				743C3ABC277CF85800D4CB1C /* AuthorizationViewController.swift */,
+				743C3ABE277CF9A800D4CB1C /* AuthorizationPresenter.swift */,
+				743C3AC0277CF9B300D4CB1C /* AuthorizationBuilder.swift */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
@@ -661,6 +691,27 @@
 			children = (
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		74C72A4B277BBC0800B73560 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				74C72A4C277BBC1800B73560 /* MenuViewController.swift */,
+				74C72A4E277BBC1F00B73560 /* MenuPresenter.swift */,
+				74C72A50277BBC2500B73560 /* MenuBuilder.swift */,
+				74C72A52277BC17000B73560 /* Cells */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		74C72A52277BC17000B73560 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74C72A53277BC17D00B73560 /* MenuHeaderView.swift */,
+				7499D8C9277C57C700BBCF6A /* MenuItemCell.swift */,
+				7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		74D4AB5726AF3E92009CAD3A /* Map */ = {
@@ -842,11 +893,14 @@
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
 				747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */,
 				7485E3792709BD52008DAB99 /* PersonInfoCell.swift in Sources */,
+				74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */,
 				74F73A01272B50DE007C5450 /* CustomCollectionViewDataSource.swift in Sources */,
 				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,
 				748EE639270F915C00301552 /* Place.swift in Sources */,
+				74C72A4F277BBC1F00B73560 /* MenuPresenter.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
+				7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */,
 				7404A61126B87FAF00524453 /* TextCell.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
@@ -856,6 +910,7 @@
 				74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */,
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
+				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
 				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
 				7415479326B08C8A006931DC /* PersonCell.swift in Sources */,
@@ -866,6 +921,7 @@
 				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
 				74F739FF272B50DE007C5450 /* BaseCollectionView.swift in Sources */,
 				746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */,
+				7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
 				74967F78276F554D0096AA77 /* RequestSender.swift in Sources */,
 				748EE63B270F916800301552 /* Person.swift in Sources */,
@@ -886,6 +942,7 @@
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
 				74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */,
+				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
@@ -903,6 +960,7 @@
 				743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */,
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
 				748EE635270F913000301552 /* PersonInfo.swift in Sources */,
+				74C72A54277BC17D00B73560 /* MenuHeaderView.swift in Sources */,
 				743DE7262775D80500B5CED8 /* MapService.swift in Sources */,
 				743DE7282776097100B5CED8 /* ObservableService.swift in Sources */,
 				740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */,
@@ -915,6 +973,7 @@
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
 				74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */,
 				741FE3032777A9350065126A /* RoutePassingService.swift in Sources */,
+				74C72A4D277BBC1800B73560 /* MenuViewController.swift in Sources */,
 				74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */,
 				74C5D8D326FD237700034432 /* Button.swift in Sources */,
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
@@ -926,6 +985,7 @@
 				744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */,
 				74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */,
 				74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */,
+				743C3ABF277CF9A800D4CB1C /* AuthorizationPresenter.swift in Sources */,
 				74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */,
 				748EE633270F911800301552 /* Route.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,

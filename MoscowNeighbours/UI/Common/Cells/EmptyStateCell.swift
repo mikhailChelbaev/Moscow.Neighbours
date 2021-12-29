@@ -97,7 +97,7 @@ final class EmptyStateCell: CellView {
         subtitleLabel.text = data.subtitle
         imageView.image = data.image
         button.setTitle(data.buttonTitle, for: .normal)
-        button.action = { _ in
+        button.action = { 
             data.buttonAction?()
         }
     }

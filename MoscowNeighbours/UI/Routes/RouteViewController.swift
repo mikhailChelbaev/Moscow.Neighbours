@@ -147,9 +147,9 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     
         if bottomSheet.availableStates.contains(.top) &&
             bottomSheet.availableStates.contains(.middle) {
-            let bottom = bottomSheet.origin(for: .top)
-            let top = bottomSheet.origin(for: .middle)
-            value = 0.7 * (origin - top) / (bottom - top)
+            let top = bottomSheet.origin(for: .top)
+            let bottom = bottomSheet.origin(for: .middle)
+            value = 0.7 * (origin - bottom) / (top - bottom)
         }
     }
     

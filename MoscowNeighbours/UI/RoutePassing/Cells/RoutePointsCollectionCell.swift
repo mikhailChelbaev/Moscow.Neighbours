@@ -115,7 +115,7 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
 //        }
         cell.view.update(person: person,
                          state: state,
-                         action: { [weak self] _ in
+                         action: { [weak self] in
             self?.buttonTapCallback?(person)
         })
         

@@ -13,7 +13,7 @@ extension UIColor {
     
     static let background: UIColor = .init(named: "background")!
     
-    static let inversedBackground: UIColor = .init(named: "inversedBackground")!
+    static let reversedBackground: UIColor = .init(named: "inversedBackground")!
     
     static let reversedLabel: UIColor = .init(named: "reversedLabel")!
     

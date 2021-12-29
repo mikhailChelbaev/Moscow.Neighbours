@@ -61,7 +61,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         return button
     }()
     
-    // MARK: - internal properties
+    // MARK: - Internal properties
     
     let eventHandler: PersonEventHandler
     
@@ -72,7 +72,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         didSet { reloadData() }
     }
     
-    // MARK: - init
+    // MARK: - Init
     
     init(eventHandler: PersonEventHandler) {
         self.eventHandler = eventHandler
@@ -86,7 +86,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - internal methods
+    // MARK: - Internal methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +117,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         tableView.reloadData()
     }
     
-    // MARK: - private methods
+    // MARK: - Private methods
     
     private func setUpLayout() {
         bottomSheet.containerView.addSubview(backButton)
@@ -314,7 +314,7 @@ extension PersonViewController: TableSuccessDataSource {
                 
             case .readyToGo:
                 if indexPath.item == 0 {
-                    return createButtonCell(text: "Готов идти дальше", action: { [weak self] _ in
+                    return createButtonCell(text: "Готов идти дальше", action: { [weak self] in
                         self?.handleBackButton()
                     }, for: indexPath)
                     
@@ -379,7 +379,7 @@ extension PersonViewController {
     }
     
     private func createButtonCell(text: String,
-                                  action: Button.Action?,
+                                  action: Action?,
                                   for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
         cell.view.update(title: text, roundedCorners: true, height: 42, action: action)

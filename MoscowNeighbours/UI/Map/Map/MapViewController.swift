@@ -29,8 +29,9 @@ final class MapViewController: UIViewController {
     
     private enum Layout {
         static let buttonSide: CGFloat = 48
-        static let locationButtonTopInset: CGFloat = 20
+        static let buttonsTopInset: CGFloat = 20
         static let locationButtonTrailingInset: CGFloat = 20
+        static let menuButtonLeadingInset: CGFloat = 20
     }
     
     // MARK: - UI
@@ -43,6 +44,8 @@ final class MapViewController: UIViewController {
     }()
     
     private var locationButton: Button!
+    
+    private var menuButton: Button!
     
     // MARK: - Properties
     
@@ -63,7 +66,8 @@ final class MapViewController: UIViewController {
     
     override func loadView() {
         view = mapView
-        locationButton = createButton(image: #imageLiteral(resourceName: "location").withTintColor(.inversedBackground, renderingMode: .alwaysOriginal))
+        locationButton = createButton(image: #imageLiteral(resourceName: "location").withTintColor(.reversedBackground, renderingMode: .alwaysOriginal))
+        menuButton = createButton(image: #imageLiteral(resourceName: "menu").withTintColor(.reversedBackground, renderingMode: .alwaysOriginal))
     }
 
     override func viewDidLoad() {
@@ -81,11 +85,13 @@ final class MapViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         locationButton.layer.shadowColor = UIColor.shadow.cgColor
+        menuButton.layer.shadowColor = UIColor.shadow.cgColor
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         locationButton.updateShadowPath()
+        menuButton.updateShadowPath()
     }
     
     // MARK: - Set up
@@ -93,16 +99,24 @@ final class MapViewController: UIViewController {
     private func setUpLayout() {
         view.addSubview(locationButton)
         locationButton.trailing(Layout.locationButtonTrailingInset)
-        locationButton.safeTop(Layout.locationButtonTopInset)
+        locationButton.safeTop(Layout.buttonsTopInset)
         locationButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
+        
+        view.addSubview(menuButton)
+        menuButton.leading(Layout.menuButtonLeadingInset)
+        menuButton.safeTop(Layout.buttonsTopInset)
+        menuButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
     }
     
     private func setUpViews() {
         mapView.delegate = self
         
-        locationButton.action = { [weak self] _ in
+        locationButton.action = { [weak self] in
             self?.eventHandler.onLocationButtonTap()
-        }        
+        }
+        menuButton.action = { [weak self] in
+            self?.eventHandler.onMenuButtonTap()
+        }
     }
     
     private func registerAnnotationViews() {

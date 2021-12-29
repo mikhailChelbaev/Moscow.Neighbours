@@ -61,7 +61,7 @@ final class RoutePointCell: CellView {
     func update(
         person: PersonViewModel,
         state: State,
-        action: Button.Action?
+        action: Action?
     ) {
         personNameLabel.text = person.name
         addressLabel.text = person.address

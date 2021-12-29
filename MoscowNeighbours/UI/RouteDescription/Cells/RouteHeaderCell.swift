@@ -51,7 +51,7 @@ final class RouteHeaderCell: EntityHeaderCell {
         imageView.loadImage(route.coverUrl)
         titleLabel.text = route.name
         routeInfo.update(text: route.routeInformation, image: nil)
-        startRouteButton.action = { [weak self] _ in
+        startRouteButton.action = { [weak self] in
             self?.beginRouteAction?()
         }
     }

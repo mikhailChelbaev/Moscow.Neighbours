@@ -13,6 +13,7 @@ protocol MapEventHandler: AnyObject {
     func onViewDidAppear()
     func didSelectAnnotation(_ view: MKAnnotationView)
     func onLocationButtonTap()
+    func onMenuButtonTap()
 }
 
 class MapPresenter: MapEventHandler {
@@ -31,6 +32,7 @@ class MapPresenter: MapEventHandler {
     
     private let routesBuilder: RoutesBuilder
     private let personBuilder: PersonBuilder
+    private let menuBuilder: MenuBuilder
     
     private var locationService: LocationService
     private var mapService: MapService
@@ -45,6 +47,7 @@ class MapPresenter: MapEventHandler {
     init(storage: MapStorage) {
         routesBuilder = storage.routesBuilder
         personBuilder = storage.personBuilder
+        menuBuilder = storage.menuBuilder
         
         locationService = storage.locationService
         mapService = storage.mapService
@@ -71,6 +74,15 @@ class MapPresenter: MapEventHandler {
     func onLocationButtonTap() {
         locationState = .showCurrentLocation
         locationService.requestLocationUpdate()
+    }
+    
+    func onMenuButtonTap() {
+        guard let topController = viewController?.getTopController() else {
+            return
+        }
+        
+        let controller = menuBuilder.buildMenuViewController()
+        topController.present(controller, state: .top, completion: nil)
     }
     
     func didSelectAnnotation(_ view: MKAnnotationView) {
