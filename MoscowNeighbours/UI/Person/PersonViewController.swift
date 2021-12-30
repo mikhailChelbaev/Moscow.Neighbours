@@ -191,7 +191,7 @@ extension PersonViewController: TableSuccessDataSource {
         switch personPresentationState {
         case .shortDescription:
             guard let section = ShortInfoSections(rawValue: section) else {
-                fatalError("Section out of bounds")
+                fatalError("Section is out of bounds")
             }
             
             switch section {
@@ -210,7 +210,7 @@ extension PersonViewController: TableSuccessDataSource {
             
         case .fullDescription:
             guard let section = FullInfoSections(rawValue: section) else {
-                fatalError("Section out of bounds")
+                fatalError("Section is out of bounds")
             }
             
             switch section {
@@ -233,7 +233,7 @@ extension PersonViewController: TableSuccessDataSource {
         switch personPresentationState {
         case .shortDescription:
             guard let section = ShortInfoSections(rawValue: indexPath.section) else {
-                fatalError("Section out of bounds")
+                fatalError("Section is out of bounds")
             }
             
             switch section {
@@ -242,7 +242,7 @@ extension PersonViewController: TableSuccessDataSource {
                     return createPersonHeaderCell(person: person, for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
                 
             case .description:
@@ -257,7 +257,7 @@ extension PersonViewController: TableSuccessDataSource {
                     return createSeparatorCell(for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
                 
             case .information:
@@ -268,7 +268,7 @@ extension PersonViewController: TableSuccessDataSource {
                     return createSeparatorCell(for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
                 
             case .alert:
@@ -277,13 +277,13 @@ extension PersonViewController: TableSuccessDataSource {
                                            for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
             }
             
         case .fullDescription:
             guard let section = FullInfoSections(rawValue: indexPath.section) else {
-                fatalError("Section out of bounds")
+                fatalError("Section is out of bounds")
             }
             
             switch section {
@@ -292,7 +292,7 @@ extension PersonViewController: TableSuccessDataSource {
                     return createPersonHeaderCell(person: person, for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
                 
             case .information:
@@ -300,7 +300,7 @@ extension PersonViewController: TableSuccessDataSource {
                     return createPersonInfoCell(info: person.info, for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
                 
             case .description:
@@ -309,7 +309,7 @@ extension PersonViewController: TableSuccessDataSource {
                                                  for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
                 
             case .readyToGo:
@@ -319,7 +319,7 @@ extension PersonViewController: TableSuccessDataSource {
                     }, for: indexPath)
                     
                 } else {
-                    fatalError("Row out of bounds")
+                    fatalError("Row is out of bounds")
                 }
             }
         }

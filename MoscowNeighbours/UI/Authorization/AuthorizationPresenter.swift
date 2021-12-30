@@ -9,6 +9,7 @@ import Foundation
 
 protocol AuthorizationEventHandler {
     func onBackButtonTap()
+    func onAuthorizationTypeTap(_ type: AuthorizationType)
 }
 
 class AuthorizationPresenter: AuthorizationEventHandler {
@@ -27,6 +28,15 @@ class AuthorizationPresenter: AuthorizationEventHandler {
     
     func onBackButtonTap() {
         viewController?.closeController(animated: true, completion: nil)
+    }
+    
+    func onAuthorizationTypeTap(_ type: AuthorizationType) {
+        guard type != viewController?.type else {
+            return
+        }
+        
+        viewController?.type = type
+        viewController?.animateTypeChange()
     }
     
 }

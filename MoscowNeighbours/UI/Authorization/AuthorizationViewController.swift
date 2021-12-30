@@ -8,7 +8,10 @@
 import UIKit
 
 protocol AuthorizationView: BottomSheetViewController, LoadingStatusProvider {
+    var type: AuthorizationType { set get }
     
+    func reloadData()
+    func animateTypeChange()
 }
 
 class AuthorizationViewController: BottomSheetViewController, AuthorizationView {
@@ -20,15 +23,39 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         static let cornerRadius: CGFloat = 29
     }
     
+    // MARK: - Sections and Cells
+    
+    enum Sections: Int, CaseIterable {
+        case switcher
+        case inputs
+    }
+    
+    enum SignInCells: Int, CaseIterable {
+        case login
+        case password
+        case button
+        case separator
+        case appleButton
+    }
+    
+    enum SignUpCells: Int, CaseIterable {
+        case login
+        case email
+        case password
+        case button
+        case separator
+        case appleButton
+    }
+    
     // MARK: - UI
     
     let tableView: BaseTableView = {
         let tableView = BaseTableView()
-        tableView.backgroundColor = .black
-        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.backgroundColor = .background
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
-        tableView.clipsToBounds = true
+        tableView.allowsSelection = false
+        tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
     
@@ -36,10 +63,9 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     
     let backButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
-        button.setImage(#imageLiteral(resourceName: "backButton"), for: .normal)
+        button.backgroundColor = .grayBackground
+        button.setImage(#imageLiteral(resourceName: "backButton").withTintColor(.reversedBackground, renderingMode: .alwaysOriginal), for: .normal)
         button.layer.cornerRadius = Layout.buttonSide / 2
-        button.makeShadow()
         return button
     }()
     
@@ -50,6 +76,8 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     var status: LoadingStatus = .success {
         didSet { reloadData() }
     }
+    
+    var type: AuthorizationType = .signIn
     
     // MARK: - Init
     
@@ -67,18 +95,11 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .dark
+        
         setUpViews()
         setUpLayout()
         setUpTableView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        backButton.updateShadowPath()
-    }
-    
-    func reloadData() {
-        tableView.reloadData()
     }
     
     // MARK: - Private methods
@@ -94,6 +115,12 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         tableView.successDataSource = self
         tableView.statusProvider = self
         
+        tableView.register(AppIconCell.self)
+        tableView.register(AuthorizationTypeCell.self)
+        tableView.register(TextInputCell.self)
+        tableView.register(ButtonCell.self)
+        tableView.register(OrSeparatorCell.self)
+        tableView.register(SignInWithAppleButton.self)
     }
     
     private func setUpViews() {
@@ -134,6 +161,17 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     @objc private func handleBackButton() {
         eventHandler.onBackButtonTap()
     }
+    
+    // MARK: - AuthorizationView
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    func animateTypeChange() {
+        let animation: UITableView.RowAnimation = type == .signIn ? .right : .left
+        tableView.reloadSections(IndexSet(integer: Sections.inputs.rawValue), with: animation)
+    }
             
 }
 
@@ -141,15 +179,45 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
 
 extension AuthorizationViewController: TableSuccessDataSource {
     func successNumberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return Sections.allCases.count
     }
     
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        guard let section = Sections(rawValue: section) else {
+            fatalError("Section is out of bounds")
+        }
+        
+        switch section {
+        case .switcher:
+            return 2
+            
+        case .inputs:
+            return type == .signIn ? SignInCells.allCases.count : SignUpCells.allCases.count
+        }
     }
     
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let section = Sections(rawValue: indexPath.section) else {
+            fatalError("Section is out of bounds")
+        }
+        
+        switch section {
+        case .switcher:
+            if indexPath.item == 0 {
+                return createAppIconCell(for: indexPath)
+                
+            } else {
+                return createAuthorizationTypeCell(for: indexPath)
+            }
+            
+        case .inputs:
+            if type == .signIn {
+                return createSignInSectionCell(for: indexPath)
+                
+            } else {
+                return createSignUpSectionCell(for: indexPath)
+            }
+        }
         
     }
     
@@ -158,8 +226,144 @@ extension AuthorizationViewController: TableSuccessDataSource {
     }
 }
 
+// MARK: - Sections Creation
+
+extension AuthorizationViewController {
+    private func createSignInSectionCell(for indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = SignInCells(rawValue: indexPath.item) else {
+            fatalError("Row is out of bounds")
+        }
+        
+        switch cell {
+        case .login:
+            return createTextInputCell(headerText: "Эл. почта / Логин",
+                                       placeholder: "Введите эл. почту / логин",
+                                       textDidChange: { newText in
+                
+            },
+                                       for: indexPath)
+            
+        case .password:
+            return createTextInputCell(headerText: "Пароль",
+                                       placeholder: "Введите пароль",
+                                       textContentType: .password,
+                                       textDidChange: { newText in
+                
+            },
+                                       for: indexPath)
+            
+        case .button:
+            return createButtonCell(text: "Войти в аккаунт",
+                                    action: {
+                
+            },
+                                    for: indexPath)
+            
+        case .separator:
+            return createSeparatorCell(for: indexPath)
+            
+        case .appleButton:
+            return createSignInWithAppleButton(for: indexPath)
+        }
+    }
+    
+    private func createSignUpSectionCell(for indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = SignUpCells(rawValue: indexPath.item) else {
+            fatalError("Row is out of bounds")
+        }
+        
+        switch cell {
+        case .login:
+            return createTextInputCell(headerText: "Логин",
+                                       placeholder: "Введите логин",
+                                       textDidChange: { newText in
+                
+            },
+                                       for: indexPath)
+        case .email:
+            return createTextInputCell(headerText: "Эл. почта",
+                                       placeholder: "Введите эл. почту",
+                                       textDidChange: { newText in
+                
+            },
+                                       for: indexPath)
+            
+        case .password:
+            return createTextInputCell(headerText: "Пароль",
+                                       placeholder: "Введите пароль",
+                                       textContentType: .password,
+                                       textDidChange: { newText in
+                
+            },
+                                       for: indexPath)
+            
+        case .button:
+            return createButtonCell(text: "Войти в аккаунт",
+                                    action: {
+                
+            },
+                                    for: indexPath)
+            
+        case .separator:
+            return createSeparatorCell(for: indexPath)
+            
+        case .appleButton:
+            return createSignInWithAppleButton(for: indexPath)
+        }
+    }
+}
+
 // MARK: - Cells Creations
 
 extension AuthorizationViewController {
+    private func createAppIconCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(AppIconCell.self, for: indexPath)
+        return cell
+    }
+    
+    private func createAuthorizationTypeCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(AuthorizationTypeCell.self, for: indexPath)
+        cell.view.authorizationTypeDidChange = { [weak self] newValue in
+            self?.eventHandler.onAuthorizationTypeTap(newValue)
+        }
+        return cell
+    }
+    
+    private func createTextInputCell(headerText: String,
+                                     placeholder: String,
+                                     keyboardType: UIKeyboardType = .default,
+                                     textContentType: UITextContentType? = nil,
+                                     textDidChange: ((String) -> Void)?,
+                                     for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(TextInputCell.self, for: indexPath)
+        cell.view.update(headerText: headerText,
+                         placeholder: placeholder,
+                         keyboardType: keyboardType,
+                         textContentType: textContentType,
+                         textDidChange: textDidChange)
+        return cell
+    }
+    
+    private func createButtonCell(text: String,
+                                  action: Action?,
+                                  for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
+        cell.view.update(title: text,
+                         insets: .init(top: 25, left: 20, bottom: 20, right: 20),
+                         color: .projectRed,
+                         roundedCorners: true,
+                         height: 42,
+                         action: action)
+        return cell
+    }
+    
+    private func createSeparatorCell(for indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeue(OrSeparatorCell.self, for: indexPath)
+    }
+    
+    private func createSignInWithAppleButton(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(SignInWithAppleButton.self, for: indexPath)
+        return cell
+    }
 }
 
