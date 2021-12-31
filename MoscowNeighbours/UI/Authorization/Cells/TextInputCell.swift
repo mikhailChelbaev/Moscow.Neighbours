@@ -52,17 +52,20 @@ final class TextInputCell: CellView {
                                         insets: .init(top: 5, left: 15, bottom: 5, right: 15))
         
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
+        textField.delegate = self
     }
     
     func update(headerText: String,
                 placeholder: String,
-                keyboardType: UIKeyboardType = .default,
+                keyboardType: UIKeyboardType,
                 textContentType: UITextContentType?,
+                isSecureTextEntry: Bool,
                 textDidChange: TextCompletion?) {
         headerLabel.text = headerText
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
         textField.textContentType = textContentType
+        textField.isSecureTextEntry = isSecureTextEntry
         self.textDidChange = textDidChange
     }
     
@@ -70,5 +73,12 @@ final class TextInputCell: CellView {
         textDidChange?(textField.text ?? "")
     }
     
+}
+
+extension TextInputCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 

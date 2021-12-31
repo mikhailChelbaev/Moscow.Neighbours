@@ -55,7 +55,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.keyboardDismissMode = .onDrag
+        tableView.keyboardDismissMode = .interactive
         return tableView
     }()
     
@@ -100,6 +100,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         setUpViews()
         setUpLayout()
         setUpTableView()
+        setUpKeyboardObservers()
     }
     
     // MARK: - Private methods
@@ -238,6 +239,7 @@ extension AuthorizationViewController {
         case .login:
             return createTextInputCell(headerText: "Эл. почта / Логин",
                                        placeholder: "Введите эл. почту / логин",
+                                       textContentType: .username,
                                        textDidChange: { newText in
                 
             },
@@ -247,6 +249,7 @@ extension AuthorizationViewController {
             return createTextInputCell(headerText: "Пароль",
                                        placeholder: "Введите пароль",
                                        textContentType: .password,
+                                       isSecureTextEntry: true,
                                        textDidChange: { newText in
                 
             },
@@ -292,6 +295,7 @@ extension AuthorizationViewController {
             return createTextInputCell(headerText: "Пароль",
                                        placeholder: "Введите пароль",
                                        textContentType: .password,
+                                       isSecureTextEntry: true,
                                        textDidChange: { newText in
                 
             },
@@ -333,6 +337,7 @@ extension AuthorizationViewController {
                                      placeholder: String,
                                      keyboardType: UIKeyboardType = .default,
                                      textContentType: UITextContentType? = nil,
+                                     isSecureTextEntry: Bool = false,
                                      textDidChange: ((String) -> Void)?,
                                      for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(TextInputCell.self, for: indexPath)
@@ -340,6 +345,7 @@ extension AuthorizationViewController {
                          placeholder: placeholder,
                          keyboardType: keyboardType,
                          textContentType: textContentType,
+                         isSecureTextEntry: isSecureTextEntry,
                          textDidChange: textDidChange)
         return cell
     }
@@ -367,3 +373,25 @@ extension AuthorizationViewController {
     }
 }
 
+// MARK: - Handle Keyboard
+
+extension AuthorizationViewController {
+    
+    private func setUpKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardDidShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let bottomInset = keyboardSize.height + view.safeAreaInsets.bottom
+            tableView.contentInset = .init(top: 0, left: 0, bottom: bottomInset, right: 0)
+        }
+    }
+    
+    @objc private func keyboardWillHide() {
+        tableView.contentInset = .zero
+    }
+    
+}
