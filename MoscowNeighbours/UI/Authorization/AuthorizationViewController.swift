@@ -9,6 +9,8 @@ import UIKit
 
 protocol AuthorizationView: BottomSheetViewController, LoadingStatusProvider {
     var type: AuthorizationType { set get }
+    var signInButton: Button? { get }
+    var signUpButton: Button? { get }
     
     func reloadData()
     func animateTypeChange()
@@ -78,6 +80,9 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     }
     
     var type: AuthorizationType = .signIn
+    
+    var signInButton: Button?
+    var signUpButton: Button?
     
     // MARK: - Init
     
@@ -240,8 +245,8 @@ extension AuthorizationViewController {
             return createTextInputCell(headerText: "Эл. почта / Логин",
                                        placeholder: "Введите эл. почту / логин",
                                        textContentType: .username,
-                                       textDidChange: { newText in
-                
+                                       textDidChange: { [weak self] newText in
+                self?.eventHandler.onSignInUsernameTextChange(newText)
             },
                                        for: indexPath)
             
@@ -250,17 +255,13 @@ extension AuthorizationViewController {
                                        placeholder: "Введите пароль",
                                        textContentType: .password,
                                        isSecureTextEntry: true,
-                                       textDidChange: { newText in
-                
+                                       textDidChange: { [weak self] newText in
+                self?.eventHandler.onSignInPasswordTextChange(newText)
             },
                                        for: indexPath)
             
         case .button:
-            return createButtonCell(text: "Войти в аккаунт",
-                                    action: {
-                
-            },
-                                    for: indexPath)
+            return createSignInButtonCell(for: indexPath)
             
         case .separator:
             return createSeparatorCell(for: indexPath)
@@ -279,15 +280,15 @@ extension AuthorizationViewController {
         case .login:
             return createTextInputCell(headerText: "Логин",
                                        placeholder: "Введите логин",
-                                       textDidChange: { newText in
-                
+                                       textDidChange: { [weak self] newText in
+                self?.eventHandler.onSignUpUsernameTextChange(newText)
             },
                                        for: indexPath)
         case .email:
             return createTextInputCell(headerText: "Эл. почта",
                                        placeholder: "Введите эл. почту",
-                                       textDidChange: { newText in
-                
+                                       textDidChange: { [weak self] newText in
+                self?.eventHandler.onSignUpEmailTextChange(newText)
             },
                                        for: indexPath)
             
@@ -296,17 +297,13 @@ extension AuthorizationViewController {
                                        placeholder: "Введите пароль",
                                        textContentType: .password,
                                        isSecureTextEntry: true,
-                                       textDidChange: { newText in
-                
+                                       textDidChange: { [weak self] newText in
+                self?.eventHandler.onSignUpPasswordTextChange(newText)
             },
                                        for: indexPath)
             
         case .button:
-            return createButtonCell(text: "Войти в аккаунт",
-                                    action: {
-                
-            },
-                                    for: indexPath)
+            return createSignUpButtonCell(for: indexPath)
             
         case .separator:
             return createSeparatorCell(for: indexPath)
@@ -360,6 +357,7 @@ extension AuthorizationViewController {
                          roundedCorners: true,
                          height: 42,
                          action: action)
+        cell.view.button.isEnabled = false
         return cell
     }
     
@@ -369,6 +367,26 @@ extension AuthorizationViewController {
     
     private func createSignInWithAppleButton(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SignInWithAppleButton.self, for: indexPath)
+        return cell
+    }
+    
+    private func createSignInButtonCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = createButtonCell(text: "Войти в аккаунт",
+                                action: { [weak self] in
+            self?.eventHandler.onSignInButtonTap()
+        },
+                                for: indexPath)
+        signInButton = (cell as? TableCellWrapper<ButtonCell>)?.view.button
+        return cell
+    }
+    
+    private func createSignUpButtonCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = createButtonCell(text: "Создать аккаунт",
+                                action: { [weak self] in
+            self?.eventHandler.onSignUpButtonTap()
+        },
+                                for: indexPath)
+        signUpButton = (cell as? TableCellWrapper<ButtonCell>)?.view.button
         return cell
     }
 }

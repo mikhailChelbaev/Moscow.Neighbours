@@ -30,6 +30,7 @@
 		741FE3052777B4780065126A /* WeakRef+RoutePassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE3042777B4780065126A /* WeakRef+RoutePassing.swift */; };
 		7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2026BAAE290034533F /* RouteFinder.swift */; };
 		7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */; };
+		7422221E2781DC2500CFDD50 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7422221D2781DC2500CFDD50 /* AuthorizationService.swift */; };
 		742283BE26BB29AB003F814E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742283BD26BB29AB003F814E /* Colors.xcassets */; };
 		742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */; };
 		742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283C126BB2AC4003F814E /* UIView+Shadow.swift */; };
@@ -78,6 +79,8 @@
 		74834C0F2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74834C0E2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf */; };
 		74834C112729924000631D09 /* helveticaneuecyr-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74834C102729923F00631D09 /* helveticaneuecyr-italic.ttf */; };
 		7485E3792709BD52008DAB99 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485E3782709BD52008DAB99 /* PersonInfoCell.swift */; };
+		74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC7277EFCA9000FC446 /* SignInModel.swift */; };
+		74863DCA277EFCB0000FC446 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC9277EFCB0000FC446 /* SignUpModel.swift */; };
 		7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A160277E1C6B004E2D27 /* TextInputCell.swift */; };
 		7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A162277E3233004E2D27 /* OrSeparatorCell.swift */; };
 		7488A165277E40AA004E2D27 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A164277E40AA004E2D27 /* SignInWithAppleButton.swift */; };
@@ -171,6 +174,7 @@
 		741FE3042777B4780065126A /* WeakRef+RoutePassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+RoutePassing.swift"; sourceTree = "<group>"; };
 		7420CE2026BAAE290034533F /* RouteFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFinder.swift; sourceTree = "<group>"; };
 		7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
+		7422221D2781DC2500CFDD50 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		742283BD26BB29AB003F814E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ProjectColors.swift"; sourceTree = "<group>"; };
 		742283C126BB2AC4003F814E /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 		74834C0E2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bolditalic.ttf"; sourceTree = "<group>"; };
 		74834C102729923F00631D09 /* helveticaneuecyr-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-italic.ttf"; sourceTree = "<group>"; };
 		7485E3782709BD52008DAB99 /* PersonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCell.swift; sourceTree = "<group>"; };
+		74863DC7277EFCA9000FC446 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
+		74863DC9277EFCB0000FC446 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		7488A160277E1C6B004E2D27 /* TextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
 		7488A162277E3233004E2D27 /* OrSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrSeparatorCell.swift; sourceTree = "<group>"; };
 		7488A164277E40AA004E2D27 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
@@ -453,6 +459,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		7422221C2781DC1500CFDD50 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				7422221D2781DC2500CFDD50 /* AuthorizationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		742283BC26BB2998003F814E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +564,9 @@
 			isa = PBXGroup;
 			children = (
 				743C3AC6277D04F100D4CB1C /* AuthorizationType.swift */,
+				74863DC7277EFCA9000FC446 /* SignInModel.swift */,
+				74863DC9277EFCB0000FC446 /* SignUpModel.swift */,
+				7422221C2781DC1500CFDD50 /* Service */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -933,6 +950,7 @@
 				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,
 				748EE639270F915C00301552 /* Place.swift in Sources */,
 				74C72A4F277BBC1F00B73560 /* MenuPresenter.swift in Sources */,
+				74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */,
 				743C3AC9277D051F00D4CB1C /* AuthorizationTypeCell.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
@@ -975,6 +993,7 @@
 				74F73A00272B50DE007C5450 /* CollectionSuccessDataSource.swift in Sources */,
 				742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */,
 				746A101426F6276E002CB7E2 /* AlertCell.swift in Sources */,
+				74863DCA277EFCB0000FC446 /* SignUpModel.swift in Sources */,
 				746A101026F619AF002CB7E2 /* SeparatorCell.swift in Sources */,
 				741D407E270655560051A518 /* PersonInfoBaseCell.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
@@ -1035,6 +1054,7 @@
 				743C3AC7277D04F100D4CB1C /* AuthorizationType.swift in Sources */,
 				74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */,
 				741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */,
+				7422221E2781DC2500CFDD50 /* AuthorizationService.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */,
