@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 protocol AuthorizationEventHandler {
     func onBackButtonTap()
@@ -14,6 +15,7 @@ protocol AuthorizationEventHandler {
     func onSignInUsernameTextChange(_ text: String)
     func onSignInPasswordTextChange(_ text: String)
     func onSignInButtonTap()
+    func onSignInWithAppleButtonTap()
     
     func onSignUpUsernameTextChange(_ text: String)
     func onSignUpEmailTextChange(_ text: String)
@@ -21,7 +23,7 @@ protocol AuthorizationEventHandler {
     func onSignUpButtonTap()
 }
 
-class AuthorizationPresenter: AuthorizationEventHandler {
+class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     
     // MARK: - Properties
     
@@ -68,6 +70,15 @@ class AuthorizationPresenter: AuthorizationEventHandler {
         
     }
     
+    func onSignInWithAppleButtonTap() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+    }
+    
     private func validateSignIn() {
         viewController?.signInButton?.isEnabled = signInModel.isValid
     }
@@ -97,4 +108,17 @@ class AuthorizationPresenter: AuthorizationEventHandler {
         viewController?.signUpButton?.isEnabled = signUpModel.isValid
     }
     
+}
+
+// MARK: - protocol ASAuthorizationControllerDelegate
+
+extension AuthorizationPresenter: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))")
+        }
+    }
 }

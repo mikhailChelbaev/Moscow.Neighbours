@@ -126,7 +126,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         tableView.register(TextInputCell.self)
         tableView.register(ButtonCell.self)
         tableView.register(OrSeparatorCell.self)
-        tableView.register(SignInWithAppleButton.self)
+        tableView.register(SignInWithAppleButtonCell.self)
     }
     
     private func setUpViews() {
@@ -366,7 +366,10 @@ extension AuthorizationViewController {
     }
     
     private func createSignInWithAppleButton(for indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(SignInWithAppleButton.self, for: indexPath)
+        let cell = tableView.dequeue(SignInWithAppleButtonCell.self, for: indexPath)
+        cell.view.onSignInWithAppleButtonTap = { [weak self] in
+            self?.eventHandler.onSignInWithAppleButtonTap()
+        }
         return cell
     }
     

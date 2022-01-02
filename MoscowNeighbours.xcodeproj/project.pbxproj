@@ -83,7 +83,7 @@
 		74863DCA277EFCB0000FC446 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC9277EFCB0000FC446 /* SignUpModel.swift */; };
 		7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A160277E1C6B004E2D27 /* TextInputCell.swift */; };
 		7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A162277E3233004E2D27 /* OrSeparatorCell.swift */; };
-		7488A165277E40AA004E2D27 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A164277E40AA004E2D27 /* SignInWithAppleButton.swift */; };
+		7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */; };
 		748C94CE272FEFAF00202D47 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748C94CD272FEFAF00202D47 /* LocationService.swift */; };
 		748EE633270F911800301552 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE632270F911800301552 /* Route.swift */; };
 		748EE635270F913000301552 /* PersonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE634270F913000301552 /* PersonInfo.swift */; };
@@ -175,6 +175,7 @@
 		7420CE2026BAAE290034533F /* RouteFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFinder.swift; sourceTree = "<group>"; };
 		7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Equatable.swift"; sourceTree = "<group>"; };
 		7422221D2781DC2500CFDD50 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		7422221F2781DEAC00CFDD50 /* MoscowNeighbours.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoscowNeighbours.entitlements; sourceTree = "<group>"; };
 		742283BD26BB29AB003F814E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ProjectColors.swift"; sourceTree = "<group>"; };
 		742283C126BB2AC4003F814E /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -226,7 +227,7 @@
 		74863DC9277EFCB0000FC446 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		7488A160277E1C6B004E2D27 /* TextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
 		7488A162277E3233004E2D27 /* OrSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrSeparatorCell.swift; sourceTree = "<group>"; };
-		7488A164277E40AA004E2D27 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
+		7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonCell.swift; sourceTree = "<group>"; };
 		748C94CD272FEFAF00202D47 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		748EE632270F911800301552 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		748EE634270F913000301552 /* PersonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfo.swift; sourceTree = "<group>"; };
@@ -326,6 +327,7 @@
 		7402660D26A76379006242FE /* MoscowNeighbours */ = {
 			isa = PBXGroup;
 			children = (
+				7422221F2781DEAC00CFDD50 /* MoscowNeighbours.entitlements */,
 				74967F86276F59FB0096AA77 /* Core */,
 				7402662626A765E7006242FE /* UI */,
 				748FFD9426E55193009CA688 /* Network */,
@@ -555,7 +557,7 @@
 				743C3AC8277D051F00D4CB1C /* AuthorizationTypeCell.swift */,
 				7488A160277E1C6B004E2D27 /* TextInputCell.swift */,
 				7488A162277E3233004E2D27 /* OrSeparatorCell.swift */,
-				7488A164277E40AA004E2D27 /* SignInWithAppleButton.swift */,
+				7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -965,7 +967,7 @@
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
-				7488A165277E40AA004E2D27 /* SignInWithAppleButton.swift in Sources */,
+				7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */,
 				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
@@ -1202,6 +1204,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MoscowNeighbours/MoscowNeighbours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
@@ -1225,6 +1228,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MoscowNeighbours/MoscowNeighbours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
