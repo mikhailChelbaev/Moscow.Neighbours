@@ -29,6 +29,10 @@ final class Button: UIButton {
         didSet { updateUI() }
     }
     
+    override var isEnabled: Bool {
+        didSet { updateUI() }
+    }
+    
     init() {
         super.init(frame: .zero)
         
@@ -60,23 +64,49 @@ final class Button: UIButton {
     }
     
     private func updateUI() {
-        switch style {
-        case .filled:
-            backgroundColor = .projectRed
-            setTitleColor(.white, for: .normal)
-        case .tinted:
-            backgroundColor = .projectRed.withAlphaComponent(0.08)
-            setTitleColor(.projectRed, for: .normal)
-        case .white:
-            backgroundColor = .white
-            setTitleColor(.black, for: .normal)
-        case .default:
-            backgroundColor = .clear
-            setTitleColor(.projectRed, for: .normal)
-        case .custom(title: let titleColor, background: let backgroundColor):
-            self.backgroundColor = backgroundColor
-            setTitleColor(titleColor, for: .normal)
+        var background: UIColor
+        var title: UIColor
+        
+        if isEnabled {
+            switch style {
+            case .filled:
+                background = .projectRed
+                title = .white
+            case .tinted:
+                background = .projectRed.withAlphaComponent(0.08)
+                title = .projectRed
+            case .white:
+                background = .white
+                title = .black
+            case .default:
+                background = .clear
+                title = .projectRed
+            case .custom(title: let titleColor, background: let backgroundColor):
+                background = backgroundColor
+                title = titleColor
+            }
+        } else {
+            switch style {
+            case .filled:
+                background = .grayBackground
+                title = .label.withAlphaComponent(0.5)
+            case .tinted:
+                background = .projectRed.withAlphaComponent(0.08)
+                title = .projectRed.withAlphaComponent(0.7)
+            case .white:
+                background = .white
+                title = .black.withAlphaComponent(0.7)
+            case .default:
+                background = .clear
+                title = .projectRed.withAlphaComponent(0.7)
+            case .custom(title: let titleColor, background: let backgroundColor):
+                background = backgroundColor
+                title = titleColor
+            }
         }
+        
+        backgroundColor = background
+        setTitleColor(title, for: .normal)
     }
     
     private var isPerformingAnimation: Bool = false

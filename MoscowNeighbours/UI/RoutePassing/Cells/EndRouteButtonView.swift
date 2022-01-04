@@ -39,14 +39,14 @@ final class EndRouteButtonView: CellView {
     
     private var state: DrawerView.State = .top
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(endRouteButton)
-        endRouteButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
+        endRouteButton.pinToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
         endRouteButton.centerHorizontally()
         endRouteButton.height(Settings.buttonHeight)
         
         addSubview(        arrowUpButton)
-                arrowUpButton.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
+                arrowUpButton.pinToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
                 arrowUpButton.centerHorizontally()
                 arrowUpButton.exactSize(.init(width: Settings.buttonHeight , height: Settings.buttonHeight ))
         sendSubviewToBack(        arrowUpButton)

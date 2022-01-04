@@ -12,7 +12,8 @@ final class ApiRequestsFactory {
     // MARK: - Internal Methods
     
     static let main = ApiRequestsFactory()
-    let host = "http://msk-sosedi.ru:8080"
+//    let host = "http://msk-sosedi.ru:8080"
+    let host = "http://localhost:8080"
     
     // MARK: - Init
     
@@ -52,7 +53,9 @@ final class ApiRequestsFactory {
     
     // MARK: - Private Methods
     
-    private func makeBaseRequest(url: URL?, params: [(String, String)]?, method: String) -> URLRequest? {
+    private func makeBaseRequest(url: URL?,
+                                 params: [(String, String)]?,
+                                 method: String) -> URLRequest? {
         guard let url = url, var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             return nil
         }
@@ -69,6 +72,10 @@ final class ApiRequestsFactory {
         // header
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+        
+        if let token = JWTService.main.accessToken {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         return request
     }

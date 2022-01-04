@@ -71,10 +71,10 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
         bottomSheet.addListener(self)
         
         view.addSubview(cover)
-        cover.stickToSuperviewEdges(.all)
+        cover.pinToSuperviewEdges(.all)
 
         view.addSubview(bottomSheet)
-        bottomSheet.stickToSuperviewEdges(.all)
+        bottomSheet.pinToSuperviewEdges(.all)
     }
     
     override func viewWillAppear(_ animated: Bool) {

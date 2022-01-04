@@ -21,13 +21,13 @@ final class AuthorizationTypeCell: CellView {
     
     var authorizationTypeDidChange: AuthorizationTypeCompletion?
     
-    override func setUpView() {
+    override func configureView() {
         let stack = UIStackView(arrangedSubviews: [signInButton, signUpButton])
         stack.axis = .horizontal
         stack.spacing = 20
         
         addSubview(stack)
-        stack.stickToSuperviewEdges([.top, .bottom],
+        stack.pinToSuperviewEdges([.top, .bottom],
                                     insets: .init(top: 10, left: 0, bottom: 30, right: 0))
         stack.centerHorizontally()
         

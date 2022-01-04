@@ -23,7 +23,7 @@ class TableCellWrapper<T>: UITableViewCell where T: CellView {
     
     private func setUpLayout() {
         contentView.addSubview(view)
-        view.stickToSuperviewEdges([.top, .left])
+        view.pinToSuperviewEdges([.top, .left])
         let const = view.bottom()
         const.priority = UILayoutPriority(999)
         let const2 = view.trailing()

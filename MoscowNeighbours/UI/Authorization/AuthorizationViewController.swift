@@ -120,6 +120,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     private func setUpTableView() {
         tableView.successDataSource = self
         tableView.statusProvider = self
+        tableView.loadingDelegate = self
         
         tableView.register(AppIconCell.self)
         tableView.register(AuthorizationTypeCell.self)
@@ -232,6 +233,14 @@ extension AuthorizationViewController: TableSuccessDataSource {
     }
 }
 
+// MARK: - protocol LoadingDelegate
+
+extension AuthorizationViewController: LoadingDelegate {
+    func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle)
+    }
+}
+
 // MARK: - Sections Creation
 
 extension AuthorizationViewController {
@@ -243,6 +252,7 @@ extension AuthorizationViewController {
         switch cell {
         case .login:
             return createTextInputCell(headerText: "Эл. почта / Логин",
+                                       text: eventHandler.signInUsername,
                                        placeholder: "Введите эл. почту / логин",
                                        textContentType: .username,
                                        textDidChange: { [weak self] newText in
@@ -252,6 +262,7 @@ extension AuthorizationViewController {
             
         case .password:
             return createTextInputCell(headerText: "Пароль",
+                                       text: eventHandler.signInPassword,
                                        placeholder: "Введите пароль",
                                        textContentType: .password,
                                        isSecureTextEntry: true,
@@ -279,6 +290,7 @@ extension AuthorizationViewController {
         switch cell {
         case .login:
             return createTextInputCell(headerText: "Логин",
+                                       text: eventHandler.signUpUsername,
                                        placeholder: "Введите логин",
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignUpUsernameTextChange(newText)
@@ -286,6 +298,7 @@ extension AuthorizationViewController {
                                        for: indexPath)
         case .email:
             return createTextInputCell(headerText: "Эл. почта",
+                                       text: eventHandler.signUpEmail,
                                        placeholder: "Введите эл. почту",
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignUpEmailTextChange(newText)
@@ -294,6 +307,7 @@ extension AuthorizationViewController {
             
         case .password:
             return createTextInputCell(headerText: "Пароль",
+                                       text: eventHandler.signUpPassword,
                                        placeholder: "Введите пароль",
                                        textContentType: .password,
                                        isSecureTextEntry: true,
@@ -331,6 +345,7 @@ extension AuthorizationViewController {
     }
     
     private func createTextInputCell(headerText: String,
+                                     text: String,
                                      placeholder: String,
                                      keyboardType: UIKeyboardType = .default,
                                      textContentType: UITextContentType? = nil,
@@ -339,6 +354,7 @@ extension AuthorizationViewController {
                                      for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(TextInputCell.self, for: indexPath)
         cell.view.update(headerText: headerText,
+                         text: text,
                          placeholder: placeholder,
                          keyboardType: keyboardType,
                          textContentType: textContentType,
@@ -348,6 +364,7 @@ extension AuthorizationViewController {
     }
     
     private func createButtonCell(text: String,
+                                  isEnabled: Bool,
                                   action: Action?,
                                   for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
@@ -357,7 +374,7 @@ extension AuthorizationViewController {
                          roundedCorners: true,
                          height: 42,
                          action: action)
-        cell.view.button.isEnabled = false
+        cell.view.button.isEnabled = isEnabled
         return cell
     }
     
@@ -375,6 +392,7 @@ extension AuthorizationViewController {
     
     private func createSignInButtonCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = createButtonCell(text: "Войти в аккаунт",
+                                    isEnabled: eventHandler.isSignInButtonEnabled,
                                 action: { [weak self] in
             self?.eventHandler.onSignInButtonTap()
         },
@@ -385,6 +403,7 @@ extension AuthorizationViewController {
     
     private func createSignUpButtonCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = createButtonCell(text: "Создать аккаунт",
+                                    isEnabled: eventHandler.isSignUpButtonEnabled,
                                 action: { [weak self] in
             self?.eventHandler.onSignUpButtonTap()
         },

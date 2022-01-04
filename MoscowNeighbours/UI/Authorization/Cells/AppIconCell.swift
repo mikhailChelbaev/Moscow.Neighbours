@@ -17,10 +17,10 @@ final class AppIconCell: CellView {
         return iv
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(imageView)
         imageView.centerHorizontally()
-        imageView.stickToSuperviewEdges([.top, .bottom], insets: .init(top: 50, left: 0, bottom: 50, right: 0))
+        imageView.pinToSuperviewEdges([.top, .bottom], insets: .init(top: 50, left: 0, bottom: 50, right: 0))
         imageView.exactSize(.init(width: 72, height: 96))
     }
     

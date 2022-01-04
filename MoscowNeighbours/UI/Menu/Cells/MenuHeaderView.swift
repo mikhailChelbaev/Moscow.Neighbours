@@ -55,18 +55,18 @@ final class MenuHeaderView: CellView {
     
     var backButtonAction: Action?
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(handlerView)
         handlerView.top(Layout.pullViewBorderInsets)
         handlerView.centerHorizontally()
         handlerView.exactSize(.init(width: Layout.pullViewWidth, height: Layout.pullViewHeight))
         
         addSubview(containerView)
-        containerView.stickToSuperviewEdges([.left, .right, .bottom])
+        containerView.pinToSuperviewEdges([.left, .right, .bottom])
         containerView.top(Layout.pullViewBorderInsets, to: handlerView)
         
         containerView.addSubview(backButton)
-        backButton.stickToSuperviewEdges([.left, .top, .bottom], insets: .init(top: 20, left: 20, bottom: 20, right: 0))
+        backButton.pinToSuperviewEdges([.left, .top, .bottom], insets: .init(top: 20, left: 20, bottom: 20, right: 0))
         backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
         
         containerView.addSubview(title)
@@ -74,7 +74,7 @@ final class MenuHeaderView: CellView {
         title.centerVertically()
         
         containerView.addSubview(separator)
-        separator.stickToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        separator.pinToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         separator.height(0.5)
         
         backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)

@@ -36,19 +36,19 @@ final class TextInputCell: CellView {
     
     private var textDidChange: TextCompletion?
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(headerLabel)
-        headerLabel.stickToSuperviewEdges([.left, .top, .right],
+        headerLabel.pinToSuperviewEdges([.left, .top, .right],
                                           insets: .init(top: 10, left: 20, bottom: 0, right: 20))
         
         addSubview(textFieldContainer)
-        textFieldContainer.stickToSuperviewEdges([.left, .right, .bottom],
+        textFieldContainer.pinToSuperviewEdges([.left, .right, .bottom],
                                                  insets: .init(top: 0, left: 20, bottom: 15, right: 20))
         textFieldContainer.top(7, to: headerLabel)
         textFieldContainer.height(Layout.textFieldContainerHeight)
         
         textFieldContainer.addSubview(textField)
-        textField.stickToSuperviewEdges(.all,
+        textField.pinToSuperviewEdges(.all,
                                         insets: .init(top: 5, left: 15, bottom: 5, right: 15))
         
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
@@ -56,12 +56,14 @@ final class TextInputCell: CellView {
     }
     
     func update(headerText: String,
+                text: String,
                 placeholder: String,
                 keyboardType: UIKeyboardType,
                 textContentType: UITextContentType?,
                 isSecureTextEntry: Bool,
                 textDidChange: TextCompletion?) {
         headerLabel.text = headerText
+        textField.text = text
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
         textField.textContentType = textContentType

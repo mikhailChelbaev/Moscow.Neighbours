@@ -15,7 +15,7 @@ final  class LoadingCell: CellView {
         return aiv
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(indicator)
         indicator.placeInCenter()
         

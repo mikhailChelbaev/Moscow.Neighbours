@@ -20,9 +20,9 @@ class PersonInfoBaseCell: CellView {
         return stack
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(stack)
-        stack.stickToSuperviewEdges([.all], insets: .init(top: 20, left: 20, bottom: 20, right: 20))
+        stack.pinToSuperviewEdges([.all], insets: .init(top: 20, left: 20, bottom: 20, right: 20))
     }
     
     private func createLabel(title: String, subtitle: String) -> UILabel {

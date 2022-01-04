@@ -46,20 +46,20 @@ class RouteCell: CellView {
     
     let durationInfo: InfoView = .init()
     
-    override func setUpView() {
+    override func configureView() {
         backgroundColor = .background
         clipsToBounds = false
         
         addSubview(containerView)
-        containerView.stickToSuperviewEdges(.all, insets: .init(top: 5, left: 20, bottom: 5, right: 20))
+        containerView.pinToSuperviewEdges(.all, insets: .init(top: 5, left: 20, bottom: 5, right: 20))
         containerView.height(194)
         
         containerView.addSubview(gradientView)
-        gradientView.stickToSuperviewEdges([.left, .bottom, .right])
+        gradientView.pinToSuperviewEdges([.left, .bottom, .right])
         gradientView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
         
         containerView.addSubview(titleLabel)
-        titleLabel.stickToSuperviewEdges([.left, .bottom, .right], insets: .init(top: 0, left: 20, bottom: 20, right: 20))
+        titleLabel.pinToSuperviewEdges([.left, .bottom, .right], insets: .init(top: 0, left: 20, bottom: 20, right: 20))
         
 //        containerView.addSubview(distanceInfo)
 //        distanceInfo.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
@@ -69,7 +69,7 @@ class RouteCell: CellView {
 //        durationInfo.top(20)
         
         containerView.addSubview(durationInfo)
-        durationInfo.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
+        durationInfo.pinToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
     }
     
     private func update() {

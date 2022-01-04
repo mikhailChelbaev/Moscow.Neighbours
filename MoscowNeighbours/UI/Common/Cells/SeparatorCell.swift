@@ -17,9 +17,9 @@ final class SeparatorCell: CellView {
     
     var viewConstraints: AnchoredConstraints?
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(view)
-        viewConstraints = view.stickToSuperviewEdges(.all, insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        viewConstraints = view.pinToSuperviewEdges(.all, insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         
         height(0.5)
     }

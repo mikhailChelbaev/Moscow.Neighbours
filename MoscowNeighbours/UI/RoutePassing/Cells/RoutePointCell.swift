@@ -39,20 +39,20 @@ final class RoutePointCell: CellView {
         return button
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(personNameLabel)
-        personNameLabel.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 10, left: 20, bottom: 0, right: 20))
+        personNameLabel.pinToSuperviewEdges([.left, .right, .top], insets: .init(top: 10, left: 20, bottom: 0, right: 20))
         
         addSubview(addressLabel)
-        addressLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        addressLabel.pinToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         addressLabel.top(4, to: personNameLabel)
         
         addSubview(alertView)
-        alertView.stickToSuperviewEdges([.left, .right])
+        alertView.pinToSuperviewEdges([.left, .right])
         alertView.topAnchor.constraint(greaterThanOrEqualTo: addressLabel.bottomAnchor, constant: 10).isActive = true
         
         addSubview(button)
-        button.stickToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 20, bottom: 20, right: 20))
+        button.pinToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 20, bottom: 20, right: 20))
         button.height(42)
         button.top(10, to: alertView)
         

@@ -13,9 +13,9 @@ final class ButtonCell: CellView {
     
     private var buttonConstraints: AnchoredConstraints?
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(button)
-        buttonConstraints = button.stickToSuperviewEdges(.all, insets: .init(top: 10, left: 16, bottom: 10, right: 16))
+        buttonConstraints = button.pinToSuperviewEdges(.all, insets: .init(top: 10, left: 16, bottom: 10, right: 16))
         buttonConstraints?.height = button.height(48)
     }
     

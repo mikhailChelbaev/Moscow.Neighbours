@@ -51,9 +51,8 @@ class MenuViewController: BottomSheetViewController, MenuView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpViews()
-        setUpLayout()
-        setUpTableView()
+        configureViews()
+        configureTableView()
         
         loadData()
     }
@@ -68,19 +67,17 @@ class MenuViewController: BottomSheetViewController, MenuView {
         eventHandler.onLoadData()
     }
     
-    private func setUpLayout() {
-    }
-    
-    private func setUpTableView() {
+    private func configureTableView() {
         tableView.successDataSource = self
         tableView.statusProvider = self
         
         tableView.register(AccountAdvantagesCell.self)
         tableView.register(MenuItemCell.self)
         tableView.register(SeparatorCell.self)
+        tableView.register(UserAccountPreviewCell.self)
     }
     
-    private func setUpViews() {
+    private func configureViews() {
         bottomSheet.containerView.backgroundColor = .clear
         bottomSheet.containerView.clipsToBounds = true
     }
@@ -127,7 +124,11 @@ extension MenuViewController: TableSuccessDataSource {
     
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.item == 0 {
-            return createAccountAdvantagesCell(for: indexPath)
+            if eventHandler.isUserAuthorized {
+                return createUserAccountPreviewCell(for: indexPath)
+            } else {
+                return createAccountAdvantagesCell(for: indexPath)
+            }
 
         } else if indexPath.item == 1 {
             return createSeparator(for: indexPath)
@@ -170,6 +171,14 @@ extension MenuViewController {
     private func createSeparator(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SeparatorCell.self, for: indexPath)
         cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func createUserAccountPreviewCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(UserAccountPreviewCell.self, for: indexPath)
+        cell.view.usernameLabel.text = eventHandler.username
+        cell.view.emailLabel.text = eventHandler.email
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 }

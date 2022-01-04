@@ -39,12 +39,12 @@ class EntityHeaderCell: CellView {
         return label
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(imageView)
-        imageView.stickToSuperviewEdges(.all)
+        imageView.pinToSuperviewEdges(.all)
         
         imageView.addSubview(gradientView)
-        gradientView.stickToSuperviewEdges(.all)
+        gradientView.pinToSuperviewEdges(.all)
         
         imageView.height(Layout.height)
     }

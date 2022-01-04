@@ -45,7 +45,7 @@ final class RoutePointsCollectionCell: CellView {
     private var buttonTapCallback: ((PersonViewModel) -> Void)?
     private var indexDidChange: ((Int) -> Void)?
     
-    override func setUpView() {
+    override func configureView() {
         // collection set up
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -62,7 +62,7 @@ final class RoutePointsCollectionCell: CellView {
         
         addSubview(collectionView)
         collectionView.top(10, to: indicator)
-        collectionView.stickToSuperviewEdges([.left, .right, .bottom])
+        collectionView.pinToSuperviewEdges([.left, .right, .bottom])
         collectionView.height(Layout.collectionHeight)
     }
     

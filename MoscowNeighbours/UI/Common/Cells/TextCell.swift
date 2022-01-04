@@ -25,11 +25,11 @@ class TextCell: CellView {
     
     var labelConstraints: AnchoredConstraints?
     
-    override func setUpView() {
+    override func configureView() {
         backgroundColor = .background
         
         addSubview(textView)
-        labelConstraints = textView.stickToSuperviewEdges(.all, insets: .init(top: 12, left: 16, bottom: 12, right: 16))
+        labelConstraints = textView.pinToSuperviewEdges(.all, insets: .init(top: 12, left: 16, bottom: 12, right: 16))
     }
     
     func update(

@@ -11,9 +11,9 @@ final class OrSeparatorCell: CellView {
     
     let imageView = UIImageView()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(imageView)
-        imageView.stickToSuperviewEdges(.all, insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        imageView.pinToSuperviewEdges(.all, insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         imageView.height(16)
         
         imageView.image = drawSeparator()

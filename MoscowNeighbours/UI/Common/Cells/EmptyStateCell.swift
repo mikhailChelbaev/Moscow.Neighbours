@@ -70,17 +70,17 @@ final class EmptyStateCell: CellView {
         return stack
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(imageView)
-        imageView.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        imageView.pinToSuperviewEdges([.left, .right, .top], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         imageView.height(150)
         
         addSubview(titleLabel)
-        titleLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        titleLabel.pinToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         titleLabel.top(20, to: imageView)
         
         addSubview(subtitleLabel)
-        subtitleLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        subtitleLabel.pinToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         subtitleLabel.top(20, to: titleLabel)
         
         addSubview(button)

@@ -23,7 +23,7 @@ class TableViewHeaderFooterViewWrapper<T>: UITableViewHeaderFooterView where T: 
     
     private func setUpLayout() {
         addSubview(view)
-        view.stickToSuperviewEdges([.left, .top])
+        view.pinToSuperviewEdges([.left, .top])
         let const = view.bottom()
         const.priority = UILayoutPriority(999)
         let const2 = view.trailing()

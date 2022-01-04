@@ -78,23 +78,23 @@ final class PersonCell: CellView {
         didSet { update() }
     }
     
-    override func setUpView() {
+    override func configureView() {
         backgroundColor = .background
         
         addSubview(containerView)
-        containerView.stickToSuperviewEdges([.left, .right, .top], insets: .init(top: 20, left: 40, bottom: 0, right: 20))
+        containerView.pinToSuperviewEdges([.left, .right, .top], insets: .init(top: 20, left: 40, bottom: 0, right: 20))
         containerView.height(Layout.containerHeight)
         
         addSubview(personContainerView)
-        personContainerView.stickToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 40, bottom: 20, right: 20))
+        personContainerView.pinToSuperviewEdges([.left, .right, .bottom], insets: .init(top: 0, left: 40, bottom: 20, right: 20))
         personContainerView.top(-Layout.personContainerHeight / 2, to: containerView)
         personContainerView.height(Layout.personContainerHeight)
         
         containerView.addSubview(houseTitleLabel)
-        houseTitleLabel.stickToSuperviewEdges([.left, .top, .right], insets: .init(top: 20, left: 20, bottom: 0, right: 20))
+        houseTitleLabel.pinToSuperviewEdges([.left, .top, .right], insets: .init(top: 20, left: 20, bottom: 0, right: 20))
         
         containerView.addSubview(addressLabel)
-        addressLabel.stickToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        addressLabel.pinToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         addressLabel.top(5, to: houseTitleLabel)
         
         personContainerView.addSubview(personAvatar)
@@ -108,7 +108,7 @@ final class PersonCell: CellView {
         personNameLabel.centerVertically()
         
         addSubview(routeLineImageView)
-        routeLineImageView.stickToSuperviewEdges([.left, .top, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 0))
+        routeLineImageView.pinToSuperviewEdges([.left, .top, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 0))
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

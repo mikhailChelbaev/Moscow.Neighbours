@@ -23,9 +23,9 @@ final class SignInWithAppleButtonCell: CellView {
     
     var onSignInWithAppleButtonTap: Action?
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(button)
-        button.stickToSuperviewEdges(.all,
+        button.pinToSuperviewEdges(.all,
                                      insets: .init(top: 20, left: 20, bottom: 20, right: 20))
         button.height(Layout.buttonHeight)
         

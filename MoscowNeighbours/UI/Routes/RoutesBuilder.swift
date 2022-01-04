@@ -25,7 +25,7 @@ extension Builder: RoutesBuilder {
     }
     
     private func makeStorage() -> RoutesStorage {
-        return RoutesStorage(routesService: .init(),
+        return RoutesStorage(routesService: .init(api: requestsFactory),
                              routesDescriptionBuilder: self)
     }    
 }

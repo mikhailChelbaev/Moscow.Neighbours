@@ -46,13 +46,13 @@ final class AccountAdvantagesCell: CellView {
     
     var buttonAction: Action?
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(containerView)
-        containerView.stickToSuperviewEdges(.all,
+        containerView.pinToSuperviewEdges(.all,
                                             insets: .init(top: 20, left: 20, bottom: 20, right: 20))
         
         containerView.addSubview(title)
-        title.stickToSuperviewEdges([.left, .right, .top],
+        title.pinToSuperviewEdges([.left, .right, .top],
                                     insets: .init(top: 30, left: 20, bottom: 0, right: 20))
         
         var lastView: UIView? = nil
@@ -63,7 +63,7 @@ final class AccountAdvantagesCell: CellView {
             view.imageView.image = image(for: advantage)
             
             containerView.addSubview(view)
-            view.stickToSuperviewEdges([.left, .right],
+            view.pinToSuperviewEdges([.left, .right],
                                        insets: .init(top: 0, left: 20, bottom: 0, right: 20))
             if let lastView = lastView {
                 view.top(10, to: lastView)
@@ -75,7 +75,7 @@ final class AccountAdvantagesCell: CellView {
         
         containerView.addSubview(button)
         button.top(18, to: lastView)
-        button.stickToSuperviewEdges([.left, .right, .bottom],
+        button.pinToSuperviewEdges([.left, .right, .bottom],
                                      insets: .init(top: 0, left: 20, bottom: 30, right: 20))
         button.height(42)
         
@@ -133,9 +133,9 @@ private class AdvantageView: CellView {
         return label
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(imageView)
-        imageView.stickToSuperviewEdges([.left, .top])
+        imageView.pinToSuperviewEdges([.left, .top])
         imageView.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: 0).isActive = true
         imageView.exactSize(.init(width: 20, height: 20))
         

@@ -37,7 +37,7 @@ final class HeaderView: CellView {
     
     private var buttonCloseAction: Action?
     
-    override func setUpView() {
+    override func configureView() {
         backgroundColor = .background
         
         addSubview(closeButton)
@@ -52,7 +52,7 @@ final class HeaderView: CellView {
         label.trailing(16, to: closeButton)
         
         addSubview(separator)
-        separator.stickToSuperviewEdges([.left, .right, .bottom])
+        separator.pinToSuperviewEdges([.left, .right, .bottom])
         separator.height(0.5)
         
         height(64)

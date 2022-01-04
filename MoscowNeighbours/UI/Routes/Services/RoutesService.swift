@@ -14,11 +14,21 @@ protocol RoutesServiceOutput: AnyObject {
 
 class RoutesService: BaseNetworkService<RoutesServiceOutput> {
     
+    // MARK: - Internal Properties
+    
+    private let api: ApiRequestsFactory
+    
+    // MARK: - Init
+    
+    init(api: ApiRequestsFactory) {
+        self.api = api
+    }
+    
     // MARK: - Internal Methods
     
     func fetchRoutes() {
         Task {
-            let result = await requestSender.send(request: ApiRequestsFactory.main.routesRequest,
+            let result = await requestSender.send(request: api.routesRequest,
                                                   type: [Route].self)
             switch result {
             case .success(let model):
@@ -39,9 +49,7 @@ class RoutesService: BaseNetworkService<RoutesServiceOutput> {
 // MARK: - API
 
 private extension ApiRequestsFactory {
-    
     var routesRequest: ApiRequest {
         return makeRequest(url: host + "/api/v1/routes", method: .get)
     }
-    
 }

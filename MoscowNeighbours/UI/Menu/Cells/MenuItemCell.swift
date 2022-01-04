@@ -22,14 +22,14 @@ final class MenuItemCell: CellView {
         return label
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(title)
-        title.stickToSuperviewEdges([.top, .left, .right],
+        title.pinToSuperviewEdges([.top, .left, .right],
                                     insets: .init(top: 20, left: 20, bottom: 0, right: 20))
         
         addSubview(subtitle)
         subtitle.top(7, to: title)
-        subtitle.stickToSuperviewEdges([.bottom, .left, .right],
+        subtitle.pinToSuperviewEdges([.bottom, .left, .right],
                                        insets: .init(top: 0, left: 20, bottom: 20, right: 20))
     }
     

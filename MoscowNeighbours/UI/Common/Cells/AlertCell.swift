@@ -42,16 +42,16 @@ final class AlertCell: CellView {
     
     var containerConstraints: AnchoredConstraints?
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(container)
-        containerConstraints = container.stickToSuperviewEdges([.left, .right, .top, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        containerConstraints = container.pinToSuperviewEdges([.left, .right, .top, .bottom], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         
         container.addSubview(imageView)
-        imageView.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
+        imageView.pinToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
         imageView.exactSize(.init(width: 20, height: 20))
         
         container.addSubview(label)
-        label.stickToSuperviewEdges([.top, .right], insets: .init(top: 20, left: 0, bottom: 0, right: 20))
+        label.pinToSuperviewEdges([.top, .right], insets: .init(top: 20, left: 0, bottom: 0, right: 20))
         label.leading(9, to: imageView)
         label.bottomAnchor.constraint(lessThanOrEqualTo: container.bottomAnchor, constant: -20).isActive = true
         let labelBottomContraint = label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20)

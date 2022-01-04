@@ -26,7 +26,7 @@ final class DefaultRequestSender: RequestSender {
             let task = session.dataTask(with: urlRequest) { [weak parser] (data: Data?, response: URLResponse?, error: Error?) in
                 // Handle network errors
                 if let error = error {
-                    Logger.log("Error happened when queried \(urlRequest.url!.absoluteString)!")
+                    Logger.log("Error happened when queried \(urlRequest.url?.absoluteString ?? "")!")
                     Logger.log(String(data: data ?? String("no data").data(using: .utf8)!, encoding: .utf8)!)
                     Logger.log(error.localizedDescription)
                     return continuation.resume(returning: .failure(NetworkError(description: error.localizedDescription, type: .network)))
@@ -37,8 +37,9 @@ final class DefaultRequestSender: RequestSender {
                     let statusCode = httpResponse.statusCode
                     Logger.log("\(statusCode) status code for \(urlRequest)")
                     guard (200...300).contains(statusCode) else {
-                        let message = parser?.parseHttpErrorMessage(data: data)
-                        return continuation.resume(returning: .failure(NetworkError(description: message ?? "Error occurred. Can't parse error message!", type: .http(statusCode: statusCode))))
+                        let message: String = parser?.parseHttpErrorMessage(data: data) ?? "Error occurred. Can't parse error message!"
+                        Logger.log(message)
+                        return continuation.resume(returning: .failure(NetworkError(description: message, type: .http(statusCode: statusCode))))
                     }
                 }
                 else {

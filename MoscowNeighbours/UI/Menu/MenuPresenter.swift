@@ -8,6 +8,10 @@
 import Foundation
 
 protocol MenuEventHandler {
+    var isUserAuthorized: Bool { get }
+    var username: String? { get }
+    var email: String? { get }
+    
     func onLoadData()
     func onBackButtonTap()
     func onAuthorizationButtonTap()
@@ -21,10 +25,23 @@ class MenuPresenter: MenuEventHandler {
     
     private let authorizationBuilder: AuthorizationBuilder
     
+    private let userService: UserService
+    
+    var isUserAuthorized: Bool {
+        userService.isAuthorized
+    }
+    var username: String? {
+        userService.currentUser?.name
+    }
+    var email: String? {
+        userService.currentUser?.email
+    }
+    
     // MARK: - Init
     
     init(storage: MenuStorage) {
         authorizationBuilder = storage.authorizationBuilder
+        userService = storage.userService
     }
     
     // MARK: - MenuEventHandler

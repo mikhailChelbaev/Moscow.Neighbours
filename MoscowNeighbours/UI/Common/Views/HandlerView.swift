@@ -22,9 +22,9 @@ final class HandlerView: CellView {
         return view
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(handlerView)
-        handlerView.stickToSuperviewEdges([.top, .bottom], insets: .init(top: Layout.pullViewBorderInsets, left: 0, bottom: Layout.pullViewBorderInsets, right: 0))
+        handlerView.pinToSuperviewEdges([.top, .bottom], insets: .init(top: Layout.pullViewBorderInsets, left: 0, bottom: Layout.pullViewBorderInsets, right: 0))
         handlerView.centerHorizontally()
         handlerView.exactSize(.init(width: Layout.pullViewWidth, height: Layout.pullViewHeight))
     }

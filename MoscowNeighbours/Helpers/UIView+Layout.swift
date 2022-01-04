@@ -82,7 +82,7 @@ public extension UIView {
     }
 
     @discardableResult
-    func stickToSuperviewEdges(_ edges: UIRectEdge, insets: UIEdgeInsets = .zero) -> AnchoredConstraints? {
+    func pinToSuperviewEdges(_ edges: UIRectEdge, insets: UIEdgeInsets = .zero) -> AnchoredConstraints? {
         guard let superview = superview else {
             assertionFailure("View must be added to superview firstly")
             return nil
@@ -106,9 +106,14 @@ public extension UIView {
 
         return constraints
     }
+    
+    @discardableResult
+    func pinToSuperviewEdges(_ edges: UIRectEdge, constant: CGFloat) -> AnchoredConstraints? {
+        pinToSuperviewEdges(edges, insets: .init(top: constant, left: constant, bottom: constant, right: constant))
+    }
 
     @discardableResult
-    func stickToSuperviewSafeEdges(_ edges: UIRectEdge, insets: UIEdgeInsets = .zero) -> AnchoredConstraints? {
+    func pinToSuperviewSafeEdges(_ edges: UIRectEdge, insets: UIEdgeInsets = .zero) -> AnchoredConstraints? {
         guard let superview = superview else {
             assertionFailure("View must be added to superview firstly")
             return nil
@@ -132,6 +137,11 @@ public extension UIView {
 
         return constraints
     }
+    
+    @discardableResult
+    func pinToSuperviewSafeEdges(_ edges: UIRectEdge, constant: CGFloat) -> AnchoredConstraints? {
+        pinToSuperviewSafeEdges(edges, insets: .init(top: constant, left: constant, bottom: constant, right: constant))
+    }
 
     @discardableResult
     func exactSize(_ size: CGSize) -> AnchoredConstraints {
@@ -148,6 +158,11 @@ public extension UIView {
         constraints.activate()
 
         return constraints
+    }
+    
+    @discardableResult
+    func exactSize(_ side: CGFloat) -> AnchoredConstraints {
+        exactSize(.init(width: side, height: side))
     }
 
     private func withSuperview(block: (UIView) -> NSLayoutConstraint) -> NSLayoutConstraint {

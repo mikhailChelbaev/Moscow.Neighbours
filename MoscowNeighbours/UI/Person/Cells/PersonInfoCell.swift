@@ -16,12 +16,12 @@ final class PersonInfoCell: PersonInfoBaseCell {
         return view
     }()
     
-    override func setUpView() {
+    override func configureView() {
         addSubview(container)
-        container.stickToSuperviewEdges(.all, insets: .init(top: 20, left: 20, bottom: 20, right: 20))
+        container.pinToSuperviewEdges(.all, insets: .init(top: 20, left: 20, bottom: 20, right: 20))
         
         container.addSubview(stack)
-        stack.stickToSuperviewEdges(.all, insets: .init(top: 20, left: 20, bottom: 20, right: 20))
+        stack.pinToSuperviewEdges(.all, insets: .init(top: 20, left: 20, bottom: 20, right: 20))
     }
     
 }
