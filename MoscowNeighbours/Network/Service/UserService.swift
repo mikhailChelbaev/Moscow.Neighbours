@@ -66,9 +66,13 @@ final class UserService: BaseNetworkService<UserServiceOutput> {
         }
     }
     
+    func logout() {
+        storeCurrentUser(nil)
+    }
+    
     // MARK: - Private Methods
     
-    private func storeCurrentUser(_ model: UserModel) {
+    private func storeCurrentUser(_ model: UserModel?) {
         currentUser = model
         cache.store(data: model, key: StorageKeys.currentUser.rawValue)
     }

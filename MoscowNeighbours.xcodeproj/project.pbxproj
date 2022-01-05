@@ -44,6 +44,9 @@
 		74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */; };
 		74346FB826F3E24D0060357A /* helveticaneuecyr-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */; };
 		74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */; };
+		7437B1D32785D3540020AABE /* RequestSenderWithTokenRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7437B1D22785D3540020AABE /* RequestSenderWithTokenRefresh.swift */; };
+		7437B1D52785D35F0020AABE /* BaseRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7437B1D42785D35F0020AABE /* BaseRequestSender.swift */; };
+		7437B1D82785D7600020AABE /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 7437B1D72785D7600020AABE /* JWTDecode */; };
 		743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743C3ABC277CF85800D4CB1C /* AuthorizationViewController.swift */; };
 		743C3ABF277CF9A800D4CB1C /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743C3ABE277CF9A800D4CB1C /* AuthorizationPresenter.swift */; };
 		743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743C3AC0277CF9B300D4CB1C /* AuthorizationBuilder.swift */; };
@@ -196,6 +199,8 @@
 		74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bold.ttf"; sourceTree = "<group>"; };
 		74346FB726F3E24D0060357A /* helveticaneuecyr-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-medium.ttf"; sourceTree = "<group>"; };
 		74346FB926F3E3FB0060357A /* MKMapView+Annotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Annotations.swift"; sourceTree = "<group>"; };
+		7437B1D22785D3540020AABE /* RequestSenderWithTokenRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSenderWithTokenRefresh.swift; sourceTree = "<group>"; };
+		7437B1D42785D35F0020AABE /* BaseRequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestSender.swift; sourceTree = "<group>"; };
 		743C3ABC277CF85800D4CB1C /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		743C3ABE277CF9A800D4CB1C /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		743C3AC0277CF9B300D4CB1C /* AuthorizationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationBuilder.swift; sourceTree = "<group>"; };
@@ -313,6 +318,7 @@
 			files = (
 				74FFB59726EFE64E0060D948 /* ImageView in Frameworks */,
 				7402E4402739AE020092C8C4 /* MapKit.framework in Frameworks */,
+				7437B1D82785D7600020AABE /* JWTDecode in Frameworks */,
 				74569EDF26FA8BBF00D58821 /* UltraDrawerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,6 +559,16 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		7437B1D12785D30E0020AABE /* RequestSender */ = {
+			isa = PBXGroup;
+			children = (
+				74967F73276F554D0096AA77 /* RequestSender.swift */,
+				7437B1D22785D3540020AABE /* RequestSenderWithTokenRefresh.swift */,
+				7437B1D42785D35F0020AABE /* BaseRequestSender.swift */,
+			);
+			path = RequestSender;
+			sourceTree = "<group>";
+		};
 		743C3ABB277CF84500D4CB1C /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,11 +688,11 @@
 			children = (
 				74967F7C276F556B0096AA77 /* Models */,
 				74967F79276F555A0096AA77 /* Service */,
+				7437B1D12785D30E0020AABE /* RequestSender */,
 				74967F6F276F554C0096AA77 /* ApiRequest.swift */,
 				74967F70276F554C0096AA77 /* ApiRequestsFactory.swift */,
 				74967F72276F554C0096AA77 /* DefaultJsonParser.swift */,
 				74967F71276F554C0096AA77 /* RequestResult.swift */,
-				74967F73276F554D0096AA77 /* RequestSender.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -893,6 +909,7 @@
 			packageProductDependencies = (
 				74FFB59626EFE64E0060D948 /* ImageView */,
 				74569EDE26FA8BBF00D58821 /* UltraDrawerView */,
+				7437B1D72785D7600020AABE /* JWTDecode */,
 			);
 			productName = MoscowNeighbours;
 			productReference = 7402660B26A76379006242FE /* MoscowNeighbours.app */;
@@ -925,6 +942,7 @@
 			packageReferences = (
 				74FFB59526EFE64E0060D948 /* XCRemoteSwiftPackageReference "ImageView" */,
 				74569EDD26FA8BBF00D58821 /* XCRemoteSwiftPackageReference "UltraDrawerView" */,
+				7437B1D62785D7600020AABE /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
 			);
 			productRefGroup = 7402660C26A76379006242FE /* Products */;
 			projectDirPath = "";
@@ -1047,6 +1065,7 @@
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
 				748EE635270F913000301552 /* PersonInfo.swift in Sources */,
 				74C72A54277BC17D00B73560 /* MenuHeaderView.swift in Sources */,
+				7437B1D32785D3540020AABE /* RequestSenderWithTokenRefresh.swift in Sources */,
 				743DE7262775D80500B5CED8 /* MapService.swift in Sources */,
 				743DE7282776097100B5CED8 /* ObservableService.swift in Sources */,
 				740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */,
@@ -1069,6 +1088,7 @@
 				741FE3052777B4780065126A /* WeakRef+RoutePassing.swift in Sources */,
 				74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */,
 				748EE63D270F917600301552 /* ShortInfo.swift in Sources */,
+				7437B1D52785D35F0020AABE /* BaseRequestSender.swift in Sources */,
 				744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */,
 				74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */,
 				74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */,
@@ -1298,6 +1318,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7437B1D62785D7600020AABE /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		74569EDD26FA8BBF00D58821 /* XCRemoteSwiftPackageReference "UltraDrawerView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/super-ultra/UltraDrawerView";
@@ -1317,6 +1345,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7437B1D72785D7600020AABE /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7437B1D62785D7600020AABE /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
+			productName = JWTDecode;
+		};
 		74569EDE26FA8BBF00D58821 /* UltraDrawerView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 74569EDD26FA8BBF00D58821 /* XCRemoteSwiftPackageReference "UltraDrawerView" */;

@@ -1,13 +1,13 @@
+//
+//  BaseRequestSender.swift
+//  MoscowNeighbours
+//
+//  Created by Mikhail on 05.01.2022.
+//
+
 import Foundation
 
-protocol RequestSender: AnyObject {
-    typealias RequestCompletion<T> = (RequestResult<T>) -> Void
-    
-    func send<ResultModel: Decodable>(request: ApiRequest,
-                                      type: ResultModel.Type) async -> RequestResult<ResultModel>
-}
-
-final class DefaultRequestSender: RequestSender {
+final class BaseRequestSender: RequestSender {
     
     // MARK: - Private Properties
     
