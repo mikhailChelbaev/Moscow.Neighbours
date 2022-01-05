@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+  MoscowNeighbours
+
+  Created by Mikhail on 05.01.2022.
+  
+*/
+
+/* Common */
+"common.yes" = "Yes";
+"common.cancel" = "Cancel";
+
+/* Error */
+"main_error.title" = "Failed to load page, please try again";
+"main_error.button_title" = "Reload";
+
+/* Routes */
+"route.routes" = "Routes";
+
+/* Route Description */
+"route_description.information" = "Information:";
+"route_description.places" = "Where to go:";
+"route_description.start_route" = "Start the route";
+
+/* Route Passing */
+"route_passing.end_route" = "End the route";
+"route_passing.first_time_button" = "Meet the neighbor";
+"route_passing.first_time_alert" = "You can start your acquaintance with the person";
+"route_passing.review_button" = "Watch again";
+"route_passing.review_alert" = "You can read about the person at any time";
+"route_passing.end_route_title" = "Confirm the action";
+"route_passing.end_route_message" = "Are you sure you want to finish the route?";
+
+/* Person */
+"person.ready_to_go" = "Ready to go";
+"person.information" = "Information:";
+"person.pass_route_alert" = "To find out more about the person, start the route";
+
+/* Menu */
+"menu.title" = "Menu";
+"menu.settings" = "Settings";
+"menu.settings_description" = "Notifications, languages and other";

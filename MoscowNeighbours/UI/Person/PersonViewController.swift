@@ -247,7 +247,7 @@ extension PersonViewController: TableSuccessDataSource {
                 
             case .description:
                 if indexPath.item == 0 {
-                    return createTitleCell(text: "Информация:", for: indexPath)
+                    return createTitleCell(text: "person.information".localized, for: indexPath)
                      
                 } else if indexPath.item == 1 {
                     return createDescriptionCell(text: person.shortDescription,
@@ -273,7 +273,7 @@ extension PersonViewController: TableSuccessDataSource {
                 
             case .alert:
                 if indexPath.item == 0 {
-                    return createAlertCell(text: "Чтобы узнать о человеке больше, пройдите маршрут",
+                    return createAlertCell(text: "person.pass_route_alert".localized,
                                            for: indexPath)
                     
                 } else {
@@ -314,7 +314,7 @@ extension PersonViewController: TableSuccessDataSource {
                 
             case .readyToGo:
                 if indexPath.item == 0 {
-                    return createButtonCell(text: "Готов идти дальше", action: { [weak self] in
+                    return createButtonCell(text: "person.ready_to_go".localized, action: { [weak self] in
                         self?.handleBackButton()
                     }, for: indexPath)
                     

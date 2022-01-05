@@ -43,7 +43,7 @@ final class MenuHeaderView: CellView {
     let title: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 24, weight: .bold)
-        label.text = "Меню"
+        label.text = "menu.title".localized
         return label
     }()
     

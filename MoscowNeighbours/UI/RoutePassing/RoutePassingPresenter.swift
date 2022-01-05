@@ -54,16 +54,16 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     }
     
     func onEndRouteButtonTap() {
-        let alertController = UIAlertController(title: "Подтвердите действие",
-                                                message: "Вы уверены, что хотите закончить маршрут?",
+        let alertController = UIAlertController(title: "route_passing.end_route_title".localized,
+                                                message: "route_passing.end_route_message".localized,
                                                 preferredStyle: .alert)
-        let yes = UIAlertAction(title: "Да", style: .default, handler: { [weak self] _ in
+        let yes = UIAlertAction(title: "common.yes".localized, style: .default, handler: { [weak self] _ in
             // stop route passing
             self?.routePassingService.stopRoute()
             // close controller
             self?.viewController?.closeController(animated: true, completion: nil)
         })
-        let no = UIAlertAction(title: "Отмена", style: .cancel)
+        let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)
         alertController.addAction(yes)
         alertController.addAction(no)
         viewController?.present(alertController, animated: true, completion: nil)

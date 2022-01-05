@@ -18,7 +18,7 @@ struct EmptyStateDataProvider {
 struct DefaultEmptyStateProviders {
     
     static func mainError(action: Action?) -> EmptyStateDataProvider {
-        EmptyStateDataProvider(image: #imageLiteral(resourceName: "error_placeholder"), title: "Не удалось загрузить страницу, попробуйте еще раз", subtitle: nil, buttonTitle: "Перезагрузить", buttonAction: action)
+        EmptyStateDataProvider(image: #imageLiteral(resourceName: "error_placeholder"), title: "main_error.title".localized, subtitle: nil, buttonTitle: "main_error.button_title".localized, buttonAction: action)
     }
     
 }

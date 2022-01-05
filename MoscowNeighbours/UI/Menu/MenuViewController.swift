@@ -134,7 +134,7 @@ extension MenuViewController: TableSuccessDataSource {
             return createSeparator(for: indexPath)
 
         } else if indexPath.item == 2 {
-            return createMenuItemCell(title: "Настройки", subtitle: "Уведомления, язык и др.", for: indexPath)
+            return createMenuItemCell(title: "menu.settings".localized, subtitle: "menu.settings_description".localized, for: indexPath)
 
         } else {
             return createSeparator(for: indexPath)

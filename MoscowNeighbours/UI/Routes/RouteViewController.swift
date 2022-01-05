@@ -105,7 +105,7 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     }
     
     override func getHeaderView() -> UIView? {
-        headerView.update(text: "Маршруты", showSeparator: false)
+        headerView.update(text: "route.routes".localized, showSeparator: false)
         return headerView
     }
     

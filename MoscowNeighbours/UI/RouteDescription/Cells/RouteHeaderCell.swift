@@ -21,7 +21,7 @@ final class RouteHeaderCell: EntityHeaderCell {
         let button = Button()
         button.roundedCorners = true
         button.titleLabel?.font = .mainFont(ofSize: 17, weight: .bold)
-        button.setTitle("Начать маршрут", for: .normal)
+        button.setTitle("route_description.start_route".localized, for: .normal)
         return button
     }()
     

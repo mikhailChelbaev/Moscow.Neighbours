@@ -34,7 +34,6 @@ final class RoutePointCell: CellView {
     let button: Button = {
         let button = Button()
         button.titleLabel?.font = .mainFont(ofSize: 18, weight: .bold)
-        button.setTitle("Познакомиться с соседом", for: .normal)
         button.roundedCorners = true
         return button
     }()
@@ -69,16 +68,16 @@ final class RoutePointCell: CellView {
         switch state {
         case .firstTime:
             button.style = .filled
-            alertView.update(text: "Вы можете начать свое знакомство с героем", image: .checkmark)
+            alertView.update(text: "route_passing.first_time_alert".localized, image: .checkmark)
             button.isEnabled = true
             button.action = action
-            button.setTitle("Познакомиться с соседом", for: .normal)
+            button.setTitle("route_passing.first_time_button".localized, for: .normal)
         case .review:
             button.style = .filled
-            alertView.update(text: "Вы можете прочитать про этого героя в любой момент", image: .checkmark)
+            alertView.update(text: "route_passing.review_alert".localized, image: .checkmark)
             button.isEnabled = true
             button.action = action
-            button.setTitle("Посмотреть еще раз", for: .normal)
+            button.setTitle("route_passing.review_button".localized, for: .normal)
 //        case .notVisited:
 //            button.style = .custom(title: .label.withAlphaComponent(0.5), background: .grayBackground)
 //            alertView.update(text: "Чтобы начать знакомство, подойдите ближе к локации", image: .exclamationMark)

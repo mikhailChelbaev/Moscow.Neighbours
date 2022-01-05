@@ -192,7 +192,7 @@ extension RouteDescriptionViewController: TableSuccessDataSource {
             
         case .information:
             if indexPath.item == 0 {
-                return createTextHeaderCell(text: "Информация:", for: indexPath)
+                return createTextHeaderCell(text: "route_description.information".localized, for: indexPath)
                 
             } else if indexPath.item == 1 {
                 return createRouteDescriptionCell(for: indexPath)
@@ -203,7 +203,7 @@ extension RouteDescriptionViewController: TableSuccessDataSource {
             
         case .persons:
             if indexPath.item == 0 {
-                return createTextHeaderCell(text: "Куда пойдем:", for: indexPath)
+                return createTextHeaderCell(text: "route_description.places".localized, for: indexPath)
                 
             } else {
                 return createPersonCell(for: indexPath)

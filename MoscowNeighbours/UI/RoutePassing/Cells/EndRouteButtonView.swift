@@ -14,9 +14,9 @@ final class EndRouteButtonView: CellView {
         static let buttonHeight: CGFloat = 38
         static let borderInsets: CGFloat = 10
         static var totalHeight = buttonHeight + 2 * borderInsets
-        static let endRouteButtonText: String = "Завершить маршрут"
+        static let endRouteButtonText: String = "route_passing.end_route".localized
     }
-
+    
     let endRouteButton: Button = {
         let button = Button()
         button.setTitle(Settings.endRouteButtonText, for: .normal)
@@ -27,7 +27,7 @@ final class EndRouteButtonView: CellView {
         return button
     }()
     
-    let         arrowUpButton: Button = {
+    let arrowUpButton: Button = {
         let button = Button()
         button.setImage(sfSymbol("arrow.up", tintColor: .reversedBackground), for: .normal)
         button.contentEdgeInsets = .zero
@@ -45,11 +45,11 @@ final class EndRouteButtonView: CellView {
         endRouteButton.centerHorizontally()
         endRouteButton.height(Settings.buttonHeight)
         
-        addSubview(        arrowUpButton)
-                arrowUpButton.pinToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
-                arrowUpButton.centerHorizontally()
-                arrowUpButton.exactSize(.init(width: Settings.buttonHeight , height: Settings.buttonHeight ))
-        sendSubviewToBack(        arrowUpButton)
+        addSubview(arrowUpButton)
+        arrowUpButton.pinToSuperviewEdges([.top, .bottom], insets: .init(top: Settings.borderInsets, left: 0, bottom: Settings.borderInsets, right: 0))
+        arrowUpButton.centerHorizontally()
+        arrowUpButton.exactSize(Settings.buttonHeight)
+        sendSubviewToBack(arrowUpButton)
     }
     
     func update(endRouteAction: Action?,
@@ -60,7 +60,7 @@ final class EndRouteButtonView: CellView {
     
     func changeViewState(_ newState: DrawerView.State) {
         guard state != newState else { return }
-
+        
         if newState == .bottom {
             UIView.animate(withDuration: 0.2) {
                 self.endRouteButton.transform = .init(translationX: 0.4, y: 1)
