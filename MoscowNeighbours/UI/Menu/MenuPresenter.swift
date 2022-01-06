@@ -15,6 +15,7 @@ protocol MenuEventHandler {
     func onLoadData()
     func onBackButtonTap()
     func onAuthorizationButtonTap()
+    func onSettingsButtonTap()
 }
 
 class MenuPresenter: MenuEventHandler {
@@ -24,6 +25,7 @@ class MenuPresenter: MenuEventHandler {
     weak var viewController: MenuView?
     
     private let authorizationBuilder: AuthorizationBuilder
+    private let settingsBuilder: SettingsBuilder
     
     private let userService: UserService
     
@@ -41,6 +43,8 @@ class MenuPresenter: MenuEventHandler {
     
     init(storage: MenuStorage) {
         authorizationBuilder = storage.authorizationBuilder
+        settingsBuilder = storage.settingsBuilder
+        
         userService = storage.userService
     }
     
@@ -56,6 +60,11 @@ class MenuPresenter: MenuEventHandler {
     
     func onAuthorizationButtonTap() {
         let controller = authorizationBuilder.buildAuthorizationViewController()
+        viewController?.present(controller, state: .top, completion: nil)
+    }
+    
+    func onSettingsButtonTap() {
+        let controller = settingsBuilder.buildSettingsViewController()
         viewController?.present(controller, state: .top, completion: nil)
     }
     

@@ -40,3 +40,11 @@
 "menu.title" = "Меню";
 "menu.settings" = "Настройки";
 "menu.settings_description" = "Уведомления, язык и др.";
+
+/* Settings */
+"settings.title" = "Настройки";
+"settings.push_notifications_title" = "Push-уведомления";
+"settings.push_notifications_description" = "Напомним о незаконченных маршрутах и оповестим о новых";
+"settings.email_notifications_title" = "E-mail уведомления";
+"settings.email_notifications_description" = "Расскажем о крутых акциях и скидках";
+"settings.language" = "Выбрать язык";

@@ -40,3 +40,11 @@
 "menu.title" = "Menu";
 "menu.settings" = "Settings";
 "menu.settings_description" = "Notifications, languages and other";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.push_notifications_title" = "Push notifications";
+"settings.push_notifications_description" = "We'll remind about unfinished routes and notify about new ones";
+"settings.email_notifications_title" = "Email notifications";
+"settings.email_notifications_description" = "We'll tell about cool promotions and discounts";
+"settings.language" = "Choose language";

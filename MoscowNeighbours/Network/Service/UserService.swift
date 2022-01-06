@@ -18,6 +18,8 @@ final class UserService: BaseNetworkService<UserServiceOutput> {
     
     enum StorageKeys: String {
         case currentUser
+        case pushNotifications
+        case emailNotifications
     }
     
     // MARK: - Internal Properties
@@ -28,6 +30,24 @@ final class UserService: BaseNetworkService<UserServiceOutput> {
     }
     
     static let main: UserService = .init()
+    
+    var isPushNotificationsEnabled: Bool {
+        set {
+            cache.store(data: newValue, key: StorageKeys.pushNotifications.rawValue)
+        }
+        get {
+            cache.get(key: StorageKeys.pushNotifications.rawValue) ?? false
+        }
+    }
+    
+    var isEmailNotificationsEnabled: Bool {
+        set {
+            cache.store(data: newValue, key: StorageKeys.emailNotifications.rawValue)
+        }
+        get {
+            cache.get(key: StorageKeys.emailNotifications.rawValue) ?? false
+        }
+    }
     
     // MARK: - Private Properties
     

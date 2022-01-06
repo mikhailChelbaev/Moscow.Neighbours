@@ -72,6 +72,7 @@ final class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        eventHandler.onViewDidLoad()
         registerAnnotationViews()
         setUpViews()
         setUpLayout()

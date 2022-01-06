@@ -142,6 +142,11 @@
 		74E7C39D2783081A00B16392 /* JWTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39C2783081A00B16392 /* JWTService.swift */; };
 		74E7C3A027830F9100B16392 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39F27830F9100B16392 /* UserModel.swift */; };
 		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
+		74F185662787291800A0BF24 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F185652787291800A0BF24 /* SettingsViewController.swift */; };
+		74F185682787292600A0BF24 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F185672787292600A0BF24 /* SettingsPresenter.swift */; };
+		74F1856A2787293700A0BF24 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F185692787293700A0BF24 /* SettingsBuilder.swift */; };
+		74F1856D27872E8E00A0BF24 /* ToggleSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1856C27872E8E00A0BF24 /* ToggleSettingsCell.swift */; };
+		74F1856F2787307E00A0BF24 /* OneLineSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1856E2787307E00A0BF24 /* OneLineSettingsCell.swift */; };
 		74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F3153B277740F600006217 /* UIViewController+TopController.swift */; };
 		74F52A31272593CC00343334 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F52A30272593CC00343334 /* MarkdownParser.swift */; };
 		74F52A332725946700343334 /* BlockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F52A322725946700343334 /* BlockParser.swift */; };
@@ -304,6 +309,11 @@
 		74E7C39C2783081A00B16392 /* JWTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTService.swift; sourceTree = "<group>"; };
 		74E7C39F27830F9100B16392 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		74EBC36726F503500002EEAE /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
+		74F185652787291800A0BF24 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		74F185672787292600A0BF24 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		74F185692787293700A0BF24 /* SettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
+		74F1856C27872E8E00A0BF24 /* ToggleSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleSettingsCell.swift; sourceTree = "<group>"; };
+		74F1856E2787307E00A0BF24 /* OneLineSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineSettingsCell.swift; sourceTree = "<group>"; };
 		74F3153B277740F600006217 /* UIViewController+TopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopController.swift"; sourceTree = "<group>"; };
 		74F52A30272593CC00343334 /* MarkdownParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		74F52A322725946700343334 /* BlockParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockParser.swift; sourceTree = "<group>"; };
@@ -409,6 +419,7 @@
 				74C72A4B277BBC0800B73560 /* Menu */,
 				743C3ABB277CF84500D4CB1C /* Authorization */,
 				74C72A4A277BB4F700B73560 /* Profile */,
+				74F185642787290500A0BF24 /* Settings */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -870,6 +881,26 @@
 			path = AR;
 			sourceTree = "<group>";
 		};
+		74F185642787290500A0BF24 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				74F185652787291800A0BF24 /* SettingsViewController.swift */,
+				74F185672787292600A0BF24 /* SettingsPresenter.swift */,
+				74F185692787293700A0BF24 /* SettingsBuilder.swift */,
+				74F1856B27872E7B00A0BF24 /* Cells */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		74F1856B27872E7B00A0BF24 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74F1856C27872E8E00A0BF24 /* ToggleSettingsCell.swift */,
+				74F1856E2787307E00A0BF24 /* OneLineSettingsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		74F52A2D272591EB00343334 /* Markdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,6 +1037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */,
+				74F1856F2787307E00A0BF24 /* OneLineSettingsCell.swift in Sources */,
 				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
@@ -1021,6 +1053,7 @@
 				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,
 				748EE639270F915C00301552 /* Place.swift in Sources */,
 				74E7C3A027830F9100B16392 /* UserModel.swift in Sources */,
+				74F1856A2787293700A0BF24 /* SettingsBuilder.swift in Sources */,
 				74C72A4F277BBC1F00B73560 /* MenuPresenter.swift in Sources */,
 				74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */,
 				743C3AC9277D051F00D4CB1C /* AuthorizationTypeCell.swift in Sources */,
@@ -1039,6 +1072,7 @@
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
 				7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */,
+				74F185682787292600A0BF24 /* SettingsPresenter.swift in Sources */,
 				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
@@ -1059,6 +1093,7 @@
 				74FD656926B0ABDA00F824DD /* Stack.swift in Sources */,
 				742222212781F65900CFDD50 /* JWTResponse.swift in Sources */,
 				74EBC36826F503500002EEAE /* HandlerView.swift in Sources */,
+				74F1856D27872E8E00A0BF24 /* ToggleSettingsCell.swift in Sources */,
 				74F52A332725946700343334 /* BlockParser.swift in Sources */,
 				74F52A352725947100343334 /* FragmentParser.swift in Sources */,
 				74F73A02272B50DE007C5450 /* LoadingStatus.swift in Sources */,
@@ -1112,6 +1147,7 @@
 				74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */,
 				74C5D8D326FD237700034432 /* Button.swift in Sources */,
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
+				74F185662787291800A0BF24 /* SettingsViewController.swift in Sources */,
 				741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */,
 				744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */,
 				741FE3052777B4780065126A /* WeakRef+RoutePassing.swift in Sources */,

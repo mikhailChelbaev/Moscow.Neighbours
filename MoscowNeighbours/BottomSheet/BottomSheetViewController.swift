@@ -12,6 +12,12 @@ typealias BottomSheet = DrawerView
 
 class BottomSheetViewController: UIViewController, DrawerViewListener {
     
+    enum BackgroundDimStyle {
+        case fullScreen
+        case dynamic
+        case none
+    }
+    
     // MARK: - UI
     
     lazy var bottomSheet: BottomSheet = createBottomSheet() {
@@ -37,8 +43,8 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
     var presentingControllerState: BottomSheet.State = .dismissed
     
     // override this property to disable dim
-    var shouldDimBackground: Bool {
-        return true
+    var backgroundDimStyle: BackgroundDimStyle {
+        return .dynamic
     }
     
     // MARK: - Init
@@ -150,22 +156,29 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
     // MARK: - Cover Alpha
     
     func recalculateCoverAlpha(for origin: CGFloat) {
-        guard shouldDimBackground else {
-            return
+        switch backgroundDimStyle {
+        case .fullScreen:
+            let bottom = view.frame.height
+            let top = bottomSheet.origin(for: .top)
+            cover.alpha = 0.7 * (origin - bottom) / (top - bottom)
+            
+        case .dynamic:
+            var value: CGFloat = 0
+            defer {
+                cover.alpha = value
+            }
+            
+            let states = bottomSheet.availableStates.subtracting([.dismissed])
+            let heights: [CGFloat] = states.compactMap({ bottomSheet.origin(for: $0) }).sorted(by: { $0 < $1 })
+        
+            guard heights.count > 1 else { return }
+            
+            let top = heights.first!
+            let bottom = heights.last!
+            value = 0.7 * (origin - bottom) / (top - bottom)
+            
+        case .none:
+            break
         }
-        
-        var value: CGFloat = 0
-        defer {
-            cover.alpha = value
-        }
-        
-        let states = bottomSheet.availableStates.subtracting([.dismissed])
-        let heights: [CGFloat] = states.compactMap({ bottomSheet.origin(for: $0) }).sorted(by: { $0 < $1 })
-    
-        guard heights.count > 1 else { return }
-        
-        let top = heights.first!
-        let bottom = heights.last!
-        value = 0.7 * (origin - bottom) / (top - bottom)
     }
 }

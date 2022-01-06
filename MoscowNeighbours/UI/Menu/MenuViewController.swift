@@ -18,7 +18,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
     let tableView: BaseTableView = {
         let tableView = BaseTableView()
         tableView.backgroundColor = .background
-        tableView.contentInsetAdjustmentBehavior = .never
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.clipsToBounds = true
@@ -33,6 +32,10 @@ class MenuViewController: BottomSheetViewController, MenuView {
     
     var status: LoadingStatus = .success {
         didSet { reloadData() }
+    }
+    
+    override var backgroundDimStyle: BackgroundDimStyle {
+        return .fullScreen
     }
     
     // MARK: - Init
@@ -89,6 +92,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
     }
     
     override func getHeaderView() -> UIView? {
+        headerView.title.text = "menu.title".localized
         headerView.backButtonAction = { [weak self] in
             self?.eventHandler.onBackButtonTap()
         }
@@ -99,14 +103,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
         return BottomSheetConfiguration(topInset: .fromTop(0),
                                         middleInset: .fromTop(0),
                                         availableStates: [.top, .middle])
-    }
-    
-    // MARK: - Cover Alpha
-    
-    override func recalculateCoverAlpha(for origin: CGFloat) {
-        let bottom = view.frame.height
-        let top = bottomSheet.origin(for: .top)
-        cover.alpha = 0.7 * (origin - bottom) / (top - bottom)
     }
             
 }
@@ -143,6 +139,10 @@ extension MenuViewController: TableSuccessDataSource {
     
     func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        // settings cell
+        if indexPath.item == 2 {
+            eventHandler.onSettingsButtonTap()
+        }
     }
 }
 

@@ -45,8 +45,8 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
     
     var selectedIndex: Int = 0
     
-    override var shouldDimBackground: Bool {
-        false
+    override var backgroundDimStyle: BackgroundDimStyle {
+        return .none
     }
     
     // MARK: - Private properties
