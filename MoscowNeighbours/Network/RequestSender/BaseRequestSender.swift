@@ -14,6 +14,10 @@ final class BaseRequestSender: RequestSender {
     private let session = URLSession.shared
     private var parser: Parser = DefaultJsonParser()
     
+    // MARK: - Internal Properties
+    
+    static let current = BaseRequestSender()
+    
     // MARK: - Internal Methods
     
     func send<ResultModel: Decodable>(request: ApiRequest,

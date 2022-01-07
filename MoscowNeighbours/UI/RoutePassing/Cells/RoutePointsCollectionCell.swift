@@ -42,8 +42,9 @@ final class RoutePointsCollectionCell: CellView {
     }()
     
     private var route: RouteViewModel?
-    private var buttonTapCallback: ((PersonViewModel) -> Void)?
-    private var indexDidChange: ((Int) -> Void)?
+    var buttonTapCallback: ((PersonViewModel) -> Void)?
+    var indexDidChange: ((Int) -> Void)?
+    var personState: ((PersonViewModel) -> PersonState)?
     
     override func configureView() {
         // collection set up
@@ -77,12 +78,8 @@ final class RoutePointsCollectionCell: CellView {
     }
     
     func update(route: RouteViewModel,
-                currentIndex: Int,
-                buttonTapCallback: @escaping (PersonViewModel) -> Void,
-                indexDidChange: @escaping (Int) -> Void) {
+                currentIndex: Int) {
         self.route = route
-        self.buttonTapCallback = buttonTapCallback
-        self.indexDidChange = indexDidChange
         
         indicator.numberOfPages = route.persons.count
         
@@ -102,17 +99,12 @@ extension RoutePointsCollectionCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(RoutePointCell.self, for: indexPath)
-        var state: RoutePointCell.State = .firstTime
         
-        guard let person = route?.persons[indexPath.item] else {
-            fatalError("There is no person info for index path: \(indexPath)")
+        guard let person = route?.persons[indexPath.item],
+              let state = personState?(person) else {
+            fatalError("There is no person or state info for index path: \(indexPath)")
         }
         
-//        if mapPresenter?.viewedPersons.contains(personInfo) == true {
-//            state = .review
-//        } else if mapPresenter?.visitedPersons.contains(personInfo) == true {
-//            state = .firstTime
-//        }
         cell.view.update(person: person,
                          state: state,
                          action: { [weak self] in

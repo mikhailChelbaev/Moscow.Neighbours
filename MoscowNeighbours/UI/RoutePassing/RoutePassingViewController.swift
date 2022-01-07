@@ -97,6 +97,10 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
         tableView.register(RoutePointsCollectionCell.self)
     }
     
+    private func getPersonState(for person: PersonViewModel) -> PersonState {
+        return eventHandler.getState(for: person)
+    }
+    
     // MARK: - Bottom Sheet set up
     
     override func getScrollView() -> UIScrollView {
@@ -145,10 +149,15 @@ extension RoutePassingViewController {
     func createRoutePointsCollectionCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RoutePointsCollectionCell.self, for: indexPath)
         cell.selectionStyle = .none
-        cell.view.update(route: route, currentIndex: selectedIndex) { [weak self] person in
+        cell.view.update(route: route, currentIndex: selectedIndex)
+        cell.view.buttonTapCallback =  { [weak self] person in
             self?.eventHandler.onBecomeAcquaintedButtonTap(person)
-        } indexDidChange: { [weak self] newIndex in
+        }
+        cell.view.indexDidChange =  { [weak self] newIndex in
             self?.eventHandler.onIndexChange(newIndex)
+        }
+        cell.view.personState = { [weak self] person in
+            self?.getPersonState(for: person) ?? .notVisited
         }
         return cell
     }

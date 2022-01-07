@@ -7,12 +7,18 @@
 
 import UIKit
 
+enum PersonState {
+    case notVisited
+    case visited
+}
+
 protocol RoutePassingEventHandler {
     func getRoute() -> RouteViewModel
     func onEndRouteButtonTap()
     func onArrowUpButtonTap()
     func onBecomeAcquaintedButtonTap(_ personInfo: PersonViewModel)
     func onIndexChange(_ newIndex: Int)
+    func getState(for person: PersonViewModel) -> PersonState
 }
 
 class RoutePassingPresenter: RoutePassingEventHandler {
@@ -27,7 +33,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     private var routePassingService: RoutePassingService
     private let mapService: MapService
     
-    private var visitedPersons: [PersonViewModel] = []
+    private var visitedPersons: Set<PersonViewModel> = .init()
     
     // MARK: - Init
     
@@ -74,22 +80,34 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     }
     
     func onBecomeAcquaintedButtonTap(_ person: PersonViewModel) {
+        visitedPersons.insert(person)
+        
         mapService.selectAnnotation(person)
         mapService.centerAnnotation(person)
         let controller = personBuilder.buildPersonViewController(person: person,
                                                                  personPresentationState: .fullDescription)
-        viewController?.present(controller, state: .top, completion: nil)
+        viewController?.present(controller, state: .top, completion: {
+            // update person state
+            self.viewController?.reloadData()
+        })
     }
     
     func onIndexChange(_ newIndex: Int) {
         viewController?.selectedIndex = newIndex
         mapService.centerAnnotation(route.persons[newIndex])
     }
+    
+    func getState(for person: PersonViewModel) -> PersonState {
+        if visitedPersons.contains(person) {
+            return .visited
+        } else {
+            return .notVisited
+        }
+    }
 }
 
 extension RoutePassingPresenter: RoutePassingServiceOutput {
     func didVisitNewPersons(_ persons: [PersonViewModel]) {
-        visitedPersons.append(contentsOf: persons)
         scrollToPerson(persons.first)
     }
     

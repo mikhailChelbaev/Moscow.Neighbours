@@ -9,11 +9,6 @@ import UIKit
 
 final class RoutePointCell: CellView {
     
-    enum State {
-        case firstTime
-        case review
-    }
-    
     let personNameLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 24, weight: .bold)
@@ -59,20 +54,20 @@ final class RoutePointCell: CellView {
     
     func update(
         person: PersonViewModel,
-        state: State,
+        state: PersonState,
         action: Action?
     ) {
         personNameLabel.text = person.name
         addressLabel.text = person.address
         
         switch state {
-        case .firstTime:
+        case .notVisited:
             button.style = .filled
             alertView.update(text: "route_passing.first_time_alert".localized, image: .checkmark)
             button.isEnabled = true
             button.action = action
             button.setTitle("route_passing.first_time_button".localized, for: .normal)
-        case .review:
+        case .visited:
             button.style = .filled
             alertView.update(text: "route_passing.review_alert".localized, image: .checkmark)
             button.isEnabled = true

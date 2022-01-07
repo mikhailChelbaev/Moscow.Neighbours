@@ -11,7 +11,7 @@ final class RequestSenderWithTokenRefresh: RequestSender {
     
     // MARK: - Private Properties
     
-    private let requestSender: RequestSender = BaseRequestSender()
+    private let requestSender: RequestSender = BaseRequestSender.current
     private let jwtService: JWTService = .main
     
     // MARK: - Internal Methods
