@@ -18,6 +18,8 @@ protocol MapServiceOutput {
     func selectAnnotation(_ annotation: MKAnnotation)
     func deselectAnnotation(_ annotation: MKAnnotation)
     func centerAnnotation(_ annotation: MKAnnotation)
+    
+    func didSelectAnnotation(_ view: MKAnnotationView)
 }
 
 class MapService: ObservableService {
@@ -85,6 +87,10 @@ class MapService: ObservableService {
     
     func centerAnnotation(_ annotation: MKAnnotation) {
         observers.forEach({ $0.value.centerAnnotation(annotation) })
+    }
+    
+    func didSelectAnnotation(_ annotation: MKAnnotationView) {
+        observers.forEach({ $0.value.didSelectAnnotation(annotation) })
     }
 }
 

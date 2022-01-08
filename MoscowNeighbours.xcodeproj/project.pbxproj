@@ -65,6 +65,7 @@
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
 		744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* RouteViewModel.swift */; };
+		744CC9F1278A0D2C00D2CB2F /* AccountAchievementsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */; };
 		74569EDF26FA8BBF00D58821 /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74569EDE26FA8BBF00D58821 /* UltraDrawerView */; };
 		746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D526AC549400CCCB71 /* UITableView+Reuse.swift */; };
 		746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */; };
@@ -118,6 +119,10 @@
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
+		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
+		74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC342788442600E240C5 /* ProfilePresenter.swift */; };
+		74B8EC372788442D00E240C5 /* ProfileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC362788442D00E240C5 /* ProfileStorage.swift */; };
+		74B8EC3A27884AFA00E240C5 /* UserHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC3927884AFA00E240C5 /* UserHeaderCell.swift */; };
 		74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A272725EDC40066C43E /* MarkdownMerger.swift */; };
 		74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A292725EFCA0066C43E /* MarkdownNode.swift */; };
 		74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A2B2725EFF90066C43E /* String+Subscript.swift */; };
@@ -232,6 +237,7 @@
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
 		744B6EC82775033D008BDF37 /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
+		744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAchievementsCell.swift; sourceTree = "<group>"; };
 		746192D526AC549400CCCB71 /* UITableView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reuse.swift"; sourceTree = "<group>"; };
 		746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reuse.swift"; sourceTree = "<group>"; };
 		746192DA26AC54C800CCCB71 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
@@ -285,6 +291,10 @@
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
+		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		74B8EC342788442600E240C5 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		74B8EC362788442D00E240C5 /* ProfileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorage.swift; sourceTree = "<group>"; };
+		74B8EC3927884AFA00E240C5 /* UserHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderCell.swift; sourceTree = "<group>"; };
 		74C51A272725EDC40066C43E /* MarkdownMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownMerger.swift; sourceTree = "<group>"; };
 		74C51A292725EFCA0066C43E /* MarkdownNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
 		74C51A2B2725EFF90066C43E /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
@@ -810,9 +820,22 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
+		74B8EC3827884AE600E240C5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74B8EC3927884AFA00E240C5 /* UserHeaderCell.swift */,
+				744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		74C72A4A277BB4F700B73560 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				74B8EC322788441B00E240C5 /* ProfileViewController.swift */,
+				74B8EC342788442600E240C5 /* ProfilePresenter.swift */,
+				74B8EC362788442D00E240C5 /* ProfileStorage.swift */,
+				74B8EC3827884AE600E240C5 /* Cells */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1062,6 +1085,7 @@
 				7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */,
 				7404A61126B87FAF00524453 /* TextCell.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
+				74B8EC372788442D00E240C5 /* ProfileStorage.swift in Sources */,
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
 				74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */,
 				74967F89276F5A300096AA77 /* WeakRef.swift in Sources */,
@@ -1115,6 +1139,7 @@
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */,
 				74967F77276F554D0096AA77 /* DefaultJsonParser.swift in Sources */,
+				744CC9F1278A0D2C00D2CB2F /* AccountAchievementsCell.swift in Sources */,
 				74FFB59926EFE9190060D948 /* InfoView.swift in Sources */,
 				747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
@@ -1140,6 +1165,7 @@
 				743C3AC4277D01F900D4CB1C /* AppIconCell.swift in Sources */,
 				74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */,
 				74F739FC272B50DE007C5450 /* TableSuccessDataSource.swift in Sources */,
+				74B8EC3A27884AFA00E240C5 /* UserHeaderCell.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
 				74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */,
 				741FE3032777A9350065126A /* RoutePassingService.swift in Sources */,
@@ -1158,11 +1184,13 @@
 				74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */,
 				74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */,
 				743C3ABF277CF9A800D4CB1C /* AuthorizationPresenter.swift in Sources */,
+				74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */,
 				74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */,
 				748EE633270F911800301552 /* Route.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
 				7420BF042784B351000960F5 /* UserAccountPreviewCell.swift in Sources */,
 				74F73A04272B5213007C5450 /* LoadingCell.swift in Sources */,
+				74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */,
 				74F739FE272B50DE007C5450 /* BaseTableView.swift in Sources */,
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,

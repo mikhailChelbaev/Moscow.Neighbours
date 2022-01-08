@@ -229,6 +229,6 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        eventHandler.didSelectAnnotation(view)
+        eventHandler.onAnnotationSelection(view)
     }
 }

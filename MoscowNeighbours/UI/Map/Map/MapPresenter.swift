@@ -11,7 +11,7 @@ import MapKit
 protocol MapEventHandler: AnyObject {
     func onViewDidLoad()
     func onViewDidAppear()
-    func didSelectAnnotation(_ view: MKAnnotationView)
+    func onAnnotationSelection(_ view: MKAnnotationView)
     func onLocationButtonTap()
     func onMenuButtonTap()
 }
@@ -85,7 +85,9 @@ class MapPresenter: MapEventHandler {
         topController.present(controller, state: .top, completion: nil)
     }
     
-    func didSelectAnnotation(_ view: MKAnnotationView) {
+    func onAnnotationSelection(_ view: MKAnnotationView) {
+        mapService.didSelectAnnotation(view)
+        
         guard !annotationSelectedProgrammatically else {
             annotationSelectedProgrammatically = false
             return
@@ -170,4 +172,6 @@ extension MapPresenter: MapServiceOutput {
     func deselectAnnotation(_ annotation: MKAnnotation) {
         viewController?.deselectAnnotation(annotation)
     }
+    
+    func didSelectAnnotation(_ view: MKAnnotationView) { }
 }

@@ -13,6 +13,25 @@ protocol MenuView: BottomSheetViewController, LoadingStatusProvider {
 
 class MenuViewController: BottomSheetViewController, MenuView {
     
+    // MARK: - Sections and Cells
+    
+    enum SectionType {
+        case menuItems
+    }
+    
+    enum CellType {
+        case authorization
+        case account
+        case separator
+        case settings
+    }
+    
+    // MARK: - Layout
+    
+    enum Layout {
+        static let cornerRadius: CGFloat = 29
+    }
+    
     // MARK: - UI
     
     let tableView: BaseTableView = {
@@ -20,7 +39,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
         tableView.backgroundColor = .background
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
-        tableView.clipsToBounds = true
         return tableView
     }()
     
@@ -38,10 +56,15 @@ class MenuViewController: BottomSheetViewController, MenuView {
         return .fullScreen
     }
     
+    // MARK: - Private Properties
+    
+    private let sections: [SectionType]
+    
     // MARK: - Init
     
     init(eventHandler: MenuEventHandler) {
         self.eventHandler = eventHandler
+        sections = [.menuItems]
         super.init()
     }
     
@@ -56,8 +79,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
         
         configureViews()
         configureTableView()
-        
-        loadData()
     }
     
     func reloadData() {
@@ -65,10 +86,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
     }
     
     // MARK: - Private methods
-    
-    private func loadData() {
-        eventHandler.onLoadData()
-    }
     
     private func configureTableView() {
         tableView.successDataSource = self
@@ -83,6 +100,8 @@ class MenuViewController: BottomSheetViewController, MenuView {
     private func configureViews() {
         bottomSheet.containerView.backgroundColor = .clear
         bottomSheet.containerView.clipsToBounds = true
+        
+        tableView.clipsToBounds = true
     }
     
     // MARK: - Get Bottom Sheet Components
@@ -102,7 +121,8 @@ class MenuViewController: BottomSheetViewController, MenuView {
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration(topInset: .fromTop(0),
                                         middleInset: .fromTop(0),
-                                        availableStates: [.top, .middle])
+                                        availableStates: [.top, .middle],
+                                        cornerRadius: Layout.cornerRadius)
     }
             
 }
@@ -111,40 +131,76 @@ class MenuViewController: BottomSheetViewController, MenuView {
 
 extension MenuViewController: TableSuccessDataSource {
     func successNumberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sections.count
     }
     
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return getSectionItems(for: section).count
     }
     
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.item == 0 {
-            if eventHandler.isUserAuthorized {
-                return createUserAccountPreviewCell(for: indexPath)
-            } else {
-                return createAccountAdvantagesCell(for: indexPath)
-            }
-
-        } else if indexPath.item == 1 {
-            return createSeparator(for: indexPath)
-
-        } else if indexPath.item == 2 {
-            return createMenuItemCell(title: "menu.settings".localized, subtitle: "menu.settings_description".localized, for: indexPath)
-
-        } else {
-            return createSeparator(for: indexPath)
-        }
+        return getCell(at: indexPath)
     }
     
     func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        // settings cell
-        if indexPath.item == 2 {
-            eventHandler.onSettingsButtonTap()
-        }
+        didTapOnCell(at: indexPath)
     }
 }
+
+// MARK: - Sections and Cells Helpers
+
+extension MenuViewController {
+    
+    private func getSectionItems(for section: Int) -> [CellType] {
+        switch sections[section] {
+        case .menuItems:
+            if eventHandler.isUserAuthorized {
+                return [.account, .separator, .settings, .separator]
+            } else {
+                return [.authorization, .separator, .settings, .separator]
+            }
+        }
+    }
+    
+    private func getCell(at indexPath: IndexPath) -> UITableViewCell {
+        let cellType = getCellType(at: indexPath)
+        
+        switch cellType {
+        case .separator:
+            return createSeparator(for: indexPath)
+            
+        case .authorization:
+            return createAccountAdvantagesCell(for: indexPath)
+            
+        case .account:
+            return createUserAccountPreviewCell(for: indexPath)
+            
+        case .settings:
+            return createMenuItemCell(title: "menu.settings".localized,
+                                      subtitle: "menu.settings_description".localized,
+                                      for: indexPath)
+        }
+    }
+    
+    private func didTapOnCell(at indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cell = getCellType(at: indexPath)        
+        switch cell {
+        case .settings:
+            eventHandler.onSettingsButtonTap()
+            
+        default:
+            break
+        }
+    }
+    
+    private func getCellType(at indexPath: IndexPath) -> CellType {
+        getSectionItems(for: indexPath.section)[indexPath.item]
+    }
+            
+}
+
 
 // MARK: - Cells Creations
 

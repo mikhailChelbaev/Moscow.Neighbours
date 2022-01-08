@@ -62,4 +62,8 @@ extension WeakRef: MapServiceOutput where T: MapServiceOutput {
     func centerAnnotation(_ annotation: MKAnnotation) {
         object?.centerAnnotation(annotation)
     }
+    
+    func didSelectAnnotation(_ view: MKAnnotationView) {
+        object?.didSelectAnnotation(view)
+    }
 }

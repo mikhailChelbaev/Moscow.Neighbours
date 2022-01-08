@@ -48,3 +48,10 @@
 "settings.email_notifications_title" = "Email notifications";
 "settings.email_notifications_description" = "We'll tell about cool promotions and discounts";
 "settings.language" = "Choose language";
+
+/* Profile */
+"profile.exit" = "Log out";
+"profile.open_neighbours" = "Meet neighbors";
+"profile.finished_routes" = "Finished routes";
+"profile.exit_title" = "Confirm the action";
+"profile.exit_message" = "Are you sure you want to log out?";

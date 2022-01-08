@@ -75,6 +75,10 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     
     let eventHandler: AuthorizationEventHandler
     
+    override var backgroundDimStyle: BackgroundDimStyle {
+        return .fullScreen
+    }
+    
     var status: LoadingStatus = .success {
         didSet { reloadData() }
     }
@@ -153,14 +157,6 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         return BottomSheetConfiguration(topInset: .fromTop(0),
                                         middleInset: .fromTop(0),
                                         availableStates: [.top, .middle])
-    }
-    
-    // MARK: - Cover Alpha
-    
-    override func recalculateCoverAlpha(for origin: CGFloat) {
-        let bottom = view.frame.height
-        let top = bottomSheet.origin(for: .top)
-        cover.alpha = 0.7 * (origin - bottom) / (top - bottom)
     }
     
     // MARK: - Handler back button

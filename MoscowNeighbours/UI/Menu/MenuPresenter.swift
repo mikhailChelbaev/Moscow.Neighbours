@@ -12,7 +12,6 @@ protocol MenuEventHandler {
     var username: String? { get }
     var email: String? { get }
     
-    func onLoadData()
     func onBackButtonTap()
     func onAuthorizationButtonTap()
     func onSettingsButtonTap()
@@ -26,6 +25,7 @@ class MenuPresenter: MenuEventHandler {
     
     private let authorizationBuilder: AuthorizationBuilder
     private let settingsBuilder: SettingsBuilder
+    private let profileBuilder: ProfileBuilder
     
     private let userService: UserService
     
@@ -44,22 +44,20 @@ class MenuPresenter: MenuEventHandler {
     init(storage: MenuStorage) {
         authorizationBuilder = storage.authorizationBuilder
         settingsBuilder = storage.settingsBuilder
+        profileBuilder = storage.profileBuilder
         
         userService = storage.userService
     }
     
     // MARK: - MenuEventHandler
     
-    func onLoadData() {
-        
-    }
-    
     func onBackButtonTap() {
         viewController?.closeController(animated: true, completion: nil)
     }
     
     func onAuthorizationButtonTap() {
-        let controller = authorizationBuilder.buildAuthorizationViewController()
+//        let controller = authorizationBuilder.buildAuthorizationViewController()
+        let controller = profileBuilder.buildProfileViewController()
         viewController?.present(controller, state: .top, completion: nil)
     }
     

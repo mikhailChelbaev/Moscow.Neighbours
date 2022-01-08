@@ -10,6 +10,7 @@ import Foundation
 struct MenuStorage {
     let authorizationBuilder: AuthorizationBuilder
     let settingsBuilder: SettingsBuilder
+    let profileBuilder: ProfileBuilder
     let userService: UserService
 }
 
@@ -21,6 +22,7 @@ extension Builder: MenuBuilder {
     func buildMenuViewController() -> MenuViewController {
         let storage = MenuStorage(authorizationBuilder: self,
                                   settingsBuilder: self,
+                                  profileBuilder: self,
                                   userService: userService)
         let presenter = MenuPresenter(storage: storage)
         let viewController = MenuViewController(eventHandler: presenter)

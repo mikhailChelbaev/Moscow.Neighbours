@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 enum PersonState {
     case notVisited
@@ -31,7 +32,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     private let personBuilder: PersonBuilder
     
     private var routePassingService: RoutePassingService
-    private let mapService: MapService
+    private var mapService: MapService
     
     private var visitedPersons: Set<PersonViewModel> = .init()
     
@@ -51,6 +52,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         if let person = route.persons.first {
             mapService.centerAnnotation(person)
         }
+        mapService.register(WeakRef(self))
     }
     
     // MARK: - RoutePassingEventHandler methods
@@ -106,6 +108,8 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     }
 }
 
+// MARK: - protocol RoutePassingServiceOutput
+
 extension RoutePassingPresenter: RoutePassingServiceOutput {
     func didVisitNewPersons(_ persons: [PersonViewModel]) {
         scrollToPerson(persons.first)
@@ -137,5 +141,27 @@ extension RoutePassingPresenter: RoutePassingServiceOutput {
             viewController?.bottomSheet.setState(.middle, animated: true, completion: nil)
             viewController?.reloadData()
         }
+    }
+}
+
+// MARK: - protocol MapServiceOutput
+
+extension RoutePassingPresenter: MapServiceOutput {
+    func showAnnotations(_ annotations: [MKAnnotation]) { }
+    func removeAnnotations(_ annotations: [MKAnnotation]) { }
+    func addOverlays(_ overlays: [MKOverlay]) { }
+    func removeOverlays(_ overlays: [MKOverlay]) { }
+    func deselectAnnotation(_ annotation: MKAnnotation) { }
+    func centerAnnotation(_ annotation: MKAnnotation) { }
+    func selectAnnotation(_ annotation: MKAnnotation) { }
+    
+    func didSelectAnnotation(_ view: MKAnnotationView) {
+        guard let person = view.annotation as? PersonViewModel else {
+            return
+        }
+        
+        visitedPersons.insert(person)
+        // update person state
+        viewController?.reloadData()
     }
 }

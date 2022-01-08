@@ -91,9 +91,9 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpViews()
-        setUpLayout()
-        setUpTableView()
+        configureViews()
+        configureLayout()
+        configureTableView()
         
         reloadData()
     }
@@ -119,14 +119,14 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     // MARK: - Private methods
     
-    private func setUpLayout() {
+    private func configureLayout() {
         bottomSheet.containerView.addSubview(backButton)
         backButton.leading(20)
         backButton.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
         backButton.exactSize(.init(width: Layout.buttonSide, height: Layout.buttonSide))
     }
     
-    private func setUpTableView() {
+    private func configureTableView() {
         tableView.successDataSource = self
         tableView.statusProvider = self
         tableView.loadingDelegate = self
@@ -140,7 +140,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         tableView.register(ButtonCell.self)
     }
     
-    private func setUpViews() {
+    private func configureViews() {
         bottomSheet.containerView.backgroundColor = .clear
         bottomSheet.containerView.clipsToBounds = true
         tableView.layer.cornerRadius = PersonHeaderCell.Layout.cornerRadius
