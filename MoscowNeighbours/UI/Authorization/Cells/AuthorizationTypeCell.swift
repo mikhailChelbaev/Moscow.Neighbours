@@ -16,8 +16,8 @@ final class AuthorizationTypeCell: CellView {
         case deselected
     }
     
-    lazy var signInButton: UIButton = createButton(title: "Вход")
-    lazy var signUpButton: UIButton = createButton(title: "Регистрация")
+    lazy var signInButton: UIButton = createButton(title: "signIn.title".localized)
+    lazy var signUpButton: UIButton = createButton(title: "signUp.title".localized)
     
     var authorizationTypeDidChange: AuthorizationTypeCompletion?
     

@@ -24,7 +24,7 @@ final class BaseRequestSender: RequestSender {
                                       type: ResultModel.Type) async -> RequestResult<ResultModel> {
         await withCheckedContinuation { continuation in
             guard let urlRequest = request.urlRequest else {
-                return continuation.resume(returning: .failure(NetworkError(description: "url string can't be parsed to URL", type: .url)))
+                return continuation.resume(returning: .failure(NetworkError(message: "url string can't be parsed to URL", type: .url)))
             }
             
             let task = session.dataTask(with: urlRequest) { [weak parser] (data: Data?, response: URLResponse?, error: Error?) in
@@ -33,7 +33,7 @@ final class BaseRequestSender: RequestSender {
                     Logger.log("Error happened when queried \(urlRequest.url?.absoluteString ?? "")!")
                     Logger.log(String(data: data ?? String("no data").data(using: .utf8)!, encoding: .utf8)!)
                     Logger.log(error.localizedDescription)
-                    return continuation.resume(returning: .failure(NetworkError(description: error.localizedDescription, type: .network)))
+                    return continuation.resume(returning: .failure(NetworkError(message: error.localizedDescription, type: .network)))
                 }
 
                 // Handle HTTP errors
@@ -41,9 +41,10 @@ final class BaseRequestSender: RequestSender {
                     let statusCode = httpResponse.statusCode
                     Logger.log("\(statusCode) status code for \(urlRequest)")
                     guard (200...300).contains(statusCode) else {
-                        let message: String = parser?.parseHttpErrorMessage(data: data) ?? "Error occurred. Can't parse error message!"
+                        let errorResponse: ErrorResponse? = parser?.parseHttpErrorResponse(data: data)
+                        let message: String = errorResponse?.message ?? "Error occurred. Can't parse error message!"
                         Logger.log(message)
-                        return continuation.resume(returning: .failure(NetworkError(description: message, type: .http(statusCode: statusCode))))
+                        return continuation.resume(returning: .failure(NetworkError(message: message, type: .http(statusCode: statusCode), description: errorResponse?.description)))
                     }
                 }
                 else {
@@ -58,7 +59,7 @@ final class BaseRequestSender: RequestSender {
                     if let data = data, let message = String(data: data, encoding: .utf8) {
                         Logger.log(message)
                     }
-                    return continuation.resume(returning: .failure(NetworkError(description: "Received data can't be parsed!", type: .parsing)))
+                    return continuation.resume(returning: .failure(NetworkError(message: "Received data can't be parsed!", type: .parsing)))
                 }
                 return continuation.resume(returning: .success(parsedModel))
             }

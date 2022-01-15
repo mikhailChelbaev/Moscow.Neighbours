@@ -25,7 +25,7 @@ final class OrSeparatorCell: CellView {
         return renderer.image { _ in
             let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.mainFont(ofSize: 12, weight: .medium), .foregroundColor: UIColor.white]
             
-            let text = "Или"
+            let text = "common.or".localized
             let textSize = (text as NSString).size(withAttributes: attributes)
             
             let separatorWidth: CGFloat = (size.width - textSize.width - 20) / 2

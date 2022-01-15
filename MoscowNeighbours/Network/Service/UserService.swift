@@ -54,11 +54,13 @@ final class UserService: BaseNetworkService<UserServiceOutput> {
     private let cache: StoreContainer
     
     private let api: ApiRequestsFactory
+    private let jwtService: JWTService
     
     // MARK: - Init
     
     private override init() {
         api = .main
+        jwtService = .main
         cache = UserDefaults.standard
 
         currentUser = cache.get(key: StorageKeys.currentUser.rawValue)
@@ -88,6 +90,7 @@ final class UserService: BaseNetworkService<UserServiceOutput> {
     
     func logout() {
         storeCurrentUser(nil)
+        jwtService.updateToken(nil)
     }
     
     // MARK: - Private Methods

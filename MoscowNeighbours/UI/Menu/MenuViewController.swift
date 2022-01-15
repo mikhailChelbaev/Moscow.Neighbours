@@ -188,7 +188,10 @@ extension MenuViewController {
         let cell = getCellType(at: indexPath)        
         switch cell {
         case .settings:
-            eventHandler.onSettingsButtonTap()
+            eventHandler.onSettingsCellTap()
+            
+        case .account:
+            eventHandler.onAccountCellTap()
             
         default:
             break

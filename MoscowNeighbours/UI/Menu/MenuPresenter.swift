@@ -14,7 +14,8 @@ protocol MenuEventHandler {
     
     func onBackButtonTap()
     func onAuthorizationButtonTap()
-    func onSettingsButtonTap()
+    func onSettingsCellTap()
+    func onAccountCellTap()
 }
 
 class MenuPresenter: MenuEventHandler {
@@ -56,12 +57,16 @@ class MenuPresenter: MenuEventHandler {
     }
     
     func onAuthorizationButtonTap() {
-//        let controller = authorizationBuilder.buildAuthorizationViewController()
+        let controller = authorizationBuilder.buildAuthorizationViewController()
+        viewController?.present(controller, state: .top, completion: nil)
+    }
+    
+    func onAccountCellTap() {
         let controller = profileBuilder.buildProfileViewController()
         viewController?.present(controller, state: .top, completion: nil)
     }
     
-    func onSettingsButtonTap() {
+    func onSettingsCellTap() {
         let controller = settingsBuilder.buildSettingsViewController()
         viewController?.present(controller, state: .top, completion: nil)
     }

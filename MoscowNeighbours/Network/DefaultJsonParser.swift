@@ -2,7 +2,7 @@ import Foundation
 
 protocol Parser: AnyObject {
     func parse<Model: Decodable>(data: Data) -> Model?
-    func parseHttpErrorMessage(data: Data?) -> String?
+    func parseHttpErrorResponse(data: Data?) -> ErrorResponse?
 }
 
 class DefaultJsonParser: Parser {
@@ -37,14 +37,16 @@ class DefaultJsonParser: Parser {
         }
     }
     
-    func parseHttpErrorMessage(data: Data?) -> String? {
+    func parseHttpErrorResponse(data: Data?) -> ErrorResponse? {
         guard let data = data else {
             return nil
         }
         
-        let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-        let dictionary = jsonObject as? [String: Any]
-        return dictionary?["message"] as? String
+        return try? JSONDecoder().decode(ErrorResponse.self, from: data)
+        
+//        let jsonObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+//        let dictionary = jsonObject as? [String: Any]
+//        return dictionary?["message"] as? String
     }
     
 }

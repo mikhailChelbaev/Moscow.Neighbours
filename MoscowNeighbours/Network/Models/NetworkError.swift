@@ -15,6 +15,13 @@ struct NetworkError {
         case parsing
     }
     
-    let description: String
+    let message: String
     let type: NetworkErrorType
+    let description: NetworkErrorDescription?
+    
+    init(message: String, type: NetworkErrorType, description: NetworkErrorDescription? = nil) {
+        self.message = message
+        self.type = type
+        self.description = description
+    }
 }

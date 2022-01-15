@@ -31,7 +31,7 @@ final class AccountAdvantagesCell: CellView {
     let title: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 24, weight: .bold)
-        label.text = "Войдите в аккаунт, чтобы открыть:"
+        label.text = "menu.advantages_title".localized
         label.textColor = .reversedLabel
         label.numberOfLines = 0
         return label
@@ -40,7 +40,7 @@ final class AccountAdvantagesCell: CellView {
     let button: Button = {
         let button = Button()
         button.roundedCorners = true
-        button.setTitle("Войти / Создать аккаунт", for: .normal)
+        button.setTitle("menu.advantages_button".localized, for: .normal)
         return button
     }()
     
@@ -87,15 +87,15 @@ final class AccountAdvantagesCell: CellView {
     private func title(for advantage: AdvantageType) -> String {
         switch advantage {
         case .additionalRoutes:
-            return "Дополнительные маршруты"
+            return "menu.advantages_additional_routes".localized
         case .saveProgress:
-            return "Сохранение прогресса"
+            return "menu.advantages_progress".localized
         case .achievements:
-            return "Достижения"
+            return "menu.advantages_achievements".localized
         case .profile:
-            return "Личный профиль"
+            return "menu.advantages_profile".localized
         case .statistic:
-            return "Расширенная статистика"
+            return "menu.advantages_statistics".localized
         }
     }
     

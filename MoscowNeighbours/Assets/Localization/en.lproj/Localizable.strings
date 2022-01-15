@@ -9,6 +9,7 @@
 /* Common */
 "common.yes" = "Yes";
 "common.cancel" = "Cancel";
+"common.or" = "Or";
 
 /* Error */
 "main_error.title" = "Failed to load page, please try again";
@@ -40,6 +41,13 @@
 "menu.title" = "Menu";
 "menu.settings" = "Settings";
 "menu.settings_description" = "Notifications, languages and other";
+"menu.advantages_title" = "Create account to have:";
+"menu.advantages_button" = "Sign in / Sign up";
+"menu.advantages_additional_routes" = "Additional routes";
+"menu.advantages_progress" = "Progress saving";
+"menu.advantages_achievements" = "Achievements";
+"menu.advantages_profile" = "Private profile";
+"menu.advantages_statistics" = "Extended statistics";
 
 /* Settings */
 "settings.title" = "Settings";
@@ -55,3 +63,21 @@
 "profile.finished_routes" = "Finished routes";
 "profile.exit_title" = "Confirm the action";
 "profile.exit_message" = "Are you sure you want to log out?";
+
+/* Sign In*/
+"signIn.title" = "Sign in";
+"signIn.email_title" = "Email";
+"signIn.email_placeholder" = "Enter email";
+"signIn.password_title" = "Password";
+"signIn.password_placeholder" = "Enter password";
+"signIn.sign_in_button" = "Sign in";
+
+/* Sign Up*/
+"signUp.title" = "Sign up";
+"signUp.login_title" = "Username";
+"signUp.login_placeholder" = "Enter username";
+"signUp.email_title" = "Email";
+"signUp.email_placeholder" = "Enter email";
+"signUp.password_title" = "Password";
+"signUp.password_placeholder" = "Enter from 8 to 12 symbols";
+"signUp.sign_up_button" = "Create account";

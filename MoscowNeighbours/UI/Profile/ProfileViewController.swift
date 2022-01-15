@@ -179,7 +179,8 @@ extension ProfileViewController {
     private func getSectionItems(for section: Int) -> [CellType] {
         switch sections[section] {
         case .header:
-            return [.user, .exit, .separator, .information, .separator]
+//            return [.user, .exit, .separator, .information, .separator]
+            return [.user, .exit]
         }
     }
     

@@ -247,9 +247,9 @@ extension AuthorizationViewController {
         
         switch cell {
         case .login:
-            return createTextInputCell(headerText: "Эл. почта / Логин",
+            return createTextInputCell(headerText: "signIn.email_title".localized,
                                        text: eventHandler.signInUsername,
-                                       placeholder: "Введите эл. почту / логин",
+                                       placeholder: "signIn.email_placeholder".localized,
                                        textContentType: .username,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignInUsernameTextChange(newText)
@@ -257,9 +257,9 @@ extension AuthorizationViewController {
                                        for: indexPath)
             
         case .password:
-            return createTextInputCell(headerText: "Пароль",
+            return createTextInputCell(headerText: "signIn.password_title".localized,
                                        text: eventHandler.signInPassword,
-                                       placeholder: "Введите пароль",
+                                       placeholder: "signIn.password_placeholder".localized,
                                        textContentType: .password,
                                        isSecureTextEntry: true,
                                        textDidChange: { [weak self] newText in
@@ -285,26 +285,26 @@ extension AuthorizationViewController {
         
         switch cell {
         case .login:
-            return createTextInputCell(headerText: "Логин",
+            return createTextInputCell(headerText: "signUp.login_title".localized,
                                        text: eventHandler.signUpUsername,
-                                       placeholder: "Введите логин",
+                                       placeholder: "signUp.login_placeholder".localized,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignUpUsernameTextChange(newText)
             },
                                        for: indexPath)
         case .email:
-            return createTextInputCell(headerText: "Эл. почта",
+            return createTextInputCell(headerText: "signUp.email_title".localized,
                                        text: eventHandler.signUpEmail,
-                                       placeholder: "Введите эл. почту",
+                                       placeholder: "signUp.email_placeholder".localized,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignUpEmailTextChange(newText)
             },
                                        for: indexPath)
             
         case .password:
-            return createTextInputCell(headerText: "Пароль",
+            return createTextInputCell(headerText: "signUp.password_title".localized,
                                        text: eventHandler.signUpPassword,
-                                       placeholder: "Введите пароль",
+                                       placeholder: "signUp.password_placeholder".localized,
                                        textContentType: .password,
                                        isSecureTextEntry: true,
                                        textDidChange: { [weak self] newText in
@@ -387,7 +387,7 @@ extension AuthorizationViewController {
     }
     
     private func createSignInButtonCell(for indexPath: IndexPath) -> UITableViewCell {
-        let cell = createButtonCell(text: "Войти в аккаунт",
+        let cell = createButtonCell(text: "signIn.sign_in_button".localized,
                                     isEnabled: eventHandler.isSignInButtonEnabled,
                                 action: { [weak self] in
             self?.eventHandler.onSignInButtonTap()
@@ -398,7 +398,7 @@ extension AuthorizationViewController {
     }
     
     private func createSignUpButtonCell(for indexPath: IndexPath) -> UITableViewCell {
-        let cell = createButtonCell(text: "Создать аккаунт",
+        let cell = createButtonCell(text: "signUp.sign_up_button".localized,
                                     isEnabled: eventHandler.isSignUpButtonEnabled,
                                 action: { [weak self] in
             self?.eventHandler.onSignUpButtonTap()

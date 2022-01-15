@@ -9,6 +9,7 @@
 /* Common */
 "common.yes" = "Да";
 "common.cancel" = "Отмена";
+"common.or" = "Или";
 
 /* Error */
 "main_error.title" = "Не удалось загрузить страницу, попробуйте еще раз";
@@ -40,6 +41,13 @@
 "menu.title" = "Меню";
 "menu.settings" = "Настройки";
 "menu.settings_description" = "Уведомления, язык и др.";
+"menu.advantages_title" = "Войдите в аккаунт, чтобы открыть:";
+"menu.advantages_button" = "Войти / Создать аккаунт";
+"menu.advantages_additional_routes" = "Дополнительные маршруты";
+"menu.advantages_progress" = "Сохранение прогресса";
+"menu.advantages_achievements" = "Достижения";
+"menu.advantages_profile" = "Личный профиль";
+"menu.advantages_statistics" = "Расширенная статистика";
 
 /* Settings */
 "settings.title" = "Настройки";
@@ -55,3 +63,21 @@
 "profile.finished_routes" = "Пройдено маршрутов";
 "profile.exit_title" = "Подтвердите действие";
 "profile.exit_message" = "Вы уверены, что хотите выйти из аккаунта?";
+
+/* Sign In*/
+"signIn.title" = "Вход";
+"signIn.email_title" = "Эл. почта";
+"signIn.email_placeholder" = "Введите эл. почту";
+"signIn.password_title" = "Пароль";
+"signIn.password_placeholder" = "Введите пароль";
+"signIn.sign_in_button" = "Войти в аккаунт";
+
+/* Sign Up*/
+"signUp.title" = "Регистрация";
+"signUp.login_title" = "Логин";
+"signUp.login_placeholder" = "Введите логин";
+"signUp.email_title" = "Эл. почта";
+"signUp.email_placeholder" = "Введите эл. почту";
+"signUp.password_title" = "Пароль";
+"signUp.password_placeholder" = "Введите от 8 до 12 символов";
+"signUp.sign_up_button" = "Создать аккаунт";
