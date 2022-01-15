@@ -86,6 +86,12 @@
 		746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC126A8BA6C009CC823 /* RouteViewController.swift */; };
 		746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* HeaderView.swift */; };
 		746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */; };
+		746F061627936731009D1163 /* ErrorTextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061527936731009D1163 /* ErrorTextInputCell.swift */; };
+		746F061827936ACB009D1163 /* SignInErrorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061727936ACB009D1163 /* SignInErrorsModel.swift */; };
+		746F061A27937101009D1163 /* SignUpErrorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061927937101009D1163 /* SignUpErrorsModel.swift */; };
+		746F061D27937181009D1163 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061C27937181009D1163 /* EmailValidator.swift */; };
+		746F061F279371B4009D1163 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061E279371B4009D1163 /* PasswordValidator.swift */; };
+		746F06212793722A009D1163 /* UsernameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F06202793722A009D1163 /* UsernameValidator.swift */; };
 		747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */; };
 		747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */; };
 		747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */; };
@@ -259,6 +265,12 @@
 		746BCCC126A8BA6C009CC823 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		746BCCC726A8BD59009CC823 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
+		746F061527936731009D1163 /* ErrorTextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTextInputCell.swift; sourceTree = "<group>"; };
+		746F061727936ACB009D1163 /* SignInErrorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInErrorsModel.swift; sourceTree = "<group>"; };
+		746F061927937101009D1163 /* SignUpErrorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpErrorsModel.swift; sourceTree = "<group>"; };
+		746F061C27937181009D1163 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		746F061E279371B4009D1163 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		746F06202793722A009D1163 /* UsernameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidator.swift; sourceTree = "<group>"; };
 		747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRouteButtonView.swift; sourceTree = "<group>"; };
 		747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointCell.swift; sourceTree = "<group>"; };
 		747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointsCollectionCell.swift; sourceTree = "<group>"; };
@@ -628,6 +640,7 @@
 				743C3AC2277D01C200D4CB1C /* Cells */,
 				7422221C2781DC1500CFDD50 /* Service */,
 				743C3AC5277D04DE00D4CB1C /* Models */,
+				746F061B27937170009D1163 /* Validators */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -638,6 +651,7 @@
 				743C3AC3277D01F900D4CB1C /* AppIconCell.swift */,
 				743C3AC8277D051F00D4CB1C /* AuthorizationTypeCell.swift */,
 				7488A160277E1C6B004E2D27 /* TextInputCell.swift */,
+				746F061527936731009D1163 /* ErrorTextInputCell.swift */,
 				7488A162277E3233004E2D27 /* OrSeparatorCell.swift */,
 				7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */,
 			);
@@ -651,6 +665,8 @@
 				74863DC7277EFCA9000FC446 /* SignInModel.swift */,
 				74863DC9277EFCB0000FC446 /* SignUpModel.swift */,
 				742222202781F65900CFDD50 /* JWTResponse.swift */,
+				746F061727936ACB009D1163 /* SignInErrorsModel.swift */,
+				746F061927937101009D1163 /* SignUpErrorsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -720,6 +736,16 @@
 				74967F84276F57B60096AA77 /* Models */,
 			);
 			path = Routes;
+			sourceTree = "<group>";
+		};
+		746F061B27937170009D1163 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				746F061C27937181009D1163 /* EmailValidator.swift */,
+				746F061E279371B4009D1163 /* PasswordValidator.swift */,
+				746F06202793722A009D1163 /* UsernameValidator.swift */,
+			);
+			path = Validators;
 			sourceTree = "<group>";
 		};
 		747A0E5826FE1F0800EB1973 /* Cells */ = {
@@ -1114,6 +1140,7 @@
 				746192E126AC557100CCCB71 /* CollectionReuseViewWrapper.swift in Sources */,
 				74F739FF272B50DE007C5450 /* BaseCollectionView.swift in Sources */,
 				746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */,
+				746F061F279371B4009D1163 /* PasswordValidator.swift in Sources */,
 				7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
 				74967F78276F554D0096AA77 /* RequestSender.swift in Sources */,
@@ -1139,8 +1166,10 @@
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
 				74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */,
+				746F061D27937181009D1163 /* EmailValidator.swift in Sources */,
 				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
+				746F061627936731009D1163 /* ErrorTextInputCell.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */,
@@ -1175,6 +1204,7 @@
 				74B8EC3A27884AFA00E240C5 /* UserHeaderCell.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
 				74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */,
+				746F061827936ACB009D1163 /* SignInErrorsModel.swift in Sources */,
 				741FE3032777A9350065126A /* RoutePassingService.swift in Sources */,
 				74C72A4D277BBC1800B73560 /* MenuViewController.swift in Sources */,
 				74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */,
@@ -1195,8 +1225,10 @@
 				74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */,
 				74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */,
 				748EE633270F911800301552 /* Route.swift in Sources */,
+				746F06212793722A009D1163 /* UsernameValidator.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
 				7420BF042784B351000960F5 /* UserAccountPreviewCell.swift in Sources */,
+				746F061A27937101009D1163 /* SignUpErrorsModel.swift in Sources */,
 				74F73A04272B5213007C5450 /* LoadingCell.swift in Sources */,
 				74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */,
 				74F739FE272B50DE007C5450 /* BaseTableView.swift in Sources */,

@@ -11,12 +11,10 @@ import AuthenticationServices
 protocol AuthorizationEventHandler {
     var signInUsername: String { get }
     var signInPassword: String { get }
-    var isSignInButtonEnabled: Bool { get }
     
     var signUpUsername: String { get }
     var signUpEmail: String { get }
     var signUpPassword: String { get }
-    var isSignUpButtonEnabled: Bool { get }
     
     func onBackButtonTap()
     func onAuthorizationTypeTap(_ type: AuthorizationType)
@@ -51,9 +49,6 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     var signInPassword: String {
         signInModel.password
     }
-    var isSignInButtonEnabled: Bool {
-        signInModel.isValid
-    }
     
     var signUpUsername: String {
         signUpModel.username
@@ -64,9 +59,10 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     var signUpPassword: String {
         signUpModel.password
     }
-    var isSignUpButtonEnabled: Bool {
-        signUpModel.isValid
-    }
+    
+    private let emailValidator: EmailValidator
+    private let usernameValidator: UsernameValidator
+    private let passwordValidator: PasswordValidator
     
     // MARK: - Init
     
@@ -77,6 +73,10 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
         authorizationService = storage.authorizationService
         jwtService = storage.jwtService
         userService = storage.userService
+        
+        emailValidator = .init()
+        usernameValidator = .init()
+        passwordValidator = .init()
         
         super.init()
         
@@ -112,47 +112,69 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     
     func onSignInUsernameTextChange(_ text: String) {
         signInModel.username = text
-        validateSignIn()
     }
     
     func onSignInPasswordTextChange(_ text: String) {
         signInModel.password = text
-        validateSignIn()
     }
     
     func onSignInButtonTap() {
-        viewController?.status = .loading
-        authorizationService.signIn(credentials: signInModel)
+        if validateSignInInputedData() {
+            viewController?.status = .loading
+            authorizationService.signIn(credentials: signInModel)
+        } else {
+            viewController?.reloadData()
+        }
     }
     
-    private func validateSignIn() {
-        viewController?.signInButton?.isEnabled = signInModel.isValid
+    private func validateSignInInputedData() -> Bool {
+        if signInModel.username.isEmpty {
+            viewController?.signInErrors.email = "auth.empty".localized
+        } else {
+            viewController?.signInErrors.email = nil
+        }
+        
+        if signInModel.password.isEmpty {
+            viewController?.signInErrors.password = "auth.empty".localized
+        } else {
+            viewController?.signInErrors.password = nil
+        }
+        
+        return viewController?.signInErrors.email == nil &&
+        viewController?.signInErrors.password == nil
     }
     
     // MARK: - Sign Up
     
     func onSignUpUsernameTextChange(_ text: String) {
         signUpModel.username = text
-        validateSignUp()
     }
     
     func onSignUpEmailTextChange(_ text: String) {
         signUpModel.email = text
-        validateSignUp()
     }
     
     func onSignUpPasswordTextChange(_ text: String) {
         signUpModel.password = text
-        validateSignUp()
     }
     
     func onSignUpButtonTap() {
-        viewController?.status = .loading
-        authorizationService.signUp(credentials: signUpModel)
+        if validateSignUpInputedData() {
+            viewController?.status = .loading
+            authorizationService.signUp(credentials: signUpModel)
+        } else {
+            viewController?.reloadData()
+        }
     }
     
-    private func validateSignUp() {
-        viewController?.signUpButton?.isEnabled = signUpModel.isValid
+    private func validateSignUpInputedData() -> Bool {
+        viewController?.signUpErrors.email = emailValidator.isValid(email: signUpModel.email)
+        viewController?.signUpErrors.username = usernameValidator.isValid(username: signUpModel.username)
+        viewController?.signUpErrors.password = passwordValidator.isValid(password: signUpModel.password)
+        
+        return viewController?.signUpErrors.email == nil &&
+        viewController?.signUpErrors.username == nil &&
+        viewController?.signUpErrors.password == nil
     }
     
 }

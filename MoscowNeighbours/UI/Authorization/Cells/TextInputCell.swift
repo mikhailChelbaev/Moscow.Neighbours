@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TextInputCell: CellView {
+class TextInputCell: CellView {
     
     typealias TextCompletion = (String) -> Void
     
@@ -36,21 +36,32 @@ final class TextInputCell: CellView {
     
     private var textDidChange: TextCompletion?
     
+    required init() {
+        super.init()
+        configureTextField()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func configureView() {
         addSubview(headerLabel)
         headerLabel.pinToSuperviewEdges([.left, .top, .right],
-                                          insets: .init(top: 10, left: 20, bottom: 0, right: 20))
+                                        insets: .init(top: 10, left: 20, bottom: 0, right: 20))
         
         addSubview(textFieldContainer)
         textFieldContainer.pinToSuperviewEdges([.left, .right, .bottom],
-                                                 insets: .init(top: 0, left: 20, bottom: 15, right: 20))
+                                               insets: .init(top: 0, left: 20, bottom: 15, right: 20))
         textFieldContainer.top(7, to: headerLabel)
         textFieldContainer.height(Layout.textFieldContainerHeight)
         
         textFieldContainer.addSubview(textField)
         textField.pinToSuperviewEdges(.all,
-                                        insets: .init(top: 5, left: 15, bottom: 5, right: 15))
-        
+                                      insets: .init(top: 5, left: 15, bottom: 5, right: 15))
+    }
+    
+    func configureTextField() {
         textField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         textField.delegate = self
     }

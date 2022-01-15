@@ -9,8 +9,9 @@ import UIKit
 
 protocol AuthorizationView: BottomSheetViewController, LoadingStatusProvider {
     var type: AuthorizationType { set get }
-    var signInButton: Button? { get }
-    var signUpButton: Button? { get }
+    
+    var signInErrors: SignInErrorsModel { set get }
+    var signUpErrors: SignUpErrorsModel { set get }
     
     func reloadData()
     func animateTypeChange()
@@ -85,8 +86,8 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     
     var type: AuthorizationType = .signIn
     
-    var signInButton: Button?
-    var signUpButton: Button?
+    var signInErrors: SignInErrorsModel = .init()
+    var signUpErrors: SignUpErrorsModel = .init()
     
     // MARK: - Init
     
@@ -129,6 +130,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         tableView.register(AppIconCell.self)
         tableView.register(AuthorizationTypeCell.self)
         tableView.register(TextInputCell.self)
+        tableView.register(ErrorTextInputCell.self)
         tableView.register(ButtonCell.self)
         tableView.register(OrSeparatorCell.self)
         tableView.register(SignInWithAppleButtonCell.self)
@@ -175,7 +177,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         let animation: UITableView.RowAnimation = type == .signIn ? .right : .left
         tableView.reloadSections(IndexSet(integer: Sections.inputs.rawValue), with: animation)
     }
-            
+    
 }
 
 // MARK: - protocol TableSuccessDataSource
@@ -251,6 +253,7 @@ extension AuthorizationViewController {
                                        text: eventHandler.signInUsername,
                                        placeholder: "signIn.email_placeholder".localized,
                                        textContentType: .username,
+                                       error: signInErrors.email,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignInUsernameTextChange(newText)
             },
@@ -262,6 +265,7 @@ extension AuthorizationViewController {
                                        placeholder: "signIn.password_placeholder".localized,
                                        textContentType: .password,
                                        isSecureTextEntry: true,
+                                       error: signInErrors.password,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignInPasswordTextChange(newText)
             },
@@ -288,6 +292,7 @@ extension AuthorizationViewController {
             return createTextInputCell(headerText: "signUp.login_title".localized,
                                        text: eventHandler.signUpUsername,
                                        placeholder: "signUp.login_placeholder".localized,
+                                       error: signUpErrors.username,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignUpUsernameTextChange(newText)
             },
@@ -296,6 +301,7 @@ extension AuthorizationViewController {
             return createTextInputCell(headerText: "signUp.email_title".localized,
                                        text: eventHandler.signUpEmail,
                                        placeholder: "signUp.email_placeholder".localized,
+                                       error: signUpErrors.email,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignUpEmailTextChange(newText)
             },
@@ -307,6 +313,7 @@ extension AuthorizationViewController {
                                        placeholder: "signUp.password_placeholder".localized,
                                        textContentType: .password,
                                        isSecureTextEntry: true,
+                                       error: signUpErrors.password,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onSignUpPasswordTextChange(newText)
             },
@@ -346,21 +353,34 @@ extension AuthorizationViewController {
                                      keyboardType: UIKeyboardType = .default,
                                      textContentType: UITextContentType? = nil,
                                      isSecureTextEntry: Bool = false,
+                                     error: String?,
                                      textDidChange: ((String) -> Void)?,
                                      for indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(TextInputCell.self, for: indexPath)
-        cell.view.update(headerText: headerText,
-                         text: text,
-                         placeholder: placeholder,
-                         keyboardType: keyboardType,
-                         textContentType: textContentType,
-                         isSecureTextEntry: isSecureTextEntry,
-                         textDidChange: textDidChange)
-        return cell
+        if let error = error {
+            let cell = tableView.dequeue(ErrorTextInputCell.self, for: indexPath)
+            cell.view.update(headerText: headerText,
+                             text: text,
+                             placeholder: placeholder,
+                             keyboardType: keyboardType,
+                             textContentType: textContentType,
+                             isSecureTextEntry: isSecureTextEntry,
+                             error: error,
+                             textDidChange: textDidChange)
+            return cell
+        } else {
+            let cell = tableView.dequeue(TextInputCell.self, for: indexPath)
+            cell.view.update(headerText: headerText,
+                             text: text,
+                             placeholder: placeholder,
+                             keyboardType: keyboardType,
+                             textContentType: textContentType,
+                             isSecureTextEntry: isSecureTextEntry,
+                             textDidChange: textDidChange)
+            return cell
+        }
     }
     
     private func createButtonCell(text: String,
-                                  isEnabled: Bool,
                                   action: Action?,
                                   for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
@@ -370,7 +390,6 @@ extension AuthorizationViewController {
                          roundedCorners: true,
                          height: 42,
                          action: action)
-        cell.view.button.isEnabled = isEnabled
         return cell
     }
     
@@ -388,23 +407,19 @@ extension AuthorizationViewController {
     
     private func createSignInButtonCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = createButtonCell(text: "signIn.sign_in_button".localized,
-                                    isEnabled: eventHandler.isSignInButtonEnabled,
-                                action: { [weak self] in
+                                    action: { [weak self] in
             self?.eventHandler.onSignInButtonTap()
         },
-                                for: indexPath)
-        signInButton = (cell as? TableCellWrapper<ButtonCell>)?.view.button
+                                    for: indexPath)
         return cell
     }
     
     private func createSignUpButtonCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = createButtonCell(text: "signUp.sign_up_button".localized,
-                                    isEnabled: eventHandler.isSignUpButtonEnabled,
-                                action: { [weak self] in
+                                    action: { [weak self] in
             self?.eventHandler.onSignUpButtonTap()
         },
-                                for: indexPath)
-        signUpButton = (cell as? TableCellWrapper<ButtonCell>)?.view.button
+                                    for: indexPath)
         return cell
     }
 }

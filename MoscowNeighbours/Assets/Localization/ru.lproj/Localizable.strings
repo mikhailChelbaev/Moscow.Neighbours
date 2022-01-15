@@ -81,3 +81,11 @@
 "signUp.password_title" = "Пароль";
 "signUp.password_placeholder" = "Введите от 8 до 12 символов";
 "signUp.sign_up_button" = "Создать аккаунт";
+
+/* Auth */
+"auth.email_error_invalid" = "Неверный формат эл. почты";
+"auth.password_error_short" = "Короткий пароль";
+"auth.password_error_long" = "Длинный пароль";
+"auth.username_error.short" = "Короткий логин";
+"auth.username_error.long" = "Длинный логин";
+"auth.empty" = "Пустое поле";

@@ -81,3 +81,11 @@
 "signUp.password_title" = "Password";
 "signUp.password_placeholder" = "Enter from 8 to 12 symbols";
 "signUp.sign_up_button" = "Create account";
+
+/* Auth */
+"auth.email_error_invalid" = "Invalid email format";
+"auth.password_error_short" = "Short password";
+"auth.password_error_long" = "Long password";
+"auth.username_error.short" = "Short username";
+"auth.username_error.long" = "Long username";
+"auth.empty" = "Empty field";

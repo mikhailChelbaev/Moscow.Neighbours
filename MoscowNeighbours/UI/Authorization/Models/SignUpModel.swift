@@ -13,10 +13,6 @@ struct SignUpModel {
     var username: String = ""
     var email: String = ""
     var password: String = ""
-    
-    var isValid: Bool {
-        return username.count >= 3 && !password.isEmpty && !email.isEmpty
-    }
 }
 
 // MARK: - SignUpDto

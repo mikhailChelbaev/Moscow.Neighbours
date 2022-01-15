@@ -12,10 +12,6 @@ import Foundation
 struct SignInModel {
     var username: String = ""
     var password: String = ""
-    
-    var isValid: Bool {
-        return username.count >= 3 && !password.isEmpty
-    }
 }
 
 // MARK: - SignUpDto
