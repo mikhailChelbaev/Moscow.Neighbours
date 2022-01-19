@@ -27,6 +27,12 @@ class BaseTableView: UITableView {
         }
     }
     
+    weak var errorDelegate: ErrorDelegate? {
+        didSet {
+            dataSourceImpl.errorDelegate = errorDelegate
+        }
+    }
+    
     private var dataSourceImpl: CustomTableViewDataSource = CustomTableViewDataSourceImpl()
     
     override init(frame: CGRect, style: UITableView.Style) {

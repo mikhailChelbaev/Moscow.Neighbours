@@ -1,5 +1,5 @@
 //
-//  MenuHeaderView.swift
+//  TitleHeaderView.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 29.12.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MenuHeaderView: CellView {
+final class TitleHeaderView: CellView {
     
     enum Layout {
         static let buttonSide: CGFloat = 46

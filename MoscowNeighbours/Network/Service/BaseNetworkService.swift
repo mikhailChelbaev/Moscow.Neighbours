@@ -1,7 +1,5 @@
 import Foundation
 
-class BaseNetworkService<ServiceOutput>: ObservableService {
+class BaseNetworkService {
     var requestSender: RequestSender = RequestSenderWithTokenRefresh()
-    
-    var observers: [String: ServiceOutput] = [:]
 }

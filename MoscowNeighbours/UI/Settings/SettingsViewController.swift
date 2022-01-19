@@ -37,7 +37,7 @@ class SettingsViewController: BottomSheetViewController, SettingsView {
         return tableView
     }()
     
-    let headerView = MenuHeaderView()
+    let headerView = TitleHeaderView()
     
     // MARK: - Internal Properties
     

@@ -21,8 +21,7 @@ class RoutesPresenter: RoutesEventHandler {
     private var routesService: RoutesService
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
-    private let minimumFetchingDuration: TimeInterval = 1.0
-    private var startFetchingDate: Date = .init()
+    private let delayManager: DelayManager
     
     // MARK: - Init
     
@@ -30,13 +29,15 @@ class RoutesPresenter: RoutesEventHandler {
         routesService = storage.routesService
         routesDescriptionBuilder = storage.routesDescriptionBuilder
         
+        delayManager = DefaultDelayManager(minimumDuration: 1.0)
+        
         routesService.register(WeakRef(self))
     }
     
     // MARK: - RoutesEventHandler methods
     
     func onFetchData() {
-        startFetchingDate = .init()
+        delayManager.start()
         routesService.fetchRoutes()
     }
     
@@ -49,22 +50,15 @@ class RoutesPresenter: RoutesEventHandler {
 // MARK: - Protocol RoutesServiceOutput
 
 extension RoutesPresenter: RoutesServiceOutput {
-    private func completeWithDelay(_ completion: Action?) {
-        let delay: TimeInterval = max(0, minimumFetchingDuration - Date().timeIntervalSince(startFetchingDate))
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            completion?()
-        }
-    }
-    
     func fetchDataSucceeded(_ model: [Route]) {
-        completeWithDelay {
+        delayManager.completeWithDelay {
             self.viewController?.state = .success(routes: model)
             self.viewController?.reloadData()
         }
     }
     
     func fetchDataFailed(_ error: NetworkError) {
-        completeWithDelay {
+        delayManager.completeWithDelay {
             self.viewController?.state = .error(error: error)
             self.viewController?.reloadData()
         }

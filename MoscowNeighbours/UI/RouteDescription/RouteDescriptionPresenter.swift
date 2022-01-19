@@ -28,8 +28,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     
     private let mapService: MapService
     
-    private let minimumFetchingDuration: TimeInterval = 1.0
-    private var startFetchingDate: Date = .init()
+    private let delayManager: DelayManager
     
     // MARK: - Init
     
@@ -40,6 +39,8 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         mapService = storage.mapService
         
         route = storage.route
+        
+        delayManager = DefaultDelayManager(minimumDuration: 1.0)
     }
     
     // MARK: - RouteDescriptionEventHandler methods
@@ -55,7 +56,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     
     @MainActor
     private func setRoute(_ route: RouteViewModel) {
-        completeWithDelay {
+        delayManager.completeWithDelay {
             self.viewController?.route = route
             self.viewController?.status = .success
         }
@@ -102,11 +103,4 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
         viewController?.present(controller, state: .middle, completion: nil)
     }
-    
-    private func completeWithDelay(_ completion: Action?) {
-        let delay: TimeInterval = max(0, minimumFetchingDuration - Date().timeIntervalSince(startFetchingDate))
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            completion?()
-        }
-    }    
 }

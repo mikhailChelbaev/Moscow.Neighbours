@@ -24,6 +24,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         case account
         case separator
         case settings
+        case achievements
     }
     
     // MARK: - Layout
@@ -42,7 +43,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         return tableView
     }()
     
-    let headerView = MenuHeaderView()
+    let headerView = TitleHeaderView()
     
     // MARK: - Internal properties
     
@@ -155,9 +156,9 @@ extension MenuViewController {
         switch sections[section] {
         case .menuItems:
             if eventHandler.isUserAuthorized {
-                return [.account, .separator, .settings, .separator]
+                return [.account, .separator, .settings, .separator, .achievements, .separator]
             } else {
-                return [.authorization, .separator, .settings, .separator]
+                return [.authorization, .separator, .settings, .separator, .achievements, .separator]
             }
         }
     }
@@ -179,6 +180,11 @@ extension MenuViewController {
             return createMenuItemCell(title: "menu.settings".localized,
                                       subtitle: "menu.settings_description".localized,
                                       for: indexPath)
+            
+        case .achievements:
+            return createMenuItemCell(title: "menu.achievements".localized,
+                                      subtitle: "menu.achievements_description".localized,
+                                      for: indexPath)
         }
     }
     
@@ -192,6 +198,9 @@ extension MenuViewController {
             
         case .account:
             eventHandler.onAccountCellTap()
+            
+        case .achievements:
+            eventHandler.onAchievementsCellTap() 
             
         default:
             break

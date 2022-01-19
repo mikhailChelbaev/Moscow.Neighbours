@@ -48,6 +48,8 @@
 "menu.advantages_achievements" = "Achievements";
 "menu.advantages_profile" = "Private profile";
 "menu.advantages_statistics" = "Extended statistics";
+"menu.achievements" = "Achievements";
+"menu.achievements_description" = "Complete routes to get achievements";
 
 /* Settings */
 "settings.title" = "Settings";
@@ -89,3 +91,11 @@
 "auth.username_error.short" = "Short username";
 "auth.username_error.long" = "Long username";
 "auth.empty" = "Empty field";
+
+/* Achievements */
+"achievements.title" = "Achievements";
+"achievements.error_button_title" = "Try again";
+"achievements.error_main_title" = "Section is under development";
+"achievements.error_yana_title" = "The section will open when Yana finishes the burger";
+"achievements.error_misha_title" = "Mechanic Nikita started to develop the achievements";
+"achievements.error_nikita_title" = "Mikhail is already developing this section";

@@ -12,13 +12,19 @@ struct EmptyStateDataProvider {
     var title: String
     var subtitle: String?
     var buttonTitle: String?
+    var imageHeight: CGFloat
     var buttonAction: Action?
 }
 
 struct DefaultEmptyStateProviders {
     
     static func mainError(action: Action?) -> EmptyStateDataProvider {
-        EmptyStateDataProvider(image: #imageLiteral(resourceName: "error_placeholder"), title: "main_error.title".localized, subtitle: nil, buttonTitle: "main_error.button_title".localized, buttonAction: action)
+        EmptyStateDataProvider(image: #imageLiteral(resourceName: "error_placeholder"),
+                               title: "main_error.title".localized,
+                               subtitle: nil,
+                               buttonTitle: "main_error.button_title".localized,
+                               imageHeight: 150,
+                               buttonAction: action)
     }
     
 }
@@ -33,7 +39,7 @@ final class EmptyStateCell: CellView {
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleToFill
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 20
         return iv
@@ -70,32 +76,42 @@ final class EmptyStateCell: CellView {
         return stack
     }()
     
+    private var imageViewHeightConstraint: NSLayoutConstraint?
+    
     override func configureView() {
-        addSubview(imageView)
-        imageView.pinToSuperviewEdges([.left, .right, .top], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
-        imageView.height(150)
+        let container = UIView()
         
-        addSubview(titleLabel)
+        container.addSubview(imageView)
+        imageView.pinToSuperviewEdges([.left, .right, .top], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+        imageViewHeightConstraint = imageView.height(150)
+        
+        container.addSubview(titleLabel)
         titleLabel.pinToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         titleLabel.top(20, to: imageView)
         
-        addSubview(subtitleLabel)
+        container.addSubview(subtitleLabel)
         subtitleLabel.pinToSuperviewEdges([.left, .right], insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         subtitleLabel.top(20, to: titleLabel)
         
-        addSubview(button)
+        container.addSubview(button)
         button.top(10, to: subtitleLabel)
         button.bottom(20)
         button.height(40)
         button.centerHorizontally()
+        
+        addSubview(container)
+        container.placeInCenter()
+        container.pinToSuperviewEdges([.left, .right])
     }
     
     
     private func update() {
         guard let data = dataProvider else { return }
+        
         titleLabel.text = data.title
         subtitleLabel.text = data.subtitle
         imageView.image = data.image
+        imageViewHeightConstraint?.constant = data.imageHeight
         button.setTitle(data.buttonTitle, for: .normal)
         button.action = { 
             data.buttonAction?()

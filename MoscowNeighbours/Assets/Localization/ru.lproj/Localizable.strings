@@ -48,6 +48,8 @@
 "menu.advantages_achievements" = "Достижения";
 "menu.advantages_profile" = "Личный профиль";
 "menu.advantages_statistics" = "Расширенная статистика";
+"menu.achievements" = "Достижения";
+"menu.achievements_description" = "Получайте ачивки, проходя маршруты";
 
 /* Settings */
 "settings.title" = "Настройки";
@@ -89,3 +91,11 @@
 "auth.username_error.short" = "Короткий логин";
 "auth.username_error.long" = "Длинный логин";
 "auth.empty" = "Пустое поле";
+
+/* Achievements */
+"achievements.title" = "Достижения";
+"achievements.error_button_title" = "Попробовать снова";
+"achievements.error_main_title" = "Раздел находится\n в стадии разработки";
+"achievements.error_yana_title" = "Раздел откроется,\n когда Яна доест бургер";
+"achievements.error_misha_title" = "Механик Никита уже начал\n придумывать ачивки";
+"achievements.error_nikita_title" = "Михаил уже разрабатывает\n этот раздел";

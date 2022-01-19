@@ -12,7 +12,7 @@ protocol RoutesServiceOutput: AnyObject {
     @MainActor func fetchDataFailed(_ error: NetworkError)
 }
 
-class RoutesService: BaseNetworkService<RoutesServiceOutput> {
+class RoutesService: ObservableNetworkService<RoutesServiceOutput> {
     
     // MARK: - Internal Properties
     

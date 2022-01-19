@@ -12,7 +12,7 @@ protocol UserServiceOutput {
     @MainActor func userFetchFailed(_ error: NetworkError)
 }
 
-final class UserService: BaseNetworkService<UserServiceOutput> {
+final class UserService: ObservableNetworkService<UserServiceOutput> {
     
     // MARK: - StorageKeys
     

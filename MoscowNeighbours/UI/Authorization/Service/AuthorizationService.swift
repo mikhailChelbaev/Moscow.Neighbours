@@ -12,7 +12,7 @@ protocol AuthorizationServiceOutput: AnyObject {
     @MainActor func authorizationDidCompleteWithError(_ error: NetworkError)
 }
 
-class AuthorizationService: BaseNetworkService<AuthorizationServiceOutput> {
+class AuthorizationService: ObservableNetworkService<AuthorizationServiceOutput> {
     
     // MARK: - Internal Properties
     
