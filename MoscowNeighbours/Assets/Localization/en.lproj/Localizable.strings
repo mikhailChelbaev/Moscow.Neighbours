@@ -52,6 +52,7 @@
 "menu.achievements_description" = "Complete routes to get achievements";
 "menu.account_confirmation_title" = "Your account needs confirmation";
 "menu.account_confirmation_button" = "Confirm email";
+"menu.logout" = "Sign out";
 
 /* Settings */
 "settings.title" = "Settings";
@@ -109,3 +110,4 @@
 "account_confirmation.text_field_placeholder" = "Enter code";
 "confirm_account.confirm_button_title" = "Confirm";
 "confirm_account.change_account_button_title" = "Change account";
+

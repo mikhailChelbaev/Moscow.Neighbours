@@ -88,6 +88,7 @@
 		74668499279F238300AFAA2E /* AccountConfirmationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74668498279F238300AFAA2E /* AccountConfirmationBuilder.swift */; };
 		7466849B279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7466849A279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift */; };
 		746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A0279F32ED00AFAA2E /* AccountConfirmationViewData.swift */; };
+		746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A2279F3A7100AFAA2E /* LogoutCell.swift */; };
 		746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746769EB26F922B400158FFC /* RoutePassingViewController.swift */; };
 		74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */; };
 		746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100D26F6192F002CB7E2 /* ChipsLayout.swift */; };
@@ -278,6 +279,7 @@
 		74668498279F238300AFAA2E /* AccountConfirmationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationBuilder.swift; sourceTree = "<group>"; };
 		7466849A279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationNotificationCell.swift; sourceTree = "<group>"; };
 		746684A0279F32ED00AFAA2E /* AccountConfirmationViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationViewData.swift; sourceTree = "<group>"; };
+		746684A2279F3A7100AFAA2E /* LogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
 		746769EB26F922B400158FFC /* RoutePassingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingViewController.swift; sourceTree = "<group>"; };
 		74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+SetAttributedText.swift"; sourceTree = "<group>"; };
 		746A100D26F6192F002CB7E2 /* ChipsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsLayout.swift; sourceTree = "<group>"; };
@@ -946,6 +948,7 @@
 				7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */,
 				7420BF032784B351000960F5 /* UserAccountPreviewCell.swift */,
 				7466849A279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift */,
+				746684A2279F3A7100AFAA2E /* LogoutCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1183,6 +1186,7 @@
 				74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */,
 				74E7C39D2783081A00B16392 /* JWTService.swift in Sources */,
 				74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */,
+				746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */,
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,

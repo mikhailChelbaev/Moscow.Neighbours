@@ -5,7 +5,7 @@
 //  Created by Mikhail on 29.12.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol MenuEventHandler {
     var isUserAuthorized: Bool { get }
@@ -18,6 +18,7 @@ protocol MenuEventHandler {
     func onAccountCellTap()
     func onAchievementsCellTap()
     func onAccountConfirmationButtonTap()
+    func onLogoutCellTap()
 }
 
 class MenuPresenter: MenuEventHandler {
@@ -83,8 +84,27 @@ class MenuPresenter: MenuEventHandler {
     }
     
     func onAccountConfirmationButtonTap() {
-        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController()
+        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: false)
         viewController?.present(controller, state: .top, completion: nil)
+    }
+    
+    func onLogoutCellTap() {
+        let presentingController = viewController?.presentingViewController as? MenuViewController
+        let alertController = UIAlertController(title: "profile.exit_title".localized,
+                                                message: "profile.exit_message".localized,
+                                                preferredStyle: .alert)
+        let yes = UIAlertAction(title: "common.yes".localized, style: .default, handler: { [weak self] _ in
+            // logout
+//            self?.userService.logout()
+//            // reload presenting controller
+//            presentingController?.reloadData()
+//            // close controller
+//            self?.viewController?.closeController(animated: true, completion: nil)
+        })
+        let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)
+        alertController.addAction(yes)
+        alertController.addAction(no)
+        viewController?.present(alertController, animated: true, completion: nil)
     }
     
 }

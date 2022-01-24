@@ -11,13 +11,14 @@ struct AccountConfirmationStorage {
 }
 
 protocol AccountConfirmationBuilder {
-    func buildAccountConfirmationViewController() -> AccountConfirmationViewController
+    func buildAccountConfirmationViewController(withChangeAccountButton: Bool) -> AccountConfirmationViewController
 }
 
 extension Builder: AccountConfirmationBuilder {
-    func buildAccountConfirmationViewController() -> AccountConfirmationViewController {
+    func buildAccountConfirmationViewController(withChangeAccountButton: Bool) -> AccountConfirmationViewController {
         let presenter = AccountConfirmationPresenter(storage: buildStorage())
-        let viewController = AccountConfirmationViewController(eventHandler: presenter)
+        let viewController = AccountConfirmationViewController(eventHandler: presenter,
+                                                               withChangeAccountButton: withChangeAccountButton)
         presenter.viewController = viewController
         return viewController
     }

@@ -80,11 +80,13 @@ class AccountConfirmationViewController: BottomSheetViewController, AccountConfi
     // MARK: - Private Properties
     
     private let sections: [SectionType]
+    private let withChangeAccountButton: Bool
     
     // MARK: - Init
     
-    init(eventHandler: AccountConfirmationEventHandler) {
+    init(eventHandler: AccountConfirmationEventHandler, withChangeAccountButton: Bool) {
         self.eventHandler = eventHandler
+        self.withChangeAccountButton = withChangeAccountButton
         sections = [.main]
         super.init()
     }
@@ -148,11 +150,15 @@ class AccountConfirmationViewController: BottomSheetViewController, AccountConfi
                                           insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         confirmButton.height(42)
         
-        containerView.addSubview(changeAccountButton)
-        changeAccountButton.pinToSuperviewEdges([.left, .right, .bottom],
-                                          insets: .init(top: 0, left: 20, bottom: 0, right: 20))
-        changeAccountButton.top(15, to: confirmButton)
-        changeAccountButton.height(42)
+        if withChangeAccountButton {
+            containerView.addSubview(changeAccountButton)
+            changeAccountButton.pinToSuperviewEdges([.left, .right, .bottom],
+                                                    insets: .init(top: 0, left: 20, bottom: 0, right: 20))
+            changeAccountButton.top(15, to: confirmButton)
+            changeAccountButton.height(42)
+        } else {
+            confirmButton.bottom()
+        }
         
         tableView.addSubview(containerView)
         containerView.pinToSuperviewSafeEdges([.left, .right, .bottom],

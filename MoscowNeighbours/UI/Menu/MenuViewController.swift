@@ -26,6 +26,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         case settings
         case achievements
         case accountConfirmation
+        case logout
     }
     
     // MARK: - Layout
@@ -98,6 +99,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         tableView.register(SeparatorCell.self)
         tableView.register(UserAccountPreviewCell.self)
         tableView.register(AccountConfirmationNotificationCell.self)
+        tableView.register(LogoutCell.self)
     }
     
     private func configureViews() {
@@ -158,9 +160,9 @@ extension MenuViewController {
         switch sections[section] {
         case .menuItems:
             if eventHandler.isUserAuthorized {
-                return [.account, .separator, .settings, .separator, .achievements, .separator]
+                return [.account, .separator, .settings, .separator, .achievements, .separator, .logout, .separator]
             } else {
-                return [.accountConfirmation, .separator, .settings, .separator, .achievements, .separator]
+                return [.accountConfirmation, .separator, .settings, .separator, .logout, .separator]
             }
         }
     }
@@ -190,6 +192,9 @@ extension MenuViewController {
             
         case .accountConfirmation:
             return createAccountConfirmationNotificationCell(for: indexPath)
+            
+        case .logout:
+            return createLogoutCell(for: indexPath)
         }
     }
     
@@ -205,7 +210,10 @@ extension MenuViewController {
             eventHandler.onAccountCellTap()
             
         case .achievements:
-            eventHandler.onAchievementsCellTap() 
+            eventHandler.onAchievementsCellTap()
+            
+        case .logout:
+            eventHandler.onLogoutCellTap()
             
         default:
             break
@@ -261,6 +269,11 @@ extension MenuViewController {
             self?.eventHandler.onAccountConfirmationButtonTap()
         }
         cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func createLogoutCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(LogoutCell.self, for: indexPath)
         return cell
     }
 }

@@ -52,6 +52,7 @@
 "menu.achievements_description" = "Получайте ачивки, проходя маршруты";
 "menu.account_confirmation_title" = "Ваш аккаунт требует подтвержения";
 "menu.account_confirmation_button" = "Подтвердить почту";
+"menu.logout" = "Выйти из аккаунта";
 
 /* Settings */
 "settings.title" = "Настройки";
