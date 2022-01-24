@@ -50,6 +50,8 @@
 "menu.advantages_statistics" = "Extended statistics";
 "menu.achievements" = "Achievements";
 "menu.achievements_description" = "Complete routes to get achievements";
+"menu.account_confirmation_title" = "Your account needs confirmation";
+"menu.account_confirmation_button" = "Confirm email";
 
 /* Settings */
 "settings.title" = "Settings";
@@ -99,3 +101,11 @@
 "achievements.error_yana_title" = "The section will open when Yana finishes the burger";
 "achievements.error_misha_title" = "Mechanic Nikita started to develop the achievements";
 "achievements.error_nikita_title" = "Mikhail is already developing this section";
+
+/* Account confirmation */
+"account_confirmation.title" = "Confirm account";
+"account_confirmation.alert_text" = "We send the verification code on your email. Please, input it in the text field below.";
+"account_confirmation.text_field_title" = "Confirmation code";
+"account_confirmation.text_field_placeholder" = "Enter code";
+"confirm_account.confirm_button_title" = "Confirm";
+"confirm_account.change_account_button_title" = "Change account";

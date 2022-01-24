@@ -43,6 +43,7 @@ final class TitleHeaderView: CellView {
     let title: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 24, weight: .bold)
+        label.numberOfLines = 2
         return label
     }()
     
@@ -70,6 +71,7 @@ final class TitleHeaderView: CellView {
         
         containerView.addSubview(title)
         title.leading(15, to: backButton)
+        title.trailing(16)
         title.centerVertically()
         
         containerView.addSubview(separator)

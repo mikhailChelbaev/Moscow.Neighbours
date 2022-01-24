@@ -50,6 +50,8 @@
 "menu.advantages_statistics" = "Расширенная статистика";
 "menu.achievements" = "Достижения";
 "menu.achievements_description" = "Получайте ачивки, проходя маршруты";
+"menu.account_confirmation_title" = "Ваш аккаунт требует подтвержения";
+"menu.account_confirmation_button" = "Подтвердить почту";
 
 /* Settings */
 "settings.title" = "Настройки";
@@ -99,3 +101,11 @@
 "achievements.error_yana_title" = "Раздел откроется,\n когда Яна доест бургер";
 "achievements.error_misha_title" = "Механик Никита уже начал\n придумывать ачивки";
 "achievements.error_nikita_title" = "Михаил уже разрабатывает\n этот раздел";
+
+/* Account confirmation */
+"account_confirmation.title" = "Подтверждение аккаунта";
+"account_confirmation.alert_text" = "Мы отправили код подтверждения на вашу почту. Пожалуйста, введите его в поле ниже.";
+"account_confirmation.text_field_title" = "Код подтверждения";
+"account_confirmation.text_field_placeholder" = "Введите код";
+"confirm_account.confirm_button_title" = "Подтвердить";
+"confirm_account.change_account_button_title" = "Сменить аккаунт";

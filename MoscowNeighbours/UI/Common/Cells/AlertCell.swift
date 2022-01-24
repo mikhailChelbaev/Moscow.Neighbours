@@ -68,8 +68,16 @@ final class AlertCell: CellView {
         image: Image = .exclamationMark,
         containerInsets: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
     ) {
+        self.update(text: text, image: image.value, containerInsets: containerInsets)
+    }
+    
+    func update(
+        text: String,
+        image: UIImage?,
+        containerInsets: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
+    ) {
         label.text = text
-        imageView.image = image.value
+        imageView.image = image
         containerConstraints?.updateInsets(containerInsets)
     }
     

@@ -25,6 +25,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         case separator
         case settings
         case achievements
+        case accountConfirmation
     }
     
     // MARK: - Layout
@@ -96,6 +97,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         tableView.register(MenuItemCell.self)
         tableView.register(SeparatorCell.self)
         tableView.register(UserAccountPreviewCell.self)
+        tableView.register(AccountConfirmationNotificationCell.self)
     }
     
     private func configureViews() {
@@ -158,7 +160,7 @@ extension MenuViewController {
             if eventHandler.isUserAuthorized {
                 return [.account, .separator, .settings, .separator, .achievements, .separator]
             } else {
-                return [.authorization, .separator, .settings, .separator, .achievements, .separator]
+                return [.accountConfirmation, .separator, .settings, .separator, .achievements, .separator]
             }
         }
     }
@@ -185,6 +187,9 @@ extension MenuViewController {
             return createMenuItemCell(title: "menu.achievements".localized,
                                       subtitle: "menu.achievements_description".localized,
                                       for: indexPath)
+            
+        case .accountConfirmation:
+            return createAccountConfirmationNotificationCell(for: indexPath)
         }
     }
     
@@ -247,6 +252,15 @@ extension MenuViewController {
         cell.view.usernameLabel.text = eventHandler.username
         cell.view.emailLabel.text = eventHandler.email
         cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    
+    private func createAccountConfirmationNotificationCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(AccountConfirmationNotificationCell.self, for: indexPath)
+        cell.view.buttonAction = { [weak self] in
+            self?.eventHandler.onAccountConfirmationButtonTap()
+        }
+        cell.selectionStyle = .none
         return cell
     }
 }

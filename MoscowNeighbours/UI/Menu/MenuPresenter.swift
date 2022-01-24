@@ -17,6 +17,7 @@ protocol MenuEventHandler {
     func onSettingsCellTap()
     func onAccountCellTap()
     func onAchievementsCellTap()
+    func onAccountConfirmationButtonTap()
 }
 
 class MenuPresenter: MenuEventHandler {
@@ -29,6 +30,7 @@ class MenuPresenter: MenuEventHandler {
     private let settingsBuilder: SettingsBuilder
     private let profileBuilder: ProfileBuilder
     private let achievementsBuilder: AchievementsBuilder
+    private let accountConfirmationBuilder: AccountConfirmationBuilder
     
     private let userService: UserService
     
@@ -49,6 +51,7 @@ class MenuPresenter: MenuEventHandler {
         settingsBuilder = storage.settingsBuilder
         profileBuilder = storage.profileBuilder
         achievementsBuilder = storage.achievementsBuilder
+        accountConfirmationBuilder = storage.accountConfirmationBuilder
         
         userService = storage.userService
     }
@@ -76,6 +79,11 @@ class MenuPresenter: MenuEventHandler {
     
     func onAchievementsCellTap() {
         let controller = achievementsBuilder.buildAchievementsViewController()
+        viewController?.present(controller, state: .top, completion: nil)
+    }
+    
+    func onAccountConfirmationButtonTap() {
+        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController()
         viewController?.present(controller, state: .top, completion: nil)
     }
     

@@ -12,6 +12,7 @@ struct MenuStorage {
     let settingsBuilder: SettingsBuilder
     let profileBuilder: ProfileBuilder
     let achievementsBuilder: AchievementsBuilder
+    let accountConfirmationBuilder: AccountConfirmationBuilder
     let userService: UserService
 }
 
@@ -32,6 +33,7 @@ extension Builder: MenuBuilder {
                     settingsBuilder: self,
                     profileBuilder: self,
                     achievementsBuilder: self,
+                    accountConfirmationBuilder: self,
                     userService: userService)
     }
 }
