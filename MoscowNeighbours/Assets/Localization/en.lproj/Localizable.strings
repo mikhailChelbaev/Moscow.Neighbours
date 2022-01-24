@@ -10,6 +10,7 @@
 "common.yes" = "Yes";
 "common.cancel" = "Cancel";
 "common.or" = "Or";
+"common.application_language" = "ru_Ru";
 
 /* Error */
 "main_error.title" = "Failed to load page, please try again";

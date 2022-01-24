@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 enum HttpMethods: String {
     case post = "POST"
@@ -72,6 +73,8 @@ final class ApiRequestsFactory {
         // header
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+        request.setValue("common.application_language".localized, forHTTPHeaderField: "language")
+        request.setValue(UIApplication.version, forHTTPHeaderField: "version")
         
         if let token = JWTService.main.accessToken {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

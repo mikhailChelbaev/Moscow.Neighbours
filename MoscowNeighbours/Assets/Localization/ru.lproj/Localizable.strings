@@ -10,6 +10,7 @@
 "common.yes" = "Да";
 "common.cancel" = "Отмена";
 "common.or" = "Или";
+"common.application_language" = "en_En";
 
 /* Error */
 "main_error.title" = "Не удалось загрузить страницу, попробуйте еще раз";

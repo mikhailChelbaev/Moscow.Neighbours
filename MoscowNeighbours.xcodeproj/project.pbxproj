@@ -89,6 +89,7 @@
 		7466849B279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7466849A279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift */; };
 		746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A0279F32ED00AFAA2E /* AccountConfirmationViewData.swift */; };
 		746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A2279F3A7100AFAA2E /* LogoutCell.swift */; };
+		746684A5279F3FAA00AFAA2E /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A4279F3FAA00AFAA2E /* UIApplication+Version.swift */; };
 		746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746769EB26F922B400158FFC /* RoutePassingViewController.swift */; };
 		74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */; };
 		746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100D26F6192F002CB7E2 /* ChipsLayout.swift */; };
@@ -280,6 +281,7 @@
 		7466849A279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationNotificationCell.swift; sourceTree = "<group>"; };
 		746684A0279F32ED00AFAA2E /* AccountConfirmationViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationViewData.swift; sourceTree = "<group>"; };
 		746684A2279F3A7100AFAA2E /* LogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
+		746684A4279F3FAA00AFAA2E /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
 		746769EB26F922B400158FFC /* RoutePassingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingViewController.swift; sourceTree = "<group>"; };
 		74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+SetAttributedText.swift"; sourceTree = "<group>"; };
 		746A100D26F6192F002CB7E2 /* ChipsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsLayout.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				74E7C39A2783075000B16392 /* StoreContainer.swift */,
 				7437B1ED278615070020AABE /* String+Localized.swift */,
 				7457757127973E1300123208 /* DelayManager.swift */,
+				746684A4279F3FAA00AFAA2E /* UIApplication+Version.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 				747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
+				746684A5279F3FAA00AFAA2E /* UIApplication+Version.swift in Sources */,
 				74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */,
 				743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */,
 				740B53612773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift in Sources */,
