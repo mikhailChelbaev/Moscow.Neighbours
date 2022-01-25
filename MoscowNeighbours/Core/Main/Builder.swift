@@ -14,7 +14,7 @@ class Builder {
     let mapService: MapService
     let routePassingService: RoutePassingService
     let jwtService: JWTService
-    let userService: UserService
+    let userService: UserProvider
     
     init() {
         requestsFactory = ApiRequestsFactory.main
@@ -25,6 +25,6 @@ class Builder {
         routePassingService = .init(locationService: locationService,
                                     notificationService: NotificationService())
         jwtService = JWTService.main
-        userService = UserService.main
+        userService = UserService.shared
     }
 }

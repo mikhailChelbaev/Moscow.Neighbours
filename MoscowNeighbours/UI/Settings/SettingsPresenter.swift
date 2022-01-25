@@ -22,7 +22,7 @@ class SettingsPresenter: SettingsEventHandler {
     
     // MARK: - Properties
     
-    private let userService: UserService
+    private var userService: UserProvider
     
     weak var viewController: SettingsView?
     

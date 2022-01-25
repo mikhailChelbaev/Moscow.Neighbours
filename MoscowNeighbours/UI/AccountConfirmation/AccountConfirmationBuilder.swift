@@ -8,6 +8,9 @@
 import Foundation
 
 struct AccountConfirmationStorage {
+    let accountConfirmationService: AccountConfirmationProvider
+    let userService: UserProvider
+    let jwtService: JWTService
 }
 
 protocol AccountConfirmationBuilder {
@@ -24,6 +27,8 @@ extension Builder: AccountConfirmationBuilder {
     }
     
     private func buildStorage() -> AccountConfirmationStorage {
-        return AccountConfirmationStorage()
+        return AccountConfirmationStorage(accountConfirmationService: AccountConfirmationService(api: ApiRequestsFactory.main),
+                                          userService: userService,
+                                          jwtService: jwtService)
     }
 }

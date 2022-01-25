@@ -10,6 +10,8 @@ import Foundation
 enum NetworkErrorDescription: String, Codable {
     case wrongPassword = "WRONG_PASSWORD"
     case userNotFound = "USER_NOT_FOUND"
+    case userExists = "USER_EXISTS"
+    case notVerified = "NOT_VERIFIED"
     
     case unknown
     

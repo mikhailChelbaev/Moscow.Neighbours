@@ -38,7 +38,7 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     
     private var authorizationService: AuthorizationService
     private var jwtService: JWTService
-    private var userService: UserService
+    private var userService: UserProvider
     
     private var signInModel: SignInModel
     private var signUpModel: SignUpModel
@@ -64,6 +64,8 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     private let usernameValidator: UsernameValidator
     private let passwordValidator: PasswordValidator
     
+    private let accountConfirmationBuilder: AccountConfirmationBuilder
+    
     // MARK: - Init
     
     init(storage: AuthorizationStorage) {
@@ -78,10 +80,9 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
         usernameValidator = .init()
         passwordValidator = .init()
         
-        super.init()
+        accountConfirmationBuilder = storage.accountConfirmationBuilder
         
-        authorizationService.register(WeakRef(self))
-        userService.register(WeakRef(self))
+        super.init()
     }
     
     // MARK: - AuthorizationEventHandler
@@ -121,27 +122,41 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     func onSignInButtonTap() {
         if validateSignInInputedData() {
             viewController?.status = .loading
-            authorizationService.signIn(credentials: signInModel)
+            Task {
+                do {
+                    // get token
+                    let token = try await authorizationService.signIn(credentials: signInModel)
+                    jwtService.updateToken(token)
+                    
+                    // fetch user
+                    fetchUser()
+                } catch {
+                    await viewController?.handleSignInError(error as? NetworkError)
+                }
+            }
         } else {
             viewController?.reloadData()
         }
     }
     
     private func validateSignInInputedData() -> Bool {
+        var signInErrorsModel = SignInErrorsModel()
+        
         if signInModel.username.isEmpty {
-            viewController?.signInErrors.email = "auth.empty".localized
+            signInErrorsModel.email = "auth.empty".localized
         } else {
-            viewController?.signInErrors.email = nil
+            signInErrorsModel.email = nil
         }
         
         if signInModel.password.isEmpty {
-            viewController?.signInErrors.password = "auth.empty".localized
+            signInErrorsModel.password = "auth.empty".localized
         } else {
-            viewController?.signInErrors.password = nil
+            signInErrorsModel.password = nil
         }
         
-        return viewController?.signInErrors.email == nil &&
-        viewController?.signInErrors.password == nil
+        viewController?.updateSignInError(signInErrorsModel)
+        
+        return signInErrorsModel.isEmpty
     }
     
     // MARK: - Sign Up
@@ -161,20 +176,54 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     func onSignUpButtonTap() {
         if validateSignUpInputedData() {
             viewController?.status = .loading
-            authorizationService.signUp(credentials: signUpModel)
+            Task {
+                do {
+                    // fetch signUpResponse
+                    let signUpResponse = try await authorizationService.signUp(credentials: signUpModel)
+                    let userModel = UserModel(from: signUpResponse)
+                    userService.storeCurrentUser(userModel)
+                    
+                    if signUpResponse.isVerified {
+                        // fetch user
+                        fetchUser()
+                    } else {
+                        // show account confirmation screen
+                        viewController?.status = .success
+                        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: true)
+                        await viewController?.present(controller, state: .top, completion: nil)
+                    }
+                } catch {
+                    await viewController?.handleSignUpError(error as? NetworkError)
+                }
+            }
         } else {
             viewController?.reloadData()
         }
     }
     
     private func validateSignUpInputedData() -> Bool {
-        viewController?.signUpErrors.email = emailValidator.isValid(email: signUpModel.email)
-        viewController?.signUpErrors.username = usernameValidator.isValid(username: signUpModel.username)
-        viewController?.signUpErrors.password = passwordValidator.isValid(password: signUpModel.password)
+        var signUpErrorModel = SignUpErrorsModel()
         
-        return viewController?.signUpErrors.email == nil &&
-        viewController?.signUpErrors.username == nil &&
-        viewController?.signUpErrors.password == nil
+        signUpErrorModel.email = emailValidator.isValid(email: signUpModel.email)
+        signUpErrorModel.username = usernameValidator.isValid(username: signUpModel.username)
+        signUpErrorModel.password = passwordValidator.isValid(password: signUpModel.password)
+        
+        viewController?.updateSignUpError(signUpErrorModel)
+        
+        return signUpErrorModel.isEmpty
+    }
+    
+    private func fetchUser() {
+        Task {
+            do {
+                try await userService.fetchUser()
+                await viewController?.closeController(animated: true, completion: nil)
+            } catch {
+                RunLoop.main.perform(inModes: [.common]) {
+                    self.viewController?.status = .success
+                }
+            }
+        }
     }
     
 }
@@ -189,34 +238,5 @@ extension AuthorizationPresenter: ASAuthorizationControllerDelegate {
             let email = appleIDCredential.email
             print("User id is \(userIdentifier) \n Full Name is \(String(describing: fullName)) \n Email id is \(String(describing: email))")
         }
-    }
-}
-
-// MARK: - protocol AuthorizationServiceOutput
-
-extension AuthorizationPresenter: AuthorizationServiceOutput {
-    func didAuthorize(_ jwt: JWTResponse) {
-        jwtService.updateToken(jwt)
-        userService.fetchUser()
-    }
-    
-    func authorizationDidCompleteWithError(_ error: NetworkError) {
-        viewController?.status = .success
-    }
-}
-
-// MARK: - protocol UserServiceOutput
-
-extension AuthorizationPresenter: UserServiceOutput {
-    func userFetched(_ model: UserModel) {
-        guard let menuController = viewController?.presentingViewController as? MenuViewController else {
-            return
-        }
-        menuController.reloadData()
-        
-        viewController?.closeController(animated: true, completion: nil)
-    }
-    
-    func userFetchFailed(_ error: NetworkError) {
     }
 }

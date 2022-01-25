@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MenuView: BottomSheetViewController, LoadingStatusProvider {
-    
+    func reloadData()
 }
 
 class MenuViewController: BottomSheetViewController, MenuView {
@@ -76,6 +76,11 @@ class MenuViewController: BottomSheetViewController, MenuView {
     }
     
     // MARK: - Internal methods
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,9 +165,13 @@ extension MenuViewController {
         switch sections[section] {
         case .menuItems:
             if eventHandler.isUserAuthorized {
-                return [.account, .separator, .settings, .separator, .achievements, .separator, .logout, .separator]
+                if eventHandler.isUserVerified {
+                    return [.account, .separator, .settings, .separator, .achievements, .separator, .logout, .separator]
+                } else {
+                    return [.accountConfirmation, .separator, .settings, .separator, .logout, .separator]
+                }
             } else {
-                return [.accountConfirmation, .separator, .settings, .separator, .logout, .separator]
+                return [.authorization, .separator, .settings, .separator]
             }
         }
     }

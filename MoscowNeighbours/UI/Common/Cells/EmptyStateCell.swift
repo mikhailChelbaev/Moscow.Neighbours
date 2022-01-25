@@ -27,6 +27,15 @@ struct DefaultEmptyStateProviders {
                                buttonAction: action)
     }
     
+    static func network(action: Action?) -> EmptyStateDataProvider {
+        EmptyStateDataProvider(image: #imageLiteral(resourceName: "error_placeholder"),
+                               title: "network_error.title".localized,
+                               subtitle: "network_error.subtitle".localized,
+                               buttonTitle: "main_error.button_title".localized,
+                               imageHeight: 150,
+                               buttonAction: action)
+    }
+     
 }
 
 final class EmptyStateCell: CellView {

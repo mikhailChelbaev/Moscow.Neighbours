@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol AuthorizationServiceOutput: AnyObject {
-    @MainActor func didAuthorize(_ jwt: JWTResponse)
-    @MainActor func authorizationDidCompleteWithError(_ error: NetworkError)
+protocol AuthorizationProvider {
+    func signIn(credentials: SignInModel) async throws -> JWTResponse
+    func signUp(credentials: SignUpModel) async throws -> SignUpResponse
 }
 
-class AuthorizationService: ObservableNetworkService<AuthorizationServiceOutput> {
+class AuthorizationService: BaseNetworkService {
     
     // MARK: - Internal Properties
     
@@ -26,37 +26,30 @@ class AuthorizationService: ObservableNetworkService<AuthorizationServiceOutput>
     
     // MARK: - Internal Methods
     
-    func signIn(credentials: SignInModel) {
-        Task {
-            let dto = SignInDto(from: credentials)
-            let result = await requestSender.send(request: api.signInRequest(body: dto),
-                                                  type: JWTResponse.self)
-            await authorizationCompletion(result: result)
-        }
-    }
-    
-    func signUp(credentials: SignUpModel) {
-        Task {
-            let dto = SignUpDto(from: credentials)
-            let result = await requestSender.send(request: api.signUpRequest(body: dto),
-                                                  type: JWTResponse.self)
-            await authorizationCompletion(result: result)
-        }
-    }
-    
-    // MARK: - Private Methods
-    
-    private func authorizationCompletion(result: RequestResult<JWTResponse>) async {
+    func signIn(credentials: SignInModel) async throws -> JWTResponse {
+        let dto = SignInDto(from: credentials)
+        let result = await requestSender.send(request: api.signInRequest(body: dto),
+                                              type: JWTResponse.self)
         switch result {
         case .success(let model):
-            for observer in observers {
-                await observer.value.didAuthorize(model)
-            }
+            return model
             
         case .failure(let error):
-            for observer in observers {
-                await observer.value.authorizationDidCompleteWithError(error)
-            }
+            throw error
+        }
+    }
+    
+    func signUp(credentials: SignUpModel) async throws -> SignUpResponse {
+        let dto = SignUpDto(from: credentials)
+        let result = await requestSender.send(request: api.signUpRequest(body: dto),
+                                              type: SignUpResponse.self)
+        
+        switch result {
+        case .success(let model):
+            return model
+            
+        case .failure(let error):
+            throw error
         }
     }
     

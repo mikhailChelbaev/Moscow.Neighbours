@@ -8,7 +8,7 @@
 import Foundation
 
 struct SettingsStorage {
-    let userService: UserService
+    let userService: UserProvider
 }
 
 protocol SettingsBuilder {

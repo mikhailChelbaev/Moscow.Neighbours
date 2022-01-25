@@ -21,13 +21,19 @@ extension UIViewController {
         if let parent = self as? BottomSheetViewController,
             let state = parent.bottomSheet.state {
             viewControllerToPresent.presentingControllerState = state
-            parent.hide(animated: true)
+            parent.viewWillDisappear(true)
+            parent.hide(animated: true) { _ in
+                parent.viewDidDisappear(true)
+            }
         }
         
+        viewControllerToPresent.viewWillAppear(true)
         present(viewControllerToPresent, animated: false) {
             // show bottom sheet
             viewControllerToPresent.bottomSheet.setState(state, animated: true)
             viewControllerToPresent.bottomSheet.availableStates = states
+            
+            viewControllerToPresent.viewDidAppear(true)
             
             completion?()
         }

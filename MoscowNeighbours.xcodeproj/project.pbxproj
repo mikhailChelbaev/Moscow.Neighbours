@@ -33,7 +33,6 @@
 		7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7420CE2226BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift */; };
 		7422221E2781DC2500CFDD50 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7422221D2781DC2500CFDD50 /* AuthorizationService.swift */; };
 		742222212781F65900CFDD50 /* JWTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742222202781F65900CFDD50 /* JWTResponse.swift */; };
-		742222232781F8DF00CFDD50 /* WeakRef+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742222222781F8DF00CFDD50 /* WeakRef+Authorization.swift */; };
 		742283BE26BB29AB003F814E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742283BD26BB29AB003F814E /* Colors.xcassets */; };
 		742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */; };
 		742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283C126BB2AC4003F814E /* UIView+Shadow.swift */; };
@@ -90,6 +89,9 @@
 		746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A0279F32ED00AFAA2E /* AccountConfirmationViewData.swift */; };
 		746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A2279F3A7100AFAA2E /* LogoutCell.swift */; };
 		746684A5279F3FAA00AFAA2E /* UIApplication+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A4279F3FAA00AFAA2E /* UIApplication+Version.swift */; };
+		746684A7279F4E8C00AFAA2E /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */; };
+		746684AA279F5D5900AFAA2E /* AccountConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684A9279F5D5900AFAA2E /* AccountConfirmationService.swift */; };
+		746684AC279F5E6200AFAA2E /* AccountConfirmationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746684AB279F5E6200AFAA2E /* AccountConfirmationRequest.swift */; };
 		746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746769EB26F922B400158FFC /* RoutePassingViewController.swift */; };
 		74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */; };
 		746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A100D26F6192F002CB7E2 /* ChipsLayout.swift */; };
@@ -223,7 +225,6 @@
 		7422221D2781DC2500CFDD50 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		7422221F2781DEAC00CFDD50 /* MoscowNeighbours.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoscowNeighbours.entitlements; sourceTree = "<group>"; };
 		742222202781F65900CFDD50 /* JWTResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTResponse.swift; sourceTree = "<group>"; };
-		742222222781F8DF00CFDD50 /* WeakRef+Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Authorization.swift"; sourceTree = "<group>"; };
 		742283BD26BB29AB003F814E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ProjectColors.swift"; sourceTree = "<group>"; };
 		742283C126BB2AC4003F814E /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -282,6 +283,9 @@
 		746684A0279F32ED00AFAA2E /* AccountConfirmationViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationViewData.swift; sourceTree = "<group>"; };
 		746684A2279F3A7100AFAA2E /* LogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
 		746684A4279F3FAA00AFAA2E /* UIApplication+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Version.swift"; sourceTree = "<group>"; };
+		746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		746684A9279F5D5900AFAA2E /* AccountConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationService.swift; sourceTree = "<group>"; };
+		746684AB279F5E6200AFAA2E /* AccountConfirmationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationRequest.swift; sourceTree = "<group>"; };
 		746769EB26F922B400158FFC /* RoutePassingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingViewController.swift; sourceTree = "<group>"; };
 		74681B8E2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+SetAttributedText.swift"; sourceTree = "<group>"; };
 		746A100D26F6192F002CB7E2 /* ChipsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsLayout.swift; sourceTree = "<group>"; };
@@ -667,7 +671,6 @@
 				743C3ABC277CF85800D4CB1C /* AuthorizationViewController.swift */,
 				743C3ABE277CF9A800D4CB1C /* AuthorizationPresenter.swift */,
 				743C3AC0277CF9B300D4CB1C /* AuthorizationBuilder.swift */,
-				742222222781F8DF00CFDD50 /* WeakRef+Authorization.swift */,
 				743C3AC2277D01C200D4CB1C /* Cells */,
 				7422221C2781DC1500CFDD50 /* Service */,
 				743C3AC5277D04DE00D4CB1C /* Models */,
@@ -698,6 +701,7 @@
 				742222202781F65900CFDD50 /* JWTResponse.swift */,
 				746F061727936ACB009D1163 /* SignInErrorsModel.swift */,
 				746F061927937101009D1163 /* SignUpErrorsModel.swift */,
+				746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -758,6 +762,7 @@
 				74668494279F236A00AFAA2E /* AccountConfirmationViewController.swift */,
 				74668496279F237A00AFAA2E /* AccountConfirmationPresenter.swift */,
 				74668498279F238300AFAA2E /* AccountConfirmationBuilder.swift */,
+				746684A8279F5D4200AFAA2E /* Service */,
 				7466849F279F32DF00AFAA2E /* Models */,
 			);
 			path = AccountConfirmation;
@@ -767,8 +772,17 @@
 			isa = PBXGroup;
 			children = (
 				746684A0279F32ED00AFAA2E /* AccountConfirmationViewData.swift */,
+				746684AB279F5E6200AFAA2E /* AccountConfirmationRequest.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		746684A8279F5D4200AFAA2E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				746684A9279F5D5900AFAA2E /* AccountConfirmationService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		746769EA26F9229900158FFC /* RoutePassing */ = {
@@ -1224,6 +1238,7 @@
 				74967F8B276F5A4E0096AA77 /* WeakRef+Routes.swift in Sources */,
 				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
 				74F73A00272B50DE007C5450 /* CollectionSuccessDataSource.swift in Sources */,
+				746684A7279F4E8C00AFAA2E /* SignUpResponse.swift in Sources */,
 				742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */,
 				746A101426F6276E002CB7E2 /* AlertCell.swift in Sources */,
 				74863DCA277EFCB0000FC446 /* SignUpModel.swift in Sources */,
@@ -1237,8 +1252,10 @@
 				746F061D27937181009D1163 /* EmailValidator.swift in Sources */,
 				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
+				746684AC279F5E6200AFAA2E /* AccountConfirmationRequest.swift in Sources */,
 				746F061627936731009D1163 /* ErrorTextInputCell.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
+				746684AA279F5D5900AFAA2E /* AccountConfirmationService.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */,
 				74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */,
@@ -1257,7 +1274,6 @@
 				740B53612773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				7457756C279732EB00123208 /* AchievementsPresenter.swift in Sources */,
-				742222232781F8DF00CFDD50 /* WeakRef+Authorization.swift in Sources */,
 				74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */,
 				743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */,
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,

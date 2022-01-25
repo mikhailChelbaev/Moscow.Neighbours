@@ -15,6 +15,8 @@
 /* Error */
 "main_error.title" = "Failed to load page, please try again";
 "main_error.button_title" = "Reload";
+"network_error.title" = "There are some network issues";
+"network_error.subtitle" = "Please, make sure that you have a stable Internet connection";
 
 /* Routes */
 "route.routes" = "Routes";
@@ -47,7 +49,7 @@
 "menu.advantages_additional_routes" = "Additional routes";
 "menu.advantages_progress" = "Progress saving";
 "menu.advantages_achievements" = "Achievements";
-"menu.advantages_profile" = "Private profile";
+"menu.advantages_profile" = "Profile";
 "menu.advantages_statistics" = "Extended statistics";
 "menu.achievements" = "Achievements";
 "menu.achievements_description" = "Complete routes to get achievements";
@@ -95,14 +97,16 @@
 "auth.username_error.short" = "Short username";
 "auth.username_error.long" = "Long username";
 "auth.empty" = "Empty field";
+"auth.user_not_found" = "User with this email was not found";
+"auth.wrong_password" = "Wrong password";
 
 /* Achievements */
 "achievements.title" = "Achievements";
 "achievements.error_button_title" = "Try again";
 "achievements.error_main_title" = "Section is under development";
 "achievements.error_yana_title" = "The section will open when Yana finishes the burger";
-"achievements.error_misha_title" = "Mechanic Nikita started to develop the achievements";
-"achievements.error_nikita_title" = "Mikhail is already developing this section";
+"achievements.error_misha_title" = "Mechanic Nikita has started to design the achievements";
+"achievements.error_nikita_title" = "Mikhail is now developing this section";
 
 /* Account confirmation */
 "account_confirmation.title" = "Confirm account";

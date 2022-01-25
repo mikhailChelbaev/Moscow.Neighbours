@@ -19,7 +19,7 @@ class ProfilePresenter: ProfileEventHandler {
     
     weak var viewController: ProfileView?
     
-    private let userService: UserService
+    private let userService: UserProvider
     
     // MARK: - Init
     

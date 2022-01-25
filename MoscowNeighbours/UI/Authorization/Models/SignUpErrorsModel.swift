@@ -11,4 +11,8 @@ struct SignUpErrorsModel {
     var email: String?
     var username: String?
     var password: String?
+    
+    var isEmpty: Bool {
+        email == nil && username == nil && password == nil
+    }
 }

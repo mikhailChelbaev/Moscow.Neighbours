@@ -11,6 +11,7 @@ protocol MenuEventHandler {
     var isUserAuthorized: Bool { get }
     var username: String? { get }
     var email: String? { get }
+    var isUserVerified: Bool { get }
     
     func onBackButtonTap()
     func onAuthorizationButtonTap()
@@ -33,7 +34,7 @@ class MenuPresenter: MenuEventHandler {
     private let achievementsBuilder: AchievementsBuilder
     private let accountConfirmationBuilder: AccountConfirmationBuilder
     
-    private let userService: UserService
+    private let userService: UserProvider
     
     var isUserAuthorized: Bool {
         userService.isAuthorized
@@ -43,6 +44,9 @@ class MenuPresenter: MenuEventHandler {
     }
     var email: String? {
         userService.currentUser?.email
+    }
+    var isUserVerified: Bool {
+        userService.currentUser?.isVerified ?? false
     }
     
     // MARK: - Init
@@ -89,17 +93,14 @@ class MenuPresenter: MenuEventHandler {
     }
     
     func onLogoutCellTap() {
-        let presentingController = viewController?.presentingViewController as? MenuViewController
         let alertController = UIAlertController(title: "profile.exit_title".localized,
                                                 message: "profile.exit_message".localized,
                                                 preferredStyle: .alert)
         let yes = UIAlertAction(title: "common.yes".localized, style: .default, handler: { [weak self] _ in
             // logout
-//            self?.userService.logout()
-//            // reload presenting controller
-//            presentingController?.reloadData()
-//            // close controller
-//            self?.viewController?.closeController(animated: true, completion: nil)
+            self?.userService.logout()
+//            // reload controller
+            self?.viewController?.reloadData()
         })
         let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)
         alertController.addAction(yes)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NetworkError {
+struct NetworkError: Error {
     enum NetworkErrorType {
         case url
         case network

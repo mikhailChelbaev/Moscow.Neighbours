@@ -23,7 +23,7 @@ class ProfileViewController: BottomSheetViewController, ProfileView {
         case user
         case separator
         case information
-        case exit
+//        case exit
     }
     
     // MARK: - Layout
@@ -180,7 +180,7 @@ extension ProfileViewController {
         switch sections[section] {
         case .header:
 //            return [.user, .exit, .separator, .information, .separator]
-            return [.user, .exit]
+            return [.user]
         }
     }
     
@@ -197,10 +197,10 @@ extension ProfileViewController {
         case .information:
             return createAccountAchievementsCell(for: indexPath)
             
-        case .exit:
-            return createButtonCell(title: "profile.exit".localized, action: { [weak self] in
-                self?.eventHandler.onExitButtonTap()
-            }, for: indexPath)
+//        case .exit:
+//            return createButtonCell(title: "profile.exit".localized, action: { [weak self] in
+//                self?.eventHandler.onExitButtonTap()
+//            }, for: indexPath)
         }
     }
     

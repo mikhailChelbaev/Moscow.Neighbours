@@ -10,11 +10,13 @@ import UIKit
 protocol AuthorizationView: BottomSheetViewController, LoadingStatusProvider {
     var type: AuthorizationType { set get }
     
-    var signInErrors: SignInErrorsModel { set get }
-    var signUpErrors: SignUpErrorsModel { set get }
-    
     func reloadData()
     func animateTypeChange()
+    
+    func updateSignUpError(_ error: SignUpErrorsModel)
+    func updateSignInError(_ error: SignInErrorsModel)
+    @MainActor func handleSignInError(_ error: NetworkError?)
+    @MainActor func handleSignUpError(_ error: NetworkError?)
 }
 
 class AuthorizationViewController: BottomSheetViewController, AuthorizationView {
@@ -37,8 +39,8 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         case login
         case password
         case button
-        case separator
-        case appleButton
+//        case separator
+//        case appleButton
     }
     
     enum SignUpCells: Int, CaseIterable {
@@ -46,8 +48,8 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         case email
         case password
         case button
-        case separator
-        case appleButton
+//        case separator
+//        case appleButton
     }
     
     // MARK: - UI
@@ -126,6 +128,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
         tableView.successDataSource = self
         tableView.statusProvider = self
         tableView.loadingDelegate = self
+        tableView.errorDelegate = self
         
         tableView.register(AppIconCell.self)
         tableView.register(AuthorizationTypeCell.self)
@@ -176,6 +179,58 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     func animateTypeChange() {
         let animation: UITableView.RowAnimation = type == .signIn ? .right : .left
         tableView.reloadSections(IndexSet(integer: Sections.inputs.rawValue), with: animation)
+    }
+    
+}
+
+// MARK: - Handle errors
+
+extension AuthorizationViewController {
+    func updateSignUpError(_ error: SignUpErrorsModel) {
+        signUpErrors = error
+    }
+    
+    func updateSignInError(_ error: SignInErrorsModel) {
+        signInErrors = error
+    }
+    
+    func handleSignUpError(_ error: NetworkError?) {
+        guard let error = error else {
+            return
+        }
+        
+        status = .success
+        
+    }
+    
+    func handleSignInError(_ error: NetworkError?) {
+        guard let error = error else {
+            return
+        }
+        
+        if let errorType = error.description {
+            var errorData: SignInErrorsModel = .init()
+            
+            switch errorType {
+            case .userNotFound:
+                errorData.email = "auth.user_not_found".localized
+                
+            case .wrongPassword:
+                errorData.password = "auth.wrong_password".localized
+            
+            default:
+                break
+            }
+            
+            signInErrors = errorData
+            status = .success
+        } else {
+            let completion: Action = {[weak self] in
+                self?.signInErrors = .init()
+                self?.status = .success
+            }
+            status = .error(DefaultEmptyStateProviders.mainError(action: completion))
+        }
     }
     
 }
@@ -231,11 +286,19 @@ extension AuthorizationViewController: TableSuccessDataSource {
     }
 }
 
-// MARK: - protocol LoadingDelegate
+// MARK: - protocol ErrorDelegate && LoadingDelegate
 
-extension AuthorizationViewController: LoadingDelegate {
+extension AuthorizationViewController: ErrorDelegate, LoadingDelegate {
+    func errorTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return visibleTableViewHeight()
+    }
+    
     func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle)
+        return visibleTableViewHeight()
+    }
+    
+    private func visibleTableViewHeight() -> CGFloat {
+        UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle) - headerView.frame.height - view.safeAreaInsets.bottom
     }
 }
 
@@ -274,11 +337,11 @@ extension AuthorizationViewController {
         case .button:
             return createSignInButtonCell(for: indexPath)
             
-        case .separator:
-            return createSeparatorCell(for: indexPath)
-            
-        case .appleButton:
-            return createSignInWithAppleButton(for: indexPath)
+//        case .separator:
+//            return createSeparatorCell(for: indexPath)
+//
+//        case .appleButton:
+//            return createSignInWithAppleButton(for: indexPath)
         }
     }
     
@@ -322,11 +385,11 @@ extension AuthorizationViewController {
         case .button:
             return createSignUpButtonCell(for: indexPath)
             
-        case .separator:
-            return createSeparatorCell(for: indexPath)
-            
-        case .appleButton:
-            return createSignInWithAppleButton(for: indexPath)
+//        case .separator:
+//            return createSeparatorCell(for: indexPath)
+//            
+//        case .appleButton:
+//            return createSignInWithAppleButton(for: indexPath)
         }
     }
 }

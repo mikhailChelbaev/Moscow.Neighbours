@@ -7,12 +7,19 @@
 
 import Foundation
 
-protocol UserServiceOutput {
-    @MainActor func userFetched(_ model: UserModel)
-    @MainActor func userFetchFailed(_ error: NetworkError)
+protocol UserProvider {
+    var currentUser: UserModel? { get }
+    var isAuthorized: Bool { get }
+    
+    var isPushNotificationsEnabled: Bool { set get }
+    var isEmailNotificationsEnabled: Bool { set get }
+    
+    func fetchUser() async throws
+    func storeCurrentUser(_ model: UserModel?)
+    func logout()
 }
 
-final class UserService: ObservableNetworkService<UserServiceOutput> {
+final class UserService: BaseNetworkService, UserProvider {
     
     // MARK: - StorageKeys
     
@@ -29,7 +36,7 @@ final class UserService: ObservableNetworkService<UserServiceOutput> {
         return currentUser != nil
     }
     
-    static let main: UserService = .init()
+    static let shared: UserService = .init()
     
     var isPushNotificationsEnabled: Bool {
         set {
@@ -68,23 +75,16 @@ final class UserService: ObservableNetworkService<UserServiceOutput> {
     
     // MARK: - Internal Methods
     
-    func fetchUser() {
-        Task {
-            let result = await requestSender.send(request: api.userRequest,
-                                                  type: UserModel.self)
+    func fetchUser() async throws {
+        let result = await requestSender.send(request: api.userRequest,
+                                              type: UserModel.self)
+        
+        switch result {
+        case .success(let model):
+            storeCurrentUser(model)
             
-            switch result {
-            case .success(let model):
-                for observer in observers {
-                    await observer.value.userFetched(model)
-                }
-                storeCurrentUser(model)
-                
-            case .failure(let error):
-                for observer in observers {
-                    await observer.value.userFetchFailed(error)
-                }
-            }
+        case .failure(let error):
+            throw error
         }
     }
     
@@ -93,9 +93,7 @@ final class UserService: ObservableNetworkService<UserServiceOutput> {
         jwtService.updateToken(nil)
     }
     
-    // MARK: - Private Methods
-    
-    private func storeCurrentUser(_ model: UserModel?) {
+    func storeCurrentUser(_ model: UserModel?) {
         currentUser = model
         cache.store(data: model, key: StorageKeys.currentUser.rawValue)
     }

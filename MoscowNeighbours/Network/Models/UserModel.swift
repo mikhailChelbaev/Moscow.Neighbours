@@ -10,4 +10,11 @@ import Foundation
 struct UserModel: Codable {
     let name: String
     let email: String
+    let isVerified: Bool
+    
+    init(from response: SignUpResponse) {
+        name = response.name
+        email = response.email
+        isVerified = response.isVerified
+    }
 }
