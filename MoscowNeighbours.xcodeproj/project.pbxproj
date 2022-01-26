@@ -37,7 +37,6 @@
 		742283C026BB29EA003F814E /* UIColor+ProjectColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */; };
 		742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742283C126BB2AC4003F814E /* UIView+Shadow.swift */; };
 		7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7422A9C226BC707A00FE995E /* ARPersonPreview.swift */; };
-		7422A9C526BC751500FE995E /* CosmonautSuit.reality in Resources */ = {isa = PBXBuildFile; fileRef = 7422A9C426BC751500FE995E /* CosmonautSuit.reality */; };
 		742EFE8D26F14168009A5126 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EFE8C26F14168009A5126 /* GradientView.swift */; };
 		74346FB526F3E0B70060357A /* helveticaneuecyr-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */; };
 		74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */; };
@@ -229,7 +228,6 @@
 		742283BF26BB29EA003F814E /* UIColor+ProjectColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ProjectColors.swift"; sourceTree = "<group>"; };
 		742283C126BB2AC4003F814E /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		7422A9C226BC707A00FE995E /* ARPersonPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPersonPreview.swift; sourceTree = "<group>"; };
-		7422A9C426BC751500FE995E /* CosmonautSuit.reality */ = {isa = PBXFileReference; lastKnownFileType = file; path = CosmonautSuit.reality; sourceTree = "<group>"; };
 		742EFE8C26F14168009A5126 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-roman.ttf"; sourceTree = "<group>"; };
 		74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bold.ttf"; sourceTree = "<group>"; };
@@ -580,7 +578,6 @@
 				7437B1D92786132A0020AABE /* Localization */,
 				74346FB226F3E0A10060357A /* Colors */,
 				74346FB126F3E0980060357A /* Fonts */,
-				7422A9C426BC751500FE995E /* CosmonautSuit.reality */,
 				7402661726A7637A006242FE /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -1149,7 +1146,6 @@
 				74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */,
 				7437B1E9278614960020AABE /* InfoPlist.strings in Resources */,
 				74834C112729924000631D09 /* helveticaneuecyr-italic.ttf in Resources */,
-				7422A9C526BC751500FE995E /* CosmonautSuit.reality in Resources */,
 				7437B1E3278614550020AABE /* Localizable.stringsdict in Resources */,
 				742283BE26BB29AB003F814E /* Colors.xcassets in Resources */,
 				74346FB526F3E0B70060357A /* helveticaneuecyr-bold.ttf in Resources */,
