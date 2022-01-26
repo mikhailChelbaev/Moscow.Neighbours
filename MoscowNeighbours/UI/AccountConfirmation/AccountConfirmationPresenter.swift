@@ -29,6 +29,8 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
     
     private var viewData: AccountConfirmationViewData
     
+    private var successfulConfirmationCompletion: Action?
+    
     // MARK: - Init
     
     init(storage: AccountConfirmationStorage) {
@@ -38,6 +40,8 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
         accountConfirmationService = storage.accountConfirmationService
         userService = storage.userService
         jwtService = storage.jwtService
+        
+        successfulConfirmationCompletion = storage.successfulConfirmationCompletion
     }
     
     // MARK: - AccountConfirmationEventHandler
@@ -65,7 +69,7 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
                 jwtService.updateToken(token)
                 fetchUser()
             } catch {
-                handleConfirmationError(error as? NetworkError)
+                await handleConfirmationError(error as? NetworkError)
             }
         }
     }
@@ -78,8 +82,11 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
         Task {
             do {
                 try await userService.fetchUser()
-                await viewController?.closeController(animated: true, completion: nil)
+                await viewController?.closeController(animated: true, completion: { [weak self] in
+                    self?.successfulConfirmationCompletion?()
+                })
             } catch {
+                // TODO: - show error
                 RunLoop.main.perform(inModes: [.common]) {
                     self.viewController?.setStatus(.success)
                 }
@@ -87,12 +94,25 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
         }
     }
     
+    @MainActor
     private func handleConfirmationError(_ error: NetworkError?) {
         guard let error = error else {
             return
         }
         
-        
+        switch error.type {
+        case .http(statusCode: let statusCode):
+            if statusCode == 400 {
+                viewData.error = "account_confirmation.wrong_code".localized
+                viewController?.viewData = viewData
+                viewController?.setStatus(.success)
+            } else {
+                fallthrough
+            }
+            
+        default:
+            viewController?.showMainError()
+        }
     }
     
 }

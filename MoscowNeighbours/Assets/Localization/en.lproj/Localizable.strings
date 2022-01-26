@@ -98,7 +98,8 @@
 "auth.username_error.long" = "Long username";
 "auth.empty" = "Empty field";
 "auth.user_not_found" = "User with this email was not found";
-"auth.wrong_password" = "Wrong password";
+"auth.wrong_password" = "The wrong password";
+"auth.user_already_exists" = "User with this email already exists";
 
 /* Achievements */
 "achievements.title" = "Achievements";
@@ -115,4 +116,5 @@
 "account_confirmation.text_field_placeholder" = "Enter code";
 "confirm_account.confirm_button_title" = "Confirm";
 "confirm_account.change_account_button_title" = "Change account";
+"account_confirmation.wrong_code" = "The wrong code";
 

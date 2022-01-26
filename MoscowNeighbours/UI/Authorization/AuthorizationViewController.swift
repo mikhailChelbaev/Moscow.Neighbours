@@ -199,8 +199,26 @@ extension AuthorizationViewController {
             return
         }
         
-        status = .success
-        
+        if let errorType = error.description {
+            var errorData: SignUpErrorsModel = .init()
+            
+            switch errorType {
+            case .userExists:
+                errorData.email = "auth.user_already_exists".localized
+            
+            default:
+                break
+            }
+            
+            signUpErrors = errorData
+            status = .success
+        } else {
+            let completion: Action = {[weak self] in
+                self?.signUpErrors = .init()
+                self?.status = .success
+            }
+            status = .error(DefaultEmptyStateProviders.mainError(action: completion))
+        }
     }
     
     func handleSignInError(_ error: NetworkError?) {

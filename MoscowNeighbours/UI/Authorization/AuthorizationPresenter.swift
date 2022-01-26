@@ -174,7 +174,9 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
                         // show account confirmation screen
                         DispatchQueue.main.async {
                             self.viewController?.status = .success
-                            let controller = self.accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: true)
+                            let controller = self.accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: true) { [weak self] in
+                                self?.viewController?.closeController(animated: true, completion: nil)
+                            }
                             self.viewController?.present(controller, state: .top, completion: nil)
                         }
                     }

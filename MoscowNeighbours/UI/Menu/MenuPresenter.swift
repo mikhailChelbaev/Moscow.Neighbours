@@ -88,7 +88,8 @@ class MenuPresenter: MenuEventHandler {
     }
     
     func onAccountConfirmationButtonTap() {
-        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: false)
+        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: false,
+                                                                                           completion: nil)
         viewController?.present(controller, state: .top, completion: nil)
     }
     

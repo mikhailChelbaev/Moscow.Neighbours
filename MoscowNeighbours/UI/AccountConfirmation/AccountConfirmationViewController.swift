@@ -11,6 +11,7 @@ protocol AccountConfirmationView: BottomSheetViewController {
     var viewData: AccountConfirmationViewData? { set get }
     
     func setStatus(_ loadingStatus: LoadingStatus)
+    func showMainError()
 }
 
 class AccountConfirmationViewController: BottomSheetViewController, AccountConfirmationView, LoadingStatusProvider {
@@ -112,6 +113,18 @@ class AccountConfirmationViewController: BottomSheetViewController, AccountConfi
     func setStatus(_ loadingStatus: LoadingStatus) {
         status = loadingStatus
         tableView.reloadData()
+    }
+    
+    func showMainError() {
+        let completion: Action = {[weak self] in
+            self?.viewData?.error = nil
+            self?.confirmButton.isHidden = false
+            self?.changeAccountButton.isHidden = false
+            self?.setStatus(.success)
+        }
+        confirmButton.isHidden = true
+        changeAccountButton.isHidden = true
+        setStatus(.error(DefaultEmptyStateProviders.mainError(action: completion)))
     }
     
     // MARK: - Private methods
@@ -248,7 +261,7 @@ extension AccountConfirmationViewController {
                                        placeholder: "account_confirmation.text_field_placeholder".localized,
                                        keyboardType: .numberPad,
                                        textContentType: .none,
-                                       error: viewData?.code,
+                                       error: viewData?.error,
                                        textDidChange: { [weak self] newText in
                 self?.eventHandler.onCodeChange(newText)
             },

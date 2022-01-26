@@ -68,7 +68,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         }
         
         viewController?.status = .loading
-        Task.detached { [weak self] in
+        Task { [weak self] in
             await route.update()
             await self?.setUpdatedRoute(route)
             await self?.mapService.showRoute(route)

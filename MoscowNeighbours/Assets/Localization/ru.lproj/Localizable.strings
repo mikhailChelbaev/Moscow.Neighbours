@@ -99,6 +99,7 @@
 "auth.empty" = "Пустое поле";
 "auth.user_not_found" = "Пользователь не найден";
 "auth.wrong_password" = "Неверный пароль";
+"auth.user_already_exists" = "Пользователь с такой почтой уже существует";
 
 /* Achievements */
 "achievements.title" = "Достижения";
@@ -115,3 +116,4 @@
 "account_confirmation.text_field_placeholder" = "Введите код";
 "confirm_account.confirm_button_title" = "Подтвердить";
 "confirm_account.change_account_button_title" = "Сменить аккаунт";
+"account_confirmation.wrong_code" = "Неверный код";
