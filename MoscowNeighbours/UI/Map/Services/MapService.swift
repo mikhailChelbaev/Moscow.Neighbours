@@ -40,7 +40,8 @@ class MapService: ObservableService {
         self.locationService = locationService
     }
     
-    @MainActor func showRoute(_ route: RouteViewModel) {
+    @MainActor
+    func showRoute(_ route: RouteViewModel) {
         isRouteVisible = true
         
         // clear map

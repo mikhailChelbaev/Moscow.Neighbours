@@ -139,26 +139,6 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
         }
     }
     
-    private func validateSignInInputedData() -> Bool {
-        var signInErrorsModel = SignInErrorsModel()
-        
-        if signInModel.username.isEmpty {
-            signInErrorsModel.email = "auth.empty".localized
-        } else {
-            signInErrorsModel.email = nil
-        }
-        
-        if signInModel.password.isEmpty {
-            signInErrorsModel.password = "auth.empty".localized
-        } else {
-            signInErrorsModel.password = nil
-        }
-        
-        viewController?.updateSignInError(signInErrorsModel)
-        
-        return signInErrorsModel.isEmpty
-    }
-    
     // MARK: - Sign Up
     
     func onSignUpUsernameTextChange(_ text: String) {
@@ -184,13 +164,19 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
                     userService.storeCurrentUser(userModel)
                     
                     if signUpResponse.isVerified {
+                        // get token
+                        let token = try await authorizationService.signIn(credentials: .init(username: signUpModel.email, password: signUpModel.password))
+                        jwtService.updateToken(token)
+                        
                         // fetch user
                         fetchUser()
                     } else {
                         // show account confirmation screen
-                        viewController?.status = .success
-                        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: true)
-                        await viewController?.present(controller, state: .top, completion: nil)
+                        DispatchQueue.main.async {
+                            self.viewController?.status = .success
+                            let controller = self.accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: true)
+                            self.viewController?.present(controller, state: .top, completion: nil)
+                        }
                     }
                 } catch {
                     await viewController?.handleSignUpError(error as? NetworkError)
@@ -199,6 +185,24 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
         } else {
             viewController?.reloadData()
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func validateSignInInputedData() -> Bool {
+        var signInErrorsModel = SignInErrorsModel()
+        
+        if signInModel.username.isEmpty {
+            signInErrorsModel.email = "auth.empty".localized
+        }
+        
+        if signInModel.password.isEmpty {
+            signInErrorsModel.password = "auth.empty".localized
+        }
+        
+        viewController?.updateSignInError(signInErrorsModel)
+        
+        return signInErrorsModel.isEmpty
     }
     
     private func validateSignUpInputedData() -> Bool {

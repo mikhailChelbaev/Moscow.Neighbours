@@ -103,6 +103,6 @@ final class JWTService: ObservableService {
 
 extension ApiRequestsFactory {
     func refreshTokenRequest(_ refreshToken: String) -> ApiRequest {
-        return makeRequest(url: host + "/api/v1/auth/refreshToken", body: refreshToken, method: .get)
+        return makeRequest(url: host + "/api/v1/auth/refreshToken", body: refreshToken, method: .post)
     }
 }
