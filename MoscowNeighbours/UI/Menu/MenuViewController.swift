@@ -166,7 +166,7 @@ extension MenuViewController {
         case .menuItems:
             if eventHandler.isUserAuthorized {
                 if eventHandler.isUserVerified {
-                    return [.account, .separator, .settings, .separator, .achievements, .separator, .logout, .separator]
+                    return [.account, .separator, .achievements, .separator, .settings, .separator, .logout, .separator]
                 } else {
                     return [.accountConfirmation, .separator, .settings, .separator, .logout, .separator]
                 }
