@@ -6,13 +6,21 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        configureFirebase()
         return true
+    }
+    
+    private func configureFirebase() {
+        FirebaseApp.configure()
+        if let email = UserService.shared.currentUser?.email {
+            Crashlytics.crashlytics().setUserID(email)
+        }
     }
 
     // MARK: UISceneSession Lifecycle

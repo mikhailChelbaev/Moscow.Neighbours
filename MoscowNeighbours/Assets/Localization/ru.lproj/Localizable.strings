@@ -43,7 +43,7 @@
 /* Menu */
 "menu.title" = "Меню";
 "menu.settings" = "Настройки";
-"menu.settings_description" = "Уведомления, язык и др.";
+"menu.settings_description" = "Уведомления и выбор языка";
 "menu.advantages_title" = "Войдите в аккаунт, чтобы открыть:";
 "menu.advantages_button" = "Войти / Создать аккаунт";
 "menu.advantages_additional_routes" = "Дополнительные маршруты";
@@ -53,7 +53,7 @@
 "menu.advantages_statistics" = "Расширенная статистика";
 "menu.achievements" = "Достижения";
 "menu.achievements_description" = "Получайте ачивки, проходя маршруты";
-"menu.account_confirmation_title" = "Ваш аккаунт требует подтвержения";
+"menu.account_confirmation_title" = "Ваш аккаунт требует подтверждения";
 "menu.account_confirmation_button" = "Подтвердить почту";
 "menu.logout" = "Выйти из аккаунта";
 
@@ -106,8 +106,8 @@
 "achievements.error_button_title" = "Попробовать снова";
 "achievements.error_main_title" = "Раздел находится\n в стадии разработки";
 "achievements.error_yana_title" = "Раздел откроется,\n когда Яна доест бургер";
-"achievements.error_misha_title" = "Механик Никита уже начал\n придумывать ачивки";
-"achievements.error_nikita_title" = "Михаил уже разрабатывает\n этот раздел";
+"achievements.error_nikita_title" = "Механик Никита уже начал\n придумывать ачивки";
+"achievements.error_misha_title" = "Михаил уже разрабатывает\n этот раздел";
 
 /* Account confirmation */
 "account_confirmation.title" = "Подтверждение аккаунта";

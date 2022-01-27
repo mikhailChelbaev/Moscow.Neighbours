@@ -38,13 +38,13 @@
 /* Person */
 "person.ready_to_go" = "Ready to go";
 "person.information" = "Information:";
-"person.pass_route_alert" = "To find out more about the person, start the route";
+"person.pass_route_alert" = "Start the route to find out more about the person";
 
 /* Menu */
 "menu.title" = "Menu";
 "menu.settings" = "Settings";
-"menu.settings_description" = "Notifications, languages and other";
-"menu.advantages_title" = "Create account to have:";
+"menu.settings_description" = "Notifications and language";
+"menu.advantages_title" = "Create an account to have:";
 "menu.advantages_button" = "Sign in / Sign up";
 "menu.advantages_additional_routes" = "Additional routes";
 "menu.advantages_progress" = "Progress saving";
@@ -53,8 +53,8 @@
 "menu.advantages_statistics" = "Extended statistics";
 "menu.achievements" = "Achievements";
 "menu.achievements_description" = "Complete routes to get achievements";
-"menu.account_confirmation_title" = "Your account needs confirmation";
-"menu.account_confirmation_button" = "Confirm email";
+"menu.account_confirmation_title" = "Your account needs a confirmation";
+"menu.account_confirmation_button" = "Confirm an email";
 "menu.logout" = "Sign out";
 
 /* Settings */
@@ -62,7 +62,7 @@
 "settings.push_notifications_title" = "Push notifications";
 "settings.push_notifications_description" = "We'll remind about unfinished routes and notify about new ones";
 "settings.email_notifications_title" = "Email notifications";
-"settings.email_notifications_description" = "We'll tell about cool promotions and discounts";
+"settings.email_notifications_description" = "We'll notify about cool promotions and discounts";
 "settings.language" = "Choose language";
 
 /* Profile */
@@ -106,11 +106,11 @@
 "achievements.error_button_title" = "Try again";
 "achievements.error_main_title" = "Section is under development";
 "achievements.error_yana_title" = "The section will open when Yana finishes the burger";
-"achievements.error_misha_title" = "Mechanic Nikita has started to design the achievements";
-"achievements.error_nikita_title" = "Mikhail is now developing this section";
+"achievements.error_nikita_title" = "Mechanic Nikita has started to design the achievements";
+"achievements.error_misha_title" = "Mikhail is now developing this section";
 
 /* Account confirmation */
-"account_confirmation.title" = "Confirm account";
+"account_confirmation.title" = "Account confirmation";
 "account_confirmation.alert_text" = "We send the verification code on your email. Please, input it in the text field below.";
 "account_confirmation.text_field_title" = "Confirmation code";
 "account_confirmation.text_field_placeholder" = "Enter code";
