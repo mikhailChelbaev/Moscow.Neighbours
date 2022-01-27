@@ -65,7 +65,7 @@ final class UserService: BaseNetworkService, UserProvider {
     
     // MARK: - Init
     
-    private override init() {
+    override init() {
         api = .main
         jwtService = .main
         cache = UserDefaults.standard

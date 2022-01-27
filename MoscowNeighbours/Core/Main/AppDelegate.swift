@@ -12,6 +12,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        configureServices()
         configureFirebase()
         return true
     }
@@ -21,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let email = UserService.shared.currentUser?.email {
             Crashlytics.crashlytics().setUserID(email)
         }
+    }
+    
+    private func configureServices() {
+        let _ = JWTService.main
+        let _ = UserService.shared
     }
 
     // MARK: UISceneSession Lifecycle

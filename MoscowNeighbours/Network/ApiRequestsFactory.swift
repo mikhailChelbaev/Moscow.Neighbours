@@ -76,10 +76,6 @@ final class ApiRequestsFactory {
         request.setValue("common.application_language".localized, forHTTPHeaderField: "language")
         request.setValue(UIApplication.version, forHTTPHeaderField: "version")
         
-        if let token = JWTService.main.accessToken {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-        
         return request
     }
     
