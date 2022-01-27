@@ -16,7 +16,13 @@ class MenuViewController: BottomSheetViewController, MenuView {
     // MARK: - Sections and Cells
     
     enum SectionType {
-        case menuItems
+        case authorization
+        case account
+        case accountConfirmation
+        case achievements
+        case settings
+        case feedback
+        case logout
     }
     
     enum CellType {
@@ -26,6 +32,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         case settings
         case achievements
         case accountConfirmation
+        case feedback
         case logout
     }
     
@@ -59,15 +66,10 @@ class MenuViewController: BottomSheetViewController, MenuView {
         return .fullScreen
     }
     
-    // MARK: - Private Properties
-    
-    private let sections: [SectionType]
-    
     // MARK: - Init
     
     init(eventHandler: MenuEventHandler) {
         self.eventHandler = eventHandler
-        sections = [.menuItems]
         super.init()
     }
     
@@ -104,6 +106,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
         tableView.register(SeparatorCell.self)
         tableView.register(UserAccountPreviewCell.self)
         tableView.register(AccountConfirmationNotificationCell.self)
+        tableView.register(OneLineSettingsCell.self)
         tableView.register(LogoutCell.self)
     }
     
@@ -141,7 +144,7 @@ class MenuViewController: BottomSheetViewController, MenuView {
 
 extension MenuViewController: TableSuccessDataSource {
     func successNumberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return getSections().count
     }
     
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -161,18 +164,40 @@ extension MenuViewController: TableSuccessDataSource {
 
 extension MenuViewController {
     
-    private func getSectionItems(for section: Int) -> [CellType] {
-        switch sections[section] {
-        case .menuItems:
-            if eventHandler.isUserAuthorized {
-                if eventHandler.isUserVerified {
-                    return [.account, .separator, .achievements, .separator, .settings, .separator, .logout, .separator]
-                } else {
-                    return [.accountConfirmation, .separator, .settings, .separator, .logout, .separator]
-                }
+    private func getSections() -> [SectionType] {
+        if eventHandler.isUserAuthorized {
+            if eventHandler.isUserVerified {
+                return [.account, .achievements, .settings, .feedback, .logout]
             } else {
-                return [.authorization, .separator, .settings, .separator]
+                return [.accountConfirmation, .settings, .feedback, .logout]
             }
+        } else {
+            return [.authorization, .settings, .feedback]
+        }
+    }
+    
+    private func getSectionItems(for section: Int) -> [CellType] {
+        let sections = getSections()
+        switch sections[section] {
+        case .authorization:
+            return [.authorization, .separator]
+        case .account:
+            return [.account, .separator]
+            
+        case .accountConfirmation:
+            return [.accountConfirmation, .separator]
+            
+        case .achievements:
+            return [.achievements, .separator]
+            
+        case .settings:
+            return [.settings, .separator]
+            
+        case .feedback:
+            return [.feedback, .separator]
+            
+        case .logout:
+            return [.logout, .separator]
         }
     }
     
@@ -202,6 +227,9 @@ extension MenuViewController {
         case .accountConfirmation:
             return createAccountConfirmationNotificationCell(for: indexPath)
             
+        case .feedback:
+            return createFeedbackCell(for: indexPath)
+            
         case .logout:
             return createLogoutCell(for: indexPath)
         }
@@ -223,6 +251,9 @@ extension MenuViewController {
             
         case .logout:
             eventHandler.onLogoutCellTap()
+            
+        case .feedback:
+            eventHandler.onFeedbackCellTap()
             
         default:
             break
@@ -283,6 +314,13 @@ extension MenuViewController {
     
     private func createLogoutCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(LogoutCell.self, for: indexPath)
+        return cell
+    }
+    
+    private func createFeedbackCell(for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(OneLineSettingsCell.self, for: indexPath)
+        cell.view.title.text = "menu.feedback_title".localized
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 }

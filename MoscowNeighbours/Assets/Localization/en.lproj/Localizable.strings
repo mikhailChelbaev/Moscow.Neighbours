@@ -12,6 +12,10 @@
 "common.or" = "Or";
 "common.application_language" = "ru_Ru";
 
+/* Support */
+"support.email" = "support@msk-sosedi.ru";
+"support.subject" = "Moscow.Neighbors feedback";
+
 /* Error */
 "main_error.title" = "Failed to load page, please try again";
 "main_error.button_title" = "Reload";
@@ -56,6 +60,7 @@
 "menu.account_confirmation_title" = "Your account needs a confirmation";
 "menu.account_confirmation_button" = "Confirm an email";
 "menu.logout" = "Sign out";
+"menu.feedback_title" = "Contact us";
 
 /* Settings */
 "settings.title" = "Settings";

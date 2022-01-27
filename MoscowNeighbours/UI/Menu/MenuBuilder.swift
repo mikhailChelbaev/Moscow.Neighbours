@@ -14,6 +14,7 @@ struct MenuStorage {
     let achievementsBuilder: AchievementsBuilder
     let accountConfirmationBuilder: AccountConfirmationBuilder
     let userService: UserProvider
+    let mailService: EmailProvider
 }
 
 protocol MenuBuilder {
@@ -34,6 +35,7 @@ extension Builder: MenuBuilder {
                     profileBuilder: self,
                     achievementsBuilder: self,
                     accountConfirmationBuilder: self,
-                    userService: userService)
+                    userService: userService,
+                    mailService: EmailService())
     }
 }

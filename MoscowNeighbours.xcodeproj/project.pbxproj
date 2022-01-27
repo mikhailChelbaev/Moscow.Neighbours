@@ -168,6 +168,7 @@
 		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
 		74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* RouteHeaderCell.swift */; };
+		74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7BF0D27A33644004B6F4E /* EmailService.swift */; };
 		74E7C3992783063900B16392 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C3982783063900B16392 /* UserService.swift */; };
 		74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39A2783075000B16392 /* StoreContainer.swift */; };
 		74E7C39D2783081A00B16392 /* JWTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39C2783081A00B16392 /* JWTService.swift */; };
@@ -363,6 +364,7 @@
 		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
 		74E729B426F2978200775D37 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
+		74E7BF0D27A33644004B6F4E /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 		74E7C3982783063900B16392 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		74E7C39A2783075000B16392 /* StoreContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreContainer.swift; sourceTree = "<group>"; };
 		74E7C39C2783081A00B16392 /* JWTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTService.swift; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				74F73A03272B5213007C5450 /* LoadingCell.swift */,
 				74F73A05272B528A007C5450 /* EmptyStateCell.swift */,
 				74C72A53277BC17D00B73560 /* TitleHeaderView.swift */,
+				74F1856E2787307E00A0BF24 /* OneLineSettingsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				74C72A4E277BBC1F00B73560 /* MenuPresenter.swift */,
 				74C72A50277BBC2500B73560 /* MenuBuilder.swift */,
 				74C72A52277BC17000B73560 /* Cells */,
+				74E7BF0C27A33636004B6F4E /* Service */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1018,6 +1022,14 @@
 			path = AR;
 			sourceTree = "<group>";
 		};
+		74E7BF0C27A33636004B6F4E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				74E7BF0D27A33644004B6F4E /* EmailService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		74F185642787290500A0BF24 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1033,7 +1045,6 @@
 			isa = PBXGroup;
 			children = (
 				74F1856C27872E8E00A0BF24 /* ToggleSettingsCell.swift */,
-				74F1856E2787307E00A0BF24 /* OneLineSettingsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1214,6 +1225,7 @@
 				7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */,
 				747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */,
 				7485E3792709BD52008DAB99 /* PersonInfoCell.swift in Sources */,
+				74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */,
 				74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */,
 				74F73A01272B50DE007C5450 /* CustomCollectionViewDataSource.swift in Sources */,
 				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,

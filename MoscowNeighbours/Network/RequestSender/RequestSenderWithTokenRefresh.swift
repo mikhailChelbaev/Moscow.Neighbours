@@ -21,7 +21,7 @@ final class RequestSenderWithTokenRefresh: RequestSender {
         
         var apiRequest = request
         setAccessToken(for: &apiRequest)
-        let requestResult = await requestSender.send(request: request, type: type)
+        let requestResult = await requestSender.send(request: apiRequest, type: type)
         
         if case .failure(let err) = requestResult,
            case .http(let status) = err.type,
@@ -29,7 +29,7 @@ final class RequestSenderWithTokenRefresh: RequestSender {
             // token expired, it should be refreshed
             return await jwtService.refreshTokenIfNeeded(resultType: type) {
                 setAccessToken(for: &apiRequest)
-                return await requestSender.send(request: request, type: type)
+                return await requestSender.send(request: apiRequest, type: type)
             }
 
         } else {

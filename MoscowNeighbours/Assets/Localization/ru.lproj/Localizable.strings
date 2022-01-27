@@ -12,6 +12,10 @@
 "common.or" = "Или";
 "common.application_language" = "en_En";
 
+/* Support */
+"support.email" = "support@msk-sosedi.ru";
+"support.subject" = "Москва.Соседи";
+
 /* Error */
 "main_error.title" = "Не удалось загрузить страницу, попробуйте еще раз";
 "main_error.button_title" = "Перезагрузить";
@@ -64,6 +68,7 @@
 "settings.email_notifications_title" = "E-mail уведомления";
 "settings.email_notifications_description" = "Расскажем о крутых акциях и скидках";
 "settings.language" = "Выбрать язык";
+"menu.feedback_title" = "Связаться с нами";
 
 /* Profile */
 "profile.exit" = "Выйти из аккаунта";
