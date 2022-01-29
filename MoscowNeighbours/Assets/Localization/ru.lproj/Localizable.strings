@@ -11,6 +11,8 @@
 "common.cancel" = "Отмена";
 "common.or" = "Или";
 "common.application_language" = "en_En";
+"common.error" = "Ошибка";
+"common.ok" = "Ok";
 
 /* Support */
 "support.email" = "support@msk-sosedi.ru";
@@ -69,6 +71,7 @@
 "settings.email_notifications_description" = "Расскажем о крутых акциях и скидках";
 "settings.language" = "Выбрать язык";
 "menu.feedback_title" = "Связаться с нами";
+"settings.unable_to_show_error" = "Невозможно отправить сообщение. Сначала настройте учетную запись для отправки почты, затем попробуйте еще раз.";
 
 /* Profile */
 "profile.exit" = "Выйти из аккаунта";

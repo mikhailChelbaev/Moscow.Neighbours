@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SettingsView: BottomSheetViewController {
-    
+    func handleUnableToShowMailError()
 }
 
 class SettingsViewController: BottomSheetViewController, SettingsView {
@@ -23,6 +23,7 @@ class SettingsViewController: BottomSheetViewController, SettingsView {
         case push
         case email
         case language
+        case feedback
         case separator
     }
     
@@ -77,6 +78,15 @@ class SettingsViewController: BottomSheetViewController, SettingsView {
     
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func handleUnableToShowMailError() {
+        let alertController = UIAlertController(title: "common.error".localized,
+                                      message: "settings.unable_to_show_error".localized,
+                                      preferredStyle: .alert)
+        let ok = UIAlertAction(title: "common.ok".localized, style: .default)
+        alertController.addAction(ok)
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Private methods
@@ -149,9 +159,9 @@ extension SettingsViewController {
         switch sections[section] {
         case .settings:
             if eventHandler.isUserAuthorized {
-                return [.push, .separator, .email, .separator, .language, .separator]
+                return [.push, .separator, .email, .separator, .language, .separator, .feedback, .separator]
             } else {
-                return [.push, .separator, .language, .separator]
+                return [.push, .separator, .language, .separator, .feedback, .separator]
             }
         }
     }
@@ -181,6 +191,9 @@ extension SettingsViewController {
         case .language:
             return createOneLineSettingsCell(title: "settings.language".localized, for: indexPath)
             
+        case .feedback:
+            return createOneLineSettingsCell(title: "menu.feedback_title".localized, for: indexPath)
+            
         case .separator:
             return createSeparator(for: indexPath)
         }
@@ -192,6 +205,9 @@ extension SettingsViewController {
         switch cell {
         case .language:
             eventHandler.onLanguageButtonTap()
+            
+        case .feedback:
+            eventHandler.onFeedbackCellTap()
             
         default:
             break

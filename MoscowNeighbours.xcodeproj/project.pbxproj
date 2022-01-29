@@ -927,6 +927,14 @@
 			path = WeakRef;
 			sourceTree = "<group>";
 		};
+		749F5C7727A52AE0004116BE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				74E7BF0D27A33644004B6F4E /* EmailService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		74AB1DC727727CF100DA961A /* Collections */ = {
 			isa = PBXGroup;
 			children = (
@@ -963,7 +971,6 @@
 				74C72A4E277BBC1F00B73560 /* MenuPresenter.swift */,
 				74C72A50277BBC2500B73560 /* MenuBuilder.swift */,
 				74C72A52277BC17000B73560 /* Cells */,
-				74E7BF0C27A33636004B6F4E /* Service */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1022,14 +1029,6 @@
 			path = AR;
 			sourceTree = "<group>";
 		};
-		74E7BF0C27A33636004B6F4E /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				74E7BF0D27A33644004B6F4E /* EmailService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		74F185642787290500A0BF24 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,6 +1036,7 @@
 				74F185672787292600A0BF24 /* SettingsPresenter.swift */,
 				74F185692787293700A0BF24 /* SettingsBuilder.swift */,
 				74F1856B27872E7B00A0BF24 /* Cells */,
+				749F5C7727A52AE0004116BE /* Services */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1555,7 +1555,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MoscowNeighbours/MoscowNeighbours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
@@ -1580,7 +1580,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MoscowNeighbours/MoscowNeighbours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

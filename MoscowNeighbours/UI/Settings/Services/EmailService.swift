@@ -8,11 +8,15 @@
 import Foundation
 import MessageUI
 
+enum EmailServiceErrors: Error {
+    case cantSendMail
+}
+
 protocol EmailProvider {
     func showEmailComposer(recipient: String,
                            subject: String?,
                            content: String?,
-                           controller: UIViewController?)
+                           controller: UIViewController?) throws
 }
 
 final class EmailService: NSObject, EmailProvider {
@@ -20,9 +24,9 @@ final class EmailService: NSObject, EmailProvider {
     func showEmailComposer(recipient: String,
                            subject: String?,
                            content: String?,
-                           controller: UIViewController?) {
+                           controller: UIViewController?) throws {
         guard MFMailComposeViewController.canSendMail() else {
-            return
+            throw EmailServiceErrors.cantSendMail
         }
 
         let composer = MFMailComposeViewController()

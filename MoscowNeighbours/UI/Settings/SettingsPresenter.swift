@@ -16,15 +16,17 @@ protocol SettingsEventHandler {
     func onLanguageButtonTap()
     func onPushNotificationsValueChange(_ newValue: Bool)
     func onEmailNotificationsValueChange(_ newValue: Bool)
+    func onFeedbackCellTap()
 }
 
 class SettingsPresenter: SettingsEventHandler {
     
     // MARK: - Properties
     
-    private var userService: UserProvider
-    
     weak var viewController: SettingsView?
+    
+    private var userService: UserProvider
+    private let mailService: EmailProvider
     
     var isUserAuthorized: Bool {
         return userService.isAuthorized
@@ -40,6 +42,7 @@ class SettingsPresenter: SettingsEventHandler {
     
     init(storage: SettingsStorage) {
         userService = storage.userService
+        mailService = storage.mailService
     }
     
     // MARK: - SettingsEventHandler
@@ -61,6 +64,19 @@ class SettingsPresenter: SettingsEventHandler {
     
     func onEmailNotificationsValueChange(_ newValue: Bool) {
         userService.isEmailNotificationsEnabled = newValue
+    }
+    
+    func onFeedbackCellTap() {
+        do {
+            try mailService.showEmailComposer(recipient: "support.email".localized,
+                                              subject: "support.subject".localized,
+                                              content: nil,
+                                              controller: viewController)
+        } catch {
+            if case .cantSendMail = error as? EmailServiceErrors {
+                viewController?.handleUnableToShowMailError()
+            }
+        }
     }
     
 }

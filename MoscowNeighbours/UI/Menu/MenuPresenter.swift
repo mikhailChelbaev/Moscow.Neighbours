@@ -19,7 +19,6 @@ protocol MenuEventHandler {
     func onAccountCellTap()
     func onAchievementsCellTap()
     func onAccountConfirmationButtonTap()
-    func onFeedbackCellTap()
     func onLogoutCellTap()
 }
 
@@ -36,7 +35,6 @@ class MenuPresenter: MenuEventHandler {
     private let accountConfirmationBuilder: AccountConfirmationBuilder
     
     private let userService: UserProvider
-    private let mailService: EmailProvider
     
     var isUserAuthorized: Bool {
         userService.isAuthorized
@@ -61,7 +59,6 @@ class MenuPresenter: MenuEventHandler {
         accountConfirmationBuilder = storage.accountConfirmationBuilder
         
         userService = storage.userService
-        mailService = storage.mailService
     }
     
     // MARK: - MenuEventHandler
@@ -94,13 +91,6 @@ class MenuPresenter: MenuEventHandler {
         let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: false,
                                                                                            completion: nil)
         viewController?.present(controller, state: .top, completion: nil)
-    }
-    
-    func onFeedbackCellTap() {
-        mailService.showEmailComposer(recipient: "support.email".localized,
-                                      subject: "support.subject".localized,
-                                      content: nil,
-                                      controller: viewController)
     }
     
     func onLogoutCellTap() {

@@ -233,7 +233,7 @@ extension AccountConfirmationViewController: ErrorDelegate, LoadingDelegate {
     }
     
     private func visibleTableViewHeight() -> CGFloat {
-        UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle) - headerView.frame.height - view.safeAreaInsets.bottom
+        max(UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle) - headerView.frame.height - view.safeAreaInsets.bottom, 0)
     }
 }
 

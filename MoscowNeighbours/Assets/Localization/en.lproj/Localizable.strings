@@ -11,6 +11,8 @@
 "common.cancel" = "Cancel";
 "common.or" = "Or";
 "common.application_language" = "ru_Ru";
+"common.error" = "Error";
+"common.ok" = "ОК";
 
 /* Support */
 "support.email" = "support@msk-sosedi.ru";
@@ -69,6 +71,7 @@
 "settings.email_notifications_title" = "Email notifications";
 "settings.email_notifications_description" = "We'll notify about cool promotions and discounts";
 "settings.language" = "Choose language";
+"settings.unable_to_show_error" = "Unable to send a message. Configure your mail account and try again.";
 
 /* Profile */
 "profile.exit" = "Log out";

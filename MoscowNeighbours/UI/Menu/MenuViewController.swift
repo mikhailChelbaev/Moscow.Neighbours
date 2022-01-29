@@ -21,7 +21,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
         case accountConfirmation
         case achievements
         case settings
-        case feedback
         case logout
     }
     
@@ -32,7 +31,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
         case settings
         case achievements
         case accountConfirmation
-        case feedback
         case logout
     }
     
@@ -106,7 +104,6 @@ class MenuViewController: BottomSheetViewController, MenuView {
         tableView.register(SeparatorCell.self)
         tableView.register(UserAccountPreviewCell.self)
         tableView.register(AccountConfirmationNotificationCell.self)
-        tableView.register(OneLineSettingsCell.self)
         tableView.register(LogoutCell.self)
     }
     
@@ -167,12 +164,12 @@ extension MenuViewController {
     private func getSections() -> [SectionType] {
         if eventHandler.isUserAuthorized {
             if eventHandler.isUserVerified {
-                return [.account, .achievements, .settings, .feedback, .logout]
+                return [.account, .achievements, .settings, .logout]
             } else {
-                return [.accountConfirmation, .settings, .feedback, .logout]
+                return [.accountConfirmation, .settings, .logout]
             }
         } else {
-            return [.authorization, .settings, .feedback]
+            return [.authorization, .settings]
         }
     }
     
@@ -192,9 +189,6 @@ extension MenuViewController {
             
         case .settings:
             return [.settings, .separator]
-            
-        case .feedback:
-            return [.feedback, .separator]
             
         case .logout:
             return [.logout, .separator]
@@ -227,9 +221,6 @@ extension MenuViewController {
         case .accountConfirmation:
             return createAccountConfirmationNotificationCell(for: indexPath)
             
-        case .feedback:
-            return createFeedbackCell(for: indexPath)
-            
         case .logout:
             return createLogoutCell(for: indexPath)
         }
@@ -251,9 +242,6 @@ extension MenuViewController {
             
         case .logout:
             eventHandler.onLogoutCellTap()
-            
-        case .feedback:
-            eventHandler.onFeedbackCellTap()
             
         default:
             break
@@ -314,13 +302,6 @@ extension MenuViewController {
     
     private func createLogoutCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(LogoutCell.self, for: indexPath)
-        return cell
-    }
-    
-    private func createFeedbackCell(for indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(OneLineSettingsCell.self, for: indexPath)
-        cell.view.title.text = "menu.feedback_title".localized
-        cell.accessoryType = .disclosureIndicator
         return cell
     }
 }
