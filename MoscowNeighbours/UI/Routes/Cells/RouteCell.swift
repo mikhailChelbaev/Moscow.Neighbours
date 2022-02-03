@@ -7,6 +7,7 @@
 
 import UIKit
 import ImageView
+import SwiftUI
 
 class RouteCell: CellView {
     
@@ -42,9 +43,14 @@ class RouteCell: CellView {
         return view
     }()
     
-//    let distanceInfo: InfoView = .init()
+    let buyButton: Button = {
+        let button = Button()
+        button.roundedCorners = true
+        button.contentEdgeInsets = .init(top: 8, left: 13, bottom: 8, right: 13)
+        return button
+    }()
     
-    let durationInfo: InfoView = .init()
+    let infoView: InfoView = .init()
     
     override func configureView() {
         backgroundColor = .background
@@ -58,18 +64,16 @@ class RouteCell: CellView {
         gradientView.pinToSuperviewEdges([.left, .bottom, .right])
         gradientView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
         
+        containerView.addSubview(buyButton)
+        buyButton.pinToSuperviewEdges([.left, .bottom], constant: 20)
+//        buyButton.height(30)
+        
         containerView.addSubview(titleLabel)
-        titleLabel.pinToSuperviewEdges([.left, .bottom, .right], insets: .init(top: 0, left: 20, bottom: 20, right: 20))
+        titleLabel.pinToSuperviewEdges([.left, .right], constant: 20)
+        titleLabel.bottom(10, to: buyButton)
         
-//        containerView.addSubview(distanceInfo)
-//        distanceInfo.stickToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
-        
-//        containerView.addSubview(durationInfo)
-//        durationInfo.leading(5, to: distanceInfo)
-//        durationInfo.top(20)
-        
-        containerView.addSubview(durationInfo)
-        durationInfo.pinToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
+        containerView.addSubview(infoView)
+        infoView.pinToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
     }
     
     private func update() {
@@ -77,8 +81,8 @@ class RouteCell: CellView {
         
         containerView.loadImage(route.coverUrl)
         titleLabel.text = route.name
-//        distanceInfo.update(text: "200 m", image: sfSymbol("location.fill", tintColor: .white))
-        durationInfo.update(text: "\(route.distance) • \(route.duration)", image: nil)
+        infoView.update(text: "\(route.distance) • \(route.duration)", image: nil)
+        buyButton.setTitle("Купить за 249₽", for: .normal)
     }
     
 }

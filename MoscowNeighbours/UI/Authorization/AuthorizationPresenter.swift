@@ -130,8 +130,8 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
                     
                     // fetch user
                     fetchUser()
-                } catch {
-                    await viewController?.handleSignInError(error as? NetworkError)
+                } catch (let error as NetworkError) {
+                    await handleSignInError(error: error)
                 }
             }
         } else {
@@ -174,10 +174,7 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
                         // show account confirmation screen
                         DispatchQueue.main.async {
                             self.viewController?.status = .success
-                            let controller = self.accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: true) { [weak self] in
-                                self?.viewController?.closeController(animated: true, completion: nil)
-                            }
-                            self.viewController?.present(controller, state: .top, completion: nil)
+                            self.showAccountConfirmation()
                         }
                     }
                 } catch {
@@ -230,6 +227,26 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
                 }
             }
         }
+    }
+    
+    @MainActor
+    private func handleSignInError(error: NetworkError) {
+        switch error.description {
+        case .notVerified:
+            let model = UserModel(name: "", email: signInUsername, isVerified: false)
+            userService.storeCurrentUser(model)
+            showAccountConfirmation()
+            
+        default:
+            viewController?.handleSignInError(error)
+        }
+    }
+    
+    private func showAccountConfirmation() {
+        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: true) { [weak self] in
+            self?.viewController?.closeController(animated: true, completion: nil)
+        }
+        viewController?.present(controller, state: .top, completion: nil)
     }
     
 }

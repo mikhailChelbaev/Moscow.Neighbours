@@ -68,13 +68,14 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
                 // update token and fetch user
                 jwtService.updateToken(token)
                 fetchUser()
-            } catch {
-                await handleConfirmationError(error as? NetworkError)
+            } catch (let error as NetworkError) {
+                await handleConfirmationError(error)
             }
         }
     }
     
     func onChangeAccountButtonTap() {
+        userService.logout()
         viewController?.closeController(animated: true, completion: nil)
     }
     
@@ -95,11 +96,7 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
     }
     
     @MainActor
-    private func handleConfirmationError(_ error: NetworkError?) {
-        guard let error = error else {
-            return
-        }
-        
+    private func handleConfirmationError(_ error: NetworkError) {        
         switch error.type {
         case .http(statusCode: let statusCode):
             if statusCode == 400 {

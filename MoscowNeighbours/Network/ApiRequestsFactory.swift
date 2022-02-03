@@ -13,8 +13,8 @@ final class ApiRequestsFactory {
     // MARK: - Internal Methods
     
     static let main = ApiRequestsFactory()
-    let host = "http://msk-sosedi.ru:8080"
-//    let host = "http://localhost:8080"
+//    let host = "http://msk-sosedi.ru:8080"
+    let host = "http://localhost:8080"
     
     // MARK: - Init
     
