@@ -29,6 +29,8 @@ final class RequestSenderWithTokenRefresh: RequestSender {
             // token expired, it should be refreshed
             return await jwtService.refreshTokenIfNeeded(resultType: type) {
                 setAccessToken(for: &apiRequest)
+                
+                // TODO: - handle if server can not refresh token
                 return await requestSender.send(request: apiRequest, type: type)
             }
 
