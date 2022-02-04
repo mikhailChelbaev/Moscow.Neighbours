@@ -59,7 +59,9 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     let eventHandler: RouteDescriptionEventHandler
     
     var status: LoadingStatus = .loading {
-        didSet { reloadData() }
+        didSet {
+            reloadData()
+        }
     }
     
     // MARK: - init
@@ -99,7 +101,11 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     // MARK: - RouteDescriptionView
     
     func reloadData() {
-        tableView.reloadData()
+        // execute on main thread because can be called from different contexts
+        // TODO: - fix bug when this method is called from non-main thread
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Get Bottom Sheet Components

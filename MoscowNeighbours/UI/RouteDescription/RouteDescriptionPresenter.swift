@@ -79,7 +79,6 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private func setUpdatedRoute(_ route: RouteViewModel?) {
         viewController?.route = route
         viewController?.status = .success
-        viewController?.reloadData()
     }
     
     func onBackButtonTap() {

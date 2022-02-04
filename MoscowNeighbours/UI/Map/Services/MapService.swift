@@ -55,14 +55,16 @@ class MapService: ObservableService {
         // draw route overlay
         Task.detached { [weak self] in
             guard let self = self else { return }
-            self.overlays = await self.getOverlays(annotations: self.annotations)
+            var overlays: [MKOverlay] = []
+            overlays = await self.getOverlays(annotations: self.annotations)
             
             // check that route was not hidden
             guard self.isRouteVisible else { return }
             
             for observer in self.observers {
-                await observer.value.addOverlays(self.overlays)
+                await observer.value.addOverlays(overlays)
             }
+            self.overlays = overlays
         }
     }
     

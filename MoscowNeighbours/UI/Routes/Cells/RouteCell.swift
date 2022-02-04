@@ -11,6 +11,12 @@ import SwiftUI
 
 class RouteCell: CellView {
     
+    enum ButtonStyle {
+        case free
+        case bought
+        case paid
+    }
+    
     var route: Route? {
         didSet { update() }
     }
@@ -66,7 +72,6 @@ class RouteCell: CellView {
         
         containerView.addSubview(buyButton)
         buyButton.pinToSuperviewEdges([.left, .bottom], constant: 20)
-//        buyButton.height(30)
         
         containerView.addSubview(titleLabel)
         titleLabel.pinToSuperviewEdges([.left, .right], constant: 20)
@@ -82,7 +87,28 @@ class RouteCell: CellView {
         containerView.loadImage(route.coverUrl)
         titleLabel.text = route.name
         infoView.update(text: "\(route.distance) • \(route.duration)", image: nil)
-        buyButton.setTitle("Купить за 249₽", for: .normal)
+        
+        if Bool.random() {
+            buyButton.setTitle("Купить за 249₽", for: .normal)
+            updateButtonStyle(.paid)
+            
+        } else {
+            buyButton.setTitle("Бесплатно", for: .normal)
+            updateButtonStyle(.free)
+        }
+    }
+    
+    private func updateButtonStyle(_ style: ButtonStyle) {
+        switch style {
+        case .free, .bought:
+            buyButton.layer.borderWidth = 1
+            buyButton.layer.borderColor = UIColor.white.cgColor
+            buyButton.backgroundColor = .clear
+            
+        case .paid:
+            buyButton.layer.borderWidth = 0
+            buyButton.backgroundColor = .projectRed
+        }
     }
     
 }
