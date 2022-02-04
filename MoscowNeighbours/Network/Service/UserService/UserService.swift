@@ -7,18 +7,6 @@
 
 import Foundation
 
-protocol UserProvider {
-    var currentUser: UserModel? { get }
-    var isAuthorized: Bool { get }
-    
-    var isPushNotificationsEnabled: Bool { set get }
-    var isEmailNotificationsEnabled: Bool { set get }
-    
-    func fetchUser() async throws
-    func storeCurrentUser(_ model: UserModel?)
-    func logout()
-}
-
 final class UserService: BaseNetworkService, UserProvider {
     
     // MARK: - StorageKeys
@@ -56,6 +44,8 @@ final class UserService: BaseNetworkService, UserProvider {
         }
     }
     
+    var observers: [String : UserServiceDelegate]
+    
     // MARK: - Private Properties
     
     private let cache: StoreContainer
@@ -69,6 +59,7 @@ final class UserService: BaseNetworkService, UserProvider {
         api = .main
         jwtService = .main
         cache = UserDefaults.standard
+        observers = [:]
 
         currentUser = cache.get(key: StorageKeys.currentUser.rawValue)
     }
