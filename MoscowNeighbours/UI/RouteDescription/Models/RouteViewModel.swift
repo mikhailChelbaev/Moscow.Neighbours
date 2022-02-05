@@ -19,6 +19,7 @@ class RouteViewModel {
     let coverUrl: String?
     let routeInformation: String
     var persons: [PersonViewModel]
+    let price: String
     
     let route: Route
     
@@ -31,6 +32,7 @@ class RouteViewModel {
         description = NSAttributedString()
         coverUrl = route.coverUrl
         routeInformation = "\(route.distance) • \(route.duration)"
+        price = route.price ?? ""
         persons = []
         
         await withTaskGroup(of: PersonViewModel.self) { group in

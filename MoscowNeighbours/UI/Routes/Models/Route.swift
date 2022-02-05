@@ -15,4 +15,6 @@ struct Route: Codable {
     let duration: String
     let distance: String
     let personsInfo: [PersonInfo]
+    
+    var price: String?
 }

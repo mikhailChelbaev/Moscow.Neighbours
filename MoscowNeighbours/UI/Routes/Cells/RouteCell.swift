@@ -89,7 +89,7 @@ class RouteCell: CellView {
         infoView.update(text: "\(route.distance) • \(route.duration)", image: nil)
         
         if Bool.random() {
-            buyButton.setTitle("Купить за 249₽", for: .normal)
+            buyButton.setTitle("Купить за \(route.price ?? "")", for: .normal)
             updateButtonStyle(.paid)
             
         } else {

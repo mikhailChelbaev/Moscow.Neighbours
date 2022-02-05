@@ -19,19 +19,26 @@ class RoutesPresenter: RoutesEventHandler {
     weak var viewController: RouteView?
     
     private var routesService: RoutesService
+    private var purchaseService: PurchaseProvider
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
     private let delayManager: DelayManager
     
+    private var routes: [Route]
+    
     // MARK: - Init
     
     init(storage: RoutesStorage) {
+        routes = []
+        
         routesService = storage.routesService
+        purchaseService = storage.purchaseService
         routesDescriptionBuilder = storage.routesDescriptionBuilder
         
         delayManager = DefaultDelayManager(minimumDuration: 1.0)
         
         routesService.register(WeakRef(self))
+        purchaseService.register(WeakRef(self))
     }
     
     // MARK: - RoutesEventHandler methods
@@ -51,10 +58,14 @@ class RoutesPresenter: RoutesEventHandler {
 
 extension RoutesPresenter: RoutesServiceOutput {
     func fetchDataSucceeded(_ model: [Route]) {
-        delayManager.completeWithDelay {
-            self.viewController?.state = .success(routes: model)
-            self.viewController?.reloadData()
-        }
+        routes = model
+        
+        // TODO: - get id from model
+        let productIdentifiers = Set<String>(
+            arrayLiteral: "route_3"
+        )
+        
+        purchaseService.fetchProducts(productIds: productIdentifiers)
     }
     
     func fetchDataFailed(_ error: NetworkError) {
@@ -62,5 +73,33 @@ extension RoutesPresenter: RoutesServiceOutput {
             self.viewController?.state = .error(error: error)
             self.viewController?.reloadData()
         }
+    }
+}
+
+// MARK: - protocol PurchaseProviderDelegate
+
+extension RoutesPresenter: PurchaseProviderDelegate {
+    func productsFetch(didReceive response: RequestProductsResult) {
+        switch response {
+        case .success(let products):
+            routes = routes.map({ route in
+                var copy = route
+                copy.price = products.first?.localizedPrice ?? ""
+                return copy
+            })
+            
+            delayManager.completeWithDelay {
+                self.viewController?.state = .success(routes: self.routes)
+                self.viewController?.reloadData()
+            }
+            
+        case .failure(let error):
+            Logger.log("Failed to fetch products: \(error.localizedDescription)")
+            break
+        }
+    }
+    
+    func productPurchase(didReceive response: PurchaseProductResult) {
+        
     }
 }

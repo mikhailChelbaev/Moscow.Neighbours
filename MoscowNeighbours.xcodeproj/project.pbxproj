@@ -132,6 +132,7 @@
 		748EE63B270F916800301552 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63A270F916800301552 /* Person.swift */; };
 		748EE63D270F917600301552 /* ShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63C270F917600301552 /* ShortInfo.swift */; };
 		748FFD9626E55535009CA688 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9526E55535009CA688 /* Logger.swift */; };
+		7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490F33627AE748E00DCD9C7 /* PurchaseService.swift */; };
 		74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F6F276F554C0096AA77 /* ApiRequest.swift */; };
 		74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F70276F554C0096AA77 /* ApiRequestsFactory.swift */; };
 		74967F76276F554D0096AA77 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F71276F554C0096AA77 /* RequestResult.swift */; };
@@ -167,6 +168,12 @@
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
 		74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB027746CB00087B7F6 /* MapPresenter.swift */; };
 		74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB427746D1A0087B7F6 /* MapBuilder.swift */; };
+		74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18AF27AEEA6700C5A02F /* PurchasesError.swift */; };
+		74DC18B227AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */; };
+		74DC18B427AF000A00C5A02F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B327AF000A00C5A02F /* Product.swift */; };
+		74DC18B627AF003600C5A02F /* PurchaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B527AF003600C5A02F /* PurchaseProvider.swift */; };
+		74DC18B827AF186C00C5A02F /* PurchaseProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B727AF186C00C5A02F /* PurchaseProviderDelegate.swift */; };
+		74DC18BA27AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B927AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
 		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
@@ -330,6 +337,7 @@
 		748EE63A270F916800301552 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		748EE63C270F917600301552 /* ShortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfo.swift; sourceTree = "<group>"; };
 		748FFD9526E55535009CA688 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		7490F33627AE748E00DCD9C7 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
 		74967F6F276F554C0096AA77 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		74967F70276F554C0096AA77 /* ApiRequestsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequestsFactory.swift; sourceTree = "<group>"; };
 		74967F71276F554C0096AA77 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
@@ -366,6 +374,12 @@
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		74D7DFB027746CB00087B7F6 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		74D7DFB427746D1A0087B7F6 /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
+		74DC18AF27AEEA6700C5A02F /* PurchasesError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesError.swift; sourceTree = "<group>"; };
+		74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
+		74DC18B327AF000A00C5A02F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		74DC18B527AF003600C5A02F /* PurchaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProvider.swift; sourceTree = "<group>"; };
+		74DC18B727AF186C00C5A02F /* PurchaseProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProviderDelegate.swift; sourceTree = "<group>"; };
+		74DC18B927AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+PurchaseProviderDelegate.swift"; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
 		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
@@ -442,10 +456,12 @@
 				7422221F2781DEAC00CFDD50 /* MoscowNeighbours.entitlements */,
 				74967F86276F59FB0096AA77 /* Core */,
 				7402662626A765E7006242FE /* UI */,
+				7490F33527AE746400DCD9C7 /* GlobalServices */,
 				748FFD9426E55193009CA688 /* Network */,
-				7402662226A7659F006242FE /* Helpers */,
+				74DC18AE27AEEA5700C5A02F /* Purchases */,
 				742EFE8926F14132009A5126 /* BottomSheet */,
 				74F52A2D272591EB00343334 /* Markdown */,
+				7402662226A7659F006242FE /* Helpers */,
 				742283BC26BB2998003F814E /* Assets */,
 				7402661C26A7637A006242FE /* Info.plist */,
 				7479291227A2DAEF002D61AC /* GoogleService-Info.plist */,
@@ -872,14 +888,21 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		7490F33527AE746400DCD9C7 /* GlobalServices */ = {
+			isa = PBXGroup;
+			children = (
+				74159E5027ADBC07007E7118 /* UserService */,
+				74E7C39C2783081A00B16392 /* JWTService.swift */,
+			);
+			path = GlobalServices;
+			sourceTree = "<group>";
+		};
 		74967F79276F555A0096AA77 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				74967F7A276F55640096AA77 /* BaseNetworkService.swift */,
 				743DE7272776097100B5CED8 /* ObservableService.swift */,
 				7457756F2797366D00123208 /* ObservableNetworkService.swift */,
-				74E7C39C2783081A00B16392 /* JWTService.swift */,
-				74159E5027ADBC07007E7118 /* UserService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1044,6 +1067,20 @@
 				7422A9C226BC707A00FE995E /* ARPersonPreview.swift */,
 			);
 			path = AR;
+			sourceTree = "<group>";
+		};
+		74DC18AE27AEEA5700C5A02F /* Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				74DC18B527AF003600C5A02F /* PurchaseProvider.swift */,
+				74DC18B727AF186C00C5A02F /* PurchaseProviderDelegate.swift */,
+				7490F33627AE748E00DCD9C7 /* PurchaseService.swift */,
+				74DC18AF27AEEA6700C5A02F /* PurchasesError.swift */,
+				74DC18B327AF000A00C5A02F /* Product.swift */,
+				74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */,
+				74DC18B927AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift */,
+			);
+			path = Purchases;
 			sourceTree = "<group>";
 		};
 		74F185642787290500A0BF24 /* Settings */ = {
@@ -1233,6 +1270,7 @@
 				74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */,
 				74F1856F2787307E00A0BF24 /* OneLineSettingsCell.swift in Sources */,
 				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
+				74DC18B627AF003600C5A02F /* PurchaseProvider.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
@@ -1251,6 +1289,7 @@
 				74F1856A2787293700A0BF24 /* SettingsBuilder.swift in Sources */,
 				74C72A4F277BBC1F00B73560 /* MenuPresenter.swift in Sources */,
 				74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */,
+				74DC18B227AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift in Sources */,
 				743C3AC9277D051F00D4CB1C /* AuthorizationTypeCell.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
@@ -1268,6 +1307,7 @@
 				74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */,
 				746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */,
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
+				7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
 				7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */,
@@ -1285,6 +1325,7 @@
 				74F739FF272B50DE007C5450 /* BaseCollectionView.swift in Sources */,
 				746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */,
 				746F061F279371B4009D1163 /* PasswordValidator.swift in Sources */,
+				74DC18B427AF000A00C5A02F /* Product.swift in Sources */,
 				7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
 				74967F78276F554D0096AA77 /* RequestSender.swift in Sources */,
@@ -1355,6 +1396,7 @@
 				743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */,
 				743C3AC4277D01F900D4CB1C /* AppIconCell.swift in Sources */,
 				74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */,
+				74DC18BA27AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift in Sources */,
 				74F739FC272B50DE007C5450 /* TableSuccessDataSource.swift in Sources */,
 				74B8EC3A27884AFA00E240C5 /* UserHeaderCell.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
@@ -1388,6 +1430,7 @@
 				746F061A27937101009D1163 /* SignUpErrorsModel.swift in Sources */,
 				74F73A04272B5213007C5450 /* LoadingCell.swift in Sources */,
 				74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */,
+				74DC18B827AF186C00C5A02F /* PurchaseProviderDelegate.swift in Sources */,
 				74F739FE272B50DE007C5450 /* BaseTableView.swift in Sources */,
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,
@@ -1396,6 +1439,7 @@
 				741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */,
 				7422221E2781DC2500CFDD50 /* AuthorizationService.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
+				74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */,
 				7402661126A76379006242FE /* SceneDelegate.swift in Sources */,
@@ -1575,7 +1619,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MoscowNeighbours/MoscowNeighbours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
@@ -1583,7 +1627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.machelbaev.neighbours.moscow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1600,14 +1644,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MoscowNeighbours/MoscowNeighbours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = W5ZZPB5BG7;
 				INFOPLIST_FILE = MoscowNeighbours/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.machelbaev.neighbours.moscow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

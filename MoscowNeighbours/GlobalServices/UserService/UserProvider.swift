@@ -21,7 +21,6 @@ protocol UserProvider {
     func logout()
 }
 
-
 extension UserProvider {
     mutating func register(_ output: UserServiceDelegate) {
         observers[String(describing: output.self)] = output
