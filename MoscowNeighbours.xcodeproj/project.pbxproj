@@ -143,7 +143,6 @@
 		74967F80276F55A40096AA77 /* RoutesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F7F276F55A40096AA77 /* RoutesService.swift */; };
 		74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F81276F57A20096AA77 /* RoutesPresenter.swift */; };
 		74967F89276F5A300096AA77 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F88276F5A300096AA77 /* WeakRef.swift */; };
-		74967F8B276F5A4E0096AA77 /* WeakRef+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F8A276F5A4E0096AA77 /* WeakRef+Routes.swift */; };
 		7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8C9277C57C700BBCF6A /* MenuItemCell.swift */; };
 		7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
@@ -348,7 +347,6 @@
 		74967F7F276F55A40096AA77 /* RoutesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesService.swift; sourceTree = "<group>"; };
 		74967F81276F57A20096AA77 /* RoutesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesPresenter.swift; sourceTree = "<group>"; };
 		74967F88276F5A300096AA77 /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
-		74967F8A276F5A4E0096AA77 /* WeakRef+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Routes.swift"; sourceTree = "<group>"; };
 		7498640226C0188300AF4E0E /* point.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = point.gpx; sourceTree = "<group>"; };
 		7499D8C9277C57C700BBCF6A /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdvantagesCell.swift; sourceTree = "<group>"; };
@@ -846,7 +844,6 @@
 				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
 				74967F81276F57A20096AA77 /* RoutesPresenter.swift */,
 				740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */,
-				74967F8A276F5A4E0096AA77 /* WeakRef+Routes.swift */,
 				7415479726B09754006931DC /* Cells */,
 				74967F83276F57A90096AA77 /* Services */,
 				74967F84276F57B60096AA77 /* Models */,
@@ -1339,7 +1336,6 @@
 				74F52A332725946700343334 /* BlockParser.swift in Sources */,
 				74F52A352725947100343334 /* FragmentParser.swift in Sources */,
 				74F73A02272B50DE007C5450 /* LoadingStatus.swift in Sources */,
-				74967F8B276F5A4E0096AA77 /* WeakRef+Routes.swift in Sources */,
 				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
 				74F73A00272B50DE007C5450 /* CollectionSuccessDataSource.swift in Sources */,
 				746684A7279F4E8C00AFAA2E /* SignUpResponse.swift in Sources */,

@@ -37,7 +37,6 @@ class RoutesPresenter: RoutesEventHandler {
         
         delayManager = DefaultDelayManager(minimumDuration: 1.0)
         
-        routesService.register(WeakRef(self))
         purchaseService.register(WeakRef(self))
     }
     
@@ -45,19 +44,26 @@ class RoutesPresenter: RoutesEventHandler {
     
     func onFetchData() {
         delayManager.start()
-        routesService.fetchRoutes()
+        Task {
+            do {
+                let routes = try await routesService.fetchRoutes()
+                await handleRoutes(routes)
+            }
+            catch (let error as NetworkError) {
+                await handlerError(error)
+            }
+        }
     }
     
     func onRouteCellTap(route: Route) {
         let controller = routesDescriptionBuilder.buildRouteDescriptionViewController(route: route)
         viewController?.present(controller, state: .top, completion: nil)
     }
-}
-
-// MARK: - Protocol RoutesServiceOutput
-
-extension RoutesPresenter: RoutesServiceOutput {
-    func fetchDataSucceeded(_ model: [Route]) {
+    
+    // MARK: - Helpers
+    
+    @MainActor
+    func handleRoutes(_ model: [Route]) {
         routes = model
         
         // TODO: - get id from model
@@ -68,7 +74,8 @@ extension RoutesPresenter: RoutesServiceOutput {
         purchaseService.fetchProducts(productIds: productIdentifiers)
     }
     
-    func fetchDataFailed(_ error: NetworkError) {
+    @MainActor
+    func handlerError(_ error: NetworkError) {
         delayManager.completeWithDelay {
             self.viewController?.state = .error(error: error)
             self.viewController?.reloadData()

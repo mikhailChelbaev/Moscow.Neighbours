@@ -7,12 +7,11 @@
 
 import UIKit
 
-protocol RoutesServiceOutput: AnyObject {
-    @MainActor func fetchDataSucceeded(_ model: [Route])
-    @MainActor func fetchDataFailed(_ error: NetworkError)
+protocol RouteProvider {
+    func fetchRoutes() async throws -> [Route]
 }
 
-class RoutesService: ObservableNetworkService<RoutesServiceOutput> {
+class RoutesService: BaseNetworkService, RouteProvider {
     
     // MARK: - Internal Properties
     
@@ -26,21 +25,15 @@ class RoutesService: ObservableNetworkService<RoutesServiceOutput> {
     
     // MARK: - Internal Methods
     
-    func fetchRoutes() {
-        Task {
-            let result = await requestSender.send(request: api.routesRequest,
-                                                  type: [Route].self)
-            switch result {
-            case .success(let model):
-                for observer in observers {
-                    await observer.value.fetchDataSucceeded(model)
-                }
-                
-            case .failure(let error):
-                for observer in observers {
-                    await observer.value.fetchDataFailed(error)
-                }
-            }
+    func fetchRoutes() async throws -> [Route] {
+        let result = await requestSender.send(request: api.routesRequest,
+                                              type: [Route].self)
+        switch result {
+        case .success(let model):
+            return model
+            
+        case .failure(let error):
+            throw error
         }
     }
     
