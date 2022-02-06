@@ -171,8 +171,6 @@
 		74DC18B227AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */; };
 		74DC18B427AF000A00C5A02F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B327AF000A00C5A02F /* Product.swift */; };
 		74DC18B627AF003600C5A02F /* PurchaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B527AF003600C5A02F /* PurchaseProvider.swift */; };
-		74DC18B827AF186C00C5A02F /* PurchaseProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B727AF186C00C5A02F /* PurchaseProviderDelegate.swift */; };
-		74DC18BA27AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B927AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
 		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
@@ -376,8 +374,6 @@
 		74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
 		74DC18B327AF000A00C5A02F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		74DC18B527AF003600C5A02F /* PurchaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProvider.swift; sourceTree = "<group>"; };
-		74DC18B727AF186C00C5A02F /* PurchaseProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProviderDelegate.swift; sourceTree = "<group>"; };
-		74DC18B927AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+PurchaseProviderDelegate.swift"; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
 		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
@@ -1070,12 +1066,10 @@
 			isa = PBXGroup;
 			children = (
 				74DC18B527AF003600C5A02F /* PurchaseProvider.swift */,
-				74DC18B727AF186C00C5A02F /* PurchaseProviderDelegate.swift */,
 				7490F33627AE748E00DCD9C7 /* PurchaseService.swift */,
 				74DC18AF27AEEA6700C5A02F /* PurchasesError.swift */,
 				74DC18B327AF000A00C5A02F /* Product.swift */,
 				74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */,
-				74DC18B927AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -1392,7 +1386,6 @@
 				743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */,
 				743C3AC4277D01F900D4CB1C /* AppIconCell.swift in Sources */,
 				74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */,
-				74DC18BA27AF188500C5A02F /* WeakRef+PurchaseProviderDelegate.swift in Sources */,
 				74F739FC272B50DE007C5450 /* TableSuccessDataSource.swift in Sources */,
 				74B8EC3A27884AFA00E240C5 /* UserHeaderCell.swift in Sources */,
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
@@ -1426,7 +1419,6 @@
 				746F061A27937101009D1163 /* SignUpErrorsModel.swift in Sources */,
 				74F73A04272B5213007C5450 /* LoadingCell.swift in Sources */,
 				74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */,
-				74DC18B827AF186C00C5A02F /* PurchaseProviderDelegate.swift in Sources */,
 				74F739FE272B50DE007C5450 /* BaseTableView.swift in Sources */,
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,

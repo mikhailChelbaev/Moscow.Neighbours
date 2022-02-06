@@ -36,8 +36,6 @@ class RoutesPresenter: RoutesEventHandler {
         routesDescriptionBuilder = storage.routesDescriptionBuilder
         
         delayManager = DefaultDelayManager(minimumDuration: 1.0)
-        
-        purchaseService.register(WeakRef(self))
     }
     
     // MARK: - RoutesEventHandler methods
@@ -71,7 +69,9 @@ class RoutesPresenter: RoutesEventHandler {
             arrayLiteral: "route_3"
         )
         
-        purchaseService.fetchProducts(productIds: productIdentifiers)
+        purchaseService.fetchProducts(productIds: productIdentifiers) { [weak self] response in
+            self?.handleFetchedProducts(response)
+        }
     }
     
     @MainActor
@@ -81,12 +81,8 @@ class RoutesPresenter: RoutesEventHandler {
             self.viewController?.reloadData()
         }
     }
-}
-
-// MARK: - protocol PurchaseProviderDelegate
-
-extension RoutesPresenter: PurchaseProviderDelegate {
-    func productsFetch(didReceive response: RequestProductsResult) {
+    
+    func handleFetchedProducts(_ response: RequestProductsResult) {
         switch response {
         case .success(let products):
             routes = routes.map({ route in
@@ -104,9 +100,5 @@ extension RoutesPresenter: PurchaseProviderDelegate {
             Logger.log("Failed to fetch products: \(error.localizedDescription)")
             break
         }
-    }
-    
-    func productPurchase(didReceive response: PurchaseProductResult) {
-        
     }
 }

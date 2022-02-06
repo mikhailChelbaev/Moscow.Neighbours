@@ -12,18 +12,19 @@ import StoreKit
 final class PurchaseService: NSObject, PurchaseProvider {
     static let shared = PurchaseService()
     
-    var observers: [String : PurchaseProviderDelegate] = [:]
-    
     private var productRequest: SKProductsRequest?
     private var products: [String: SKProduct]?
     
-    private var isFetchingProducts: Bool = false
-    private var isPurchasingProduct: Bool = false
+    private var productsRequestCallbacks: [RequestProductsCompletion] = []
+    private var productPurchaseCallback: ((PurchaseProductResult) -> Void)?
     
-    func fetchProducts(productIds: Set<String>) {
-        guard !isFetchingProducts else {
+    func fetchProducts(productIds: Set<String>, completion: @escaping RequestProductsCompletion) {
+        guard productsRequestCallbacks.isEmpty else {
+            productsRequestCallbacks.append(completion)
             return
         }
+        
+        productsRequestCallbacks.append(completion)
         
         let productRequest = SKProductsRequest(productIdentifiers: productIds)
         productRequest.delegate = self
@@ -32,26 +33,29 @@ final class PurchaseService: NSObject, PurchaseProvider {
         self.productRequest = productRequest
     }
     
-    func purchaseProduct(productId: String) {
-        guard !isPurchasingProduct else {
-            sendActionForObservers({ $0.productPurchase(didReceive: .failure(PurchasesError.purchaseInProgress)) })
+    func purchaseProduct(productId: String, completion: @escaping PurchaseProductCompletion) {
+        guard productPurchaseCallback == nil else {
+            completion(.failure(PurchasesError.purchaseInProgress))
             return
         }
         
         guard let product = products?[productId] else {
-            sendActionForObservers({ $0.productPurchase(didReceive: .failure(PurchasesError.productNotFound)) })
+            completion(.failure(PurchasesError.productNotFound))
             return
         }
+        
+        productPurchaseCallback = completion
         
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
     }
     
-    func restorePurchases() {
-        guard !isPurchasingProduct else {
-            sendActionForObservers({ $0.productPurchase(didReceive: .failure(PurchasesError.purchaseInProgress)) })
+    func restorePurchases(completion: @escaping PurchaseProductCompletion) {
+        guard productPurchaseCallback == nil else {
+            completion(.failure(PurchasesError.purchaseInProgress))
             return
         }
+        productPurchaseCallback = completion
         
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
@@ -62,8 +66,8 @@ final class PurchaseService: NSObject, PurchaseProvider {
 extension PurchaseService: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         defer {
-            sendActionForObservers({ $0.productsFetch(didReceive: .success(response.products)) })
-            isFetchingProducts = false
+            productsRequestCallbacks.forEach { $0(.success(response.products)) }
+            productsRequestCallbacks.removeAll()
         }
         
         guard !response.products.isEmpty else {
@@ -83,12 +87,8 @@ extension PurchaseService: SKProductsRequestDelegate {
     func request(_ request: SKRequest, didFailWithError error: Error) {
         Logger.log("Failed to load products with error:\n \(error)")
         
-        sendActionForObservers({ $0.productsFetch(didReceive: .failure(error)) })
-        isFetchingProducts = false
-    }
-    
-    private func sendActionForObservers(_ action: (PurchaseProviderDelegate) -> Void) {
-        observers.forEach({ action($0.value) })
+        productsRequestCallbacks.forEach { $0(.failure(error)) }
+        productsRequestCallbacks.removeAll()
     }
 }
 
@@ -101,13 +101,13 @@ extension PurchaseService: SKPaymentTransactionObserver {
             case .purchased, .restored:
                 if finishTransaction(transaction) {
                     SKPaymentQueue.default().finishTransaction(transaction)
-                    sendActionForObservers({ $0.productPurchase(didReceive: .success(true)) })
+                    productPurchaseCallback?(.success(true))
                 } else {
-                    sendActionForObservers({ $0.productPurchase(didReceive: .failure(PurchasesError.unknown)) })
+                    productPurchaseCallback?(.failure(PurchasesError.unknown))
                 }
                 
             case .failed:
-                sendActionForObservers({ $0.productPurchase(didReceive: .failure(transaction.error ?? PurchasesError.unknown)) })
+                productPurchaseCallback?(.failure(transaction.error ?? PurchasesError.unknown))
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
             default:
@@ -115,7 +115,7 @@ extension PurchaseService: SKPaymentTransactionObserver {
             }
         }
         
-        isPurchasingProduct = false
+        productPurchaseCallback = nil
     }
 }
 

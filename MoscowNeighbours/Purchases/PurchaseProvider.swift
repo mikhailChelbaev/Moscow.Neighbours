@@ -11,21 +11,12 @@ import Foundation
 typealias RequestProductsResult = Result<[Product], Error>
 typealias PurchaseProductResult = Result<Bool, Error>
 
+typealias RequestProductsCompletion = (RequestProductsResult) -> Void
+typealias PurchaseProductCompletion = (PurchaseProductResult) -> Void
+
 
 protocol PurchaseProvider {
-    var observers: [String: PurchaseProviderDelegate] { set get }
-    
-    func fetchProducts(productIds: Set<String>)
-    func purchaseProduct(productId: String)
-    func restorePurchases()
-}
-
-extension PurchaseProvider {
-    mutating func register(_ output: PurchaseProviderDelegate) {
-        observers[String(describing: output.self)] = output
-    }
-    
-    mutating func remove(_ output: PurchaseProviderDelegate) {
-        observers[String(describing: output.self)] = nil
-    }
+    func fetchProducts(productIds: Set<String>, completion: @escaping RequestProductsCompletion)
+    func purchaseProduct(productId: String, completion: @escaping PurchaseProductCompletion)
+    func restorePurchases(completion: @escaping PurchaseProductCompletion)
 }
