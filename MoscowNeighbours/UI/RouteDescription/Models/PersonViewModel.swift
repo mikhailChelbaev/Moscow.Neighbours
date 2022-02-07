@@ -8,12 +8,11 @@
 import Foundation
 import MapKit
 
-class PersonViewModel: NSObject {
+final class PersonViewModel: NSObject {
     private let parser: MarkdownParser = {
         var config: MarkdownConfigurator = .default
         return DefaultMarkdownParser(configurator: config, withCache: false)
     }()
-    private let queue: DispatchQueue
     
     let id: String
     let name: String
@@ -29,10 +28,8 @@ class PersonViewModel: NSObject {
     
     private let personInfo: PersonInfo
     
-    init(from personInfo: PersonInfo) async {
+    init(from personInfo: PersonInfo) {
         self.personInfo = personInfo
-        
-        queue = DispatchQueue(label: "PersonInfo_MarkdownParserQueue", qos: .userInitiated, attributes: .concurrent)
         
         id = personInfo.id
         name = personInfo.person.name
@@ -46,21 +43,16 @@ class PersonViewModel: NSObject {
         
         super.init()
         
-        await update()
+        update()
     }
     
-    func update() async {
-        shortDescription = await parse(text: personInfo.person.shortDescription)
-        fullDescription = await parse(text: personInfo.person.description)
+    func update() {
+        shortDescription = parse(text: personInfo.person.shortDescription)
+        fullDescription = parse(text: personInfo.person.description)
     }
     
-    func parse(text: String) async -> NSAttributedString {
-        await withCheckedContinuation { [weak self] continuation in
-            guard let self = self else { return }
-            queue.async {
-                continuation.resume(returning: self.parser.parse(text: text))
-            }
-        }
+    func parse(text: String) -> NSAttributedString {
+        parser.parse(text: text)
     }
 }
 

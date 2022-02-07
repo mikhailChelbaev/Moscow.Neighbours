@@ -7,12 +7,11 @@
 
 import Foundation
 
-class RouteViewModel {
+final class RouteViewModel {
     private let parser: MarkdownParser = {
         var config: MarkdownConfigurator = .default
         return DefaultMarkdownParser(configurator: config, withCache: false)
     }()
-    private let queue: DispatchQueue
     
     let name: String
     var description: NSAttributedString
@@ -23,10 +22,8 @@ class RouteViewModel {
     
     let route: Route
     
-    init(from route: Route) async {
+    init(from route: Route) {
         self.route = route
-        
-        queue = DispatchQueue(label: "Route_MarkdownParserQueue", qos: .userInitiated, attributes: .concurrent)
         
         name = route.name
         description = NSAttributedString()
@@ -35,34 +32,21 @@ class RouteViewModel {
         price = route.price ?? ""
         persons = []
         
-        await withTaskGroup(of: PersonViewModel.self) { group in
-            for person in route.personsInfo {
-                group.addTask(priority: .userInitiated) {
-                    return await PersonViewModel(from: person)
-                }
-            }
-            
-            for await person in group {
-                persons.append(person)
-            }
+        for person in route.personsInfo {
+            persons.append(PersonViewModel(from: person))
         }
         
-        description = await parse(text: route.description)
+        description = parse(text: route.description)
     }
     
-    func update() async {
-        description = await parse(text: route.description)
+    func update() {
+        description = parse(text: route.description)
         for person in persons {
-            await person.update()
+            person.update()
         }
     }
     
-    func parse(text: String) async -> NSAttributedString {
-        await withCheckedContinuation { [weak self] continuation in
-            guard let self = self else { return }
-            queue.async {
-                continuation.resume(returning: self.parser.parse(text: text))
-            }
-        }
+    func parse(text: String) -> NSAttributedString {
+        parser.parse(text: text)
     }
 }

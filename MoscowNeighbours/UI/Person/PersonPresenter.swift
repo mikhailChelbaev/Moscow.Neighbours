@@ -42,14 +42,14 @@ class PersonPresenter: PersonEventHandler {
     
     func onTraitCollectionDidChange() {
         viewController?.status = .loading
-        Task { [weak self] in
-            guard let self = self else { return }
-            await self.person.update()
-            await self.setUpdatedPerson(self.person)
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.person.update()
+            DispatchQueue.main.async {
+                self.setUpdatedPerson(self.person)
+            }
         }
     }
     
-    @MainActor
     private func setUpdatedPerson(_ person: PersonViewModel) {
         viewController?.person = person
         viewController?.status = .success

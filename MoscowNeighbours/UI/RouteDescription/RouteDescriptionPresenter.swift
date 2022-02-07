@@ -46,15 +46,17 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     // MARK: - RouteDescriptionEventHandler methods
     
     func onViewDidLoad() {
-        Task {
-            viewController?.status = .loading
-            let routeViewModel = await RouteViewModel(from: route)
-            await setRoute(routeViewModel)
-            await mapService.showRoute(routeViewModel)
+        viewController?.status = .loading
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let routeViewModel = RouteViewModel(from: self.route)
+            DispatchQueue.main.async {
+                self.setRoute(routeViewModel)
+                self.mapService.showRoute(routeViewModel)
+            }
         }
     }
     
-    @MainActor
     private func setRoute(_ route: RouteViewModel) {
         delayManager.completeWithDelay {
             self.viewController?.route = route
@@ -68,14 +70,15 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         }
         
         viewController?.status = .loading
-        Task { [weak self] in
-            await route.update()
-            await self?.setUpdatedRoute(route)
-            await self?.mapService.showRoute(route)
+        DispatchQueue.global(qos: .userInitiated).async {
+            route.update()
+            DispatchQueue.main.async {
+                self.setUpdatedRoute(route)
+                self.mapService.showRoute(route)
+            }
         }
     }
     
-    @MainActor
     private func setUpdatedRoute(_ route: RouteViewModel?) {
         viewController?.route = route
         viewController?.status = .success
