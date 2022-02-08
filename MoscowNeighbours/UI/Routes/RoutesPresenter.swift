@@ -18,7 +18,7 @@ class RoutesPresenter: RoutesEventHandler {
     
     weak var viewController: RouteView?
     
-    private var routesService: RoutesService
+    private var routesService: RoutesProvider
     private var purchaseService: PurchaseProvider
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
@@ -47,7 +47,8 @@ class RoutesPresenter: RoutesEventHandler {
                 let routes = try await routesService.fetchRoutes()
                 await handleRoutes(routes)
             }
-            catch (let error as NetworkError) {
+            catch {
+                Logger.log("Failed to load routes: \(error.localizedDescription)")
                 await handlerError(error)
             }
         }
@@ -63,21 +64,17 @@ class RoutesPresenter: RoutesEventHandler {
     @MainActor
     func handleRoutes(_ model: [Route]) {
         routes = model
+        let productIdentifiers = model.compactMap(\.purchase.productId)
         
-        // TODO: - get id from model
-        let productIdentifiers = Set<String>(
-            arrayLiteral: "route_3"
-        )
-        
-        purchaseService.fetchProducts(productIds: productIdentifiers) { [weak self] response in
+        purchaseService.fetchProducts(productIds: Set(productIdentifiers)) { [weak self] response in
             self?.handleFetchedProducts(response)
         }
     }
     
     @MainActor
-    func handlerError(_ error: NetworkError) {
+    func handlerError(_ error: Error) {
         delayManager.completeWithDelay {
-            self.viewController?.state = .error(error: error)
+            self.viewController?.state = .error
             self.viewController?.reloadData()
         }
     }
@@ -86,7 +83,7 @@ class RoutesPresenter: RoutesEventHandler {
         switch response {
         case .success(let products):
             routes = routes.map({ route in
-                var copy = route
+                let copy = route
                 copy.price = products.first?.localizedPrice ?? ""
                 return copy
             })

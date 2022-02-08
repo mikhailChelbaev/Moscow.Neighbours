@@ -11,7 +11,9 @@ import UltraDrawerView
 protocol RouteDescriptionView: BottomSheetViewController, LoadingStatusProvider {
     var route: RouteViewModel? { set get }
     
-    @MainActor func reloadData()
+    func reloadData()
+    func showAlert(title: String, message: String, actions: [UIAlertAction])
+    func prepareForPurchasing()
 }
 
 final class RouteDescriptionViewController: BottomSheetViewController, RouteDescriptionView {
@@ -64,6 +66,10 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
         }
     }
     
+    // MARK: - Private properties
+    
+    private var routeHeaderCell: RouteHeaderCell?
+    
     // MARK: - init
     
     init(eventHandler: RouteDescriptionEventHandler) {
@@ -101,11 +107,17 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     // MARK: - RouteDescriptionView
     
     func reloadData() {
-        // execute on main thread because can be called from different contexts
-        // TODO: - fix bug when this method is called from non-main thread
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
+    }
+    
+    func showAlert(title: String, message: String, actions: [UIAlertAction]) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actions.forEach({ alertController.addAction($0) })
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func prepareForPurchasing() {
+        routeHeaderCell?.showButtonLoader()
     }
     
     // MARK: - Get Bottom Sheet Components
@@ -244,12 +256,12 @@ extension RouteDescriptionViewController: LoadingDelegate {
 extension RouteDescriptionViewController {
     private func createRouteHeader(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RouteHeaderCell.self, for: indexPath)
-        cell.view.route = route
-        cell.view.beginRouteAction = { [weak self] in
+        cell.view.update(route: route) { [weak self] in
             guard let `self` = self else { return }
-            self.eventHandler.onBeginRouteButtonTap(route: self.route)
+            self.eventHandler.onRouteHeaderButtonTap(route: self.route)
         }
         cell.selectionStyle = .none
+        routeHeaderCell = cell.view
         return cell
     }
     

@@ -10,5 +10,8 @@ import Foundation
 enum PurchasesError: Error {
     case purchaseInProgress
     case productNotFound
+    case paymentsRestricted
+    case userNotAuthorized
+    case userNotVerified
     case unknown
 }

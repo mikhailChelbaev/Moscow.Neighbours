@@ -11,12 +11,6 @@ import SwiftUI
 
 class RouteCell: CellView {
     
-    enum ButtonStyle {
-        case free
-        case bought
-        case paid
-    }
-    
     var route: Route? {
         didSet { update() }
     }
@@ -88,24 +82,18 @@ class RouteCell: CellView {
         titleLabel.text = route.name
         infoView.update(text: "\(route.distance) • \(route.duration)", image: nil)
         
-        if Bool.random() {
-            buyButton.setTitle("Купить за \(route.price ?? "")", for: .normal)
-            updateButtonStyle(.paid)
-            
-        } else {
-            buyButton.setTitle("Бесплатно", for: .normal)
-            updateButtonStyle(.free)
-        }
+        buyButton.setTitle(route.localizedPriceText(), for: .normal)
+        updateButtonStyle(route.purchase.status)
     }
     
-    private func updateButtonStyle(_ style: ButtonStyle) {
+    private func updateButtonStyle(_ style: Route.Purchase.Status) {
         switch style {
-        case .free, .bought:
+        case .free, .paid:
             buyButton.layer.borderWidth = 1
             buyButton.layer.borderColor = UIColor.white.cgColor
             buyButton.backgroundColor = .clear
             
-        case .paid:
+        case .buy:
             buyButton.layer.borderWidth = 0
             buyButton.backgroundColor = .projectRed
         }

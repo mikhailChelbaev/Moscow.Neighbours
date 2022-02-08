@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RouteDescriptionEventHandler: AnyObject {
     func onViewDidLoad()
     func onTraitCollectionDidChange(route: RouteViewModel?)
     func onBackButtonTap()
     func onPersonCellTap(person: PersonViewModel)
-    func onBeginRouteButtonTap(route: RouteViewModel?)
+    func onRouteHeaderButtonTap(route: RouteViewModel?)
 }
 
 class RouteDescriptionPresenter: RouteDescriptionEventHandler {
@@ -27,6 +28,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private var route: Route
     
     private let mapService: MapService
+    private let purchaseService: PurchaseProvider
     
     private let delayManager: DelayManager
     
@@ -37,6 +39,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         routePassingBuilder = storage.routePassingBuilder
         
         mapService = storage.mapService
+        purchaseService = storage.purchaseService
         
         route = storage.route
         
@@ -97,12 +100,80 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         viewController?.present(controller, state: .top)
     }
     
-    func onBeginRouteButtonTap(route: RouteViewModel?) {
+    func onRouteHeaderButtonTap(route: RouteViewModel?) {
         guard let route = route else {
             return
         }
-
-        let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
-        viewController?.present(controller, state: .middle, completion: nil)
+        
+        if route.purchaseStatus == .buy {
+            // buy product
+            guard let productId = route.productId else {
+                Logger.log("There is no product id for route \(route.name)")
+                return
+            }
+            Logger.log("Try to buy product with id: \(productId)")
+            
+            viewController?.prepareForPurchasing()
+            purchaseService.purchaseProduct(productId: productId) { [weak self] result in
+                switch result {
+                case .success:
+                    route.updatePurchaseStatus(.paid)
+                    // TODO: - refresh routes screen
+                    
+                case .failure(let error):
+                    Logger.log("Failed to complete the purchase: \(error.localizedDescription)")
+                    self?.handleRoutePurchaseError(error)
+                }
+                
+                self?.viewController?.reloadData()
+            }
+            
+        } else {
+            // start the route
+            let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
+            viewController?.present(controller, state: .middle, completion: nil)
+        }
+    }
+    
+    private func handleRoutePurchaseError(_ error: Error) {
+        var title: String
+        var message: String
+        var actions: [UIAlertAction]
+        
+        switch error as? PurchasesError {
+        case .purchaseInProgress:
+            title = "purchase.purchase_in_progress_title".localized
+            message = "purchase.purchase_in_progress_subtitle".localized
+            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+            
+        case .productNotFound:
+            title = "purchase.product_not_found_title".localized
+            message = "purchase.product_not_found_subtitle".localized
+            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+            
+        case .paymentsRestricted:
+            title = "purchase.payments_restricted_title".localized
+            message = "purchase.payments_restricted_subtitle".localized
+            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+            
+        case .userNotAuthorized:
+            title = "purchase.user_not_authorized_title".localized
+            message = "purchase.user_not_authorized_subtitle".localized
+            actions = [UIAlertAction(title: "purchase.authorize".localized, style: .default),
+                       UIAlertAction(title: "common.later".localized, style: .default)]
+            
+        case .userNotVerified:
+            title = "purchase.user_not_verified_title".localized
+            message = "purchase.user_not_verified_subtitle".localized
+            actions = [UIAlertAction(title: "purchase.verify_account".localized, style: .default),
+                       UIAlertAction(title: "common.later".localized, style: .default)]
+            
+        case .unknown, .none:
+            title = "purchase.purchase_unknown_error_title".localized
+            message = "purchase.purchase_unknown_error_subtitle".localized
+            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+        }
+        
+        viewController?.showAlert(title: title, message: message, actions: actions)
     }
 }

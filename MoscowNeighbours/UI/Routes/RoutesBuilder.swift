@@ -8,7 +8,7 @@
 import Foundation
 
 struct RoutesStorage {
-    let routesService: RoutesService
+    let routesService: RoutesProvider
     let purchaseService: PurchaseProvider
     let routesDescriptionBuilder: RoutesDescriptionBuilder
 }
@@ -26,7 +26,7 @@ extension Builder: RoutesBuilder {
     }
     
     private func makeStorage() -> RoutesStorage {
-        return RoutesStorage(routesService: .init(api: requestsFactory),
+        return RoutesStorage(routesService: RoutesMockService(),//.init(api: requestsFactory),
                              purchaseService: purchaseService,
                              routesDescriptionBuilder: self)
     }    

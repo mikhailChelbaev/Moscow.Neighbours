@@ -9,7 +9,7 @@ import UIKit
 
 enum RouteDataState {
     case success(routes: [Route])
-    case error(error: NetworkError)
+    case error
 }
 
 protocol RouteView: BottomSheetViewController {
@@ -130,9 +130,11 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
         case .success:
             bottomSheet.middlePosition = config.middleInset
             bottomSheet.availableStates = [.top, .middle, .bottom]
+            
         case .error:
             bottomSheet.middlePosition = .fromBottom(350)
             bottomSheet.availableStates = [.middle, .bottom]
+            
         default:
             break
         }

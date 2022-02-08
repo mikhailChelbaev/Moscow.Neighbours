@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol RouteProvider {
+protocol RoutesProvider {
     func fetchRoutes() async throws -> [Route]
 }
 
-class RoutesService: BaseNetworkService, RouteProvider {
+final class RoutesService: BaseNetworkService, RoutesProvider {
     
     // MARK: - Internal Properties
     

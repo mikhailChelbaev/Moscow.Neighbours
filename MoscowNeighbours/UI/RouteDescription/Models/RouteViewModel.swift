@@ -19,6 +19,8 @@ final class RouteViewModel {
     let routeInformation: String
     var persons: [PersonViewModel]
     let price: String
+    var purchaseStatus: Route.Purchase.Status
+    let productId: String?
     
     let route: Route
     
@@ -29,7 +31,9 @@ final class RouteViewModel {
         description = NSAttributedString()
         coverUrl = route.coverUrl
         routeInformation = "\(route.distance) • \(route.duration)"
-        price = route.price ?? ""
+        price = route.localizedPriceText()
+        purchaseStatus = route.purchase.status
+        productId = route.purchase.productId
         persons = []
         
         for person in route.personsInfo {
@@ -48,5 +52,10 @@ final class RouteViewModel {
     
     func parse(text: String) -> NSAttributedString {
         parser.parse(text: text)
+    }
+    
+    func updatePurchaseStatus(_ status: Route.Purchase.Status) {
+        route.purchase.status = status
+        purchaseStatus = status
     }
 }

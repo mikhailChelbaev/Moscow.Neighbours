@@ -12,6 +12,7 @@ struct RouteDescriptionStorage {
     let personBuilder: PersonBuilder
     let routePassingBuilder: RoutePassingBuilder
     let mapService: MapService
+    let purchaseService: PurchaseProvider
 }
 
 protocol RoutesDescriptionBuilder {
@@ -20,13 +21,17 @@ protocol RoutesDescriptionBuilder {
 
 extension Builder: RoutesDescriptionBuilder {
     func buildRouteDescriptionViewController(route: Route) -> RouteDescriptionViewController {
-        let storage = RouteDescriptionStorage(route: route,
-                                              personBuilder: self,
-                                              routePassingBuilder: self,
-                                              mapService: mapService)
-        let presenter = RouteDescriptionPresenter(storage: storage)
+        let presenter = RouteDescriptionPresenter(storage: buildStorage(route: route))
         let viewController = RouteDescriptionViewController(eventHandler: presenter)
         presenter.viewController = viewController
         return viewController
-    }    
+    }
+    
+    private func buildStorage(route: Route) -> RouteDescriptionStorage {
+        RouteDescriptionStorage(route: route,
+                                personBuilder: self,
+                                routePassingBuilder: self,
+                                mapService: mapService,
+                                purchaseService: purchaseService)
+    }
 }

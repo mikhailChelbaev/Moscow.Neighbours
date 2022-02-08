@@ -9,14 +9,22 @@ import StoreKit
 
 // MARK: - PurchaseService
 
-final class PurchaseService: NSObject, PurchaseProvider {
-    static let shared = PurchaseService()
-    
+final class PurchaseService: NSObject, PurchaseProvider {    
     private var productRequest: SKProductsRequest?
     private var products: [String: SKProduct]?
     
     private var productsRequestCallbacks: [RequestProductsCompletion] = []
     private var productPurchaseCallback: ((PurchaseProductResult) -> Void)?
+    
+    private let userService: UserProvider
+    
+    init(userService: UserProvider) {
+        self.userService = userService
+        super.init()
+        
+        // add self as transaction observer
+        SKPaymentQueue.default().add(self)
+    }
     
     func fetchProducts(productIds: Set<String>, completion: @escaping RequestProductsCompletion) {
         guard productsRequestCallbacks.isEmpty else {
@@ -34,6 +42,21 @@ final class PurchaseService: NSObject, PurchaseProvider {
     }
     
     func purchaseProduct(productId: String, completion: @escaping PurchaseProductCompletion) {
+        guard userService.isAuthorized else {
+            completion(.failure(PurchasesError.userNotAuthorized))
+            return
+        }
+        
+        guard userService.currentUser?.isVerified ?? false else {
+            completion(.failure(PurchasesError.userNotVerified))
+            return
+        }
+        
+        guard SKPaymentQueue.canMakePayments() else {
+            completion(.failure(PurchasesError.paymentsRestricted))
+            return
+        }
+        
         guard productPurchaseCallback == nil else {
             completion(.failure(PurchasesError.purchaseInProgress))
             return
@@ -115,7 +138,9 @@ extension PurchaseService: SKPaymentTransactionObserver {
             }
         }
         
-        productPurchaseCallback = nil
+        if transactions.filter ({ $0.transactionState != .purchasing }).count > 0 {
+            productPurchaseCallback = nil
+        }
     }
 }
 

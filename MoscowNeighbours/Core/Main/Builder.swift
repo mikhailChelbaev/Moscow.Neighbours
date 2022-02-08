@@ -27,6 +27,6 @@ class Builder {
                                     notificationService: NotificationService())
         jwtService = JWTService.main
         userService = UserService.shared
-        purchaseService = PurchaseService.shared
+        purchaseService = PurchaseService(userService: userService)
     }
 }
