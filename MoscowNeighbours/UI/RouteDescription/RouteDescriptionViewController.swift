@@ -12,7 +12,7 @@ protocol RouteDescriptionView: BottomSheetViewController, LoadingStatusProvider 
     var route: RouteViewModel? { set get }
     
     func reloadData()
-    func showAlert(title: String, message: String, actions: [UIAlertAction])
+    func showAlert(title: String?, message: String?, actions: [UIAlertAction])
     func prepareForPurchasing()
 }
 
@@ -120,7 +120,7 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
         tableView.reloadData()
     }
     
-    func showAlert(title: String, message: String, actions: [UIAlertAction]) {
+    func showAlert(title: String?, message: String?, actions: [UIAlertAction]) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actions.forEach({ alertController.addAction($0) })
         present(alertController, animated: true, completion: nil)

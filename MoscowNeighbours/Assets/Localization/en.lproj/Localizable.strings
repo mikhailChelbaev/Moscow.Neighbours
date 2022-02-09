@@ -10,9 +10,10 @@
 "common.yes" = "Yes";
 "common.cancel" = "Cancel";
 "common.or" = "Or";
-"common.application_language" = "ru_Ru";
+"common.application_language" = "en_En";
 "common.error" = "Error";
-"common.ok" = "ОК";
+"common.ok" = "Ok";
+"common.later" = "Later";
 
 /* Support */
 "support.email" = "support@msk-sosedi.ru";
@@ -32,9 +33,24 @@
 "route_description.places" = "Where to go:";
 "route_description.start_route" = "Start the route";
 
+/* Route purchase */
+"purchase.purchase_in_progress_title" = "Error";
+"purchase.purchase_in_progress_subtitle" = "Purchase request is already in progress.";
+"purchase.product_not_found_title" = "Error";
+"purchase.product_not_found_subtitle" = "Unable to complete the purchase. Re-open the app and try again. Contact us if problem is not solved.";
+"purchase.payments_restricted_title" = "Payments restricted";
+"purchase.payments_restricted_subtitle" = "You can not make purchases with current Apple ID account.";
+"purchase.user_not_authorized_title" = "You are not authorised";
+"purchase.user_not_authorized_subtitle" = "Only authorised users can buy routes. It is necessary to save your purchases. Log in or register a new account and try again.";
+"purchase.authorize" = "Sign in";
+"purchase.user_not_verified_title" = "Account is not verified";
+"purchase.user_not_verified_subtitle" = "Only users with verified account can buy routes. It is necessary to save your purchases. Verify account and try again.";
+"purchase.verify_account" = "Verify";
+"purchase.purchase_unknown_error_subtitle" = "Failed to buy the route";
+
 /* Route Passing */
 "route_passing.end_route" = "End the route";
-"route_passing.first_time_button" = "Meet the neighbor";
+"route_passing.first_time_button" = "Meet the neighbour";
 "route_passing.first_time_alert" = "You can start your acquaintance with the person";
 "route_passing.review_button" = "Watch again";
 "route_passing.review_alert" = "You can read about the person at any time";

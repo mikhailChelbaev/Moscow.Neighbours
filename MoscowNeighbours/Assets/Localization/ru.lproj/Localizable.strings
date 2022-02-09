@@ -10,9 +10,10 @@
 "common.yes" = "Да";
 "common.cancel" = "Отмена";
 "common.or" = "Или";
-"common.application_language" = "en_En";
+"common.application_language" = "ru_Ru";
 "common.error" = "Ошибка";
-"common.ok" = "Ok";
+"common.ok" = "ОК";
+"common.later" = "Позже";
 
 /* Support */
 "support.email" = "support@msk-sosedi.ru";
@@ -31,6 +32,21 @@
 "route_description.information" = "Информация:";
 "route_description.places" = "Куда пойдем:";
 "route_description.start_route" = "Начать маршрут";
+
+/* Route purchase */
+"purchase.purchase_in_progress_title" = "Ошибка";
+"purchase.purchase_in_progress_subtitle" = "Запрос покупки выполняется для другого маршрута. Сначала завершите покупку, а затем попробуйте еще раз.";
+"purchase.product_not_found_title" = "Ошибка";
+"purchase.product_not_found_subtitle" = "Невозможно выполнить покупку. Перезайдите в приложение и попробуйте снова. Свяжитесь с нами, если проблема осталась.";
+"purchase.payments_restricted_title" = "Покупки ограничены";
+"purchase.payments_restricted_subtitle" = "Вы не можете совершать покупки с данного аккаунта Apple ID.";
+"purchase.user_not_authorized_title" = "Вы не авторизованы";
+"purchase.user_not_authorized_subtitle" = "Только авторизованные пользователи могут совершать покупки. Это необходимо для сохранения ваших покупок. Войдите в свой аккаунт или создайте новый и попробуйте снова.";
+"purchase.authorize" = "Авторизироваться";
+"purchase.user_not_verified_title" = "Аккаунт не подтвержден";
+"purchase.user_not_verified_subtitle" = "Только пользователи с подтвержденным аккаунтом могут совершать покупки. Это необходимо для сохранения ваших покупок. Подтвердите аккаунт и попробуйте снова.";
+"purchase.verify_account" = "Подтвердить";
+"purchase.purchase_unknown_error_subtitle" = "Не удалось купить маршрут";
 
 /* Route Passing */
 "route_passing.end_route" = "Завершить маршрут";

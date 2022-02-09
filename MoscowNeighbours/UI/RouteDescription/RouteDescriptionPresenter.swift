@@ -143,7 +143,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     }
     
     private func handleRoutePurchaseError(_ error: Error) {
-        var title: String
+        var title: String?
         var message: String
         var actions: [UIAlertAction]
         
@@ -167,16 +167,16 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
             title = "purchase.user_not_authorized_title".localized
             message = "purchase.user_not_authorized_subtitle".localized
             actions = [UIAlertAction(title: "purchase.authorize".localized, style: .default),
-                       UIAlertAction(title: "common.later".localized, style: .default)]
+                       UIAlertAction(title: "common.later".localized, style: .cancel)]
             
         case .userNotVerified:
             title = "purchase.user_not_verified_title".localized
             message = "purchase.user_not_verified_subtitle".localized
             actions = [UIAlertAction(title: "purchase.verify_account".localized, style: .default),
-                       UIAlertAction(title: "common.later".localized, style: .default)]
+                       UIAlertAction(title: "common.later".localized, style: .cancel)]
             
         case .unknown, .none:
-            title = "purchase.purchase_unknown_error_title".localized
+            title = nil
             message = "purchase.purchase_unknown_error_subtitle".localized
             actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
         }
