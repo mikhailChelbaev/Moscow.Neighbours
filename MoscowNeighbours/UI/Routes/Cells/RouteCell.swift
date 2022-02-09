@@ -88,7 +88,7 @@ class RouteCell: CellView {
     
     private func updateButtonStyle(_ style: Route.Purchase.Status) {
         switch style {
-        case .free, .paid:
+        case .free, .purchased:
             buyButton.layer.borderWidth = 1
             buyButton.layer.borderColor = UIColor.white.cgColor
             buyButton.backgroundColor = .clear

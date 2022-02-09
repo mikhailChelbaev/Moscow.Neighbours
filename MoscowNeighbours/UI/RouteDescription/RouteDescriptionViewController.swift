@@ -18,12 +18,20 @@ protocol RouteDescriptionView: BottomSheetViewController, LoadingStatusProvider 
 
 final class RouteDescriptionViewController: BottomSheetViewController, RouteDescriptionView {
     
-    // MARK: - Sections
+    // MARK: - Sections and Cells
     
-    enum Sections: Int, CaseIterable {
+    enum SectionType {
         case header
         case information
         case persons
+    }
+    
+    enum CellType {
+        case header
+        case routeDescription
+        case person
+        case title
+        case separator
     }
     
     // MARK: - Layout constraints
@@ -69,11 +77,13 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     // MARK: - Private properties
     
     private var routeHeaderCell: RouteHeaderCell?
+    private let sections: [SectionType]
     
     // MARK: - init
     
     init(eventHandler: RouteDescriptionEventHandler) {
         self.eventHandler = eventHandler
+        self.sections = [.header, .information, .persons]
         
         super.init()
     }
@@ -177,69 +187,20 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
 // MARK: - protocol TableSuccessDataSource
 
 extension RouteDescriptionViewController: TableSuccessDataSource {
-    
     func successNumberOfSections(in tableView: UITableView) -> Int {
-        Sections.allCases.count
+        return sections.count
     }
     
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = Sections(rawValue: section) else {
-            fatalError("Section is out of bounds")
-        }
-        
-        switch section {
-        case .header:
-            return 1
-            
-        case .information:
-            return 3
-            
-        case .persons:
-            return (route?.persons.count ?? 0) + 1
-        }
+        return getSectionItems(for: section).count
     }
     
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = Sections(rawValue: indexPath.section) else {
-            fatalError("Section is out of bounds")
-        }
-        
-        switch section {
-        case .header:
-            return createRouteHeader(for: indexPath)
-            
-        case .information:
-            if indexPath.item == 0 {
-                return createTextHeaderCell(text: "route_description.information".localized, for: indexPath)
-                
-            } else if indexPath.item == 1 {
-                return createRouteDescriptionCell(for: indexPath)
-                
-            } else {
-                return createSeparatorCell(for: indexPath)
-            }
-            
-        case .persons:
-            if indexPath.item == 0 {
-                return createTextHeaderCell(text: "route_description.places".localized, for: indexPath)
-                
-            } else {
-                return createPersonCell(for: indexPath)
-            }
-        }
+        return getCell(at: indexPath)
     }
     
     func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let section = Sections(rawValue: indexPath.section) else {
-            fatalError("Section is out of bounds")
-        }
-        guard let persons = route?.persons else {
-            return
-        }
-        
-        if case .persons = section, indexPath.item > 0 {
-            eventHandler.onPersonCellTap(person: persons[indexPath.item - 1])
-        }
+        didTapOnCell(at: indexPath)
     }
 }
 
@@ -249,6 +210,77 @@ extension RouteDescriptionViewController: LoadingDelegate {
     func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle)
     }
+}
+
+// MARK: - Sections and Cells Helpers
+
+extension RouteDescriptionViewController {
+    
+    private func getSectionItems(for section: Int) -> [CellType] {
+        switch sections[section] {
+        case .header:
+            return [.header]
+            
+        case .information:
+            return [.title, .routeDescription, .separator]
+            
+        case .persons:
+            return [.title] + (route?.persons.map({ _ in .person }) ?? [])
+        }
+    }
+    
+    private func getCell(at indexPath: IndexPath) -> UITableViewCell {
+        let cellType = getCellType(at: indexPath)
+        
+        switch cellType {
+        case .header:
+            return createRouteHeader(for: indexPath)
+            
+        case .title:
+            var title: String
+            switch sections[indexPath.section] {
+            case .information:
+                title = "route_description.information".localized
+                
+            case .persons:
+                title = "route_description.places".localized
+                
+            default:
+                title = ""
+            }
+            return createTextHeaderCell(text: title, for: indexPath)
+            
+        case .routeDescription:
+            return createRouteDescriptionCell(for: indexPath)
+            
+        case .person:
+            return createPersonCell(for: indexPath)
+            
+        case .separator:
+            return createSeparatorCell(for: indexPath)
+            
+        }
+    }
+    
+    private func didTapOnCell(at indexPath: IndexPath) {
+        let cellType = getCellType(at: indexPath)
+        
+        switch cellType {
+        case .person:
+            guard let persons = route?.persons else {
+                return
+            }
+            eventHandler.onPersonCellTap(person: persons[indexPath.item - 1])
+            
+        default:
+            break
+        }
+    }
+    
+    private func getCellType(at indexPath: IndexPath) -> CellType {
+        getSectionItems(for: indexPath.section)[indexPath.item]
+    }
+            
 }
 
 // MARK: - extension Cells Creation

@@ -25,10 +25,10 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private let personBuilder: PersonBuilder
     private let routePassingBuilder: RoutePassingBuilder
     
-    private var route: Route
-    
     private let mapService: MapService
     private let purchaseService: PurchaseProvider
+    
+    private var route: Route
     
     private let delayManager: DelayManager
     
@@ -117,8 +117,9 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
             purchaseService.purchaseProduct(productId: productId) { [weak self] result in
                 switch result {
                 case .success:
-                    route.updatePurchaseStatus(.paid)
-                    // TODO: - refresh routes screen
+                    route.updatePurchaseStatus(.purchased)
+                    self?.reloadRoutesController()
+                    // TODO: - send to server
                     
                 case .failure(let error):
                     Logger.log("Failed to complete the purchase: \(error.localizedDescription)")
@@ -132,6 +133,12 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
             // start the route
             let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
             viewController?.present(controller, state: .middle, completion: nil)
+        }
+    }
+    
+    private func reloadRoutesController() {
+        if let presentingController = viewController?.presentingViewController as? RouteViewController {
+            presentingController.reloadData()
         }
     }
     

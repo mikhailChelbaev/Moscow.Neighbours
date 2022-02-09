@@ -279,7 +279,6 @@ extension AccountConfirmationViewController {
             
 }
 
-
 // MARK: - Cells Creations
 
 extension AccountConfirmationViewController {

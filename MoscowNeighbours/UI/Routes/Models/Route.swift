@@ -13,7 +13,7 @@ final class Route: Codable {
         enum Status: String, Codable {
             case free // user should not pay for it
             case buy // user have to pay
-            case paid // user has already paid
+            case purchased // user has already paid
         }
         
         var status: Status
@@ -36,13 +36,13 @@ extension Route {
     func localizedPriceText() -> String {
         switch purchase.status {
         case .free:
-            return "For free"
+            return "Free"
             
         case .buy:
             return "Buy for \(price ?? "0")"
             
-        case .paid:
-            return "Already bought"
+        case .purchased:
+            return "Purchased"
         }
     }
 }
