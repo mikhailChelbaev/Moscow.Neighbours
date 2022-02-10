@@ -24,6 +24,8 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     
     private let personBuilder: PersonBuilder
     private let routePassingBuilder: RoutePassingBuilder
+    private let accountConfirmationBuilder: AccountConfirmationBuilder
+    private let authorizationBuilder: AuthorizationBuilder
     
     private let mapService: MapService
     private let purchaseService: PurchaseProvider
@@ -37,6 +39,8 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     init(storage: RouteDescriptionStorage) {
         personBuilder = storage.personBuilder
         routePassingBuilder = storage.routePassingBuilder
+        accountConfirmationBuilder = storage.accountConfirmationBuilder
+        authorizationBuilder = storage.authorizationBuilder
         
         mapService = storage.mapService
         purchaseService = storage.purchaseService
@@ -166,13 +170,17 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         case .userNotAuthorized:
             title = "purchase.user_not_authorized_title".localized
             message = "purchase.user_not_authorized_subtitle".localized
-            actions = [UIAlertAction(title: "purchase.authorize".localized, style: .default),
+            actions = [UIAlertAction(title: "purchase.authorize".localized, style: .default) { [weak self] _ in
+                self?.showAuthorizationScreen()
+            },
                        UIAlertAction(title: "common.later".localized, style: .cancel)]
             
         case .userNotVerified:
             title = "purchase.user_not_verified_title".localized
             message = "purchase.user_not_verified_subtitle".localized
-            actions = [UIAlertAction(title: "purchase.verify_account".localized, style: .default),
+            actions = [UIAlertAction(title: "purchase.verify_account".localized, style: .default) { [weak self] _ in
+                self?.showVerificationScreen()
+            },
                        UIAlertAction(title: "common.later".localized, style: .cancel)]
             
         case .unknown, .none:
@@ -182,5 +190,15 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         }
         
         viewController?.showAlert(title: title, message: message, actions: actions)
+    }
+    
+    private func showVerificationScreen() {
+        let controller = accountConfirmationBuilder.buildAccountConfirmationViewController(withChangeAccountButton: false, completion: nil)
+        viewController?.present(controller, state: .top, completion: nil)
+    }
+    
+    private func showAuthorizationScreen() {
+        let controller = authorizationBuilder.buildAuthorizationViewController()
+        viewController?.present(controller, state: .top, completion: nil)
     }
 }

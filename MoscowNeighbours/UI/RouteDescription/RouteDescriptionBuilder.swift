@@ -11,6 +11,8 @@ struct RouteDescriptionStorage {
     let route: Route
     let personBuilder: PersonBuilder
     let routePassingBuilder: RoutePassingBuilder
+    let accountConfirmationBuilder: AccountConfirmationBuilder
+    let authorizationBuilder: AuthorizationBuilder
     let mapService: MapService
     let purchaseService: PurchaseProvider
 }
@@ -31,6 +33,8 @@ extension Builder: RoutesDescriptionBuilder {
         RouteDescriptionStorage(route: route,
                                 personBuilder: self,
                                 routePassingBuilder: self,
+                                accountConfirmationBuilder: self,
+                                authorizationBuilder: self,
                                 mapService: mapService,
                                 purchaseService: purchaseService)
     }

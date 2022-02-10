@@ -88,14 +88,14 @@ class RoutesPresenter: RoutesEventHandler {
                 return copy
             })
             
-            delayManager.completeWithDelay {
-                self.viewController?.state = .success(routes: self.routes)
-                self.viewController?.reloadData()
-            }
-            
         case .failure(let error):
             Logger.log("Failed to fetch products: \(error.localizedDescription)")
-            break
+            routes = routes.filter({ $0.purchase.status != .buy })
+        }
+        
+        delayManager.completeWithDelay {
+            self.viewController?.state = .success(routes: self.routes)
+            self.viewController?.reloadData()
         }
     }
 }
