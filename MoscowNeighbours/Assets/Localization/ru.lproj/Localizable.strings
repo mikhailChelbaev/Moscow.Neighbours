@@ -47,6 +47,9 @@
 "purchase.user_not_verified_subtitle" = "Только пользователи с подтвержденным аккаунтом могут совершать покупки. Это необходимо для сохранения ваших покупок. Подтвердите аккаунт и попробуйте снова.";
 "purchase.verify_account" = "Подтвердить";
 "purchase.purchase_unknown_error_subtitle" = "Не удалось купить маршрут";
+"purchase.free" = "Бесплатно";
+"purchase.buy" = "Купить за %@";
+"purchase.purchased" = "Куплено";
 
 /* Route Passing */
 "route_passing.end_route" = "Завершить маршрут";

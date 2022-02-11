@@ -47,6 +47,9 @@
 "purchase.user_not_verified_subtitle" = "Only users with verified account can buy routes. It is necessary to save your purchases. Verify account and try again.";
 "purchase.verify_account" = "Verify";
 "purchase.purchase_unknown_error_subtitle" = "Failed to buy the route";
+"purchase.free" = "Free";
+"purchase.buy" = "Buy for %@";
+"purchase.purchased" = "Purchased";
 
 /* Route Passing */
 "route_passing.end_route" = "End the route";

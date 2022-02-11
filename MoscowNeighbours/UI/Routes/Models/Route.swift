@@ -36,13 +36,13 @@ extension Route {
     func localizedPriceText() -> String {
         switch purchase.status {
         case .free:
-            return "Free"
+            return "purchase.free".localized
             
         case .buy:
-            return "Buy for \(price ?? "0")"
+            return String(format: "purchase.buy".localized, price ?? "0")// "Buy for \(price ?? "0")"
             
         case .purchased:
-            return "Purchased"
+            return "purchase.purchased".localized //"Purchased"
         }
     }
 }
