@@ -15,6 +15,7 @@ struct RouteDescriptionStorage {
     let authorizationBuilder: AuthorizationBuilder
     let mapService: MapService
     let purchaseService: PurchaseProvider
+    let routePurchaseConfirmationService: RoutePurchaseConfirmationProvider
 }
 
 protocol RoutesDescriptionBuilder {
@@ -36,6 +37,7 @@ extension Builder: RoutesDescriptionBuilder {
                                 accountConfirmationBuilder: self,
                                 authorizationBuilder: self,
                                 mapService: mapService,
-                                purchaseService: purchaseService)
+                                purchaseService: purchaseService,
+                                routePurchaseConfirmationService: RoutePurchaseConfirmationService(api: ApiRequestsFactory.main))
     }
 }

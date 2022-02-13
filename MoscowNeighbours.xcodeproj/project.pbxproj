@@ -148,6 +148,8 @@
 		74967F89276F5A300096AA77 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F88276F5A300096AA77 /* WeakRef.swift */; };
 		7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8C9277C57C700BBCF6A /* MenuItemCell.swift */; };
 		7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */; };
+		749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCC727B8678A00CC4D43 /* MessageResponse.swift */; };
+		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
@@ -354,6 +356,8 @@
 		7498640226C0188300AF4E0E /* point.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = point.gpx; sourceTree = "<group>"; };
 		7499D8C9277C57C700BBCF6A /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdvantagesCell.swift; sourceTree = "<group>"; };
+		749FDCC727B8678A00CC4D43 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
+		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
@@ -915,6 +919,7 @@
 				74967F7D276F55710096AA77 /* NetworkError.swift */,
 				7449251F278AE3E2008BC446 /* ErrorResponse.swift */,
 				74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */,
+				749FDCC727B8678A00CC4D43 /* MessageResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -974,6 +979,14 @@
 			isa = PBXGroup;
 			children = (
 				74E7BF0D27A33644004B6F4E /* EmailService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		749FDCC927B8681300CC4D43 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1048,6 +1061,7 @@
 				74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */,
 				740B53602773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift */,
 				7415479626B0974A006931DC /* Cells */,
+				749FDCC927B8681300CC4D43 /* Services */,
 				744B6EC727750333008BDF37 /* Models */,
 			);
 			path = RouteDescription;
@@ -1309,6 +1323,7 @@
 				74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */,
 				746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */,
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
+				749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */,
 				7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
@@ -1442,6 +1457,7 @@
 				74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RouteViewController.swift in Sources */,
+				749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */,
 				7402661126A76379006242FE /* SceneDelegate.swift in Sources */,
 				74668497279F237A00AFAA2E /* AccountConfirmationPresenter.swift in Sources */,
 				740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */,

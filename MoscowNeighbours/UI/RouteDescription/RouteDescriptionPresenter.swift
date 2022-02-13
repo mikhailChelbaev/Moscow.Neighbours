@@ -29,6 +29,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     
     private let mapService: MapService
     private let purchaseService: PurchaseProvider
+    private let routePurchaseConfirmationService: RoutePurchaseConfirmationProvider
     
     private var route: Route
     
@@ -44,6 +45,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         
         mapService = storage.mapService
         purchaseService = storage.purchaseService
+        routePurchaseConfirmationService = storage.routePurchaseConfirmationService
         
         route = storage.route
         
@@ -123,7 +125,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
                 case .success:
                     route.updatePurchaseStatus(.purchased)
                     self?.reloadRoutesController()
-                    // TODO: - send to server
+                    self?.sendPurchaseConfirmationToServer(routeId: route.id)
                     
                 case .failure(let error):
                     Logger.log("Failed to complete the purchase: \(error.localizedDescription)")
@@ -143,6 +145,12 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private func reloadRoutesController() {
         if let presentingController = viewController?.presentingViewController as? RouteViewController {
             presentingController.reloadData()
+        }
+    }
+    
+    private func sendPurchaseConfirmationToServer(routeId: String) {
+        Task.detached { [self] in
+            try? await routePurchaseConfirmationService.confirmRoutePurchase(routeId: routeId)
         }
     }
     

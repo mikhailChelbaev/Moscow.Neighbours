@@ -13,6 +13,7 @@ final class RouteViewModel {
         return DefaultMarkdownParser(configurator: config, withCache: false)
     }()
     
+    let id: String
     let name: String
     var description: NSAttributedString
     let coverUrl: String?
@@ -27,6 +28,7 @@ final class RouteViewModel {
     init(from route: Route) {
         self.route = route
         
+        id = route.id
         name = route.name
         description = NSAttributedString()
         coverUrl = route.coverUrl
