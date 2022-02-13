@@ -28,7 +28,7 @@ extension Builder: AccountConfirmationBuilder {
     }
     
     private func buildStorage(completion: Action?) -> AccountConfirmationStorage {
-        return AccountConfirmationStorage(accountConfirmationService: AccountConfirmationService(api: ApiRequestsFactory.main),
+        return AccountConfirmationStorage(accountConfirmationService: AccountConfirmationService(api: api),
                                           userService: userService,
                                           jwtService: jwtService,
                                           successfulConfirmationCompletion: completion)

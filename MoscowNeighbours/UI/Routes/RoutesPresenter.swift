@@ -20,6 +20,7 @@ class RoutesPresenter: RoutesEventHandler {
     
     private var routesService: RoutesProvider
     private var purchaseService: PurchaseProvider
+    private var userService: UserProvider
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
     private let delayManager: DelayManager
@@ -33,25 +34,19 @@ class RoutesPresenter: RoutesEventHandler {
         
         routesService = storage.routesService
         purchaseService = storage.purchaseService
+        userService = storage.userService
         routesDescriptionBuilder = storage.routesDescriptionBuilder
         
         delayManager = DefaultDelayManager(minimumDuration: 1.0)
+        
+        routesService.register(WeakRef(self))
+        userService.register(WeakRef(self))
     }
     
     // MARK: - RoutesEventHandler methods
     
     func onFetchData() {
-        delayManager.start()
-        Task {
-            do {
-                let routes = try await routesService.fetchRoutes()
-                await handleRoutes(routes)
-            }
-            catch {
-                Logger.log("Failed to load routes: \(error.localizedDescription)")
-                await handlerError(error)
-            }
-        }
+        fetchRoutes()
     }
     
     func onRouteCellTap(route: Route) {
@@ -61,7 +56,10 @@ class RoutesPresenter: RoutesEventHandler {
     
     // MARK: - Helpers
     
-    @MainActor
+    private func fetchRoutes() {
+        routesService.fetchRoutes()
+    }
+    
     func handleRoutes(_ model: [Route]) {
         routes = model
         let productIdentifiers = model.compactMap(\.purchase.productId)
@@ -71,7 +69,6 @@ class RoutesPresenter: RoutesEventHandler {
         }
     }
     
-    @MainActor
     func handlerError(_ error: Error) {
         delayManager.completeWithDelay {
             self.viewController?.state = .error
@@ -97,5 +94,30 @@ class RoutesPresenter: RoutesEventHandler {
             self.viewController?.state = .success(routes: self.routes)
             self.viewController?.reloadData()
         }
+    }
+}
+
+// MARK: - protocol RouteServiceDelegate
+
+extension RoutesPresenter: RouteServiceDelegate {
+    func didStartFetchingRoutes() {
+        viewController?.status = .loading
+        delayManager.start()
+    }
+    
+    func didFetchRoutes(_ routes: [Route]) {
+        handleRoutes(routes)
+    }
+    
+    func didFailWhileRoutesFetch(error: NetworkError) {
+        handlerError(error)
+    }
+}
+
+// MARK: - protocol UserServiceDelegate
+
+extension RoutesPresenter: UserServiceDelegate {
+    func didChangeUserModel(service: UserService) {
+        fetchRoutes()
     }
 }

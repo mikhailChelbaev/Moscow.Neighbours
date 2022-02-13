@@ -76,8 +76,6 @@
 		745775702797366D00123208 /* ObservableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7457756F2797366D00123208 /* ObservableNetworkService.swift */; };
 		7457757227973E1300123208 /* DelayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7457757127973E1300123208 /* DelayManager.swift */; };
 		74577574279747BA00123208 /* ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74577573279747BA00123208 /* ErrorDelegate.swift */; };
-		745FB8B127B1AD9700D471CC /* routes.json in Resources */ = {isa = PBXBuildFile; fileRef = 745FB8B027B1AD9700D471CC /* routes.json */; };
-		745FB8B327B1ADDE00D471CC /* RoutesMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745FB8B227B1ADDE00D471CC /* RoutesMockService.swift */; };
 		745FB8B527B1C01400D471CC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745FB8B427B1C01400D471CC /* StoreKit.framework */; };
 		746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D526AC549400CCCB71 /* UITableView+Reuse.swift */; };
 		746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */; };
@@ -151,6 +149,9 @@
 		749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCC727B8678A00CC4D43 /* MessageResponse.swift */; };
 		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
+		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
+		74A4B8E627B9A71200153A05 /* RoutesServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E527B9A71200153A05 /* RoutesServiceDelegate.swift */; };
+		74A4B8E827B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E727B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift */; };
 		74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -286,8 +287,6 @@
 		7457756F2797366D00123208 /* ObservableNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableNetworkService.swift; sourceTree = "<group>"; };
 		7457757127973E1300123208 /* DelayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayManager.swift; sourceTree = "<group>"; };
 		74577573279747BA00123208 /* ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDelegate.swift; sourceTree = "<group>"; };
-		745FB8B027B1AD9700D471CC /* routes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = routes.json; sourceTree = "<group>"; };
-		745FB8B227B1ADDE00D471CC /* RoutesMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesMockService.swift; sourceTree = "<group>"; };
 		745FB8B427B1C01400D471CC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		746192D526AC549400CCCB71 /* UITableView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reuse.swift"; sourceTree = "<group>"; };
 		746192D726AC54A800CCCB71 /* UICollectionView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reuse.swift"; sourceTree = "<group>"; };
@@ -359,6 +358,9 @@
 		749FDCC727B8678A00CC4D43 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
+		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
+		74A4B8E527B9A71200153A05 /* RoutesServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesServiceDelegate.swift; sourceTree = "<group>"; };
+		74A4B8E727B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+RoutesServiceDelegate.swift"; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -853,7 +855,6 @@
 				74967F81276F57A20096AA77 /* RoutesPresenter.swift */,
 				740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */,
 				7415479726B09754006931DC /* Cells */,
-				74967F83276F57A90096AA77 /* Services */,
 				74967F84276F57B60096AA77 /* Models */,
 			);
 			path = Routes;
@@ -897,6 +898,7 @@
 			isa = PBXGroup;
 			children = (
 				74159E5027ADBC07007E7118 /* UserService */,
+				74967F83276F57A90096AA77 /* RoutesServices */,
 				74E7C39C2783081A00B16392 /* JWTService.swift */,
 			);
 			path = GlobalServices;
@@ -924,14 +926,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		74967F83276F57A90096AA77 /* Services */ = {
+		74967F83276F57A90096AA77 /* RoutesServices */ = {
 			isa = PBXGroup;
 			children = (
+				74A4B8E327B9A70200153A05 /* RoutesProvider.swift */,
+				74A4B8E527B9A71200153A05 /* RoutesServiceDelegate.swift */,
+				74A4B8E727B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift */,
 				74967F7F276F55A40096AA77 /* RoutesService.swift */,
-				745FB8B227B1ADDE00D471CC /* RoutesMockService.swift */,
-				745FB8B027B1AD9700D471CC /* routes.json */,
 			);
-			path = Services;
+			path = RoutesServices;
 			sourceTree = "<group>";
 		};
 		74967F84276F57B60096AA77 /* Models */ = {
@@ -1246,7 +1249,6 @@
 				74346FB526F3E0B70060357A /* helveticaneuecyr-bold.ttf in Resources */,
 				7437B1DE278613A70020AABE /* Localizable.strings in Resources */,
 				74346FB826F3E24D0060357A /* helveticaneuecyr-medium.ttf in Resources */,
-				745FB8B127B1AD9700D471CC /* routes.json in Resources */,
 				7402661B26A7637A006242FE /* LaunchScreen.storyboard in Resources */,
 				7402661826A7637A006242FE /* Assets.xcassets in Resources */,
 				74834C0F2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf in Resources */,
@@ -1325,6 +1327,7 @@
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
 				749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */,
 				7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */,
+				74A4B8E627B9A71200153A05 /* RoutesServiceDelegate.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
 				7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */,
@@ -1384,8 +1387,10 @@
 				7457756E279732F300123208 /* AchievementsBuilder.swift in Sources */,
 				744CC9F1278A0D2C00D2CB2F /* AccountAchievementsCell.swift in Sources */,
 				7457756A279732E300123208 /* AchievementsViewController.swift in Sources */,
+				74A4B8E827B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift in Sources */,
 				74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */,
 				74FFB59926EFE9190060D948 /* InfoView.swift in Sources */,
+				74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */,
 				747A0E5E26FE2AB700EB1973 /* RoutePointCell.swift in Sources */,
 				746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */,
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
@@ -1447,7 +1452,6 @@
 				74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */,
 				74F739FE272B50DE007C5450 /* BaseTableView.swift in Sources */,
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
-				745FB8B327B1ADDE00D471CC /* RoutesMockService.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,
 				743C3AC7277D04F100D4CB1C /* AuthorizationType.swift in Sources */,
 				74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */,

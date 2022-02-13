@@ -87,6 +87,9 @@ final class UserService: BaseNetworkService, UserProvider {
     func storeCurrentUser(_ model: UserModel?) {
         currentUser = model
         cache.store(data: model, key: StorageKeys.currentUser.rawValue)
+        DispatchQueue.main.async { [self] in
+            observers.forEach({ $0.value.didChangeUserModel(service: self) })
+        }
     }
     
 }

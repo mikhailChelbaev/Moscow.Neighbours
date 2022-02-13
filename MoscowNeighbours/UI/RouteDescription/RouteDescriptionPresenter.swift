@@ -30,10 +30,9 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private let mapService: MapService
     private let purchaseService: PurchaseProvider
     private let routePurchaseConfirmationService: RoutePurchaseConfirmationProvider
+    private var routesService: RoutesProvider
     
     private var route: Route
-    
-    private let delayManager: DelayManager
     
     // MARK: - Init
     
@@ -46,31 +45,18 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         mapService = storage.mapService
         purchaseService = storage.purchaseService
         routePurchaseConfirmationService = storage.routePurchaseConfirmationService
+        routesService = storage.routesService
         
         route = storage.route
         
-        delayManager = DefaultDelayManager(minimumDuration: 1.0)
+        routesService.register(WeakRef(self))
     }
     
     // MARK: - RouteDescriptionEventHandler methods
     
     func onViewDidLoad() {
         viewController?.status = .loading
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            let routeViewModel = RouteViewModel(from: self.route)
-            DispatchQueue.main.async {
-                self.setRoute(routeViewModel)
-                self.mapService.showRoute(routeViewModel)
-            }
-        }
-    }
-    
-    private func setRoute(_ route: RouteViewModel) {
-        delayManager.completeWithDelay {
-            self.viewController?.route = route
-            self.viewController?.status = .success
-        }
+        updateRouteViewModel()
     }
     
     func onTraitCollectionDidChange(route: RouteViewModel?) {
@@ -82,15 +68,10 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         DispatchQueue.global(qos: .userInitiated).async {
             route.update()
             DispatchQueue.main.async {
-                self.setUpdatedRoute(route)
+                self.setRoute(route)
                 self.mapService.showRoute(route)
             }
         }
-    }
-    
-    private func setUpdatedRoute(_ route: RouteViewModel?) {
-        viewController?.route = route
-        viewController?.status = .success
     }
     
     func onBackButtonTap() {
@@ -140,6 +121,23 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
             let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
             viewController?.present(controller, state: .middle, completion: nil)
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func updateRouteViewModel() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let routeViewModel = RouteViewModel(from: self.route)
+            DispatchQueue.main.async {
+                self.setRoute(routeViewModel)
+                self.mapService.showRoute(routeViewModel)
+            }
+        }
+    }
+    
+    private func setRoute(_ route: RouteViewModel) {
+        viewController?.route = route
+        viewController?.status = .success
     }
     
     private func reloadRoutesController() {
@@ -208,5 +206,26 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private func showAuthorizationScreen() {
         let controller = authorizationBuilder.buildAuthorizationViewController()
         viewController?.present(controller, state: .top, completion: nil)
+    }
+}
+
+// MARK: - protocol RouteServiceDelegate
+
+extension RouteDescriptionPresenter: RouteServiceDelegate {
+    func didStartFetchingRoutes() {
+        viewController?.status = .loading
+    }
+    
+    func didFetchRoutes(_ routes: [Route]) {
+        if let newRoute = routes.first(where: { $0.id == self.route.id }) {
+            self.route = newRoute
+            updateRouteViewModel()
+        } else {
+            viewController?.status = .success   
+        }
+    }
+    
+    func didFailWhileRoutesFetch(error: NetworkError) {
+        viewController?.status = .success
     }
 }

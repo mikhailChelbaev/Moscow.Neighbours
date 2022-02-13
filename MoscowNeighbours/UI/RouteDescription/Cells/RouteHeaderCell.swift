@@ -18,6 +18,8 @@ final class RouteHeaderCell: EntityHeaderCell {
         return button
     }()
     
+    private var buttonWidthConstraint: NSLayoutConstraint?
+    
     override func configureView() {
         super.configureView()
         
@@ -56,6 +58,8 @@ final class RouteHeaderCell: EntityHeaderCell {
         button.action = {
             buttonTapped?()
         }
+        
+        buttonWidthConstraint?.isActive = false
     }
     
     func showButtonLoader() {
@@ -71,7 +75,9 @@ final class RouteHeaderCell: EntityHeaderCell {
         button.addSubview(activityIndicator)
         activityIndicator.placeInCenter()
         
-        button.width(width)
+        buttonWidthConstraint?.isActive = false
+        buttonWidthConstraint = button.width(width)
+        buttonWidthConstraint?.isActive = true
     }
     
 }

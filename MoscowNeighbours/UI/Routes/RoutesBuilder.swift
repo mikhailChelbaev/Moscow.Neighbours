@@ -10,6 +10,7 @@ import Foundation
 struct RoutesStorage {
     let routesService: RoutesProvider
     let purchaseService: PurchaseProvider
+    let userService: UserProvider
     let routesDescriptionBuilder: RoutesDescriptionBuilder
 }
 
@@ -26,8 +27,9 @@ extension Builder: RoutesBuilder {
     }
     
     private func makeStorage() -> RoutesStorage {
-        return RoutesStorage(routesService: RoutesService(api: requestsFactory),
+        return RoutesStorage(routesService: routesService,
                              purchaseService: purchaseService,
+                             userService: userService,
                              routesDescriptionBuilder: self)
     }    
 }

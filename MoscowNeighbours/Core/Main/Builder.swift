@@ -8,9 +8,10 @@
 import Foundation
 
 class Builder {
-    let requestsFactory: ApiRequestsFactory
+    let api: ApiRequestsFactory
     
     let locationService: LocationService
+    let routesService: RoutesProvider
     let mapService: MapService
     let routePassingService: RoutePassingService
     let jwtService: JWTService
@@ -18,9 +19,10 @@ class Builder {
     let purchaseService: PurchaseProvider
     
     init() {
-        requestsFactory = ApiRequestsFactory.main
+        api = ApiRequestsFactory.main
         
         locationService = .init()
+        routesService = RoutesService(api: api)
         mapService = .init(routeFinder: NearestCoordinatesFinder(),
                            locationService: locationService)
         routePassingService = .init(locationService: locationService,

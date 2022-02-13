@@ -12,13 +12,13 @@ enum RouteDataState {
     case error
 }
 
-protocol RouteView: BottomSheetViewController {
+protocol RouteView: BottomSheetViewController, LoadingStatusProvider {
     var state: RouteDataState? { set get }
     
     func reloadData()
 }
 
-final class RouteViewController: BottomSheetViewController, LoadingStatusProvider, RouteView {
+final class RouteViewController: BottomSheetViewController, RouteView {
     
     // MARK: - Sections
     
@@ -75,7 +75,6 @@ final class RouteViewController: BottomSheetViewController, LoadingStatusProvide
     }
     
     func fetchData() {
-        status = .loading
         eventHandler.onFetchData()
     }
     

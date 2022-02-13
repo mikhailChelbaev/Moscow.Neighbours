@@ -20,7 +20,7 @@ protocol AuthorizationBuilder {
 
 extension Builder: AuthorizationBuilder {
     func buildAuthorizationViewController() -> AuthorizationViewController {
-        let storage = AuthorizationStorage(authorizationService: AuthorizationService(api: requestsFactory),
+        let storage = AuthorizationStorage(authorizationService: AuthorizationService(api: api),
                                            jwtService: jwtService,
                                            userService: userService,
                                            accountConfirmationBuilder: self)
