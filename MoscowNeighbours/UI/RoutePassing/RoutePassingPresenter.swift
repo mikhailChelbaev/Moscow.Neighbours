@@ -15,6 +15,7 @@ enum PersonState {
 
 protocol RoutePassingEventHandler {
     func getRoute() -> RouteViewModel
+    func onViewDidAppear()
     func onEndRouteButtonTap()
     func onArrowUpButtonTap()
     func onBecomeAcquaintedButtonTap(_ personInfo: PersonViewModel)
@@ -59,6 +60,13 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     func getRoute() -> RouteViewModel {
         return route
+    }
+    
+    func onViewDidAppear() {
+        guard route.persons.count > 0 else {
+            return
+        }
+        mapService.centerAnnotation(route.persons[0])
     }
     
     func onEndRouteButtonTap() {

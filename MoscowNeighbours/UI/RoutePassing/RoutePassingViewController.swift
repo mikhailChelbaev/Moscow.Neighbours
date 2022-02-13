@@ -76,6 +76,11 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
         reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        eventHandler.onViewDidAppear()
+    }
+    
     func reloadData() {
         tableView.reloadData()
     }
