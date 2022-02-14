@@ -12,7 +12,7 @@ protocol MapServiceOutput {
     func showAnnotations(_ annotations: [MKAnnotation])
     func removeAnnotations(_ annotations: [MKAnnotation])
     
-    @MainActor func addOverlays(_ overlays: [MKOverlay])
+    func addOverlays(_ overlays: [MKOverlay])
     func removeOverlays(_ overlays: [MKOverlay])
     
     func selectAnnotation(_ annotation: MKAnnotation)
@@ -22,7 +22,7 @@ protocol MapServiceOutput {
     func didSelectAnnotation(_ view: MKAnnotationView)
 }
 
-class MapService: ObservableService {
+final class MapService: ObservableService {
     
     private let routeFinder: RouteFinder
     private let locationService: LocationService
@@ -30,7 +30,22 @@ class MapService: ObservableService {
     private var annotations: [MKAnnotation] = []
     private var overlays: [MKOverlay] = []
     
-    private var isRouteVisible: Bool = false
+    private let lock: NSLock = .init()
+    private var _isRouteVisible: Bool = false
+    private var isRouteVisible: Bool {
+        set {
+            lock.lock()
+            _isRouteVisible = newValue
+            lock.unlock()
+        }
+        get {
+            var value: Bool
+            lock.lock()
+            value = _isRouteVisible
+            lock.unlock()
+            return value
+        }
+    }
     
     var observers: [String : MapServiceOutput] = [:]
     
@@ -40,30 +55,34 @@ class MapService: ObservableService {
         self.locationService = locationService
     }
     
-    func showRoute(_ route: RouteViewModel) {
+    func showRoute(_ route: RouteViewModel, task: inout Task<Void, Never>?) {
         isRouteVisible = true
         
-        // clear map
-        for observer in observers {
-            observer.value.removeAnnotations(annotations)
-            observer.value.removeOverlays(overlays)
-        }
-        // add annotations
-        annotations = route.persons
-        observers.forEach({ $1.showAnnotations(annotations) })
-        // draw route overlay
-        Task.detached { [weak self] in
-            guard let self = self else { return }
+        task = Task(priority: .userInitiated) {
             var overlays: [MKOverlay] = []
-            overlays = await self.getOverlays(annotations: self.annotations)
+            overlays = await getOverlays(annotations: annotations)
             
             // check that route was not hidden
-            guard self.isRouteVisible else { return }
+            guard isRouteVisible else { return }
             
-            for observer in self.observers {
-                await observer.value.addOverlays(overlays)
+            DispatchQueue.main.async { [self] in
+                // clear map
+                for observer in observers {
+                    observer.value.removeAnnotations(annotations)
+                    observer.value.removeOverlays(self.overlays)
+                }
             }
+            
             self.overlays = overlays
+                
+            DispatchQueue.main.async { [self] in
+                // add annotations
+                annotations = route.persons
+                observers.forEach({ $1.showAnnotations(annotations) })
+                
+                // draw route overlay
+                observers.forEach({ $1.addOverlays(self.overlays) })
+            }
         }
     }
     

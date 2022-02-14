@@ -10,6 +10,7 @@ import UIKit
 
 protocol RouteDescriptionEventHandler: AnyObject {
     func onViewDidLoad()
+    func onViewWillDisappear()
     func onTraitCollectionDidChange(route: RouteViewModel?)
     func onBackButtonTap()
     func onPersonCellTap(person: PersonViewModel)
@@ -33,6 +34,8 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private var routesService: RoutesProvider
     
     private var route: Route
+    private var showRouteTask: Task<Void, Never>?
+    private var isControllerVisible: Bool = true
     
     // MARK: - Init
     
@@ -59,6 +62,11 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         updateRouteViewModel()
     }
     
+    func onViewWillDisappear() {
+        isControllerVisible = false
+        showRouteTask?.cancel()
+    }
+    
     func onTraitCollectionDidChange(route: RouteViewModel?) {
         guard let route = route else {
             return
@@ -67,9 +75,11 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         viewController?.status = .loading
         DispatchQueue.global(qos: .userInitiated).async {
             route.update()
-            DispatchQueue.main.async {
-                self.setRoute(route)
-                self.mapService.showRoute(route)
+            DispatchQueue.main.async { [self] in
+                if isControllerVisible {
+                    setRoute(route)
+                    mapService.showRoute(route, task: &showRouteTask)
+                }
             }
         }
     }
@@ -128,9 +138,11 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     private func updateRouteViewModel() {
         DispatchQueue.global(qos: .userInitiated).async {
             let routeViewModel = RouteViewModel(from: self.route)
-            DispatchQueue.main.async {
-                self.setRoute(routeViewModel)
-                self.mapService.showRoute(routeViewModel)
+            DispatchQueue.main.async { [self] in
+                if isControllerVisible {
+                    setRoute(routeViewModel)
+                    mapService.showRoute(routeViewModel, task: &showRouteTask)
+                }
             }
         }
     }
@@ -147,7 +159,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     }
     
     private func sendPurchaseConfirmationToServer(routeId: String) {
-        Task.detached { [self] in
+        Task {
             try? await routePurchaseConfirmationService.confirmRoutePurchase(routeId: routeId)
         }
     }
