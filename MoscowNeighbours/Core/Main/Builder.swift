@@ -11,18 +11,17 @@ class Builder {
     let api: ApiRequestsFactory
     
     let locationService: LocationService
+    let purchaseService: PurchaseProvider
     let routesService: RoutesProvider
     let mapService: MapService
     let routePassingService: RoutePassingService
     let jwtService: JWTService
     let userService: UserProvider
-    let purchaseService: PurchaseProvider
     
     init() {
         api = ApiRequestsFactory.main
         
         locationService = .init()
-        routesService = RoutesService(api: api)
         mapService = .init(routeFinder: NearestCoordinatesFinder(),
                            locationService: locationService)
         routePassingService = .init(locationService: locationService,
@@ -30,5 +29,6 @@ class Builder {
         jwtService = JWTService.main
         userService = UserService.shared
         purchaseService = PurchaseService(userService: userService)
+        routesService = RoutesService(api: api, purchaseService: purchaseService)
     }
 }

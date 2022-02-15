@@ -104,11 +104,6 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
         eventHandler.onViewDidLoad()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        eventHandler.onViewWillDisappear()
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         backButton.updateShadowPath()

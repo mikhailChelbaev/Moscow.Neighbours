@@ -25,13 +25,9 @@ class RoutesPresenter: RoutesEventHandler {
     
     private let delayManager: DelayManager
     
-    private var routes: [Route]
-    
     // MARK: - Init
     
     init(storage: RoutesStorage) {
-        routes = []
-        
         routesService = storage.routesService
         purchaseService = storage.purchaseService
         userService = storage.userService
@@ -60,38 +56,9 @@ class RoutesPresenter: RoutesEventHandler {
         routesService.fetchRoutes()
     }
     
-    func handleRoutes(_ model: [Route]) {
-        routes = model
-        let productIdentifiers = model.compactMap(\.purchase.productId)
-        
-        purchaseService.fetchProducts(productIds: Set(productIdentifiers)) { [weak self] response in
-            self?.handleFetchedProducts(response)
-        }
-    }
-    
     func handlerError(_ error: Error) {
         delayManager.completeWithDelay {
             self.viewController?.state = .error
-            self.viewController?.reloadData()
-        }
-    }
-    
-    func handleFetchedProducts(_ response: RequestProductsResult) {
-        switch response {
-        case .success(let products):
-            routes = routes.map({ route in
-                let copy = route
-                copy.price = products.first?.localizedPrice ?? ""
-                return copy
-            })
-            
-        case .failure(let error):
-            Logger.log("Failed to fetch products: \(error.localizedDescription)")
-            routes = routes.filter({ $0.purchase.status != .buy })
-        }
-        
-        delayManager.completeWithDelay {
-            self.viewController?.state = .success(routes: self.routes)
             self.viewController?.reloadData()
         }
     }
@@ -106,7 +73,10 @@ extension RoutesPresenter: RouteServiceDelegate {
     }
     
     func didFetchRoutes(_ routes: [Route]) {
-        handleRoutes(routes)
+        delayManager.completeWithDelay { [self] in
+            viewController?.state = .success(routes: routes)
+            viewController?.reloadData()
+        }
     }
     
     func didFailWhileRoutesFetch(error: NetworkError) {
