@@ -20,7 +20,7 @@ class RoutesPresenter: RoutesEventHandler {
     
     private var routesService: RoutesProvider
     private var purchaseService: PurchaseProvider
-    private var userService: UserProvider
+    private var userState: UserState
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
     private let delayManager: DelayManager
@@ -30,13 +30,13 @@ class RoutesPresenter: RoutesEventHandler {
     init(storage: RoutesStorage) {
         routesService = storage.routesService
         purchaseService = storage.purchaseService
-        userService = storage.userService
+        userState = storage.userState
         routesDescriptionBuilder = storage.routesDescriptionBuilder
         
         delayManager = DefaultDelayManager(minimumDuration: 1.0)
         
         routesService.register(WeakRef(self))
-        userService.register(WeakRef(self))
+        userState.register(WeakRef(self))
     }
     
     // MARK: - RoutesEventHandler methods
@@ -86,8 +86,10 @@ extension RoutesPresenter: RouteServiceDelegate {
 
 // MARK: - protocol UserServiceDelegate
 
-extension RoutesPresenter: UserServiceDelegate {
-    func didChangeUserModel(service: UserService) {
-        fetchRoutes()
+extension RoutesPresenter: UserStateDelegate {
+    func didChangeUserModel(state: UserState) {
+        DispatchQueue.main.async { [self] in
+            fetchRoutes()
+        }
     }
 }

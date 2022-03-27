@@ -98,7 +98,12 @@ final class JWTService: ObservableService {
               let expiresAt = jwt.expiresAt else { return true }
         return expiresAt < Date().addingTimeInterval(expireTimeTolerance)
     }
-    
+}
+
+extension JWTService: Logoutable {
+    func logout() {
+        updateToken(nil)
+    }
 }
 
 extension ApiRequestsFactory {

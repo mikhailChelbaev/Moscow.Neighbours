@@ -16,10 +16,10 @@ final class PurchaseService: NSObject, PurchaseProvider {
     private var productsRequestCallbacks: [RequestProductsCompletion] = []
     private var productPurchaseCallback: ((PurchaseProductResult) -> Void)?
     
-    private let userService: UserProvider
+    private let userState: UserState
     
-    init(userService: UserProvider) {
-        self.userService = userService
+    init(userState: UserState) {
+        self.userState = userState
         super.init()
         
         // add self as transaction observer
@@ -42,12 +42,12 @@ final class PurchaseService: NSObject, PurchaseProvider {
     }
     
     func purchaseProduct(productId: String, completion: @escaping PurchaseProductCompletion) {
-        guard userService.isAuthorized else {
+        guard userState.isAuthorized else {
             completion(.failure(PurchasesError.userNotAuthorized))
             return
         }
         
-        guard userService.currentUser?.isVerified ?? false else {
+        guard userState.currentUser?.isVerified ?? false else {
             completion(.failure(PurchasesError.userNotVerified))
             return
         }

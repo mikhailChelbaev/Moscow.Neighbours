@@ -36,7 +36,7 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
                 
             case .failure(let error):
                 Logger.log("Failed to load routes: \(error.localizedDescription)")
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { 
                     observers.forEach({ $0.value.didFailWhileRoutesFetch(error: error) })
                 }
             }

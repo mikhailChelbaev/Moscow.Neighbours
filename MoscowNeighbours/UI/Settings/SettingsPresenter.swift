@@ -25,23 +25,23 @@ class SettingsPresenter: SettingsEventHandler {
     
     weak var viewController: SettingsView?
     
-    private var userService: UserProvider
+    private var userState: UserState
     private let mailService: EmailProvider
     
     var isUserAuthorized: Bool {
-        return userService.isAuthorized
+        return userState.isAuthorized
     }
     var isPushNotificationsEnabled: Bool {
-        return userService.isPushNotificationsEnabled
+        return userState.isPushNotificationsEnabled
     }
     var isEmailNotificationsEnabled: Bool {
-        return userService.isEmailNotificationsEnabled
+        return userState.isEmailNotificationsEnabled
     }
     
     // MARK: - Init
     
     init(storage: SettingsStorage) {
-        userService = storage.userService
+        userState = storage.userState
         mailService = storage.mailService
     }
     
@@ -59,11 +59,11 @@ class SettingsPresenter: SettingsEventHandler {
     }
     
     func onPushNotificationsValueChange(_ newValue: Bool) {
-        userService.isPushNotificationsEnabled = newValue
+        userState.isPushNotificationsEnabled = newValue
     }
     
     func onEmailNotificationsValueChange(_ newValue: Bool) {
-        userService.isEmailNotificationsEnabled = newValue
+        userState.isEmailNotificationsEnabled = newValue
     }
     
     func onFeedbackCellTap() {

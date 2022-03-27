@@ -8,7 +8,8 @@
 import Foundation
 
 struct ProfileStorage {
-    let userService: UserProvider
+    let userState: UserState
+    let logoutManager: LogoutManager
 }
 
 protocol ProfileBuilder {
@@ -17,7 +18,8 @@ protocol ProfileBuilder {
 
 extension Builder: ProfileBuilder {
     func buildProfileViewController() -> ProfileViewController {
-        let storage = ProfileStorage(userService: userService)
+        let storage = ProfileStorage(userState: userState,
+                                     logoutManager: logoutManager)
         let presenter = ProfilePresenter(storage: storage)
         let viewController = ProfileViewController(eventHandler: presenter)
         presenter.viewController = viewController

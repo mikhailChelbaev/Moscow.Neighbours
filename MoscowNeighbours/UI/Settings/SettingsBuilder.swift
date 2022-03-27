@@ -8,7 +8,7 @@
 import Foundation
 
 struct SettingsStorage {
-    let userService: UserProvider
+    let userState: UserState
     let mailService: EmailProvider
 }
 
@@ -18,7 +18,7 @@ protocol SettingsBuilder {
 
 extension Builder: SettingsBuilder {
     func buildSettingsViewController() -> SettingsViewController {
-        let storage = SettingsStorage(userService: userService,
+        let storage = SettingsStorage(userState: userState,
                                       mailService: EmailService())
         let presenter = SettingsPresenter(storage: storage)
         let viewController = SettingsViewController(eventHandler: presenter)

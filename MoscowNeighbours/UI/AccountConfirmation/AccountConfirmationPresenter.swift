@@ -26,6 +26,8 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
     private let accountConfirmationService: AccountConfirmationProvider
     private let userService: UserProvider
     private let jwtService: JWTService
+    private let userState: UserState
+    private let logoutManager: LogoutManager
     
     private var viewData: AccountConfirmationViewData
     
@@ -40,6 +42,8 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
         accountConfirmationService = storage.accountConfirmationService
         userService = storage.userService
         jwtService = storage.jwtService
+        userState = storage.userState
+        logoutManager = storage.logoutManager
         
         successfulConfirmationCompletion = storage.successfulConfirmationCompletion
     }
@@ -63,7 +67,7 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
     func onConfirmButtonTap() {
         Task {
             do {
-                let token = try await accountConfirmationService.confirmAccount(data: .init(email: userService.currentUser?.email ?? "", code: viewData.code ?? ""))
+                let token = try await accountConfirmationService.confirmAccount(data: .init(email: userState.currentUser?.email ?? "", code: viewData.code ?? ""))
                 
                 // update token and fetch user
                 jwtService.updateToken(token)
@@ -75,14 +79,15 @@ class AccountConfirmationPresenter: AccountConfirmationEventHandler {
     }
     
     func onChangeAccountButtonTap() {
-        userService.logout()
+        logoutManager.logout()
         viewController?.closeController(animated: true, completion: nil)
     }
     
     private func fetchUser() {
         Task {
             do {
-                try await userService.fetchUser()
+                let user = try await userService.fetchUser()
+                userState.currentUser = user
                 await viewController?.closeController(animated: true, completion: { [weak self] in
                     self?.successfulConfirmationCompletion?()
                 })

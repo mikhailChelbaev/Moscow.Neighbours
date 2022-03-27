@@ -19,18 +19,20 @@ class ProfilePresenter: ProfileEventHandler {
     
     weak var viewController: ProfileView?
     
-    private let userService: UserProvider
+    private let userState: UserState
+    private let logoutManager: LogoutManager
     
     // MARK: - Init
     
     init(storage: ProfileStorage) {
-        userService = storage.userService
+        userState = storage.userState
+        logoutManager = storage.logoutManager
     }
     
     // MARK: - ProfileEventHandler
     
     func onLoadData() {
-        viewController?.userModel = userService.currentUser
+        viewController?.userModel = userState.currentUser
     }
     
     func onBackButtonTap() {
@@ -43,11 +45,8 @@ class ProfilePresenter: ProfileEventHandler {
                                                 message: "profile.exit_message".localized,
                                                 preferredStyle: .alert)
         let yes = UIAlertAction(title: "common.yes".localized, style: .default, handler: { [weak self] _ in
-            // logout
-            self?.userService.logout()
-            // reload presenting controller
+            self?.logoutManager.logout()
             presentingController?.reloadData()
-            // close controller
             self?.viewController?.closeController(animated: true, completion: nil)
         })
         let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)

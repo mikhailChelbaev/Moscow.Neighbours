@@ -10,6 +10,7 @@ import Foundation
 struct AuthorizationStorage {
     let authorizationService: AuthorizationService
     let jwtService: JWTService
+    let userState: UserState
     let userService: UserProvider
     let accountConfirmationBuilder: AccountConfirmationBuilder
 }
@@ -22,6 +23,7 @@ extension Builder: AuthorizationBuilder {
     func buildAuthorizationViewController() -> AuthorizationViewController {
         let storage = AuthorizationStorage(authorizationService: AuthorizationService(api: api),
                                            jwtService: jwtService,
+                                           userState: userState,
                                            userService: userService,
                                            accountConfirmationBuilder: self)
         let presenter = AuthorizationPresenter(storage: storage)

@@ -11,6 +11,8 @@ struct AccountConfirmationStorage {
     let accountConfirmationService: AccountConfirmationProvider
     let userService: UserProvider
     let jwtService: JWTService
+    let userState: UserState
+    let logoutManager: LogoutManager
     let successfulConfirmationCompletion: Action?
 }
 
@@ -31,6 +33,8 @@ extension Builder: AccountConfirmationBuilder {
         return AccountConfirmationStorage(accountConfirmationService: AccountConfirmationService(api: api),
                                           userService: userService,
                                           jwtService: jwtService,
+                                          userState: userState,
+                                          logoutManager: logoutManager,
                                           successfulConfirmationCompletion: completion)
     }
 }

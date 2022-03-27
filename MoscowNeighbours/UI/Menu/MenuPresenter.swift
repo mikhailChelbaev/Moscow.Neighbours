@@ -34,19 +34,20 @@ class MenuPresenter: MenuEventHandler {
     private let achievementsBuilder: AchievementsBuilder
     private let accountConfirmationBuilder: AccountConfirmationBuilder
     
-    private let userService: UserProvider
+    private let userState: UserState
+    private let logoutManager: LogoutManager
     
     var isUserAuthorized: Bool {
-        userService.isAuthorized
+        userState.isAuthorized
     }
     var username: String? {
-        userService.currentUser?.name
+        userState.currentUser?.name
     }
     var email: String? {
-        userService.currentUser?.email
+        userState.currentUser?.email
     }
     var isUserVerified: Bool {
-        userService.currentUser?.isVerified ?? false
+        userState.currentUser?.isVerified ?? false
     }
     
     // MARK: - Init
@@ -58,7 +59,8 @@ class MenuPresenter: MenuEventHandler {
         achievementsBuilder = storage.achievementsBuilder
         accountConfirmationBuilder = storage.accountConfirmationBuilder
         
-        userService = storage.userService
+        userState = storage.userState
+        logoutManager = storage.logoutManager
     }
     
     // MARK: - MenuEventHandler
@@ -98,9 +100,7 @@ class MenuPresenter: MenuEventHandler {
                                                 message: "profile.exit_message".localized,
                                                 preferredStyle: .alert)
         let yes = UIAlertAction(title: "common.yes".localized, style: .default, handler: { [weak self] _ in
-            // logout
-            self?.userService.logout()
-//            // reload controller
+            self?.logoutManager.logout()
             self?.viewController?.reloadData()
         })
         let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)

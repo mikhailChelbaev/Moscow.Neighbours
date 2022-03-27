@@ -19,14 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureFirebase() {
         FirebaseApp.configure()
-        if let email = UserService.shared.currentUser?.email {
+        if let email = UserState.shared.currentUser?.email {
             Crashlytics.crashlytics().setUserID(email)
         }
     }
     
     private func configureServices() {
         let _ = JWTService.main
-        let _ = UserService.shared
+        let _ = UserState.shared
     }
 
     // MARK: UISceneSession Lifecycle

@@ -38,6 +38,7 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     
     private var authorizationService: AuthorizationService
     private var jwtService: JWTService
+    private var userState: UserState
     private var userService: UserProvider
     
     private var signInModel: SignInModel
@@ -74,6 +75,7 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
         
         authorizationService = storage.authorizationService
         jwtService = storage.jwtService
+        userState = storage.userState
         userService = storage.userService
         
         emailValidator = .init()
@@ -161,7 +163,7 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
                     // fetch signUpResponse
                     let signUpResponse = try await authorizationService.signUp(credentials: signUpModel)
                     let userModel = UserModel(from: signUpResponse)
-                    userService.storeCurrentUser(userModel)
+                    userState.currentUser = userModel
                     
                     if signUpResponse.isVerified {
                         // get token
@@ -219,7 +221,8 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     private func fetchUser() {
         Task {
             do {
-                try await userService.fetchUser()
+                let user = try await userService.fetchUser()
+                userState.currentUser = user
                 await viewController?.closeController(animated: true, completion: nil)
             } catch {
                 RunLoop.main.perform(inModes: [.common]) {
@@ -234,7 +237,7 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
         switch error.description {
         case .notVerified:
             let model = UserModel(name: "", email: signInUsername, isVerified: false)
-            userService.storeCurrentUser(model)
+            userState.currentUser = model
             showAccountConfirmation()
             
         default:
