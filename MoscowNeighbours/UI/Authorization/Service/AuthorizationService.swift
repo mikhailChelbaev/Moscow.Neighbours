@@ -40,8 +40,8 @@ class AuthorizationService: BaseNetworkService {
     }
     
     func signUp(credentials: SignUpModel) async throws -> SignUpResponse {
-        let dto = SignUpRequest(from: credentials)
-        let result = await requestSender.send(request: api.signUpRequest(body: dto),
+        let request = credentials.toRequest()
+        let result = await requestSender.send(request: api.signUpRequest(body: request),
                                               type: SignUpResponse.self)
         
         switch result {

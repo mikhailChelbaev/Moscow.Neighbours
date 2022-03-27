@@ -15,3 +15,8 @@ struct SignUpModel {
     var password: String = ""
 }
 
+extension SignUpModel {
+    func toRequest() -> SignUpRequest {
+        return SignUpRequest(name: username, email: email, password: password)
+    }
+}
