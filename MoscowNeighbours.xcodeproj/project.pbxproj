@@ -749,13 +749,10 @@
 		743C3AC5277D04DE00D4CB1C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				74DE215027F1000E006863A3 /* SignUp */,
+				74DE214F27F10003006863A3 /* SignIn */,
 				743C3AC6277D04F100D4CB1C /* AuthorizationType.swift */,
-				74863DC7277EFCA9000FC446 /* SignInModel.swift */,
-				74863DC9277EFCB0000FC446 /* SignUpModel.swift */,
 				742222202781F65900CFDD50 /* JWTResponse.swift */,
-				746F061727936ACB009D1163 /* SignInErrorsModel.swift */,
-				746F061927937101009D1163 /* SignUpErrorsModel.swift */,
-				746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1137,6 +1134,25 @@
 				74159E5327ADBC31007E7118 /* WeakRef+UserStateDelegate.swift */,
 			);
 			path = UserState;
+			sourceTree = "<group>";
+		};
+		74DE214F27F10003006863A3 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				74863DC7277EFCA9000FC446 /* SignInModel.swift */,
+				746F061727936ACB009D1163 /* SignInErrorsModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		74DE215027F1000E006863A3 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				74863DC9277EFCB0000FC446 /* SignUpModel.swift */,
+				746F061927937101009D1163 /* SignUpErrorsModel.swift */,
+				746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		74F185642787290500A0BF24 /* Settings */ = {
