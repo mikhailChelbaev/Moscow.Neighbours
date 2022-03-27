@@ -749,8 +749,8 @@
 		743C3AC5277D04DE00D4CB1C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				74DE215027F1000E006863A3 /* SignUp */,
 				74DE214F27F10003006863A3 /* SignIn */,
+				74DE215027F1000E006863A3 /* SignUp */,
 				743C3AC6277D04F100D4CB1C /* AuthorizationType.swift */,
 				742222202781F65900CFDD50 /* JWTResponse.swift */,
 			);

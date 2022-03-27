@@ -76,7 +76,7 @@ class AuthorizationViewController: BottomSheetViewController, AuthorizationView 
     
     // MARK: - Internal properties
     
-    let eventHandler: AuthorizationEventHandler
+    var eventHandler: AuthorizationEventHandler
     
     override var backgroundDimStyle: BackgroundDimStyle {
         return .fullScreen
@@ -331,24 +331,24 @@ extension AuthorizationViewController {
         switch cell {
         case .login:
             return createTextInputCell(headerText: "signIn.email_title".localized,
-                                       text: eventHandler.signInUsername,
+                                       text: eventHandler.signInModel.username,
                                        placeholder: "signIn.email_placeholder".localized,
                                        textContentType: .username,
                                        error: signInErrors.email,
                                        textDidChange: { [weak self] newText in
-                self?.eventHandler.onSignInUsernameTextChange(newText)
+                self?.eventHandler.signInModel.username = newText
             },
                                        for: indexPath)
             
         case .password:
             return createTextInputCell(headerText: "signIn.password_title".localized,
-                                       text: eventHandler.signInPassword,
+                                       text: eventHandler.signInModel.password,
                                        placeholder: "signIn.password_placeholder".localized,
                                        textContentType: .password,
                                        isSecureTextEntry: true,
                                        error: signInErrors.password,
                                        textDidChange: { [weak self] newText in
-                self?.eventHandler.onSignInPasswordTextChange(newText)
+                self?.eventHandler.signInModel.password = newText
             },
                                        for: indexPath)
             
@@ -371,32 +371,32 @@ extension AuthorizationViewController {
         switch cell {
         case .login:
             return createTextInputCell(headerText: "signUp.login_title".localized,
-                                       text: eventHandler.signUpUsername,
+                                       text: eventHandler.signUpModel.username,
                                        placeholder: "signUp.login_placeholder".localized,
                                        error: signUpErrors.username,
                                        textDidChange: { [weak self] newText in
-                self?.eventHandler.onSignUpUsernameTextChange(newText)
+                self?.eventHandler.signUpModel.username = newText
             },
                                        for: indexPath)
         case .email:
             return createTextInputCell(headerText: "signUp.email_title".localized,
-                                       text: eventHandler.signUpEmail,
+                                       text: eventHandler.signUpModel.email,
                                        placeholder: "signUp.email_placeholder".localized,
                                        error: signUpErrors.email,
                                        textDidChange: { [weak self] newText in
-                self?.eventHandler.onSignUpEmailTextChange(newText)
+                self?.eventHandler.signUpModel.email = newText
             },
                                        for: indexPath)
             
         case .password:
             return createTextInputCell(headerText: "signUp.password_title".localized,
-                                       text: eventHandler.signUpPassword,
+                                       text: eventHandler.signUpModel.password,
                                        placeholder: "signUp.password_placeholder".localized,
                                        textContentType: .password,
                                        isSecureTextEntry: true,
                                        error: signUpErrors.password,
                                        textDidChange: { [weak self] newText in
-                self?.eventHandler.onSignUpPasswordTextChange(newText)
+                self?.eventHandler.signUpModel.password = newText
             },
                                        for: indexPath)
             

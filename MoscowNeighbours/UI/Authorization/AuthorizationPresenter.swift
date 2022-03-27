@@ -9,24 +9,14 @@ import Foundation
 import AuthenticationServices
 
 protocol AuthorizationEventHandler {
-    var signInUsername: String { get }
-    var signInPassword: String { get }
-    
-    var signUpUsername: String { get }
-    var signUpEmail: String { get }
-    var signUpPassword: String { get }
+    var signInModel: SignInModel { set get }
+    var signUpModel: SignUpModel { set get }
     
     func onBackButtonTap()
     func onAuthorizationTypeTap(_ type: AuthorizationType)
     
-    func onSignInUsernameTextChange(_ text: String)
-    func onSignInPasswordTextChange(_ text: String)
     func onSignInButtonTap()
     func onSignInWithAppleButtonTap()
-    
-    func onSignUpUsernameTextChange(_ text: String)
-    func onSignUpEmailTextChange(_ text: String)
-    func onSignUpPasswordTextChange(_ text: String)
     func onSignUpButtonTap()
 }
 
@@ -36,30 +26,13 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     
     weak var viewController: AuthorizationView?
     
+    var signInModel: SignInModel
+    var signUpModel: SignUpModel
+    
     private var authorizationService: AuthorizationService
     private var jwtService: JWTService
     private var userState: UserState
     private var userService: UserProvider
-    
-    private var signInModel: SignInModel
-    private var signUpModel: SignUpModel
-    
-    var signInUsername: String {
-        signInModel.username
-    }
-    var signInPassword: String {
-        signInModel.password
-    }
-    
-    var signUpUsername: String {
-        signUpModel.username
-    }
-    var signUpEmail: String {
-        signUpModel.email
-    }
-    var signUpPassword: String {
-        signUpModel.password
-    }
     
     private let emailValidator: EmailValidator
     private let usernameValidator: UsernameValidator
@@ -113,14 +86,6 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     
     // MARK: - Sign In
     
-    func onSignInUsernameTextChange(_ text: String) {
-        signInModel.username = text
-    }
-    
-    func onSignInPasswordTextChange(_ text: String) {
-        signInModel.password = text
-    }
-    
     func onSignInButtonTap() {
         if validateSignInInputedData() {
             viewController?.status = .loading
@@ -142,18 +107,6 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     }
     
     // MARK: - Sign Up
-    
-    func onSignUpUsernameTextChange(_ text: String) {
-        signUpModel.username = text
-    }
-    
-    func onSignUpEmailTextChange(_ text: String) {
-        signUpModel.email = text
-    }
-    
-    func onSignUpPasswordTextChange(_ text: String) {
-        signUpModel.password = text
-    }
     
     func onSignUpButtonTap() {
         if validateSignUpInputedData() {
@@ -236,7 +189,7 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     private func handleSignInError(error: NetworkError) {
         switch error.description {
         case .notVerified:
-            let model = UserModel(name: "", email: signInUsername, isVerified: false)
+            let model = UserModel(name: "", email: signInModel.username, isVerified: false)
             userState.currentUser = model
             showAccountConfirmation()
             
