@@ -27,7 +27,7 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
     
     func fetchRoutes() {
         observers.forEach({ $0.value.didStartFetchingRoutes() })
-        Task.detached { [self] in
+        Task {
             let result = await requestSender.send(request: api.routesRequest,
                                                   type: [Route].self)
             switch result {
@@ -36,7 +36,7 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
                 
             case .failure(let error):
                 Logger.log("Failed to load routes: \(error.localizedDescription)")
-                DispatchQueue.main.async { 
+                DispatchQueue.main.async { [self] in
                     observers.forEach({ $0.value.didFailWhileRoutesFetch(error: error) })
                 }
             }
