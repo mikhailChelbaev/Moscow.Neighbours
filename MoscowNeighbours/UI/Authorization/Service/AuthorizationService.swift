@@ -40,7 +40,7 @@ class AuthorizationService: BaseNetworkService {
     }
     
     func signUp(credentials: SignUpModel) async throws -> SignUpResponse {
-        let dto = SignUpDto(from: credentials)
+        let dto = SignUpRequest(from: credentials)
         let result = await requestSender.send(request: api.signUpRequest(body: dto),
                                               type: SignUpResponse.self)
         
@@ -62,7 +62,7 @@ private extension ApiRequestsFactory {
         return makeRequest(url: host + "/api/v1/auth/signIn", body: body, method: .post)
     }
     
-    func signUpRequest(body: SignUpDto) -> ApiRequest {
+    func signUpRequest(body: SignUpRequest) -> ApiRequest {
         return makeRequest(url: host + "/api/v1/auth/signUp", body: body, method: .post)
     }
 }

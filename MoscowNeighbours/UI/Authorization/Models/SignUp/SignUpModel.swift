@@ -15,9 +15,9 @@ struct SignUpModel {
     var password: String = ""
 }
 
-// MARK: - SignUpDto
+// MARK: - SignUpRequest
 
-struct SignUpDto: Codable {
+struct SignUpRequest: Codable {
     let name: String
     let email: String
     let password: String
