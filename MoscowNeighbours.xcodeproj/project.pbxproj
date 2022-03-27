@@ -179,6 +179,7 @@
 		74DC18B627AF003600C5A02F /* PurchaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B527AF003600C5A02F /* PurchaseProvider.swift */; };
 		74DE214827F0F489006863A3 /* LogoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE214727F0F489006863A3 /* LogoutManager.swift */; };
 		74DE214D27F0F63D006863A3 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE214C27F0F63D006863A3 /* UserState.swift */; };
+		74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE215327F1034E006863A3 /* SignInRequest.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
 		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
@@ -390,6 +391,7 @@
 		74DC18B527AF003600C5A02F /* PurchaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProvider.swift; sourceTree = "<group>"; };
 		74DE214727F0F489006863A3 /* LogoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutManager.swift; sourceTree = "<group>"; };
 		74DE214C27F0F63D006863A3 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		74DE215327F1034E006863A3 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
 		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
@@ -1140,6 +1142,7 @@
 			isa = PBXGroup;
 			children = (
 				74863DC7277EFCA9000FC446 /* SignInModel.swift */,
+				74DE215327F1034E006863A3 /* SignInRequest.swift */,
 				746F061727936ACB009D1163 /* SignInErrorsModel.swift */,
 			);
 			path = SignIn;
@@ -1466,6 +1469,7 @@
 				743DE7282776097100B5CED8 /* ObservableService.swift in Sources */,
 				740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */,
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
+				74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */,
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,
 				74577574279747BA00123208 /* ErrorDelegate.swift in Sources */,
 				74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */,

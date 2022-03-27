@@ -27,8 +27,8 @@ class AuthorizationService: BaseNetworkService {
     // MARK: - Internal Methods
     
     func signIn(credentials: SignInModel) async throws -> JWTResponse {
-        let dto = SignInDto(from: credentials)
-        let result = await requestSender.send(request: api.signInRequest(body: dto),
+        let request = credentials.toRequest()
+        let result = await requestSender.send(request: api.signInRequest(body: request),
                                               type: JWTResponse.self)
         switch result {
         case .success(let model):
@@ -58,7 +58,7 @@ class AuthorizationService: BaseNetworkService {
 // MARK: - API
 
 private extension ApiRequestsFactory {
-    func signInRequest(body: SignInDto) -> ApiRequest {
+    func signInRequest(body: SignInRequest) -> ApiRequest {
         return makeRequest(url: host + "/api/v1/auth/signIn", body: body, method: .post)
     }
     
