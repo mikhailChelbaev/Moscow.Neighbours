@@ -180,6 +180,7 @@
 		74DE214827F0F489006863A3 /* LogoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE214727F0F489006863A3 /* LogoutManager.swift */; };
 		74DE214D27F0F63D006863A3 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE214C27F0F63D006863A3 /* UserState.swift */; };
 		74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE215327F1034E006863A3 /* SignInRequest.swift */; };
+		74DE215627F1046D006863A3 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE215527F1046D006863A3 /* SignUpRequest.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
 		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
@@ -392,6 +393,7 @@
 		74DE214727F0F489006863A3 /* LogoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutManager.swift; sourceTree = "<group>"; };
 		74DE214C27F0F63D006863A3 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		74DE215327F1034E006863A3 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		74DE215527F1046D006863A3 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
 		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
@@ -1152,6 +1154,7 @@
 			isa = PBXGroup;
 			children = (
 				74863DC9277EFCB0000FC446 /* SignUpModel.swift */,
+				74DE215527F1046D006863A3 /* SignUpRequest.swift */,
 				746F061927937101009D1163 /* SignUpErrorsModel.swift */,
 				746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */,
 			);
@@ -1350,6 +1353,7 @@
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
 				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
+				74DE215627F1046D006863A3 /* SignUpRequest.swift in Sources */,
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
 				74E7C3992783063900B16392 /* UserService.swift in Sources */,
 				7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */,
