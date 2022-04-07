@@ -21,7 +21,6 @@ class RoutesPresenter: RoutesEventHandler {
     private var routesService: RoutesProvider
     private var userState: UserState
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
-    
     private let delayManager: DelayManager
     
     // MARK: - Init
@@ -30,8 +29,7 @@ class RoutesPresenter: RoutesEventHandler {
         routesService = storage.routesService
         userState = storage.userState
         routesDescriptionBuilder = storage.routesDescriptionBuilder
-        
-        delayManager = DefaultDelayManager(minimumDuration: 1.0)
+        delayManager = storage.routesFetchDelayManager
         
         userState.register(WeakRef(self))
     }

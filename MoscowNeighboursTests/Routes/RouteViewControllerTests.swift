@@ -24,6 +24,16 @@ class RouteViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 1)
     }
     
+    func test_loadingIndicator_isVisibleWhileFetchingRoutes() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isLoaderVisible, "Expected loading indicator once view is loaded")
+        
+        loader.completeRoutesLoading()
+        XCTAssertFalse(sut.isLoaderVisible, "Expected no loading indicator once loading completes successfully")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: LoaderSpy) {
@@ -32,7 +42,8 @@ class RouteViewControllerTests: XCTestCase {
         let storage = RoutesStorage(
             routesService: loader,
             userState: builder.userState,
-            routesDescriptionBuilder: builder)
+            routesDescriptionBuilder: builder,
+            routesFetchDelayManager: TestDelayManager())
         let sut = builder.buildRouteViewController(with: storage)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -40,12 +51,47 @@ class RouteViewControllerTests: XCTestCase {
     }
     
     private final class LoaderSpy: RoutesProvider {
-        var loadCallCount: Int = 0
+        var completions = [(RoutesProvider.Result) -> Void]()
+        
+        var loadCallCount: Int {
+            return completions.count
+        }
         
         func fetchRoutes(completion: @escaping (RoutesProvider.Result) -> Void) {
-            loadCallCount += 1
+            completions.append(completion)
+        }
+        
+        func completeRoutesLoading(at index: Int = 0) {
+            completions[index](.success([]))
         }
     }
+}
+
+extension RouteViewController {
+    private var loader: LoadingCell? {
+        let ds = tableView.dataSource
+        
+        guard ds!.tableView(tableView, numberOfRowsInSection: loaderIndexPath.section) > loaderIndexPath.row else {
+            return nil
+        }
+        
+        let cell = ds?.tableView(tableView, cellForRowAt: loaderIndexPath) as? TableCellWrapper<LoadingCell>
+        return cell?.view
+    }
     
+    private var loaderIndexPath: IndexPath {
+        return IndexPath(row: 0, section: 0)
+    }
     
+    var isLoaderVisible: Bool {
+        return loader != nil
+    }
+}
+
+final class TestDelayManager: DelayManager {
+    func start() {}
+    
+    func completeWithDelay(_ completion: Action?) {
+        completion?()
+    }
 }
