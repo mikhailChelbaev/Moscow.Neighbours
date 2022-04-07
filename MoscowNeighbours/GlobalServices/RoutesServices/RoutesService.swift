@@ -13,45 +13,44 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
     
     private let api: ApiRequestsFactory
     private let purchaseService: PurchaseProvider
-    var observers: [String : RouteServiceDelegate]
     
     // MARK: - Init
     
     init(api: ApiRequestsFactory, purchaseService: PurchaseProvider) {
         self.api = api
         self.purchaseService = purchaseService
-        self.observers = [:]
     }
     
     // MARK: - Internal Methods
     
-    func fetchRoutes() {
-        observers.forEach({ $0.value.didStartFetchingRoutes() })
+    
+    func fetchRoutes(completion: @escaping (RoutesService.Result) -> Void) {
         Task {
-            let result = await requestSender.send(request: api.routesRequest,
-                                                  type: [Route].self)
+            let result = await requestSender.send(request: api.routesRequest, type: [Route].self)
+            
             switch result {
             case .success(let model):
-                fetchProducts(model)
+                fetchProducts(model, completion: completion)
                 
             case .failure(let error):
                 Logger.log("Failed to load routes: \(error.localizedDescription)")
-                DispatchQueue.main.async { [self] in
-                    observers.forEach({ $0.value.didFailWhileRoutesFetch(error: error) })
+                
+                DispatchQueue.main.async {
+                    completion(.failure(error))
                 }
             }
         }
     }
     
-    private func fetchProducts(_ routes: [Route]) {
+    private func fetchProducts(_ routes: [Route], completion: @escaping (RoutesService.Result) -> Void) {
         let productIdentifiers = routes.compactMap(\.purchase.productId)
         
         purchaseService.fetchProducts(productIds: Set(productIdentifiers)) { [weak self] response in
-            self?.handleFetchedProducts(response: response, routes: routes)
+            self?.handleFetchedProducts(response: response, routes: routes, completion: completion)
         }
     }
     
-    private func handleFetchedProducts(response: RequestProductsResult, routes model: [Route]) {
+    private func handleFetchedProducts(response: RequestProductsResult, routes model: [Route], completion: @escaping (RoutesService.Result) -> Void) {
         var routes = model
         switch response {
         case .success(let products):
@@ -67,7 +66,7 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
         }
         
         DispatchQueue.main.async {
-            self.observers.forEach({ $0.value.didFetchRoutes(routes) })
+            completion(.success(routes))
         }
     }
     

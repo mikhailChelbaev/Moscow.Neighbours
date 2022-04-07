@@ -41,10 +41,9 @@ class RouteViewControllerTests: XCTestCase {
     }
     
     private final class LoaderSpy: RoutesProvider {
-        var observers: [String : RouteServiceDelegate] = [:]
         var loadCallCount: Int = 0
         
-        func fetchRoutes() {
+        func fetchRoutes(completion: @escaping (RoutesProvider.Result) -> Void) {
             loadCallCount += 1
         }
     }

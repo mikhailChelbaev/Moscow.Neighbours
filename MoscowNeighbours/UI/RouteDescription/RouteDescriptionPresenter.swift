@@ -50,8 +50,6 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
         routesService = storage.routesService
         
         route = storage.route
-        
-        routesService.register(WeakRef(self))
     }
     
     // MARK: - RouteDescriptionEventHandler methods
@@ -220,21 +218,23 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
 
 // MARK: - protocol RouteServiceDelegate
 
-extension RouteDescriptionPresenter: RouteServiceDelegate {
-    func didStartFetchingRoutes() {
-        viewController?.status = .loading
-    }
-    
-    func didFetchRoutes(_ routes: [Route]) {
-        if let newRoute = routes.first(where: { $0.id == self.route.id }) {
-            self.route = newRoute
-            updateRouteViewModel()
-        } else {
-            viewController?.status = .success   
-        }
-    }
-    
-    func didFailWhileRoutesFetch(error: NetworkError) {
-        viewController?.status = .success
-    }
-}
+// TODO: - track routes fetch
+
+//extension RouteDescriptionPresenter: RouteServiceDelegate {
+//    func didStartFetchingRoutes() {
+//        viewController?.status = .loading
+//    }
+//
+//    func didFetchRoutes(_ routes: [Route]) {
+//        if let newRoute = routes.first(where: { $0.id == self.route.id }) {
+//            self.route = newRoute
+//            updateRouteViewModel()
+//        } else {
+//            viewController?.status = .success
+//        }
+//    }
+//
+//    func didFailWhileRoutesFetch(error: NetworkError) {
+//        viewController?.status = .success
+//    }
+//}

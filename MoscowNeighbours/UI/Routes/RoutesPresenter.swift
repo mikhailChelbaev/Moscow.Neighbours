@@ -35,7 +35,6 @@ class RoutesPresenter: RoutesEventHandler {
         
         delayManager = DefaultDelayManager(minimumDuration: 1.0)
         
-        routesService.register(WeakRef(self))
         userState.register(WeakRef(self))
     }
     
@@ -53,7 +52,23 @@ class RoutesPresenter: RoutesEventHandler {
     // MARK: - Helpers
     
     private func fetchRoutes() {
-        routesService.fetchRoutes()
+        viewController?.status = .loading
+        delayManager.start()
+        
+        routesService.fetchRoutes { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let routes):
+                self.delayManager.completeWithDelay {
+                    self.viewController?.state = .success(routes: routes)
+                    self.viewController?.reloadData()
+                }
+                
+            case .failure(let error):
+                self.handlerError(error)
+            }
+        }
     }
     
     func handlerError(_ error: Error) {
@@ -61,26 +76,6 @@ class RoutesPresenter: RoutesEventHandler {
             self.viewController?.state = .error
             self.viewController?.reloadData()
         }
-    }
-}
-
-// MARK: - protocol RouteServiceDelegate
-
-extension RoutesPresenter: RouteServiceDelegate {
-    func didStartFetchingRoutes() {
-        viewController?.status = .loading
-        delayManager.start()
-    }
-    
-    func didFetchRoutes(_ routes: [Route]) {
-        delayManager.completeWithDelay { [self] in
-            viewController?.state = .success(routes: routes)
-            viewController?.reloadData()
-        }
-    }
-    
-    func didFailWhileRoutesFetch(error: NetworkError) {
-        handlerError(error)
     }
 }
 

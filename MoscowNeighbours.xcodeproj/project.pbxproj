@@ -152,8 +152,6 @@
 		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
-		74A4B8E627B9A71200153A05 /* RoutesServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E527B9A71200153A05 /* RoutesServiceDelegate.swift */; };
-		74A4B8E827B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E727B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift */; };
 		74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -378,8 +376,6 @@
 		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
-		74A4B8E527B9A71200153A05 /* RoutesServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesServiceDelegate.swift; sourceTree = "<group>"; };
-		74A4B8E727B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+RoutesServiceDelegate.swift"; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -985,8 +981,6 @@
 			isa = PBXGroup;
 			children = (
 				74A4B8E327B9A70200153A05 /* RoutesProvider.swift */,
-				74A4B8E527B9A71200153A05 /* RoutesServiceDelegate.swift */,
-				74A4B8E727B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift */,
 				74967F7F276F55A40096AA77 /* RoutesService.swift */,
 			);
 			path = RoutesServices;
@@ -1468,7 +1462,6 @@
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
 				749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */,
 				7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */,
-				74A4B8E627B9A71200153A05 /* RoutesServiceDelegate.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
 				7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */,
@@ -1529,7 +1522,6 @@
 				7457756E279732F300123208 /* AchievementsBuilder.swift in Sources */,
 				744CC9F1278A0D2C00D2CB2F /* AccountAchievementsCell.swift in Sources */,
 				7457756A279732E300123208 /* AchievementsViewController.swift in Sources */,
-				74A4B8E827B9A81100153A05 /* WeakRef+RoutesServiceDelegate.swift in Sources */,
 				74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */,
 				74FFB59926EFE9190060D948 /* InfoView.swift in Sources */,
 				74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */,
