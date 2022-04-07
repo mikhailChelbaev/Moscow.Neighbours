@@ -15,21 +15,21 @@ struct RoutesStorage {
 }
 
 protocol RoutesBuilder {
-    func buildRouteViewController() -> RouteViewController
+    func buildRouteViewController(with storage: RoutesStorage) -> RouteViewController
 }
 
 extension Builder: RoutesBuilder {
-    func buildRouteViewController() -> RouteViewController {
-        let routesPresenter = RoutesPresenter(storage: makeStorage())
+    func buildRouteViewController(with storage: RoutesStorage) -> RouteViewController {
+        let routesPresenter = RoutesPresenter(storage: storage)
         let viewController = RouteViewController(eventHandler: routesPresenter)
         routesPresenter.viewController = viewController
         return viewController
     }
     
-    private func makeStorage() -> RoutesStorage {
+    func makeRoutesStorage() -> RoutesStorage {
         return RoutesStorage(routesService: routesService,
                              purchaseService: purchaseService,
                              userState: userState,
                              routesDescriptionBuilder: self)
-    }    
+    }
 }

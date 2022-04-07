@@ -30,7 +30,7 @@ class MapPresenter: MapEventHandler {
     
     weak var viewController: MapView?
     
-    private let routesBuilder: RoutesBuilder
+    private let routesBuilder: () -> RouteViewController
     private let personBuilder: PersonBuilder
     private let menuBuilder: MenuBuilder
     
@@ -67,7 +67,7 @@ class MapPresenter: MapEventHandler {
     }
     
     func onViewDidAppear() {
-        let controller = routesBuilder.buildRouteViewController()
+        let controller = routesBuilder()
         viewController?.present(controller, state: .middle, completion: nil)
     }
     
