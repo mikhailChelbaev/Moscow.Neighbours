@@ -11,9 +11,17 @@ import XCTest
 class RouteViewControllerTests: XCTestCase {
     
     func test_init_doesNotLoadRoutes() {
-        let (sut, loader) = makeSUT()
+        let (_, loader) = makeSUT()
         
         XCTAssertEqual(loader.loadCallCount, 0)
+    }
+    
+    func test_viewDidLoad_fetchesRoutes() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(loader.loadCallCount, 1)
     }
     
     // MARK: - Helpers
