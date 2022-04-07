@@ -26,7 +26,7 @@ class RouteViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: RouteViewController, loader: LoaderSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
         let builder = Builder()
         let storage = RoutesStorage(
@@ -35,6 +35,8 @@ class RouteViewControllerTests: XCTestCase {
             userState: builder.userState,
             routesDescriptionBuilder: builder)
         let sut = builder.buildRouteViewController(with: storage)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)
     }
     

@@ -64,6 +64,7 @@
 		743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */; };
 		743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */; };
 		7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */; };
+		7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */; };
 		74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449251F278AE3E2008BC446 /* ErrorResponse.swift */; };
 		74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
@@ -292,6 +293,7 @@
 		743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingBuilder.swift; sourceTree = "<group>"; };
 		7442C38627FF81BE0025621B /* MoscowNeighboursTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoscowNeighboursTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewControllerTests.swift; sourceTree = "<group>"; };
+		7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		7449251F278AE3E2008BC446 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorDescription.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 		7442C38727FF81BE0025621B /* MoscowNeighboursTests */ = {
 			isa = PBXGroup;
 			children = (
+				7442C39227FF86D60025621B /* Helpers */,
 				7442C38F27FF81CC0025621B /* Routes */,
 			);
 			path = MoscowNeighboursTests;
@@ -797,6 +800,14 @@
 				7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */,
 			);
 			path = Routes;
+			sourceTree = "<group>";
+		};
+		7442C39227FF86D60025621B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
@@ -1609,6 +1620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
+				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
