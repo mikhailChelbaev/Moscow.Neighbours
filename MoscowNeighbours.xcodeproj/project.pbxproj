@@ -63,6 +63,7 @@
 		743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */; };
 		743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */; };
 		743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */; };
+		7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */; };
 		74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449251F278AE3E2008BC446 /* ErrorResponse.swift */; };
 		74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
@@ -216,6 +217,16 @@
 		74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59B26EFEE510060D948 /* SFSymbol.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7442C38A27FF81BE0025621B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7402660326A76379006242FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7402660A26A76379006242FE;
+			remoteInfo = MoscowNeighbours;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		7402660B26A76379006242FE /* MoscowNeighbours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoscowNeighbours.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7402660E26A76379006242FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -279,6 +290,8 @@
 		743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Map.swift"; sourceTree = "<group>"; };
 		743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingPresenter.swift; sourceTree = "<group>"; };
 		743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingBuilder.swift; sourceTree = "<group>"; };
+		7442C38627FF81BE0025621B /* MoscowNeighboursTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoscowNeighboursTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewControllerTests.swift; sourceTree = "<group>"; };
 		7449251F278AE3E2008BC446 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorDescription.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
@@ -444,6 +457,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7442C38327FF81BE0025621B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -452,6 +472,7 @@
 			children = (
 				7498640226C0188300AF4E0E /* point.gpx */,
 				7402660D26A76379006242FE /* MoscowNeighbours */,
+				7442C38727FF81BE0025621B /* MoscowNeighboursTests */,
 				7402660C26A76379006242FE /* Products */,
 				7402E43E2739AE020092C8C4 /* Frameworks */,
 			);
@@ -461,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				7402660B26A76379006242FE /* MoscowNeighbours.app */,
+				7442C38627FF81BE0025621B /* MoscowNeighboursTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -759,6 +781,22 @@
 				742222202781F65900CFDD50 /* JWTResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7442C38727FF81BE0025621B /* MoscowNeighboursTests */ = {
+			isa = PBXGroup;
+			children = (
+				7442C38F27FF81CC0025621B /* Routes */,
+			);
+			path = MoscowNeighboursTests;
+			sourceTree = "<group>";
+		};
+		7442C38F27FF81CC0025621B /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */,
+			);
+			path = Routes;
 			sourceTree = "<group>";
 		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
@@ -1255,18 +1293,41 @@
 			productReference = 7402660B26A76379006242FE /* MoscowNeighbours.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7442C38527FF81BE0025621B /* MoscowNeighboursTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7442C38E27FF81BE0025621B /* Build configuration list for PBXNativeTarget "MoscowNeighboursTests" */;
+			buildPhases = (
+				7442C38227FF81BE0025621B /* Sources */,
+				7442C38327FF81BE0025621B /* Frameworks */,
+				7442C38427FF81BE0025621B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7442C38B27FF81BE0025621B /* PBXTargetDependency */,
+			);
+			name = MoscowNeighboursTests;
+			productName = MoscowNeighboursTests;
+			productReference = 7442C38627FF81BE0025621B /* MoscowNeighboursTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7402660326A76379006242FE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					7402660A26A76379006242FE = {
 						CreatedOnToolsVersion = 12.5.1;
 						LastSwiftMigration = 1250;
+					};
+					7442C38527FF81BE0025621B = {
+						CreatedOnToolsVersion = 13.3;
+						LastSwiftMigration = 1330;
+						TestTargetID = 7402660A26A76379006242FE;
 					};
 				};
 			};
@@ -1291,6 +1352,7 @@
 			projectRoot = "";
 			targets = (
 				7402660A26A76379006242FE /* MoscowNeighbours */,
+				7442C38527FF81BE0025621B /* MoscowNeighboursTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1312,6 +1374,13 @@
 				7402661B26A7637A006242FE /* LaunchScreen.storyboard in Resources */,
 				7402661826A7637A006242FE /* Assets.xcassets in Resources */,
 				74834C0F2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7442C38427FF81BE0025621B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1535,7 +1604,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7442C38227FF81BE0025621B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7442C38B27FF81BE0025621B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7402660A26A76379006242FE /* MoscowNeighbours */;
+			targetProxy = 7442C38A27FF81BE0025621B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7402661926A7637A006242FE /* LaunchScreen.storyboard */ = {
@@ -1744,6 +1829,59 @@
 			};
 			name = Release;
 		};
+		7442C38C27FF81BE0025621B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5ZZPB5BG7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.mikhail-chelbaev.MoscowNeighboursTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoscowNeighbours.app/MoscowNeighbours";
+			};
+			name = Debug;
+		};
+		7442C38D27FF81BE0025621B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W5ZZPB5BG7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.mikhail-chelbaev.MoscowNeighboursTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoscowNeighbours.app/MoscowNeighbours";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1761,6 +1899,15 @@
 			buildConfigurations = (
 				7402662026A7637A006242FE /* Debug */,
 				7402662126A7637A006242FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7442C38E27FF81BE0025621B /* Build configuration list for PBXNativeTarget "MoscowNeighboursTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7442C38C27FF81BE0025621B /* Debug */,
+				7442C38D27FF81BE0025621B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
