@@ -31,7 +31,6 @@ class RouteViewControllerTests: XCTestCase {
         let builder = Builder()
         let storage = RoutesStorage(
             routesService: loader,
-            purchaseService: builder.purchaseService,
             userState: builder.userState,
             routesDescriptionBuilder: builder)
         let sut = builder.buildRouteViewController(with: storage)

@@ -19,7 +19,6 @@ class RoutesPresenter: RoutesEventHandler {
     weak var viewController: RouteView?
     
     private var routesService: RoutesProvider
-    private var purchaseService: PurchaseProvider
     private var userState: UserState
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     
@@ -29,7 +28,6 @@ class RoutesPresenter: RoutesEventHandler {
     
     init(storage: RoutesStorage) {
         routesService = storage.routesService
-        purchaseService = storage.purchaseService
         userState = storage.userState
         routesDescriptionBuilder = storage.routesDescriptionBuilder
         
