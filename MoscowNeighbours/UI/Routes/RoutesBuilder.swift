@@ -9,7 +9,6 @@ import Foundation
 
 struct RoutesStorage {
     let routesService: RoutesProvider
-    let userState: UserState
     let routesDescriptionBuilder: RoutesDescriptionBuilder
     let routesFetchDelayManager: DelayManager
 }
@@ -28,7 +27,6 @@ extension Builder: RoutesBuilder {
     
     func makeRoutesStorage() -> RoutesStorage {
         return RoutesStorage(routesService: routesService,
-                             userState: userState,
                              routesDescriptionBuilder: self,
                              routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0))
     }

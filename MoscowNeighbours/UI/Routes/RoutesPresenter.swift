@@ -19,7 +19,6 @@ class RoutesPresenter: RoutesEventHandler {
     weak var viewController: RouteView?
     
     private var routesService: RoutesProvider
-    private var userState: UserState
     private let routesDescriptionBuilder: RoutesDescriptionBuilder
     private let delayManager: DelayManager
     
@@ -27,11 +26,8 @@ class RoutesPresenter: RoutesEventHandler {
     
     init(storage: RoutesStorage) {
         routesService = storage.routesService
-        userState = storage.userState
         routesDescriptionBuilder = storage.routesDescriptionBuilder
         delayManager = storage.routesFetchDelayManager
-        
-        userState.register(WeakRef(self))
     }
     
     // MARK: - RoutesEventHandler methods
