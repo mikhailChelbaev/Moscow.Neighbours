@@ -861,6 +861,30 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		7444DAAD2801ECB100A04F87 /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		7444DAAE2801ECB800A04F87 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				74967F81276F57A20096AA77 /* RoutesPresenter.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		7444DAAF2801ECBE00A04F87 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -956,9 +980,9 @@
 		746BCCBE26A8BA6C009CC823 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
-				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
-				74967F81276F57A20096AA77 /* RoutesPresenter.swift */,
-				740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */,
+				7444DAAE2801ECB800A04F87 /* Presentation */,
+				7444DAAD2801ECB100A04F87 /* Composition */,
+				7444DAAF2801ECBE00A04F87 /* Controllers */,
 				7415479726B09754006931DC /* Cells */,
 			);
 			path = Routes;
