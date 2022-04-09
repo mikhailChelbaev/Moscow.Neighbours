@@ -7,9 +7,16 @@
 
 import Foundation
 
-struct Place {
-    let id: String
-    let name: String
-    let description: String?
-    let address: String    
+public struct Place {
+    public let id: String
+    public let name: String
+    public let description: String?
+    public let address: String
+    
+    public init(id: String, name: String, description: String?, address: String) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.address = address
+    }
 }

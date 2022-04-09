@@ -8,13 +8,13 @@
 import Foundation
 import MapKit
 
-final class PersonInfo: NSObject {
-    let id: String
-    let person: Person
-    let place: Place    
-    let coordinates: LocationCoordinates
+public final class PersonInfo: NSObject {
+    public let id: String
+    public let person: Person
+    public let place: Place
+    public let coordinates: LocationCoordinates
     
-    init(id: String, person: Person, place: Place, coordinates: LocationCoordinates) {
+    public init(id: String, person: Person, place: Place, coordinates: LocationCoordinates) {
         self.id = id
         self.person = person
         self.place = place
@@ -23,15 +23,15 @@ final class PersonInfo: NSObject {
 }
 
 extension PersonInfo: MKAnnotation {
-    var title: String? {
+    public var title: String? {
         person.name
     }
     
-    var subtitle: String? {
+    public var subtitle: String? {
         place.address
     }
     
-    var coordinate: CLLocationCoordinate2D {
+    public var coordinate: CLLocationCoordinate2D {
         return .init(latitude: coordinates.latitude, longitude: coordinates.longitude)
     }
 }

@@ -73,6 +73,11 @@
 		7444DA99280199B100A04F87 /* RemoteShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA98280199B000A04F87 /* RemoteShortInfo.swift */; };
 		7444DA9D2801B71F00A04F87 /* RemotePurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA9C2801B71F00A04F87 /* RemotePurchase.swift */; };
 		7444DA9F2801BF1800A04F87 /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA9E2801BF1800A04F87 /* Purchase.swift */; };
+		7444DAA42801E93900A04F87 /* RouteViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAA32801E93900A04F87 /* RouteViewController+TestHelpers.swift */; };
+		7444DAA62801E99300A04F87 /* RouteCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAA52801E99300A04F87 /* RouteCell+TestHelpers.swift */; };
+		7444DAA82801E9A800A04F87 /* TestDelayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAA72801E9A800A04F87 /* TestDelayManager.swift */; };
+		7444DAAA2801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAA92801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift */; };
+		7444DAAC2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAAB2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift */; };
 		74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449251F278AE3E2008BC446 /* ErrorResponse.swift */; };
 		74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
@@ -308,6 +313,11 @@
 		7444DA98280199B000A04F87 /* RemoteShortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteShortInfo.swift; sourceTree = "<group>"; };
 		7444DA9C2801B71F00A04F87 /* RemotePurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePurchase.swift; sourceTree = "<group>"; };
 		7444DA9E2801BF1800A04F87 /* Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
+		7444DAA32801E93900A04F87 /* RouteViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		7444DAA52801E99300A04F87 /* RouteCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteCell+TestHelpers.swift"; sourceTree = "<group>"; };
+		7444DAA72801E9A800A04F87 /* TestDelayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDelayManager.swift; sourceTree = "<group>"; };
+		7444DAA92801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		7444DAAB2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteViewControllerTests+Assertions.swift"; sourceTree = "<group>"; };
 		7449251F278AE3E2008BC446 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorDescription.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
@@ -808,6 +818,7 @@
 		7442C38F27FF81CC0025621B /* Routes */ = {
 			isa = PBXGroup;
 			children = (
+				7444DAA22801E92900A04F87 /* Helpers */,
 				7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */,
 			);
 			path = Routes;
@@ -817,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */,
+				7444DAA72801E9A800A04F87 /* TestDelayManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -836,6 +848,17 @@
 				74E7C3982783063900B16392 /* UserService.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		7444DAA22801E92900A04F87 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7444DAA32801E93900A04F87 /* RouteViewController+TestHelpers.swift */,
+				7444DAA52801E99300A04F87 /* RouteCell+TestHelpers.swift */,
+				7444DAA92801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift */,
+				7444DAAB2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
@@ -1644,7 +1667,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
+				7444DAAC2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift in Sources */,
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				7444DAAA2801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift in Sources */,
+				7444DAA42801E93900A04F87 /* RouteViewController+TestHelpers.swift in Sources */,
+				7444DAA82801E9A800A04F87 /* TestDelayManager.swift in Sources */,
+				7444DAA62801E99300A04F87 /* RouteCell+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

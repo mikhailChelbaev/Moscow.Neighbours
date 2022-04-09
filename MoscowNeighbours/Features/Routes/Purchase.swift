@@ -7,13 +7,18 @@
 
 import Foundation
 
-struct Purchase {
-    enum Status: String {
+public struct Purchase {
+    public enum Status: String {
         case free
         case buy
         case purchased
     }
     
-    var status: Status
-    let productId: String?
+    public var status: Status
+    public let productId: String?
+    
+    public init(status: Purchase.Status, productId: String?) {
+        self.status = status
+        self.productId = productId
+    }
 }

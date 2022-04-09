@@ -7,11 +7,19 @@
 
 import Foundation
 
-struct Person {
-    let name: String
-    let description: String
-    let shortDescription: String
-    let avatarUrl: String?
-    let info: [ShortInfo]
+public struct Person {
+    public let name: String
+    public let description: String
+    public let shortDescription: String
+    public let avatarUrl: String?
+    public let info: [ShortInfo]
+    
+    public init(name: String, description: String, shortDescription: String, avatarUrl: String?, info: [ShortInfo]) {
+        self.name = name
+        self.description = description
+        self.shortDescription = shortDescription
+        self.avatarUrl = avatarUrl
+        self.info = info
+    }
 }
 

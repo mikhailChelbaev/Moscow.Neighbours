@@ -7,18 +7,18 @@
 
 import Foundation
 
-final class Route {
-    let id: String
-    let name: String
-    let description: String
-    let coverUrl: String?
-    let duration: String
-    let distance: String
-    let personsInfo: [PersonInfo]
-    var purchase: Purchase
-    let price: String?
+public final class Route {
+    public let id: String
+    public let name: String
+    public let description: String
+    public let coverUrl: String?
+    public let duration: String
+    public let distance: String
+    public let personsInfo: [PersonInfo]
+    public var purchase: Purchase
+    public let price: String?
     
-    init(id: String, name: String, description: String, coverUrl: String?, duration: String, distance: String, personsInfo: [PersonInfo], purchase: Purchase, price: String?) {
+    public init(id: String, name: String, description: String, coverUrl: String?, duration: String, distance: String, personsInfo: [PersonInfo], purchase: Purchase, price: String?) {
         self.id = id
         self.name = name
         self.description = description
@@ -31,7 +31,7 @@ final class Route {
     }
 }
 
-extension Route {
+public extension Route {
     func localizedPrice() -> String {
         switch purchase.status {
         case .free:
