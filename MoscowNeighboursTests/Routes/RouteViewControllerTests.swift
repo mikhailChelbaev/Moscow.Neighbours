@@ -34,6 +34,10 @@ class RouteViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.isLoaderVisible, "Expected no loading indicator once loading completes successfully")
     }
     
+    func test_fetchRoutesCompletion_rendersSuccessfullyLoadedRoutes() {
+        
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: LoaderSpy) {
@@ -48,6 +52,10 @@ class RouteViewControllerTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)
+    }
+    
+    private func makeRoute() -> Route {
+        return 
     }
     
     private final class LoaderSpy: RoutesProvider {

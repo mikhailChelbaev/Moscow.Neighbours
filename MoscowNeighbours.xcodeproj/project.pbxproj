@@ -491,7 +491,7 @@
 				7422221F2781DEAC00CFDD50 /* MoscowNeighbours.entitlements */,
 				74967F86276F59FB0096AA77 /* Core */,
 				7402662626A765E7006242FE /* UI */,
-				7490F33527AE746400DCD9C7 /* API */,
+				7490F33527AE746400DCD9C7 /* Features */,
 				74DE214A27F0F616006863A3 /* GlobalStates */,
 				748FFD9426E55193009CA688 /* Network */,
 				742EFE8926F14132009A5126 /* BottomSheet */,
@@ -592,8 +592,8 @@
 			isa = PBXGroup;
 			children = (
 				74159E5127ADBC1A007E7118 /* UserProvider.swift */,
-				74E7C3982783063900B16392 /* UserService.swift */,
 				74E7C39F27830F9100B16392 /* UserModel.swift */,
+				7444DA8D2801982A00A04F87 /* API */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -805,6 +805,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		7444DA8C2801980700A04F87 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				74967F7F276F55A40096AA77 /* RoutesService.swift */,
+				74967F84276F57B60096AA77 /* Models */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		7444DA8D2801982A00A04F87 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				74E7C3982783063900B16392 /* UserService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -942,7 +959,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		7490F33527AE746400DCD9C7 /* API */ = {
+		7490F33527AE746400DCD9C7 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				74DC18AE27AEEA5700C5A02F /* Purchases */,
@@ -951,7 +968,7 @@
 				74E7C39C2783081A00B16392 /* JWTService.swift */,
 				74DE214727F0F489006863A3 /* LogoutManager.swift */,
 			);
-			path = API;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		74967F79276F555A0096AA77 /* Service */ = {
@@ -979,8 +996,7 @@
 			isa = PBXGroup;
 			children = (
 				74A4B8E327B9A70200153A05 /* RoutesProvider.swift */,
-				74967F7F276F55A40096AA77 /* RoutesService.swift */,
-				74967F84276F57B60096AA77 /* Models */,
+				7444DA8C2801980700A04F87 /* API */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
