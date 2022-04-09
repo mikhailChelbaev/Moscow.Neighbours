@@ -491,11 +491,9 @@
 				7422221F2781DEAC00CFDD50 /* MoscowNeighbours.entitlements */,
 				74967F86276F59FB0096AA77 /* Core */,
 				7402662626A765E7006242FE /* UI */,
-				7490F33527AE746400DCD9C7 /* GlobalServices */,
-				74DE214B27F0F629006863A3 /* GlobalModels */,
+				7490F33527AE746400DCD9C7 /* API */,
 				74DE214A27F0F616006863A3 /* GlobalStates */,
 				748FFD9426E55193009CA688 /* Network */,
-				74DC18AE27AEEA5700C5A02F /* Purchases */,
 				742EFE8926F14132009A5126 /* BottomSheet */,
 				74F52A2D272591EB00343334 /* Markdown */,
 				7402662226A7659F006242FE /* Helpers */,
@@ -590,13 +588,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		74159E5027ADBC07007E7118 /* UserService */ = {
+		74159E5027ADBC07007E7118 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				74159E5127ADBC1A007E7118 /* UserProvider.swift */,
 				74E7C3982783063900B16392 /* UserService.swift */,
+				74E7C39F27830F9100B16392 /* UserModel.swift */,
 			);
-			path = UserService;
+			path = User;
 			sourceTree = "<group>";
 		};
 		7419E1D326BEB0BF00E31BDD /* Cells */ = {
@@ -905,7 +904,6 @@
 				74967F81276F57A20096AA77 /* RoutesPresenter.swift */,
 				740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */,
 				7415479726B09754006931DC /* Cells */,
-				74967F84276F57B60096AA77 /* Models */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -944,16 +942,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		7490F33527AE746400DCD9C7 /* GlobalServices */ = {
+		7490F33527AE746400DCD9C7 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				74DE214927F0F49C006863A3 /* LogoutManager */,
-				74159E5027ADBC07007E7118 /* UserService */,
-				74967F83276F57A90096AA77 /* RoutesServices */,
+				74DC18AE27AEEA5700C5A02F /* Purchases */,
+				74159E5027ADBC07007E7118 /* User */,
+				74967F83276F57A90096AA77 /* Routes */,
 				74E7C39C2783081A00B16392 /* JWTService.swift */,
 				74DE214727F0F489006863A3 /* LogoutManager.swift */,
 			);
-			path = GlobalServices;
+			path = API;
 			sourceTree = "<group>";
 		};
 		74967F79276F555A0096AA77 /* Service */ = {
@@ -977,13 +975,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		74967F83276F57A90096AA77 /* RoutesServices */ = {
+		74967F83276F57A90096AA77 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
 				74A4B8E327B9A70200153A05 /* RoutesProvider.swift */,
 				74967F7F276F55A40096AA77 /* RoutesService.swift */,
+				74967F84276F57B60096AA77 /* Models */,
 			);
-			path = RoutesServices;
+			path = Routes;
 			sourceTree = "<group>";
 		};
 		74967F84276F57B60096AA77 /* Models */ = {
@@ -1150,27 +1149,12 @@
 			path = Purchases;
 			sourceTree = "<group>";
 		};
-		74DE214927F0F49C006863A3 /* LogoutManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LogoutManager;
-			sourceTree = "<group>";
-		};
 		74DE214A27F0F616006863A3 /* GlobalStates */ = {
 			isa = PBXGroup;
 			children = (
 				74DE214E27F0FC31006863A3 /* UserState */,
 			);
 			path = GlobalStates;
-			sourceTree = "<group>";
-		};
-		74DE214B27F0F629006863A3 /* GlobalModels */ = {
-			isa = PBXGroup;
-			children = (
-				74E7C39F27830F9100B16392 /* UserModel.swift */,
-			);
-			path = GlobalModels;
 			sourceTree = "<group>";
 		};
 		74DE214E27F0FC31006863A3 /* UserState */ = {
