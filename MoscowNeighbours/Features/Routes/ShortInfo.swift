@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShortInfo: Codable {
+struct ShortInfo {
     let title: String
     let subtitle: String
 }

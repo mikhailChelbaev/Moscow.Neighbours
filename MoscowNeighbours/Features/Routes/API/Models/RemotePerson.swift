@@ -1,17 +1,16 @@
 //
-//  Person.swift
+//  RemotePerson.swift
 //  MoscowNeighbours
 //
-//  Created by Mikhail on 07.10.2021.
+//  Created by Mikhail on 09.04.2022.
 //
 
 import Foundation
 
-struct Person: Codable {
+struct RemotePerson: Decodable {
     let name: String
     let description: String
     let shortDescription: String
     let avatarUrl: String?
-    let info: [ShortInfo]
+    let info: [RemoteShortInfo]
 }
-

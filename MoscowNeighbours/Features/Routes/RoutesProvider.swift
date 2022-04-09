@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RoutesProvider {
-    typealias Result = Swift.Result<[Route], NetworkError>
+    typealias Result = Swift.Result<[Route], Error>
     
     func fetchRoutes(completion: @escaping (Result) -> Void)
 }

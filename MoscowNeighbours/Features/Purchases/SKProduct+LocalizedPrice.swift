@@ -8,6 +8,10 @@
 import StoreKit
 
 extension SKProduct: Product {
+    var id: String {
+        return productIdentifier
+    }
+    
     var localizedPrice: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency

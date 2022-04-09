@@ -65,6 +65,14 @@
 		743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */; };
 		7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */; };
 		7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */; };
+		7444DA8F280198F900A04F87 /* RemoteRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA8E280198F900A04F87 /* RemoteRoute.swift */; };
+		7444DA912801992E00A04F87 /* RemotePersonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA902801992E00A04F87 /* RemotePersonInfo.swift */; };
+		7444DA932801995100A04F87 /* RemotePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA922801995100A04F87 /* RemotePlace.swift */; };
+		7444DA952801997600A04F87 /* RemotePerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA942801997600A04F87 /* RemotePerson.swift */; };
+		7444DA972801999900A04F87 /* RemoteLocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA962801999900A04F87 /* RemoteLocationCoordinates.swift */; };
+		7444DA99280199B100A04F87 /* RemoteShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA98280199B000A04F87 /* RemoteShortInfo.swift */; };
+		7444DA9D2801B71F00A04F87 /* RemotePurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA9C2801B71F00A04F87 /* RemotePurchase.swift */; };
+		7444DA9F2801BF1800A04F87 /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA9E2801BF1800A04F87 /* Purchase.swift */; };
 		74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449251F278AE3E2008BC446 /* ErrorResponse.swift */; };
 		74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
@@ -292,6 +300,14 @@
 		7442C38627FF81BE0025621B /* MoscowNeighboursTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoscowNeighboursTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewControllerTests.swift; sourceTree = "<group>"; };
 		7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		7444DA8E280198F900A04F87 /* RemoteRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRoute.swift; sourceTree = "<group>"; };
+		7444DA902801992E00A04F87 /* RemotePersonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePersonInfo.swift; sourceTree = "<group>"; };
+		7444DA922801995100A04F87 /* RemotePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePlace.swift; sourceTree = "<group>"; };
+		7444DA942801997600A04F87 /* RemotePerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePerson.swift; sourceTree = "<group>"; };
+		7444DA962801999900A04F87 /* RemoteLocationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLocationCoordinates.swift; sourceTree = "<group>"; };
+		7444DA98280199B000A04F87 /* RemoteShortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteShortInfo.swift; sourceTree = "<group>"; };
+		7444DA9C2801B71F00A04F87 /* RemotePurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePurchase.swift; sourceTree = "<group>"; };
+		7444DA9E2801BF1800A04F87 /* Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
 		7449251F278AE3E2008BC446 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorDescription.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
@@ -996,6 +1012,13 @@
 			isa = PBXGroup;
 			children = (
 				74A4B8E327B9A70200153A05 /* RoutesProvider.swift */,
+				748EE632270F911800301552 /* Route.swift */,
+				748EE634270F913000301552 /* PersonInfo.swift */,
+				748EE638270F915C00301552 /* Place.swift */,
+				748EE63A270F916800301552 /* Person.swift */,
+				748EE636270F914600301552 /* LocationCoordinates.swift */,
+				748EE63C270F917600301552 /* ShortInfo.swift */,
+				7444DA9E2801BF1800A04F87 /* Purchase.swift */,
 				7444DA8C2801980700A04F87 /* API */,
 			);
 			path = Routes;
@@ -1004,12 +1027,13 @@
 		74967F84276F57B60096AA77 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				748EE632270F911800301552 /* Route.swift */,
-				748EE634270F913000301552 /* PersonInfo.swift */,
-				748EE638270F915C00301552 /* Place.swift */,
-				748EE63A270F916800301552 /* Person.swift */,
-				748EE636270F914600301552 /* LocationCoordinates.swift */,
-				748EE63C270F917600301552 /* ShortInfo.swift */,
+				7444DA8E280198F900A04F87 /* RemoteRoute.swift */,
+				7444DA902801992E00A04F87 /* RemotePersonInfo.swift */,
+				7444DA922801995100A04F87 /* RemotePlace.swift */,
+				7444DA942801997600A04F87 /* RemotePerson.swift */,
+				7444DA962801999900A04F87 /* RemoteLocationCoordinates.swift */,
+				7444DA98280199B000A04F87 /* RemoteShortInfo.swift */,
+				7444DA9C2801B71F00A04F87 /* RemotePurchase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1444,10 +1468,12 @@
 				74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */,
 				74DC18B227AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift in Sources */,
 				743C3AC9277D051F00D4CB1C /* AuthorizationTypeCell.swift in Sources */,
+				7444DA952801997600A04F87 /* RemotePerson.swift in Sources */,
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
 				7457757227973E1300123208 /* DelayManager.swift in Sources */,
 				7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */,
+				7444DA99280199B100A04F87 /* RemoteShortInfo.swift in Sources */,
 				7404A61126B87FAF00524453 /* TextCell.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
 				74B8EC372788442D00E240C5 /* ProfileStorage.swift in Sources */,
@@ -1511,9 +1537,11 @@
 				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
 				746684AC279F5E6200AFAA2E /* AccountConfirmationRequest.swift in Sources */,
+				7444DA8F280198F900A04F87 /* RemoteRoute.swift in Sources */,
 				746F061627936731009D1163 /* ErrorTextInputCell.swift in Sources */,
 				74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
+				7444DA972801999900A04F87 /* RemoteLocationCoordinates.swift in Sources */,
 				746684AA279F5D5900AFAA2E /* AccountConfirmationService.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */,
@@ -1575,6 +1603,7 @@
 				74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */,
 				74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */,
 				74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */,
+				7444DA912801992E00A04F87 /* RemotePersonInfo.swift in Sources */,
 				743C3ABF277CF9A800D4CB1C /* AuthorizationPresenter.swift in Sources */,
 				74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */,
 				74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */,
@@ -1587,10 +1616,13 @@
 				74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */,
 				74F739FE272B50DE007C5450 /* BaseTableView.swift in Sources */,
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
+				7444DA9F2801BF1800A04F87 /* Purchase.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,
+				7444DA9D2801B71F00A04F87 /* RemotePurchase.swift in Sources */,
 				743C3AC7277D04F100D4CB1C /* AuthorizationType.swift in Sources */,
 				74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */,
 				741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */,
+				7444DA932801995100A04F87 /* RemotePlace.swift in Sources */,
 				7422221E2781DC2500CFDD50 /* AuthorizationService.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
 				74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */,

@@ -8,5 +8,6 @@
 import Foundation
 
 protocol Product {
+    var id: String { get }
     var localizedPrice: String { get }
 }

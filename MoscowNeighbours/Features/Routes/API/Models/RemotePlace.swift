@@ -1,15 +1,15 @@
 //
-//  Place.swift
+//  RemotePlace.swift
 //  MoscowNeighbours
 //
-//  Created by Mikhail on 07.10.2021.
+//  Created by Mikhail on 09.04.2022.
 //
 
 import Foundation
 
-struct Place: Codable {
+struct RemotePlace: Decodable {
     let id: String
     let name: String
     let description: String?
-    let address: String    
+    let address: String
 }

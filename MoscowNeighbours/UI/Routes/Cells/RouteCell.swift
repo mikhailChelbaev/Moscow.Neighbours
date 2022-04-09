@@ -82,11 +82,11 @@ class RouteCell: CellView {
         titleLabel.text = route.name
         infoView.update(text: "\(route.distance) • \(route.duration)", image: nil)
         
-        buyButton.setTitle(route.localizedPriceText(), for: .normal)
+        buyButton.setTitle(route.localizedPrice(), for: .normal)
         updateButtonStyle(route.purchase.status)
     }
     
-    private func updateButtonStyle(_ style: Route.Purchase.Status) {
+    private func updateButtonStyle(_ style: Purchase.Status) {
         switch style {
         case .free, .purchased:
             buyButton.layer.borderWidth = 1
