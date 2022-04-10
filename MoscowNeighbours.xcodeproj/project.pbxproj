@@ -81,6 +81,7 @@
 		7444DAB22801ED7A00A04F87 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAB12801ED7A00A04F87 /* MainQueueDispatchDecorator.swift */; };
 		7444DAB42801ED9C00A04F87 /* MainQueueDispatchDecorator+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAB32801ED9C00A04F87 /* MainQueueDispatchDecorator+Routes.swift */; };
 		7444DAB62802F10800A04F87 /* Button+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAB52802F10800A04F87 /* Button+TestHelpers.swift */; };
+		7444DABA28030D7F00A04F87 /* RouteViewControllerTests+FakeStoreContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DAB928030D7F00A04F87 /* RouteViewControllerTests+FakeStoreContainer.swift */; };
 		74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449251F278AE3E2008BC446 /* ErrorResponse.swift */; };
 		74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
@@ -324,6 +325,7 @@
 		7444DAB12801ED7A00A04F87 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		7444DAB32801ED9C00A04F87 /* MainQueueDispatchDecorator+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainQueueDispatchDecorator+Routes.swift"; sourceTree = "<group>"; };
 		7444DAB52802F10800A04F87 /* Button+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+TestHelpers.swift"; sourceTree = "<group>"; };
+		7444DAB928030D7F00A04F87 /* RouteViewControllerTests+FakeStoreContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteViewControllerTests+FakeStoreContainer.swift"; sourceTree = "<group>"; };
 		7449251F278AE3E2008BC446 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorDescription.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
@@ -864,6 +866,7 @@
 				7444DAA52801E99300A04F87 /* RouteCell+TestHelpers.swift */,
 				7444DAA92801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift */,
 				7444DAAB2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift */,
+				7444DAB928030D7F00A04F87 /* RouteViewControllerTests+FakeStoreContainer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1714,6 +1717,7 @@
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift in Sources */,
 				7444DAA42801E93900A04F87 /* RouteViewController+TestHelpers.swift in Sources */,
+				7444DABA28030D7F00A04F87 /* RouteViewControllerTests+FakeStoreContainer.swift in Sources */,
 				7444DAB62802F10800A04F87 /* Button+TestHelpers.swift in Sources */,
 				7444DAA82801E9A800A04F87 /* TestDelayManager.swift in Sources */,
 				7444DAA62801E99300A04F87 /* RouteCell+TestHelpers.swift in Sources */,

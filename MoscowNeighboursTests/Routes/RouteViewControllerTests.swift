@@ -89,13 +89,4 @@ class RouteViewControllerTests: XCTestCase {
     private func makeRoute(name: String, price: (status: Purchase.Status, value: String?)) -> Route {
         return Route(id: UUID().uuidString, name: "some name", description: "description", coverUrl: nil, duration: "200 min", distance: "200 km", personsInfo: [], purchase: .init(status: price.status, productId: nil), price: price.value)
     }
-    
-    
-    private final class FakeStoreContainer: StoreContainer {
-        func store<T>(data: T, key: String) where T : Decodable, T : Encodable {}
-        func get<T>(key: String) -> T? where T : Decodable, T : Encodable {
-            return nil
-        }
-        func reset() {}
-    }
 }
