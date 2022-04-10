@@ -11,11 +11,13 @@ struct RoutesStorage {
     let routesService: RoutesProvider
     let routesDescriptionBuilder: RoutesDescriptionBuilder
     let routesFetchDelayManager: DelayManager
+    let userState: UserState
     
-    init(routesService: RoutesProvider, routesDescriptionBuilder: RoutesDescriptionBuilder, routesFetchDelayManager: DelayManager) {
+    init(routesService: RoutesProvider, routesDescriptionBuilder: RoutesDescriptionBuilder, routesFetchDelayManager: DelayManager, userState: UserState) {
         self.routesService = MainQueueDispatchDecorator(decoratee: routesService)
         self.routesDescriptionBuilder = routesDescriptionBuilder
         self.routesFetchDelayManager = routesFetchDelayManager
+        self.userState = userState
     }
 }
 
@@ -28,12 +30,14 @@ extension Builder: RoutesBuilder {
         let routesPresenter = RoutesPresenter(storage: storage)
         let viewController = RouteViewController(eventHandler: routesPresenter)
         routesPresenter.viewController = viewController
+        storage.userState.register(WeakRef(routesPresenter))
         return viewController
     }
     
     func makeRoutesStorage() -> RoutesStorage {
         return RoutesStorage(routesService: routesService,
                              routesDescriptionBuilder: self,
-                             routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0))
+                             routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0),
+                             userState: userState)
     }
 }

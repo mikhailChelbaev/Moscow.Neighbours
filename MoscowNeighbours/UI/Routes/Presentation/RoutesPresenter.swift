@@ -75,8 +75,6 @@ class RoutesPresenter: RoutesEventHandler {
 
 extension RoutesPresenter: UserStateDelegate {
     func didChangeUserModel(state: UserState) {
-        DispatchQueue.main.async { [self] in
-            fetchRoutes()
-        }
+        fetchRoutes()
     }
 }

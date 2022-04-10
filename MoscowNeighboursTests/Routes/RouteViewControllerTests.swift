@@ -47,6 +47,17 @@ class RouteViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [route])
     }
     
+    func test_routesList_reloadsAfterUserStateChange() {
+        let userState = UserState(storeContainer: FakeStoreContainer())
+        let (sut, loader) = makeSUT(userState: userState)
+        
+        sut.loadViewIfNeeded()
+        loader.completeRoutesLoading()
+        userState.currentUser = nil
+        
+        XCTAssertTrue(sut.isLoaderVisible, "Expected loading indicator after current user change")
+    }
+    
     func test_fetchRoutesCompletion_dispatchesFromBackgroundToMainThread() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
@@ -61,13 +72,14 @@ class RouteViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: LoaderSpy) {
+    private func makeSUT(userState: UserState = UserState(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
         let builder = Builder()
         let storage = RoutesStorage(
             routesService: loader,
             routesDescriptionBuilder: builder,
-            routesFetchDelayManager: TestDelayManager())
+            routesFetchDelayManager: TestDelayManager(),
+            userState: userState)
         let sut = builder.buildRouteViewController(with: storage)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -76,5 +88,14 @@ class RouteViewControllerTests: XCTestCase {
     
     private func makeRoute(name: String, price: (status: Purchase.Status, value: String?)) -> Route {
         return Route(id: UUID().uuidString, name: "some name", description: "description", coverUrl: nil, duration: "200 min", distance: "200 km", personsInfo: [], purchase: .init(status: price.status, productId: nil), price: price.value)
+    }
+    
+    
+    private final class FakeStoreContainer: StoreContainer {
+        func store<T>(data: T, key: String) where T : Decodable, T : Encodable {}
+        func get<T>(key: String) -> T? where T : Decodable, T : Encodable {
+            return nil
+        }
+        func reset() {}
     }
 }
