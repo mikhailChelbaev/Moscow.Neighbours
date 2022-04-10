@@ -10,20 +10,6 @@ import XCTest
 
 class RouteViewControllerTests: XCTestCase {
     
-    func test_init_doesNotLoadRoutes() {
-        let (_, loader) = makeSUT()
-        
-        XCTAssertEqual(loader.loadCallCount, 0)
-    }
-    
-    func test_viewDidLoad_fetchesRoutes() {
-        let (sut, loader) = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(loader.loadCallCount, 1)
-    }
-    
     func test_loadingIndicator_isVisibleWhileFetchingRoutes() {
         let (sut, loader) = makeSUT()
         
@@ -47,7 +33,7 @@ class RouteViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [route0, route1, route2, route3])
     }
     
-    func test_fetchRoutesCompletion_showsErrorViewWithRetryButtonWhenFailedToLoadRoutes() {
+    func test_errorViewRetryButton_retriesRoutesLoad() {
         let route = makeRoute(name: "Route 1", price: (.free, nil))
         let (sut, loader) = makeSUT()
         

@@ -11,10 +11,6 @@ extension RouteViewControllerTests {
     final class LoaderSpy: RoutesProvider {
         var completions = [(RoutesProvider.Result) -> Void]()
         
-        var loadCallCount: Int {
-            return completions.count
-        }
-        
         func fetchRoutes(completion: @escaping (RoutesProvider.Result) -> Void) {
             completions.append(completion)
         }
