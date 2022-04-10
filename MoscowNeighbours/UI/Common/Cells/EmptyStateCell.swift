@@ -7,13 +7,22 @@
 
 import UIKit
 
-struct EmptyStateDataProvider {
+public struct EmptyStateDataProvider {
     var image: UIImage?
     var title: String
     var subtitle: String?
     var buttonTitle: String?
     var imageHeight: CGFloat
     var buttonAction: Action?
+    
+    public init(image: UIImage? = nil, title: String, subtitle: String? = nil, buttonTitle: String? = nil, imageHeight: CGFloat, buttonAction: Action? = nil) {
+        self.image = image
+        self.title = title
+        self.subtitle = subtitle
+        self.buttonTitle = buttonTitle
+        self.imageHeight = imageHeight
+        self.buttonAction = buttonAction
+    }
 }
 
 struct DefaultEmptyStateProviders {
@@ -38,15 +47,15 @@ struct DefaultEmptyStateProviders {
      
 }
 
-final class EmptyStateCell: CellView {
+public final class EmptyStateCell: CellView {
     
-    var dataProvider: EmptyStateDataProvider? {
+    public var dataProvider: EmptyStateDataProvider? {
         didSet {
             update()
         }
     }
     
-    private let imageView: UIImageView = {
+    public let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
@@ -54,7 +63,7 @@ final class EmptyStateCell: CellView {
         return iv
     }()
     
-    private let titleLabel: UILabel = {
+    public let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 18, weight: .bold)
         label.numberOfLines = 0
@@ -62,7 +71,7 @@ final class EmptyStateCell: CellView {
         return label
     }()
     
-    private let subtitleLabel: UILabel = {
+    public let subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 0
@@ -70,13 +79,13 @@ final class EmptyStateCell: CellView {
         return label
     }()
     
-    private var button: Button = {
+    public var button: Button = {
         let button = Button()
         button.roundedCorners = true
         return button
     }()
     
-    private let container: UIStackView = {
+    public let container: UIStackView = {
         let stack = UIStackView()
         stack.alignment = .center
         stack.distribution = .fill
@@ -85,9 +94,17 @@ final class EmptyStateCell: CellView {
         return stack
     }()
     
-    private var imageViewHeightConstraint: NSLayoutConstraint?
+    public var imageViewHeightConstraint: NSLayoutConstraint?
     
-    override func configureView() {
+    public required init() {
+        super.init()
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func configureView() {
         let container = UIView()
         
         container.addSubview(imageView)

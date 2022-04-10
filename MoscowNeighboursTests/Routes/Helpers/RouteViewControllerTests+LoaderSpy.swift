@@ -22,5 +22,9 @@ extension RouteViewControllerTests {
         func completeRoutesLoading(with routes: [Route] = [], at index: Int = 0) {
             completions[index](.success(routes))
         }
+        
+        func completeRoutesLoading(with error: Error, at index: Int = 0) {
+            completions[index](.failure(error))
+        }
     }
 }

@@ -47,6 +47,20 @@ class RouteViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [route0, route1, route2, route3])
     }
     
+    func test_fetchRoutesCompletion_showsErrorViewWithRetryButtonWhenFailedToLoadRoutes() {
+        let route = makeRoute(name: "Route 1", price: (.free, nil))
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeRoutesLoading(with: NSError(), at: 0)
+        
+        sut.simulateErrorViewButtonTap()
+        XCTAssertTrue(sut.isLoaderVisible, "Expected loading indicator after retry button tap")
+        
+        loader.completeRoutesLoading(with: [route], at: 1)
+        assertThat(sut, isRendering: [route])
+    }
+    
     func test_fetchRoutesCompletion_dispatchesFromBackgroundToMainThread() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()

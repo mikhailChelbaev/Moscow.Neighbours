@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class Button: UIButton {
+public final class Button: UIButton {
     
-    enum Style {
+    public enum Style {
         case filled
         case tinted
         case white
@@ -17,23 +17,20 @@ final class Button: UIButton {
         case custom(title: UIColor, background: UIColor)
     }
     
-    var action: Action?
+    public var action: Action?
+    public var roundedCorners: Bool = false
+    public var scale: CGFloat = 0.97
+    public var animationDuration: Double = 0.05
     
-    var roundedCorners: Bool = false
-    
-    var scale: CGFloat = 0.97
-    
-    var animationDuration: Double = 0.05
-    
-    var style: Style = .filled {
+    public var style: Style = .filled {
         didSet { updateUI() }
     }
     
-    override var isEnabled: Bool {
+    public override var isEnabled: Bool {
         didSet { updateUI() }
     }
     
-    init() {
+    public init() {
         super.init(frame: .zero)
         
         titleLabel?.font = .mainFont(ofSize: 17, weight: .medium)
@@ -45,11 +42,11 @@ final class Button: UIButton {
         setUpGestureRecognizer()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         if roundedCorners {
             layer.cornerRadius = frame.height / 2

@@ -42,4 +42,19 @@ extension RouteViewController {
     private var routesSection: Int {
         return 0
     }
+    
+    private var errorView: EmptyStateCell? {
+        let ds = tableView.dataSource
+        let index = IndexPath(row: 0, section: errorViewSection)
+        let cell = ds?.tableView(tableView, cellForRowAt: index) as? TableCellWrapper<EmptyStateCell>
+        return cell?.view
+    }
+    
+    private var errorViewSection: Int {
+        return 0
+    }
+    
+    func simulateErrorViewButtonTap() {
+        errorView?.button.simulateTap()
+    }
 }

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CellView: UIView {
+public class CellView: UIView {
     
-    static var reuseId: String {
+    public static var reuseId: String {
         return String(describing: Self.self)
     }
     
@@ -19,10 +19,10 @@ class CellView: UIView {
         configureView()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError()
     }
     
-    func configureView() { }
+    public func configureView() { }
     
 }
