@@ -11,6 +11,12 @@ struct RoutesStorage {
     let routesService: RoutesProvider
     let routesDescriptionBuilder: RoutesDescriptionBuilder
     let routesFetchDelayManager: DelayManager
+    
+    init(routesService: RoutesProvider, routesDescriptionBuilder: RoutesDescriptionBuilder, routesFetchDelayManager: DelayManager) {
+        self.routesService = MainQueueDispatchDecorator(decoratee: routesService)
+        self.routesDescriptionBuilder = routesDescriptionBuilder
+        self.routesFetchDelayManager = routesFetchDelayManager
+    }
 }
 
 protocol RoutesBuilder {
