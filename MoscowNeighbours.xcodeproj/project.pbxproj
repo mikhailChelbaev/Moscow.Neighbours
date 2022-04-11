@@ -144,6 +144,7 @@
 		7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A160277E1C6B004E2D27 /* TextInputCell.swift */; };
 		7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A162277E3233004E2D27 /* OrSeparatorCell.swift */; };
 		7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */; };
+		7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7489D0C02804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift */; };
 		748C94CE272FEFAF00202D47 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748C94CD272FEFAF00202D47 /* LocationService.swift */; };
 		748EE633270F911800301552 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE632270F911800301552 /* Route.swift */; };
 		748EE635270F913000301552 /* PersonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE634270F913000301552 /* PersonInfo.swift */; };
@@ -389,6 +390,7 @@
 		7488A160277E1C6B004E2D27 /* TextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
 		7488A162277E3233004E2D27 /* OrSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrSeparatorCell.swift; sourceTree = "<group>"; };
 		7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonCell.swift; sourceTree = "<group>"; };
+		7489D0C02804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewControllerTests.swift; sourceTree = "<group>"; };
 		748C94CD272FEFAF00202D47 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		748EE632270F911800301552 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		748EE634270F913000301552 /* PersonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfo.swift; sourceTree = "<group>"; };
@@ -829,6 +831,7 @@
 			children = (
 				7442C39227FF86D60025621B /* Helpers */,
 				7442C38F27FF81CC0025621B /* Routes */,
+				7489D0BF2804DC050098AED5 /* RouteDescription */,
 			);
 			path = MoscowNeighboursTests;
 			sourceTree = "<group>";
@@ -1040,6 +1043,14 @@
 				747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7489D0BF2804DC050098AED5 /* RouteDescription */ = {
+			isa = PBXGroup;
+			children = (
+				7489D0C02804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift */,
+			);
+			path = RouteDescription;
 			sourceTree = "<group>";
 		};
 		748FFD9426E55193009CA688 /* Network */ = {
@@ -1733,6 +1744,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
+				7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */,
 				7444DAAC2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift in Sources */,
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift in Sources */,
