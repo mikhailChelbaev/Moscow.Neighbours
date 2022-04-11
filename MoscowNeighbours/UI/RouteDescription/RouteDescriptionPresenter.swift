@@ -149,7 +149,7 @@ class RouteDescriptionPresenter: RouteDescriptionEventHandler {
     
     private func reloadRoutesController() {
         if let presentingController = viewController?.presentingViewController as? RouteViewController {
-            presentingController.reloadData()
+            presentingController.tableView.reloadData()
         }
     }
     

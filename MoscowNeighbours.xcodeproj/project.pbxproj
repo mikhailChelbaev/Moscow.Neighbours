@@ -175,6 +175,11 @@
 		74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC342788442600E240C5 /* ProfilePresenter.swift */; };
 		74B8EC372788442D00E240C5 /* ProfileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC362788442D00E240C5 /* ProfileStorage.swift */; };
 		74B8EC3A27884AFA00E240C5 /* UserHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC3927884AFA00E240C5 /* UserHeaderCell.swift */; };
+		74BE346E28037F330086BB89 /* RouteCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE346D28037F330086BB89 /* RouteCellController.swift */; };
+		74BE34702803848F0086BB89 /* WeakRef+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE346F2803848F0086BB89 /* WeakRef+Routes.swift */; };
+		74BE347428038EDF0086BB89 /* RoutesViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE347328038EDF0086BB89 /* RoutesViewAdapter.swift */; };
+		74BE3476280390ED0086BB89 /* RouteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE3475280390ED0086BB89 /* RouteTableViewController.swift */; };
+		74BE3478280396610086BB89 /* UserStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE3477280396610086BB89 /* UserStateObserver.swift */; };
 		74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A272725EDC40066C43E /* MarkdownMerger.swift */; };
 		74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A292725EFCA0066C43E /* MarkdownNode.swift */; };
 		74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A2B2725EFF90066C43E /* String+Subscript.swift */; };
@@ -416,6 +421,11 @@
 		74B8EC342788442600E240C5 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		74B8EC362788442D00E240C5 /* ProfileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorage.swift; sourceTree = "<group>"; };
 		74B8EC3927884AFA00E240C5 /* UserHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderCell.swift; sourceTree = "<group>"; };
+		74BE346D28037F330086BB89 /* RouteCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCellController.swift; sourceTree = "<group>"; };
+		74BE346F2803848F0086BB89 /* WeakRef+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Routes.swift"; sourceTree = "<group>"; };
+		74BE347328038EDF0086BB89 /* RoutesViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewAdapter.swift; sourceTree = "<group>"; };
+		74BE3475280390ED0086BB89 /* RouteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTableViewController.swift; sourceTree = "<group>"; };
+		74BE3477280396610086BB89 /* UserStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateObserver.swift; sourceTree = "<group>"; };
 		74C51A272725EDC40066C43E /* MarkdownMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownMerger.swift; sourceTree = "<group>"; };
 		74C51A292725EFCA0066C43E /* MarkdownNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
 		74C51A2B2725EFF90066C43E /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
@@ -876,6 +886,9 @@
 			children = (
 				740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */,
 				7444DAB32801ED9C00A04F87 /* MainQueueDispatchDecorator+Routes.swift */,
+				74BE346F2803848F0086BB89 /* WeakRef+Routes.swift */,
+				74BE347328038EDF0086BB89 /* RoutesViewAdapter.swift */,
+				74BE3477280396610086BB89 /* UserStateObserver.swift */,
 			);
 			path = Composition;
 			sourceTree = "<group>";
@@ -892,6 +905,8 @@
 			isa = PBXGroup;
 			children = (
 				746BCCC126A8BA6C009CC823 /* RouteViewController.swift */,
+				74BE3475280390ED0086BB89 /* RouteTableViewController.swift */,
+				74BE346D28037F330086BB89 /* RouteCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1546,9 +1561,11 @@
 				7404A61126B87FAF00524453 /* TextCell.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
 				74B8EC372788442D00E240C5 /* ProfileStorage.swift in Sources */,
+				74BE347428038EDF0086BB89 /* RoutesViewAdapter.swift in Sources */,
 				745775702797366D00123208 /* ObservableNetworkService.swift in Sources */,
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
 				74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */,
+				74BE346E28037F330086BB89 /* RouteCellController.swift in Sources */,
 				74967F89276F5A300096AA77 /* WeakRef.swift in Sources */,
 				74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */,
 				74E7C39D2783081A00B16392 /* JWTService.swift in Sources */,
@@ -1558,11 +1575,14 @@
 				749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */,
 				7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
+				74BE3478280396610086BB89 /* UserStateObserver.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
 				7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */,
 				74F185682787292600A0BF24 /* SettingsPresenter.swift in Sources */,
 				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */,
+				74BE3476280390ED0086BB89 /* RouteTableViewController.swift in Sources */,
+				74BE34702803848F0086BB89 /* WeakRef+Routes.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
 				7466849B279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift in Sources */,
 				7415479326B08C8A006931DC /* PersonCell.swift in Sources */,

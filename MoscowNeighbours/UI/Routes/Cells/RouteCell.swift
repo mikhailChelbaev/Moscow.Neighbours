@@ -7,13 +7,8 @@
 
 import UIKit
 import ImageView
-import SwiftUI
 
-class RouteCell: CellView {
-    
-    var route: Route? {
-        didSet { update() }
-    }
+final class RouteCell: CellView {
     
     let containerView: ImageView = {
         let iv = ImageView()
@@ -73,30 +68,6 @@ class RouteCell: CellView {
         
         containerView.addSubview(infoView)
         infoView.pinToSuperviewEdges([.left, .top], insets: .init(top: 20, left: 20, bottom: 0, right: 0))
-    }
-    
-    private func update() {
-        guard let route = route else { return }
-        
-        containerView.loadImage(route.coverUrl)
-        titleLabel.text = route.name
-        infoView.update(text: "\(route.distance) • \(route.duration)", image: nil)
-        
-        buyButton.setTitle(route.localizedPrice(), for: .normal)
-        updateButtonStyle(route.purchase.status)
-    }
-    
-    private func updateButtonStyle(_ style: Purchase.Status) {
-        switch style {
-        case .free, .purchased:
-            buyButton.layer.borderWidth = 1
-            buyButton.layer.borderColor = UIColor.white.cgColor
-            buyButton.backgroundColor = .clear
-            
-        case .buy:
-            buyButton.layer.borderWidth = 0
-            buyButton.backgroundColor = .projectRed
-        }
     }
     
 }

@@ -86,7 +86,7 @@ class RouteViewControllerTests: XCTestCase {
         return (sut, loader)
     }
     
-    private func makeRoute(name: String, price: (status: Purchase.Status, value: String?)) -> Route {
+    private func makeRoute(name: String = "Route", price: (status: Purchase.Status, value: String?) = (.free, nil)) -> Route {
         return Route(id: UUID().uuidString, name: "some name", description: "description", coverUrl: nil, duration: "200 min", distance: "200 km", personsInfo: [], purchase: .init(status: price.status, productId: nil), price: price.value)
     }
 }

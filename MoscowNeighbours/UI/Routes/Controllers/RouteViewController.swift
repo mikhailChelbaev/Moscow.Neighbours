@@ -7,58 +7,35 @@
 
 import UIKit
 
-enum RouteDataState {
-    case success(routes: [Route])
-    case error
-}
-
-protocol RouteView: BottomSheetViewController, LoadingStatusProvider {
-    var state: RouteDataState? { set get }
-    
-    func reloadData()
-}
-
-final class RouteViewController: BottomSheetViewController, RouteView {
-    
-    // MARK: - Sections
-    
-    enum Sections: Int {
-        case route = 0
-    }
+final class RouteViewController: BottomSheetViewController, RouteDescriptionPresenterView, RouteErrorView {
     
     // MARK: - UI
     
-    let tableView: BaseTableView = {
-        let tableView = BaseTableView()
-        tableView.backgroundColor = .background
-        tableView.contentInsetAdjustmentBehavior = .never
-        tableView.showsVerticalScrollIndicator = false
-        tableView.separatorStyle = .none
-        return tableView
-    }()
+    let tableView: BaseTableView
+    let headerView: HeaderView
     
-    let headerView = HeaderView()
+    // MARK: - Properties
     
-    // MARK: - Internal properties
-    
-    var showRouteCompletion: ((Route) -> Void)?
-    
-    var status: LoadingStatus = .loading {
-        didSet { update(oldValue: oldValue, newValue: status) }
-    }
-    
-    // MARK: - private properties
-    
-    private var routes: [Route] = []
-    
-    let eventHandler: RoutesEventHandler
-    
-    var state: RouteDataState?
+    private let presenter: RoutesPresenter
+    private let tableViewController: RouteTableViewController
+    private let userStateObserver: UserStateObserver
+    private let routeDescriptionController: (Route) -> RouteDescriptionViewController
     
     // MARK: - Init
     
-    init(eventHandler: RoutesEventHandler) {
-        self.eventHandler = eventHandler
+    init(
+        presenter: RoutesPresenter,
+        tableViewController: RouteTableViewController,
+        userStateObserver: UserStateObserver,
+        routeDescriptionController: @escaping (Route) -> RouteDescriptionViewController) {
+        self.presenter = presenter
+        self.tableViewController = tableViewController
+        self.userStateObserver = userStateObserver
+        self.routeDescriptionController = routeDescriptionController
+        
+        tableView = tableViewController.view
+        headerView = HeaderView()
+        
         super.init()
     }
     
@@ -70,41 +47,40 @@ final class RouteViewController: BottomSheetViewController, RouteView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTableView()
-        fetchData()
+        
+        presenter.didFetchRoutes()
     }
     
-    func fetchData() {
-        eventHandler.onFetchData()
+    func display(tableModels: [RouteCellController]) {
+        tableViewController.display(tableModels: tableModels)
+        
+        let config = getBottomSheetConfiguration()
+        bottomSheet.middlePosition = config.middleInset
+        bottomSheet.availableStates = [.top, .middle, .bottom]
+        bottomSheet.setState(.middle, animated: true)
     }
     
-    func reloadData() {
-        guard let state = state else {
-            return
-        }
-
-        switch state {
-        case .success(routes: let model):
-            routes = model
-            status = .success
-            
-        case .error:
-            status = .error(DefaultEmptyStateProviders.mainError(action: { [weak self] in
-                self?.fetchData()
-            }))
+    func presentRouteDescription(for route: Route) {
+        let controller = routeDescriptionController(route)
+        present(controller, state: .top, completion: nil)
+    }
+    
+    func display(error: Error) {
+        tableViewController.display(error: error) { [weak self] in
+            self?.presenter.didFetchRoutes()
         }
         
-        tableView.reloadData()
+        bottomSheet.middlePosition = .fromBottom(350)
+        bottomSheet.availableStates = [.middle, .bottom]
+        bottomSheet.setState(.middle, animated: true)
     }
-    
-    // MARK: - Get Bottom Sheet Components
     
     override func getScrollView() -> UIScrollView {
         return tableView
     }
     
     override func getHeaderView() -> UIView? {
-        headerView.update(text: "route.routes".localized, showSeparator: false)
+        headerView.update(text: presenter.headerTitle, showSeparator: false)
         return headerView
     }
     
@@ -112,87 +88,14 @@ final class RouteViewController: BottomSheetViewController, RouteView {
         return BottomSheetConfiguration(topInset: .fromTop(10))
     }
     
-    // MARK: - Private methods
-    
-    private func setUpTableView() {
-        tableView.successDataSource = self
-        tableView.statusProvider = self
-        
-        tableView.contentInset = .init(top: 0, left: 0, bottom: 10, right: 0)
-        
-        tableView.register(RouteCell.self)
-    }
-    
-    private func changeStateSize() {
-        let config = getBottomSheetConfiguration()
-        switch status {
-        case .success:
-            bottomSheet.middlePosition = config.middleInset
-            bottomSheet.availableStates = [.top, .middle, .bottom]
-            
-        case .error:
-            bottomSheet.middlePosition = .fromBottom(350)
-            bottomSheet.availableStates = [.middle, .bottom]
-            
-        default:
-            break
-        }
-        bottomSheet.setState(.middle, animated: true)
-    }
-    
     override func recalculateCoverAlpha(for origin: CGFloat) {
-        var value: CGFloat = 0
-        defer {
-            cover.alpha = value
-        }
-    
-        if bottomSheet.availableStates.contains(.top) &&
-            bottomSheet.availableStates.contains(.middle) {
+        if bottomSheet.availableStates.contains(.top) && bottomSheet.availableStates.contains(.middle) {
             let top = bottomSheet.origin(for: .top)
             let bottom = bottomSheet.origin(for: .middle)
-            value = 0.7 * (origin - bottom) / (top - bottom)
+            cover.alpha = 0.7 * (origin - bottom) / (top - bottom)
         }
-    }
-    
-    private func update(oldValue: LoadingStatus,
-                        newValue: LoadingStatus) {
-        if oldValue != newValue {
-            changeStateSize()
+        else {
+            cover.alpha = 0
         }
-        tableView.reloadData()
-    }
-}
-
-// MARK: - protocol TableSuccessDataSource
-
-extension RouteViewController: TableSuccessDataSource {
-    func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routes.count
-    }
-    
-    func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = Sections(rawValue: indexPath.section) else {
-            fatalError("Unexpected section value")
-        }
-        
-        switch section {
-        case .route:
-            return createRouteCell(for: indexPath)
-        }
-    }
-    
-    func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        eventHandler.onRouteCellTap(route: routes[indexPath.item])
-    }
-}
-
-// MARK: - Cells Creation
-
-extension RouteViewController {
-    private func createRouteCell(for indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(RouteCell.self, for: indexPath)
-        cell.selectionStyle = .none
-        cell.view.route = routes[indexPath.item]
-        return cell
     }
 }

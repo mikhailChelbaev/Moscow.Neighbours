@@ -12,7 +12,7 @@ struct RoutesStorage {
     let routesDescriptionBuilder: RoutesDescriptionBuilder
     let routesFetchDelayManager: DelayManager
     let userState: UserState
-    
+
     init(routesService: RoutesProvider, routesDescriptionBuilder: RoutesDescriptionBuilder, routesFetchDelayManager: DelayManager, userState: UserState) {
         self.routesService = MainQueueDispatchDecorator(decoratee: routesService)
         self.routesDescriptionBuilder = routesDescriptionBuilder
@@ -27,10 +27,30 @@ protocol RoutesBuilder {
 
 extension Builder: RoutesBuilder {
     func buildRouteViewController(with storage: RoutesStorage) -> RouteViewController {
-        let routesPresenter = RoutesPresenter(storage: storage)
-        let viewController = RouteViewController(eventHandler: routesPresenter)
-        routesPresenter.viewController = viewController
-        storage.userState.register(WeakRef(routesPresenter))
+        let presenter = RoutesPresenter(
+            routesService: storage.routesService,
+            delayManager: storage.routesFetchDelayManager)
+        
+        let userStateObserver = UserStateObserver(completion: presenter.didFetchRoutes)
+        let tableViewController = RouteTableViewController(didRouteCellTap: presenter.didRouteCellTap(route:))
+        
+        let viewController = RouteViewController(
+            presenter: presenter,
+            tableViewController: tableViewController,
+            userStateObserver: userStateObserver,
+            routeDescriptionController: { [unowned self] route in
+                self.buildRouteDescriptionViewController(route: route)
+            })
+        
+        let weakViewController = WeakRef(viewController)
+        
+        presenter.routesView = RoutesViewAdapter(controller: viewController)
+        presenter.routeDescriptionPresenterView = weakViewController
+        presenter.routeErrorView = weakViewController
+        presenter.routeLoadingView = WeakRef(tableViewController)
+        
+        storage.userState.register(userStateObserver)
+        
         return viewController
     }
     
@@ -41,3 +61,4 @@ extension Builder: RoutesBuilder {
                              userState: userState)
     }
 }
+

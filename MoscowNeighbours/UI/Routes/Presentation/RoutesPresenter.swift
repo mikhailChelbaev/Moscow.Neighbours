@@ -5,76 +5,71 @@
 //  Created by Mikhail on 19.12.2021.
 //
 
-import UIKit
+import Foundation
 
-protocol RoutesEventHandler {    
-    func onFetchData()
-    func onRouteCellTap(route: Route)
+protocol RoutesView: AnyObject {
+    func display(routes: [Route])
 }
 
-class RoutesPresenter: RoutesEventHandler {
+protocol RouteDescriptionPresenterView: AnyObject {
+    func presentRouteDescription(for route: Route)
+}
+
+protocol RouteErrorView: AnyObject {
+    func display(error: Error)
+}
+
+protocol RouteLoadingView: AnyObject {
+    func display(isLoading: Bool)
+}
+
+final class RoutesPresenter {
     
-    // MARK: - Properties
-    
-    weak var viewController: RouteView?
+    var routesView: RoutesView?
+    var routeDescriptionPresenterView: RouteDescriptionPresenterView?
+    var routeErrorView: RouteErrorView?
+    var routeLoadingView: RouteLoadingView?
     
     private var routesService: RoutesProvider
-    private let routesDescriptionBuilder: RoutesDescriptionBuilder
     private let delayManager: DelayManager
     
-    // MARK: - Init
-    
-    init(storage: RoutesStorage) {
-        routesService = storage.routesService
-        routesDescriptionBuilder = storage.routesDescriptionBuilder
-        delayManager = storage.routesFetchDelayManager
+    init(routesService: RoutesProvider, delayManager: DelayManager) {
+        self.routesService = routesService
+        self.delayManager = delayManager
     }
     
-    // MARK: - RoutesEventHandler methods
+    var headerTitle: String {
+        return "route.routes".localized
+    }
     
-    func onFetchData() {
+    func didFetchRoutes() {
         fetchRoutes()
     }
     
-    func onRouteCellTap(route: Route) {
-        let controller = routesDescriptionBuilder.buildRouteDescriptionViewController(route: route)
-        viewController?.present(controller, state: .top, completion: nil)
+    func didRouteCellTap(route: Route) {
+        routeDescriptionPresenterView?.presentRouteDescription(for: route)
     }
     
-    // MARK: - Helpers
-    
     private func fetchRoutes() {
-        viewController?.status = .loading
+        routeLoadingView?.display(isLoading: true)
         delayManager.start()
         
         routesService.fetchRoutes { [weak self] result in
             guard let self = self else { return }
             
             switch result {
-            case .success(let routes):
+            case let .success(routes):
                 self.delayManager.completeWithDelay {
-                    self.viewController?.state = .success(routes: routes)
-                    self.viewController?.reloadData()
+                    self.routesView?.display(routes: routes)
                 }
                 
-            case .failure(let error):
-                self.handlerError(error)
+            case let .failure(error):
+                self.delayManager.completeWithDelay {
+                    self.routeErrorView?.display(error: error)
+                }
             }
+            
+            self.routeLoadingView?.display(isLoading: false)
         }
-    }
-    
-    func handlerError(_ error: Error) {
-        delayManager.completeWithDelay {
-            self.viewController?.state = .error
-            self.viewController?.reloadData()
-        }
-    }
-}
-
-// MARK: - protocol UserServiceDelegate
-
-extension RoutesPresenter: UserStateDelegate {
-    func didChangeUserModel(state: UserState) {
-        fetchRoutes()
     }
 }
