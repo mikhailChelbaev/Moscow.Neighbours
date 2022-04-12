@@ -7,27 +7,27 @@
 
 import UIKit
 
-class BaseTableView: UITableView {
+open class BaseTableView: UITableView {
     
-    weak var statusProvider: LoadingStatusProvider? {
+    public weak var statusProvider: LoadingStatusProvider? {
         didSet {
             dataSourceImpl.statusProvider = statusProvider
         }
     }
     
-    weak var successDataSource: TableSuccessDataSource? {
+    public weak var successDataSource: TableSuccessDataSource? {
         didSet {
             dataSourceImpl.successDataSource = successDataSource
         }
     }
     
-    weak var loadingDelegate: LoadingDelegate? {
+    public weak var loadingDelegate: LoadingDelegate? {
         didSet {
             dataSourceImpl.loadingDelegate = loadingDelegate
         }
     }
     
-    weak var errorDelegate: ErrorDelegate? {
+    public weak var errorDelegate: ErrorDelegate? {
         didSet {
             dataSourceImpl.errorDelegate = errorDelegate
         }
@@ -35,7 +35,7 @@ class BaseTableView: UITableView {
     
     private var dataSourceImpl: CustomTableViewDataSource = CustomTableViewDataSourceImpl()
     
-    override init(frame: CGRect, style: UITableView.Style) {
+    public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         
         if #available(iOS 15.0, *) {
@@ -49,7 +49,7 @@ class BaseTableView: UITableView {
         register(LoadingCell.self)
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

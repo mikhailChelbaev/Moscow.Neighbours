@@ -7,7 +7,7 @@
 
 import UIKit
 
-final  class LoadingCell: CellView {
+public final class LoadingCell: CellView {
     
     private let indicator: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView()
@@ -15,7 +15,7 @@ final  class LoadingCell: CellView {
         return aiv
     }()
     
-    override func configureView() {
+    public override func configureView() {
         addSubview(indicator)
         indicator.placeInCenter()
         
@@ -25,7 +25,7 @@ final  class LoadingCell: CellView {
         height(190)
     }
     
-    func update() {
+    public func update() {
         indicator.startAnimating()
     }
     

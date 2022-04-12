@@ -7,6 +7,6 @@
 
 import UIKit
 
-protocol ErrorDelegate: AnyObject {
+public protocol ErrorDelegate: AnyObject {
     func errorTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
 }

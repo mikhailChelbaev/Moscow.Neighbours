@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc protocol TableSuccessDataSource: AnyObject {    
+@objc public protocol TableSuccessDataSource: AnyObject {    
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     

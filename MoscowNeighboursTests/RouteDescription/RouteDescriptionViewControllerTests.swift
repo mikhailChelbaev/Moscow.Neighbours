@@ -10,8 +10,18 @@ import MoscowNeighbours
 
 struct RouteViewModel {}
 
-final class RouteDescriptionViewController<RouteTransformer: ItemTransformer> : UIViewController where RouteTransformer.Input == Route, RouteTransformer.Output == RouteViewModel {
+final class RouteDescriptionViewController<RouteTransformer: ItemTransformer> : UIViewController, LoadingStatusProvider, TableSuccessDataSource where RouteTransformer.Input == Route, RouteTransformer.Output == RouteViewModel {
     private var routeTransformer: RouteTransformer?
+    var status: LoadingStatus = .loading {
+        didSet { tableView.reloadData() }
+    }
+    
+    lazy var tableView: BaseTableView = {
+        let tableView = BaseTableView()
+        tableView.successDataSource = self
+        tableView.statusProvider = self
+        return tableView
+    }()
     
     convenience init(loader: RouteTransformer) {
         self.init()
@@ -20,7 +30,20 @@ final class RouteDescriptionViewController<RouteTransformer: ItemTransformer> : 
     }
     
     override func viewDidLoad() {
-        routeTransformer?.transform(makeRoute(), completion: { _ in })
+        super.viewDidLoad()
+        
+        status = .loading
+        routeTransformer?.transform(makeRoute()) { [weak self] _ in
+            self?.status = .success
+        }
+    }
+    
+    func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
 
@@ -32,12 +55,14 @@ class RouteDescriptionViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.transfromCallCount, 0)
     }
     
-    func test_viewDidLoad_requestsRouteTransform() {
+    func test_loadingIndicator_isVisibleWhileTransformingRoute() {
         let (sut, loader) = makeSUT()
-
+        
         sut.loadViewIfNeeded()
-
-        XCTAssertEqual(loader.transfromCallCount, 1)
+        XCTAssertTrue(sut.isLoaderVisible, "Expected loading indicator once view is loaded")
+        
+        loader.completeRoutesTransforming()
+        XCTAssertFalse(sut.isLoaderVisible, "Expected no loading indicator once transforming completes successfully")
     }
     
     // MARK: - Helpers
@@ -55,12 +80,40 @@ class RouteDescriptionViewControllerTests: XCTestCase {
     }
     
     private final class LoaderSpy: ItemTransformer {
-        var transfromCallCount: Int = 0
+        var transformationCompletions = [(RouteViewModel) -> Void]()
+        
+        var transfromCallCount: Int {
+            return transformationCompletions.count
+        }
         
         func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
-            transfromCallCount += 1
+            transformationCompletions.append(completion)
+        }
+        
+        func completeRoutesTransforming(at index: Int = 0) {
+            transformationCompletions[index](RouteViewModel())
         }
     }
     
 }
 
+private extension RouteDescriptionViewController {
+    private var loader: LoadingCell? {
+        let ds = tableView.dataSource
+        
+        guard ds!.tableView(tableView, numberOfRowsInSection: loaderIndexPath.section) > loaderIndexPath.row else {
+            return nil
+        }
+        
+        let cell = ds?.tableView(tableView, cellForRowAt: loaderIndexPath) as? TableCellWrapper<LoadingCell>
+        return cell?.view
+    }
+    
+    private var loaderIndexPath: IndexPath {
+        return IndexPath(row: 0, section: 0)
+    }
+    
+    var isLoaderVisible: Bool {
+        return loader != nil
+    }
+}

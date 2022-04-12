@@ -7,23 +7,23 @@
 
 import UIKit
 
-protocol CustomTableViewDataSource: UITableViewDataSource, UITableViewDelegate {
+public protocol CustomTableViewDataSource: UITableViewDataSource, UITableViewDelegate {
     var statusProvider: LoadingStatusProvider? { set get }
     var successDataSource: TableSuccessDataSource? { set get }
     var loadingDelegate: LoadingDelegate? { set get }
     var errorDelegate: ErrorDelegate? { set get }
 }
 
-class CustomTableViewDataSourceImpl: NSObject {
-    weak var statusProvider: LoadingStatusProvider?
-    weak var successDataSource: TableSuccessDataSource?
-    weak var loadingDelegate: LoadingDelegate?
-    weak var errorDelegate: ErrorDelegate?
+public class CustomTableViewDataSourceImpl: NSObject {
+    public weak var statusProvider: LoadingStatusProvider?
+    public weak var successDataSource: TableSuccessDataSource?
+    public weak var loadingDelegate: LoadingDelegate?
+    public weak var errorDelegate: ErrorDelegate?
 }
 
 extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         guard let statusProvider = statusProvider else { return 0 }
         
         switch statusProvider.status {
@@ -34,7 +34,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let statusProvider = statusProvider else { return 0 }
         guard let successDataSource = successDataSource else { fatalError("No success data source") }
         
@@ -46,7 +46,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let statusProvider = statusProvider else { return UITableViewCell() }
         guard let successDataSource = successDataSource else { fatalError("No success data source") }
         
@@ -66,7 +66,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let statusProvider = statusProvider else { return nil }
         
         switch statusProvider.status {
@@ -77,7 +77,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let statusProvider = statusProvider else { return nil }
         
         switch statusProvider.status {
@@ -88,7 +88,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let statusProvider = statusProvider else { return }
         
         switch statusProvider.status {
@@ -99,7 +99,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let statusProvider = statusProvider else { return UITableView.automaticDimension }
         
         switch statusProvider.status {
@@ -117,7 +117,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard let statusProvider = statusProvider else { return UITableView.automaticDimension }
         
         switch statusProvider.status {
@@ -128,7 +128,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         guard let statusProvider = statusProvider else { return UITableView.automaticDimension }
         
         switch statusProvider.status {
@@ -139,7 +139,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let statusProvider = statusProvider else { return }
         
         switch statusProvider.status {
@@ -150,7 +150,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let statusProvider = statusProvider else { return }
         
         switch statusProvider.status {
@@ -161,7 +161,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         guard let statusProvider = statusProvider else { return true }
         
         switch statusProvider.status {
@@ -172,7 +172,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    public func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let statusProvider = statusProvider else { return nil }
 
         switch statusProvider.status {
@@ -183,7 +183,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    public func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let statusProvider = statusProvider else { return nil }
 
         switch statusProvider.status {
@@ -194,7 +194,7 @@ extension CustomTableViewDataSourceImpl: CustomTableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    public func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let statusProvider = statusProvider else { return nil }
 
         switch statusProvider.status {

@@ -7,17 +7,17 @@
 
 import UIKit
 
-class TableCellWrapper<T>: UITableViewCell where T: CellView {
-    let view: T
+open class TableCellWrapper<T>: UITableViewCell where T: CellView {
+    public let view: T
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         view = T.init()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpLayout()
         backgroundColor = .clear
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError()
     }
     

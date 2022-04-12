@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoadingStatus {
+public enum LoadingStatus {
     case success
     case loading
     case error(EmptyStateDataProvider)
@@ -16,7 +16,7 @@ enum LoadingStatus {
 
 extension LoadingStatus: Equatable {
     
-    static func == (lhs: LoadingStatus, rhs: LoadingStatus) -> Bool {
+    public static func == (lhs: LoadingStatus, rhs: LoadingStatus) -> Bool {
         if case .success = lhs, case .success = rhs {
             return true
         }
@@ -34,6 +34,6 @@ extension LoadingStatus: Equatable {
     
 }
 
-protocol LoadingStatusProvider: AnyObject {
+public protocol LoadingStatusProvider: AnyObject {
     var status: LoadingStatus { set get }
 }

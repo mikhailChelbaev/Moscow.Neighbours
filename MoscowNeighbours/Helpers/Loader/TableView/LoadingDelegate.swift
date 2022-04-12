@@ -7,6 +7,6 @@
 
 import UIKit
 
-protocol LoadingDelegate: AnyObject {
+public protocol LoadingDelegate: AnyObject {
     func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
 }
