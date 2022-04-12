@@ -155,6 +155,7 @@
 		748FFD9626E55535009CA688 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9526E55535009CA688 /* Logger.swift */; };
 		7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490F33627AE748E00DCD9C7 /* PurchaseService.swift */; };
 		7492433228057403002363EA /* ItemTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7492433128057403002363EA /* ItemTransformer.swift */; };
+		7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7492433328057ECB002363EA /* SharedTestHelpers.swift */; };
 		74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F6F276F554C0096AA77 /* ApiRequest.swift */; };
 		74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F70276F554C0096AA77 /* ApiRequestsFactory.swift */; };
 		74967F76276F554D0096AA77 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F71276F554C0096AA77 /* RequestResult.swift */; };
@@ -402,6 +403,7 @@
 		748FFD9526E55535009CA688 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		7490F33627AE748E00DCD9C7 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
 		7492433128057403002363EA /* ItemTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTransformer.swift; sourceTree = "<group>"; };
+		7492433328057ECB002363EA /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		74967F6F276F554C0096AA77 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		74967F70276F554C0096AA77 /* ApiRequestsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequestsFactory.swift; sourceTree = "<group>"; };
 		74967F71276F554C0096AA77 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */,
 				7444DAA72801E9A800A04F87 /* TestDelayManager.swift */,
 				7444DAB52802F10800A04F87 /* Button+TestHelpers.swift */,
+				7492433328057ECB002363EA /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1749,6 +1752,7 @@
 			files = (
 				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
 				7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */,
+				7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */,
 				7444DAAC2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift in Sources */,
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift in Sources */,
