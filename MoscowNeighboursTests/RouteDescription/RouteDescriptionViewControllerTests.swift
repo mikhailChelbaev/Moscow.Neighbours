@@ -10,9 +10,17 @@ import MoscowNeighbours
 
 struct RouteViewModel {}
 
-final class RouteDescriptionViewController<RouteTransformer: ItemTransformer> {
-    init(loader: RouteTransformer) {
+final class RouteDescriptionViewController<RouteTransformer: ItemTransformer> : UIViewController where RouteTransformer.Input == Route, RouteTransformer.Output == RouteViewModel {
+    private var routeTransformer: RouteTransformer?
+    
+    convenience init(loader: RouteTransformer) {
+        self.init()
         
+        self.routeTransformer = loader
+    }
+    
+    override func viewDidLoad() {
+        routeTransformer?.transform(makeRoute(), completion: { _ in })
     }
 }
 
@@ -24,6 +32,14 @@ class RouteDescriptionViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.transfromCallCount, 0)
     }
     
+    func test_viewDidLoad_requestsRouteTransform() {
+        let (sut, loader) = makeSUT()
+
+        sut.loadViewIfNeeded()
+
+        XCTAssertEqual(loader.transfromCallCount, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController<LoaderSpy>, loader: LoaderSpy) {
@@ -32,6 +48,10 @@ class RouteDescriptionViewControllerTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
+    }
+            
+    private func makeUniqueRoute() {
+        
     }
     
     private final class LoaderSpy: ItemTransformer {
