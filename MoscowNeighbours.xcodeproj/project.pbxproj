@@ -19,7 +19,7 @@
 		740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */; };
 		740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535C2773A86A00E9C4E0 /* Builder.swift */; };
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
-		740B53612773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53602773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift */; };
+		740B53612773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */; };
 		740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */; };
 		7415479326B08C8A006931DC /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* PersonCell.swift */; };
 		74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5127ADBC1A007E7118 /* UserProvider.swift */; };
@@ -172,7 +172,7 @@
 		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
-		74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */; };
+		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
 		74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC342788442600E240C5 /* ProfilePresenter.swift */; };
@@ -193,7 +193,7 @@
 		74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A50277BBC2500B73560 /* MenuBuilder.swift */; };
 		74C72A54277BC17D00B73560 /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A53277BC17D00B73560 /* TitleHeaderView.swift */; };
 		74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */; };
-		74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */; };
+		74D4AB5A26AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
 		74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB027746CB00087B7F6 /* MapPresenter.swift */; };
@@ -266,7 +266,7 @@
 		740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetConfiguration.swift; sourceTree = "<group>"; };
 		740B535C2773A86A00E9C4E0 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
-		740B53602773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionBuilder.swift; sourceTree = "<group>"; };
+		740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionBuilder.swift; sourceTree = "<group>"; };
 		740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+Utils.swift"; sourceTree = "<group>"; };
 		7415479226B08C89006931DC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		74159E5127ADBC1A007E7118 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
@@ -421,7 +421,7 @@
 		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
-		74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
+		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B8EC342788442600E240C5 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -442,7 +442,7 @@
 		74C72A50277BBC2500B73560 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		74C72A53277BC17D00B73560 /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
 		74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConfigurator.swift; sourceTree = "<group>"; };
-		74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
+		74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		74D7DFB027746CB00087B7F6 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
@@ -1247,12 +1247,7 @@
 		74D4AB5826AF3F16009CAD3A /* RouteDescription */ = {
 			isa = PBXGroup;
 			children = (
-				74D4AB5926AF3F2C009CAD3A /* RouteDescriptionViewController.swift */,
-				74AB1D982770F99C00DA961A /* RouteDescriptionPresenter.swift */,
-				740B53602773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift */,
-				7415479626B0974A006931DC /* Cells */,
-				749FDCC927B8681300CC4D43 /* Services */,
-				744B6EC727750333008BDF37 /* Models */,
+				74EDF8622805B1FA00D0F6B1 /* Legacy */,
 			);
 			path = RouteDescription;
 			sourceTree = "<group>";
@@ -1325,6 +1320,19 @@
 				746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		74EDF8622805B1FA00D0F6B1 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */,
+				74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */,
+				740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */,
+				7415479626B0974A006931DC /* Cells */,
+				749FDCC927B8681300CC4D43 /* Services */,
+				744B6EC727750333008BDF37 /* Models */,
+			);
+			path = Legacy;
 			sourceTree = "<group>";
 		};
 		74F185642787290500A0BF24 /* Settings */ = {
@@ -1638,7 +1646,7 @@
 				741D407E270655560051A518 /* PersonInfoBaseCell.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
-				74AB1D992770F99C00DA961A /* RouteDescriptionPresenter.swift in Sources */,
+				74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */,
 				746F061D27937181009D1163 /* EmailValidator.swift in Sources */,
 				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
@@ -1665,7 +1673,7 @@
 				746684A5279F3FAA00AFAA2E /* UIApplication+Version.swift in Sources */,
 				74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */,
 				743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */,
-				740B53612773ACFE00E9C4E0 /* RouteDescriptionBuilder.swift in Sources */,
+				740B53612773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				7457756C279732EB00123208 /* AchievementsPresenter.swift in Sources */,
 				74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */,
@@ -1741,7 +1749,7 @@
 				74668497279F237A00AFAA2E /* AccountConfirmationPresenter.swift in Sources */,
 				740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */,
 				74F52A31272593CC00343334 /* MarkdownParser.swift in Sources */,
-				74D4AB5A26AF3F2C009CAD3A /* RouteDescriptionViewController.swift in Sources */,
+				74D4AB5A26AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift in Sources */,
 				746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 import UIKit
 import UltraDrawerView
 
-protocol RouteDescriptionView: BottomSheetViewController, LoadingStatusProvider {
+protocol LegacyRouteDescriptionView: BottomSheetViewController, LoadingStatusProvider {
     var route: RouteViewModel? { set get }
     
     func reloadData()
@@ -16,7 +16,7 @@ protocol RouteDescriptionView: BottomSheetViewController, LoadingStatusProvider 
     func prepareForPurchasing()
 }
 
-final class RouteDescriptionViewController: BottomSheetViewController, RouteDescriptionView {
+final class LegacyRouteDescriptionViewController: BottomSheetViewController, LegacyRouteDescriptionView {
     
     // MARK: - Sections and Cells
     
@@ -66,7 +66,7 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     var route: RouteViewModel?
     
-    let eventHandler: RouteDescriptionEventHandler
+    let eventHandler: LegacyRouteDescriptionEventHandler
     
     var status: LoadingStatus = .loading {
         didSet {
@@ -81,7 +81,7 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
     
     // MARK: - init
     
-    init(eventHandler: RouteDescriptionEventHandler) {
+    init(eventHandler: LegacyRouteDescriptionEventHandler) {
         self.eventHandler = eventHandler
         self.sections = [.header, .information, .persons]
         
@@ -186,7 +186,7 @@ final class RouteDescriptionViewController: BottomSheetViewController, RouteDesc
 
 // MARK: - protocol TableSuccessDataSource
 
-extension RouteDescriptionViewController: TableSuccessDataSource {
+extension LegacyRouteDescriptionViewController: TableSuccessDataSource {
     func successNumberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -206,7 +206,7 @@ extension RouteDescriptionViewController: TableSuccessDataSource {
 
 // MARK: - protocol LoadingDelegate
 
-extension RouteDescriptionViewController: LoadingDelegate {
+extension LegacyRouteDescriptionViewController: LoadingDelegate {
     func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle)
     }
@@ -214,7 +214,7 @@ extension RouteDescriptionViewController: LoadingDelegate {
 
 // MARK: - Sections and Cells Helpers
 
-extension RouteDescriptionViewController {
+extension LegacyRouteDescriptionViewController {
     
     private func getSectionItems(for section: Int) -> [CellType] {
         switch sections[section] {
@@ -285,7 +285,7 @@ extension RouteDescriptionViewController {
 
 // MARK: - extension Cells Creation
 
-extension RouteDescriptionViewController {
+extension LegacyRouteDescriptionViewController {
     private func createRouteHeader(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RouteHeaderCell.self, for: indexPath)
         cell.view.update(route: route) { [weak self] in

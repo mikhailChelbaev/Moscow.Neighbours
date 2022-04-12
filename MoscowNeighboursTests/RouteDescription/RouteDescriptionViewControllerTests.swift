@@ -8,42 +8,93 @@
 import XCTest
 import MoscowNeighbours
 
-struct RouteViewModel {}
-
-final class RouteDescriptionViewController<RouteTransformer: ItemTransformer> : UIViewController, LoadingStatusProvider, TableSuccessDataSource where RouteTransformer.Input == Route, RouteTransformer.Output == RouteViewModel {
-    private var routeTransformer: RouteTransformer?
-    var status: LoadingStatus = .loading {
-        didSet { tableView.reloadData() }
-    }
+final class RouteDescriptionTableViewController: LoadingStatusProvider {
     
-    lazy var tableView: BaseTableView = {
-        let tableView = BaseTableView()
-        tableView.successDataSource = self
-        tableView.statusProvider = self
-        return tableView
+    lazy var view: BaseTableView = {
+        let view = BaseTableView()
+        view.successDataSource = self
+        view.statusProvider = self
+        return view
     }()
     
-    convenience init(loader: RouteTransformer) {
-        self.init()
-        
-        self.routeTransformer = loader
+//    private var tableModel: [RouteCellController]
+    var status: LoadingStatus {
+        didSet { view.reloadData() }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    init() {
         status = .loading
-        routeTransformer?.transform(makeRoute()) { [weak self] _ in
-            self?.status = .success
-        }
     }
     
+}
+ 
+extension RouteDescriptionTableViewController: TableSuccessDataSource {
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func successTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
+    }
+}
+
+struct RouteViewModel {}
+
+protocol RouteDescriptionLoadingView {
+    func display(isLoading: Bool)
+}
+
+final class RouteDescriptionPresenter<RouteTransformer: ItemTransformer> where RouteTransformer.Input == Route, RouteTransformer.Output == RouteViewModel {
+    private let model: Route
+    private let routeTransformer: RouteTransformer
+    
+    init(model: Route, routeTransformer: RouteTransformer) {
+        self.model = model
+        self.routeTransformer = routeTransformer
+    }
+    
+    var routeDescriptionLoadingView: RouteDescriptionLoadingView?
+}
+
+extension RouteDescriptionPresenter: RouteDescriptionInput {
+    func didTransformRoute() {
+        routeDescriptionLoadingView?.display(isLoading: true)
+        routeTransformer.transform(model) { [weak self] _ in
+            self?.routeDescriptionLoadingView?.display(isLoading: false)
+        }
+    }
+}
+
+protocol RouteDescriptionInput {
+    func didTransformRoute()
+}
+
+final class RouteDescriptionViewController: UIViewController {
+    typealias Presenter = RouteDescriptionInput
+    
+    let tableView: BaseTableView
+//    let headerView: HeaderView
+    
+    private let presenter: Presenter
+    private let tableViewController: RouteDescriptionTableViewController
+    
+    init(presenter: Presenter, tableViewController: RouteDescriptionTableViewController) {
+        self.presenter = presenter
+        self.tableViewController = tableViewController
+        
+        tableView = tableViewController.view
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        presenter.didTransformRoute()
     }
 }
 
@@ -67,9 +118,9 @@ class RouteDescriptionViewControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController<LoaderSpy>, loader: LoaderSpy) {
+    private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = RouteDescriptionViewController(loader: loader)
+        let sut = composeRouteDescription(model: route, routeTransformer: loader)
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
@@ -116,4 +167,14 @@ private extension RouteDescriptionViewController {
     var isLoaderVisible: Bool {
         return loader != nil
     }
+}
+
+private func composeRouteDescription<Transformer: ItemTransformer>(
+    model: Route,
+    routeTransformer: Transformer
+) -> RouteDescriptionViewController where Transformer.Input == Route, Transformer.Output == RouteViewModel {
+    let presenter = RouteDescriptionPresenter(model: model, routeTransformer: routeTransformer)
+    let tableViewController = RouteDescriptionTableViewController()
+    let controller = RouteDescriptionViewController(presenter: presenter, tableViewController: tableViewController)
+    return controller
 }

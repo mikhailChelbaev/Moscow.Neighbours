@@ -20,13 +20,13 @@ struct RouteDescriptionStorage {
 }
 
 protocol RoutesDescriptionBuilder {
-    func buildRouteDescriptionViewController(route: Route) -> RouteDescriptionViewController
+    func buildRouteDescriptionViewController(route: Route) -> LegacyRouteDescriptionViewController
 }
 
 extension Builder: RoutesDescriptionBuilder {
-    func buildRouteDescriptionViewController(route: Route) -> RouteDescriptionViewController {
-        let presenter = RouteDescriptionPresenter(storage: buildStorage(route: route))
-        let viewController = RouteDescriptionViewController(eventHandler: presenter)
+    func buildRouteDescriptionViewController(route: Route) -> LegacyRouteDescriptionViewController {
+        let presenter = LegacyRouteDescriptionPresenter(storage: buildStorage(route: route))
+        let viewController = LegacyRouteDescriptionViewController(eventHandler: presenter)
         presenter.viewController = viewController
         return viewController
     }

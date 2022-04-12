@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol RouteDescriptionEventHandler: AnyObject {
+protocol LegacyRouteDescriptionEventHandler: AnyObject {
     func onViewDidLoad()
     func onTraitCollectionDidChange(route: RouteViewModel?)
     func onBackButtonTap()
@@ -16,11 +16,11 @@ protocol RouteDescriptionEventHandler: AnyObject {
     func onRouteHeaderButtonTap(route: RouteViewModel?)
 }
 
-class RouteDescriptionPresenter: RouteDescriptionEventHandler {
+class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     
     // MARK: - Properties
     
-    weak var viewController: RouteDescriptionView?
+    weak var viewController: LegacyRouteDescriptionView?
     
     private let personBuilder: PersonBuilder
     private let routePassingBuilder: RoutePassingBuilder

@@ -19,7 +19,7 @@ final class RouteViewController: BottomSheetViewController, RouteDescriptionPres
     private let presenter: RoutesPresenter
     private let tableViewController: RouteTableViewController
     private let userStateObserver: UserStateObserver
-    private let routeDescriptionController: (Route) -> RouteDescriptionViewController
+    private let routeDescriptionController: (Route) -> LegacyRouteDescriptionViewController
     
     // MARK: - Init
     
@@ -27,7 +27,7 @@ final class RouteViewController: BottomSheetViewController, RouteDescriptionPres
         presenter: RoutesPresenter,
         tableViewController: RouteTableViewController,
         userStateObserver: UserStateObserver,
-        routeDescriptionController: @escaping (Route) -> RouteDescriptionViewController) {
+        routeDescriptionController: @escaping (Route) -> LegacyRouteDescriptionViewController) {
         self.presenter = presenter
         self.tableViewController = tableViewController
         self.userStateObserver = userStateObserver
