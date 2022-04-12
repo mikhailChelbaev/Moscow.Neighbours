@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Builder {
+public class Builder {
     let api: ApiRequestsFactory
     
     let locationService: LocationService
@@ -20,7 +20,7 @@ class Builder {
     let userState: UserState
     let logoutManager: LogoutManager
     
-    init() {
+    public init() {
         api = ApiRequestsFactory.main
         
         locationService = .init()

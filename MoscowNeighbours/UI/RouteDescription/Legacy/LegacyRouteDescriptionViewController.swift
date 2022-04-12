@@ -9,7 +9,7 @@ import UIKit
 import UltraDrawerView
 
 protocol LegacyRouteDescriptionView: BottomSheetViewController, LoadingStatusProvider {
-    var route: RouteViewModel? { set get }
+    var route: LegacyRouteViewModel? { set get }
     
     func reloadData()
     func showAlert(title: String?, message: String?, actions: [UIAlertAction])
@@ -64,7 +64,7 @@ final class LegacyRouteDescriptionViewController: BottomSheetViewController, Leg
     
     // MARK: - Internal properties
     
-    var route: RouteViewModel?
+    var route: LegacyRouteViewModel?
     
     let eventHandler: LegacyRouteDescriptionEventHandler
     

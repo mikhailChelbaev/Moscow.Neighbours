@@ -216,6 +216,10 @@
 		74E7C39D2783081A00B16392 /* JWTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39C2783081A00B16392 /* JWTService.swift */; };
 		74E7C3A027830F9100B16392 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39F27830F9100B16392 /* UserModel.swift */; };
 		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
+		74EDF8672805B42600D0F6B1 /* RouteDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */; };
+		74EDF8692805B43400D0F6B1 /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */; };
+		74EDF86B2805B43F00D0F6B1 /* RouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDF86A2805B43F00D0F6B1 /* RouteDescriptionViewController.swift */; };
+		74EDF86D2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDF86C2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift */; };
 		74F185662787291800A0BF24 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F185652787291800A0BF24 /* SettingsViewController.swift */; };
 		74F185682787292600A0BF24 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F185672787292600A0BF24 /* SettingsPresenter.swift */; };
 		74F1856A2787293700A0BF24 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F185692787293700A0BF24 /* SettingsBuilder.swift */; };
@@ -465,6 +469,10 @@
 		74E7C39C2783081A00B16392 /* JWTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTService.swift; sourceTree = "<group>"; };
 		74E7C39F27830F9100B16392 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		74EBC36726F503500002EEAE /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
+		74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionTableViewController.swift; sourceTree = "<group>"; };
+		74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
+		74EDF86A2805B43F00D0F6B1 /* RouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewController.swift; sourceTree = "<group>"; };
+		74EDF86C2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionBuilder.swift; sourceTree = "<group>"; };
 		74F185652787291800A0BF24 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		74F185672787292600A0BF24 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		74F185692787293700A0BF24 /* SettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
@@ -1247,6 +1255,9 @@
 		74D4AB5826AF3F16009CAD3A /* RouteDescription */ = {
 			isa = PBXGroup;
 			children = (
+				74EDF8632805B31400D0F6B1 /* Composition */,
+				74EDF8642805B32A00D0F6B1 /* Presentatioin */,
+				74EDF8652805B33300D0F6B1 /* Controllers */,
 				74EDF8622805B1FA00D0F6B1 /* Legacy */,
 			);
 			path = RouteDescription;
@@ -1333,6 +1344,31 @@
 				744B6EC727750333008BDF37 /* Models */,
 			);
 			path = Legacy;
+			sourceTree = "<group>";
+		};
+		74EDF8632805B31400D0F6B1 /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				74EDF86C2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		74EDF8642805B32A00D0F6B1 /* Presentatioin */ = {
+			isa = PBXGroup;
+			children = (
+				74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */,
+			);
+			path = Presentatioin;
+			sourceTree = "<group>";
+		};
+		74EDF8652805B33300D0F6B1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				74EDF86A2805B43F00D0F6B1 /* RouteDescriptionViewController.swift */,
+				74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		74F185642787290500A0BF24 /* Settings */ = {
@@ -1557,6 +1593,7 @@
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
+				74EDF86D2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift in Sources */,
 				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
 				74DE215627F1046D006863A3 /* SignUpRequest.swift in Sources */,
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
@@ -1623,7 +1660,9 @@
 				74DC18B427AF000A00C5A02F /* Product.swift in Sources */,
 				7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
+				74EDF86B2805B43F00D0F6B1 /* RouteDescriptionViewController.swift in Sources */,
 				74967F78276F554D0096AA77 /* RequestSender.swift in Sources */,
+				74EDF8672805B42600D0F6B1 /* RouteDescriptionTableViewController.swift in Sources */,
 				748EE63B270F916800301552 /* Person.swift in Sources */,
 				748C94CE272FEFAF00202D47 /* LocationService.swift in Sources */,
 				74967F80276F55A40096AA77 /* RoutesService.swift in Sources */,
@@ -1681,6 +1720,7 @@
 				74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */,
 				7492433228057403002363EA /* ItemTransformer.swift in Sources */,
 				748EE635270F913000301552 /* PersonInfo.swift in Sources */,
+				74EDF8692805B43400D0F6B1 /* RouteDescriptionPresenter.swift in Sources */,
 				74C72A54277BC17D00B73560 /* TitleHeaderView.swift in Sources */,
 				7437B1D32785D3540020AABE /* RequestSenderWithTokenRefresh.swift in Sources */,
 				743DE7262775D80500B5CED8 /* MapService.swift in Sources */,

@@ -51,7 +51,7 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
     
     // MARK: - Private properties
     
-    private var route: RouteViewModel
+    private var route: LegacyRouteViewModel
     
     // MARK: - Init
     

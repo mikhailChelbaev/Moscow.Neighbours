@@ -21,7 +21,7 @@ class RoutePassingService: ObservableService {
     private var locationService: LocationService
     private let notificationService: NotificationService
     
-    private var currentRoute: RouteViewModel?
+    private var currentRoute: LegacyRouteViewModel?
     
     var isPassingRoute: Bool {
         return currentRoute != nil
@@ -39,7 +39,7 @@ class RoutePassingService: ObservableService {
         notificationService.requestAuthorization()
     }
     
-    func startRoute(_ route: RouteViewModel) {
+    func startRoute(_ route: LegacyRouteViewModel) {
         currentRoute = route
         let monitoringRegions: [CLCircularRegion] = route.persons.map({ person in
             let coordinate = person.coordinate

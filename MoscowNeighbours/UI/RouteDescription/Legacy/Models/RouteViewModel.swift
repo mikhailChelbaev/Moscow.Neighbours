@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RouteViewModel {
+final class LegacyRouteViewModel {
     private let parser: MarkdownParser = {
         var config: MarkdownConfigurator = .default
         return DefaultMarkdownParser(configurator: config, withCache: false)

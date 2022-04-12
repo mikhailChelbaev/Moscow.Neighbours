@@ -10,10 +10,10 @@ import UIKit
 
 protocol LegacyRouteDescriptionEventHandler: AnyObject {
     func onViewDidLoad()
-    func onTraitCollectionDidChange(route: RouteViewModel?)
+    func onTraitCollectionDidChange(route: LegacyRouteViewModel?)
     func onBackButtonTap()
     func onPersonCellTap(person: PersonViewModel)
-    func onRouteHeaderButtonTap(route: RouteViewModel?)
+    func onRouteHeaderButtonTap(route: LegacyRouteViewModel?)
 }
 
 class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
@@ -38,7 +38,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     
     // MARK: - Init
     
-    init(storage: RouteDescriptionStorage) {
+    init(storage: LegacyRouteDescriptionStorage) {
         personBuilder = storage.personBuilder
         routePassingBuilder = storage.routePassingBuilder
         accountConfirmationBuilder = storage.accountConfirmationBuilder
@@ -59,7 +59,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
         updateRouteViewModel()
     }
     
-    func onTraitCollectionDidChange(route: RouteViewModel?) {
+    func onTraitCollectionDidChange(route: LegacyRouteViewModel?) {
         guard let route = route else {
             return
         }
@@ -92,7 +92,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
         viewController?.present(controller, state: .top)
     }
     
-    func onRouteHeaderButtonTap(route: RouteViewModel?) {
+    func onRouteHeaderButtonTap(route: LegacyRouteViewModel?) {
         guard let route = route else {
             return
         }
@@ -132,7 +132,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     
     private func updateRouteViewModel() {
         DispatchQueue.global(qos: .userInitiated).async {
-            let routeViewModel = RouteViewModel(from: self.route)
+            let routeViewModel = LegacyRouteViewModel(from: self.route)
             DispatchQueue.main.async { [self] in
                 if isRouteOpen {
                     setRoute(routeViewModel)
@@ -142,7 +142,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
         }
     }
     
-    private func setRoute(_ route: RouteViewModel) {
+    private func setRoute(_ route: LegacyRouteViewModel) {
         viewController?.route = route
         viewController?.status = .success
     }

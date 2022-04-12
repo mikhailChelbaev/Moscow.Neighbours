@@ -14,7 +14,7 @@ enum PersonState {
 }
 
 protocol RoutePassingEventHandler {
-    func getRoute() -> RouteViewModel
+    func getRoute() -> LegacyRouteViewModel
     func onViewDidAppear()
     func onEndRouteButtonTap()
     func onArrowUpButtonTap()
@@ -29,7 +29,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     weak var viewController: RoutePassingView?
     
-    private let route: RouteViewModel
+    private let route: LegacyRouteViewModel
     private let personBuilder: PersonBuilder
     
     private var routePassingService: RoutePassingService
@@ -58,7 +58,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     // MARK: - RoutePassingEventHandler methods
     
-    func getRoute() -> RouteViewModel {
+    func getRoute() -> LegacyRouteViewModel {
         return route
     }
     

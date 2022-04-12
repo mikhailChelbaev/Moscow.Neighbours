@@ -14,7 +14,7 @@ public protocol ItemTransformer {
     func transform(_ route: Input, completion: @escaping (Output) -> Void)
 }
 //
-//public struct RouteViewModel {
+public struct RouteViewModel {
 //    public let name: String
 //    public let description: NSAttributedString
 //    public let coverUrl: String?
@@ -24,7 +24,9 @@ public protocol ItemTransformer {
 //    public let purchaseStatus: Purchase.Status
 //    public let productId: String?
 //    public let price: String
-//}
+    
+    public init() {}
+}
 //
 //final class RouteTransformer: ItemTransformer {
 //    private let markdownParser = DefaultMarkdownParser()

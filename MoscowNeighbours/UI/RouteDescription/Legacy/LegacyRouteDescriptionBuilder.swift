@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RouteDescriptionStorage {
+struct LegacyRouteDescriptionStorage {
     let route: Route
     let personBuilder: PersonBuilder
     let routePassingBuilder: RoutePassingBuilder
@@ -19,11 +19,11 @@ struct RouteDescriptionStorage {
     let routesService: RoutesProvider
 }
 
-protocol RoutesDescriptionBuilder {
+protocol LegacyRoutesDescriptionBuilder {
     func buildRouteDescriptionViewController(route: Route) -> LegacyRouteDescriptionViewController
 }
 
-extension Builder: RoutesDescriptionBuilder {
+extension Builder: LegacyRoutesDescriptionBuilder {
     func buildRouteDescriptionViewController(route: Route) -> LegacyRouteDescriptionViewController {
         let presenter = LegacyRouteDescriptionPresenter(storage: buildStorage(route: route))
         let viewController = LegacyRouteDescriptionViewController(eventHandler: presenter)
@@ -31,8 +31,8 @@ extension Builder: RoutesDescriptionBuilder {
         return viewController
     }
     
-    private func buildStorage(route: Route) -> RouteDescriptionStorage {
-        RouteDescriptionStorage(route: route,
+    private func buildStorage(route: Route) -> LegacyRouteDescriptionStorage {
+        LegacyRouteDescriptionStorage(route: route,
                                 personBuilder: self,
                                 routePassingBuilder: self,
                                 accountConfirmationBuilder: self,

@@ -8,18 +8,18 @@
 import Foundation
 
 struct RoutePassingStorage {
-    let route: RouteViewModel
+    let route: LegacyRouteViewModel
     let personBuilder: PersonBuilder
     let mapService: MapService
     let routePassingService: RoutePassingService
 }
 
 protocol RoutePassingBuilder {
-    func buildRoutePassingViewController(route: RouteViewModel) -> RoutePassingViewController
+    func buildRoutePassingViewController(route: LegacyRouteViewModel) -> RoutePassingViewController
 }
 
 extension Builder: RoutePassingBuilder {
-    func buildRoutePassingViewController(route: RouteViewModel) -> RoutePassingViewController {
+    func buildRoutePassingViewController(route: LegacyRouteViewModel) -> RoutePassingViewController {
         let storage = RoutePassingStorage(route: route,
                                           personBuilder: self,
                                           mapService: mapService,

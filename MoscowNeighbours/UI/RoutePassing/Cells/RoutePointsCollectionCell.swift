@@ -41,7 +41,7 @@ final class RoutePointsCollectionCell: CellView {
         return pc
     }()
     
-    private var route: RouteViewModel?
+    private var route: LegacyRouteViewModel?
     var buttonTapCallback: ((PersonViewModel) -> Void)?
     var indexDidChange: ((Int) -> Void)?
     var personState: ((PersonViewModel) -> PersonState)?
@@ -77,7 +77,7 @@ final class RoutePointsCollectionCell: CellView {
         indexDidChange?(newIndex)
     }
     
-    func update(route: RouteViewModel,
+    func update(route: LegacyRouteViewModel,
                 currentIndex: Int) {
         self.route = route
         

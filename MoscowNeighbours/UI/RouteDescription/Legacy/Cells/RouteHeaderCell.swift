@@ -38,7 +38,7 @@ final class RouteHeaderCell: EntityHeaderCell {
         routeInfo.leading(20)
     }
     
-    func update(route: RouteViewModel?, buttonTapped: Action?) {
+    func update(route: LegacyRouteViewModel?, buttonTapped: Action?) {
         guard let route = route else {
             return
         }

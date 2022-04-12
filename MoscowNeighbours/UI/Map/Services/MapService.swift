@@ -55,7 +55,7 @@ final class MapService: ObservableService {
         self.locationService = locationService
     }
     
-    func showRoute(_ route: RouteViewModel, task: inout Task<Void, Never>?) {
+    func showRoute(_ route: LegacyRouteViewModel, task: inout Task<Void, Never>?) {
         isRouteVisible = true
         
         task = Task(priority: .userInitiated) {
