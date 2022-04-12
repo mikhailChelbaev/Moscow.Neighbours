@@ -19,10 +19,19 @@ final class RouteDescriptionViewController<RouteTransformer: ItemTransformer> {
 class RouteDescriptionViewControllerTests: XCTestCase {
     
     func test_init_doesNotTransformRoute() {
-        let loader = LoaderSpy()
-        let _ = RouteDescriptionViewController(loader: loader)
+        let (_, loader) = makeSUT()
         
         XCTAssertEqual(loader.transfromCallCount, 0)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController<LoaderSpy>, loader: LoaderSpy) {
+        let loader = LoaderSpy()
+        let sut = RouteDescriptionViewController(loader: loader)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return (sut, loader)
     }
     
     private final class LoaderSpy: ItemTransformer {
