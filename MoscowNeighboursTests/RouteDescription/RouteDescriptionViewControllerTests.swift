@@ -46,6 +46,16 @@ class RouteDescriptionViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.headerCellButtonText, route.price, "Expected route header button text to be \(route.price)")
     }
     
+    func test_transformedRouteWithPurchasedStatus_rendersStartRouteButton() {
+        let route = makeRouteModel(from: makeRoute(name: "Purchased route", price: (.purchased, "129$")))
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: route)
+        
+        XCTAssertEqual(sut.headerCellButtonText, localized("route_description.start_route"), "Expected route header button text to be \(localized("route_description.start_route"))")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: LoaderSpy) {
