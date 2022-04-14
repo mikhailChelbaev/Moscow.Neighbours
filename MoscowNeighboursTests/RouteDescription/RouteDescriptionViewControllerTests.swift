@@ -36,6 +36,16 @@ class RouteDescriptionViewControllerTests: XCTestCase {
         assertThat(sut, isViewConfiguredFor: route)
     }
     
+    func test_transformedRouteWithBuyStatus_rendersRouteDescriptionBuyButton() {
+        let route = makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, "129$")))
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: route)
+        
+        XCTAssertEqual(sut.headerCellButtonText, route.price, "Expected route header button text to be \(route.price)")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: LoaderSpy) {
@@ -61,26 +71,9 @@ class RouteDescriptionViewControllerTests: XCTestCase {
             price: route.localizedPrice())
     }
     
-    private final class LoaderSpy: ItemTransformer {
-        var transformationCompletions = [(RouteViewModel) -> Void]()
-        
-        var transfromCallCount: Int {
-            return transformationCompletions.count
-        }
-        
-        func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
-            transformationCompletions.append(completion)
-        }
-        
-        func completeRoutesTransforming(with route: RouteViewModel, at index: Int = 0) {
-            transformationCompletions[index](route)
-        }
-    }
-    
     func assertThat(_ sut: RouteDescriptionViewController, isViewConfiguredFor route: RouteViewModel, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(sut.headerCellTitle, route.name, "Expected title text to be \(route.name)", file: file, line: line)
         XCTAssertEqual(sut.headerCellInfoText, route.routeInformation, "Expected route information text to be \(route.routeInformation)", file: file, line: line)
-//        XCTAssertEqual(sut.headerCellButtonText, route.price, "Expected route header button text to be \(route.name)", file: file, line: line)
         
         XCTAssertEqual(sut.informationHeaderText, localized("route_description.information"), "Expected information header text to be \(localized("route_description.information"))", file: file, line: line)
         XCTAssertEqual(sut.informationCellText, route.description.string, "Expected information text to be \(route.description.string)", file: file, line: line)
@@ -114,6 +107,22 @@ class RouteDescriptionViewControllerTests: XCTestCase {
             XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
         }
         return value
+    }
+    
+    private final class LoaderSpy: ItemTransformer {
+        var transformationCompletions = [(RouteViewModel) -> Void]()
+        
+        var transfromCallCount: Int {
+            return transformationCompletions.count
+        }
+        
+        func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
+            transformationCompletions.append(completion)
+        }
+        
+        func completeRoutesTransforming(with route: RouteViewModel, at index: Int = 0) {
+            transformationCompletions[index](route)
+        }
     }
     
 }
