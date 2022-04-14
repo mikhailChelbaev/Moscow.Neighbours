@@ -7,9 +7,9 @@
 
 import UIKit
 
-class TextCell: CellView {
+public class TextCell: CellView {
     
-    let textView: UITextView = {
+    public let textView: UITextView = {
         let textView = UITextView()
         textView.isScrollEnabled = false
         textView.isEditable = false
@@ -25,7 +25,7 @@ class TextCell: CellView {
     
     var labelConstraints: AnchoredConstraints?
     
-    override func configureView() {
+    public override func configureView() {
         backgroundColor = .background
         
         addSubview(textView)

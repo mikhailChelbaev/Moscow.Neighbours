@@ -14,20 +14,6 @@ public protocol ItemTransformer {
     func transform(_ route: Input, completion: @escaping (Output) -> Void)
 }
 //
-public struct RouteViewModel {
-//    public let name: String
-//    public let description: NSAttributedString
-//    public let coverUrl: String?
-//    public let distance: String
-//    public let duration: String
-//    public let persons: [PersonInfo]
-//    public let purchaseStatus: Purchase.Status
-//    public let productId: String?
-//    public let price: String
-    
-    public init() {}
-}
-//
 //final class RouteTransformer: ItemTransformer {
 //    private let markdownParser = DefaultMarkdownParser()
 //    private let workQueue = DispatchQueue(label: "RouteTransformerQueue")

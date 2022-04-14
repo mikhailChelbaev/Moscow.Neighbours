@@ -8,14 +8,14 @@
 import UIKit
 import ImageView
 
-class EntityHeaderCell: CellView {
+public class EntityHeaderCell: CellView {
     
     enum Layout {
         static var cornerRadius: CGFloat = 29
         static var height: CGFloat = 360
     }
     
-    var imageView: ImageView = {
+    public var imageView: ImageView = {
         let iv = ImageView()
 //        iv.placeholder = .image(#imageLiteral(resourceName: "route_placeholder"))
         iv.backgroundColor = .imageBackground
@@ -26,20 +26,20 @@ class EntityHeaderCell: CellView {
         return iv
     }()
     
-    var gradientView: GradientView = {
+    internal var gradientView: GradientView = {
         let view = GradientView()
         view.layer.cornerRadius = Layout.cornerRadius
         return view
     }()
     
-    var titleLabel: UILabel = {
+    public var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 28, weight: .bold)
         label.textColor = .white
         return label
     }()
     
-    override func configureView() {
+    public override func configureView() {
         addSubview(imageView)
         imageView.pinToSuperviewEdges(.all)
         

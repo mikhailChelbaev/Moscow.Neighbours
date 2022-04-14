@@ -1,5 +1,5 @@
 //
-//  RouteHeaderCell.swift
+//  LegacyRouteHeaderCell.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 16.09.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RouteHeaderCell: EntityHeaderCell {
+final class LegacyRouteHeaderCell: EntityHeaderCell {
     
     let routeInfo: InfoView = .init()
     
@@ -55,9 +55,7 @@ final class RouteHeaderCell: EntityHeaderCell {
         }
         
         button.isEnabled = true
-        button.action = {
-            buttonTapped?()
-        }
+        button.action = buttonTapped
         
         buttonWidthConstraint?.isActive = false
     }

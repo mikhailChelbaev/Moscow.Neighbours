@@ -27,5 +27,5 @@ extension RouteViewControllerTests {
         XCTAssertEqual(cell.titleText, route.name, "Expected title text to be \(String(describing: route.name)) for route cell at index (\(index))", file: file, line: line)
         
         XCTAssertEqual(cell.buttonText, route.localizedPrice(), "Expected button text to be \(String(describing: route.localizedPrice())) for route cell at index (\(index))", file: file, line: line)
-    }    
+    }
 }

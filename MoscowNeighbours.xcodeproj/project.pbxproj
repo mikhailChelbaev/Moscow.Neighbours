@@ -21,10 +21,16 @@
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
 		740B53612773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */; };
 		740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */; };
-		7415479326B08C8A006931DC /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* PersonCell.swift */; };
+		74114C7F2807815400C1CF12 /* RouteInformationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C7E2807815400C1CF12 /* RouteInformationCellController.swift */; };
+		74114C81280781B300C1CF12 /* RouteInformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C80280781B300C1CF12 /* RouteInformationCellViewModel.swift */; };
+		74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C822807831100C1CF12 /* SeparatorCellController.swift */; };
+		7415479326B08C8A006931DC /* LegacyPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* LegacyPersonCell.swift */; };
 		74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5127ADBC1A007E7118 /* UserProvider.swift */; };
 		74159E5427ADBC31007E7118 /* WeakRef+UserStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5327ADBC31007E7118 /* WeakRef+UserStateDelegate.swift */; };
 		74159E5627ADBC6A007E7118 /* UserStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5527ADBC6A007E7118 /* UserStateDelegate.swift */; };
+		741BA1D828077513000B3C80 /* TextHeaderCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741BA1D728077513000B3C80 /* TextHeaderCellController.swift */; };
+		741BA1DA2807756A000B3C80 /* TextHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */; };
+		741BA1DC28077A3D000B3C80 /* RouteDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */; };
 		741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */; };
 		741D407E270655560051A518 /* PersonInfoBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407D270655560051A518 /* PersonInfoBaseCell.swift */; };
 		741EF4882708F28200F84986 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741EF4872708F28200F84986 /* NotificationService.swift */; };
@@ -86,7 +92,7 @@
 		74492522278AE3E9008BC446 /* NetworkErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
-		744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* RouteViewModel.swift */; };
+		744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */; };
 		744CC9F1278A0D2C00D2CB2F /* AccountAchievementsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */; };
 		74569EDF26FA8BBF00D58821 /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74569EDE26FA8BBF00D58821 /* UltraDrawerView */; };
 		7457756A279732E300123208 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74577569279732E300123208 /* AchievementsViewController.swift */; };
@@ -193,6 +199,8 @@
 		74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A50277BBC2500B73560 /* MenuBuilder.swift */; };
 		74C72A54277BC17D00B73560 /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A53277BC17D00B73560 /* TitleHeaderView.swift */; };
 		74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */; };
+		74CB2EFC28060A9600B68A11 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */; };
+		74CB2F002806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */; };
 		74D4AB5A26AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
@@ -206,10 +214,13 @@
 		74DE214D27F0F63D006863A3 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE214C27F0F63D006863A3 /* UserState.swift */; };
 		74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE215327F1034E006863A3 /* SignInRequest.swift */; };
 		74DE215627F1046D006863A3 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE215527F1046D006863A3 /* SignUpRequest.swift */; };
+		74DEA85E28082CB70050EF49 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA85D28082CB70050EF49 /* PersonCell.swift */; };
+		74DEA86028082CFE0050EF49 /* PersonCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA85F28082CFE0050EF49 /* PersonCellController.swift */; };
+		74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA86128082E690050EF49 /* PersonCellViewModel.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
 		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
-		74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* RouteHeaderCell.swift */; };
+		74E729B526F2978200775D37 /* LegacyRouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */; };
 		74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7BF0D27A33644004B6F4E /* EmailService.swift */; };
 		74E7C3992783063900B16392 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C3982783063900B16392 /* UserService.swift */; };
 		74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39A2783075000B16392 /* StoreContainer.swift */; };
@@ -238,6 +249,8 @@
 		74F73A02272B50DE007C5450 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F739FB272B50DE007C5450 /* LoadingStatus.swift */; };
 		74F73A04272B5213007C5450 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F73A03272B5213007C5450 /* LoadingCell.swift */; };
 		74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F73A05272B528A007C5450 /* EmptyStateCell.swift */; };
+		74FC5B4D2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FC5B4C2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift */; };
+		74FC5B4F2805CF3D00CCFCBA /* RouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FC5B4E2805CF3D00CCFCBA /* RouteViewModel.swift */; };
 		74FD656926B0ABDA00F824DD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FD656826B0ABDA00F824DD /* Stack.swift */; };
 		74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FFB59326EFE55B0060D948 /* RouteCell.swift */; };
 		74FFB59726EFE64E0060D948 /* ImageView in Frameworks */ = {isa = PBXBuildFile; productRef = 74FFB59626EFE64E0060D948 /* ImageView */; };
@@ -272,10 +285,16 @@
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
 		740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionBuilder.swift; sourceTree = "<group>"; };
 		740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+Utils.swift"; sourceTree = "<group>"; };
-		7415479226B08C89006931DC /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		74114C7E2807815400C1CF12 /* RouteInformationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInformationCellController.swift; sourceTree = "<group>"; };
+		74114C80280781B300C1CF12 /* RouteInformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInformationCellViewModel.swift; sourceTree = "<group>"; };
+		74114C822807831100C1CF12 /* SeparatorCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCellController.swift; sourceTree = "<group>"; };
+		7415479226B08C89006931DC /* LegacyPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPersonCell.swift; sourceTree = "<group>"; };
 		74159E5127ADBC1A007E7118 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		74159E5327ADBC31007E7118 /* WeakRef+UserStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+UserStateDelegate.swift"; sourceTree = "<group>"; };
 		74159E5527ADBC6A007E7118 /* UserStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateDelegate.swift; sourceTree = "<group>"; };
+		741BA1D728077513000B3C80 /* TextHeaderCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderCellController.swift; sourceTree = "<group>"; };
+		741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderCellViewModel.swift; sourceTree = "<group>"; };
+		741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewModel.swift; sourceTree = "<group>"; };
 		741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+SetAttributedText.swift"; sourceTree = "<group>"; };
 		741D407D270655560051A518 /* PersonInfoBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoBaseCell.swift; sourceTree = "<group>"; };
 		741EF4872708F28200F84986 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -342,7 +361,7 @@
 		74492521278AE3E9008BC446 /* NetworkErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorDescription.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
-		744B6EC82775033D008BDF37 /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
+		744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteViewModel.swift; sourceTree = "<group>"; };
 		744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAchievementsCell.swift; sourceTree = "<group>"; };
 		74577569279732E300123208 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
 		7457756B279732EB00123208 /* AchievementsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsPresenter.swift; sourceTree = "<group>"; };
@@ -446,6 +465,8 @@
 		74C72A50277BBC2500B73560 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		74C72A53277BC17D00B73560 /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
 		74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConfigurator.swift; sourceTree = "<group>"; };
+		74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
+		74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionHeaderViewModel.swift; sourceTree = "<group>"; };
 		74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -459,10 +480,13 @@
 		74DE214C27F0F63D006863A3 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		74DE215327F1034E006863A3 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		74DE215527F1046D006863A3 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		74DEA85D28082CB70050EF49 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		74DEA85F28082CFE0050EF49 /* PersonCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellController.swift; sourceTree = "<group>"; };
+		74DEA86128082E690050EF49 /* PersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellViewModel.swift; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
 		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
-		74E729B426F2978200775D37 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
+		74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteHeaderCell.swift; sourceTree = "<group>"; };
 		74E7BF0D27A33644004B6F4E /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 		74E7C3982783063900B16392 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		74E7C39A2783075000B16392 /* StoreContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreContainer.swift; sourceTree = "<group>"; };
@@ -491,6 +515,8 @@
 		74F739FB272B50DE007C5450 /* LoadingStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
 		74F73A03272B5213007C5450 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		74F73A05272B528A007C5450 /* EmptyStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateCell.swift; sourceTree = "<group>"; };
+		74FC5B4C2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionHeaderViewController.swift; sourceTree = "<group>"; };
+		74FC5B4E2805CF3D00CCFCBA /* RouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewModel.swift; sourceTree = "<group>"; };
 		74FD656826B0ABDA00F824DD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		74FFB59326EFE55B0060D948 /* RouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
 		74FFB59826EFE9190060D948 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -629,11 +655,20 @@
 			path = Person;
 			sourceTree = "<group>";
 		};
+		74114C842807831600C1CF12 /* Separator */ = {
+			isa = PBXGroup;
+			children = (
+				746A100F26F619AF002CB7E2 /* SeparatorCell.swift */,
+				74114C822807831100C1CF12 /* SeparatorCellController.swift */,
+			);
+			path = Separator;
+			sourceTree = "<group>";
+		};
 		7415479626B0974A006931DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				74E729B426F2978200775D37 /* RouteHeaderCell.swift */,
-				7415479226B08C89006931DC /* PersonCell.swift */,
+				74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */,
+				7415479226B08C89006931DC /* LegacyPersonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -746,9 +781,9 @@
 		742EFE8B26F1413F009A5126 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				74114C842807831600C1CF12 /* Separator */,
 				7404A61026B87FAF00524453 /* TextCell.swift */,
 				74E729B226F2946800775D37 /* EntityHeaderCell.swift */,
-				746A100F26F619AF002CB7E2 /* SeparatorCell.swift */,
 				746A101326F6276E002CB7E2 /* AlertCell.swift */,
 				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
 				74F73A03272B5213007C5450 /* LoadingCell.swift */,
@@ -947,7 +982,7 @@
 		744B6EC727750333008BDF37 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				744B6EC82775033D008BDF37 /* RouteViewModel.swift */,
+				744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */,
 				74E146992779DB59007D00D1 /* PersonViewModel.swift */,
 			);
 			path = Models;
@@ -1256,8 +1291,9 @@
 			isa = PBXGroup;
 			children = (
 				74EDF8632805B31400D0F6B1 /* Composition */,
-				74EDF8642805B32A00D0F6B1 /* Presentatioin */,
+				74EDF8642805B32A00D0F6B1 /* Presentation */,
 				74EDF8652805B33300D0F6B1 /* Controllers */,
+				74EDF86E2805BC7400D0F6B1 /* Cells */,
 				74EDF8622805B1FA00D0F6B1 /* Legacy */,
 			);
 			path = RouteDescription;
@@ -1354,12 +1390,18 @@
 			path = Composition;
 			sourceTree = "<group>";
 		};
-		74EDF8642805B32A00D0F6B1 /* Presentatioin */ = {
+		74EDF8642805B32A00D0F6B1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */,
+				74FC5B4E2805CF3D00CCFCBA /* RouteViewModel.swift */,
+				741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */,
+				74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */,
+				741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */,
+				74114C80280781B300C1CF12 /* RouteInformationCellViewModel.swift */,
+				74DEA86128082E690050EF49 /* PersonCellViewModel.swift */,
 			);
-			path = Presentatioin;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		74EDF8652805B33300D0F6B1 /* Controllers */ = {
@@ -1367,8 +1409,21 @@
 			children = (
 				74EDF86A2805B43F00D0F6B1 /* RouteDescriptionViewController.swift */,
 				74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */,
+				74FC5B4C2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift */,
+				741BA1D728077513000B3C80 /* TextHeaderCellController.swift */,
+				74114C7E2807815400C1CF12 /* RouteInformationCellController.swift */,
+				74DEA85F28082CFE0050EF49 /* PersonCellController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		74EDF86E2805BC7400D0F6B1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */,
+				74DEA85D28082CB70050EF49 /* PersonCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		74F185642787290500A0BF24 /* Settings */ = {
@@ -1619,6 +1674,7 @@
 				7457757227973E1300123208 /* DelayManager.swift in Sources */,
 				7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */,
 				7444DAB42801ED9C00A04F87 /* MainQueueDispatchDecorator+Routes.swift in Sources */,
+				74FC5B4F2805CF3D00CCFCBA /* RouteViewModel.swift in Sources */,
 				7444DA99280199B100A04F87 /* RemoteShortInfo.swift in Sources */,
 				7404A61126B87FAF00524453 /* TextCell.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
@@ -1634,6 +1690,7 @@
 				74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */,
 				746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */,
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
+				74DEA86028082CFE0050EF49 /* PersonCellController.swift in Sources */,
 				749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */,
 				7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
@@ -1643,12 +1700,16 @@
 				74F185682787292600A0BF24 /* SettingsPresenter.swift in Sources */,
 				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */,
+				74CB2F002806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift in Sources */,
 				74BE3476280390ED0086BB89 /* RouteTableViewController.swift in Sources */,
+				74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */,
 				74BE34702803848F0086BB89 /* WeakRef+Routes.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
 				7466849B279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift in Sources */,
-				7415479326B08C8A006931DC /* PersonCell.swift in Sources */,
+				7415479326B08C8A006931DC /* LegacyPersonCell.swift in Sources */,
+				741BA1D828077513000B3C80 /* TextHeaderCellController.swift in Sources */,
 				74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */,
+				74DEA85E28082CB70050EF49 /* PersonCell.swift in Sources */,
 				74F739FD272B50DE007C5450 /* CustomTableViewDataSource.swift in Sources */,
 				740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */,
 				742EFE8D26F14168009A5126 /* GradientView.swift in Sources */,
@@ -1657,12 +1718,15 @@
 				746A101226F620E0002CB7E2 /* PersonHeaderCell.swift in Sources */,
 				74DE214827F0F489006863A3 /* LogoutManager.swift in Sources */,
 				746F061F279371B4009D1163 /* PasswordValidator.swift in Sources */,
+				74CB2EFC28060A9600B68A11 /* RouteHeaderCell.swift in Sources */,
+				74114C7F2807815400C1CF12 /* RouteInformationCellController.swift in Sources */,
 				74DC18B427AF000A00C5A02F /* Product.swift in Sources */,
 				7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
 				74EDF86B2805B43F00D0F6B1 /* RouteDescriptionViewController.swift in Sources */,
 				74967F78276F554D0096AA77 /* RequestSender.swift in Sources */,
 				74EDF8672805B42600D0F6B1 /* RouteDescriptionTableViewController.swift in Sources */,
+				741BA1DC28077A3D000B3C80 /* RouteDescriptionViewModel.swift in Sources */,
 				748EE63B270F916800301552 /* Person.swift in Sources */,
 				748C94CE272FEFAF00202D47 /* LocationService.swift in Sources */,
 				74967F80276F55A40096AA77 /* RoutesService.swift in Sources */,
@@ -1685,10 +1749,12 @@
 				741D407E270655560051A518 /* PersonInfoBaseCell.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
+				74114C81280781B300C1CF12 /* RouteInformationCellViewModel.swift in Sources */,
 				74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */,
 				746F061D27937181009D1163 /* EmailValidator.swift in Sources */,
 				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
+				741BA1DA2807756A000B3C80 /* TextHeaderCellViewModel.swift in Sources */,
 				746684AC279F5E6200AFAA2E /* AccountConfirmationRequest.swift in Sources */,
 				7444DA8F280198F900A04F87 /* RemoteRoute.swift in Sources */,
 				746F061627936731009D1163 /* ErrorTextInputCell.swift in Sources */,
@@ -1698,7 +1764,8 @@
 				746684AA279F5D5900AFAA2E /* AccountConfirmationService.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */,
-				74E729B526F2978200775D37 /* RouteHeaderCell.swift in Sources */,
+				74E729B526F2978200775D37 /* LegacyRouteHeaderCell.swift in Sources */,
+				74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */,
 				74967F77276F554D0096AA77 /* DefaultJsonParser.swift in Sources */,
 				7457756E279732F300123208 /* AchievementsBuilder.swift in Sources */,
 				744CC9F1278A0D2C00D2CB2F /* AccountAchievementsCell.swift in Sources */,
@@ -1754,7 +1821,7 @@
 				74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */,
 				748EE63D270F917600301552 /* ShortInfo.swift in Sources */,
 				7437B1D52785D35F0020AABE /* BaseRequestSender.swift in Sources */,
-				744B6EC92775033D008BDF37 /* RouteViewModel.swift in Sources */,
+				744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */,
 				74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */,
 				74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */,
 				74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */,
@@ -1764,6 +1831,7 @@
 				74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */,
 				748EE633270F911800301552 /* Route.swift in Sources */,
 				746F06212793722A009D1163 /* UsernameValidator.swift in Sources */,
+				74FC5B4D2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,
 				7420BF042784B351000960F5 /* UserAccountPreviewCell.swift in Sources */,
 				746F061A27937101009D1163 /* SignUpErrorsModel.swift in Sources */,

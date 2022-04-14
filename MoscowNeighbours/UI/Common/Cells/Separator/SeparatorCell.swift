@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class SeparatorCell: CellView {
+public final class SeparatorCell: CellView {
     
-    let view: UIView = {
+    public let view: UIView = {
         let view = UIView()
         view.backgroundColor = .separator
         return view
@@ -17,7 +17,7 @@ final class SeparatorCell: CellView {
     
     var viewConstraints: AnchoredConstraints?
     
-    override func configureView() {
+    public override func configureView() {
         addSubview(view)
         viewConstraints = view.pinToSuperviewEdges(.all, insets: .init(top: 0, left: 20, bottom: 0, right: 20))
         

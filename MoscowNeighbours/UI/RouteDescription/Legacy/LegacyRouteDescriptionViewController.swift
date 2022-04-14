@@ -76,7 +76,7 @@ final class LegacyRouteDescriptionViewController: BottomSheetViewController, Leg
     
     // MARK: - Private properties
     
-    private var routeHeaderCell: RouteHeaderCell?
+    private var routeHeaderCell: LegacyRouteHeaderCell?
     private let sections: [SectionType]
     
     // MARK: - init
@@ -143,7 +143,7 @@ final class LegacyRouteDescriptionViewController: BottomSheetViewController, Leg
     override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration(topInset: .fromTop(0),
                                         availableStates: [.top, .middle],
-                                        cornerRadius: RouteHeaderCell.Layout.cornerRadius)
+                                        cornerRadius: LegacyRouteHeaderCell.Layout.cornerRadius)
     }
     
     // MARK: - Private methods
@@ -152,7 +152,7 @@ final class LegacyRouteDescriptionViewController: BottomSheetViewController, Leg
         bottomSheet.containerView.backgroundColor = .clear
         bottomSheet.containerView.clipsToBounds = true
         
-        tableView.layer.cornerRadius = RouteHeaderCell.Layout.cornerRadius
+        tableView.layer.cornerRadius = LegacyRouteHeaderCell.Layout.cornerRadius
         tableView.clipsToBounds = true
         
         backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
@@ -170,9 +170,9 @@ final class LegacyRouteDescriptionViewController: BottomSheetViewController, Leg
         tableView.loadingDelegate = self
         tableView.statusProvider = self
         
-        tableView.register(RouteHeaderCell.self)
+        tableView.register(LegacyRouteHeaderCell.self)
         tableView.register(TextCell.self)
-        tableView.register(PersonCell.self)
+        tableView.register(LegacyPersonCell.self)
         tableView.register(SeparatorCell.self)
     }
     
@@ -287,7 +287,7 @@ extension LegacyRouteDescriptionViewController {
 
 extension LegacyRouteDescriptionViewController {
     private func createRouteHeader(for indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(RouteHeaderCell.self, for: indexPath)
+        let cell = tableView.dequeue(LegacyRouteHeaderCell.self, for: indexPath)
         cell.view.update(route: route) { [weak self] in
             guard let `self` = self else { return }
             self.eventHandler.onRouteHeaderButtonTap(route: self.route)
@@ -322,7 +322,7 @@ extension LegacyRouteDescriptionViewController {
             return UITableViewCell()
         }
         
-        let cell = tableView.dequeue(PersonCell.self, for: indexPath)
+        let cell = tableView.dequeue(LegacyPersonCell.self, for: indexPath)
         let index = indexPath.item - 1
         
         cell.view.isFirst = index == 0

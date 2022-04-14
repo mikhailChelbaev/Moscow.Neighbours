@@ -1,5 +1,5 @@
 //
-//  PersonCell.swift
+//  LegacyPersonCell.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 27.07.2021.
@@ -8,7 +8,7 @@
 import UIKit
 import ImageView
 
-final class PersonCell: CellView {
+final class LegacyPersonCell: CellView {
     
     enum Layout {
         static let imageSize: CGSize = .init(width: 32, height: 32)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class InfoView: UIVisualEffectView {
+public final class InfoView: UIVisualEffectView {
     
     enum Layout {
         static var height: CGFloat = 21
@@ -16,14 +16,14 @@ final class InfoView: UIVisualEffectView {
         static var spacing: CGFloat = 2
     }
     
-    let imageView: UIImageView = {
+    public let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         return iv
     }()
     
-    let titleLabel: UILabel = {
+    public let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 12, weight: .medium)
         label.textColor = .white
@@ -31,13 +31,9 @@ final class InfoView: UIVisualEffectView {
     }()
     
     var imageViewLeadingConstraint: NSLayoutConstraint?
-    
     var imageViewTrailingConstraint: NSLayoutConstraint?
-    
     var titleLabelLeadingToViewConstraint: NSLayoutConstraint?
-    
-    var titleLabelLeadingToImageViewConstraint: NSLayoutConstraint?
-    
+    var titleLabelLeadingToImageViewConstraint: NSLayoutConstraint?    
     var titleLabelTrailingConstraint: NSLayoutConstraint?
     
     init() {
