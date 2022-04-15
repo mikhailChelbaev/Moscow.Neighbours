@@ -23,7 +23,7 @@ protocol MapView: UIViewController {
     func deselectAnnotation(_ annotation: MKAnnotation)
 }
 
-final class MapViewController: UIViewController {
+public final class MapViewController: UIViewController {
     
     // MARK: - Layout
     
@@ -64,13 +64,13 @@ final class MapViewController: UIViewController {
     
     // MARK: - Internal methods
     
-    override func loadView() {
+    public override func loadView() {
         view = mapView
         locationButton = createButton(image: #imageLiteral(resourceName: "location").withTintColor(.reversedBackground, renderingMode: .alwaysOriginal))
         menuButton = createButton(image: #imageLiteral(resourceName: "menu").withTintColor(.reversedBackground, renderingMode: .alwaysOriginal))
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         eventHandler.onViewDidLoad()
         registerAnnotationViews()
@@ -78,18 +78,18 @@ final class MapViewController: UIViewController {
         setUpLayout()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         eventHandler.onViewDidAppear()
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         locationButton.layer.shadowColor = UIColor.shadow.cgColor
         menuButton.layer.shadowColor = UIColor.shadow.cgColor
     }
     
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         locationButton.updateShadowPath()
         menuButton.updateShadowPath()
@@ -211,7 +211,7 @@ extension MapViewController: MapView {
 // MARK: - protocol MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let _ = annotation as? PersonInfo {
             let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as! MKMarkerAnnotationView
             view.displayPriority = .required
@@ -221,14 +221,14 @@ extension MapViewController: MKMapViewDelegate {
         return nil
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = .projectRed
         renderer.lineWidth = 4.0
         return renderer
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         eventHandler.onAnnotationSelection(view)
     }
 }

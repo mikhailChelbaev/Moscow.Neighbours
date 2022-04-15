@@ -192,6 +192,7 @@
 		74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A272725EDC40066C43E /* MarkdownMerger.swift */; };
 		74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A292725EFCA0066C43E /* MarkdownNode.swift */; };
 		74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A2B2725EFF90066C43E /* String+Subscript.swift */; };
+		74C56AA528095EFD00EC4942 /* MapCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C56AA428095EFD00EC4942 /* MapCoordinatorTests.swift */; };
 		74C5D8D326FD237700034432 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C5D8D226FD237700034432 /* Button.swift */; };
 		74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6CFC926BF1E0D00104457 /* ButtonCell.swift */; };
 		74C72A4D277BBC1800B73560 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A4C277BBC1800B73560 /* MenuViewController.swift */; };
@@ -458,6 +459,7 @@
 		74C51A272725EDC40066C43E /* MarkdownMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownMerger.swift; sourceTree = "<group>"; };
 		74C51A292725EFCA0066C43E /* MarkdownNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
 		74C51A2B2725EFF90066C43E /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
+		74C56AA428095EFD00EC4942 /* MapCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinatorTests.swift; sourceTree = "<group>"; };
 		74C5D8D226FD237700034432 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		74C6CFC926BF1E0D00104457 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		74C72A4C277BBC1800B73560 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -877,6 +879,7 @@
 			isa = PBXGroup;
 			children = (
 				7442C39227FF86D60025621B /* Helpers */,
+				74C56AA328095EEF00EC4942 /* Map */,
 				7442C38F27FF81CC0025621B /* Routes */,
 				7489D0BF2804DC050098AED5 /* RouteDescription */,
 			);
@@ -1240,6 +1243,14 @@
 				744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		74C56AA328095EEF00EC4942 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				74C56AA428095EFD00EC4942 /* MapCoordinatorTests.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		74C72A4A277BB4F700B73560 /* Profile */ = {
@@ -1871,6 +1882,7 @@
 				7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */,
 				7444DAAC2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift in Sources */,
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				74C56AA528095EFD00EC4942 /* MapCoordinatorTests.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift in Sources */,
 				7444DAA42801E93900A04F87 /* RouteViewController+TestHelpers.swift in Sources */,
 				7444DABA28030D7F00A04F87 /* RouteViewControllerTests+FakeStoreContainer.swift in Sources */,
