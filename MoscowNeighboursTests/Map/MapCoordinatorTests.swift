@@ -10,17 +10,16 @@ import MoscowNeighbours
 
 class MapCoordinatorTests: XCTestCase {
     
-    func test_init_createsMapViewController() {
+    func test_init_doesNotCreateController() {
         let coordinator = makeSUT()
         
-        XCTAssertNotNil(coordinator.controller)
+        XCTAssertNil(coordinator.controller)
     }
     
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> MapCoordinator {
         let sut = MapCoordinator(builder: Builder())
-        trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
     

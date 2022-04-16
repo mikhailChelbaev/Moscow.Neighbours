@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct MapStorage {
     let routesBuilder: () -> RouteViewController
@@ -52,9 +53,10 @@ public final class MapUIComposer {
 }
 
 public final class MapCoordinator {
-    public var controller: MapViewController?
+    public private(set) var controller: MapViewController?
+    private let builder: Builder
     
     public init(builder: Builder) {
-        controller = MapUIComposer.mapComposeWith(builder.makeMapStorage())
+        self.builder = builder
     }
 }
