@@ -16,6 +16,14 @@ class MapCoordinatorTests: XCTestCase {
         XCTAssertNil(coordinator.controller)
     }
     
+    func test_start_createsController() {
+        let coordinator = makeSUT()
+        
+        coordinator.start()
+        
+        XCTAssertNotNil(coordinator.controller)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> MapCoordinator {

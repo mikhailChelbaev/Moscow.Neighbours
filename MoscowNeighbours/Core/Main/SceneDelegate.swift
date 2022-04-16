@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // MARK: - Properties
     
-    private let builder: Builder = .init()
+    private let root = MapCoordinator(builder: Builder())
     var window: UIWindow?
     
     // MARK: - Internal Methods
@@ -25,10 +25,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func makeWindow(with windowScene: UIWindowScene) -> UIWindow {
         let window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        
         window.windowScene = windowScene
         window.makeKeyAndVisible()
         window.windowScene = windowScene
-        window.rootViewController = builder.buildMapViewController()
+        
+//        root.start()
+        window.rootViewController = root.controller
+        
         return window
     }
 

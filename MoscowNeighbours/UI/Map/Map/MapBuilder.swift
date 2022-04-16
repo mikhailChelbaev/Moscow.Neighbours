@@ -18,18 +18,7 @@ public struct MapStorage {
     let routePassingService: RoutePassingService
 }
 
-protocol MapBuilder {
-    func buildMapViewController() -> MapViewController
-}
-
-extension Builder: MapBuilder {
-    func buildMapViewController() -> MapViewController {
-        let presenter = MapPresenter(storage: makeMapStorage())
-        let viewController = MapViewController(eventHandler: presenter)
-        presenter.viewController = viewController
-        return viewController
-    }
-    
+extension Builder {
     func makeMapStorage() -> MapStorage {
         return MapStorage(
             routesBuilder: { self.buildRouteViewController(with: self.makeRoutesStorage()) },
@@ -44,9 +33,9 @@ extension Builder: MapBuilder {
 public final class MapUIComposer {
     private init() {}
     
-    public static func mapComposeWith(_ storage: MapStorage) -> MapViewController {
+    public static func mapComposeWith(_ storage: MapStorage, coordinator: MapCoordinator) -> MapViewController {
         let presenter = MapPresenter(storage: storage)
-        let viewController = MapViewController(eventHandler: presenter)
+        let viewController = MapViewController(eventHandler: presenter, coordinator: coordinator)
         presenter.viewController = viewController
         return viewController
     }
@@ -58,5 +47,9 @@ public final class MapCoordinator {
     
     public init(builder: Builder) {
         self.builder = builder
+    }
+    
+    public func start() {
+        controller = MapUIComposer.mapComposeWith(builder.makeMapStorage(), coordinator: self)
     }
 }

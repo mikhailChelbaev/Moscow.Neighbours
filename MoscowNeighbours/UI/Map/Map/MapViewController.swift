@@ -50,11 +50,14 @@ public final class MapViewController: UIViewController {
     // MARK: - Properties
     
     var eventHandler: MapEventHandler
+    private let coordinator: MapCoordinator
     
     // MARK: - Init
     
-    init(eventHandler: MapEventHandler) {
+    init(eventHandler: MapEventHandler, coordinator: MapCoordinator) {
         self.eventHandler = eventHandler
+        self.coordinator = coordinator
+        
         super.init(nibName: nil, bundle: nil)
     }
     
