@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RouteViewController: BottomSheetViewController, RouteDescriptionPresenterView, RouteErrorView {
+public final class RouteViewController: BottomSheetViewController, RouteDescriptionPresenterView, RouteErrorView {
     
     // MARK: - UI
     
@@ -45,7 +45,7 @@ final class RouteViewController: BottomSheetViewController, RouteDescriptionPres
     
     // MARK: - Internal methods
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter.didFetchRoutes()

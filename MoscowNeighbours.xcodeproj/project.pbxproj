@@ -203,6 +203,7 @@
 		74CB2EFC28060A9600B68A11 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */; };
 		74CB2F002806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */; };
 		74D2CC5F280AE8F0000FE4B1 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */; };
+		74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */; };
 		74D4AB5A26AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
@@ -471,6 +472,7 @@
 		74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
 		74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionHeaderViewModel.swift; sourceTree = "<group>"; };
 		74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoordinatorTests.swift; sourceTree = "<group>"; };
 		74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -893,6 +895,7 @@
 			children = (
 				7444DAA22801E92900A04F87 /* Helpers */,
 				7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */,
+				74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -1883,6 +1886,7 @@
 			files = (
 				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
 				7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */,
+				74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */,
 				7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */,
 				7444DAAC2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift in Sources */,
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
