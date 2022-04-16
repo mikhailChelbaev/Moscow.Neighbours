@@ -8,9 +8,9 @@
 import UIKit
 import UltraDrawerView
 
-typealias BottomSheet = DrawerView
+public typealias BottomSheet = DrawerView
 
-class BottomSheetViewController: UIViewController, DrawerViewListener {
+public class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     enum BackgroundDimStyle {
         case fullScreen
@@ -67,11 +67,11 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     // MARK: - Internal methods
     
-    override func loadView() {
+    public override func loadView() {
         view = contentView
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         bottomSheet.addListener(self)
@@ -83,12 +83,12 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
         bottomSheet.pinToSuperviewEdges(.all)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         contentView.touchDelegate = presentingViewController?.view
     }
     
-    override func viewSafeAreaInsetsDidChange() {
+    public override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         scrollView?.contentInset.bottom = view.safeAreaInsets.bottom
     }
@@ -134,24 +134,24 @@ class BottomSheetViewController: UIViewController, DrawerViewListener {
 
     // MARK: - protocol DrawerViewListener
     
-    func drawerView(_ drawerView: DrawerView, willBeginUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) { }
+    public func drawerView(_ drawerView: DrawerView, willBeginUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) { }
     
-    func drawerView(_ drawerView: DrawerView, didUpdateOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
+    public func drawerView(_ drawerView: DrawerView, didUpdateOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
         recalculateCoverAlpha(for: origin)
     }
     
-    func drawerView(_ drawerView: DrawerView, didEndUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
+    public func drawerView(_ drawerView: DrawerView, didEndUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) {
         recalculateCoverAlpha(for: origin)
     }
     
-    func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
+    public func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
         // scroll to top
         if state == .dismissed {
             scrollView?.setContentOffset(.zero, animated: true)
         }
     }
     
-    func drawerView(_ drawerView: DrawerView, willBeginAnimationToState state: DrawerView.State?, source: DrawerOriginChangeSource) { }
+    public func drawerView(_ drawerView: DrawerView, willBeginAnimationToState state: DrawerView.State?, source: DrawerOriginChangeSource) { }
     
     // MARK: - Cover Alpha
     
