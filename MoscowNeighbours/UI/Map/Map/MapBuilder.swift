@@ -40,16 +40,3 @@ public final class MapUIComposer {
         return viewController
     }
 }
-
-public final class MapCoordinator {
-    public private(set) var controller: MapViewController?
-    private let builder: Builder
-    
-    public init(builder: Builder) {
-        self.builder = builder
-    }
-    
-    public func start() {
-        controller = MapUIComposer.mapComposeWith(builder.makeMapStorage(), coordinator: self)
-    }
-}
