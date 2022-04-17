@@ -8,7 +8,7 @@
 import UIKit
 
 public class RoutesCoordinator {
-    public private(set) var controller: RouteViewController?
+    public var controller: BottomSheetViewController?
     private let builder: Builder
 
     public init(builder: Builder) {
@@ -23,6 +23,12 @@ public class RoutesCoordinator {
     public func present(on view: UIViewController?, state: BottomSheet.State, animated: Bool, completion: Action?) {
         guard let view = view, let controller = controller else { return }
         view.present(controller, state: state, completion: completion)
+    }
+    
+    public func displayRoute(route: Route) {
+        let storage = RouteDescriptionStorage(model: route, routeTransformer: RouteTransformer())
+        let routeDescriptionController = builder.buildRouteDescriptionViewController(storage: storage)
+        controller?.present(routeDescriptionController, state: .top, completion: nil)
     }
 }
 

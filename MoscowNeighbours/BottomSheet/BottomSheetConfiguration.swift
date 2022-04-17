@@ -8,16 +8,16 @@
 import UIKit
 import UltraDrawerView
 
-struct BottomSheetConfiguration {
-    var topInset: BottomSheet.RelativePosition
-    var middleInset: BottomSheet.RelativePosition
-    var availableStates: Set<BottomSheet.State>
-    var cornerRadius: CGFloat
-    var shadowRadius: CGFloat
-    var shadowOpacity: Float
-    var shadowOffset: CGSize
+public struct BottomSheetConfiguration {
+    public var topInset: BottomSheet.RelativePosition
+    public var middleInset: BottomSheet.RelativePosition
+    public var availableStates: Set<BottomSheet.State>
+    public var cornerRadius: CGFloat
+    public var shadowRadius: CGFloat
+    public var shadowOpacity: Float
+    public var shadowOffset: CGSize
     
-    init(topInset: BottomSheet.RelativePosition = .fromTop(36),
+    public init(topInset: BottomSheet.RelativePosition = .fromTop(36),
          middleInset: BottomSheet.RelativePosition = .fromBottom(280),
          availableStates: Set<BottomSheet.State> = [.top, .middle, .bottom],
          cornerRadius: CGFloat = 16,

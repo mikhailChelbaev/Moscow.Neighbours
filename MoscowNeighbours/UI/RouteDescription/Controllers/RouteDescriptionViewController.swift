@@ -11,7 +11,7 @@ protocol RouteDescriptionInput {
     func didTransformRoute()
 }
 
-public final class RouteDescriptionViewController: UIViewController {
+public final class RouteDescriptionViewController: BottomSheetViewController {
     typealias Presenter = RouteDescriptionInput
     
     public let tableView: BaseTableView
@@ -26,7 +26,7 @@ public final class RouteDescriptionViewController: UIViewController {
         
         tableView = tableViewController.view
         
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -37,5 +37,9 @@ public final class RouteDescriptionViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.didTransformRoute()
+    }
+    
+    public override func getScrollView() -> UIScrollView {
+        return tableView
     }
 }

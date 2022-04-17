@@ -10,7 +10,7 @@ import UltraDrawerView
 
 public typealias BottomSheet = DrawerView
 
-public class BottomSheetViewController: UIViewController, DrawerViewListener {
+open class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     enum BackgroundDimStyle {
         case fullScreen
@@ -49,13 +49,13 @@ public class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     // MARK: - Init
     
-    init() {
+    public init() {
         contentView = BottomSheetContentView()
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .overFullScreen
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -95,15 +95,15 @@ public class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     // MARK: - Get Bottom Sheet Components
     
-    func getScrollView() -> UIScrollView {
+    open func getScrollView() -> UIScrollView {
         fatalError("getScrollView method is not implemented")
     }
     
-    func getHeaderView() -> UIView? {
+    open func getHeaderView() -> UIView? {
         return nil
     }
     
-    func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+    open func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration()
     }
     

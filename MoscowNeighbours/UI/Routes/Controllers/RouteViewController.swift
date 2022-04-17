@@ -75,16 +75,16 @@ public final class RouteViewController: BottomSheetViewController, RouteDescript
         bottomSheet.setState(.middle, animated: true)
     }
     
-    override func getScrollView() -> UIScrollView {
+    public override func getScrollView() -> UIScrollView {
         return tableView
     }
     
-    override func getHeaderView() -> UIView? {
+    public override func getHeaderView() -> UIView? {
         headerView.update(text: presenter.headerTitle, showSeparator: false)
         return headerView
     }
     
-    override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+    public override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration(topInset: .fromTop(10))
     }
     

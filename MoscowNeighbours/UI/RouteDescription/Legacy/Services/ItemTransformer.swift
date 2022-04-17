@@ -13,24 +13,24 @@ public protocol ItemTransformer {
 
     func transform(_ route: Input, completion: @escaping (Output) -> Void)
 }
-//
-//final class RouteTransformer: ItemTransformer {
-//    private let markdownParser = DefaultMarkdownParser()
-//    private let workQueue = DispatchQueue(label: "RouteTransformerQueue")
-//
-//    func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
-//        workQueue.async {
-//            let description = self.markdownParser.parse(text: route.description)
-//            completion(RouteViewModel(
-//                name: route.name,
-//                description: description,
-//                coverUrl: route.coverUrl,
-//                distance: route.distance,
-//                duration: route.duration,
-//                persons: route.personsInfo,
-//                purchaseStatus: route.purchase.status,
-//                productId: route.purchase.productId,
-//                price: route.localizedPrice()))
-//        }
-//    }
-//}
+
+final class RouteTransformer: ItemTransformer {
+    private let markdownParser = DefaultMarkdownParser()
+    private let workQueue = DispatchQueue(label: "RouteTransformerQueue")
+
+    func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
+        workQueue.async {
+            let description = self.markdownParser.parse(text: route.description)
+            completion(RouteViewModel(
+                name: route.name,
+                description: description,
+                coverUrl: route.coverUrl,
+                distance: route.distance,
+                duration: route.duration,
+                persons: route.personsInfo,
+                purchaseStatus: route.purchase.status,
+                productId: route.purchase.productId,
+                price: route.localizedPrice()))
+        }
+    }
+}

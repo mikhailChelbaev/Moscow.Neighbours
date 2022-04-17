@@ -34,18 +34,34 @@ class RouteCoordinatorTests: XCTestCase {
         XCTAssertEqual(presentationSpy.presentedController is RouteViewController, true)
     }
     
+    func test_showRoute_presentsRouteDescriptionController() {
+        let presentationSpy = PresentingControllerSpy()
+        let sut = makeSUT(replaceControllerWith: presentationSpy)
+        
+        sut.displayRoute(route: makeRoute())
+        
+        XCTAssertEqual(presentationSpy.presentedController is RouteDescriptionViewController, true)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> RoutesCoordinator {
+    private func makeSUT(replaceControllerWith spy: BottomSheetViewController? = nil, file: StaticString = #file, line: UInt = #line) -> RoutesCoordinator {
         let sut = RoutesCoordinator(builder: Builder())
+        if let spy = spy {
+            sut.controller = spy
+        }
         return sut
     }
     
-    private final class PresentingControllerSpy: UIViewController {
+    private final class PresentingControllerSpy: BottomSheetViewController {
         private(set) var presentedController: UIViewController?
         
         override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
             presentedController = viewControllerToPresent
+        }
+        
+        override func getScrollView() -> UIScrollView {
+            return UIScrollView()
         }
     }
 }
