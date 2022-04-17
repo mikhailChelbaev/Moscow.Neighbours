@@ -43,7 +43,6 @@ class RouteCoordinatorTests: XCTestCase {
     
     private final class PresentingControllerSpy: UIViewController {
         private(set) var presentedController: UIViewController?
-        private(set) var presentationState: BottomSheet.State?
         
         override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
             presentedController = viewControllerToPresent
