@@ -5,7 +5,7 @@
 //  Created by Mikhail on 17.04.2022.
 //
 
-import Foundation
+import UIKit
 
 public class RoutesCoordinator {
     public private(set) var controller: RouteViewController?
@@ -19,4 +19,10 @@ public class RoutesCoordinator {
         let storage = builder.makeRoutesStorage()
         controller = RoutesUIComposer.routesComposeWith(storage, coordinator: self)
     }
+    
+    public func present(on view: UIViewController?, state: BottomSheet.State, animated: Bool, completion: Action?) {
+        guard let view = view, let controller = controller else { return }
+        view.present(controller, state: state, completion: completion)
+    }
 }
+
