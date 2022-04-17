@@ -8,15 +8,6 @@
 import XCTest
 import MoscowNeighbours
 
-class RoutesCoordinator {
-    private(set) var controller: RouteViewController?
-    private let builder: Builder
-
-    init(builder: Builder) {
-        self.builder = builder
-    }
-}
-
 class RouteCoordinatorTests: XCTestCase {
     
     func test_init_doesNotCreateController() {

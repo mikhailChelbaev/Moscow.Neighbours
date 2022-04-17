@@ -19,7 +19,7 @@ public final class RouteViewController: BottomSheetViewController, RouteDescript
     private let presenter: RoutesPresenter
     private let tableViewController: RouteTableViewController
     private let userStateObserver: UserStateObserver
-    private let routeDescriptionController: (Route) -> LegacyRouteDescriptionViewController
+    private let coordinator: RoutesCoordinator
     
     // MARK: - Init
     
@@ -27,11 +27,11 @@ public final class RouteViewController: BottomSheetViewController, RouteDescript
         presenter: RoutesPresenter,
         tableViewController: RouteTableViewController,
         userStateObserver: UserStateObserver,
-        routeDescriptionController: @escaping (Route) -> LegacyRouteDescriptionViewController) {
+        coordinator: RoutesCoordinator) {
         self.presenter = presenter
         self.tableViewController = tableViewController
         self.userStateObserver = userStateObserver
-        self.routeDescriptionController = routeDescriptionController
+        self.coordinator = coordinator
         
         tableView = tableViewController.view
         headerView = HeaderView()
@@ -61,8 +61,8 @@ public final class RouteViewController: BottomSheetViewController, RouteDescript
     }
     
     func presentRouteDescription(for route: Route) {
-        let controller = routeDescriptionController(route)
-        present(controller, state: .top, completion: nil)
+//        let controller = routeDescriptionController(route)
+//        present(controller, state: .top, completion: nil)
     }
     
     func display(error: Error) {

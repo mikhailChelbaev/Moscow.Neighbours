@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RoutesStorage {
+public struct RoutesStorage {
     let routesService: RoutesProvider
     let routesDescriptionBuilder: RoutesDescriptionBuilder
     let routesFetchDelayManager: DelayManager
@@ -27,6 +27,21 @@ protocol RoutesBuilder {
 
 extension Builder: RoutesBuilder {
     func buildRouteViewController(with storage: RoutesStorage) -> RouteViewController {
+        RoutesUIComposer.routesComposeWith(storage, coordinator: RoutesCoordinator(builder: self))
+    }
+    
+    func makeRoutesStorage() -> RoutesStorage {
+        return RoutesStorage(routesService: routesService,
+                             routesDescriptionBuilder: self,
+                             routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0),
+                             userState: userState)
+    }
+}
+
+public final class RoutesUIComposer {
+    private init() {}
+    
+    public static func routesComposeWith(_ storage: RoutesStorage, coordinator: RoutesCoordinator) -> RouteViewController {
         let presenter = RoutesPresenter(
             routesService: storage.routesService,
             delayManager: storage.routesFetchDelayManager)
@@ -38,9 +53,7 @@ extension Builder: RoutesBuilder {
             presenter: presenter,
             tableViewController: tableViewController,
             userStateObserver: userStateObserver,
-            routeDescriptionController: { [unowned self] route in
-                self.buildRouteDescriptionViewController(route: route)
-            })
+            coordinator: coordinator)
         
         let weakViewController = WeakRef(viewController)
         
@@ -53,12 +66,4 @@ extension Builder: RoutesBuilder {
         
         return viewController
     }
-    
-    func makeRoutesStorage() -> RoutesStorage {
-        return RoutesStorage(routesService: routesService,
-                             routesDescriptionBuilder: self,
-                             routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0),
-                             userState: userState)
-    }
 }
-
