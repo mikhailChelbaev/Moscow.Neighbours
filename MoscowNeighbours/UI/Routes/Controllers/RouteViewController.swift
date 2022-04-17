@@ -61,8 +61,7 @@ public final class RouteViewController: BottomSheetViewController, RouteDescript
     }
     
     func presentRouteDescription(for route: Route) {
-//        let controller = routeDescriptionController(route)
-//        present(controller, state: .top, completion: nil)
+        coordinator.displayRoute(route: route)
     }
     
     func display(error: Error) {

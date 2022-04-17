@@ -9,6 +9,9 @@ import UIKit
 @testable import MoscowNeighbours
 
 extension RouteViewController {
+    
+    // MARK: - Loader
+    
     private var loader: LoadingCell? {
         let ds = tableView.dataSource
         
@@ -28,6 +31,8 @@ extension RouteViewController {
         return loader != nil
     }
     
+    // MARK: - Routes
+    
     func numberOfRenderedRouteViews() -> Int {
         return tableView.numberOfRows(inSection: routesSection)
     }
@@ -38,10 +43,18 @@ extension RouteViewController {
         let cell = ds?.tableView(tableView, cellForRowAt: index) as? TableCellWrapper<RouteCell>
         return cell?.view
     }
+    
+    func simulateCellTap(at row: Int) {
+        let delegate = tableView.delegate
+        let index = IndexPath(row: row, section: routesSection)
+        delegate?.tableView?(tableView, didSelectRowAt: index)
+    }
  
     private var routesSection: Int {
         return 0
     }
+    
+    // MARK: - Error view
     
     private var errorView: EmptyStateCell? {
         let ds = tableView.dataSource
