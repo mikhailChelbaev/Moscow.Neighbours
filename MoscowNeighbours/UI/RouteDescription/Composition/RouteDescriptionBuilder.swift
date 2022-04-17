@@ -25,7 +25,7 @@ extension Builder: RoutesDescriptionBuilder {
     public func buildRouteDescriptionViewController<Transformer: ItemTransformer>(storage: RouteDescriptionStorage<Transformer>) -> RouteDescriptionViewController where Transformer.Input == Route, Transformer.Output == RouteViewModel {
         let presenter = RouteDescriptionPresenter(
             model: storage.model,
-            routeTransformer: storage.routeTransformer)
+            routeTransformer: RouteTransformerMainQueueDispatchDecorator(decoratee: storage.routeTransformer))
         let tableViewController = RouteDescriptionTableViewController()
         let controller = RouteDescriptionViewController(presenter: presenter, tableViewController: tableViewController)
         
@@ -96,3 +96,20 @@ extension WeakRef: RouteDescriptionView where T: RouteDescriptionView {
     }
 }
 
+final class RouteTransformerMainQueueDispatchDecorator<Transformer: ItemTransformer>: ItemTransformer where Transformer.Input == Route, Transformer.Output == RouteViewModel  {    
+    private let decoratee: Transformer
+    
+    init(decoratee: Transformer) {
+        self.decoratee = decoratee
+    }
+
+    func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
+        decoratee.transform(route) { result in
+            guard Thread.isMainThread else {
+                return DispatchQueue.main.async(execute: { completion(result) })
+            }
+            
+            completion(result)
+        }
+    }
+}
