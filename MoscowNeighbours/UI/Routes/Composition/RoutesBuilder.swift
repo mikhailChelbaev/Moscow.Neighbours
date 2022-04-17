@@ -21,16 +21,8 @@ public struct RoutesStorage {
     }
 }
 
-protocol RoutesBuilder {
-    func buildRouteViewController(with storage: RoutesStorage) -> RouteViewController
-}
-
-extension Builder: RoutesBuilder {
-    func buildRouteViewController(with storage: RoutesStorage) -> RouteViewController {
-        RoutesUIComposer.routesComposeWith(storage, coordinator: RoutesCoordinator(builder: self))
-    }
-    
-    func makeRoutesStorage() -> RoutesStorage {
+extension Builder {
+    public func makeRoutesStorage() -> RoutesStorage {
         return RoutesStorage(routesService: routesService,
                              routesDescriptionBuilder: self,
                              routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0),

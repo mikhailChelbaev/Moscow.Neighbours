@@ -80,7 +80,7 @@ class RouteViewControllerTests: XCTestCase {
             routesDescriptionBuilder: builder,
             routesFetchDelayManager: TestDelayManager(),
             userState: userState)
-        let sut = builder.buildRouteViewController(with: storage)
+        let sut = RoutesUIComposer.routesComposeWith(storage, coordinator: RoutesCoordinator(builder: builder))
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)
