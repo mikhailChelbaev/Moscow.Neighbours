@@ -11,17 +11,17 @@ import MoscowNeighbours
 class MapCoordinatorTests: XCTestCase {
     
     func test_init_doesNotCreateController() {
-        let coordinator = makeSUT()
+        let sut = makeSUT()
         
-        XCTAssertNil(coordinator.controller)
+        XCTAssertNil(sut.controller)
     }
     
     func test_start_createsController() {
-        let coordinator = makeSUT()
+        let sut = makeSUT()
         
-        coordinator.start()
+        sut.start()
         
-        XCTAssertNotNil(coordinator.controller)
+        XCTAssertNotNil(sut.controller)
     }
     
     // MARK: - Helpers
