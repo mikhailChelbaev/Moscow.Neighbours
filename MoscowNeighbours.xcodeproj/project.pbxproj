@@ -48,6 +48,7 @@
 		7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7422A9C226BC707A00FE995E /* ARPersonPreview.swift */; };
 		742B4EE9280C3F1600811AD1 /* RoutesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742B4EE8280C3F1600811AD1 /* RoutesCoordinator.swift */; };
 		742B4EEB280C4E1C00811AD1 /* PresentingControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742B4EEA280C4E1C00811AD1 /* PresentingControllerSpy.swift */; };
+		742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742B4EEC280C59DF00811AD1 /* RoutesCoordinatorStub.swift */; };
 		742EFE8D26F14168009A5126 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EFE8C26F14168009A5126 /* GradientView.swift */; };
 		74346FB526F3E0B70060357A /* helveticaneuecyr-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */; };
 		74346FB626F3E0BB0060357A /* helveticaneuecyr-roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */; };
@@ -318,6 +319,7 @@
 		7422A9C226BC707A00FE995E /* ARPersonPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPersonPreview.swift; sourceTree = "<group>"; };
 		742B4EE8280C3F1600811AD1 /* RoutesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesCoordinator.swift; sourceTree = "<group>"; };
 		742B4EEA280C4E1C00811AD1 /* PresentingControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingControllerSpy.swift; sourceTree = "<group>"; };
+		742B4EEC280C59DF00811AD1 /* RoutesCoordinatorStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesCoordinatorStub.swift; sourceTree = "<group>"; };
 		742EFE8C26F14168009A5126 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		74346FB326F3E0AE0060357A /* helveticaneuecyr-roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-roman.ttf"; sourceTree = "<group>"; };
 		74346FB426F3E0B70060357A /* helveticaneuecyr-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bold.ttf"; sourceTree = "<group>"; };
@@ -941,6 +943,7 @@
 				7444DAA92801EA0C00A04F87 /* RouteViewControllerTests+LoaderSpy.swift */,
 				7444DAAB2801EB1100A04F87 /* RouteViewControllerTests+Assertions.swift */,
 				7444DAB928030D7F00A04F87 /* RouteViewControllerTests+FakeStoreContainer.swift */,
+				742B4EEC280C59DF00811AD1 /* RoutesCoordinatorStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1892,6 +1895,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
+				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,
 				7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */,
 				74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */,
 				7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */,
