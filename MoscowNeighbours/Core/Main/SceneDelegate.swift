@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         window.windowScene = windowScene
         
-//        root.start()
+        root.start()
         window.rootViewController = root.controller
         
         return window
