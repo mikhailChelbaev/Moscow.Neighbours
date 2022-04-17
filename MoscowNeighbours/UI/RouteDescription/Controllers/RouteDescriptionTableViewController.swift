@@ -36,7 +36,7 @@ struct TableSection {
 final class RouteDescriptionTableViewController: LoadingStatusProvider {
     
     lazy var view: BaseTableView = {
-        let view = BaseTableView()
+        let view = BaseTableView(frame: .zero, style: .grouped)
         
         view.backgroundColor = .background
         view.contentInsetAdjustmentBehavior = .never
@@ -88,5 +88,9 @@ extension RouteDescriptionTableViewController: TableSuccessDataSource {
     
     func successTableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableModels[section].header?.view(in: tableView)
+    }
+    
+    func successTableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return tableModels[section].header == nil ? 0 : UITableView.automaticDimension
     }
 }
