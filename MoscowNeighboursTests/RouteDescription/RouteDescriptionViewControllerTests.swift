@@ -104,6 +104,10 @@ class RouteDescriptionViewControllerTests: XCTestCase {
     }
     
     func assertThat(_ sut: RouteDescriptionViewController, isViewConfiguredFor route: RouteViewModel, file: StaticString = #file, line: UInt = #line) {
+        guard sut.currentNumberOfSections == sut.numberOfSections else {
+            return XCTFail("Expected to display \(sut.numberOfSections) sections, got \(sut.currentNumberOfSections) instead")
+        }
+        
         XCTAssertEqual(sut.headerCellTitle, route.name, "Expected title text to be \(route.name)", file: file, line: line)
         XCTAssertEqual(sut.headerCellInfoText, route.routeInformation, "Expected route information text to be \(route.routeInformation)", file: file, line: line)
         
@@ -200,7 +204,7 @@ private extension RouteDescriptionViewController {
     // MARK: - Information Cells
     
     private var informationSection: Int {
-        return 1
+        return headerSection + 1
     }
     
     private var informationHeader: TextCell? {
@@ -230,7 +234,7 @@ private extension RouteDescriptionViewController {
     // MARK: - Persons
     
     private var personsSection: Int {
-        return 2
+        return informationSection + 1
     }
     
     private var personsHeader: TextCell? {
@@ -257,6 +261,15 @@ private extension RouteDescriptionViewController {
         let delegate = tableView.delegate
         let view = delegate?.tableView?(tableView, viewForHeaderInSection: section) as? CellType
         return view
+    }
+    
+    var currentNumberOfSections: Int {
+        let ds = tableView.dataSource
+        return ds?.numberOfSections?(in: tableView) ?? -1
+    }
+    
+    var numberOfSections: Int {
+        return 3
     }
 }
 

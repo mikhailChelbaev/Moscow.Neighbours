@@ -73,6 +73,10 @@ extension RouteDescriptionTableViewController: RouteDescriptionLoadingView {
 }
  
 extension RouteDescriptionTableViewController: TableSuccessDataSource {
+    func successNumberOfSections(in tableView: UITableView) -> Int {
+        return tableModels.count
+    }
+    
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableModels[section].cells.count
     }
