@@ -14,4 +14,9 @@ public class RoutesCoordinator {
     public init(builder: Builder) {
         self.builder = builder
     }
+    
+    public func start() {
+        let storage = builder.makeRoutesStorage()
+        controller = RoutesUIComposer.routesComposeWith(storage, coordinator: self)
+    }
 }
