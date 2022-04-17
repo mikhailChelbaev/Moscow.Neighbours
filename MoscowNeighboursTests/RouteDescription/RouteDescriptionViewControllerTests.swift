@@ -27,7 +27,7 @@ class RouteDescriptionViewControllerTests: XCTestCase {
     }
     
     func test_transformRouteCompletion_rendersTransformedRoute() {
-        let route = makeRouteModel()
+        let route = makeRouteModel(from: makeRoute(personsInfo: [makePersonInfo(), makePersonInfo()]))
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -103,6 +103,24 @@ class RouteDescriptionViewControllerTests: XCTestCase {
             price: route.localizedPrice())
     }
     
+    private func makePersonInfo() -> PersonInfo {
+        return PersonInfo(id: UUID().uuidString,
+                          person: Person(
+                            name: "person name",
+                            description: "person description",
+                            shortDescription: "person short description",
+                            avatarUrl: nil,
+                            info: []),
+                          place: Place(
+                            id: UUID().uuidString,
+                            name: "place name",
+                            description: "place description",
+                            address: "place address"),
+                          coordinates: LocationCoordinates(
+                            latitude: 1.0,
+                            longitude: 1.0))
+    }
+    
     func assertThat(_ sut: RouteDescriptionViewController, isViewConfiguredFor route: RouteViewModel, file: StaticString = #file, line: UInt = #line) {
         guard sut.currentNumberOfSections == sut.numberOfSections else {
             return XCTFail("Expected to display \(sut.numberOfSections) sections, got \(sut.currentNumberOfSections) instead")
@@ -116,7 +134,7 @@ class RouteDescriptionViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.isInformationSeparatorVisible, "Expected information separator to be visible", file: file, line: line)
 
         XCTAssertEqual(sut.personsHeaderText, localized("route_description.places"), "Expected persons header text to be \(localized("route_description.places"))", file: file, line: line)
-        assertThat(sut, isRendering: route.persons)
+        assertThat(sut, isRendering: route.persons, file: file, line: line)
     }
     
     func assertThat(_ sut: RouteDescriptionViewController, isRendering personInfos: [PersonInfo], file: StaticString = #file, line: UInt = #line) {
@@ -127,7 +145,7 @@ class RouteDescriptionViewControllerTests: XCTestCase {
 
     func assertThat(_ sut: RouteDescriptionViewController, hasViewConfiguredFor personInfo: PersonInfo, at index: Int, file: StaticString = #file, line: UInt = #line) {
         guard let cell = sut.personCell(at: index) else {
-            return XCTFail("Expected to get cell at index \(index)")
+            return XCTFail("Expected to get cell at index \(index)", file: file, line: line)
         }
 
         XCTAssertEqual(cell.personNameText, personInfo.person.name, "Expected person name text to be \(personInfo.person.name) for route cell at index (\(index))", file: file, line: line)

@@ -18,7 +18,7 @@ final class PersonCellController {
     
     func configure() {
         view?.isFirst = viewModel.isFirst
-        view?.isLast = viewModel.isLast       
+        view?.isLast = viewModel.isLast
         
         view?.personNameLabel.text = viewModel.name
         view?.addressLabel.text = viewModel.address

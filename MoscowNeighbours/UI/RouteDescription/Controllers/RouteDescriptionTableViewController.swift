@@ -51,6 +51,7 @@ final class RouteDescriptionTableViewController: LoadingStatusProvider {
         view.register(RouteHeaderCell.self)
         view.register(TextCell.self)
         view.register(SeparatorCell.self)
+        view.register(PersonCell.self)
         
         return view
     }()
