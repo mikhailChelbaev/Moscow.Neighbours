@@ -11,25 +11,25 @@ import MoscowNeighbours
 class RouteCoordinatorTests: XCTestCase {
     
     func test_init_doesNotCreateController() {
-        let coordinator = makeSUT()
+        let sut = makeSUT()
         
-        XCTAssertNil(coordinator.controller)
+        XCTAssertNil(sut.controller)
     }
     
     func test_start_createsController() {
-        let coordinator = makeSUT()
+        let sut = makeSUT()
         
-        coordinator.start()
+        sut.start()
         
-        XCTAssertNotNil(coordinator.controller)
+        XCTAssertNotNil(sut.controller)
     }
     
     func test_present_presentsControllerOnPassedViewController() {
         let presentationSpy = PresentingControllerSpy()
-        let coordinator = makeSUT()
-        coordinator.start()
+        let sut = makeSUT()
+        sut.start()
         
-        coordinator.present(on: presentationSpy, state: .middle, animated: true, completion: nil)
+        sut.present(on: presentationSpy, state: .middle, animated: true, completion: nil)
         
         XCTAssertEqual(presentationSpy.presentedController is RouteViewController, true)
     }
