@@ -52,16 +52,4 @@ class RouteCoordinatorTests: XCTestCase {
         }
         return sut
     }
-    
-    private final class PresentingControllerSpy: BottomSheetViewController {
-        private(set) var presentedController: UIViewController?
-        
-        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-            presentedController = viewControllerToPresent
-        }
-        
-        override func getScrollView() -> UIScrollView {
-            return UIScrollView()
-        }
-    }
 }
