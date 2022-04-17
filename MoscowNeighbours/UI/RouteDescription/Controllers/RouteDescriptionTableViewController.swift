@@ -37,11 +37,21 @@ final class RouteDescriptionTableViewController: LoadingStatusProvider {
     
     lazy var view: BaseTableView = {
         let view = BaseTableView()
+        
+        view.backgroundColor = .background
+        view.contentInsetAdjustmentBehavior = .never
+        view.showsVerticalScrollIndicator = false
+        view.separatorStyle = .none
+        view.layer.cornerRadius = EntityHeaderCell.Layout.cornerRadius
+        view.clipsToBounds = true
+        
         view.successDataSource = self
         view.statusProvider = self
+        
         view.register(RouteHeaderCell.self)
         view.register(TextCell.self)
         view.register(SeparatorCell.self)
+        
         return view
     }()
     

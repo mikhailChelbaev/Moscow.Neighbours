@@ -48,7 +48,8 @@ private final class RouteDescriptionViewAdapter: RouteDescriptionView {
             title: viewModel.name,
             information: viewModel.information,
             buttonTitle: viewModel.buttonTitle,
-            buttonAction: viewModel.buttonAction)
+            buttonAction: viewModel.buttonAction,
+            coverURL: viewModel.coverUrl)
         let routeHeaderController = RouteDescriptionHeaderViewController(viewModel: routeHeaderViewModel)
         
         let descriptionHeaderCellModel = TextHeaderCellViewModel(text: viewModel.descriptionHeader)

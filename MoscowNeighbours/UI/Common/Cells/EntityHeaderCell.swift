@@ -17,7 +17,6 @@ public class EntityHeaderCell: CellView {
     
     public var imageView: ImageView = {
         let iv = ImageView()
-//        iv.placeholder = .image(#imageLiteral(resourceName: "route_placeholder"))
         iv.backgroundColor = .imageBackground
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill

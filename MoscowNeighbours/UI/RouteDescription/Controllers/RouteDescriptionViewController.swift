@@ -37,9 +37,28 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
         super.viewDidLoad()
         
         presenter.didTransformRoute()
+        configureBottomSheet()
     }
+    
+    private func configureBottomSheet() {
+        bottomSheet.containerView.backgroundColor = .clear
+        bottomSheet.containerView.clipsToBounds = true
+    }
+    
+    // MARK: - Get Bottom Sheet Components
     
     public override func getScrollView() -> UIScrollView {
         return tableView
     }
+    
+    public override func getHeaderView() -> UIView? {
+        return nil// headerView
+    }
+    
+    public override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+        return BottomSheetConfiguration(topInset: .fromTop(0),
+                                        availableStates: [.top, .middle],
+                                        cornerRadius: LegacyRouteHeaderCell.Layout.cornerRadius)
+    }
 }
+
