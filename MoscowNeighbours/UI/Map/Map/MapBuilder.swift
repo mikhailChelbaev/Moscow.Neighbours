@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 public struct MapStorage {
-    let routesBuilder: () -> RouteViewController
     let personBuilder: PersonBuilder
     let menuBuilder: MenuBuilder
     
@@ -21,7 +20,6 @@ public struct MapStorage {
 extension Builder {
     func makeMapStorage() -> MapStorage {
         return MapStorage(
-            routesBuilder: { self.buildRouteViewController(with: self.makeRoutesStorage()) },
             personBuilder: self,
             menuBuilder: self,
             locationService: locationService,

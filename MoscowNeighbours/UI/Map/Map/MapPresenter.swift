@@ -30,7 +30,6 @@ class MapPresenter: MapEventHandler {
     
     weak var viewController: MapView?
     
-    private let routesBuilder: () -> RouteViewController
     private let personBuilder: PersonBuilder
     private let menuBuilder: MenuBuilder
     
@@ -45,7 +44,6 @@ class MapPresenter: MapEventHandler {
     // MARK: - Init
     
     init(storage: MapStorage) {
-        routesBuilder = storage.routesBuilder
         personBuilder = storage.personBuilder
         menuBuilder = storage.menuBuilder
         
