@@ -24,10 +24,22 @@ class MapCoordinatorTests: XCTestCase {
         XCTAssertNotNil(sut.controller)
     }
     
+    func test_displayRoutes_presentsRoutesController() {
+        let presentationSpy = PresentingControllerSpy()
+        let sut = makeSUT(replaceControllerWith: presentationSpy)
+        
+        sut.displayRoutes()
+        
+        XCTAssertEqual(presentationSpy.presentedController is RouteViewController, true)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> MapCoordinator {
+    private func makeSUT(replaceControllerWith spy: PresentingControllerSpy? = nil, file: StaticString = #file, line: UInt = #line) -> MapCoordinator {
         let sut = MapCoordinator(builder: Builder())
+        if let spy = spy {
+            sut.controller = spy
+        }
         return sut
     }
     

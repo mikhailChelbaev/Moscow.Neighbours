@@ -11,6 +11,7 @@ import ARKit
 import UltraDrawerView
 
 protocol MapView: UIViewController {
+    func displayRoutes()
     func addOverlays(_ overlays: [MKOverlay])
     func showAnnotations(_ annotations: [MKAnnotation])
     func zoomAnnotations(_ annotations: [MKAnnotation])
@@ -148,6 +149,10 @@ extension MapViewController {
 // MARK: - protocol MapView
 
 extension MapViewController: MapView {
+    func displayRoutes() {
+        coordinator.displayRoutes()
+    }
+    
     func addOverlays(_ overlays: [MKOverlay]) {
         mapView.addOverlays(overlays, level: MKOverlayLevel.aboveRoads)
     }

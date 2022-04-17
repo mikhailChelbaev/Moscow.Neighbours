@@ -67,8 +67,7 @@ class MapPresenter: MapEventHandler {
     }
     
     func onViewDidAppear() {
-        let controller = routesBuilder()
-        viewController?.present(controller, state: .middle, completion: nil)
+        viewController?.displayRoutes()
     }
     
     func onLocationButtonTap() {
