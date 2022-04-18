@@ -22,6 +22,6 @@ public final class MapCoordinator {
     public func displayRoutes() {
         let coordinator = RoutesCoordinator(builder: builder)
         coordinator.start()
-        coordinator.present(on: controller, state: .middle, animated: true, completion: nil)
+        coordinator.present(on: controller, state: .middle, completion: nil)
     }
 }

@@ -24,7 +24,7 @@ public class RouteDescriptionCoordinator {
             routeTransformer: RouteTransformer()))
     }
     
-    public func present(on view: UIViewController?, state: BottomSheet.State, animated: Bool, completion: Action?) {
+    public func present(on view: UIViewController?, state: BottomSheet.State, completion: Action?) {
         guard let view = view, let controller = controller else { return }
         view.present(controller, state: state, completion: completion)
     }

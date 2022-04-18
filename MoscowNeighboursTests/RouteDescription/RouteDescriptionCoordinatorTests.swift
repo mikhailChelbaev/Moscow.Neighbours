@@ -29,7 +29,7 @@ class RouteDescriptionCoordinatorTests: XCTestCase {
         let sut = makeSUT()
         sut.start()
         
-        sut.present(on: presentationSpy, state: .middle, animated: true, completion: nil)
+        sut.present(on: presentationSpy, state: .middle, completion: nil)
         
         XCTAssertEqual(presentationSpy.presentedController is RouteDescriptionViewController, true)
     }

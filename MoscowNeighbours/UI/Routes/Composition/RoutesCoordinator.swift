@@ -20,15 +20,15 @@ public class RoutesCoordinator {
         controller = RoutesUIComposer.routesComposeWith(storage, coordinator: self)
     }
     
-    public func present(on view: UIViewController?, state: BottomSheet.State, animated: Bool, completion: Action?) {
+    public func present(on view: UIViewController?, state: BottomSheet.State, completion: Action?) {
         guard let view = view, let controller = controller else { return }
         view.present(controller, state: state, completion: completion)
     }
     
     public func displayRoute(route: Route) {
-        let storage = RouteDescriptionStorage(model: route, routeTransformer: RouteTransformer())
-        let routeDescriptionController = builder.buildRouteDescriptionViewController(storage: storage)
-        controller?.present(routeDescriptionController, state: .top, completion: nil)
+        let routeDescriptionCoordinator = RouteDescriptionCoordinator(route: route, builder: builder)
+        routeDescriptionCoordinator.start()
+        routeDescriptionCoordinator.present(on: controller, state: .top, completion: nil)
     }
 }
 
