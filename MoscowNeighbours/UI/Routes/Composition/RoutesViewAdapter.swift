@@ -8,9 +8,9 @@
 import Foundation
 
 final class RoutesViewAdapter: RoutesView {
-    private weak var controller: RouteViewController?
+    private weak var controller: RoutesViewController?
     
-    init(controller: RouteViewController) {
+    init(controller: RoutesViewController) {
         self.controller = controller
     }
     

@@ -24,7 +24,7 @@ class RouteCoordinatorIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: RoutesLoaderSpy, coordinator: RoutesCoordinatorStub) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RoutesViewController, loader: RoutesLoaderSpy, coordinator: RoutesCoordinatorStub) {
         let builder = Builder()
         let loader = RoutesLoaderSpy()
         let storage = RoutesStorage(

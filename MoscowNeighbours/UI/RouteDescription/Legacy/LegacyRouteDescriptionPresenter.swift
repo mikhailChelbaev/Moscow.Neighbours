@@ -148,7 +148,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     }
     
     private func reloadRoutesController() {
-        if let presentingController = viewController?.presentingViewController as? RouteViewController {
+        if let presentingController = viewController?.presentingViewController as? RoutesViewController {
             presentingController.tableView.reloadData()
         }
     }

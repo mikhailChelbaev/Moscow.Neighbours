@@ -78,7 +78,7 @@ class RouteUIIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(userState: UserState = UserState(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: RoutesLoaderSpy) {
+    private func makeSUT(userState: UserState = UserState(), file: StaticString = #file, line: UInt = #line) -> (sut: RoutesViewController, loader: RoutesLoaderSpy) {
         let builder = Builder()
         let loader = RoutesLoaderSpy()
         let storage = RoutesStorage(

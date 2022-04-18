@@ -9,7 +9,7 @@ import XCTest
 @testable import MoscowNeighbours
 
 extension RouteUIIntegrationTests {
-    func assertThat(_ sut: RouteViewController, isRendering routes: [Route], file: StaticString = #file, line: UInt = #line) {
+    func assertThat(_ sut: RoutesViewController, isRendering routes: [Route], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedRouteViews() == routes.count else {
             return XCTFail("Expected \(routes.count) routes, got \(sut.numberOfRenderedRouteViews()) instead", file: file, line: line)
         }
@@ -19,7 +19,7 @@ extension RouteUIIntegrationTests {
         }
     }
     
-    func assertThat(_ sut: RouteViewController, hasViewConfiguredFor route: Route, at index: Int, file: StaticString = #file, line: UInt = #line) {
+    func assertThat(_ sut: RoutesViewController, hasViewConfiguredFor route: Route, at index: Int, file: StaticString = #file, line: UInt = #line) {
         guard let cell = sut.routeView(at: index) else {
             return XCTFail("Expected to get cell at index \(index)")
         }

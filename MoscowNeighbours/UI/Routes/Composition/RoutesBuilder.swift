@@ -33,15 +33,15 @@ extension Builder {
 public final class RoutesUIComposer {
     private init() {}
     
-    public static func routesComposeWith(_ storage: RoutesStorage, coordinator: RoutesCoordinator) -> RouteViewController {
+    public static func routesComposeWith(_ storage: RoutesStorage, coordinator: RoutesCoordinator) -> RoutesViewController {
         let presenter = RoutesPresenter(
             routesService: storage.routesService,
             delayManager: storage.routesFetchDelayManager)
         
         let userStateObserver = UserStateObserver(completion: presenter.didFetchRoutes)
-        let tableViewController = RouteTableViewController(didRouteCellTap: presenter.didRouteCellTap(route:))
+        let tableViewController = RoutesTableViewController(didRouteCellTap: presenter.didRouteCellTap(route:))
         
-        let viewController = RouteViewController(
+        let viewController = RoutesViewController(
             presenter: presenter,
             tableViewController: tableViewController,
             userStateObserver: userStateObserver,

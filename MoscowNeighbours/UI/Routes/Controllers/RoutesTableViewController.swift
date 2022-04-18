@@ -1,5 +1,5 @@
 //
-//  RouteTableViewController.swift
+//  RoutesTableViewController.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 11.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RouteTableViewController: LoadingStatusProvider, RouteLoadingView {
+final class RoutesTableViewController: LoadingStatusProvider, RouteLoadingView {
     
     lazy var view: BaseTableView = {
         let view = BaseTableView()
@@ -53,7 +53,7 @@ final class RouteTableViewController: LoadingStatusProvider, RouteLoadingView {
 
 // MARK: - protocol TableSuccessDataSource
 
-extension RouteTableViewController: TableSuccessDataSource {
+extension RoutesTableViewController: TableSuccessDataSource {
     func successTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableModel.count
     }

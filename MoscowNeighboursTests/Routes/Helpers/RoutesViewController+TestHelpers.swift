@@ -1,5 +1,5 @@
 //
-//  RouteViewController+TestHelpers.swift
+//  RoutesViewController+TestHelpers.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 09.04.2022.
@@ -8,7 +8,7 @@
 import UIKit
 @testable import MoscowNeighbours
 
-extension RouteViewController {
+extension RoutesViewController {
     
     // MARK: - Loader
     

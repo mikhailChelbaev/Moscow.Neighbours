@@ -30,7 +30,7 @@ class MapCoordinatorTests: XCTestCase {
         
         sut.displayRoutes()
         
-        XCTAssertEqual(presentationSpy.presentedController is RouteViewController, true)
+        XCTAssertEqual(presentationSpy.presentedController is RoutesViewController, true)
     }
     
     // MARK: - Helpers

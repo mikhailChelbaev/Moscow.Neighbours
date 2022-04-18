@@ -1,5 +1,5 @@
 //
-//  RouteViewController.swift
+//  RoutesViewController.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 21.07.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class RouteViewController: BottomSheetViewController, RouteDescriptionPresenterView, RouteErrorView {
+public final class RoutesViewController: BottomSheetViewController, RouteDescriptionPresenterView, RouteErrorView {
     
     // MARK: - UI
     
@@ -17,7 +17,7 @@ public final class RouteViewController: BottomSheetViewController, RouteDescript
     // MARK: - Properties
     
     private let presenter: RoutesPresenter
-    private let tableViewController: RouteTableViewController
+    private let tableViewController: RoutesTableViewController
     private let userStateObserver: UserStateObserver
     private let coordinator: RoutesCoordinator
     
@@ -25,7 +25,7 @@ public final class RouteViewController: BottomSheetViewController, RouteDescript
     
     init(
         presenter: RoutesPresenter,
-        tableViewController: RouteTableViewController,
+        tableViewController: RoutesTableViewController,
         userStateObserver: UserStateObserver,
         coordinator: RoutesCoordinator) {
         self.presenter = presenter
