@@ -10,7 +10,7 @@ import XCTest
 
 class RouteUIIntegrationTests: XCTestCase {
     
-    func test_bottomSheet_hasHandlerView() {
+    func test_bottomSheet_hasHeaderView() {
         let (sut, _) = makeSUT()
         
         XCTAssertEqual(sut.bottomSheet.headerView, sut.headerView)
