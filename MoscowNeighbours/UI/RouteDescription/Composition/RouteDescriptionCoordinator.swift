@@ -28,4 +28,9 @@ public class RouteDescriptionCoordinator {
         guard let view = view, let controller = controller else { return }
         view.present(controller, state: state, completion: completion)
     }
+    
+    public func dismiss(animated: Bool, completion: Action? = nil) {
+        controller?.closeController(animated: animated, completion: completion)
+        controller = nil
+    }
 }

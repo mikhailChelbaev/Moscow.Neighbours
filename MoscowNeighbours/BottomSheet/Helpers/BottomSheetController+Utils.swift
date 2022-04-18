@@ -12,7 +12,7 @@ import UltraDrawerView
 
 extension BottomSheetViewController {    
     func closeController(animated flag: Bool,
-                            completion: (() -> Void)? = nil) {
+                         completion: (() -> Void)? = nil) {
         let states = bottomSheet.availableStates
         bottomSheet.availableStates = states.union([.dismissed])
         
