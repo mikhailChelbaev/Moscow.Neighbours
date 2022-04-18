@@ -33,20 +33,6 @@ class RouteUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [route0, route1, route2, route3])
     }
     
-    func test_routeCellTap_presentsRouteDescriptionController() {
-        let route = makeRoute()
-        let loader = LoaderSpy()
-        let coordinator = RoutesCoordinatorStub(storage: createStorage(loader: loader))
-        coordinator.start()
-        let sut: RouteViewController = coordinator.controller as! RouteViewController
-        
-        sut.loadViewIfNeeded()
-        loader.completeRoutesLoading(with: [route])
-        sut.simulateCellTap(at: 0)
-        
-        XCTAssertEqual(coordinator.presentedRoute?.id, route.id)
-    }
-    
     func test_errorViewRetryButton_retriesRoutesLoad() {
         let route = makeRoute(name: "Route 1", price: (.free, nil))
         let (sut, loader) = makeSUT()
@@ -86,25 +72,18 @@ class RouteUIIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(userState: UserState = UserState(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: LoaderSpy) {
+    private func makeSUT(userState: UserState = UserState(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteViewController, loader: RoutesLoaderSpy) {
         let builder = Builder()
-        let loader = LoaderSpy()
-        let storage = createStorage(builder: builder, loader: loader, userState: userState)
-        let sut = RoutesUIComposer.routesComposeWith(storage, coordinator: RoutesCoordinator(builder: builder))
-        trackForMemoryLeaks(sut, file: file, line: line)
-        trackForMemoryLeaks(loader, file: file, line: line)
-        return (sut, loader)
-    }
-    
-    private func createStorage(
-        builder: Builder = Builder(),
-        loader: LoaderSpy = LoaderSpy(),
-        userState: UserState = UserState()
-    ) -> RoutesStorage {
-        return RoutesStorage(
+        let loader = RoutesLoaderSpy()
+        let storage = RoutesStorage(
             routesService: loader,
             routesDescriptionBuilder: builder,
             routesFetchDelayManager: TestDelayManager(),
             userState: userState)
+        let coordinator = RoutesCoordinator(builder: builder)
+        let sut = RoutesUIComposer.routesComposeWith(storage, coordinator: coordinator)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        return (sut, loader)
     }
 }
