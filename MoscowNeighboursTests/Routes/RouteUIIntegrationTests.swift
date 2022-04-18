@@ -10,6 +10,12 @@ import XCTest
 
 class RouteUIIntegrationTests: XCTestCase {
     
+    func test_bottomSheet_hasHandlerView() {
+        let (sut, _) = makeSUT()
+        
+        XCTAssertEqual(sut.bottomSheet.headerView, sut.headerView)
+    }
+    
     func test_loadingIndicator_isVisibleWhileFetchingRoutes() {
         let (sut, loader) = makeSUT()
         
