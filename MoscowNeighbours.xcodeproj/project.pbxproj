@@ -22,6 +22,7 @@
 		740AF98A280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */; };
 		740AF98C280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */; };
 		740AF98E280DEAC30049DEDE /* RouteDescriptionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF98D280DEAC30049DEDE /* RouteDescriptionCoordinator.swift */; };
+		740AF990280E03A10049DEDE /* BackButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF98F280E03A10049DEDE /* BackButtonViewController.swift */; };
 		740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */; };
 		740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535C2773A86A00E9C4E0 /* Builder.swift */; };
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
@@ -298,6 +299,7 @@
 		740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewAdapter.swift; sourceTree = "<group>"; };
 		740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCoordinatorTests.swift; sourceTree = "<group>"; };
 		740AF98D280DEAC30049DEDE /* RouteDescriptionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCoordinator.swift; sourceTree = "<group>"; };
+		740AF98F280E03A10049DEDE /* BackButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonViewController.swift; sourceTree = "<group>"; };
 		740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetConfiguration.swift; sourceTree = "<group>"; };
 		740B535C2773A86A00E9C4E0 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
@@ -1457,6 +1459,7 @@
 				741BA1D728077513000B3C80 /* TextHeaderCellController.swift */,
 				74114C7E2807815400C1CF12 /* RouteInformationCellController.swift */,
 				74DEA85F28082CFE0050EF49 /* PersonCellController.swift */,
+				740AF98F280E03A10049DEDE /* BackButtonViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1782,6 +1785,7 @@
 				74F52A332725946700343334 /* BlockParser.swift in Sources */,
 				74F52A352725947100343334 /* FragmentParser.swift in Sources */,
 				74F73A02272B50DE007C5450 /* LoadingStatus.swift in Sources */,
+				740AF990280E03A10049DEDE /* BackButtonViewController.swift in Sources */,
 				746192D826AC54A800CCCB71 /* UICollectionView+Reuse.swift in Sources */,
 				74F73A00272B50DE007C5450 /* CollectionSuccessDataSource.swift in Sources */,
 				746684A7279F4E8C00AFAA2E /* SignUpResponse.swift in Sources */,

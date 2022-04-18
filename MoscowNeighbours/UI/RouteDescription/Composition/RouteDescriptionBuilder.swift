@@ -27,7 +27,13 @@ extension Builder: RoutesDescriptionBuilder {
             model: storage.model,
             routeTransformer: RouteTransformerMainQueueDispatchDecorator(decoratee: storage.routeTransformer))
         let tableViewController = RouteDescriptionTableViewController()
-        let controller = RouteDescriptionViewController(presenter: presenter, tableViewController: tableViewController)
+        let backButtonController = BackButtonViewController(onBackButtonTap: {
+            
+        })
+        let controller = RouteDescriptionViewController(
+            presenter: presenter,
+            tableViewController: tableViewController,
+            backButtonController: backButtonController)
         
         presenter.routeDescriptionView = RouteDescriptionViewAdapter(controller: tableViewController)
         presenter.routeDescriptionLoadingView = WeakRef(tableViewController)
