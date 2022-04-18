@@ -20,6 +20,7 @@
 		740AF986280DE6D20049DEDE /* WeakRef+RouteDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF985280DE6D20049DEDE /* WeakRef+RouteDescription.swift */; };
 		740AF988280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF987280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift */; };
 		740AF98A280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */; };
+		740AF98C280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */; };
 		740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */; };
 		740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535C2773A86A00E9C4E0 /* Builder.swift */; };
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
@@ -294,6 +295,7 @@
 		740AF985280DE6D20049DEDE /* WeakRef+RouteDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+RouteDescription.swift"; sourceTree = "<group>"; };
 		740AF987280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTransformerMainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewAdapter.swift; sourceTree = "<group>"; };
+		740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCoordinatorTests.swift; sourceTree = "<group>"; };
 		740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetConfiguration.swift; sourceTree = "<group>"; };
 		740B535C2773A86A00E9C4E0 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
@@ -1123,6 +1125,7 @@
 			isa = PBXGroup;
 			children = (
 				7489D0C02804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift */,
+				740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */,
 			);
 			path = RouteDescription;
 			sourceTree = "<group>";
@@ -1913,6 +1916,7 @@
 				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,
 				7489D0C12804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift in Sources */,
 				74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */,
+				740AF98C280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift in Sources */,
 				7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */,
 				7444DAAC2801EB1100A04F87 /* RouteUIIntegrationTests+Assertions.swift in Sources */,
 				742B4EEB280C4E1C00811AD1 /* PresentingControllerSpy.swift in Sources */,

@@ -14,11 +14,13 @@ public protocol ItemTransformer {
     func transform(_ route: Input, completion: @escaping (Output) -> Void)
 }
 
-final class RouteTransformer: ItemTransformer {
+public final class RouteTransformer: ItemTransformer {
+    public init() {}
+    
     private let markdownParser = DefaultMarkdownParser()
     private let workQueue = DispatchQueue(label: "RouteTransformerQueue")
 
-    func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
+    public func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
         workQueue.async {
             let description = self.markdownParser.parse(text: route.description)
             completion(RouteViewModel(
