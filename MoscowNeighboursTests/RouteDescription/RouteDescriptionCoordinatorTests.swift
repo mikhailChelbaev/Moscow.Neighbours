@@ -8,24 +8,6 @@
 import XCTest
 import MoscowNeighbours
 
-class RouteDescriptionCoordinator {
-    private let builder: Builder
-    private let route: Route
-    
-    init(route: Route, builder: Builder) {
-        self.builder = builder
-        self.route = route
-    }
-    
-    var controller: UIViewController?
-    
-    func start() {
-        controller = builder.buildRouteDescriptionViewController(storage: RouteDescriptionStorage(
-            model: route,
-            routeTransformer: RouteTransformer()))
-    }
-}
-
 class RouteDescriptionCoordinatorTests: XCTestCase {
     
     func test_init_doesNotCreateController() {
@@ -40,6 +22,16 @@ class RouteDescriptionCoordinatorTests: XCTestCase {
         sut.start()
 
         XCTAssertNotNil(sut.controller)
+    }
+    
+    func test_present_presentsControllerOnPassedViewController() {
+        let presentationSpy = PresentingControllerSpy()
+        let sut = makeSUT()
+        sut.start()
+        
+        sut.present(on: presentationSpy, state: .middle, animated: true, completion: nil)
+        
+        XCTAssertEqual(presentationSpy.presentedController is RouteDescriptionViewController, true)
     }
     
     // MARK: - Helpers

@@ -1,0 +1,31 @@
+//
+//  RouteDescriptionCoordinator.swift
+//  MoscowNeighbours
+//
+//  Created by Mikhail on 18.04.2022.
+//
+
+import UIKit
+
+public class RouteDescriptionCoordinator {
+    private let builder: Builder
+    private let route: Route
+    
+    public init(route: Route, builder: Builder) {
+        self.builder = builder
+        self.route = route
+    }
+    
+    public var controller: BottomSheetViewController?
+    
+    public func start() {
+        controller = builder.buildRouteDescriptionViewController(storage: RouteDescriptionStorage(
+            model: route,
+            routeTransformer: RouteTransformer()))
+    }
+    
+    public func present(on view: UIViewController?, state: BottomSheet.State, animated: Bool, completion: Action?) {
+        guard let view = view, let controller = controller else { return }
+        view.present(controller, state: state, completion: completion)
+    }
+}
