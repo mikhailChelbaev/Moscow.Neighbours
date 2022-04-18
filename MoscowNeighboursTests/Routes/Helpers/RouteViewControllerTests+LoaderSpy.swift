@@ -1,5 +1,5 @@
 //
-//  RouteViewControllerTests+LoaderSpy.swift
+//  RouteUIIntegrationTests+LoaderSpy.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 09.04.2022.
@@ -7,7 +7,7 @@
 
 import MoscowNeighbours
 
-extension RouteViewControllerTests {
+extension RouteUIIntegrationTests {
     final class LoaderSpy: RoutesProvider {
         var completions = [(RoutesProvider.Result) -> Void]()
         

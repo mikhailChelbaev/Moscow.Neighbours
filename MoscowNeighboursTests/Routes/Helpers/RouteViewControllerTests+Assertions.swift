@@ -1,5 +1,5 @@
 //
-//  RouteViewControllerTests+Assertions.swift
+//  RouteUIIntegrationTests+Assertions.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 09.04.2022.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import MoscowNeighbours
 
-extension RouteViewControllerTests {
+extension RouteUIIntegrationTests {
     func assertThat(_ sut: RouteViewController, isRendering routes: [Route], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedRouteViews() == routes.count else {
             return XCTFail("Expected \(routes.count) routes, got \(sut.numberOfRenderedRouteViews()) instead", file: file, line: line)

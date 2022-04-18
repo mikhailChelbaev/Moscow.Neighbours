@@ -1,5 +1,5 @@
 //
-//  RouteViewControllerTests.swift
+//  RouteUIIntegrationTests.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 07.04.2022.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import MoscowNeighbours
 
-class RouteViewControllerTests: XCTestCase {
+class RouteUIIntegrationTests: XCTestCase {
     
     func test_loadingIndicator_isVisibleWhileFetchingRoutes() {
         let (sut, loader) = makeSUT()

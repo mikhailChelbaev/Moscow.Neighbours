@@ -72,7 +72,7 @@
 		743DE72A27760AFB00B5CED8 /* WeakRef+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72927760AFB00B5CED8 /* WeakRef+Map.swift */; };
 		743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */; };
 		743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */; };
-		7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */; };
+		7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39027FF81DD0025621B /* RouteUIIntegrationTests.swift */; };
 		7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */; };
 		7444DA8F280198F900A04F87 /* RemoteRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA8E280198F900A04F87 /* RemoteRoute.swift */; };
 		7444DA912801992E00A04F87 /* RemotePersonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA902801992E00A04F87 /* RemotePersonInfo.swift */; };
@@ -347,7 +347,7 @@
 		743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingPresenter.swift; sourceTree = "<group>"; };
 		743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingBuilder.swift; sourceTree = "<group>"; };
 		7442C38627FF81BE0025621B /* MoscowNeighboursTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoscowNeighboursTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewControllerTests.swift; sourceTree = "<group>"; };
+		7442C39027FF81DD0025621B /* RouteUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteUIIntegrationTests.swift; sourceTree = "<group>"; };
 		7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		7444DA8E280198F900A04F87 /* RemoteRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRoute.swift; sourceTree = "<group>"; };
 		7444DA902801992E00A04F87 /* RemotePersonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePersonInfo.swift; sourceTree = "<group>"; };
@@ -900,7 +900,7 @@
 			isa = PBXGroup;
 			children = (
 				7444DAA22801E92900A04F87 /* Helpers */,
-				7442C39027FF81DD0025621B /* RouteViewControllerTests.swift */,
+				7442C39027FF81DD0025621B /* RouteUIIntegrationTests.swift */,
 				74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */,
 			);
 			path = Routes;
@@ -1894,7 +1894,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7442C39127FF81DD0025621B /* RouteViewControllerTests.swift in Sources */,
+				7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */,
 				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,
 				7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */,
 				74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */,
