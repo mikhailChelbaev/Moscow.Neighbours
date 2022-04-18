@@ -10,6 +10,12 @@ import MoscowNeighbours
 
 class RouteDescriptionViewControllerTests: XCTestCase {
     
+    func test_bottomSheet_hasHeaderView() {
+        let (sut, _) = makeSUT()
+        
+        XCTAssertEqual(sut.bottomSheet.headerView, sut.headerView)
+    }
+    
     func test_init_doesNotTransformRoute() {
         let (_, loader) = makeSUT()
         

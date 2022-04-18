@@ -20,7 +20,7 @@ open class BottomSheetViewController: UIViewController, DrawerViewListener {
     
     // MARK: - UI
     
-    lazy var bottomSheet: BottomSheet = createBottomSheet() {
+    public lazy var bottomSheet: BottomSheet = createBottomSheet() {
         didSet {
             contentView.bottomSheet = bottomSheet
         }

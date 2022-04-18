@@ -15,7 +15,7 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
     typealias Presenter = RouteDescriptionInput
     
     public let tableView: BaseTableView
-//    let headerView: HeaderView
+    public let headerView: HandlerView
     
     private let presenter: Presenter
     private let tableViewController: RouteDescriptionTableViewController
@@ -25,6 +25,7 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
         self.tableViewController = tableViewController
         
         tableView = tableViewController.view
+        headerView = HandlerView()
         
         super.init()
     }
@@ -52,7 +53,7 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
     }
     
     public override func getHeaderView() -> UIView? {
-        return nil// headerView
+        return headerView
     }
     
     public override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
