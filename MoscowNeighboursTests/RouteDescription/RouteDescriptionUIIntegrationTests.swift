@@ -1,5 +1,5 @@
 //
-//  RouteDescriptionViewControllerTests.swift
+//  RouteDescriptionUIIntegrationTests.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 12.04.2022.
@@ -8,7 +8,7 @@
 import XCTest
 import MoscowNeighbours
 
-class RouteDescriptionViewControllerTests: XCTestCase {
+class RouteDescriptionUIIntegrationTests: XCTestCase {
     
     func test_bottomSheet_hasHeaderView() {
         let (sut, _) = makeSUT()

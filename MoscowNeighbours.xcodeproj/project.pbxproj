@@ -154,7 +154,7 @@
 		7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A160277E1C6B004E2D27 /* TextInputCell.swift */; };
 		7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A162277E3233004E2D27 /* OrSeparatorCell.swift */; };
 		7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */; };
-		7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7489D0C02804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift */; };
+		7489D0C12804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7489D0C02804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift */; };
 		748C94CE272FEFAF00202D47 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748C94CD272FEFAF00202D47 /* LocationService.swift */; };
 		748EE633270F911800301552 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE632270F911800301552 /* Route.swift */; };
 		748EE635270F913000301552 /* PersonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE634270F913000301552 /* PersonInfo.swift */; };
@@ -426,7 +426,7 @@
 		7488A160277E1C6B004E2D27 /* TextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
 		7488A162277E3233004E2D27 /* OrSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrSeparatorCell.swift; sourceTree = "<group>"; };
 		7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonCell.swift; sourceTree = "<group>"; };
-		7489D0C02804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewControllerTests.swift; sourceTree = "<group>"; };
+		7489D0C02804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionUIIntegrationTests.swift; sourceTree = "<group>"; };
 		748C94CD272FEFAF00202D47 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		748EE632270F911800301552 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		748EE634270F913000301552 /* PersonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfo.swift; sourceTree = "<group>"; };
@@ -1116,7 +1116,7 @@
 		7489D0BF2804DC050098AED5 /* RouteDescription */ = {
 			isa = PBXGroup;
 			children = (
-				7489D0C02804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift */,
+				7489D0C02804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift */,
 			);
 			path = RouteDescription;
 			sourceTree = "<group>";
@@ -1899,7 +1899,7 @@
 			files = (
 				7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */,
 				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,
-				7489D0C12804DC1D0098AED5 /* RouteDescriptionViewControllerTests.swift in Sources */,
+				7489D0C12804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift in Sources */,
 				74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */,
 				7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */,
 				7444DAAC2801EB1100A04F87 /* RouteUIIntegrationTests+Assertions.swift in Sources */,
