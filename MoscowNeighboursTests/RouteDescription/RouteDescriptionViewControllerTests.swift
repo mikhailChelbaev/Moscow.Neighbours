@@ -103,24 +103,6 @@ class RouteDescriptionViewControllerTests: XCTestCase {
             price: route.localizedPrice())
     }
     
-    private func makePersonInfo() -> PersonInfo {
-        return PersonInfo(id: UUID().uuidString,
-                          person: Person(
-                            name: "person name",
-                            description: "person description",
-                            shortDescription: "person short description",
-                            avatarUrl: nil,
-                            info: []),
-                          place: Place(
-                            id: UUID().uuidString,
-                            name: "place name",
-                            description: "place description",
-                            address: "place address"),
-                          coordinates: LocationCoordinates(
-                            latitude: 1.0,
-                            longitude: 1.0))
-    }
-    
     func assertThat(_ sut: RouteDescriptionViewController, isViewConfiguredFor route: RouteViewModel, file: StaticString = #file, line: UInt = #line) {
         guard sut.currentNumberOfSections == sut.numberOfSections else {
             return XCTFail("Expected to display \(sut.numberOfSections) sections, got \(sut.currentNumberOfSections) instead")
