@@ -17,16 +17,10 @@ public struct RouteDescriptionStorage<Transformer: ItemTransformer> where Transf
     }
 }
 
-extension Builder {
-    public func makeRouteDescriptionStorage<Transformer: ItemTransformer>(model: Route) -> RouteDescriptionStorage<Transformer> where Transformer.Input == Route, Transformer.Output == RouteViewModel {
-        return RouteDescriptionStorage(model: model, routeTransformer: RouteTransformer() as! Transformer)
-    }
-}
-
 public final class RoutesDescriptionUIComposer {
     private init() {}
     
-    public static func routeDescriptionComposeWith<Transformer: ItemTransformer>(storage: RouteDescriptionStorage<Transformer>) -> RouteDescriptionViewController where Transformer.Input == Route, Transformer.Output == RouteViewModel {
+    public static func routeDescriptionComposeWith<Transformer: ItemTransformer>(storage: RouteDescriptionStorage<Transformer>, coordinator: RouteDescriptionCoordinator) -> RouteDescriptionViewController where Transformer.Input == Route, Transformer.Output == RouteViewModel {
         let presenter = RouteDescriptionPresenter(
             model: storage.model,
             routeTransformer: RouteTransformerMainQueueDispatchDecorator(decoratee: storage.routeTransformer))
@@ -36,6 +30,7 @@ public final class RoutesDescriptionUIComposer {
         })
         let controller = RouteDescriptionViewController(
             presenter: presenter,
+            coordinator: coordinator,
             tableViewController: tableViewController,
             backButtonController: backButtonController)
         

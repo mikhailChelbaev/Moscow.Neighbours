@@ -83,7 +83,6 @@ class RouteUIIntegrationTests: XCTestCase {
         let loader = RoutesLoaderSpy()
         let storage = RoutesStorage(
             routesService: loader,
-            routesDescriptionBuilder: builder,
             routesFetchDelayManager: TestDelayManager(),
             userState: userState)
         let coordinator = RoutesCoordinator(builder: builder)

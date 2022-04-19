@@ -19,13 +19,16 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
     public let backButton: UIButton
     
     private let presenter: Presenter
+    private let coordinator: RouteDescriptionCoordinator
     private let tableViewController: RouteDescriptionTableViewController
     private let backButtonController: BackButtonViewController
     
     init(presenter: Presenter,
+         coordinator: RouteDescriptionCoordinator,
          tableViewController: RouteDescriptionTableViewController,
          backButtonController: BackButtonViewController) {
         self.presenter = presenter
+        self.coordinator = coordinator
         self.tableViewController = tableViewController
         self.backButtonController = backButtonController
         

@@ -19,7 +19,11 @@ public class RouteDescriptionCoordinator {
     public var controller: BottomSheetViewController?
     
     public func start() {
-        controller = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: RouteDescriptionStorage(model: route, routeTransformer: RouteTransformer()))
+        controller = RoutesDescriptionUIComposer.routeDescriptionComposeWith(
+            storage: RouteDescriptionStorage(
+                model: route,
+                routeTransformer: RouteTransformer()),
+            coordinator: self)
     }
     
     public func present(on view: UIViewController?, state: BottomSheet.State, completion: Action?) {

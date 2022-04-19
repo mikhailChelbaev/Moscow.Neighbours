@@ -89,7 +89,7 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
     private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: RouteDescriptionLoaderSpy) {
         let loader = RouteDescriptionLoaderSpy()
         let storage = RouteDescriptionStorage(model: route, routeTransformer: loader)
-        let sut = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: storage)
+        let sut = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: storage, coordinator: RouteDescriptionCoordinator(route: route, builder: Builder()))
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
