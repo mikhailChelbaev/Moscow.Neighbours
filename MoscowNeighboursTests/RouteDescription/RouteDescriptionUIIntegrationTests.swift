@@ -137,17 +137,3 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         return value
     }    
 }
-
-extension PersonCell {
-    var personNameText: String? {
-        return personNameLabel.text
-    }
-    
-    var addressText: String? {
-        return addressLabel.text
-    }
-    
-    var houseTitleText: String? {
-        return houseTitleLabel.text
-    }
-}
