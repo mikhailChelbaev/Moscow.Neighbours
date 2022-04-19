@@ -78,7 +78,7 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
 
         let exp = expectation(description: "Wait for background queue work")
         DispatchQueue.global().async {
-            loader.completeRoutesTransforming(with: self.makeRouteModel())
+            loader.completeRoutesTransforming(with: makeRouteModel())
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
@@ -93,19 +93,6 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
-    }
-            
-    private func makeRouteModel(from route: Route = makeRoute()) -> RouteViewModel {
-        return RouteViewModel(
-            name: route.name,
-            description: NSAttributedString(string: route.description),
-            coverUrl: route.coverUrl,
-            distance: route.distance,
-            duration: route.duration,
-            persons: route.personsInfo,
-            purchaseStatus: route.purchase.status,
-            productId: route.purchase.productId,
-            price: route.localizedPrice())
     }
     
     func assertThat(_ sut: RouteDescriptionViewController, isViewConfiguredFor route: RouteViewModel, file: StaticString = #file, line: UInt = #line) {

@@ -42,3 +42,16 @@ func makeLocationCoordinates() -> LocationCoordinates {
         latitude: 1.0,
         longitude: 1.0)
 }
+
+func makeRouteModel(from route: Route = makeRoute()) -> RouteViewModel {
+    return RouteViewModel(
+        name: route.name,
+        description: NSAttributedString(string: route.description),
+        coverUrl: route.coverUrl,
+        distance: route.distance,
+        duration: route.duration,
+        persons: route.personsInfo,
+        purchaseStatus: route.purchase.status,
+        productId: route.purchase.productId,
+        price: route.localizedPrice())
+}
