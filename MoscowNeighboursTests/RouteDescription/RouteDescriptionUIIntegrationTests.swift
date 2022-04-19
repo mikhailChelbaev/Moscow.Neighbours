@@ -86,9 +86,9 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: LoaderSpy) {
+    private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: RouteDescriptionLoaderSpy) {
         let builder = Builder()
-        let loader = LoaderSpy()
+        let loader = RouteDescriptionLoaderSpy()
         let storage = RouteDescriptionStorage(model: route, routeTransformer: loader)
         let sut = builder.buildRouteDescriptionViewController(storage: storage)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -149,24 +149,7 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
             XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
         }
         return value
-    }
-    
-    private final class LoaderSpy: ItemTransformer {
-        var transformationCompletions = [(RouteViewModel) -> Void]()
-        
-        var transfromCallCount: Int {
-            return transformationCompletions.count
-        }
-        
-        func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
-            transformationCompletions.append(completion)
-        }
-        
-        func completeRoutesTransforming(with route: RouteViewModel, at index: Int = 0) {
-            transformationCompletions[index](route)
-        }
-    }
-    
+    }    
 }
 
 private extension RouteDescriptionViewController {
