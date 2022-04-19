@@ -41,7 +41,11 @@ class RouteDescriptionCoordinatorTests: XCTestCase {
         weak var controller = sut.controller
         XCTAssertNotNil(controller)
         
-        sut.dismiss(animated: false)
+        let exp = expectation(description: "Wait for completion")
+        sut.dismiss(animated: false) {
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
         XCTAssertNil(controller)
     }
     
