@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-final class PersonViewModel: NSObject {
+final class LegacyPersonViewModel: NSObject {
     private let parser: MarkdownParser = {
         var config: MarkdownConfigurator = .default
         return DefaultMarkdownParser(configurator: config, withCache: false)
@@ -56,7 +56,7 @@ final class PersonViewModel: NSObject {
     }
 }
 
-extension PersonViewModel: MKAnnotation {
+extension LegacyPersonViewModel: MKAnnotation {
     var title: String? {
         personInfo.title
     }

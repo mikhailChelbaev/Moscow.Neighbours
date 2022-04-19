@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PersonView: BottomSheetViewController, LoadingStatusProvider {
-    var person: PersonViewModel { set get }
+    var person: LegacyPersonViewModel { set get }
     var personPresentationState: PersonPresentationState { set get }
     
     func reloadData()
@@ -65,7 +65,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
     
     let eventHandler: PersonEventHandler
     
-    var person: PersonViewModel
+    var person: LegacyPersonViewModel
     var personPresentationState: PersonPresentationState
     
     var status: LoadingStatus = .success {
@@ -108,7 +108,7 @@ final class PersonViewController: BottomSheetViewController, PersonView {
         eventHandler.onTraitCollectionDidChange()
     }
     
-    func updatePerson(person: PersonViewModel,
+    func updatePerson(person: LegacyPersonViewModel,
                       personPresentationState: PersonPresentationState) {
         eventHandler.onPersonUpdate(person: person, personPresentationState: personPresentationState)
     }
@@ -337,7 +337,7 @@ extension PersonViewController: LoadingDelegate {
 // MARK: - Cells Creation
 
 extension PersonViewController {
-    private func createPersonHeaderCell(person: PersonViewModel, for indexPath: IndexPath) -> UITableViewCell {
+    private func createPersonHeaderCell(person: LegacyPersonViewModel, for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(PersonHeaderCell.self, for: indexPath)
         cell.view.update(name: person.name,
                          imageUrl: person.avatarUrl)

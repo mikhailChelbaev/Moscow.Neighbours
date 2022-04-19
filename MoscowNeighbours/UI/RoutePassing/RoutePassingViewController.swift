@@ -102,7 +102,7 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
         tableView.register(RoutePointsCollectionCell.self)
     }
     
-    private func getPersonState(for person: PersonViewModel) -> PersonState {
+    private func getPersonState(for person: LegacyPersonViewModel) -> PersonState {
         return eventHandler.getState(for: person)
     }
     

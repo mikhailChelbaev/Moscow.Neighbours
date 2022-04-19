@@ -18,7 +18,7 @@ final class LegacyRouteViewModel {
     var description: NSAttributedString
     let coverUrl: String?
     let routeInformation: String
-    var persons: [PersonViewModel]
+    var persons: [LegacyPersonViewModel]
     var purchaseStatus: Purchase.Status
     let productId: String?
     var price: String
@@ -39,7 +39,7 @@ final class LegacyRouteViewModel {
         price = route.localizedPrice()
 
         for person in route.personsInfo {
-            persons.append(PersonViewModel(from: person))
+            persons.append(LegacyPersonViewModel(from: person))
         }
 
         description = parse(text: route.description)

@@ -74,7 +74,7 @@ final class LegacyPersonCell: CellView {
     
     var isFirst: Bool = false, isLast: Bool = false
     
-    var person: PersonViewModel? {
+    var person: LegacyPersonViewModel? {
         didSet { update() }
     }
     

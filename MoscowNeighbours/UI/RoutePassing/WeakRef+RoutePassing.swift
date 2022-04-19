@@ -8,15 +8,15 @@
 import Foundation
 
 extension WeakRef: RoutePassingServiceOutput where T: RoutePassingServiceOutput {
-    func didVisitNewPersons(_ persons: [PersonViewModel]) {
+    func didVisitNewPersons(_ persons: [LegacyPersonViewModel]) {
         object?.didVisitNewPersons(persons)
     }
     
-    func updatePersons(_ persons: [PersonViewModel]) {
+    func updatePersons(_ persons: [LegacyPersonViewModel]) {
         object?.updatePersons(persons)
     }
     
-    func onNotificationTap(_ person: PersonViewModel) {
+    func onNotificationTap(_ person: LegacyPersonViewModel) {
         object?.onNotificationTap(person)
     }
 }

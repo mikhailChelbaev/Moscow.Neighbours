@@ -53,7 +53,7 @@ final class RoutePointCell: CellView {
     }
     
     func update(
-        person: PersonViewModel,
+        person: LegacyPersonViewModel,
         state: PersonState,
         action: Action?
     ) {

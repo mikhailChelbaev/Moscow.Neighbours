@@ -9,9 +9,9 @@ import Foundation
 import MapKit
 
 protocol RoutePassingServiceOutput {
-    func didVisitNewPersons(_ persons: [PersonViewModel])
-    func updatePersons(_ persons: [PersonViewModel])
-    func onNotificationTap(_ person: PersonViewModel)
+    func didVisitNewPersons(_ persons: [LegacyPersonViewModel])
+    func updatePersons(_ persons: [LegacyPersonViewModel])
+    func onNotificationTap(_ person: LegacyPersonViewModel)
 }
 
 class RoutePassingService: ObservableService {
@@ -80,8 +80,8 @@ extension RoutePassingService: LocationServiceOutput {
         }
     }
     
-    private func findPersonsForRegions(_ regions: [CLRegion]) -> [PersonViewModel] {
-        let persons: [PersonViewModel] = regions.compactMap({ region in
+    private func findPersonsForRegions(_ regions: [CLRegion]) -> [LegacyPersonViewModel] {
+        let persons: [LegacyPersonViewModel] = regions.compactMap({ region in
             if let regionCenter = (region as? CLCircularRegion)?.center,
                let person = currentRoute?.persons.first(where: { $0.coordinate == regionCenter }) {
                 return person

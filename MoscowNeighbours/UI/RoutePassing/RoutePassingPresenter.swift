@@ -18,9 +18,9 @@ protocol RoutePassingEventHandler {
     func onViewDidAppear()
     func onEndRouteButtonTap()
     func onArrowUpButtonTap()
-    func onBecomeAcquaintedButtonTap(_ personInfo: PersonViewModel)
+    func onBecomeAcquaintedButtonTap(_ personInfo: LegacyPersonViewModel)
     func onIndexChange(_ newIndex: Int)
-    func getState(for person: PersonViewModel) -> PersonState
+    func getState(for person: LegacyPersonViewModel) -> PersonState
 }
 
 class RoutePassingPresenter: RoutePassingEventHandler {
@@ -35,7 +35,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     private var routePassingService: RoutePassingService
     private var mapService: MapService
     
-    private var visitedPersons: Set<PersonViewModel> = .init()
+    private var visitedPersons: Set<LegacyPersonViewModel> = .init()
     
     // MARK: - Init
     
@@ -89,7 +89,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         viewController?.bottomSheet.setState(.middle, animated: true, completion: nil)
     }
     
-    func onBecomeAcquaintedButtonTap(_ person: PersonViewModel) {
+    func onBecomeAcquaintedButtonTap(_ person: LegacyPersonViewModel) {
         visitedPersons.insert(person)
         
         mapService.selectAnnotation(person)
@@ -107,7 +107,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         mapService.centerAnnotation(route.persons[newIndex])
     }
     
-    func getState(for person: PersonViewModel) -> PersonState {
+    func getState(for person: LegacyPersonViewModel) -> PersonState {
         if visitedPersons.contains(person) {
             return .visited
         } else {
@@ -119,20 +119,20 @@ class RoutePassingPresenter: RoutePassingEventHandler {
 // MARK: - protocol RoutePassingServiceOutput
 
 extension RoutePassingPresenter: RoutePassingServiceOutput {
-    func didVisitNewPersons(_ persons: [PersonViewModel]) {
+    func didVisitNewPersons(_ persons: [LegacyPersonViewModel]) {
         scrollToPerson(persons.first)
     }
     
-    func updatePersons(_ persons: [PersonViewModel]) {
+    func updatePersons(_ persons: [LegacyPersonViewModel]) {
         persons.forEach({ updatePresentedPerson($0) })
     }
     
-    func onNotificationTap(_ person: PersonViewModel) {
+    func onNotificationTap(_ person: LegacyPersonViewModel) {
         scrollToPerson(person)
         updatePresentedPerson(person)
     }
     
-    private func updatePresentedPerson(_ person: PersonViewModel?) {
+    private func updatePresentedPerson(_ person: LegacyPersonViewModel?) {
         if let person = person,
            let personController = viewController?.presentedViewController as? PersonViewController {
             personController.updatePerson(person: person,
@@ -140,7 +140,7 @@ extension RoutePassingPresenter: RoutePassingServiceOutput {
         }
     }
     
-    private func scrollToPerson(_ person: PersonViewModel?) {
+    private func scrollToPerson(_ person: LegacyPersonViewModel?) {
         guard let person = person else {
             return
         }
@@ -164,7 +164,7 @@ extension RoutePassingPresenter: MapServiceOutput {
     func selectAnnotation(_ annotation: MKAnnotation) { }
     
     func didSelectAnnotation(_ view: MKAnnotationView) {
-        guard let person = view.annotation as? PersonViewModel else {
+        guard let person = view.annotation as? LegacyPersonViewModel else {
             return
         }
         

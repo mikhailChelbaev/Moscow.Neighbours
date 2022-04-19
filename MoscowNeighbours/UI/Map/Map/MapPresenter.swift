@@ -90,7 +90,7 @@ class MapPresenter: MapEventHandler {
             return
         }
         
-        if let person = view.annotation as? PersonViewModel {
+        if let person = view.annotation as? LegacyPersonViewModel {
             let controller = viewController?.getTopController()
             let state: PersonPresentationState = routePassingService.isPassingRoute ? .fullDescription : .shortDescription
             if let personController = controller as? PersonViewController {

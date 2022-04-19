@@ -35,4 +35,8 @@ public class RouteDescriptionCoordinator {
         controller?.closeController(animated: animated, completion: completion)
         controller = nil
     }
+    
+    public func displayPerson(_ personInfo: PersonInfo) {
+        
+    }
 }

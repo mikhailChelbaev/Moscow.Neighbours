@@ -42,9 +42,9 @@ final class RoutePointsCollectionCell: CellView {
     }()
     
     private var route: LegacyRouteViewModel?
-    var buttonTapCallback: ((PersonViewModel) -> Void)?
+    var buttonTapCallback: ((LegacyPersonViewModel) -> Void)?
     var indexDidChange: ((Int) -> Void)?
-    var personState: ((PersonViewModel) -> PersonState)?
+    var personState: ((LegacyPersonViewModel) -> PersonState)?
     
     override func configureView() {
         // collection set up

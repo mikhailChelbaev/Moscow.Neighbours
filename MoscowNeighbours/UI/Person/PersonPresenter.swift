@@ -8,11 +8,11 @@
 import UIKit
 
 protocol PersonEventHandler {
-    func getPersonInfo() -> PersonViewModel
+    func getPersonInfo() -> LegacyPersonViewModel
     func onTraitCollectionDidChange()
     func getPersonPresentationState() -> PersonPresentationState
     func onBackButtonTap()
-    func onPersonUpdate(person: PersonViewModel, personPresentationState: PersonPresentationState)
+    func onPersonUpdate(person: LegacyPersonViewModel, personPresentationState: PersonPresentationState)
 }
 
 class PersonPresenter: PersonEventHandler {
@@ -21,7 +21,7 @@ class PersonPresenter: PersonEventHandler {
     
     weak var viewController: PersonView?
     
-    private var person: PersonViewModel
+    private var person: LegacyPersonViewModel
     private let personPresentationState: PersonPresentationState
     
     private let mapService: MapService
@@ -36,7 +36,7 @@ class PersonPresenter: PersonEventHandler {
     
     // MARK: - PersonEventHandler methods
     
-    func getPersonInfo() -> PersonViewModel {
+    func getPersonInfo() -> LegacyPersonViewModel {
         return person
     }
     
@@ -50,7 +50,7 @@ class PersonPresenter: PersonEventHandler {
         }
     }
     
-    private func setUpdatedPerson(_ person: PersonViewModel) {
+    private func setUpdatedPerson(_ person: LegacyPersonViewModel) {
         viewController?.person = person
         viewController?.status = .success
         viewController?.reloadData()
@@ -65,7 +65,7 @@ class PersonPresenter: PersonEventHandler {
         viewController?.closeController(animated: true, completion: nil)
     }
     
-    func onPersonUpdate(person: PersonViewModel, personPresentationState: PersonPresentationState) {
+    func onPersonUpdate(person: LegacyPersonViewModel, personPresentationState: PersonPresentationState) {
         self.person = person
         viewController?.person = person
         viewController?.personPresentationState = personPresentationState

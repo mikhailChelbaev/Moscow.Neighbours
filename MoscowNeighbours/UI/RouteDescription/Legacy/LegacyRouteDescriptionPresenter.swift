@@ -12,7 +12,7 @@ protocol LegacyRouteDescriptionEventHandler: AnyObject {
     func onViewDidLoad()
     func onTraitCollectionDidChange(route: LegacyRouteViewModel?)
     func onBackButtonTap()
-    func onPersonCellTap(person: PersonViewModel)
+    func onPersonCellTap(person: LegacyPersonViewModel)
     func onRouteHeaderButtonTap(route: LegacyRouteViewModel?)
 }
 
@@ -84,7 +84,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
         viewController?.closeController(animated: true, completion: nil)
     }
     
-    func onPersonCellTap(person: PersonViewModel) {
+    func onPersonCellTap(person: LegacyPersonViewModel) {
         mapService.selectAnnotation(person)
         mapService.centerAnnotation(person)
         let controller = personBuilder.buildPersonViewController(person: person,
