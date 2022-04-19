@@ -1032,6 +1032,20 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		744B3F45280F503400027C5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				748EE632270F911800301552 /* Route.swift */,
+				748EE634270F913000301552 /* PersonInfo.swift */,
+				748EE638270F915C00301552 /* Place.swift */,
+				748EE63A270F916800301552 /* Person.swift */,
+				748EE636270F914600301552 /* LocationCoordinates.swift */,
+				748EE63C270F917600301552 /* ShortInfo.swift */,
+				7444DA9E2801BF1800A04F87 /* Purchase.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1217,13 +1231,7 @@
 			isa = PBXGroup;
 			children = (
 				74A4B8E327B9A70200153A05 /* RoutesProvider.swift */,
-				748EE632270F911800301552 /* Route.swift */,
-				748EE634270F913000301552 /* PersonInfo.swift */,
-				748EE638270F915C00301552 /* Place.swift */,
-				748EE63A270F916800301552 /* Person.swift */,
-				748EE636270F914600301552 /* LocationCoordinates.swift */,
-				748EE63C270F917600301552 /* ShortInfo.swift */,
-				7444DA9E2801BF1800A04F87 /* Purchase.swift */,
+				744B3F45280F503400027C5D /* Models */,
 				7444DA8C2801980700A04F87 /* API */,
 			);
 			path = Routes;
