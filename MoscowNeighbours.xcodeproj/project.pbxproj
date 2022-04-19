@@ -108,6 +108,7 @@
 		744B3F40280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F3F280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift */; };
 		744B3F42280F48F700027C5D /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F41280F48F700027C5D /* UIButton+TestHelpers.swift */; };
 		744B3F44280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F43280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift */; };
+		744B3F48280F50AF00027C5D /* RouteTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F47280F50AF00027C5D /* RouteTransformer.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
 		744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */; };
@@ -398,6 +399,7 @@
 		744B3F3F280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteDescriptionUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
 		744B3F41280F48F700027C5D /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		744B3F43280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCoordinatorSpy.swift; sourceTree = "<group>"; };
+		744B3F47280F50AF00027C5D /* RouteTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTransformer.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
 		744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteViewModel.swift; sourceTree = "<group>"; };
@@ -1046,6 +1048,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		744B3F46280F509500027C5D /* ItemTransformation */ = {
+			isa = PBXGroup;
+			children = (
+				7492433128057403002363EA /* ItemTransformer.swift */,
+				744B3F47280F50AF00027C5D /* RouteTransformer.swift */,
+				74FC5B4E2805CF3D00CCFCBA /* RouteViewModel.swift */,
+			);
+			path = ItemTransformation;
+			sourceTree = "<group>";
+		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1200,6 +1212,7 @@
 				74DC18AE27AEEA5700C5A02F /* Purchases */,
 				74159E5027ADBC07007E7118 /* User */,
 				74967F83276F57A90096AA77 /* Routes */,
+				744B3F46280F509500027C5D /* ItemTransformation */,
 				74E7C39C2783081A00B16392 /* JWTService.swift */,
 				74DE214727F0F489006863A3 /* LogoutManager.swift */,
 			);
@@ -1292,7 +1305,6 @@
 			isa = PBXGroup;
 			children = (
 				749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */,
-				7492433128057403002363EA /* ItemTransformer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1480,7 +1492,6 @@
 			isa = PBXGroup;
 			children = (
 				74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */,
-				74FC5B4E2805CF3D00CCFCBA /* RouteViewModel.swift */,
 				741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */,
 				74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */,
 				741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */,
@@ -1773,6 +1784,7 @@
 				74C6CFCA26BF1E0D00104457 /* ButtonCell.swift in Sources */,
 				74BE346E28037F330086BB89 /* RouteCellController.swift in Sources */,
 				74967F89276F5A300096AA77 /* WeakRef.swift in Sources */,
+				744B3F48280F50AF00027C5D /* RouteTransformer.swift in Sources */,
 				74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */,
 				74E7C39D2783081A00B16392 /* JWTService.swift in Sources */,
 				74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */,

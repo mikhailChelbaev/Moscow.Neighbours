@@ -1,18 +1,11 @@
 //
-//  ItemTransformer.swift
+//  RouteTransformer.swift
 //  MoscowNeighbours
 //
-//  Created by Mikhail on 12.04.2022.
+//  Created by Mikhail on 19.04.2022.
 //
 
 import Foundation
-
-public protocol ItemTransformer {
-    associatedtype Input
-    associatedtype Output
-
-    func transform(_ route: Input, completion: @escaping (Output) -> Void)
-}
 
 public final class RouteTransformer: ItemTransformer {
     public init() {}
