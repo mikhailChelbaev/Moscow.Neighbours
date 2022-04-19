@@ -51,6 +51,12 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
         configureLayout()
     }
     
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        presenter.didTransformRoute()
+    }
+    
     private func configureBottomSheet() {
         bottomSheet.containerView.backgroundColor = .clear
         bottomSheet.containerView.clipsToBounds = true
