@@ -1,5 +1,5 @@
 //
-//  PersonViewModel.swift
+//  LegacyPersonViewModel.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 27.12.2021.

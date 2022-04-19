@@ -109,6 +109,8 @@
 		744B3F42280F48F700027C5D /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F41280F48F700027C5D /* UIButton+TestHelpers.swift */; };
 		744B3F44280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F43280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift */; };
 		744B3F48280F50AF00027C5D /* RouteTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F47280F50AF00027C5D /* RouteTransformer.swift */; };
+		744B3F4A280F547200027C5D /* PersonTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F49280F547200027C5D /* PersonTransformer.swift */; };
+		744B3F4C280F55C500027C5D /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F4B280F55C500027C5D /* PersonViewModel.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
 		744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */; };
@@ -240,7 +242,7 @@
 		74DEA86028082CFE0050EF49 /* PersonCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA85F28082CFE0050EF49 /* PersonCellController.swift */; };
 		74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA86128082E690050EF49 /* PersonCellViewModel.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
-		74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* PersonViewModel.swift */; };
+		74E1469A2779DB59007D00D1 /* LegacyPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* LegacyPersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
 		74E729B526F2978200775D37 /* LegacyRouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */; };
 		74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7BF0D27A33644004B6F4E /* EmailService.swift */; };
@@ -400,6 +402,8 @@
 		744B3F41280F48F700027C5D /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		744B3F43280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCoordinatorSpy.swift; sourceTree = "<group>"; };
 		744B3F47280F50AF00027C5D /* RouteTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTransformer.swift; sourceTree = "<group>"; };
+		744B3F49280F547200027C5D /* PersonTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTransformer.swift; sourceTree = "<group>"; };
+		744B3F4B280F55C500027C5D /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
 		744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteViewModel.swift; sourceTree = "<group>"; };
@@ -528,7 +532,7 @@
 		74DEA85F28082CFE0050EF49 /* PersonCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellController.swift; sourceTree = "<group>"; };
 		74DEA86128082E690050EF49 /* PersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellViewModel.swift; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
-		74E146992779DB59007D00D1 /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
+		74E146992779DB59007D00D1 /* LegacyPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
 		74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteHeaderCell.swift; sourceTree = "<group>"; };
 		74E7BF0D27A33644004B6F4E /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
@@ -1054,6 +1058,8 @@
 				7492433128057403002363EA /* ItemTransformer.swift */,
 				744B3F47280F50AF00027C5D /* RouteTransformer.swift */,
 				74FC5B4E2805CF3D00CCFCBA /* RouteViewModel.swift */,
+				744B3F49280F547200027C5D /* PersonTransformer.swift */,
+				744B3F4B280F55C500027C5D /* PersonViewModel.swift */,
 			);
 			path = ItemTransformation;
 			sourceTree = "<group>";
@@ -1071,7 +1077,7 @@
 			isa = PBXGroup;
 			children = (
 				744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */,
-				74E146992779DB59007D00D1 /* PersonViewModel.swift */,
+				74E146992779DB59007D00D1 /* LegacyPersonViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1895,8 +1901,10 @@
 				7437B1D32785D3540020AABE /* RequestSenderWithTokenRefresh.swift in Sources */,
 				743DE7262775D80500B5CED8 /* MapService.swift in Sources */,
 				74159E5627ADBC6A007E7118 /* UserStateDelegate.swift in Sources */,
+				744B3F4A280F547200027C5D /* PersonTransformer.swift in Sources */,
 				743DE7282776097100B5CED8 /* ObservableService.swift in Sources */,
 				740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */,
+				744B3F4C280F55C500027C5D /* PersonViewModel.swift in Sources */,
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */,
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,
@@ -1925,7 +1933,7 @@
 				748EE63D270F917600301552 /* ShortInfo.swift in Sources */,
 				7437B1D52785D35F0020AABE /* BaseRequestSender.swift in Sources */,
 				744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */,
-				74E1469A2779DB59007D00D1 /* PersonViewModel.swift in Sources */,
+				74E1469A2779DB59007D00D1 /* LegacyPersonViewModel.swift in Sources */,
 				74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */,
 				74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */,
 				7444DA912801992E00A04F87 /* RemotePersonInfo.swift in Sources */,
