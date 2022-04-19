@@ -9,13 +9,11 @@ import Foundation
 
 public struct RoutesStorage {
     let routesService: RoutesProvider
-    let routesDescriptionBuilder: RoutesDescriptionBuilder
     let routesFetchDelayManager: DelayManager
     let userState: UserState
 
-    init(routesService: RoutesProvider, routesDescriptionBuilder: RoutesDescriptionBuilder, routesFetchDelayManager: DelayManager, userState: UserState) {
+    init(routesService: RoutesProvider, routesFetchDelayManager: DelayManager, userState: UserState) {
         self.routesService = MainQueueDispatchDecorator(decoratee: routesService)
-        self.routesDescriptionBuilder = routesDescriptionBuilder
         self.routesFetchDelayManager = routesFetchDelayManager
         self.userState = userState
     }
@@ -24,7 +22,6 @@ public struct RoutesStorage {
 extension Builder {
     public func makeRoutesStorage() -> RoutesStorage {
         return RoutesStorage(routesService: routesService,
-                             routesDescriptionBuilder: self,
                              routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0),
                              userState: userState)
     }
