@@ -94,6 +94,12 @@ extension RouteDescriptionViewController {
         return getCell(at: IndexPath(row: index, section: personsSection))
     }
     
+    // MARK: - Other
+    
+    func simulateBackButtonTap() {
+        backButton.simulateTap()
+    }
+    
     // MARK: - Helpers
     
     private func getCell<CellType>(at indexPath: IndexPath) -> CellType? where CellType: CellView {

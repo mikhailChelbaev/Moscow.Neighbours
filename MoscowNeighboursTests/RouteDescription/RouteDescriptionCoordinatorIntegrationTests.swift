@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MoscowNeighbours
+import MoscowNeighbours
 
 class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     
@@ -29,28 +29,4 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
         return (sut, loader, coordinator)
     }
     
-    private class RouteDescriptionCoordinatorSpy: RouteDescriptionCoordinator {
-        enum Message {
-            case dismiss
-        }
-        
-        private(set) var receivedMessages = [Message]()
-        
-        override func dismiss(animated: Bool, completion: Action? = nil) {
-            receivedMessages.append(.dismiss)
-        }
-    }
-    
-}
-
-extension RouteDescriptionViewController {
-    func simulateBackButtonTap() {
-        backButton.simulateTap()
-    }
-}
-
-extension UIButton {
-    @objc func simulateTap() {
-        sendActions(for: .touchUpInside)
-    }
 }
