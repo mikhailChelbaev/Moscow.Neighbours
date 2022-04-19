@@ -8,7 +8,7 @@
 import MoscowNeighbours
 
 extension Button {
-    func simulateTap() {
+    override func simulateTap() {
         action?()
     }
 }

@@ -25,8 +25,8 @@ public final class RoutesDescriptionUIComposer {
             model: storage.model,
             routeTransformer: RouteTransformerMainQueueDispatchDecorator(decoratee: storage.routeTransformer))
         let tableViewController = RouteDescriptionTableViewController()
-        let backButtonController = BackButtonViewController(onBackButtonTap: {
-            
+        let backButtonController = BackButtonViewController(onBackButtonTap: { [weak coordinator] in
+            coordinator?.dismiss(animated: true, completion: nil)
         })
         let controller = RouteDescriptionViewController(
             presenter: presenter,
