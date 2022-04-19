@@ -22,6 +22,14 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.transfromCallCount, 0)
     }
     
+    func test_viewDidLoad_requestsRouteTransformation() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(loader.transfromCallCount, 1)
+    }
+    
     func test_loadingIndicator_isVisibleWhileTransformingRoute() {
         let (sut, loader) = makeSUT()
         
