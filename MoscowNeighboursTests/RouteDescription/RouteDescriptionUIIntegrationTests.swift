@@ -94,46 +94,4 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
     }
-    
-    func assertThat(_ sut: RouteDescriptionViewController, isViewConfiguredFor route: RouteViewModel, file: StaticString = #file, line: UInt = #line) {
-        guard sut.currentNumberOfSections == sut.numberOfSections else {
-            return XCTFail("Expected to display \(sut.numberOfSections) sections, got \(sut.currentNumberOfSections) instead")
-        }
-        
-        XCTAssertEqual(sut.headerCellTitle, route.name, "Expected title text to be \(route.name)", file: file, line: line)
-        XCTAssertEqual(sut.headerCellInfoText, route.routeInformation, "Expected route information text to be \(route.routeInformation)", file: file, line: line)
-        
-        XCTAssertEqual(sut.informationHeaderText, localized("route_description.information"), "Expected information header text to be \(localized("route_description.information"))", file: file, line: line)
-        XCTAssertEqual(sut.informationCellText, route.description.string, "Expected information text to be \(route.description.string)", file: file, line: line)
-        XCTAssertTrue(sut.isInformationSeparatorVisible, "Expected information separator to be visible", file: file, line: line)
-
-        XCTAssertEqual(sut.personsHeaderText, localized("route_description.places"), "Expected persons header text to be \(localized("route_description.places"))", file: file, line: line)
-        assertThat(sut, isRendering: route.persons, file: file, line: line)
-    }
-    
-    func assertThat(_ sut: RouteDescriptionViewController, isRendering personInfos: [PersonInfo], file: StaticString = #file, line: UInt = #line) {
-        personInfos.enumerated().forEach { index, personInfo in
-            assertThat(sut, hasViewConfiguredFor: personInfo, at: index, file: file, line: line)
-        }
-    }
-
-    func assertThat(_ sut: RouteDescriptionViewController, hasViewConfiguredFor personInfo: PersonInfo, at index: Int, file: StaticString = #file, line: UInt = #line) {
-        guard let cell = sut.personCell(at: index) else {
-            return XCTFail("Expected to get cell at index \(index)", file: file, line: line)
-        }
-
-        XCTAssertEqual(cell.personNameText, personInfo.person.name, "Expected person name text to be \(personInfo.person.name) for route cell at index (\(index))", file: file, line: line)
-        XCTAssertEqual(cell.addressText, personInfo.place.address, "Expected address text to be \(personInfo.place.address) for route cell at index (\(index))", file: file, line: line)
-        XCTAssertEqual(cell.houseTitleText, personInfo.place.name, "Expected house title text to be \(personInfo.place.name) for route cell at index (\(index))", file: file, line: line)
-    }
-    
-    private func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
-        let table = "Localizable"
-        let bundle = Bundle(for: RouteDescriptionViewController.self)
-        let value = bundle.localizedString(forKey: key, value: nil, table: table)
-        if value == key {
-            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
-        }
-        return value
-    }    
 }

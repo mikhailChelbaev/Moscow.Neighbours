@@ -104,6 +104,8 @@
 		744B3F38280F39BE00027C5D /* RouteDescriptionLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F37280F39BE00027C5D /* RouteDescriptionLoaderSpy.swift */; };
 		744B3F3A280F479600027C5D /* RouteDescriptionViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F39280F479600027C5D /* RouteDescriptionViewController+TestHelpers.swift */; };
 		744B3F3C280F47CE00027C5D /* PersonCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F3B280F47CE00027C5D /* PersonCell+TestHelpers.swift */; };
+		744B3F3E280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F3D280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift */; };
+		744B3F40280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F3F280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
 		744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */; };
@@ -390,6 +392,8 @@
 		744B3F37280F39BE00027C5D /* RouteDescriptionLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionLoaderSpy.swift; sourceTree = "<group>"; };
 		744B3F39280F479600027C5D /* RouteDescriptionViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteDescriptionViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		744B3F3B280F47CE00027C5D /* PersonCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonCell+TestHelpers.swift"; sourceTree = "<group>"; };
+		744B3F3D280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteDescriptionUIIntegrationTests+Assertions.swift"; sourceTree = "<group>"; };
+		744B3F3F280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RouteDescriptionUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
 		744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteViewModel.swift; sourceTree = "<group>"; };
@@ -1016,6 +1020,8 @@
 				744B3F37280F39BE00027C5D /* RouteDescriptionLoaderSpy.swift */,
 				744B3F39280F479600027C5D /* RouteDescriptionViewController+TestHelpers.swift */,
 				744B3F3B280F47CE00027C5D /* PersonCell+TestHelpers.swift */,
+				744B3F3D280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift */,
+				744B3F3F280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1941,6 +1947,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				744B3F35280F38D900027C5D /* RouteDescriptionCoordinatorIntegrationTests.swift in Sources */,
+				744B3F40280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift in Sources */,
 				7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */,
 				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,
 				744B3F38280F39BE00027C5D /* RouteDescriptionLoaderSpy.swift in Sources */,
@@ -1956,6 +1963,7 @@
 				74C56AA528095EFD00EC4942 /* MapCoordinatorTests.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RoutesLoaderSpy.swift in Sources */,
 				7444DAA42801E93900A04F87 /* RoutesViewController+TestHelpers.swift in Sources */,
+				744B3F3E280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift in Sources */,
 				740AF984280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift in Sources */,
 				7444DABA28030D7F00A04F87 /* RouteUIIntegrationTests+FakeStoreContainer.swift in Sources */,
 				7444DAB62802F10800A04F87 /* Button+TestHelpers.swift in Sources */,
