@@ -51,13 +51,13 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
     
     // MARK: - Private properties
     
-    private var route: LegacyRouteViewModel
+    private var persons: [PersonInfo]
     
     // MARK: - Init
     
     init(eventHandler: RoutePassingEventHandler) {
         self.eventHandler = eventHandler
-        route = eventHandler.getRoute()
+        persons = eventHandler.getPersons()
         super.init()
     }
     
@@ -102,7 +102,7 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
         tableView.register(RoutePointsCollectionCell.self)
     }
     
-    private func getPersonState(for person: LegacyPersonViewModel) -> PersonState {
+    private func getPersonState(for person: PersonInfo) -> PersonState {
         return eventHandler.getState(for: person)
     }
     
@@ -154,7 +154,7 @@ extension RoutePassingViewController {
     func createRoutePointsCollectionCell(for indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RoutePointsCollectionCell.self, for: indexPath)
         cell.selectionStyle = .none
-        cell.view.update(route: route, currentIndex: selectedIndex)
+        cell.view.update(persons: persons, currentIndex: selectedIndex)
         cell.view.buttonTapCallback =  { [weak self] person in
             self?.eventHandler.onBecomeAcquaintedButtonTap(person)
         }

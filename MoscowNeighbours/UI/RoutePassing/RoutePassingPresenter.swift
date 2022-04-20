@@ -14,13 +14,13 @@ enum PersonState {
 }
 
 protocol RoutePassingEventHandler {
-    func getRoute() -> LegacyRouteViewModel
+    func getPersons() -> [PersonInfo]
     func onViewDidAppear()
     func onEndRouteButtonTap()
     func onArrowUpButtonTap()
-    func onBecomeAcquaintedButtonTap(_ personInfo: LegacyPersonViewModel)
+    func onBecomeAcquaintedButtonTap(_ personInfo: PersonInfo)
     func onIndexChange(_ newIndex: Int)
-    func getState(for person: LegacyPersonViewModel) -> PersonState
+    func getState(for person: PersonInfo) -> PersonState
 }
 
 class RoutePassingPresenter: RoutePassingEventHandler {
@@ -29,28 +29,26 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     weak var viewController: RoutePassingView?
     
-    private let route: LegacyRouteViewModel
-//    private let personBuilder: PersonBuilder
+    private let persons: [PersonInfo]
     
     private var routePassingService: RoutePassingService
     private var mapService: MapService
     
-    private var visitedPersons: Set<LegacyPersonViewModel> = .init()
+    private var visitedPersons: Set<PersonInfo> = .init()
     
     // MARK: - Init
     
     init(storage: RoutePassingStorage) {
-        route = storage.route
-//        personBuilder = storage.personBuilder
+        persons = storage.persons
         
         mapService = storage.mapService
         routePassingService = storage.routePassingService
         routePassingService.register(WeakRef(self))
         
         routePassingService.requestNotifications()
-        routePassingService.startRoute(route)
+        routePassingService.startRoute(persons)
         
-        if let person = route.persons.first {
+        if let person = persons.first {
             mapService.centerAnnotation(person)
         }
         mapService.register(WeakRef(self))
@@ -58,15 +56,14 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     // MARK: - RoutePassingEventHandler methods
     
-    func getRoute() -> LegacyRouteViewModel {
-        return route
+    func getPersons() -> [PersonInfo] {
+        return persons
     }
     
     func onViewDidAppear() {
-        guard route.persons.count > 0 else {
-            return
+        if let person = persons.first {
+            mapService.centerAnnotation(person)
         }
-        mapService.centerAnnotation(route.persons[0])
     }
     
     func onEndRouteButtonTap() {
@@ -89,7 +86,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         viewController?.bottomSheet.setState(.middle, animated: true, completion: nil)
     }
     
-    func onBecomeAcquaintedButtonTap(_ person: LegacyPersonViewModel) {
+    func onBecomeAcquaintedButtonTap(_ person: PersonInfo) {
         visitedPersons.insert(person)
         
         mapService.selectAnnotation(person)
@@ -104,10 +101,10 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     func onIndexChange(_ newIndex: Int) {
         viewController?.selectedIndex = newIndex
-        mapService.centerAnnotation(route.persons[newIndex])
+        mapService.centerAnnotation(persons[newIndex])
     }
     
-    func getState(for person: LegacyPersonViewModel) -> PersonState {
+    func getState(for person: PersonInfo) -> PersonState {
         if visitedPersons.contains(person) {
             return .visited
         } else {
@@ -119,32 +116,19 @@ class RoutePassingPresenter: RoutePassingEventHandler {
 // MARK: - protocol RoutePassingServiceOutput
 
 extension RoutePassingPresenter: RoutePassingServiceOutput {
-    func didVisitNewPersons(_ persons: [LegacyPersonViewModel]) {
+    func didVisitNewPersons(_ persons: [PersonInfo]) {
         scrollToPerson(persons.first)
     }
     
-    func updatePersons(_ persons: [LegacyPersonViewModel]) {
-        persons.forEach({ updatePresentedPerson($0) })
-    }
-    
-    func onNotificationTap(_ person: LegacyPersonViewModel) {
+    func onNotificationTap(_ person: PersonInfo) {
         scrollToPerson(person)
-        updatePresentedPerson(person)
     }
     
-    private func updatePresentedPerson(_ person: LegacyPersonViewModel?) {
-        if let person = person,
-           let personController = viewController?.presentedViewController as? PersonViewController {
-//            personController.updatePerson(person: person,
-//                                          personPresentationState: .fullDescription)
-        }
-    }
-    
-    private func scrollToPerson(_ person: LegacyPersonViewModel?) {
+    private func scrollToPerson(_ person: PersonInfo?) {
         guard let person = person else {
             return
         }
-        if let index = route.persons.firstIndex(where: { $0 == person }) {
+        if let index = persons.firstIndex(where: { $0 == person }) {
             viewController?.selectedIndex = index
             viewController?.bottomSheet.setState(.middle, animated: true, completion: nil)
             viewController?.reloadData()
@@ -164,7 +148,7 @@ extension RoutePassingPresenter: MapServiceOutput {
     func selectAnnotation(_ annotation: MKAnnotation) { }
     
     func didSelectAnnotation(_ view: MKAnnotationView) {
-        guard let person = view.annotation as? LegacyPersonViewModel else {
+        guard let person = view.annotation as? PersonInfo else {
             return
         }
         

@@ -53,12 +53,12 @@ final class RoutePointCell: CellView {
     }
     
     func update(
-        person: LegacyPersonViewModel,
+        personInfo: PersonInfo,
         state: PersonState,
         action: Action?
     ) {
-        personNameLabel.text = person.name
-        addressLabel.text = person.address
+        personNameLabel.text = personInfo.person.name
+        addressLabel.text = personInfo.place.address
         
         switch state {
         case .notVisited:

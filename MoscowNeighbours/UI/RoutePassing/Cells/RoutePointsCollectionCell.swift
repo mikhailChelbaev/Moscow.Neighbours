@@ -41,10 +41,10 @@ final class RoutePointsCollectionCell: CellView {
         return pc
     }()
     
-    private var route: LegacyRouteViewModel?
-    var buttonTapCallback: ((LegacyPersonViewModel) -> Void)?
+    private var persons: [PersonInfo] = []
+    var buttonTapCallback: ((PersonInfo) -> Void)?
     var indexDidChange: ((Int) -> Void)?
-    var personState: ((LegacyPersonViewModel) -> PersonState)?
+    var personState: ((PersonInfo) -> PersonState)?
     
     override func configureView() {
         // collection set up
@@ -77,11 +77,10 @@ final class RoutePointsCollectionCell: CellView {
         indexDidChange?(newIndex)
     }
     
-    func update(route: LegacyRouteViewModel,
-                currentIndex: Int) {
-        self.route = route
+    func update(persons: [PersonInfo], currentIndex: Int) {
+        self.persons = persons
         
-        indicator.numberOfPages = route.persons.count
+        indicator.numberOfPages = persons.count
         
         collectionView.reloadData()
         
@@ -94,22 +93,23 @@ final class RoutePointsCollectionCell: CellView {
 extension RoutePointsCollectionCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return route?.persons.count ?? 0
+        return persons.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(RoutePointCell.self, for: indexPath)
         
-        guard let person = route?.persons[indexPath.item],
-              let state = personState?(person) else {
+        let person = persons[indexPath.item]
+        guard let state = personState?(person) else {
             fatalError("There is no person or state info for index path: \(indexPath)")
         }
         
-        cell.view.update(person: person,
-                         state: state,
-                         action: { [weak self] in
-            self?.buttonTapCallback?(person)
-        })
+        cell.view.update(
+            personInfo: person,
+            state: state,
+            action: { [weak self] in
+                self?.buttonTapCallback?(person)
+            })
         
         return cell
     }

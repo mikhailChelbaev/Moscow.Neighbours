@@ -9,9 +9,8 @@ import Foundation
 import MapKit
 
 protocol RoutePassingServiceOutput {
-    func didVisitNewPersons(_ persons: [LegacyPersonViewModel])
-    func updatePersons(_ persons: [LegacyPersonViewModel])
-    func onNotificationTap(_ person: LegacyPersonViewModel)
+    func didVisitNewPersons(_ persons: [PersonInfo])
+    func onNotificationTap(_ person: PersonInfo)
 }
 
 class RoutePassingService: ObservableService {
@@ -21,10 +20,10 @@ class RoutePassingService: ObservableService {
     private var locationService: LocationService
     private let notificationService: NotificationService
     
-    private var currentRoute: LegacyRouteViewModel?
+    private var currentPersons: [PersonInfo]?
     
     var isPassingRoute: Bool {
-        return currentRoute != nil
+        return currentPersons != nil
     }
     
     init(locationService: LocationService,
@@ -39,9 +38,9 @@ class RoutePassingService: ObservableService {
         notificationService.requestAuthorization()
     }
     
-    func startRoute(_ route: LegacyRouteViewModel) {
-        currentRoute = route
-        let monitoringRegions: [CLCircularRegion] = route.persons.map({ person in
+    func startRoute(_ persons: [PersonInfo]) {
+        currentPersons = persons
+        let monitoringRegions: [CLCircularRegion] = persons.map({ person in
             let coordinate = person.coordinate
             let regionRadius: Double = 30
             let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: person.id)
@@ -51,7 +50,7 @@ class RoutePassingService: ObservableService {
     }
     
     func stopRoute() {
-        currentRoute = nil
+        currentPersons = nil
         locationService.stopMonitoring()
     }
     
@@ -65,25 +64,25 @@ extension RoutePassingService: LocationServiceOutput {
     func didChangeAuthorization() { }
     
     func didUpdateCurrentRegions(_ regions: [CLRegion]) {
-        let persons = findPersonsForRegions(regions)
-        observers.forEach({ $1.updatePersons(persons) })
+//        let persons = findPersonsForRegions(regions)
+//        observers.forEach({ $1.updatePersons(persons) })
     }
     
     func didEnterNewRegions(_ regions: [CLRegion]) {
         let persons = findPersonsForRegions(regions)
         observers.forEach({ $1.didVisitNewPersons(persons) })
 
-        if let person = persons.first {
-            notificationService.fireNotification(title: person.name) { [weak self] in
-                self?.observers.forEach({ $1.onNotificationTap(person) })
+        if let personInfo = persons.first {
+            notificationService.fireNotification(title: personInfo.person.name) { [weak self] in
+                self?.observers.forEach({ $1.onNotificationTap(personInfo) })
             }
         }
     }
     
-    private func findPersonsForRegions(_ regions: [CLRegion]) -> [LegacyPersonViewModel] {
-        let persons: [LegacyPersonViewModel] = regions.compactMap({ region in
+    private func findPersonsForRegions(_ regions: [CLRegion]) -> [PersonInfo] {
+        let persons: [PersonInfo] = regions.compactMap({ region in
             if let regionCenter = (region as? CLCircularRegion)?.center,
-               let person = currentRoute?.persons.first(where: { $0.coordinate == regionCenter }) {
+               let person = currentPersons?.first(where: { $0.coordinate == regionCenter }) {
                 return person
             }
             return nil

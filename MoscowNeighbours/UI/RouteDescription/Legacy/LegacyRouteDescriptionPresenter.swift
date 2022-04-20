@@ -123,8 +123,8 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
             
         } else {
             // start the route
-            let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
-            viewController?.present(controller, state: .middle, completion: nil)
+//            let controller = routePassingBuilder.buildRoutePassingViewController(route: route)
+//            viewController?.present(controller, state: .middle, completion: nil)
         }
     }
     
