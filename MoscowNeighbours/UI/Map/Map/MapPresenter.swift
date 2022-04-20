@@ -30,8 +30,7 @@ class MapPresenter: MapEventHandler {
     
     weak var viewController: MapView?
     
-//    private let personBuilder: PersonBuilder
-    private let menuBuilder: MenuBuilder
+    private let coordinator: MapCoordinator
     
     private var locationService: LocationService
     private var mapService: MapService
@@ -43,9 +42,8 @@ class MapPresenter: MapEventHandler {
     
     // MARK: - Init
     
-    init(storage: MapStorage) {
-//        personBuilder = storage.personBuilder
-        menuBuilder = storage.menuBuilder
+    init(storage: MapStorage, coordinator: MapCoordinator) {
+        self.coordinator = coordinator
         
         locationService = storage.locationService
         mapService = storage.mapService
@@ -78,8 +76,8 @@ class MapPresenter: MapEventHandler {
             return
         }
         
-        let controller = menuBuilder.buildMenuViewController()
-        topController.present(controller, state: .top, completion: nil)
+//        let controller = menuBuilder.buildMenuViewController()
+//        topController.present(controller, state: .top, completion: nil)
     }
     
     func onAnnotationSelection(_ view: MKAnnotationView) {
@@ -90,15 +88,11 @@ class MapPresenter: MapEventHandler {
             return
         }
         
-        if let person = view.annotation as? LegacyPersonViewModel {
-            let controller = viewController?.getTopController()
-            let state: PersonPresentationState = routePassingService.isPassingRoute ? .fullDescription : .shortDescription
-            if let personController = controller as? PersonViewController {
-//                personController.updatePerson(person: person, personPresentationState: state)
-            } else {
-//                let personViewController = personBuilder.buildPersonViewController(person: person, personPresentationState: state)
-//                controller?.present(personViewController, state: .top, completion: nil)
-            }
+        if let person = view.annotation as? PersonInfo {
+            let presentationState: PersonPresentationState = routePassingService.isPassingRoute ?
+                .fullDescription :
+                .shortDescription
+            coordinator.displayPerson(person, presentationState: presentationState)
         } else {
             if let cluster = view.annotation as? MKClusterAnnotation {
                 viewController?.zoomAnnotations(cluster.memberAnnotations)

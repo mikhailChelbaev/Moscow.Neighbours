@@ -24,4 +24,13 @@ public final class MapCoordinator {
         coordinator.start()
         coordinator.present(on: controller, state: .middle, completion: nil)
     }
+    
+    public func displayPerson(_ personInfo: PersonInfo, presentationState: PersonPresentationState) {
+        let topController = controller?.getTopController()
+        let personCoordinator = PersonCoordinator(personInfo: personInfo,
+                                                  presentationState: presentationState,
+                                                  builder: builder)
+        personCoordinator.start()
+        personCoordinator.present(on: topController, state: .top, completion: nil)
+    }
 }

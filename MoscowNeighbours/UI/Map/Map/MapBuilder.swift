@@ -9,9 +9,6 @@ import Foundation
 import UIKit
 
 public struct MapStorage {
-//    let personBuilder: PersonBuilder
-    let menuBuilder: MenuBuilder
-    
     let locationService: LocationService
     let mapService: MapService
     let routePassingService: RoutePassingService
@@ -20,7 +17,6 @@ public struct MapStorage {
 extension Builder {
     func makeMapStorage() -> MapStorage {
         return MapStorage(
-            menuBuilder: self,
             locationService: locationService,
             mapService: mapService,
             routePassingService: routePassingService)
@@ -31,7 +27,7 @@ public final class MapUIComposer {
     private init() {}
     
     public static func mapComposeWith(_ storage: MapStorage, coordinator: MapCoordinator) -> MapViewController {
-        let presenter = MapPresenter(storage: storage)
+        let presenter = MapPresenter(storage: storage, coordinator: coordinator)
         let viewController = MapViewController(eventHandler: presenter, coordinator: coordinator)
         presenter.viewController = viewController
         return viewController
