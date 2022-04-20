@@ -37,6 +37,11 @@ public class RouteDescriptionCoordinator {
     }
     
     public func displayPerson(_ personInfo: PersonInfo) {
-        
+        let coordinator = PersonCoordinator(
+            personInfo: personInfo,
+            presentationState: .shortDescription,
+            builder: builder)
+        coordinator.start()
+        coordinator.present(on: controller, state: .top, completion: nil)
     }
 }

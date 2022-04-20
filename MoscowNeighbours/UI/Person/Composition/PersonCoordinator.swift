@@ -11,17 +11,19 @@ public class PersonCoordinator {
     public var controller: BottomSheetViewController?
     private let builder: Builder
     private let personInfo: PersonInfo
+    private let presentationState: PersonPresentationState
 
-    public init(personInfo: PersonInfo, builder: Builder) {
+    public init(personInfo: PersonInfo, presentationState: PersonPresentationState, builder: Builder) {
         self.builder = builder
         self.personInfo = personInfo
+        self.presentationState = presentationState
     }
     
     public func start() {
         controller = PersonUIComposer.personComposeWith(
             storage: .init(
                 person: personInfo,
-                presentationState: .fullDescription,
+                presentationState: presentationState,
                 mapService: builder.mapService,
                 personTransformer: PersonTransformer()),
             coordinator: self)
