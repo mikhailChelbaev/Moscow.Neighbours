@@ -726,7 +726,6 @@
 				744B3F4E280F5D8B00027C5D /* Presentation */,
 				744B3F4F280F5D9100027C5D /* Controllers */,
 				7419E1D326BEB0BF00E31BDD /* Cells */,
-				741FE3002777A8C20065126A /* Helpers */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -784,14 +783,6 @@
 				743DE7252775D80500B5CED8 /* MapService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		741FE3002777A8C20065126A /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				741FE2FE2777A8A70065126A /* PersonPresentationState.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		741FE3012777A9280065126A /* Service */ = {
@@ -1111,6 +1102,7 @@
 				74C9EF70281037C600B8172E /* PersonHeaderCellViewModel.swift */,
 				74C9EF72281037D300B8172E /* PersonInfoCellViewModel.swift */,
 				74C9EF76281037F300B8172E /* ReadyToGoButtonCellViewModel.swift */,
+				741FE2FE2777A8A70065126A /* PersonPresentationState.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
