@@ -42,6 +42,18 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
         
         XCTAssertEqual(coordinator.receivedMessages, [.startRoutePassing])
     }
+    
+    func test_headerViewButton_startsRoutePassingIfPurchaseStatusIsPurchased() {
+        let route = makeRoute(price: (.purchased, nil))
+        let routeModel = makeRouteModel(from: route)
+        let (sut, loader, coordinator) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: routeModel)
+        sut.simulateHeaderButtonTap()
+        
+        XCTAssertEqual(coordinator.receivedMessages, [.startRoutePassing])
+    }
 
     // MARK: - Helpers
 
