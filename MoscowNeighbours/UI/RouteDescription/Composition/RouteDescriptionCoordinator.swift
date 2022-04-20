@@ -44,4 +44,9 @@ public class RouteDescriptionCoordinator {
         coordinator.start()
         coordinator.present(on: controller, state: .top, completion: nil)
     }
+    
+    public func startPassingRoute() {
+        let routePassingController = builder.buildRoutePassingViewController(persons: route.personsInfo)
+        controller?.present(routePassingController, state: .middle, completion: nil)
+    }
 }

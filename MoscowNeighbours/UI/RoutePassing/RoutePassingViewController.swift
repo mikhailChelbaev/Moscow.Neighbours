@@ -14,7 +14,7 @@ protocol RoutePassingView: BottomSheetViewController {
     func reloadData()
 }
 
-final class RoutePassingViewController: BottomSheetViewController, RoutePassingView {
+public final class RoutePassingViewController: BottomSheetViewController, RoutePassingView {
     
     // MARK: - Layout
     
@@ -67,7 +67,7 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
     
     // MARK: - Internal methods
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpTableView()
@@ -76,7 +76,7 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
         reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         eventHandler.onViewDidAppear()
     }
@@ -108,11 +108,11 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
     
     // MARK: - Bottom Sheet set up
     
-    override func getScrollView() -> UIScrollView {
+    public override func getScrollView() -> UIScrollView {
         return tableView
     }
     
-    override func getHeaderView() -> UIView? {
+    public override func getHeaderView() -> UIView? {
         headerView.update { [weak self] in
             self?.eventHandler.onEndRouteButtonTap()
         } arrowUpButtonAction: { [weak self] in
@@ -121,13 +121,13 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
         return headerView
     }
     
-    override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
+    public override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration(middleInset: .fromBottom(Layout.topInsetFromBottom,
                                                                  ignoresSafeArea: false),
                                         availableStates: [.middle, .bottom])
     }
     
-    override func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
+    public override func drawerView(_ drawerView: DrawerView, didChangeState state: DrawerView.State?) {
         super.drawerView(drawerView, didChangeState: state)
         if let state = state {
             headerView.changeViewState(state)
@@ -139,11 +139,11 @@ final class RoutePassingViewController: BottomSheetViewController, RoutePassingV
 // MARK: - extension UITableViewDataSource
 
 extension RoutePassingViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return createRoutePointsCollectionCell(for: indexPath)
     }
 }
