@@ -1,5 +1,5 @@
 //
-//  RouteInformationCellController.swift
+//  InformationCellController.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 14.04.2022.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class RouteInformationCellController {
-    private let viewModel: RouteInformationCellViewModel
+final class InformationCellController {
+    private let viewModel: InformationCellViewModel
     
-    init(viewModel: RouteInformationCellViewModel) {
+    init(viewModel: InformationCellViewModel) {
         self.viewModel = viewModel
     }
     
@@ -26,7 +26,7 @@ final class RouteInformationCellController {
     
 }
 
-extension RouteInformationCellController: CellController {
+extension InformationCellController: CellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(TextCell.self, for: indexPath)
         cell.selectionStyle = .none

@@ -26,8 +26,8 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
         let descriptionHeaderCellModel = TextHeaderCellViewModel(text: viewModel.descriptionHeader)
         let descriptionHeaderCellController = TextHeaderCellController(viewModel: descriptionHeaderCellModel)
         
-        let routeInformationCellModel = RouteInformationCellViewModel(text: viewModel.description)
-        let routeInformationCellController = RouteInformationCellController(viewModel: routeInformationCellModel)
+        let routeInformationCellModel = InformationCellViewModel(text: viewModel.description)
+        let routeInformationCellController = InformationCellController(viewModel: routeInformationCellModel)
         
         let routeInformationSeparatorController = SeparatorCellController()
         

@@ -11,5 +11,5 @@ public protocol ItemTransformer {
     associatedtype Input
     associatedtype Output
 
-    func transform(_ route: Input, completion: @escaping (Output) -> Void)
+    func transform(_ input: Input, completion: @escaping (Output) -> Void)
 }

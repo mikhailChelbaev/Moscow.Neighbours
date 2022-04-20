@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PersonPresentationState {
+public enum PersonPresentationState {
     case shortDescription
     case fullDescription
 }

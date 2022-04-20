@@ -22,7 +22,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     
     weak var viewController: LegacyRouteDescriptionView?
     
-    private let personBuilder: PersonBuilder
+//    private let personBuilder: PersonBuilder
     private let routePassingBuilder: RoutePassingBuilder
     private let accountConfirmationBuilder: AccountConfirmationBuilder
     private let authorizationBuilder: AuthorizationBuilder
@@ -39,7 +39,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     // MARK: - Init
     
     init(storage: LegacyRouteDescriptionStorage) {
-        personBuilder = storage.personBuilder
+//        personBuilder = storage.personBuilder
         routePassingBuilder = storage.routePassingBuilder
         accountConfirmationBuilder = storage.accountConfirmationBuilder
         authorizationBuilder = storage.authorizationBuilder
@@ -87,9 +87,9 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     func onPersonCellTap(person: LegacyPersonViewModel) {
         mapService.selectAnnotation(person)
         mapService.centerAnnotation(person)
-        let controller = personBuilder.buildPersonViewController(person: person,
-                                                                 personPresentationState: .shortDescription)
-        viewController?.present(controller, state: .top)
+//        let controller = personBuilder.buildPersonViewController(person: person,
+//                                                                 personPresentationState: .shortDescription)
+//        viewController?.present(controller, state: .top)
     }
     
     func onRouteHeaderButtonTap(route: LegacyRouteViewModel?) {

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public struct MapStorage {
-    let personBuilder: PersonBuilder
+//    let personBuilder: PersonBuilder
     let menuBuilder: MenuBuilder
     
     let locationService: LocationService
@@ -20,7 +20,6 @@ public struct MapStorage {
 extension Builder {
     func makeMapStorage() -> MapStorage {
         return MapStorage(
-            personBuilder: self,
             menuBuilder: self,
             locationService: locationService,
             mapService: mapService,

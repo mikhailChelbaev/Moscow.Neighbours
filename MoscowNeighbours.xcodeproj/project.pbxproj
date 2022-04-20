@@ -18,7 +18,7 @@
 		7404A61426B8874A00524453 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404A61326B8874A00524453 /* PersonViewController.swift */; };
 		740AF984280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF983280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift */; };
 		740AF986280DE6D20049DEDE /* WeakRef+RouteDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF985280DE6D20049DEDE /* WeakRef+RouteDescription.swift */; };
-		740AF988280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF987280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift */; };
+		740AF988280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF987280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift */; };
 		740AF98A280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */; };
 		740AF98C280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */; };
 		740AF98E280DEAC30049DEDE /* RouteDescriptionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AF98D280DEAC30049DEDE /* RouteDescriptionCoordinator.swift */; };
@@ -28,8 +28,8 @@
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
 		740B53612773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */; };
 		740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */; };
-		74114C7F2807815400C1CF12 /* RouteInformationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C7E2807815400C1CF12 /* RouteInformationCellController.swift */; };
-		74114C81280781B300C1CF12 /* RouteInformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C80280781B300C1CF12 /* RouteInformationCellViewModel.swift */; };
+		74114C7F2807815400C1CF12 /* InformationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C7E2807815400C1CF12 /* InformationCellController.swift */; };
+		74114C81280781B300C1CF12 /* InformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C80280781B300C1CF12 /* InformationCellViewModel.swift */; };
 		74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C822807831100C1CF12 /* SeparatorCellController.swift */; };
 		7415479326B08C8A006931DC /* LegacyPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* LegacyPersonCell.swift */; };
 		74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5127ADBC1A007E7118 /* UserProvider.swift */; };
@@ -39,7 +39,7 @@
 		741BA1DA2807756A000B3C80 /* TextHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */; };
 		741BA1DC28077A3D000B3C80 /* RouteDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */; };
 		741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */; };
-		741D407E270655560051A518 /* PersonInfoBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407D270655560051A518 /* PersonInfoBaseCell.swift */; };
+		741D407E270655560051A518 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407D270655560051A518 /* PersonInfoCell.swift */; };
 		741EF4882708F28200F84986 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741EF4872708F28200F84986 /* NotificationService.swift */; };
 		741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE2FE2777A8A70065126A /* PersonPresentationState.swift */; };
 		741FE3032777A9350065126A /* RoutePassingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE3022777A9350065126A /* RoutePassingService.swift */; };
@@ -111,6 +111,7 @@
 		744B3F48280F50AF00027C5D /* RouteTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F47280F50AF00027C5D /* RouteTransformer.swift */; };
 		744B3F4A280F547200027C5D /* PersonTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F49280F547200027C5D /* PersonTransformer.swift */; };
 		744B3F4C280F55C500027C5D /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F4B280F55C500027C5D /* PersonViewModel.swift */; };
+		744B3F51280F601900027C5D /* PersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F50280F601900027C5D /* PersonTableViewController.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
 		744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */; };
@@ -165,7 +166,7 @@
 		747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */; };
 		74834C0F2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74834C0E2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf */; };
 		74834C112729924000631D09 /* helveticaneuecyr-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74834C102729923F00631D09 /* helveticaneuecyr-italic.ttf */; };
-		7485E3792709BD52008DAB99 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485E3782709BD52008DAB99 /* PersonInfoCell.swift */; };
+		7485E3792709BD52008DAB99 /* PersonContainerInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485E3782709BD52008DAB99 /* PersonContainerInfoCell.swift */; };
 		74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC7277EFCA9000FC446 /* SignInModel.swift */; };
 		74863DCA277EFCB0000FC446 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC9277EFCB0000FC446 /* SignUpModel.swift */; };
 		7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A160277E1C6B004E2D27 /* TextInputCell.swift */; };
@@ -221,6 +222,15 @@
 		74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A50277BBC2500B73560 /* MenuBuilder.swift */; };
 		74C72A54277BC17D00B73560 /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C72A53277BC17D00B73560 /* TitleHeaderView.swift */; };
 		74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */; };
+		74C9EF5E281000C900B8172E /* PersonHeaderCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF5D281000C900B8172E /* PersonHeaderCellController.swift */; };
+		74C9EF61281003EE00B8172E /* PersonInfoCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF60281003EE00B8172E /* PersonInfoCellController.swift */; };
+		74C9EF63281003F700B8172E /* PersonInfoContainerCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF62281003F700B8172E /* PersonInfoContainerCellController.swift */; };
+		74C9EF652810043700B8172E /* AlertCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF642810043700B8172E /* AlertCellController.swift */; };
+		74C9EF67281007F200B8172E /* PersonViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF66281007F200B8172E /* PersonViewAdapter.swift */; };
+		74C9EF6928102B5000B8172E /* PersonCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF6828102B5000B8172E /* PersonCoordinator.swift */; };
+		74C9EF6B28102C9100B8172E /* WeakRef+Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF6A28102C9100B8172E /* WeakRef+Person.swift */; };
+		74C9EF6D28102E0600B8172E /* PersonTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF6C28102E0600B8172E /* PersonTableViewModel.swift */; };
+		74C9EF6F28102F0800B8172E /* ReadyToGoButtonCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF6E28102F0800B8172E /* ReadyToGoButtonCellController.swift */; };
 		74CB2EFC28060A9600B68A11 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */; };
 		74CB2F002806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */; };
 		74D2CC5F280AE8F0000FE4B1 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */; };
@@ -306,7 +316,7 @@
 		7404A61326B8874A00524453 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		740AF983280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoordinatorIntegrationTests.swift; sourceTree = "<group>"; };
 		740AF985280DE6D20049DEDE /* WeakRef+RouteDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+RouteDescription.swift"; sourceTree = "<group>"; };
-		740AF987280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTransformerMainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
+		740AF987280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerMainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewAdapter.swift; sourceTree = "<group>"; };
 		740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCoordinatorTests.swift; sourceTree = "<group>"; };
 		740AF98D280DEAC30049DEDE /* RouteDescriptionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionCoordinator.swift; sourceTree = "<group>"; };
@@ -316,8 +326,8 @@
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
 		740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionBuilder.swift; sourceTree = "<group>"; };
 		740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+Utils.swift"; sourceTree = "<group>"; };
-		74114C7E2807815400C1CF12 /* RouteInformationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInformationCellController.swift; sourceTree = "<group>"; };
-		74114C80280781B300C1CF12 /* RouteInformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInformationCellViewModel.swift; sourceTree = "<group>"; };
+		74114C7E2807815400C1CF12 /* InformationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellController.swift; sourceTree = "<group>"; };
+		74114C80280781B300C1CF12 /* InformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellViewModel.swift; sourceTree = "<group>"; };
 		74114C822807831100C1CF12 /* SeparatorCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCellController.swift; sourceTree = "<group>"; };
 		7415479226B08C89006931DC /* LegacyPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPersonCell.swift; sourceTree = "<group>"; };
 		74159E5127ADBC1A007E7118 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
@@ -327,7 +337,7 @@
 		741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderCellViewModel.swift; sourceTree = "<group>"; };
 		741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewModel.swift; sourceTree = "<group>"; };
 		741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+SetAttributedText.swift"; sourceTree = "<group>"; };
-		741D407D270655560051A518 /* PersonInfoBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoBaseCell.swift; sourceTree = "<group>"; };
+		741D407D270655560051A518 /* PersonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCell.swift; sourceTree = "<group>"; };
 		741EF4872708F28200F84986 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		741FE2FE2777A8A70065126A /* PersonPresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresentationState.swift; sourceTree = "<group>"; };
 		741FE3022777A9350065126A /* RoutePassingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingService.swift; sourceTree = "<group>"; };
@@ -404,6 +414,7 @@
 		744B3F47280F50AF00027C5D /* RouteTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTransformer.swift; sourceTree = "<group>"; };
 		744B3F49280F547200027C5D /* PersonTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTransformer.swift; sourceTree = "<group>"; };
 		744B3F4B280F55C500027C5D /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
+		744B3F50280F601900027C5D /* PersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewController.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
 		744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteViewModel.swift; sourceTree = "<group>"; };
@@ -454,7 +465,7 @@
 		747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePointsCollectionCell.swift; sourceTree = "<group>"; };
 		74834C0E2729923A00631D09 /* helveticaneuecyr-bolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-bolditalic.ttf"; sourceTree = "<group>"; };
 		74834C102729923F00631D09 /* helveticaneuecyr-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "helveticaneuecyr-italic.ttf"; sourceTree = "<group>"; };
-		7485E3782709BD52008DAB99 /* PersonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCell.swift; sourceTree = "<group>"; };
+		7485E3782709BD52008DAB99 /* PersonContainerInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonContainerInfoCell.swift; sourceTree = "<group>"; };
 		74863DC7277EFCA9000FC446 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		74863DC9277EFCB0000FC446 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		7488A160277E1C6B004E2D27 /* TextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
@@ -511,6 +522,15 @@
 		74C72A50277BBC2500B73560 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		74C72A53277BC17D00B73560 /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
 		74C8AB8D272885A5005EC02E /* MarkdownConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownConfigurator.swift; sourceTree = "<group>"; };
+		74C9EF5D281000C900B8172E /* PersonHeaderCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeaderCellController.swift; sourceTree = "<group>"; };
+		74C9EF60281003EE00B8172E /* PersonInfoCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCellController.swift; sourceTree = "<group>"; };
+		74C9EF62281003F700B8172E /* PersonInfoContainerCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoContainerCellController.swift; sourceTree = "<group>"; };
+		74C9EF642810043700B8172E /* AlertCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCellController.swift; sourceTree = "<group>"; };
+		74C9EF66281007F200B8172E /* PersonViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewAdapter.swift; sourceTree = "<group>"; };
+		74C9EF6828102B5000B8172E /* PersonCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCoordinator.swift; sourceTree = "<group>"; };
+		74C9EF6A28102C9100B8172E /* WeakRef+Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Person.swift"; sourceTree = "<group>"; };
+		74C9EF6C28102E0600B8172E /* PersonTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewModel.swift; sourceTree = "<group>"; };
+		74C9EF6E28102F0800B8172E /* ReadyToGoButtonCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyToGoButtonCellController.swift; sourceTree = "<group>"; };
 		74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
 		74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionHeaderViewModel.swift; sourceTree = "<group>"; };
 		74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
@@ -694,9 +714,9 @@
 		7404A61226B8873500524453 /* Person */ = {
 			isa = PBXGroup;
 			children = (
-				7404A61326B8874A00524453 /* PersonViewController.swift */,
-				744B6EC22774E348008BDF37 /* PersonPresenter.swift */,
-				744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */,
+				744B3F4D280F5D8400027C5D /* Composition */,
+				744B3F4E280F5D8B00027C5D /* Presentation */,
+				744B3F4F280F5D9100027C5D /* Controllers */,
 				7419E1D326BEB0BF00E31BDD /* Cells */,
 				741FE3002777A8C20065126A /* Helpers */,
 			);
@@ -743,8 +763,8 @@
 			isa = PBXGroup;
 			children = (
 				746A101126F620E0002CB7E2 /* PersonHeaderCell.swift */,
-				741D407D270655560051A518 /* PersonInfoBaseCell.swift */,
-				7485E3782709BD52008DAB99 /* PersonInfoCell.swift */,
+				741D407D270655560051A518 /* PersonInfoCell.swift */,
+				7485E3782709BD52008DAB99 /* PersonContainerInfoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1062,6 +1082,40 @@
 				744B3F4B280F55C500027C5D /* PersonViewModel.swift */,
 			);
 			path = ItemTransformation;
+			sourceTree = "<group>";
+		};
+		744B3F4D280F5D8400027C5D /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */,
+				74C9EF6828102B5000B8172E /* PersonCoordinator.swift */,
+				74C9EF66281007F200B8172E /* PersonViewAdapter.swift */,
+				74C9EF6A28102C9100B8172E /* WeakRef+Person.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		744B3F4E280F5D8B00027C5D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				744B6EC22774E348008BDF37 /* PersonPresenter.swift */,
+				74C9EF6C28102E0600B8172E /* PersonTableViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		744B3F4F280F5D9100027C5D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7404A61326B8874A00524453 /* PersonViewController.swift */,
+				744B3F50280F601900027C5D /* PersonTableViewController.swift */,
+				74C9EF5D281000C900B8172E /* PersonHeaderCellController.swift */,
+				74C9EF60281003EE00B8172E /* PersonInfoCellController.swift */,
+				74C9EF62281003F700B8172E /* PersonInfoContainerCellController.swift */,
+				74C9EF642810043700B8172E /* AlertCellController.swift */,
+				74C9EF6E28102F0800B8172E /* ReadyToGoButtonCellController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		744B6EC6277500D3008BDF37 /* Helpers */ = {
@@ -1488,7 +1542,7 @@
 				74EDF86C2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift */,
 				740AF98D280DEAC30049DEDE /* RouteDescriptionCoordinator.swift */,
 				740AF985280DE6D20049DEDE /* WeakRef+RouteDescription.swift */,
-				740AF987280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift */,
+				740AF987280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift */,
 				740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */,
 			);
 			path = Composition;
@@ -1501,7 +1555,7 @@
 				741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */,
 				74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */,
 				741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */,
-				74114C80280781B300C1CF12 /* RouteInformationCellViewModel.swift */,
+				74114C80280781B300C1CF12 /* InformationCellViewModel.swift */,
 				74DEA86128082E690050EF49 /* PersonCellViewModel.swift */,
 			);
 			path = Presentation;
@@ -1514,7 +1568,7 @@
 				74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */,
 				74FC5B4C2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift */,
 				741BA1D728077513000B3C80 /* TextHeaderCellController.swift */,
-				74114C7E2807815400C1CF12 /* RouteInformationCellController.swift */,
+				74114C7E2807815400C1CF12 /* InformationCellController.swift */,
 				74DEA85F28082CFE0050EF49 /* PersonCellController.swift */,
 				740AF98F280E03A10049DEDE /* BackButtonViewController.swift */,
 			);
@@ -1759,7 +1813,7 @@
 				74E7C3992783063900B16392 /* UserService.swift in Sources */,
 				7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */,
 				747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */,
-				7485E3792709BD52008DAB99 /* PersonInfoCell.swift in Sources */,
+				7485E3792709BD52008DAB99 /* PersonContainerInfoCell.swift in Sources */,
 				74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */,
 				74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */,
 				74F73A01272B50DE007C5450 /* CustomCollectionViewDataSource.swift in Sources */,
@@ -1810,10 +1864,12 @@
 				74BE3476280390ED0086BB89 /* RoutesTableViewController.swift in Sources */,
 				74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */,
 				74BE34702803848F0086BB89 /* WeakRef+Routes.swift in Sources */,
+				74C9EF6928102B5000B8172E /* PersonCoordinator.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
 				7466849B279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift in Sources */,
 				7415479326B08C8A006931DC /* LegacyPersonCell.swift in Sources */,
 				741BA1D828077513000B3C80 /* TextHeaderCellController.swift in Sources */,
+				74C9EF67281007F200B8172E /* PersonViewAdapter.swift in Sources */,
 				74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */,
 				74DEA85E28082CB70050EF49 /* PersonCell.swift in Sources */,
 				74F739FD272B50DE007C5450 /* CustomTableViewDataSource.swift in Sources */,
@@ -1825,7 +1881,7 @@
 				74DE214827F0F489006863A3 /* LogoutManager.swift in Sources */,
 				746F061F279371B4009D1163 /* PasswordValidator.swift in Sources */,
 				74CB2EFC28060A9600B68A11 /* RouteHeaderCell.swift in Sources */,
-				74114C7F2807815400C1CF12 /* RouteInformationCellController.swift in Sources */,
+				74114C7F2807815400C1CF12 /* InformationCellController.swift in Sources */,
 				74DC18B427AF000A00C5A02F /* Product.swift in Sources */,
 				7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */,
 				746192D626AC549400CCCB71 /* UITableView+Reuse.swift in Sources */,
@@ -1853,10 +1909,10 @@
 				74668495279F236A00AFAA2E /* AccountConfirmationViewController.swift in Sources */,
 				7437B1EE278615070020AABE /* String+Localized.swift in Sources */,
 				746A101026F619AF002CB7E2 /* SeparatorCell.swift in Sources */,
-				741D407E270655560051A518 /* PersonInfoBaseCell.swift in Sources */,
+				741D407E270655560051A518 /* PersonInfoCell.swift in Sources */,
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
-				74114C81280781B300C1CF12 /* RouteInformationCellViewModel.swift in Sources */,
+				74114C81280781B300C1CF12 /* InformationCellViewModel.swift in Sources */,
 				74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */,
 				746F061D27937181009D1163 /* EmailValidator.swift in Sources */,
 				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
@@ -1865,6 +1921,7 @@
 				746684AC279F5E6200AFAA2E /* AccountConfirmationRequest.swift in Sources */,
 				7444DA8F280198F900A04F87 /* RemoteRoute.swift in Sources */,
 				746F061627936731009D1163 /* ErrorTextInputCell.swift in Sources */,
+				74C9EF652810043700B8172E /* AlertCellController.swift in Sources */,
 				74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
 				7444DA972801999900A04F87 /* RemoteLocationCoordinates.swift in Sources */,
@@ -1888,6 +1945,7 @@
 				746684A5279F3FAA00AFAA2E /* UIApplication+Version.swift in Sources */,
 				74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */,
 				743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */,
+				74C9EF6D28102E0600B8172E /* PersonTableViewModel.swift in Sources */,
 				740B53612773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				7457756C279732EB00123208 /* AchievementsPresenter.swift in Sources */,
@@ -1907,6 +1965,7 @@
 				744B3F4C280F55C500027C5D /* PersonViewModel.swift in Sources */,
 				74FFB59C26EFEE510060D948 /* SFSymbol.swift in Sources */,
 				74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */,
+				74C9EF61281003EE00B8172E /* PersonInfoCellController.swift in Sources */,
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,
 				74577574279747BA00123208 /* ErrorDelegate.swift in Sources */,
 				74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */,
@@ -1918,17 +1977,20 @@
 				7422A9C326BC707A00FE995E /* ARPersonPreview.swift in Sources */,
 				74F3153C277740F600006217 /* UIViewController+TopController.swift in Sources */,
 				74668499279F238300AFAA2E /* AccountConfirmationBuilder.swift in Sources */,
+				744B3F51280F601900027C5D /* PersonTableViewController.swift in Sources */,
 				746F061827936ACB009D1163 /* SignInErrorsModel.swift in Sources */,
 				741FE3032777A9350065126A /* RoutePassingService.swift in Sources */,
 				74C72A4D277BBC1800B73560 /* MenuViewController.swift in Sources */,
 				74C8AB8E272885A5005EC02E /* MarkdownConfigurator.swift in Sources */,
 				74C5D8D326FD237700034432 /* Button.swift in Sources */,
+				74C9EF63281003F700B8172E /* PersonInfoContainerCellController.swift in Sources */,
 				746769EC26F922B400158FFC /* RoutePassingViewController.swift in Sources */,
 				74F185662787291800A0BF24 /* SettingsViewController.swift in Sources */,
 				741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */,
 				744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */,
 				741FE3052777B4780065126A /* WeakRef+RoutePassing.swift in Sources */,
 				74159E5427ADBC31007E7118 /* WeakRef+UserStateDelegate.swift in Sources */,
+				74C9EF6B28102C9100B8172E /* WeakRef+Person.swift in Sources */,
 				74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */,
 				748EE63D270F917600301552 /* ShortInfo.swift in Sources */,
 				7437B1D52785D35F0020AABE /* BaseRequestSender.swift in Sources */,
@@ -1959,7 +2021,9 @@
 				7444DA932801995100A04F87 /* RemotePlace.swift in Sources */,
 				7422221E2781DC2500CFDD50 /* AuthorizationService.swift in Sources */,
 				74D2CC5F280AE8F0000FE4B1 /* MapCoordinator.swift in Sources */,
-				740AF988280DE6E00049DEDE /* RouteTransformerMainQueueDispatchDecorator.swift in Sources */,
+				740AF988280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift in Sources */,
+				74C9EF5E281000C900B8172E /* PersonHeaderCellController.swift in Sources */,
+				74C9EF6F28102F0800B8172E /* ReadyToGoButtonCellController.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
 				74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,

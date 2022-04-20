@@ -9,7 +9,7 @@ import Foundation
 
 struct LegacyRouteDescriptionStorage {
     let route: Route
-    let personBuilder: PersonBuilder
+//    let personBuilder: PersonBuilder
     let routePassingBuilder: RoutePassingBuilder
     let accountConfirmationBuilder: AccountConfirmationBuilder
     let authorizationBuilder: AuthorizationBuilder
@@ -33,7 +33,7 @@ extension Builder: LegacyRoutesDescriptionBuilder {
     
     private func buildStorage(route: Route) -> LegacyRouteDescriptionStorage {
         LegacyRouteDescriptionStorage(route: route,
-                                personBuilder: self,
+//                                personBuilder: self,
                                 routePassingBuilder: self,
                                 accountConfirmationBuilder: self,
                                 authorizationBuilder: self,

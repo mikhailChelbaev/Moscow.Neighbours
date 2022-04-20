@@ -9,7 +9,7 @@ import Foundation
 
 struct RoutePassingStorage {
     let route: LegacyRouteViewModel
-    let personBuilder: PersonBuilder
+//    let personBuilder: PersonBuilder
     let mapService: MapService
     let routePassingService: RoutePassingService
 }
@@ -21,7 +21,7 @@ protocol RoutePassingBuilder {
 extension Builder: RoutePassingBuilder {
     func buildRoutePassingViewController(route: LegacyRouteViewModel) -> RoutePassingViewController {
         let storage = RoutePassingStorage(route: route,
-                                          personBuilder: self,
+//                                          personBuilder: self,
                                           mapService: mapService,
                                           routePassingService: routePassingService)
         let presenter = RoutePassingPresenter(storage: storage)

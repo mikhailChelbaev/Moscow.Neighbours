@@ -7,16 +7,12 @@
 
 import UIKit
 
+enum AlertImage: String {
+    case exclamationMark = "exclamationmark.circle"
+    case checkmark = "checkmark.circle"
+}
+
 final class AlertCell: CellView {
-    
-    enum Image: String {
-        case exclamationMark = "exclamationmark.circle"
-        case checkmark = "checkmark.circle"
-        
-        var value: UIImage? {
-            sfSymbol(rawValue, tintColor: .reversedBackground)
-        }
-    }
     
     let container: UIView = {
         let view = UIView()
@@ -65,10 +61,12 @@ final class AlertCell: CellView {
     
     func update(
         text: String,
-        image: Image = .exclamationMark,
+        image: AlertImage = .exclamationMark,
         containerInsets: UIEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
     ) {
-        self.update(text: text, image: image.value, containerInsets: containerInsets)
+        self.update(text: text,
+                    image: sfSymbol(image.rawValue, tintColor: .reversedBackground),
+                    containerInsets: containerInsets)
     }
     
     func update(

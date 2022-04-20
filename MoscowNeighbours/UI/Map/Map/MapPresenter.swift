@@ -30,7 +30,7 @@ class MapPresenter: MapEventHandler {
     
     weak var viewController: MapView?
     
-    private let personBuilder: PersonBuilder
+//    private let personBuilder: PersonBuilder
     private let menuBuilder: MenuBuilder
     
     private var locationService: LocationService
@@ -44,7 +44,7 @@ class MapPresenter: MapEventHandler {
     // MARK: - Init
     
     init(storage: MapStorage) {
-        personBuilder = storage.personBuilder
+//        personBuilder = storage.personBuilder
         menuBuilder = storage.menuBuilder
         
         locationService = storage.locationService
@@ -94,10 +94,10 @@ class MapPresenter: MapEventHandler {
             let controller = viewController?.getTopController()
             let state: PersonPresentationState = routePassingService.isPassingRoute ? .fullDescription : .shortDescription
             if let personController = controller as? PersonViewController {
-                personController.updatePerson(person: person, personPresentationState: state)
+//                personController.updatePerson(person: person, personPresentationState: state)
             } else {
-                let personViewController = personBuilder.buildPersonViewController(person: person, personPresentationState: state)
-                controller?.present(personViewController, state: .top, completion: nil)
+//                let personViewController = personBuilder.buildPersonViewController(person: person, personPresentationState: state)
+//                controller?.present(personViewController, state: .top, completion: nil)
             }
         } else {
             if let cluster = view.annotation as? MKClusterAnnotation {

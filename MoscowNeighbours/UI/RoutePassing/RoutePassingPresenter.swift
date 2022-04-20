@@ -30,7 +30,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     weak var viewController: RoutePassingView?
     
     private let route: LegacyRouteViewModel
-    private let personBuilder: PersonBuilder
+//    private let personBuilder: PersonBuilder
     
     private var routePassingService: RoutePassingService
     private var mapService: MapService
@@ -41,7 +41,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     init(storage: RoutePassingStorage) {
         route = storage.route
-        personBuilder = storage.personBuilder
+//        personBuilder = storage.personBuilder
         
         mapService = storage.mapService
         routePassingService = storage.routePassingService
@@ -94,12 +94,12 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         
         mapService.selectAnnotation(person)
         mapService.centerAnnotation(person)
-        let controller = personBuilder.buildPersonViewController(person: person,
-                                                                 personPresentationState: .fullDescription)
-        viewController?.present(controller, state: .top, completion: {
+//        let controller = personBuilder.buildPersonViewController(person: person,
+//                                                                 personPresentationState: .fullDescription)
+//        viewController?.present(controller, state: .top, completion: {
             // update person state
-            self.viewController?.reloadData()
-        })
+//            self.viewController?.reloadData()
+//        })
     }
     
     func onIndexChange(_ newIndex: Int) {
@@ -135,8 +135,8 @@ extension RoutePassingPresenter: RoutePassingServiceOutput {
     private func updatePresentedPerson(_ person: LegacyPersonViewModel?) {
         if let person = person,
            let personController = viewController?.presentedViewController as? PersonViewController {
-            personController.updatePerson(person: person,
-                                          personPresentationState: .fullDescription)
+//            personController.updatePerson(person: person,
+//                                          personPresentationState: .fullDescription)
         }
     }
     
