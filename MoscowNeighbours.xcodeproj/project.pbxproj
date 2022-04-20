@@ -857,10 +857,10 @@
 		742EFE8B26F1413F009A5126 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				74C9EF782810385C00B8172E /* Alert */,
 				74114C842807831600C1CF12 /* Separator */,
 				7404A61026B87FAF00524453 /* TextCell.swift */,
 				74E729B226F2946800775D37 /* EntityHeaderCell.swift */,
-				746A101326F6276E002CB7E2 /* AlertCell.swift */,
 				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
 				74F73A03272B5213007C5450 /* LoadingCell.swift */,
 				74F73A05272B528A007C5450 /* EmptyStateCell.swift */,
@@ -1110,7 +1110,6 @@
 				74C9EF6C28102E0600B8172E /* PersonTableViewModel.swift */,
 				74C9EF70281037C600B8172E /* PersonHeaderCellViewModel.swift */,
 				74C9EF72281037D300B8172E /* PersonInfoCellViewModel.swift */,
-				74C9EF74281037E800B8172E /* AlertCellViewModel.swift */,
 				74C9EF76281037F300B8172E /* ReadyToGoButtonCellViewModel.swift */,
 			);
 			path = Presentation;
@@ -1124,7 +1123,6 @@
 				74C9EF5D281000C900B8172E /* PersonHeaderCellController.swift */,
 				74C9EF60281003EE00B8172E /* PersonInfoCellController.swift */,
 				74C9EF62281003F700B8172E /* PersonInfoContainerCellController.swift */,
-				74C9EF642810043700B8172E /* AlertCellController.swift */,
 				74C9EF6E28102F0800B8172E /* ReadyToGoButtonCellController.swift */,
 			);
 			path = Controllers;
@@ -1439,6 +1437,16 @@
 				746684A2279F3A7100AFAA2E /* LogoutCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		74C9EF782810385C00B8172E /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				746A101326F6276E002CB7E2 /* AlertCell.swift */,
+				74C9EF74281037E800B8172E /* AlertCellViewModel.swift */,
+				74C9EF642810043700B8172E /* AlertCellController.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		74D4AB5726AF3E92009CAD3A /* Map */ = {
