@@ -34,7 +34,7 @@ class RouteCoordinatorTests: XCTestCase {
         XCTAssertEqual(presentationSpy.presentedController is RoutesViewController, true)
     }
     
-    func test_showRoute_presentsRouteDescriptionController() {
+    func test_displayRoute_presentsRouteDescriptionController() {
         let presentationSpy = PresentingControllerSpy()
         let sut = makeSUT(replaceControllerWith: presentationSpy)
         
