@@ -17,6 +17,19 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
         
         XCTAssertEqual(coordinator.receivedMessages, [.dismiss])
     }
+    
+    func test_personCellTap_displaysPersonController() {
+        let person = makePersonInfo()
+        let route = makeRoute(personsInfo: [person])
+        let routeModel = makeRouteModel(from: route)
+        let (sut, loader, coordinator) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: routeModel)
+        sut.simulatePersonCellTap(at: 0)
+        
+        XCTAssertEqual(coordinator.receivedMessages, [.displayPerson])
+    }
 
     // MARK: - Helpers
 

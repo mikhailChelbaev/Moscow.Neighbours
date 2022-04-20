@@ -49,6 +49,15 @@ class RouteDescriptionCoordinatorTests: XCTestCase {
         XCTAssertNil(controller)
     }
     
+    func test_displayPerson_presentsPersonViewController() {
+//        let presentationSpy = PresentingControllerSpy()
+//        let sut = makeSUT(replaceControllerWith: presentationSpy)
+//        
+//        sut.displayPerson(makePersonInfo())
+//        
+//        XCTAssertEqual(presentationSpy.presentedController is PersonViewController, true)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(replaceControllerWith spy: PresentingControllerSpy? = nil, file: StaticString = #file, line: UInt = #line) -> RouteDescriptionCoordinator {

@@ -8,6 +8,7 @@
 import Foundation
 
 struct PersonCellViewModel {
+    let personInfo: PersonInfo
     let name: String
     let address: String
     let placeName: String

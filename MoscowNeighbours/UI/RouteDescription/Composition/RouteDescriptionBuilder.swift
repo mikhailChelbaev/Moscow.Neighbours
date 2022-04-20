@@ -34,7 +34,7 @@ public final class RoutesDescriptionUIComposer {
             tableViewController: tableViewController,
             backButtonController: backButtonController)
         
-        presenter.routeDescriptionView = RouteDescriptionViewAdapter(controller: tableViewController)
+        presenter.routeDescriptionView = RouteDescriptionViewAdapter(controller: tableViewController, coordinator: coordinator)
         presenter.routeDescriptionLoadingView = WeakRef(tableViewController)
         
         return controller

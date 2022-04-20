@@ -9,9 +9,11 @@ import Foundation
 
 final class RouteDescriptionViewAdapter: RouteDescriptionView {
     private weak var controller: RouteDescriptionTableViewController?
+    private let coordinator: RouteDescriptionCoordinator
     
-    init(controller: RouteDescriptionTableViewController) {
+    init(controller: RouteDescriptionTableViewController, coordinator: RouteDescriptionCoordinator) {
         self.controller = controller
+        self.coordinator = coordinator
     }
     
     func display(_ viewModel: RouteDescriptionViewModel) {
@@ -49,7 +51,7 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
                 header: personsHeaderCellController,
                 footer: nil,
                 cells: viewModel.persons.map { personViewModel in
-                    return PersonCellController(viewModel: personViewModel)
+                    return PersonCellController(viewModel: personViewModel, coordinator: coordinator)
                 })
         ]
         controller?.status = .success

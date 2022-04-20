@@ -61,6 +61,7 @@ extension RouteDescriptionPresenter: RouteDescriptionInput {
     private static func map(_ persons: [PersonInfo]) -> [PersonCellViewModel] {
         return persons.enumerated().map { (index, personInfo) in
             return PersonCellViewModel(
+                personInfo: personInfo,
                 name: personInfo.person.name,
                 address: personInfo.place.address,
                 placeName: personInfo.place.name,

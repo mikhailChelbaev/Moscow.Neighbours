@@ -15,6 +15,10 @@ protocol CellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
 }
 
+protocol SelectableCellController {
+    func didSelect()
+}
+
 struct TableSection {
     let header: HeaderFooterController?
     let footer: HeaderFooterController?
@@ -92,5 +96,9 @@ extension RouteDescriptionTableViewController: TableSuccessDataSource {
     
     func successTableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return tableModels[section].header == nil ? 0 : UITableView.automaticDimension
+    }
+    
+    func successTableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        (tableModels[indexPath.section].cells[indexPath.row] as? SelectableCellController)?.didSelect()
     }
 }

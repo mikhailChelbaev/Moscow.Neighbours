@@ -94,6 +94,11 @@ extension RouteDescriptionViewController {
         return getCell(at: IndexPath(row: index, section: personsSection))
     }
     
+    func simulatePersonCellTap(at index: Int) {
+        let delegate = tableView.delegate
+        delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: index, section: personsSection))
+    }
+    
     // MARK: - Other
     
     func simulateBackButtonTap() {

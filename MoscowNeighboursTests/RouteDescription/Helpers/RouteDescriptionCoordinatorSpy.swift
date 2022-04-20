@@ -10,11 +10,16 @@
 class RouteDescriptionCoordinatorSpy: RouteDescriptionCoordinator {
     enum Message {
         case dismiss
+        case displayPerson
     }
     
     private(set) var receivedMessages = [Message]()
     
     override func dismiss(animated: Bool, completion: Action? = nil) {
         receivedMessages.append(.dismiss)
+    }
+    
+    override func displayPerson(_ personInfo: PersonInfo) {
+        receivedMessages.append(.displayPerson)
     }
 }
