@@ -33,4 +33,10 @@ public final class MapCoordinator {
         personCoordinator.start()
         personCoordinator.present(on: topController, state: .top, completion: nil)
     }
+    
+    public func displayMenu() {
+        let topController = controller?.getTopController()
+        let menuController = builder.buildMenuViewController()
+        topController?.present(menuController, state: .top, completion: nil)
+    }
 }

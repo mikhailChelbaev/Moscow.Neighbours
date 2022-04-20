@@ -72,12 +72,7 @@ class MapPresenter: MapEventHandler {
     }
     
     func onMenuButtonTap() {
-        guard let topController = viewController?.getTopController() else {
-            return
-        }
-        
-//        let controller = menuBuilder.buildMenuViewController()
-//        topController.present(controller, state: .top, completion: nil)
+        coordinator.displayMenu()
     }
     
     func onAnnotationSelection(_ view: MKAnnotationView) {
