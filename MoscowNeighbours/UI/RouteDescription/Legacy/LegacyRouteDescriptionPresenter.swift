@@ -70,7 +70,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
             DispatchQueue.main.async { [self] in
                 if isRouteOpen {
                     setRoute(route)
-                    mapService.showRoute(route, task: &showRouteTask)
+                    mapService.showRoute(route.persons)
                 }
             }
         }
@@ -136,7 +136,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
             DispatchQueue.main.async { [self] in
                 if isRouteOpen {
                     setRoute(routeViewModel)
-                    mapService.showRoute(routeViewModel, task: &showRouteTask)
+                    mapService.showRoute(routeViewModel.persons)
                 }
             }
         }

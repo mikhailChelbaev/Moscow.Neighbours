@@ -23,14 +23,19 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
     private let tableViewController: RouteDescriptionTableViewController
     private let backButtonController: BackButtonViewController
     
+    private let didShowRoute: Action?
+    
     init(presenter: Presenter,
          coordinator: RouteDescriptionCoordinator,
          tableViewController: RouteDescriptionTableViewController,
-         backButtonController: BackButtonViewController) {
+         backButtonController: BackButtonViewController,
+         didShowRoute: Action?) {
         self.presenter = presenter
         self.coordinator = coordinator
         self.tableViewController = tableViewController
         self.backButtonController = backButtonController
+        
+        self.didShowRoute = didShowRoute
         
         tableView = tableViewController.view
         headerView = HandlerView()
@@ -47,6 +52,8 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
         super.viewDidLoad()
         
         presenter.didTransformRoute()
+        didShowRoute?()
+        
         configureBottomSheet()
         configureLayout()
     }

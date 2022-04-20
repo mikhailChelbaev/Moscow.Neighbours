@@ -22,7 +22,7 @@ protocol MapServiceOutput {
     func didSelectAnnotation(_ view: MKAnnotationView)
 }
 
-final class MapService: ObservableService {
+public final class MapService: ObservableService {
     
     private let routeFinder: RouteFinder
     private let locationService: LocationService
@@ -55,10 +55,10 @@ final class MapService: ObservableService {
         self.locationService = locationService
     }
     
-    func showRoute(_ route: LegacyRouteViewModel, task: inout Task<Void, Never>?) {
+    public func showRoute(_ points: [MKAnnotation]) {
         isRouteVisible = true
         
-        task = Task(priority: .userInitiated) {
+        Task(priority: .userInitiated) {
             var overlays: [MKOverlay] = []
             overlays = await getOverlays(annotations: annotations)
             
@@ -77,7 +77,7 @@ final class MapService: ObservableService {
                 
             DispatchQueue.main.async { [self] in
                 // add annotations
-                annotations = route.persons
+                annotations = points
                 observers.forEach({ $1.showAnnotations(annotations) })
                 
                 // draw route overlay
@@ -86,7 +86,7 @@ final class MapService: ObservableService {
         }
     }
     
-    func hideRoute() {
+    public func hideRoute() {
         isRouteVisible = false
         
         // remove annotations

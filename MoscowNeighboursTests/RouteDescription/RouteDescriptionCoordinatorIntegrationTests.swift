@@ -58,10 +58,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: RouteDescriptionLoaderSpy, coordinator: RouteDescriptionCoordinatorSpy) {
+        let builder = Builder()
         let route = makeRoute()
         let loader = RouteDescriptionLoaderSpy()
         let coordinator = RouteDescriptionCoordinatorSpy(route: route, builder: Builder())
-        let storage = RouteDescriptionStorage(model: route, routeTransformer: loader)
+        let storage = RouteDescriptionStorage(model: route, routeTransformer: loader, mapService: builder.mapService)
         let sut = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: storage, coordinator: coordinator)
         return (sut, loader, coordinator)
     }

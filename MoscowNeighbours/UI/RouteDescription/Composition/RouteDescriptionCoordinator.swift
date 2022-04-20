@@ -22,7 +22,8 @@ public class RouteDescriptionCoordinator {
         controller = RoutesDescriptionUIComposer.routeDescriptionComposeWith(
             storage: RouteDescriptionStorage(
                 model: route,
-                routeTransformer: RouteTransformer()),
+                routeTransformer: RouteTransformer(),
+                mapService: builder.mapService),
             coordinator: self)
     }
     

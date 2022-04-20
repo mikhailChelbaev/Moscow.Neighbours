@@ -13,7 +13,7 @@ public class Builder {
     let locationService: LocationService
     let purchaseService: PurchaseProvider
     let routesService: RoutesService
-    let mapService: MapService
+    public let mapService: MapService
     let routePassingService: RoutePassingService
     let jwtService: JWTService
     let userService: UserProvider
