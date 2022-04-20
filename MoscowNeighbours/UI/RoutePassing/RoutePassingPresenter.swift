@@ -91,12 +91,16 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         
         mapService.selectAnnotation(person)
         mapService.centerAnnotation(person)
-//        let controller = personBuilder.buildPersonViewController(person: person,
-//                                                                 personPresentationState: .fullDescription)
-//        viewController?.present(controller, state: .top, completion: {
-            // update person state
-//            self.viewController?.reloadData()
-//        })
+        
+        let personCoordinator = PersonCoordinator(personInfo: person,
+                                                  presentationState: .fullDescription,
+                                                  builder: Builder())
+        personCoordinator.start()
+        personCoordinator.present(on: viewController,
+                                  state: .top,
+                                  completion: {
+            self.viewController?.reloadData()
+        })
     }
     
     func onIndexChange(_ newIndex: Int) {
