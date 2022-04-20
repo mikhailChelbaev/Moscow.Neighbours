@@ -231,6 +231,10 @@
 		74C9EF6B28102C9100B8172E /* WeakRef+Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF6A28102C9100B8172E /* WeakRef+Person.swift */; };
 		74C9EF6D28102E0600B8172E /* PersonTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF6C28102E0600B8172E /* PersonTableViewModel.swift */; };
 		74C9EF6F28102F0800B8172E /* ReadyToGoButtonCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF6E28102F0800B8172E /* ReadyToGoButtonCellController.swift */; };
+		74C9EF71281037C600B8172E /* PersonHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF70281037C600B8172E /* PersonHeaderCellViewModel.swift */; };
+		74C9EF73281037D300B8172E /* PersonInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF72281037D300B8172E /* PersonInfoCellViewModel.swift */; };
+		74C9EF75281037E800B8172E /* AlertCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF74281037E800B8172E /* AlertCellViewModel.swift */; };
+		74C9EF77281037F300B8172E /* ReadyToGoButtonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C9EF76281037F300B8172E /* ReadyToGoButtonCellViewModel.swift */; };
 		74CB2EFC28060A9600B68A11 /* RouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */; };
 		74CB2F002806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */; };
 		74D2CC5F280AE8F0000FE4B1 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */; };
@@ -531,6 +535,10 @@
 		74C9EF6A28102C9100B8172E /* WeakRef+Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Person.swift"; sourceTree = "<group>"; };
 		74C9EF6C28102E0600B8172E /* PersonTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewModel.swift; sourceTree = "<group>"; };
 		74C9EF6E28102F0800B8172E /* ReadyToGoButtonCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyToGoButtonCellController.swift; sourceTree = "<group>"; };
+		74C9EF70281037C600B8172E /* PersonHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeaderCellViewModel.swift; sourceTree = "<group>"; };
+		74C9EF72281037D300B8172E /* PersonInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCellViewModel.swift; sourceTree = "<group>"; };
+		74C9EF74281037E800B8172E /* AlertCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCellViewModel.swift; sourceTree = "<group>"; };
+		74C9EF76281037F300B8172E /* ReadyToGoButtonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyToGoButtonCellViewModel.swift; sourceTree = "<group>"; };
 		74CB2EFB28060A9600B68A11 /* RouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHeaderCell.swift; sourceTree = "<group>"; };
 		74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionHeaderViewModel.swift; sourceTree = "<group>"; };
 		74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
@@ -1100,6 +1108,10 @@
 			children = (
 				744B6EC22774E348008BDF37 /* PersonPresenter.swift */,
 				74C9EF6C28102E0600B8172E /* PersonTableViewModel.swift */,
+				74C9EF70281037C600B8172E /* PersonHeaderCellViewModel.swift */,
+				74C9EF72281037D300B8172E /* PersonInfoCellViewModel.swift */,
+				74C9EF74281037E800B8172E /* AlertCellViewModel.swift */,
+				74C9EF76281037F300B8172E /* ReadyToGoButtonCellViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1807,6 +1819,7 @@
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
 				74EDF86D2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift in Sources */,
+				74C9EF71281037C600B8172E /* PersonHeaderCellViewModel.swift in Sources */,
 				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
 				74DE215627F1046D006863A3 /* SignUpRequest.swift in Sources */,
 				7420CE2126BAAE290034533F /* RouteFinder.swift in Sources */,
@@ -1821,6 +1834,7 @@
 				748EE639270F915C00301552 /* Place.swift in Sources */,
 				74E7C3A027830F9100B16392 /* UserModel.swift in Sources */,
 				74F1856A2787293700A0BF24 /* SettingsBuilder.swift in Sources */,
+				74C9EF73281037D300B8172E /* PersonInfoCellViewModel.swift in Sources */,
 				74C72A4F277BBC1F00B73560 /* MenuPresenter.swift in Sources */,
 				7444DAB22801ED7A00A04F87 /* MainQueueDispatchDecorator.swift in Sources */,
 				74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */,
@@ -1838,6 +1852,7 @@
 				742B4EE9280C3F1600811AD1 /* RoutesCoordinator.swift in Sources */,
 				746192DF26AC556000CCCB71 /* CollectionCellWrapper.swift in Sources */,
 				74B8EC372788442D00E240C5 /* ProfileStorage.swift in Sources */,
+				74C9EF77281037F300B8172E /* ReadyToGoButtonCellViewModel.swift in Sources */,
 				74BE347428038EDF0086BB89 /* RoutesViewAdapter.swift in Sources */,
 				745775702797366D00123208 /* ObservableNetworkService.swift in Sources */,
 				74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */,
@@ -2026,6 +2041,7 @@
 				74C9EF6F28102F0800B8172E /* ReadyToGoButtonCellController.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
 				74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */,
+				74C9EF75281037E800B8172E /* AlertCellViewModel.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				74DE214D27F0F63D006863A3 /* UserState.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RoutesViewController.swift in Sources */,

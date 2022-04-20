@@ -7,10 +7,6 @@
 
 import UIKit
 
-struct PersonInfoCellViewModel {
-    let info: [ShortInfo]
-}
-
 final class PersonInfoCellController {
     let viewModel: PersonInfoCellViewModel
     

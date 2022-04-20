@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct AlertCellViewModel {
-    let text: String
-    let image: AlertImage
-}
-
 final class AlertCellController {
     let viewModel: AlertCellViewModel
     

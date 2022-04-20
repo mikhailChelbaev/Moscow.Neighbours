@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct ReadyToGoButtonCellViewModel {
-    let title: String
-    let action: Action?
-}
-
 final class ReadyToGoButtonCellController {
     let viewModel: ReadyToGoButtonCellViewModel
     

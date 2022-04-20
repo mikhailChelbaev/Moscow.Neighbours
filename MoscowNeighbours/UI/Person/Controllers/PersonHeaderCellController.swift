@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct PersonHeaderCellViewModel {
-    let name: String
-    let avatarURL: String?
-}
-
 final class PersonHeaderCellController {
     let viewModel: PersonHeaderCellViewModel
     
