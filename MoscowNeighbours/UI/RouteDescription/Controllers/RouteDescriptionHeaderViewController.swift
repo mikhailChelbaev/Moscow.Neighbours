@@ -21,6 +21,7 @@ final class RouteDescriptionHeaderViewController {
         view?.routeInfo.update(text: viewModel.information, image: nil)
         view?.button.setTitle(viewModel.buttonTitle, for: .normal)
         view?.imageView.loadImage(viewModel.coverURL)
+        view?.button.action = viewModel.didTapButton
     }
 }
 

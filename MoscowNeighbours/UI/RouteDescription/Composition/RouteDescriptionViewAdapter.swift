@@ -22,7 +22,10 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
             information: viewModel.information,
             buttonTitle: viewModel.buttonTitle,
             buttonAction: viewModel.buttonAction,
-            coverURL: viewModel.coverUrl)
+            coverURL: viewModel.coverUrl,
+            didTapButton: { [weak coordinator] in
+                coordinator?.startPassingRoute()
+            })
         let routeHeaderController = RouteDescriptionHeaderViewController(viewModel: routeHeaderViewModel)
         
         let descriptionHeaderCellModel = TextHeaderCellViewModel(text: viewModel.descriptionHeader)

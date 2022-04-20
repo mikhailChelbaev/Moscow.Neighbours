@@ -46,6 +46,10 @@ extension RouteDescriptionViewController {
         return headerCell?.button.titleLabel?.text
     }
     
+    func simulateHeaderButtonTap() {
+        headerCell?.button.simulateTap()
+    }
+    
     // MARK: - Information Cells
     
     private var informationSection: Int {

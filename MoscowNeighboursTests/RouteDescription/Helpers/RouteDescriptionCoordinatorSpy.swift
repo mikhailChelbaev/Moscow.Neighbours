@@ -11,6 +11,7 @@ class RouteDescriptionCoordinatorSpy: RouteDescriptionCoordinator {
     enum Message {
         case dismiss
         case displayPerson
+        case startRoutePassing
     }
     
     private(set) var receivedMessages = [Message]()
@@ -21,5 +22,9 @@ class RouteDescriptionCoordinatorSpy: RouteDescriptionCoordinator {
     
     override func displayPerson(_ personInfo: PersonInfo) {
         receivedMessages.append(.displayPerson)
+    }
+    
+    override func startPassingRoute() {
+        receivedMessages.append(.startRoutePassing)
     }
 }

@@ -13,4 +13,5 @@ struct RouteDescriptionHeaderViewModel {
     let buttonTitle: String
     let buttonAction: Action?
     let coverURL: String?
+    let didTapButton: Action?
 }
