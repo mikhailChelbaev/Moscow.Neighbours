@@ -13,7 +13,7 @@ public struct RoutesStorage {
     let userState: UserState
 
     init(routesService: RoutesProvider, routesFetchDelayManager: DelayManager, userState: UserState) {
-        self.routesService = MainQueueDispatchDecorator(decoratee: routesService)
+        self.routesService = routesService
         self.routesFetchDelayManager = routesFetchDelayManager
         self.userState = userState
     }
@@ -32,16 +32,17 @@ public final class RoutesUIComposer {
     
     public static func routesComposeWith(_ storage: RoutesStorage, coordinator: RoutesCoordinator) -> RoutesViewController {
         let presenter = RoutesPresenter(
-            routesService: storage.routesService,
+            routesService: MainQueueDispatchDecorator(decoratee: storage.routesService),
             delayManager: storage.routesFetchDelayManager)
         
-        let userStateObserver = UserStateObserver(completion: presenter.didFetchRoutes)
+        let userStateObserver = UserStateObserver(completion: { [weak presenter] in
+            presenter?.didFetchRoutes()
+        })
         let tableViewController = RoutesTableViewController(didRouteCellTap: presenter.didRouteCellTap(route:))
         
         let viewController = RoutesViewController(
             presenter: presenter,
             tableViewController: tableViewController,
-            userStateObserver: userStateObserver,
             coordinator: coordinator)
         
         let weakViewController = WeakRef(viewController)
@@ -51,7 +52,7 @@ public final class RoutesUIComposer {
         presenter.routeErrorView = weakViewController
         presenter.routeLoadingView = WeakRef(tableViewController)
         
-        storage.userState.register(userStateObserver)
+        storage.userState.register(MainQueueDispatchDecorator(decoratee: userStateObserver))
         
         return viewController
     }

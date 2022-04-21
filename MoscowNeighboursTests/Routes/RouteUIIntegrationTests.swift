@@ -76,6 +76,21 @@ class RouteUIIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_userStateChange_dispatchesFromBackgroundToMainThread() {
+        let userState = UserState(storeContainer: FakeStoreContainer())
+        let (sut, loader) = makeSUT(userState: userState)
+        
+        sut.loadViewIfNeeded()
+        loader.completeRoutesLoading()
+
+        let exp = expectation(description: "Wait for background queue work")
+        DispatchQueue.global().async {
+            userState.currentUser = nil
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(userState: UserState = UserState(), file: StaticString = #file, line: UInt = #line) -> (sut: RoutesViewController, loader: RoutesLoaderSpy) {

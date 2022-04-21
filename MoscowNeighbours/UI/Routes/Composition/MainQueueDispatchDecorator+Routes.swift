@@ -14,3 +14,11 @@ extension MainQueueDispatchDecorator: RoutesProvider where T == RoutesProvider {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: UserStateDelegate where T == UserStateDelegate {
+    func didChangeUserModel(state: UserState) {
+        dispatch {
+            self.decoratee.didChangeUserModel(state: state)
+        }
+    }
+}

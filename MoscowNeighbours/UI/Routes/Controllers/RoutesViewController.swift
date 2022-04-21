@@ -18,7 +18,6 @@ public final class RoutesViewController: BottomSheetViewController, RouteDescrip
     
     private let presenter: RoutesPresenter
     private let tableViewController: RoutesTableViewController
-    private let userStateObserver: UserStateObserver
     private let coordinator: RoutesCoordinator
     
     // MARK: - Init
@@ -26,11 +25,9 @@ public final class RoutesViewController: BottomSheetViewController, RouteDescrip
     init(
         presenter: RoutesPresenter,
         tableViewController: RoutesTableViewController,
-        userStateObserver: UserStateObserver,
         coordinator: RoutesCoordinator) {
         self.presenter = presenter
         self.tableViewController = tableViewController
-        self.userStateObserver = userStateObserver
         self.coordinator = coordinator
         
         tableView = tableViewController.view
