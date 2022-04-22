@@ -60,7 +60,7 @@ public final class MapService: ObservableService {
         
         Task(priority: .userInitiated) {
             var overlays: [MKOverlay] = []
-            overlays = await getOverlays(annotations: annotations)
+            overlays = await getOverlays(annotations: points)
             
             // check that route was not hidden
             guard isRouteVisible else { return }
