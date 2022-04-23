@@ -7,7 +7,10 @@
 
 import MoscowNeighbours
 
-final class RouteDescriptionLoaderSpy: ItemTransformer {
+final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseProvider {
+    
+    // MARK: - Route Transformer
+    
     var transformationCompletions = [(RouteViewModel) -> Void]()
     
     var transfromCallCount: Int {
@@ -21,4 +24,25 @@ final class RouteDescriptionLoaderSpy: ItemTransformer {
     func completeRoutesTransforming(with route: RouteViewModel, at index: Int = 0) {
         transformationCompletions[index](route)
     }
+    
+    // MARK: - Purchase Provider
+    
+    var purchaseCompletions = [String: PurchaseProductCompletion]()
+    
+    func fetchProducts(productIds: Set<String>, completion: @escaping RequestProductsCompletion) {
+        
+    }
+    
+    func purchaseProduct(productId: String, completion: @escaping PurchaseProductCompletion) {
+        purchaseCompletions[productId] = completion
+    }
+    
+    func restorePurchases(completion: @escaping PurchaseProductCompletion) {
+        
+    }
+    
+    func completePurchaseSuccessfully(for product: String?) {
+        purchaseCompletions[product ?? ""]?(.success(true))
+    }
+    
 }

@@ -50,6 +50,14 @@ extension RouteDescriptionViewController {
         headerCell?.button.simulateTap()
     }
     
+    var isHeaderButtonLoaderVisible: Bool? {
+        headerCell?.isButtonLoaderVisible
+    }
+    
+    var isHeaderButtonEnabled: Bool? {
+        headerCell?.button.isEnabled
+    }
+    
     // MARK: - Information Cells
     
     private var informationSection: Int {

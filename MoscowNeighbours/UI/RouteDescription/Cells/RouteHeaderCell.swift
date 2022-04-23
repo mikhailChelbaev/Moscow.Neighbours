@@ -17,7 +17,17 @@ public final class RouteHeaderCell: EntityHeaderCell {
         return button
     }()
     
+    private let buttonActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .medium
+        return indicator
+    }()
+    
     private var buttonWidthConstraint: NSLayoutConstraint?
+    
+    public var isButtonLoaderVisible: Bool {
+        buttonActivityIndicator.isAnimating
+    }
     
     public override func configureView() {
         super.configureView()
@@ -35,5 +45,18 @@ public final class RouteHeaderCell: EntityHeaderCell {
         addSubview(routeInfo)
         routeInfo.bottom(10, to: titleLabel)
         routeInfo.leading(20)
+        
+        button.addSubview(buttonActivityIndicator)
+        buttonActivityIndicator.placeInCenter()
+    }
+    
+    public func showActivityIndicator() {
+        buttonWidthConstraint?.isActive = false
+        
+        buttonActivityIndicator.startAnimating()
+        
+        let width = button.frame.width
+        buttonWidthConstraint = button.width(width)
+        buttonWidthConstraint?.isActive = true
     }
 }

@@ -211,6 +211,7 @@
 		74BE347428038EDF0086BB89 /* RoutesViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE347328038EDF0086BB89 /* RoutesViewAdapter.swift */; };
 		74BE3476280390ED0086BB89 /* RoutesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE3475280390ED0086BB89 /* RoutesTableViewController.swift */; };
 		74BE3478280396610086BB89 /* UserStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE3477280396610086BB89 /* UserStateObserver.swift */; };
+		74C3004B2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C3004A2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift */; };
 		74C51A282725EDC40066C43E /* MarkdownMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A272725EDC40066C43E /* MarkdownMerger.swift */; };
 		74C51A2A2725EFCA0066C43E /* MarkdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A292725EFCA0066C43E /* MarkdownNode.swift */; };
 		74C51A2C2725EFF90066C43E /* String+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C51A2B2725EFF90066C43E /* String+Subscript.swift */; };
@@ -515,6 +516,7 @@
 		74BE347328038EDF0086BB89 /* RoutesViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewAdapter.swift; sourceTree = "<group>"; };
 		74BE3475280390ED0086BB89 /* RoutesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTableViewController.swift; sourceTree = "<group>"; };
 		74BE3477280396610086BB89 /* UserStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateObserver.swift; sourceTree = "<group>"; };
+		74C3004A2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionHeaderPresenter.swift; sourceTree = "<group>"; };
 		74C51A272725EDC40066C43E /* MarkdownMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownMerger.swift; sourceTree = "<group>"; };
 		74C51A292725EFCA0066C43E /* MarkdownNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
 		74C51A2B2725EFF90066C43E /* String+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Subscript.swift"; sourceTree = "<group>"; };
@@ -1389,6 +1391,27 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		74C3004C2813587500238EA3 /* RouteDescription */ = {
+			isa = PBXGroup;
+			children = (
+				74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */,
+				741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */,
+				741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */,
+				74114C80280781B300C1CF12 /* InformationCellViewModel.swift */,
+				74DEA86128082E690050EF49 /* PersonCellViewModel.swift */,
+			);
+			path = RouteDescription;
+			sourceTree = "<group>";
+		};
+		74C3004D2813588000238EA3 /* RouteDescriptionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				74C3004A2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift */,
+				74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */,
+			);
+			path = RouteDescriptionHeader;
+			sourceTree = "<group>";
+		};
 		74C56AA328095EEF00EC4942 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -1563,12 +1586,8 @@
 		74EDF8642805B32A00D0F6B1 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */,
-				741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */,
-				74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */,
-				741BA1D92807756A000B3C80 /* TextHeaderCellViewModel.swift */,
-				74114C80280781B300C1CF12 /* InformationCellViewModel.swift */,
-				74DEA86128082E690050EF49 /* PersonCellViewModel.swift */,
+				74C3004C2813587500238EA3 /* RouteDescription */,
+				74C3004D2813588000238EA3 /* RouteDescriptionHeader */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1944,6 +1963,7 @@
 				746684AA279F5D5900AFAA2E /* AccountConfirmationService.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */,
+				74C3004B2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift in Sources */,
 				74E729B526F2978200775D37 /* LegacyRouteHeaderCell.swift in Sources */,
 				74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */,
 				74967F77276F554D0096AA77 /* DefaultJsonParser.swift in Sources */,

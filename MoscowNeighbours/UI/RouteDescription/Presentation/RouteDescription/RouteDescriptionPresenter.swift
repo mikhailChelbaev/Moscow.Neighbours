@@ -54,7 +54,7 @@ extension RouteDescriptionPresenter: RouteDescriptionInput {
                 persons: RouteDescriptionPresenter.map(viewModel.persons),
                 information: viewModel.routeInformation,
                 buttonTitle: buttonTitle,
-                buttonAction: nil))
+                purchaseStatus: viewModel.purchaseStatus))
         }
     }
     

@@ -18,3 +18,9 @@ extension WeakRef: RouteDescriptionView where T: RouteDescriptionView {
         object?.display(viewModel)
     }
 }
+
+extension WeakRef: RouteDescriptionHeaderView where T: RouteDescriptionHeaderView {
+    func display(_ viewModel: RouteDescriptionHeaderViewModel) {
+        object?.display(viewModel)
+    }
+}

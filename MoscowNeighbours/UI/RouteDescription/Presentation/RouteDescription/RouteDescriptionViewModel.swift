@@ -16,9 +16,9 @@ struct RouteDescriptionViewModel {
     let persons: [PersonCellViewModel]
     let information: String
     let buttonTitle: String
-    let buttonAction: Action?
+    let purchaseStatus: Purchase.Status
     
-    init(name: String, descriptionHeader: String, description: NSAttributedString, coverUrl: String?, personsHeader: String, persons: [PersonCellViewModel], information: String, buttonTitle: String, buttonAction: Action?) {
+    init(name: String, descriptionHeader: String, description: NSAttributedString, coverUrl: String?, personsHeader: String, persons: [PersonCellViewModel], information: String, buttonTitle: String, purchaseStatus: Purchase.Status) {
         self.name = name
         self.descriptionHeader = descriptionHeader
         self.description = description
@@ -27,6 +27,6 @@ struct RouteDescriptionViewModel {
         self.persons = persons
         self.information = information
         self.buttonTitle = buttonTitle
-        self.buttonAction = buttonAction
+        self.purchaseStatus = purchaseStatus
     }
 }

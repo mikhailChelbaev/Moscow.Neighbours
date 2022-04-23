@@ -17,16 +17,11 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
     }
     
     func display(_ viewModel: RouteDescriptionViewModel) {
-        let routeHeaderViewModel = RouteDescriptionHeaderViewModel(
-            title: viewModel.name,
-            information: viewModel.information,
-            buttonTitle: viewModel.buttonTitle,
-            buttonAction: viewModel.buttonAction,
-            coverURL: viewModel.coverUrl,
-            didTapButton: { [weak coordinator] in
-                coordinator?.startPassingRoute()
-            })
-        let routeHeaderController = RouteDescriptionHeaderViewController(viewModel: routeHeaderViewModel)
+        let routeHeaderPresenter = RouteDescriptionHeaderPresenter(model: viewModel, startRoutePassing: { [weak coordinator] in
+            coordinator?.startPassingRoute()
+        })
+        let routeHeaderController = RouteDescriptionHeaderViewController(presenter: routeHeaderPresenter)
+        routeHeaderPresenter.view = WeakRef(routeHeaderController)
         
         let descriptionHeaderCellModel = TextHeaderCellViewModel(text: viewModel.descriptionHeader)
         let descriptionHeaderCellController = TextHeaderCellController(viewModel: descriptionHeaderCellModel)

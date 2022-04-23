@@ -8,21 +8,13 @@
 import UIKit
 
 final class RouteDescriptionHeaderViewController {
-    let viewModel: RouteDescriptionHeaderViewModel
+    let presenter: RouteDescriptionHeaderPresenter
     
-    init(viewModel: RouteDescriptionHeaderViewModel) {
-        self.viewModel = viewModel
+    init(presenter: RouteDescriptionHeaderPresenter) {
+        self.presenter = presenter
     }
     
     private var view: RouteHeaderCell?
-    
-    func configure() {
-        view?.titleLabel.text = viewModel.title
-        view?.routeInfo.update(text: viewModel.information, image: nil)
-        view?.button.setTitle(viewModel.buttonTitle, for: .normal)
-        view?.imageView.loadImage(viewModel.coverURL)
-        view?.button.action = viewModel.didTapButton
-    }
 }
 
 extension RouteDescriptionHeaderViewController: CellController {
@@ -31,8 +23,22 @@ extension RouteDescriptionHeaderViewController: CellController {
         cell.selectionStyle = .none
         
         view = cell.view
-        configure()
+        presenter.didRequestData()
         
         return cell
+    }
+}
+ 
+extension RouteDescriptionHeaderViewController: RouteDescriptionHeaderView {
+    func display(_ viewModel: RouteDescriptionHeaderViewModel) {
+        view?.titleLabel.text = viewModel.title
+        view?.routeInfo.update(text: viewModel.information, image: nil)
+        view?.imageView.loadImage(viewModel.coverURL)
+        view?.button.setTitle(viewModel.buttonTitle, for: .normal)
+        view?.button.action = viewModel.didTapButton
+        view?.button.isEnabled = !viewModel.isLoading
+        if viewModel.isLoading {
+            view?.showActivityIndicator()
+        }
     }
 }

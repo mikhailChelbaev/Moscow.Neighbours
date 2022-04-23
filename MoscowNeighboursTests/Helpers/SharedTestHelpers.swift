@@ -9,7 +9,7 @@ import Foundation
 import MoscowNeighbours
 
 func makeRoute(name: String = "Route", price: (status: Purchase.Status, value: String?) = (.free, nil), personsInfo: [PersonInfo] = []) -> Route {
-    return Route(id: UUID().uuidString, name: "some name", description: "description", coverUrl: nil, duration: "200 min", distance: "200 km", personsInfo: personsInfo, purchase: .init(status: price.status, productId: nil), price: price.value)
+    return Route(id: UUID().uuidString, name: "some name", description: "description", coverUrl: nil, duration: "200 min", distance: "200 km", personsInfo: personsInfo, purchase: .init(status: price.status, productId: price.status == .free ? nil : UUID().uuidString), price: price.value)
 }
 
 func makePersonInfo() -> PersonInfo {

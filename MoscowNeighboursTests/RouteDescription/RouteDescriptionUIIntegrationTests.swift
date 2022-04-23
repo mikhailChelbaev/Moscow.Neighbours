@@ -88,6 +88,21 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.headerCellButtonText, localized("route_description.start_route"), "Expected route header button text to be \(localized("route_description.start_route"))")
     }
     
+    func test_headerButton_displaysLoaderAndDisableWhenStartRoutePurchase() {
+        let route = makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, "129$")))
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: route)
+        
+        XCTAssertEqual(sut.isHeaderButtonLoaderVisible, false)
+        XCTAssertEqual(sut.isHeaderButtonEnabled, true)
+        
+        sut.simulateHeaderButtonTap()
+        XCTAssertEqual(sut.isHeaderButtonLoaderVisible, true)
+        XCTAssertEqual(sut.isHeaderButtonEnabled, false)
+    }
+    
     func test_transformRouteCompletion_dispatchesFromBackgroundToMainThread() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()

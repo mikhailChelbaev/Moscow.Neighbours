@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Product {
+public protocol Product {
     var id: String { get }
     var localizedPrice: String { get }
 }
