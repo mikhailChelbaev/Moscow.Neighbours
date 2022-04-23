@@ -8,7 +8,13 @@
 import XCTest
 import MoscowNeighbours
 
-class RoutePurchaseWithConfirmation: PurchaseOperationProvider {
+protocol PurchaseWithConfirmationProvider {
+    typealias Result = Swift.Result<Void, Error>
+    
+    func purchaseRoute(route: Route, completion: @escaping (Result) -> Void)
+}
+
+class RoutePurchaseWithConfirmationService: PurchaseWithConfirmationProvider {
     private let operation: PurchaseOperationProvider
     private let confirmation: RoutePurchaseConfirmationProvider
     
@@ -17,16 +23,18 @@ class RoutePurchaseWithConfirmation: PurchaseOperationProvider {
         self.confirmation = confirmation
     }
     
-    func purchaseProduct(product: Product, completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
+    struct MissingProduct: Error {}
+    
+    func purchaseRoute(route: Route, completion: @escaping (PurchaseWithConfirmationProvider.Result) -> Void) {
+        guard let product = route.purchase.product else {
+            return completion(.failure(MissingProduct()))
+        }
+        
         operation.purchaseProduct(product: product) { [weak self] result in
             if case Result.success = result {
-                self?.confirmation.confirmRoutePurchase(routeId: "", completion: nil)
+                self?.confirmation.confirmRoutePurchase(routeId: route.id, completion: nil)
             }
         }
-    }
-    
-    func restorePurchases(completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
-        
     }
 }
 
@@ -43,7 +51,7 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         let route = anyPaidRoute()
         let (sut, loader) = makeSUT()
         
-        sut.purchaseProduct(product: route.purchase.product!) { _ in }
+        sut.purchaseRoute(route: route) { _ in }
         
         XCTAssertEqual(loader.operationCallCount, 1)
         XCTAssertEqual(loader.confirmationCallCount, 0)
@@ -53,7 +61,7 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         let route = anyPaidRoute()
         let (sut, loader) = makeSUT()
         
-        sut.purchaseProduct(product: route.purchase.product!) { _ in }
+        sut.purchaseRoute(route: route) { _ in }
         loader.completePurchase(with: anyNSError())
         
         XCTAssertEqual(loader.confirmationCallCount, 0)
@@ -63,17 +71,27 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         let route = anyPaidRoute()
         let (sut, loader) = makeSUT()
         
-        sut.purchaseProduct(product: route.purchase.product!) { _ in }
+        sut.purchaseRoute(route: route) { _ in }
         loader.completePurchaseSuccessfully()
         
         XCTAssertEqual(loader.confirmationCallCount, 1)
     }
     
+    func test_purchaseConfirmation_usesCorrectRouteId() {
+        let route = anyPaidRoute()
+        let (sut, loader) = makeSUT()
+        
+        sut.purchaseRoute(route: route) { _ in }
+        loader.completePurchaseSuccessfully()
+        
+        XCTAssertEqual(loader.confirmedRouteIds, [route.id])
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseOperationProvider, loader: PurchaseSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseWithConfirmationProvider, loader: PurchaseSpy) {
         let loader = PurchaseSpy()
-        let sut = RoutePurchaseWithConfirmation(operation: loader, confirmation: loader)
+        let sut = RoutePurchaseWithConfirmationService(operation: loader, confirmation: loader)
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
@@ -113,10 +131,14 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         }
         
         // MARK: - Purchase Confirmation
-        private(set) var confirmationCallCount: Int = 0
+        private(set) var confirmedRouteIds = [String]()
+        
+        var confirmationCallCount: Int {
+            confirmedRouteIds.count
+        }
         
         func confirmRoutePurchase(routeId: String, completion: ((RoutePurchaseConfirmationProvider.Result) -> Void)?) {
-            confirmationCallCount += 1
+            confirmedRouteIds.append(routeId)
         }
     }
     
