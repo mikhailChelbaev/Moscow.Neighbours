@@ -202,6 +202,7 @@
 		749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCC727B8678A00CC4D43 /* MessageResponse.swift */; };
 		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
 		74A0B86528148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */; };
+		74A0B86828149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
 		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
@@ -509,6 +510,7 @@
 		749FDCC727B8678A00CC4D43 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
 		74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationTests.swift; sourceTree = "<group>"; };
+		74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationService.swift; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 				741D9BF32813FC3F0094EF3F /* PurchaseOperationProvider.swift */,
 				741D9BF72813FC690094EF3F /* PurchaseOperationService.swift */,
 				749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */,
+				74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -1935,6 +1938,7 @@
 				74C9EF67281007F200B8172E /* PersonViewAdapter.swift in Sources */,
 				74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */,
 				74DEA85E28082CB70050EF49 /* PersonCell.swift in Sources */,
+				74A0B86828149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift in Sources */,
 				74F739FD272B50DE007C5450 /* CustomTableViewDataSource.swift in Sources */,
 				740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */,
 				742EFE8D26F14168009A5126 /* GradientView.swift in Sources */,

@@ -94,7 +94,7 @@ extension PurchaseOperationService: SKPaymentTransactionObserver {
             case .purchased, .restored:
                 Logger.log("Product \(productId) successfully purchased or restored")
                 SKPaymentQueue.default().finishTransaction(transaction)
-                productPurchaseCallback?(.success(true))
+                productPurchaseCallback?(.success(()))
                 
             case .failed:
                 Logger.log("Failed to purchase or restore product \(productId)")

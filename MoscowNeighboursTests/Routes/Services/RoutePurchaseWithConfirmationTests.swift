@@ -8,36 +8,6 @@
 import XCTest
 import MoscowNeighbours
 
-protocol PurchaseWithConfirmationProvider {
-    typealias Result = Swift.Result<Void, Error>
-    
-    func purchaseRoute(route: Route, completion: @escaping (Result) -> Void)
-}
-
-class RoutePurchaseWithConfirmationService: PurchaseWithConfirmationProvider {
-    private let operation: PurchaseOperationProvider
-    private let confirmation: RoutePurchaseConfirmationProvider
-    
-    init(operation: PurchaseOperationProvider, confirmation: RoutePurchaseConfirmationProvider) {
-        self.operation = operation
-        self.confirmation = confirmation
-    }
-    
-    struct MissingProduct: Error {}
-    
-    func purchaseRoute(route: Route, completion: @escaping (PurchaseWithConfirmationProvider.Result) -> Void) {
-        guard let product = route.purchase.product else {
-            return completion(.failure(MissingProduct()))
-        }
-        
-        operation.purchaseProduct(product: product) { [weak self] result in
-            if case Result.success = result {
-                self?.confirmation.confirmRoutePurchase(routeId: route.id, completion: nil)
-            }
-        }
-    }
-}
-
 class RoutePurchaseWithConfirmationTests: XCTestCase {
     
     func test_init_doesNotPurchase() {
@@ -127,7 +97,7 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         }
         
         func completePurchaseSuccessfully(at index: Int = 0) {
-            purchaseCompletions[index](.success(true))
+            purchaseCompletions[index](.success(()))
         }
         
         // MARK: - Purchase Confirmation

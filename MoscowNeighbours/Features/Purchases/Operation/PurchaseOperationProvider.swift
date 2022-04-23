@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol PurchaseOperationProvider {
-    typealias Result = Swift.Result<Bool, Error>
+    typealias Result = Swift.Result<Void, Error>
     
     func purchaseProduct(product: Product, completion: @escaping (Result) -> Void)
     func restorePurchases(completion: @escaping (Result) -> Void)

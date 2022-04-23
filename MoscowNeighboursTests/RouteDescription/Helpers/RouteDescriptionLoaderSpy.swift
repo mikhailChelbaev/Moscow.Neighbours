@@ -38,7 +38,7 @@ final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseOperationProvide
     }
 
     func completePurchaseSuccessfully(for product: String?) {
-        purchaseCompletions[product ?? ""]?(.success(true))
+        purchaseCompletions[product ?? ""]?(.success(()))
     }
     
 }
