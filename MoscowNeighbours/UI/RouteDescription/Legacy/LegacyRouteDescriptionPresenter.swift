@@ -154,9 +154,9 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     }
     
     private func sendPurchaseConfirmationToServer(routeId: String) {
-        Task {
-            try? await routePurchaseConfirmationService.confirmRoutePurchase(routeId: routeId)
-        }
+//        Task {
+//            try? await routePurchaseConfirmationService.confirmRoutePurchase(routeId: routeId)
+//        }
     }
     
     private func handleRoutePurchaseError(_ error: Error) {

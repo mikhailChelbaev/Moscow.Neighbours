@@ -8,7 +8,9 @@
 import Foundation
 
 public protocol RoutePurchaseConfirmationProvider {
-    func confirmRoutePurchase(routeId: String) async throws
+    typealias Result = Swift.Result<Void, Error>
+    
+    func confirmRoutePurchase(routeId: String, completion: ((Result) -> Void)?)
 }
 
 final class RoutePurchaseConfirmationService: BaseNetworkService, RoutePurchaseConfirmationProvider {
@@ -25,13 +27,21 @@ final class RoutePurchaseConfirmationService: BaseNetworkService, RoutePurchaseC
     
     // MARK: - Internal Methods
     
-    func confirmRoutePurchase(routeId: String) async throws {
-        let result = await requestSender.send(request: api.makeRoutePurchaseConfirmationRequest(routeId: routeId),
-                                              type: MessageResponse.self)
-        
-        if case let .failure(error) = result {
-            Logger.log("Failed to confirm route purchase: \(error.localizedDescription)")
-            throw error
+    typealias Result = RoutePurchaseConfirmationProvider.Result
+    
+    func confirmRoutePurchase(routeId: String, completion: ((Result) -> Void)?) {
+        Task {
+            let result = await requestSender.send(request: api.makeRoutePurchaseConfirmationRequest(routeId: routeId),
+                                                  type: MessageResponse.self)
+            
+            switch result {
+            case .success:
+                completion?(.success(()))
+                
+            case let .failure(error):
+                Logger.log("Failed to confirm route purchase: \(error.localizedDescription)")
+                completion?(.failure(error))
+            }
         }
     }
     

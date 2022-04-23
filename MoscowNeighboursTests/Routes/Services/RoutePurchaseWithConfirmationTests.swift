@@ -10,13 +10,19 @@ import MoscowNeighbours
 
 class RoutePurchaseWithConfirmation: PurchaseOperationProvider {
     private let operation: PurchaseOperationProvider
+    private let confirmation: RoutePurchaseConfirmationProvider
     
     init(operation: PurchaseOperationProvider, confirmation: RoutePurchaseConfirmationProvider) {
         self.operation = operation
+        self.confirmation = confirmation
     }
     
     func purchaseProduct(product: Product, completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
-        operation.purchaseProduct(product: product) { _ in }
+        operation.purchaseProduct(product: product) { [weak self] result in
+            if case Result.success = result {
+                self?.confirmation.confirmRoutePurchase(routeId: "", completion: nil)
+            }
+        }
     }
     
     func restorePurchases(completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
@@ -51,6 +57,16 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         loader.completePurchase(with: anyNSError())
         
         XCTAssertEqual(loader.confirmationCallCount, 0)
+    }
+    
+    func test_purchaseProductCompletion_callsConfirmationIfSucceeded() {
+        let route = anyPaidRoute()
+        let (sut, loader) = makeSUT()
+        
+        sut.purchaseProduct(product: route.purchase.product!) { _ in }
+        loader.completePurchaseSuccessfully()
+        
+        XCTAssertEqual(loader.confirmationCallCount, 1)
     }
     
     // MARK: - Helpers
@@ -92,10 +108,14 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
             purchaseCompletions[index](.failure(error))
         }
         
+        func completePurchaseSuccessfully(at index: Int = 0) {
+            purchaseCompletions[index](.success(true))
+        }
+        
         // MARK: - Purchase Confirmation
         private(set) var confirmationCallCount: Int = 0
         
-        func confirmRoutePurchase(routeId: String) async throws {
+        func confirmRoutePurchase(routeId: String, completion: ((RoutePurchaseConfirmationProvider.Result) -> Void)?) {
             confirmationCallCount += 1
         }
     }
