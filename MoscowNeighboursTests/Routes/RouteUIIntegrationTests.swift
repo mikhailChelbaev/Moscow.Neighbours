@@ -29,8 +29,8 @@ class RouteUIIntegrationTests: XCTestCase {
     func test_fetchRoutesCompletion_rendersSuccessfullyLoadedRoutes() {
         let route0 = makeRoute(name: "Route 1", price: (.free, nil))
         let route1 = makeRoute(name: "Route 2", price: (.purchased, nil))
-        let route2 = makeRoute(name: "Route 3", price: (.buy, "100"))
-        let route3 = makeRoute(name: "Route 4", price: (.buy, "200"))
+        let route2 = makeRoute(name: "Route 3", price: (.buy, 100))
+        let route3 = makeRoute(name: "Route 4", price: (.buy, 200))
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()

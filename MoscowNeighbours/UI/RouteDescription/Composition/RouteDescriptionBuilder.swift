@@ -11,11 +11,13 @@ public struct RouteDescriptionStorage<Transformer: ItemTransformer> where Transf
     let model: Route
     let routeTransformer: Transformer
     let mapService: MapService
+    let purchaseService: PurchaseOperationProvider
     
-    public init(model: Route, routeTransformer: Transformer, mapService: MapService) {
+    public init(model: Route, routeTransformer: Transformer, mapService: MapService, purchaseService: PurchaseOperationProvider) {
         self.model = model
         self.routeTransformer = routeTransformer
         self.mapService = mapService
+        self.purchaseService = purchaseService
     }
 }
 
@@ -42,7 +44,7 @@ public final class RoutesDescriptionUIComposer {
                 storage.mapService.showRoute(storage.model.personsInfo)
             })
         
-        presenter.routeDescriptionView = RouteDescriptionViewAdapter(controller: tableViewController, coordinator: coordinator)
+        presenter.routeDescriptionView = RouteDescriptionViewAdapter(controller: tableViewController, coordinator: coordinator, purchaseService: storage.purchaseService)
         presenter.routeDescriptionLoadingView = WeakRef(tableViewController)
         
         return controller

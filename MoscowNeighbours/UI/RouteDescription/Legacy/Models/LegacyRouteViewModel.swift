@@ -35,7 +35,7 @@ final class LegacyRouteViewModel {
         routeInformation = "\(route.distance) • \(route.duration)"
         purchaseStatus = route.purchase.status
         persons = []
-        productId = route.purchase.productId
+        productId = route.purchase.product?.id
         price = route.localizedPrice()
 
         for person in route.personsInfo {

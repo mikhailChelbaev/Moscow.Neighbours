@@ -23,7 +23,10 @@ public class RouteDescriptionCoordinator {
             storage: RouteDescriptionStorage(
                 model: route,
                 routeTransformer: RouteTransformer(),
-                mapService: builder.mapService),
+                mapService: builder.mapService,
+                purchaseService: PurchaseOperationService(
+                    isAuthorized: builder.userState.isAuthorized,
+                    isVerified: builder.userState.isVerified)),
             coordinator: self)
     }
     

@@ -14,11 +14,18 @@ protocol RouteDescriptionHeaderView {
 final class RouteDescriptionHeaderPresenter {
     
     private let model: RouteDescriptionViewModel
+    private let purchaseService: PurchaseOperationProvider
     private let startRoutePassing: Action
+    private let purchaseOperationCompletion: Action
     
-    init(model: RouteDescriptionViewModel, startRoutePassing: @escaping Action) {
+    init(model: RouteDescriptionViewModel,
+         purchaseService: PurchaseOperationProvider,
+         startRoutePassing: @escaping Action,
+         purchaseOperationCompletion: @escaping Action) {
         self.model = model
+        self.purchaseService = purchaseService
         self.startRoutePassing = startRoutePassing
+        self.purchaseOperationCompletion = purchaseOperationCompletion
     }
     
     var view: RouteDescriptionHeaderView?
@@ -38,11 +45,15 @@ final class RouteDescriptionHeaderPresenter {
     }
     
     private func purchaseProduct() {
-        guard !isPurchasingProduct else { return }
+        guard !isPurchasingProduct, let product = model.product else { return }
         
         isPurchasingProduct = true
-        
         updateView()
+        
+        purchaseService.purchaseProduct(product: product) { [weak self] result in
+            self?.isPurchasingProduct = false
+            self?.purchaseOperationCompletion()
+        }
     }
     
     private func updateView() {

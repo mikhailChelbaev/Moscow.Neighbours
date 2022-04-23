@@ -7,7 +7,7 @@
 
 import MoscowNeighbours
 
-final class RouteDescriptionLoaderSpy: ItemTransformer {
+final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseOperationProvider {    
     
     // MARK: - Route Transformer
     
@@ -27,22 +27,18 @@ final class RouteDescriptionLoaderSpy: ItemTransformer {
     
     // MARK: - Purchase Provider
     
-//    var purchaseCompletions = [String: PurchaseProductCompletion]()
-//
-//    func fetchProducts(productIds: Set<String>, completion: @escaping RequestProductsCompletion) {
-//
-//    }
-//
-//    func purchaseProduct(productId: String, completion: @escaping PurchaseProductCompletion) {
-//        purchaseCompletions[productId] = completion
-//    }
-//
-//    func restorePurchases(completion: @escaping PurchaseProductCompletion) {
-//
-//    }
-//
-//    func completePurchaseSuccessfully(for product: String?) {
-//        purchaseCompletions[product ?? ""]?(.success(true))
-//    }
+    var purchaseCompletions = [String: (PurchaseOperationProvider.Result) -> Void]()
+
+    func purchaseProduct(product: Product, completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
+        purchaseCompletions[product.id] = completion
+    }
+
+    func restorePurchases(completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
+
+    }
+
+    func completePurchaseSuccessfully(for product: String?) {
+        purchaseCompletions[product ?? ""]?(.success(true))
+    }
     
 }

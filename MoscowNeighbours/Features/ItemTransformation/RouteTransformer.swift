@@ -24,7 +24,7 @@ public final class RouteTransformer: ItemTransformer {
                 duration: route.duration,
                 persons: route.personsInfo,
                 purchaseStatus: route.purchase.status,
-                productId: route.purchase.productId,
+                product: route.purchase.product,
                 price: route.localizedPrice()))
         }
     }

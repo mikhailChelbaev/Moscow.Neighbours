@@ -59,7 +59,7 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
     }
     
     func test_transformedRouteWithBuyStatus_rendersRouteDescriptionBuyButton() {
-        let route = makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, "129$")))
+        let route = makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, 129)))
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -69,7 +69,7 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
     }
     
     func test_transformedRouteWithPurchasedStatus_rendersStartRouteButton() {
-        let route = makeRouteModel(from: makeRoute(name: "Purchased route", price: (.purchased, "129$")))
+        let route = makeRouteModel(from: makeRoute(name: "Purchased route", price: (.purchased, 129)))
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -88,8 +88,8 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.headerCellButtonText, localized("route_description.start_route"), "Expected route header button text to be \(localized("route_description.start_route"))")
     }
     
-    func test_headerButton_displaysLoaderAndDisableWhenStartRoutePurchase() {
-        let route = makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, "129$")))
+    func test_headerButton_displaysLoaderAndDisableWhilePurchasingRoute() {
+        let route = makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, 129)))
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -101,6 +101,10 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         sut.simulateHeaderButtonTap()
         XCTAssertEqual(sut.isHeaderButtonLoaderVisible, true)
         XCTAssertEqual(sut.isHeaderButtonEnabled, false)
+        
+        loader.completePurchaseSuccessfully(for: route.product?.id)
+        XCTAssertEqual(sut.isHeaderButtonLoaderVisible, false)
+        XCTAssertEqual(sut.isHeaderButtonEnabled, true)
     }
     
     func test_transformRouteCompletion_dispatchesFromBackgroundToMainThread() {
@@ -120,7 +124,7 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
     private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: RouteDescriptionLoaderSpy) {
         let builder = Builder()
         let loader = RouteDescriptionLoaderSpy()
-        let storage = RouteDescriptionStorage(model: route, routeTransformer: loader, mapService: builder.mapService)
+        let storage = RouteDescriptionStorage(model: route, routeTransformer: loader, mapService: builder.mapService, purchaseService: loader)
         let sut = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: storage, coordinator: RouteDescriptionCoordinator(route: route, builder: Builder()))
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

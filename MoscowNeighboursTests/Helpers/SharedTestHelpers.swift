@@ -7,9 +7,30 @@
 
 import Foundation
 import MoscowNeighbours
+import StoreKit
 
-func makeRoute(name: String = "Route", price: (status: Purchase.Status, value: String?) = (.free, nil), personsInfo: [PersonInfo] = []) -> Route {
-    return Route(id: UUID().uuidString, name: "some name", description: "description", coverUrl: nil, duration: "200 min", distance: "200 km", personsInfo: personsInfo, purchase: .init(status: price.status, productId: price.status == .free ? nil : UUID().uuidString), price: price.value)
+extension SKProduct {
+    convenience init(id: String, price: NSDecimalNumber) {
+        self.init()
+        self.setValue(id, forKey: "productIdentifier")
+        self.setValue(price, forKey: "price")
+        self.setValue(Locale.current, forKey: "priceLocale")
+    }
+}
+
+func makeRoute(name: String = "Route", price: (status: Purchase.Status, value: NSDecimalNumber?) = (.free, nil), personsInfo: [PersonInfo] = []) -> Route {
+    let product: MoscowNeighbours.Product = SKProduct(id: UUID().uuidString, price: price.value ?? 0)
+    return Route(
+        id: UUID().uuidString,
+        name: "some name",
+        description: "description",
+        coverUrl: nil,
+        duration: "200 min",
+        distance: "200 km",
+        personsInfo: personsInfo,
+        purchase: .init(
+            status: price.status,
+            product: price.status == .free ? nil : product))
 }
 
 func makePersonInfo() -> PersonInfo {
@@ -52,6 +73,6 @@ func makeRouteModel(from route: Route = makeRoute()) -> RouteViewModel {
         duration: route.duration,
         persons: route.personsInfo,
         purchaseStatus: route.purchase.status,
-        productId: route.purchase.productId,
+        product: route.purchase.product,
         price: route.localizedPrice())
 }

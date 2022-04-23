@@ -15,10 +15,10 @@ public struct Purchase {
     }
     
     public var status: Status
-    public let productId: String?
+    public let product: Product?
     
-    public init(status: Purchase.Status, productId: String?) {
+    public init(status: Purchase.Status, product: Product?) {
         self.status = status
-        self.productId = productId
+        self.product = product
     }
 }

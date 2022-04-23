@@ -75,7 +75,7 @@ private extension RemoteRoute {
     func toModel(products: [Product]) -> Route {
         let product = products.first { $0.id == purchase.productId }
         
-        return Route(id: id, name: name, description: description, coverUrl: coverUrl, duration: duration, distance: distance, personsInfo: personsInfo.toModels(), purchase: purchase.toModel(), price: product?.localizedPrice)
+        return Route(id: id, name: name, description: description, coverUrl: coverUrl, duration: duration, distance: distance, personsInfo: personsInfo.toModels(), purchase: purchase.toModel(product: product))
     }
 }
 
@@ -114,7 +114,7 @@ private extension Array where Element == RemoteShortInfo {
 }
 
 private extension RemotePurchase {
-    func toModel() -> Purchase {
+    func toModel(product: Product?) -> Purchase {
         var status: Purchase.Status
         switch self.status {
         case .free:
@@ -125,6 +125,6 @@ private extension RemotePurchase {
             status = .purchased
         }
         
-        return Purchase(status: status, productId: productId)
+        return Purchase(status: status, product: product)
     }
 }

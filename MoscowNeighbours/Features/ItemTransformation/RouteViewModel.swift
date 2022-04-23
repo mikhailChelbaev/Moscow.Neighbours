@@ -14,17 +14,17 @@ public struct RouteViewModel {
     public let routeInformation: String
     public let persons: [PersonInfo]
     public let purchaseStatus: Purchase.Status
-    public let productId: String?
+    public let product: Product?
     public let price: String
     
-    public init(name: String, description: NSAttributedString, coverUrl: String?, distance: String, duration: String, persons: [PersonInfo], purchaseStatus: Purchase.Status, productId: String?, price: String) {
+    public init(name: String, description: NSAttributedString, coverUrl: String?, distance: String, duration: String, persons: [PersonInfo], purchaseStatus: Purchase.Status, product: Product?, price: String) {
         self.name = name
         self.description = description
         self.coverUrl = coverUrl
         self.routeInformation = "\(distance) • \(duration)"
         self.persons = persons
         self.purchaseStatus = purchaseStatus
-        self.productId = productId
+        self.product = product
         self.price = price
     }
 }

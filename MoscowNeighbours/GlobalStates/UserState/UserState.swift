@@ -29,6 +29,13 @@ final class UserState {
         return currentUser != nil
     }
     
+    var isVerified: Bool {
+        guard let currentUser = currentUser else {
+            return false
+        }
+        return currentUser.isVerified
+    }
+    
     var currentUser: UserModel? {
         set {
             cache.store(data: newValue, key: StorageKeys.currentUser.rawValue)

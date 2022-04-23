@@ -10,15 +10,19 @@ import Foundation
 final class RouteDescriptionViewAdapter: RouteDescriptionView {
     private weak var controller: RouteDescriptionTableViewController?
     private let coordinator: RouteDescriptionCoordinator
+    private let purchaseService: PurchaseOperationProvider
     
-    init(controller: RouteDescriptionTableViewController, coordinator: RouteDescriptionCoordinator) {
+    init(controller: RouteDescriptionTableViewController, coordinator: RouteDescriptionCoordinator, purchaseService: PurchaseOperationProvider) {
         self.controller = controller
         self.coordinator = coordinator
+        self.purchaseService = purchaseService
     }
     
     func display(_ viewModel: RouteDescriptionViewModel) {
-        let routeHeaderPresenter = RouteDescriptionHeaderPresenter(model: viewModel, startRoutePassing: { [weak coordinator] in
+        let routeHeaderPresenter = RouteDescriptionHeaderPresenter(model: viewModel, purchaseService: purchaseService, startRoutePassing: { [weak coordinator] in
             coordinator?.startPassingRoute()
+        }, purchaseOperationCompletion: { [weak self] in
+            self?.reloadTableView()
         })
         let routeHeaderController = RouteDescriptionHeaderViewController(presenter: routeHeaderPresenter)
         routeHeaderPresenter.view = WeakRef(routeHeaderController)
@@ -52,6 +56,11 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
                     return PersonCellController(viewModel: personViewModel, coordinator: coordinator)
                 })
         ]
+        
+        reloadTableView()
+    }
+    
+    private func reloadTableView() {
         controller?.status = .success
     }
 }

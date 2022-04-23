@@ -62,7 +62,7 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
         let route = makeRoute()
         let loader = RouteDescriptionLoaderSpy()
         let coordinator = RouteDescriptionCoordinatorSpy(route: route, builder: Builder())
-        let storage = RouteDescriptionStorage(model: route, routeTransformer: loader, mapService: builder.mapService)
+        let storage = RouteDescriptionStorage(model: route, routeTransformer: loader, mapService: builder.mapService, purchaseService: loader)
         let sut = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: storage, coordinator: coordinator)
         return (sut, loader, coordinator)
     }

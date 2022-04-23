@@ -16,9 +16,8 @@ public final class Route {
     public let distance: String
     public let personsInfo: [PersonInfo]
     public var purchase: Purchase
-    public let price: String?
     
-    public init(id: String, name: String, description: String, coverUrl: String?, duration: String, distance: String, personsInfo: [PersonInfo], purchase: Purchase, price: String?) {
+    public init(id: String, name: String, description: String, coverUrl: String?, duration: String, distance: String, personsInfo: [PersonInfo], purchase: Purchase) {
         self.id = id
         self.name = name
         self.description = description
@@ -27,7 +26,6 @@ public final class Route {
         self.distance = distance
         self.personsInfo = personsInfo
         self.purchase = purchase
-        self.price = price
     }
 }
 
@@ -41,7 +39,7 @@ public extension Route {
             return "purchase.purchased".localized
             
         case .buy:
-            return String(format: "purchase.buy".localized, price ?? "0")
+            return String(format: "purchase.buy".localized, purchase.product?.localizedPrice ?? "0")
         }
     }
 }
