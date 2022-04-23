@@ -9,6 +9,10 @@ import Foundation
 import MoscowNeighbours
 import StoreKit
 
+func anyNSError() -> NSError {
+    return NSError(domain: "any error", code: 0)
+}
+
 extension SKProduct {
     convenience init(id: String, price: NSDecimalNumber) {
         self.init()

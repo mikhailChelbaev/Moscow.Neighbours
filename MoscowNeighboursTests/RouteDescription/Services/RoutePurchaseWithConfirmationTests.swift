@@ -65,51 +65,5 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
-    }
-    
-    private func anyPaidRoute() -> Route {
-        return makeRoute(price: (.buy, 200))
-    }
-    
-    private func anyNSError() -> NSError {
-        return NSError(domain: "any error", code: 0)
-    }
-    
-    private final class PurchaseSpy: PurchaseOperationProvider, RoutePurchaseConfirmationProvider {
-        
-        // MARK: - Purchase Operation
-        private(set) var purchaseCompletions = [(PurchaseOperationProvider.Result) -> Void]()
-        
-        var operationCallCount: Int {
-            purchaseCompletions.count
-        }
-        
-        func purchaseProduct(product: Product, completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
-            purchaseCompletions.append(completion)
-        }
-        
-        func restorePurchases(completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
-            
-        }
-        
-        func completePurchase(with error: Error, at index: Int = 0) {
-            purchaseCompletions[index](.failure(error))
-        }
-        
-        func completePurchaseSuccessfully(at index: Int = 0) {
-            purchaseCompletions[index](.success(()))
-        }
-        
-        // MARK: - Purchase Confirmation
-        private(set) var confirmedRouteIds = [String]()
-        
-        var confirmationCallCount: Int {
-            confirmedRouteIds.count
-        }
-        
-        func confirmRoutePurchase(routeId: String, completion: ((RoutePurchaseConfirmationProvider.Result) -> Void)?) {
-            confirmedRouteIds.append(routeId)
-        }
-    }
-    
+    }   
 }

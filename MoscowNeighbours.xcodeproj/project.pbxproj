@@ -204,6 +204,8 @@
 		74A0B86528148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */; };
 		74A0B86828149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */; };
 		74A0B86B28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */; };
+		74A0B86D2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */; };
+		74A0B8702814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
 		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
@@ -513,6 +515,8 @@
 		74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationTests.swift; sourceTree = "<group>"; };
 		74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationService.swift; sourceTree = "<group>"; };
 		74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainQueueDispatchDecorator+RouteDescription.swift"; sourceTree = "<group>"; };
+		74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+PurchaseSpy.swift"; sourceTree = "<group>"; };
+		74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+TestHelpers.swift"; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
@@ -1392,6 +1396,7 @@
 		74A0B86328148F5A00D96A76 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				74A0B86E2814A06900D96A76 /* Helpers */,
 				74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */,
 			);
 			path = Services;
@@ -1416,6 +1421,15 @@
 				744B3F34280F38D900027C5D /* RouteDescriptionCoordinatorIntegrationTests.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		74A0B86E2814A06900D96A76 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */,
+				74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		74AB1DC727727CF100DA961A /* Collections */ = {
@@ -2138,10 +2152,12 @@
 				74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */,
 				744B3F3C280F47CE00027C5D /* PersonCell+TestHelpers.swift in Sources */,
 				740AF98C280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift in Sources */,
+				74A0B8702814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift in Sources */,
 				744B3F3A280F479600027C5D /* RouteDescriptionViewController+TestHelpers.swift in Sources */,
 				7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */,
 				7444DAAC2801EB1100A04F87 /* RouteUIIntegrationTests+Assertions.swift in Sources */,
 				742B4EEB280C4E1C00811AD1 /* PresentingControllerSpy.swift in Sources */,
+				74A0B86D2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift in Sources */,
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				74C56AA528095EFD00EC4942 /* MapCoordinatorTests.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RoutesLoaderSpy.swift in Sources */,
