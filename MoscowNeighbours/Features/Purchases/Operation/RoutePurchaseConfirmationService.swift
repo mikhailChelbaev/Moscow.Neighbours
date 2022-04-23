@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RoutePurchaseConfirmationProvider {
+public protocol RoutePurchaseConfirmationProvider {
     func confirmRoutePurchase(routeId: String) async throws
 }
 
