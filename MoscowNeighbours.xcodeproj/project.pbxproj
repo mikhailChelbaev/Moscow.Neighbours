@@ -206,6 +206,7 @@
 		74A0B86B28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */; };
 		74A0B86D2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */; };
 		74A0B8702814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */; };
+		74A0B8722814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
 		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
@@ -517,6 +518,7 @@
 		74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainQueueDispatchDecorator+RouteDescription.swift"; sourceTree = "<group>"; };
 		74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+PurchaseSpy.swift"; sourceTree = "<group>"; };
 		74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+TestHelpers.swift"; sourceTree = "<group>"; };
+		74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+Assertions.swift"; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
@@ -1428,6 +1430,7 @@
 			children = (
 				74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */,
 				74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */,
+				74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2162,6 +2165,7 @@
 				74C56AA528095EFD00EC4942 /* MapCoordinatorTests.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RoutesLoaderSpy.swift in Sources */,
 				7444DAA42801E93900A04F87 /* RoutesViewController+TestHelpers.swift in Sources */,
+				74A0B8722814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift in Sources */,
 				744B3F3E280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift in Sources */,
 				740AF984280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift in Sources */,
 				744B3F44280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift in Sources */,

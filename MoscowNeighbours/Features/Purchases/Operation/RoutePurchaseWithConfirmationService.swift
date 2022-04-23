@@ -34,6 +34,8 @@ public final class RoutePurchaseWithConfirmationService: PurchaseWithConfirmatio
             if case Result.success = result {
                 self?.confirmation.confirmRoutePurchase(routeId: route.id, completion: nil)
             }
+            
+            completion(result)
         }
     }
 }

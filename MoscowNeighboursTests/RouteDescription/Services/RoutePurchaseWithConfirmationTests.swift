@@ -18,30 +18,27 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
     }
     
     func test_purchaseProduct_executesOnlyOperation() {
-        let route = anyPaidRoute()
         let (sut, loader) = makeSUT()
         
-        sut.purchaseRoute(route: route) { _ in }
+        sut.purchaseRoute(route: anyPaidRoute()) { _ in }
         
         XCTAssertEqual(loader.operationCallCount, 1)
         XCTAssertEqual(loader.confirmationCallCount, 0)
     }
     
     func test_purchaseProductCompletion_doesNotCallConfirmationIfFailed() {
-        let route = anyPaidRoute()
         let (sut, loader) = makeSUT()
         
-        sut.purchaseRoute(route: route) { _ in }
+        sut.purchaseRoute(route: anyPaidRoute()) { _ in }
         loader.completePurchase(with: anyNSError())
         
         XCTAssertEqual(loader.confirmationCallCount, 0)
     }
     
     func test_purchaseProductCompletion_callsConfirmationIfSucceeded() {
-        let route = anyPaidRoute()
         let (sut, loader) = makeSUT()
         
-        sut.purchaseRoute(route: route) { _ in }
+        sut.purchaseRoute(route: anyPaidRoute()) { _ in }
         loader.completePurchaseSuccessfully()
         
         XCTAssertEqual(loader.confirmationCallCount, 1)
@@ -57,6 +54,19 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         XCTAssertEqual(loader.confirmedRouteIds, [route.id])
     }
     
+    func test_purchaseRoute_completesWithPurchaseProductResult() {
+        let (sut, loader) = makeSUT()
+        let error = anyNSError()
+        
+        expect(sut, toCompleteWith: .success(()), when: {
+            loader.completePurchaseSuccessfully(at: 0)
+        })
+        
+        expect(sut, toCompleteWith: .failure(error), when: {
+            loader.completePurchase(with: error, at: 1)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseWithConfirmationProvider, loader: PurchaseSpy) {
@@ -65,5 +75,6 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
-    }   
+    }
+
 }
