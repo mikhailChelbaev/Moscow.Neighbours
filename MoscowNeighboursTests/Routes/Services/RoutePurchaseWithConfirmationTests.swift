@@ -43,6 +43,16 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         XCTAssertEqual(loader.confirmationCallCount, 0)
     }
     
+    func test_purchaseProductCompletion_doesNotCallConfirmationIfFailed() {
+        let route = anyPaidRoute()
+        let (sut, loader) = makeSUT()
+        
+        sut.purchaseProduct(product: route.purchase.product!) { _ in }
+        loader.completePurchase(with: anyNSError())
+        
+        XCTAssertEqual(loader.confirmationCallCount, 0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseOperationProvider, loader: PurchaseSpy) {
@@ -57,17 +67,29 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
         return makeRoute(price: (.buy, 200))
     }
     
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any error", code: 0)
+    }
+    
     private final class PurchaseSpy: PurchaseOperationProvider, RoutePurchaseConfirmationProvider {
         
         // MARK: - Purchase Operation
-        private(set) var operationCallCount: Int = 0
+        private(set) var purchaseCompletions = [(PurchaseOperationProvider.Result) -> Void]()
+        
+        var operationCallCount: Int {
+            purchaseCompletions.count
+        }
         
         func purchaseProduct(product: Product, completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
-            operationCallCount += 1
+            purchaseCompletions.append(completion)
         }
         
         func restorePurchases(completion: @escaping (PurchaseOperationProvider.Result) -> Void) {
             
+        }
+        
+        func completePurchase(with error: Error, at index: Int = 0) {
+            purchaseCompletions[index](.failure(error))
         }
         
         // MARK: - Purchase Confirmation
