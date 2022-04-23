@@ -40,6 +40,10 @@
 		741BA1DC28077A3D000B3C80 /* RouteDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */; };
 		741D407C2706518C0051A518 /* UILabel+SetAttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */; };
 		741D407E270655560051A518 /* PersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D407D270655560051A518 /* PersonInfoCell.swift */; };
+		741D9BF42813FC3F0094EF3F /* PurchaseOperationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D9BF32813FC3F0094EF3F /* PurchaseOperationProvider.swift */; };
+		741D9BF62813FC480094EF3F /* PurchaseProductsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D9BF52813FC480094EF3F /* PurchaseProductsProvider.swift */; };
+		741D9BF82813FC690094EF3F /* PurchaseOperationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D9BF72813FC690094EF3F /* PurchaseOperationService.swift */; };
+		741D9BFA2813FC730094EF3F /* PurchaseProductsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741D9BF92813FC730094EF3F /* PurchaseProductsService.swift */; };
 		741EF4882708F28200F84986 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741EF4872708F28200F84986 /* NotificationService.swift */; };
 		741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE2FE2777A8A70065126A /* PersonPresentationState.swift */; };
 		741FE3032777A9350065126A /* RoutePassingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741FE3022777A9350065126A /* RoutePassingService.swift */; };
@@ -181,7 +185,6 @@
 		748EE63B270F916800301552 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63A270F916800301552 /* Person.swift */; };
 		748EE63D270F917600301552 /* ShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63C270F917600301552 /* ShortInfo.swift */; };
 		748FFD9626E55535009CA688 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9526E55535009CA688 /* Logger.swift */; };
-		7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490F33627AE748E00DCD9C7 /* PurchaseService.swift */; };
 		7492433228057403002363EA /* ItemTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7492433128057403002363EA /* ItemTransformer.swift */; };
 		7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7492433328057ECB002363EA /* SharedTestHelpers.swift */; };
 		74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74967F6F276F554C0096AA77 /* ApiRequest.swift */; };
@@ -245,10 +248,8 @@
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
 		74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB027746CB00087B7F6 /* MapPresenter.swift */; };
 		74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB427746D1A0087B7F6 /* MapBuilder.swift */; };
-		74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18AF27AEEA6700C5A02F /* PurchasesError.swift */; };
 		74DC18B227AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */; };
 		74DC18B427AF000A00C5A02F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B327AF000A00C5A02F /* Product.swift */; };
-		74DC18B627AF003600C5A02F /* PurchaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DC18B527AF003600C5A02F /* PurchaseProvider.swift */; };
 		74DE214827F0F489006863A3 /* LogoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE214727F0F489006863A3 /* LogoutManager.swift */; };
 		74DE214D27F0F63D006863A3 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE214C27F0F63D006863A3 /* UserState.swift */; };
 		74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DE215327F1034E006863A3 /* SignInRequest.swift */; };
@@ -343,6 +344,10 @@
 		741BA1DB28077A3C000B3C80 /* RouteDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionViewModel.swift; sourceTree = "<group>"; };
 		741D407B2706518C0051A518 /* UILabel+SetAttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+SetAttributedText.swift"; sourceTree = "<group>"; };
 		741D407D270655560051A518 /* PersonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoCell.swift; sourceTree = "<group>"; };
+		741D9BF32813FC3F0094EF3F /* PurchaseOperationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseOperationProvider.swift; sourceTree = "<group>"; };
+		741D9BF52813FC480094EF3F /* PurchaseProductsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProductsProvider.swift; sourceTree = "<group>"; };
+		741D9BF72813FC690094EF3F /* PurchaseOperationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseOperationService.swift; sourceTree = "<group>"; };
+		741D9BF92813FC730094EF3F /* PurchaseProductsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProductsService.swift; sourceTree = "<group>"; };
 		741EF4872708F28200F84986 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		741FE2FE2777A8A70065126A /* PersonPresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresentationState.swift; sourceTree = "<group>"; };
 		741FE3022777A9350065126A /* RoutePassingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePassingService.swift; sourceTree = "<group>"; };
@@ -485,7 +490,6 @@
 		748EE63A270F916800301552 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		748EE63C270F917600301552 /* ShortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfo.swift; sourceTree = "<group>"; };
 		748FFD9526E55535009CA688 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		7490F33627AE748E00DCD9C7 /* PurchaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
 		7492433128057403002363EA /* ItemTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTransformer.swift; sourceTree = "<group>"; };
 		7492433328057ECB002363EA /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		74967F6F276F554C0096AA77 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
@@ -550,10 +554,8 @@
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		74D7DFB027746CB00087B7F6 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		74D7DFB427746D1A0087B7F6 /* MapBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
-		74DC18AF27AEEA6700C5A02F /* PurchasesError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesError.swift; sourceTree = "<group>"; };
 		74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct+LocalizedPrice.swift"; sourceTree = "<group>"; };
 		74DC18B327AF000A00C5A02F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		74DC18B527AF003600C5A02F /* PurchaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProvider.swift; sourceTree = "<group>"; };
 		74DE214727F0F489006863A3 /* LogoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutManager.swift; sourceTree = "<group>"; };
 		74DE214C27F0F63D006863A3 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		74DE215327F1034E006863A3 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
@@ -776,6 +778,24 @@
 				7485E3782709BD52008DAB99 /* PersonContainerInfoCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		741D9BF12813FC310094EF3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				741D9BF52813FC480094EF3F /* PurchaseProductsProvider.swift */,
+				741D9BF92813FC730094EF3F /* PurchaseProductsService.swift */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		741D9BF22813FC360094EF3F /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				741D9BF32813FC3F0094EF3F /* PurchaseOperationProvider.swift */,
+				741D9BF72813FC690094EF3F /* PurchaseOperationService.swift */,
+			);
+			path = Operation;
 			sourceTree = "<group>";
 		};
 		741EF4862708F27100F84986 /* Services */ = {
@@ -1510,9 +1530,8 @@
 		74DC18AE27AEEA5700C5A02F /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
-				74DC18B527AF003600C5A02F /* PurchaseProvider.swift */,
-				7490F33627AE748E00DCD9C7 /* PurchaseService.swift */,
-				74DC18AF27AEEA6700C5A02F /* PurchasesError.swift */,
+				741D9BF12813FC310094EF3F /* Products */,
+				741D9BF22813FC360094EF3F /* Operation */,
 				74DC18B327AF000A00C5A02F /* Product.swift */,
 				74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */,
 			);
@@ -1833,7 +1852,6 @@
 				74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */,
 				74F1856F2787307E00A0BF24 /* OneLineSettingsCell.swift in Sources */,
 				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
-				74DC18B627AF003600C5A02F /* PurchaseProvider.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
@@ -1849,6 +1867,7 @@
 				74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */,
 				74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */,
 				74F73A01272B50DE007C5450 /* CustomCollectionViewDataSource.swift in Sources */,
+				741D9BF82813FC690094EF3F /* PurchaseOperationService.swift in Sources */,
 				746A100E26F6192F002CB7E2 /* ChipsLayout.swift in Sources */,
 				748EE639270F915C00301552 /* Place.swift in Sources */,
 				74E7C3A027830F9100B16392 /* UserModel.swift in Sources */,
@@ -1886,7 +1905,6 @@
 				741EF4882708F28200F84986 /* NotificationService.swift in Sources */,
 				74DEA86028082CFE0050EF49 /* PersonCellController.swift in Sources */,
 				749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */,
-				7490F33727AE748E00DCD9C7 /* PurchaseService.swift in Sources */,
 				7420CE2326BAAE530034533F /* CLLocationCoordinate2D+Equatable.swift in Sources */,
 				74BE3478280396610086BB89 /* UserStateObserver.swift in Sources */,
 				743C3AC1277CF9B300D4CB1C /* AuthorizationBuilder.swift in Sources */,
@@ -2004,6 +2022,7 @@
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,
 				74577574279747BA00123208 /* ErrorDelegate.swift in Sources */,
 				74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */,
+				741D9BFA2813FC730094EF3F /* PurchaseProductsService.swift in Sources */,
 				743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */,
 				743C3AC4277D01F900D4CB1C /* AppIconCell.swift in Sources */,
 				74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */,
@@ -2047,6 +2066,8 @@
 				74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */,
 				74F739FE272B50DE007C5450 /* BaseTableView.swift in Sources */,
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
+				741D9BF62813FC480094EF3F /* PurchaseProductsProvider.swift in Sources */,
+				741D9BF42813FC3F0094EF3F /* PurchaseOperationProvider.swift in Sources */,
 				7444DA9F2801BF1800A04F87 /* Purchase.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,
 				7444DA9D2801B71F00A04F87 /* RemotePurchase.swift in Sources */,
@@ -2060,7 +2081,6 @@
 				74C9EF5E281000C900B8172E /* PersonHeaderCellController.swift in Sources */,
 				74C9EF6F28102F0800B8172E /* ReadyToGoButtonCellController.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
-				74DC18B027AEEA6700C5A02F /* PurchasesError.swift in Sources */,
 				74C9EF75281037E800B8172E /* AlertCellViewModel.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				74DE214D27F0F63D006863A3 /* UserState.swift in Sources */,

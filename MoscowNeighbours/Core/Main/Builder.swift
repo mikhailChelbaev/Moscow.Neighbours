@@ -11,7 +11,6 @@ public class Builder {
     let api: ApiRequestsFactory
     
     let locationService: LocationService
-    let purchaseService: PurchaseProvider
     let routesService: RoutesService
     public let mapService: MapService
     let routePassingService: RoutePassingService
@@ -24,19 +23,21 @@ public class Builder {
         api = ApiRequestsFactory.main
         
         locationService = .init()
-        mapService = .init(routeFinder: NearestCoordinatesFinder(),
-                           locationService: locationService)
-        routePassingService = .init(locationService: locationService,
-                                    notificationService: NotificationService())
+        mapService = .init(
+            routeFinder: NearestCoordinatesFinder(),
+            locationService: locationService)
+        routePassingService = .init(
+            locationService: locationService,
+            notificationService: NotificationService())
         jwtService = JWTService.main
         userService = UserService()
         userState = UserState.shared
-        purchaseService = PurchaseService(userState: userState)
-        routesService = RoutesService(api: api, purchaseService: purchaseService)
+        routesService = RoutesService(
+            api: api,
+            productsService: PurchaseProductsService())
         
         logoutManager = LogoutManager([
             userState,
-            jwtService
-        ])
+            jwtService])
     }
 }

@@ -14,7 +14,7 @@ struct LegacyRouteDescriptionStorage {
     let accountConfirmationBuilder: AccountConfirmationBuilder
     let authorizationBuilder: AuthorizationBuilder
     let mapService: MapService
-    let purchaseService: PurchaseProvider
+//    let purchaseService: PurchaseProvider
     let routePurchaseConfirmationService: RoutePurchaseConfirmationProvider
     let routesService: RoutesProvider
 }
@@ -38,7 +38,7 @@ extension Builder: LegacyRoutesDescriptionBuilder {
                                 accountConfirmationBuilder: self,
                                 authorizationBuilder: self,
                                 mapService: mapService,
-                                purchaseService: purchaseService,
+//                                purchaseService: purchaseService,
                                 routePurchaseConfirmationService: RoutePurchaseConfirmationService(api: api),
                                 routesService: routesService)
     }

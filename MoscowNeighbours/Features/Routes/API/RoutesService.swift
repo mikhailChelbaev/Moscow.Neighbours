@@ -12,13 +12,13 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
     // MARK: - Properties
     
     private let api: ApiRequestsFactory
-    private let purchaseService: PurchaseProvider
+    private let productsService: PurchaseProductsProvider
     
     // MARK: - Init
     
-    init(api: ApiRequestsFactory, purchaseService: PurchaseProvider) {
+    init(api: ApiRequestsFactory, productsService: PurchaseProductsProvider) {
         self.api = api
-        self.purchaseService = purchaseService
+        self.productsService = productsService
     }
     
     // MARK: - Internal Methods
@@ -45,12 +45,12 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
     private func fetchProducts(_ routes: [RemoteRoute], completion: @escaping (RoutesService.Result) -> Void) {
         let productIdentifiers = routes.compactMap(\.purchase.productId)
         
-        purchaseService.fetchProducts(productIds: Set(productIdentifiers)) { [weak self] response in
+        productsService.fetchProducts(productIds: Set(productIdentifiers)) { [weak self] response in
             self?.handleFetchedProducts(response: response, routes: routes, completion: completion)
         }
     }
     
-    private func handleFetchedProducts(response: RequestProductsResult, routes remoteRoutes: [RemoteRoute], completion: @escaping (RoutesService.Result) -> Void) {
+    private func handleFetchedProducts(response: PurchaseProductsProvider.Result, routes remoteRoutes: [RemoteRoute], completion: @escaping (RoutesService.Result) -> Void) {
         let products = (try? response.get()) ?? []
         let routes = remoteRoutes.map { $0.toModel(products: products) }
         

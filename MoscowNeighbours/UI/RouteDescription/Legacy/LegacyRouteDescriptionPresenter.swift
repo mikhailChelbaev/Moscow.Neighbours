@@ -28,7 +28,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     private let authorizationBuilder: AuthorizationBuilder
     
     private let mapService: MapService
-    private let purchaseService: PurchaseProvider
+//    private let purchaseService: PurchaseProvider
     private let routePurchaseConfirmationService: RoutePurchaseConfirmationProvider
     private var routesService: RoutesProvider
     
@@ -45,7 +45,7 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
         authorizationBuilder = storage.authorizationBuilder
         
         mapService = storage.mapService
-        purchaseService = storage.purchaseService
+//        purchaseService = storage.purchaseService
         routePurchaseConfirmationService = storage.routePurchaseConfirmationService
         routesService = storage.routesService
         
@@ -99,27 +99,27 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
         
         if route.purchaseStatus == .buy {
             // buy product
-            guard let productId = route.productId else {
-                Logger.log("There is no product id for route \(route.name)")
-                return
-            }
-            Logger.log("Try to buy product with id: \(productId)")
-            
-            viewController?.prepareForPurchasing()
-            purchaseService.purchaseProduct(productId: productId) { [weak self] result in
-                switch result {
-                case .success:
-                    route.updatePurchaseStatus(.purchased)
-                    self?.reloadRoutesController()
-                    self?.sendPurchaseConfirmationToServer(routeId: route.id)
-                    
-                case .failure(let error):
-                    Logger.log("Failed to complete the purchase: \(error.localizedDescription)")
-                    self?.handleRoutePurchaseError(error)
-                }
-                
-                self?.viewController?.reloadData()
-            }
+//            guard let productId = route.productId else {
+//                Logger.log("There is no product id for route \(route.name)")
+//                return
+//            }
+//            Logger.log("Try to buy product with id: \(productId)")
+//
+//            viewController?.prepareForPurchasing()
+//            purchaseService.purchaseProduct(productId: productId) { [weak self] result in
+//                switch result {
+//                case .success:
+//                    route.updatePurchaseStatus(.purchased)
+//                    self?.reloadRoutesController()
+//                    self?.sendPurchaseConfirmationToServer(routeId: route.id)
+//
+//                case .failure(let error):
+//                    Logger.log("Failed to complete the purchase: \(error.localizedDescription)")
+//                    self?.handleRoutePurchaseError(error)
+//                }
+//
+//                self?.viewController?.reloadData()
+//            }
             
         } else {
             // start the route
@@ -160,49 +160,49 @@ class LegacyRouteDescriptionPresenter: LegacyRouteDescriptionEventHandler {
     }
     
     private func handleRoutePurchaseError(_ error: Error) {
-        var title: String?
-        var message: String
-        var actions: [UIAlertAction]
-        
-        switch error as? PurchasesError {
-        case .purchaseInProgress:
-            title = "purchase.purchase_in_progress_title".localized
-            message = "purchase.purchase_in_progress_subtitle".localized
-            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
-            
-        case .productNotFound:
-            title = "purchase.product_not_found_title".localized
-            message = "purchase.product_not_found_subtitle".localized
-            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
-            
-        case .paymentsRestricted:
-            title = "purchase.payments_restricted_title".localized
-            message = "purchase.payments_restricted_subtitle".localized
-            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
-            
-        case .userNotAuthorized:
-            title = "purchase.user_not_authorized_title".localized
-            message = "purchase.user_not_authorized_subtitle".localized
-            actions = [UIAlertAction(title: "purchase.authorize".localized, style: .default) { [weak self] _ in
-                self?.showAuthorizationScreen()
-            },
-                       UIAlertAction(title: "common.later".localized, style: .cancel)]
-            
-        case .userNotVerified:
-            title = "purchase.user_not_verified_title".localized
-            message = "purchase.user_not_verified_subtitle".localized
-            actions = [UIAlertAction(title: "purchase.verify_account".localized, style: .default) { [weak self] _ in
-                self?.showVerificationScreen()
-            },
-                       UIAlertAction(title: "common.later".localized, style: .cancel)]
-            
-        case .unknown, .none:
-            title = nil
-            message = "purchase.purchase_unknown_error_subtitle".localized
-            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
-        }
-        
-        viewController?.showAlert(title: title, message: message, actions: actions)
+//        var title: String?
+//        var message: String
+//        var actions: [UIAlertAction]
+//
+//        switch error as? PurchasesError {
+//        case .purchaseInProgress:
+//            title = "purchase.purchase_in_progress_title".localized
+//            message = "purchase.purchase_in_progress_subtitle".localized
+//            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+//
+//        case .productNotFound:
+//            title = "purchase.product_not_found_title".localized
+//            message = "purchase.product_not_found_subtitle".localized
+//            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+//
+//        case .paymentsRestricted:
+//            title = "purchase.payments_restricted_title".localized
+//            message = "purchase.payments_restricted_subtitle".localized
+//            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+//
+//        case .userNotAuthorized:
+//            title = "purchase.user_not_authorized_title".localized
+//            message = "purchase.user_not_authorized_subtitle".localized
+//            actions = [UIAlertAction(title: "purchase.authorize".localized, style: .default) { [weak self] _ in
+//                self?.showAuthorizationScreen()
+//            },
+//                       UIAlertAction(title: "common.later".localized, style: .cancel)]
+//
+//        case .userNotVerified:
+//            title = "purchase.user_not_verified_title".localized
+//            message = "purchase.user_not_verified_subtitle".localized
+//            actions = [UIAlertAction(title: "purchase.verify_account".localized, style: .default) { [weak self] _ in
+//                self?.showVerificationScreen()
+//            },
+//                       UIAlertAction(title: "common.later".localized, style: .cancel)]
+//
+//        case .unknown, .none:
+//            title = nil
+//            message = "purchase.purchase_unknown_error_subtitle".localized
+//            actions = [UIAlertAction(title: "common.ok".localized, style: .default)]
+//        }
+//
+//        viewController?.showAlert(title: title, message: message, actions: actions)
     }
     
     private func showVerificationScreen() {
