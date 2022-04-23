@@ -44,7 +44,10 @@ public final class RoutesDescriptionUIComposer {
                 storage.mapService.showRoute(storage.model.personsInfo)
             })
         
-        presenter.routeDescriptionView = RouteDescriptionViewAdapter(controller: tableViewController, coordinator: coordinator, purchaseService: storage.purchaseService)
+        presenter.routeDescriptionView = RouteDescriptionViewAdapter(
+            controller: tableViewController,
+            coordinator: coordinator,
+            purchaseService: MainQueueDispatchDecorator(decoratee: storage.purchaseService))
         presenter.routeDescriptionLoadingView = WeakRef(tableViewController)
         
         return controller

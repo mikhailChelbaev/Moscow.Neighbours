@@ -203,6 +203,7 @@
 		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
 		74A0B86528148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */; };
 		74A0B86828149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */; };
+		74A0B86B28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
 		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
@@ -511,6 +512,7 @@
 		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
 		74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationTests.swift; sourceTree = "<group>"; };
 		74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationService.swift; sourceTree = "<group>"; };
+		74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainQueueDispatchDecorator+RouteDescription.swift"; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
@@ -1618,6 +1620,7 @@
 				74EDF86C2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift */,
 				740AF98D280DEAC30049DEDE /* RouteDescriptionCoordinator.swift */,
 				740AF985280DE6D20049DEDE /* WeakRef+RouteDescription.swift */,
+				74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */,
 				740AF987280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift */,
 				740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */,
 			);
@@ -2114,6 +2117,7 @@
 				740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */,
 				74F52A31272593CC00343334 /* MarkdownParser.swift in Sources */,
 				74D4AB5A26AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift in Sources */,
+				74A0B86B28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift in Sources */,
 				746BCCCA26A8BFB1009CC823 /* UIFont+MainFont.swift in Sources */,
 				740AF986280DE6D20049DEDE /* WeakRef+RouteDescription.swift in Sources */,
 			);

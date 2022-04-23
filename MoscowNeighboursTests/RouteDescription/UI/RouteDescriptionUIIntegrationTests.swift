@@ -89,11 +89,10 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
     }
     
     func test_headerButton_displaysLoaderAndDisableWhilePurchasingRoute() {
-        let route = makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, 129)))
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: route)
+        loader.completeRoutesTransforming(with: anyPaidRouteModel())
         
         XCTAssertEqual(sut.isHeaderButtonLoaderVisible, false)
         XCTAssertEqual(sut.isHeaderButtonEnabled, true)
@@ -119,6 +118,21 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_routePurchaseCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        sut.simulateHeaderButtonTap()
+
+        let exp = expectation(description: "Wait for background queue work")
+        DispatchQueue.global().async {
+            loader.completePurchaseSuccessfully()
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: RouteDescriptionLoaderSpy) {
@@ -129,5 +143,9 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
+    }
+    
+    private func anyPaidRouteModel() -> RouteViewModel {
+        makeRouteModel(from: makeRoute(name: "Paid route", price: (.buy, 129)))
     }
 }
