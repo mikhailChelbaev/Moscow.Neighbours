@@ -984,7 +984,6 @@
 			children = (
 				7444DAA22801E92900A04F87 /* Helpers */,
 				74A0B86628148F7500D96A76 /* UI */,
-				74A0B86328148F5A00D96A76 /* Services */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -1273,10 +1272,8 @@
 		7489D0BF2804DC050098AED5 /* RouteDescription */ = {
 			isa = PBXGroup;
 			children = (
-				744B3F36280F39B000027C5D /* Helpers */,
-				7489D0C02804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift */,
-				740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */,
-				744B3F34280F38D900027C5D /* RouteDescriptionCoordinatorIntegrationTests.swift */,
+				74A0B86928149DE700D96A76 /* UI */,
+				74A0B86328148F5A00D96A76 /* Services */,
 			);
 			path = RouteDescription;
 			sourceTree = "<group>";
@@ -1404,6 +1401,17 @@
 				7442C39027FF81DD0025621B /* RouteUIIntegrationTests.swift */,
 				74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */,
 				740AF983280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		74A0B86928149DE700D96A76 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				744B3F36280F39B000027C5D /* Helpers */,
+				7489D0C02804DC1D0098AED5 /* RouteDescriptionUIIntegrationTests.swift */,
+				740AF98B280DE7770049DEDE /* RouteDescriptionCoordinatorTests.swift */,
+				744B3F34280F38D900027C5D /* RouteDescriptionCoordinatorIntegrationTests.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
