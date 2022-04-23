@@ -30,6 +30,7 @@ final class RoutePurchaseConfirmationService: BaseNetworkService, RoutePurchaseC
                                               type: MessageResponse.self)
         
         if case let .failure(error) = result {
+            Logger.log("Failed to confirm route purchase: \(error.localizedDescription)")
             throw error
         }
     }

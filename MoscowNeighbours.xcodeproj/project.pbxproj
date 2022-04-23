@@ -794,6 +794,7 @@
 			children = (
 				741D9BF32813FC3F0094EF3F /* PurchaseOperationProvider.swift */,
 				741D9BF72813FC690094EF3F /* PurchaseOperationService.swift */,
+				749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -1385,14 +1386,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		749FDCC927B8681300CC4D43 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		74AB1DC727727CF100DA961A /* Collections */ = {
 			isa = PBXGroup;
 			children = (
@@ -1584,7 +1577,6 @@
 				74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */,
 				740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */,
 				7415479626B0974A006931DC /* Cells */,
-				749FDCC927B8681300CC4D43 /* Services */,
 				744B6EC727750333008BDF37 /* Models */,
 			);
 			path = Legacy;
