@@ -24,9 +24,11 @@ public class RouteDescriptionCoordinator {
                 model: route,
                 routeTransformer: RouteTransformer(),
                 mapService: builder.mapService,
-                purchaseService: PurchaseOperationService(
-                    isAuthorized: builder.userState.isAuthorized,
-                    isVerified: builder.userState.isVerified)),
+                purchaseService: RoutePurchaseWithConfirmationService(
+                    operation: PurchaseOperationService(
+                        isAuthorized: builder.userState.isAuthorized,
+                        isVerified: builder.userState.isVerified),
+                confirmation: RoutePurchaseConfirmationService(api: builder.api))),
             coordinator: self)
     }
     

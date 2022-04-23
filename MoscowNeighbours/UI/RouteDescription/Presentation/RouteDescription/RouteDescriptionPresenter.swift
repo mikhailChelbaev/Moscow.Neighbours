@@ -44,8 +44,10 @@ extension RouteDescriptionPresenter: RouteDescriptionInput {
     func didTransformRoute() {
         routeDescriptionLoadingView?.display(isLoading: true)
         routeTransformer.transform(model) { [weak self] viewModel in
+            guard let self = self else { return }
+            
             let buttonTitle = viewModel.purchaseStatus == .buy ? viewModel.price : RouteDescriptionPresenter.startRouteText
-            self?.routeDescriptionView?.display(RouteDescriptionViewModel(
+            self.routeDescriptionView?.display(RouteDescriptionViewModel(
                 name: viewModel.name,
                 descriptionHeader: RouteDescriptionPresenter.descriptionHeader,
                 description: viewModel.description,
@@ -55,7 +57,7 @@ extension RouteDescriptionPresenter: RouteDescriptionInput {
                 information: viewModel.routeInformation,
                 buttonTitle: buttonTitle,
                 purchaseStatus: viewModel.purchaseStatus,
-                product: viewModel.product))
+                route: self.model))
         }
     }
     

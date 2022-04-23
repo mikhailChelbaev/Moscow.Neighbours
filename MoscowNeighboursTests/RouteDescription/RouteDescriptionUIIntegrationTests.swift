@@ -102,7 +102,7 @@ class RouteDescriptionUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isHeaderButtonLoaderVisible, true)
         XCTAssertEqual(sut.isHeaderButtonEnabled, false)
         
-        loader.completePurchaseSuccessfully(for: route.product?.id)
+        loader.completePurchaseSuccessfully()
         XCTAssertEqual(sut.isHeaderButtonLoaderVisible, false)
         XCTAssertEqual(sut.isHeaderButtonEnabled, true)
     }

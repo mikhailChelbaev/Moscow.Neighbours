@@ -11,9 +11,9 @@ public struct RouteDescriptionStorage<Transformer: ItemTransformer> where Transf
     let model: Route
     let routeTransformer: Transformer
     let mapService: MapService
-    let purchaseService: PurchaseOperationProvider
+    let purchaseService: PurchaseWithConfirmationProvider
     
-    public init(model: Route, routeTransformer: Transformer, mapService: MapService, purchaseService: PurchaseOperationProvider) {
+    public init(model: Route, routeTransformer: Transformer, mapService: MapService, purchaseService: PurchaseWithConfirmationProvider) {
         self.model = model
         self.routeTransformer = routeTransformer
         self.mapService = mapService
