@@ -201,6 +201,7 @@
 		7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */; };
 		749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCC727B8678A00CC4D43 /* MessageResponse.swift */; };
 		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
+		74A0B86528148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
 		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
@@ -507,6 +508,7 @@
 		7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdvantagesCell.swift; sourceTree = "<group>"; };
 		749FDCC727B8678A00CC4D43 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
+		74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationTests.swift; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
@@ -978,9 +980,8 @@
 			isa = PBXGroup;
 			children = (
 				7444DAA22801E92900A04F87 /* Helpers */,
-				7442C39027FF81DD0025621B /* RouteUIIntegrationTests.swift */,
-				74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */,
-				740AF983280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift */,
+				74A0B86628148F7500D96A76 /* UI */,
+				74A0B86328148F5A00D96A76 /* Services */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -1384,6 +1385,24 @@
 				74E7BF0D27A33644004B6F4E /* EmailService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		74A0B86328148F5A00D96A76 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		74A0B86628148F7500D96A76 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7442C39027FF81DD0025621B /* RouteUIIntegrationTests.swift */,
+				74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */,
+				740AF983280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		74AB1DC727727CF100DA961A /* Collections */ = {
@@ -2093,6 +2112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				744B3F35280F38D900027C5D /* RouteDescriptionCoordinatorIntegrationTests.swift in Sources */,
+				74A0B86528148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift in Sources */,
 				744B3F40280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift in Sources */,
 				7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */,
 				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,
