@@ -11,24 +11,36 @@ protocol RouteDescriptionHeaderView {
     func display(_ viewModel: RouteDescriptionHeaderViewModel)
 }
 
+protocol PurchaseErrorView {
+    func display(_ viewModel: PurchaseErrorViewModel)
+}
+
+struct PurchaseErrorViewModel {
+    let title: String?
+    let subtitle: String
+    let actions: [(title: String?, style: ActionStyle)]
+    let errorType: PurchasesError
+}
+
 final class RouteDescriptionHeaderPresenter {
     
     private let model: RouteDescriptionViewModel
     private let purchaseService: PurchaseWithConfirmationProvider
     private let startRoutePassing: Action
-    private let purchaseOperationCompletion: Action
+    private let purchaseOperationSuccessfulCompletion: Action
     
     init(model: RouteDescriptionViewModel,
          purchaseService: PurchaseWithConfirmationProvider,
          startRoutePassing: @escaping Action,
-         purchaseOperationCompletion: @escaping Action) {
+         purchaseOperationSuccessfulCompletion: @escaping Action) {
         self.model = model
         self.purchaseService = purchaseService
         self.startRoutePassing = startRoutePassing
-        self.purchaseOperationCompletion = purchaseOperationCompletion
+        self.purchaseOperationSuccessfulCompletion = purchaseOperationSuccessfulCompletion
     }
     
     var view: RouteDescriptionHeaderView?
+    var errorView: PurchaseErrorView?
     
     private var isPurchasingProduct: Bool = false
     private lazy var buttonTapAction: Action = { [weak self] in
@@ -52,7 +64,15 @@ final class RouteDescriptionHeaderPresenter {
         
         purchaseService.purchaseRoute(route: model.route) { [weak self] result in
             self?.isPurchasingProduct = false
-            self?.purchaseOperationCompletion()
+            
+            switch result {
+            case .success:
+                self?.purchaseOperationSuccessfulCompletion()
+                
+            case let .failure(error):
+                self?.handlePurchaseError(error)
+            }
+            
         }
     }
     
@@ -65,6 +85,14 @@ final class RouteDescriptionHeaderPresenter {
             coverURL: model.coverUrl,
             isLoading: isPurchasingProduct,
             didTapButton: buttonTapAction))
+    }
+    
+    private func handlePurchaseError(_ error: Error) {
+        errorView?.display(PurchaseErrorViewModel(
+            title: "purchase.purchase_in_progress_title".localized,
+            subtitle: "purchase.purchase_in_progress_subtitle".localized,
+            actions: [(title: "common.ok".localized, style: .default)],
+            errorType: .purchaseInProgress))
     }
     
 }

@@ -9,7 +9,7 @@ import UIKit
 
 extension String {
     
-    var localized: String {
+    public var localized: String {
         let l = NSLocalizedString(self, comment: "")
         if l != self {
             return l
@@ -42,11 +42,11 @@ extension String {
         return "countn_" + self
     }
 
-    func localized(count: Int) -> String {
+    public func localized(count: Int) -> String {
         return "\(count) \(NSLocalizedString(self.localizableStringKey(count: count), comment: ""))"
     }
     
-    func localized(count: Double) -> String {
+    public func localized(count: Double) -> String {
         let int = Int(count)
         if Double(int) == count {
             return localized(count: int)

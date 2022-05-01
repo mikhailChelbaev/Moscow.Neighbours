@@ -11,21 +11,27 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
     private weak var controller: RouteDescriptionTableViewController?
     private let coordinator: RouteDescriptionCoordinator
     private let purchaseService: PurchaseWithConfirmationProvider
+    private let purchaseErrorView: PurchaseErrorView
     
-    init(controller: RouteDescriptionTableViewController, coordinator: RouteDescriptionCoordinator, purchaseService: PurchaseWithConfirmationProvider) {
+    init(controller: RouteDescriptionTableViewController,
+         coordinator: RouteDescriptionCoordinator,
+         purchaseService: PurchaseWithConfirmationProvider,
+         purchaseErrorView: PurchaseErrorView) {
         self.controller = controller
         self.coordinator = coordinator
         self.purchaseService = purchaseService
+        self.purchaseErrorView = purchaseErrorView
     }
     
     func display(_ viewModel: RouteDescriptionViewModel) {
         let routeHeaderPresenter = RouteDescriptionHeaderPresenter(model: viewModel, purchaseService: purchaseService, startRoutePassing: { [weak coordinator] in
             coordinator?.startPassingRoute()
-        }, purchaseOperationCompletion: { [weak self] in
+        }, purchaseOperationSuccessfulCompletion: { [weak self] in
             self?.reloadTableView()
         })
         let routeHeaderController = RouteDescriptionHeaderViewController(presenter: routeHeaderPresenter)
         routeHeaderPresenter.view = WeakRef(routeHeaderController)
+        routeHeaderPresenter.errorView = purchaseErrorView
         
         let descriptionHeaderCellModel = TextHeaderCellViewModel(text: viewModel.descriptionHeader)
         let descriptionHeaderCellController = TextHeaderCellController(viewModel: descriptionHeaderCellModel)

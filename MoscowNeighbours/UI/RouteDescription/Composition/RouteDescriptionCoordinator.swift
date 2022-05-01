@@ -55,4 +55,32 @@ public class RouteDescriptionCoordinator {
         let routePassingController = builder.buildRoutePassingViewController(persons: route.personsInfo)
         controller?.present(routePassingController, state: .middle, completion: nil)
     }
+    
+    public func showPurchaseInProgressAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
+        showAlert(title: title, subtitle: subtitle, actions: actions)
+    }
+    
+    private func showAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
+        let alertActions = actions.map {
+            UIAlertAction(
+                title: $0.title,
+                style: UIAlertAction.Style.from($0.style))
+        }
+        let alertController = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+        alertActions.forEach { alertController.addAction($0) }
+        controller?.present(alertController, animated: true)
+    }
+}
+
+private extension UIAlertAction.Style {
+    static func from(_ style: ActionStyle) -> Self {
+        switch style {
+        case .cancel:
+            return .cancel
+        case .default:
+            return .default
+        case .destructive:
+            return .destructive
+        }
+    }
 }

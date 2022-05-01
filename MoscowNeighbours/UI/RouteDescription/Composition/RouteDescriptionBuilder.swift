@@ -47,7 +47,8 @@ public final class RoutesDescriptionUIComposer {
         presenter.routeDescriptionView = RouteDescriptionViewAdapter(
             controller: tableViewController,
             coordinator: coordinator,
-            purchaseService: MainQueueDispatchDecorator(decoratee: storage.purchaseService))
+            purchaseService: MainQueueDispatchDecorator(decoratee: storage.purchaseService),
+            purchaseErrorView: PurchaseErrorViewAdapter(coordinator: coordinator))
         presenter.routeDescriptionLoadingView = WeakRef(tableViewController)
         
         return controller

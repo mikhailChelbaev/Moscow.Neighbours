@@ -37,4 +37,8 @@ final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseWithConfirmation
         purchaseCompletions[index](.success(()))
     }
     
+    func completePurchase(with error: Error, at index: Int = 0) {
+        purchaseCompletions[index](.failure(error))
+    }
+    
 }

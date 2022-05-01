@@ -184,6 +184,7 @@
 		748EE639270F915C00301552 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE638270F915C00301552 /* Place.swift */; };
 		748EE63B270F916800301552 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63A270F916800301552 /* Person.swift */; };
 		748EE63D270F917600301552 /* ShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EE63C270F917600301552 /* ShortInfo.swift */; };
+		748FC7DE281F2BD30060E256 /* ActionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FC7DD281F2BD30060E256 /* ActionStyle.swift */; };
 		748FFD9626E55535009CA688 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748FFD9526E55535009CA688 /* Logger.swift */; };
 		7492433228057403002363EA /* ItemTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7492433128057403002363EA /* ItemTransformer.swift */; };
 		7492433428057ECB002363EA /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7492433328057ECB002363EA /* SharedTestHelpers.swift */; };
@@ -272,6 +273,9 @@
 		74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39A2783075000B16392 /* StoreContainer.swift */; };
 		74E7C39D2783081A00B16392 /* JWTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39C2783081A00B16392 /* JWTService.swift */; };
 		74E7C3A027830F9100B16392 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39F27830F9100B16392 /* UserModel.swift */; };
+		74EA6354281888C600E63BB0 /* PurchasesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EA6353281888C600E63BB0 /* PurchasesError.swift */; };
+		74EA635628188DD500E63BB0 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EA635528188DD500E63BB0 /* Localized.swift */; };
+		74EA63582818910700E63BB0 /* PurchaseErrorViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EA63572818910700E63BB0 /* PurchaseErrorViewAdapter.swift */; };
 		74EBC36826F503500002EEAE /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EBC36726F503500002EEAE /* HandlerView.swift */; };
 		74EDF8672805B42600D0F6B1 /* RouteDescriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */; };
 		74EDF8692805B43400D0F6B1 /* RouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */; };
@@ -495,6 +499,7 @@
 		748EE638270F915C00301552 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		748EE63A270F916800301552 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		748EE63C270F917600301552 /* ShortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfo.swift; sourceTree = "<group>"; };
+		748FC7DD281F2BD30060E256 /* ActionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionStyle.swift; sourceTree = "<group>"; };
 		748FFD9526E55535009CA688 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		7492433128057403002363EA /* ItemTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTransformer.swift; sourceTree = "<group>"; };
 		7492433328057ECB002363EA /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -584,6 +589,9 @@
 		74E7C39A2783075000B16392 /* StoreContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreContainer.swift; sourceTree = "<group>"; };
 		74E7C39C2783081A00B16392 /* JWTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTService.swift; sourceTree = "<group>"; };
 		74E7C39F27830F9100B16392 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		74EA6353281888C600E63BB0 /* PurchasesError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesError.swift; sourceTree = "<group>"; };
+		74EA635528188DD500E63BB0 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		74EA63572818910700E63BB0 /* PurchaseErrorViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseErrorViewAdapter.swift; sourceTree = "<group>"; };
 		74EBC36726F503500002EEAE /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
 		74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionTableViewController.swift; sourceTree = "<group>"; };
 		74EDF8682805B43400D0F6B1 /* RouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionPresenter.swift; sourceTree = "<group>"; };
@@ -1005,6 +1013,7 @@
 				7444DAB52802F10800A04F87 /* Button+TestHelpers.swift */,
 				7492433328057ECB002363EA /* SharedTestHelpers.swift */,
 				742B4EEA280C4E1C00811AD1 /* PresentingControllerSpy.swift */,
+				74EA635528188DD500E63BB0 /* Localized.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1470,6 +1479,7 @@
 			children = (
 				74C3004A2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift */,
 				74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */,
+				748FC7DD281F2BD30060E256 /* ActionStyle.swift */,
 			);
 			path = RouteDescriptionHeader;
 			sourceTree = "<group>";
@@ -1576,6 +1586,7 @@
 				741D9BF22813FC360094EF3F /* Operation */,
 				74DC18B327AF000A00C5A02F /* Product.swift */,
 				74DC18B127AEEA7900C5A02F /* SKProduct+LocalizedPrice.swift */,
+				74EA6353281888C600E63BB0 /* PurchasesError.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -1640,6 +1651,7 @@
 				74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */,
 				740AF987280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift */,
 				740AF989280DE6ED0049DEDE /* RouteDescriptionViewAdapter.swift */,
+				74EA63572818910700E63BB0 /* PurchaseErrorViewAdapter.swift */,
 			);
 			path = Composition;
 			sourceTree = "<group>";
@@ -1941,6 +1953,7 @@
 				74967F89276F5A300096AA77 /* WeakRef.swift in Sources */,
 				744B3F48280F50AF00027C5D /* RouteTransformer.swift in Sources */,
 				74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */,
+				74EA63582818910700E63BB0 /* PurchaseErrorViewAdapter.swift in Sources */,
 				74E7C39D2783081A00B16392 /* JWTService.swift in Sources */,
 				74967F75276F554D0096AA77 /* ApiRequestsFactory.swift in Sources */,
 				746684A3279F3A7100AFAA2E /* LogoutCell.swift in Sources */,
@@ -1958,6 +1971,7 @@
 				74BE3476280390ED0086BB89 /* RoutesTableViewController.swift in Sources */,
 				74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */,
 				74BE34702803848F0086BB89 /* WeakRef+Routes.swift in Sources */,
+				74EA6354281888C600E63BB0 /* PurchasesError.swift in Sources */,
 				74C9EF6928102B5000B8172E /* PersonCoordinator.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
 				7466849B279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift in Sources */,
@@ -2123,6 +2137,7 @@
 				740AF988280DE6E00049DEDE /* TransformerMainQueueDispatchDecorator.swift in Sources */,
 				74C9EF5E281000C900B8172E /* PersonHeaderCellController.swift in Sources */,
 				74C9EF6F28102F0800B8172E /* ReadyToGoButtonCellController.swift in Sources */,
+				748FC7DE281F2BD30060E256 /* ActionStyle.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
 				74C9EF75281037E800B8172E /* AlertCellViewModel.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
@@ -2169,6 +2184,7 @@
 				744B3F3E280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift in Sources */,
 				740AF984280DE07D0049DEDE /* RouteCoordinatorIntegrationTests.swift in Sources */,
 				744B3F44280F494B00027C5D /* RouteDescriptionCoordinatorSpy.swift in Sources */,
+				74EA635628188DD500E63BB0 /* Localized.swift in Sources */,
 				7444DABA28030D7F00A04F87 /* RouteUIIntegrationTests+FakeStoreContainer.swift in Sources */,
 				7444DAB62802F10800A04F87 /* Button+TestHelpers.swift in Sources */,
 				7444DAA82801E9A800A04F87 /* TestDelayManager.swift in Sources */,

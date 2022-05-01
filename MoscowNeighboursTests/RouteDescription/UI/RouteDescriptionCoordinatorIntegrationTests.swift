@@ -54,6 +54,25 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
         
         XCTAssertEqual(coordinator.receivedMessages, [.startRoutePassing])
     }
+    
+    func test_headerButtonCompletion_displaysAlertIfPurchaseInProgress() {
+        let route = makeRoute(price: (.buy, 200))
+        let routeModel = makeRouteModel(from: route)
+        let (sut, loader, coordinator) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: routeModel)
+        
+        sut.simulateHeaderButtonTap()
+        loader.completePurchase(with: PurchasesError.purchaseInProgress)
+        
+        XCTAssertEqual(
+            coordinator.receivedMessages,
+            [.displayAlert(
+                title: localized("purchase.purchase_in_progress_title"),
+                subtitle: localized("purchase.purchase_in_progress_subtitle"),
+                actions: [AlertAction(title: "common.ok".localized, style: .default)])])
+    }
 
     // MARK: - Helpers
 

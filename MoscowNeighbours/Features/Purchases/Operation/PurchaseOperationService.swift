@@ -32,13 +32,6 @@ final class PurchaseOperationService: NSObject {
 // MARK: - protocol PurchaseOperationProvider
 
 extension PurchaseOperationService: PurchaseOperationProvider {
-    private enum PurchasesError: Error {
-        case purchaseInProgress
-        case paymentsRestricted
-        case userNotAuthorized
-        case userNotVerified
-        case unknown
-    }
     
     func purchaseProduct(product: Product, completion: @escaping (Result) -> Void) {
         guard isAuthorized else {
@@ -80,6 +73,7 @@ extension PurchaseOperationService: PurchaseOperationProvider {
         
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
+    
 }
 
 
