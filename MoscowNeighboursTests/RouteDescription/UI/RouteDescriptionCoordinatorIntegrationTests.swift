@@ -56,12 +56,10 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     }
     
     func test_headerButtonCompletion_displaysAlertIfPurchaseInProgress() {
-        let route = makeRoute(price: (.buy, 200))
-        let routeModel = makeRouteModel(from: route)
         let (sut, loader, coordinator) = makeSUT()
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: routeModel)
+        loader.completeRoutesTransforming(with: anyPaidRouteModel())
         
         sut.simulateHeaderButtonTap()
         loader.completePurchase(with: PurchasesError.purchaseInProgress)
@@ -71,6 +69,23 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
             [.displayAlert(
                 title: localized("purchase.purchase_in_progress_title"),
                 subtitle: localized("purchase.purchase_in_progress_subtitle"),
+                actions: [AlertAction(title: "common.ok".localized, style: .default)])])
+    }
+    
+    func test_headerButtonCompletion_displaysAlertIfPaymentsRestricted() {
+        let (sut, loader, coordinator) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        
+        sut.simulateHeaderButtonTap()
+        loader.completePurchase(with: PurchasesError.paymentsRestricted)
+        
+        XCTAssertEqual(
+            coordinator.receivedMessages,
+            [.displayAlert(
+                title: localized("purchase.payments_restricted_title"),
+                subtitle: localized("purchase.payments_restricted_subtitle"),
                 actions: [AlertAction(title: "common.ok".localized, style: .default)])])
     }
 
@@ -84,6 +99,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
         let storage = RouteDescriptionStorage(model: route, routeTransformer: loader, mapService: builder.mapService, purchaseService: loader)
         let sut = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: storage, coordinator: coordinator)
         return (sut, loader, coordinator)
+    }
+    
+    private func anyPaidRouteModel() -> RouteViewModel {
+        let route = makeRoute(price: (.buy, 200))
+        return makeRouteModel(from: route)
     }
     
 }

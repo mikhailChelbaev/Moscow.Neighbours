@@ -88,11 +88,21 @@ final class RouteDescriptionHeaderPresenter {
     }
     
     private func handlePurchaseError(_ error: Error) {
-        errorView?.display(PurchaseErrorViewModel(
-            title: "purchase.purchase_in_progress_title".localized,
-            subtitle: "purchase.purchase_in_progress_subtitle".localized,
-            actions: [(title: "common.ok".localized, style: .default)],
-            errorType: .purchaseInProgress))
+        switch error as? PurchasesError {
+        case .purchaseInProgress:
+            errorView?.display(PurchaseErrorViewModel(
+                title: "purchase.purchase_in_progress_title".localized,
+                subtitle: "purchase.purchase_in_progress_subtitle".localized,
+                actions: [(title: "common.ok".localized, style: .default)],
+                errorType: .purchaseInProgress))
+            
+        default:
+            errorView?.display(PurchaseErrorViewModel(
+                title: "purchase.payments_restricted_title".localized,
+                subtitle: "purchase.payments_restricted_subtitle".localized,
+                actions: [(title: "common.ok".localized, style: .default)],
+                errorType: .paymentsRestricted))
+        }
     }
     
 }

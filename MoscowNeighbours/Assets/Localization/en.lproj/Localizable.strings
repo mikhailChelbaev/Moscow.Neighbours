@@ -36,8 +36,6 @@
 /* Route purchase */
 "purchase.purchase_in_progress_title" = "Error";
 "purchase.purchase_in_progress_subtitle" = "Purchase request is already in progress.";
-"purchase.product_not_found_title" = "Error";
-"purchase.product_not_found_subtitle" = "Unable to complete the purchase. Re-open the app and try again. Contact us if problem is not solved.";
 "purchase.payments_restricted_title" = "Payments restricted";
 "purchase.payments_restricted_subtitle" = "You can not make purchases with current Apple ID account.";
 "purchase.user_not_authorized_title" = "You are not authorised";

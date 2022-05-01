@@ -34,7 +34,7 @@ class RouteDescriptionCoordinatorSpy: RouteDescriptionCoordinator {
         receivedMessages.append(.startRoutePassing)
     }
     
-    override func showPurchaseInProgressAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
+    override func showAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
         receivedMessages.append(.displayAlert(title: title, subtitle: subtitle, actions: actions.map { AlertAction(title: $0.title, style: $0.style) }))
     }
 }

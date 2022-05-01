@@ -15,6 +15,19 @@ final class PurchaseErrorViewAdapter: PurchaseErrorView {
     }
     
     func display(_ viewModel: PurchaseErrorViewModel) {
-        coordinator.showPurchaseInProgressAlert(title: viewModel.title, subtitle: viewModel.subtitle, actions: viewModel.actions)
+        switch viewModel.errorType {
+        case .purchaseInProgress:
+            coordinator.showPurchaseInProgressAlert(
+                title: viewModel.title,
+                subtitle: viewModel.subtitle,
+                actions: viewModel.actions)
+            
+        default:
+            coordinator.showPaymentsRestrictedAlert(
+                title: viewModel.title,
+                subtitle: viewModel.subtitle,
+                actions: viewModel.actions)
+        }
+        
     }
 }

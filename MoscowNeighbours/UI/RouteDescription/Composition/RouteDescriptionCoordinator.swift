@@ -60,7 +60,11 @@ public class RouteDescriptionCoordinator {
         showAlert(title: title, subtitle: subtitle, actions: actions)
     }
     
-    private func showAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
+    public func showPaymentsRestrictedAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
+        showAlert(title: title, subtitle: subtitle, actions: actions)
+    }
+    
+    func showAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
         let alertActions = actions.map {
             UIAlertAction(
                 title: $0.title,

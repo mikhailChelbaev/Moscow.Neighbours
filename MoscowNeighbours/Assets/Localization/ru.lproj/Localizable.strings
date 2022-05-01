@@ -36,8 +36,6 @@
 /* Route purchase */
 "purchase.purchase_in_progress_title" = "Ошибка";
 "purchase.purchase_in_progress_subtitle" = "Запрос покупки выполняется для другого маршрута. Сначала завершите покупку, а затем попробуйте еще раз.";
-"purchase.product_not_found_title" = "Ошибка";
-"purchase.product_not_found_subtitle" = "Невозможно выполнить покупку. Перезайдите в приложение и попробуйте снова. Свяжитесь с нами, если проблема осталась.";
 "purchase.payments_restricted_title" = "Покупки ограничены";
 "purchase.payments_restricted_subtitle" = "Вы не можете совершать покупки с данного аккаунта Apple ID.";
 "purchase.user_not_authorized_title" = "Вы не авторизованы";
