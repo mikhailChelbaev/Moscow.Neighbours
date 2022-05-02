@@ -33,6 +33,8 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
                 self?.reloadTableView()
             }, showAuthorizationScreen: { [weak self] in
                 self?.coordinator.displayAuthorization()
+            }, showVerificationScreen: { [weak self] in
+                self?.coordinator.displayVerification()
             })
         let routeHeaderController = RouteDescriptionHeaderViewController(presenter: routeHeaderPresenter)
         routeHeaderPresenter.view = WeakRef(routeHeaderController)

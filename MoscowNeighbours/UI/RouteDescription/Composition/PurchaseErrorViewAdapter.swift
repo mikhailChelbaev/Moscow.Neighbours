@@ -28,11 +28,19 @@ final class PurchaseErrorViewAdapter: PurchaseErrorView {
                 subtitle: viewModel.subtitle,
                 actions: viewModel.actions)
             
-        default:
+        case .userNotAuthorized:
             coordinator.displayUserNotAuthorizedAlert(
                 title: viewModel.title,
                 subtitle: viewModel.subtitle,
                 actions: viewModel.actions)
+            
+        case .userNotVerified:
+            coordinator.displayUserNotVerifiedAlert(
+                title: viewModel.title,
+                subtitle: viewModel.subtitle,
+                actions: viewModel.actions)
+            
+        default: break
         }
         
     }

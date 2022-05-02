@@ -29,17 +29,20 @@ final class RouteDescriptionHeaderPresenter {
     private let startRoutePassing: Action
     private let purchaseOperationCompletion: Action
     private let showAuthorizationScreen: Action
+    private let showVerificationScreen: Action
     
     init(model: RouteDescriptionViewModel,
          purchaseService: PurchaseWithConfirmationProvider,
          startRoutePassing: @escaping Action,
          purchaseOperationCompletion: @escaping Action,
-         showAuthorizationScreen: @escaping Action) {
+         showAuthorizationScreen: @escaping Action,
+         showVerificationScreen: @escaping Action) {
         self.model = model
         self.purchaseService = purchaseService
         self.startRoutePassing = startRoutePassing
         self.purchaseOperationCompletion = purchaseOperationCompletion
         self.showAuthorizationScreen = showAuthorizationScreen
+        self.showVerificationScreen = showVerificationScreen
     }
     
     var view: RouteDescriptionHeaderView?
@@ -103,7 +106,7 @@ final class RouteDescriptionHeaderPresenter {
                 actions: [AlertAction(title: "common.ok".localized, style: .default, completion: nil)],
                 errorType: .paymentsRestricted))
             
-        default:
+        case .userNotAuthorized:
             errorView?.display(PurchaseErrorViewModel(
                 title: "purchase.user_not_authorized_title".localized,
                 subtitle: "purchase.user_not_authorized_subtitle".localized,
@@ -113,6 +116,19 @@ final class RouteDescriptionHeaderPresenter {
                     }),
                     AlertAction(title: "common.later".localized, style: .cancel)],
                 errorType: .userNotAuthorized))
+            
+        case .userNotVerified:
+            errorView?.display(PurchaseErrorViewModel(
+                title: "purchase.user_not_verified_title".localized,
+                subtitle: "purchase.user_not_verified_subtitle".localized,
+                actions: [
+                    AlertAction(title: "purchase.verify_account".localized, style: .default, completion: { [weak self] in
+                        self?.showVerificationScreen()
+                    }),
+                    AlertAction(title: "common.later".localized, style: .cancel)],
+                errorType: .userNotVerified))
+            
+        default: break
         }
     }
     

@@ -61,6 +61,11 @@ public class RouteDescriptionCoordinator {
         controller?.present(authorizationController, state: .top, completion: nil)
     }
     
+    public func displayVerification() {
+        let verificationController = builder.buildAccountConfirmationViewController(withChangeAccountButton: false, completion: nil)
+        controller?.present(verificationController, state: .top, completion: nil)
+    }
+    
     public func displayPurchaseInProgressAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
         displayAlert(title: title, subtitle: subtitle, actions: actions)
     }
@@ -70,6 +75,10 @@ public class RouteDescriptionCoordinator {
     }
     
     public func displayUserNotAuthorizedAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
+        displayAlert(title: title, subtitle: subtitle, actions: actions)
+    }
+    
+    public func displayUserNotVerifiedAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
         displayAlert(title: title, subtitle: subtitle, actions: actions)
     }
     
