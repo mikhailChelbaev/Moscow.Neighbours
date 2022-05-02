@@ -26,7 +26,7 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
     func display(_ viewModel: RouteDescriptionViewModel) {
         let routeHeaderPresenter = RouteDescriptionHeaderPresenter(model: viewModel, purchaseService: purchaseService, startRoutePassing: { [weak coordinator] in
             coordinator?.startPassingRoute()
-        }, purchaseOperationSuccessfulCompletion: { [weak self] in
+        }, purchaseOperationCompletion: { [weak self] in
             self?.reloadTableView()
         })
         let routeHeaderController = RouteDescriptionHeaderViewController(presenter: routeHeaderPresenter)
