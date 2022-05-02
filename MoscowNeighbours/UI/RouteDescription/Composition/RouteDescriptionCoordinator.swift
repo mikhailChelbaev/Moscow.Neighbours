@@ -56,19 +56,30 @@ public class RouteDescriptionCoordinator {
         controller?.present(routePassingController, state: .middle, completion: nil)
     }
     
-    public func showPurchaseInProgressAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
-        showAlert(title: title, subtitle: subtitle, actions: actions)
+    public func displayAuthorization() {
+        let authorizationController = builder.buildAuthorizationViewController()
+        controller?.present(authorizationController, state: .top, completion: nil)
     }
     
-    public func showPaymentsRestrictedAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
-        showAlert(title: title, subtitle: subtitle, actions: actions)
+    public func displayPurchaseInProgressAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
+        displayAlert(title: title, subtitle: subtitle, actions: actions)
     }
     
-    func showAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
-        let alertActions = actions.map {
+    public func displayPaymentsRestrictedAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
+        displayAlert(title: title, subtitle: subtitle, actions: actions)
+    }
+    
+    public func displayUserNotAuthorizedAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
+        displayAlert(title: title, subtitle: subtitle, actions: actions)
+    }
+    
+    func displayAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
+        let alertActions = actions.map { action in
             UIAlertAction(
-                title: $0.title,
-                style: UIAlertAction.Style.from($0.style))
+                title: action.title,
+                style: UIAlertAction.Style.from(action.style)) { _ in
+                    action.completion?()
+                }
         }
         let alertController = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
         alertActions.forEach { alertController.addAction($0) }

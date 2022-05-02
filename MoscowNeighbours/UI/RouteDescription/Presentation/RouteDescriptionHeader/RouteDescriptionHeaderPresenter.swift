@@ -18,7 +18,7 @@ protocol PurchaseErrorView {
 struct PurchaseErrorViewModel {
     let title: String?
     let subtitle: String
-    let actions: [(title: String?, style: ActionStyle)]
+    let actions: [AlertAction]
     let errorType: PurchasesError
 }
 
@@ -28,15 +28,18 @@ final class RouteDescriptionHeaderPresenter {
     private let purchaseService: PurchaseWithConfirmationProvider
     private let startRoutePassing: Action
     private let purchaseOperationCompletion: Action
+    private let showAuthorizationScreen: Action
     
     init(model: RouteDescriptionViewModel,
          purchaseService: PurchaseWithConfirmationProvider,
          startRoutePassing: @escaping Action,
-         purchaseOperationCompletion: @escaping Action) {
+         purchaseOperationCompletion: @escaping Action,
+         showAuthorizationScreen: @escaping Action) {
         self.model = model
         self.purchaseService = purchaseService
         self.startRoutePassing = startRoutePassing
         self.purchaseOperationCompletion = purchaseOperationCompletion
+        self.showAuthorizationScreen = showAuthorizationScreen
     }
     
     var view: RouteDescriptionHeaderView?
@@ -90,15 +93,26 @@ final class RouteDescriptionHeaderPresenter {
             errorView?.display(PurchaseErrorViewModel(
                 title: "purchase.purchase_in_progress_title".localized,
                 subtitle: "purchase.purchase_in_progress_subtitle".localized,
-                actions: [(title: "common.ok".localized, style: .default)],
+                actions: [AlertAction(title: "common.ok".localized, style: .default, completion: nil)],
                 errorType: .purchaseInProgress))
             
-        default:
+        case .paymentsRestricted:
             errorView?.display(PurchaseErrorViewModel(
                 title: "purchase.payments_restricted_title".localized,
                 subtitle: "purchase.payments_restricted_subtitle".localized,
-                actions: [(title: "common.ok".localized, style: .default)],
+                actions: [AlertAction(title: "common.ok".localized, style: .default, completion: nil)],
                 errorType: .paymentsRestricted))
+            
+        default:
+            errorView?.display(PurchaseErrorViewModel(
+                title: "purchase.user_not_authorized_title".localized,
+                subtitle: "purchase.user_not_authorized_subtitle".localized,
+                actions: [
+                    AlertAction(title: "purchase.authorize".localized, style: .default, completion: { [weak self] in
+                        self?.showAuthorizationScreen()
+                    }),
+                    AlertAction(title: "common.later".localized, style: .cancel)],
+                errorType: .userNotAuthorized))
         }
     }
     

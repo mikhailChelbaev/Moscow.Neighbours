@@ -24,11 +24,16 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
     }
     
     func display(_ viewModel: RouteDescriptionViewModel) {
-        let routeHeaderPresenter = RouteDescriptionHeaderPresenter(model: viewModel, purchaseService: purchaseService, startRoutePassing: { [weak coordinator] in
-            coordinator?.startPassingRoute()
-        }, purchaseOperationCompletion: { [weak self] in
-            self?.reloadTableView()
-        })
+        let routeHeaderPresenter = RouteDescriptionHeaderPresenter(
+            model: viewModel,
+            purchaseService: purchaseService,
+            startRoutePassing: { [weak coordinator] in
+                coordinator?.startPassingRoute()
+            }, purchaseOperationCompletion: { [weak self] in
+                self?.reloadTableView()
+            }, showAuthorizationScreen: { [weak self] in
+                self?.coordinator.displayAuthorization()
+            })
         let routeHeaderController = RouteDescriptionHeaderViewController(presenter: routeHeaderPresenter)
         routeHeaderPresenter.view = WeakRef(routeHeaderController)
         routeHeaderPresenter.errorView = purchaseErrorView

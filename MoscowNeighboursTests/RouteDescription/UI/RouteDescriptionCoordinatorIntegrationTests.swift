@@ -69,7 +69,7 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
             [.displayAlert(
                 title: localized("purchase.purchase_in_progress_title"),
                 subtitle: localized("purchase.purchase_in_progress_subtitle"),
-                actions: [AlertAction(title: "common.ok".localized, style: .default)])])
+                actions: [AlertAction(title: localized("common.ok"), style: .default)])])
     }
     
     func test_headerButtonCompletion_displaysAlertIfPaymentsRestricted() {
@@ -86,7 +86,26 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
             [.displayAlert(
                 title: localized("purchase.payments_restricted_title"),
                 subtitle: localized("purchase.payments_restricted_subtitle"),
-                actions: [AlertAction(title: "common.ok".localized, style: .default)])])
+                actions: [AlertAction(title: localized("common.ok"), style: .default)])])
+    }
+    
+    func test_headerButtonCompletion_displaysAlertIfUserNotAuthorized() {
+        let (sut, loader, coordinator) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        
+        sut.simulateHeaderButtonTap()
+        loader.completePurchase(with: PurchasesError.userNotAuthorized)
+        
+        XCTAssertEqual(
+            coordinator.receivedMessages,
+            [.displayAlert(
+                title: localized("purchase.user_not_authorized_title"),
+                subtitle: localized("purchase.user_not_authorized_subtitle"),
+                actions: [
+                    AlertAction(title: localized("purchase.authorize"), style: .default),
+                    AlertAction(title: localized("common.later"), style: .cancel)])])
     }
 
     // MARK: - Helpers

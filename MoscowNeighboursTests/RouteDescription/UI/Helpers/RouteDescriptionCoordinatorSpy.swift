@@ -7,11 +7,6 @@
 
 @testable import MoscowNeighbours
 
-struct AlertAction: Equatable {
-    let title: String?
-    let style: ActionStyle
-}
-
 class RouteDescriptionCoordinatorSpy: RouteDescriptionCoordinator {
     enum Message: Equatable {
         case dismiss
@@ -34,7 +29,7 @@ class RouteDescriptionCoordinatorSpy: RouteDescriptionCoordinator {
         receivedMessages.append(.startRoutePassing)
     }
     
-    override func showAlert(title: String?, subtitle: String?, actions: [(title: String?, style: ActionStyle)]) {
-        receivedMessages.append(.displayAlert(title: title, subtitle: subtitle, actions: actions.map { AlertAction(title: $0.title, style: $0.style) }))
+    override func displayAlert(title: String?, subtitle: String?, actions: [AlertAction]) {
+        receivedMessages.append(.displayAlert(title: title, subtitle: subtitle, actions: actions))
     }
 }

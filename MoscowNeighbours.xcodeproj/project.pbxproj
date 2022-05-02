@@ -212,6 +212,7 @@
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
 		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
+		74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B51577281FE0FC001C4F1D /* AlertAction.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
 		74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC342788442600E240C5 /* ProfilePresenter.swift */; };
 		74B8EC372788442D00E240C5 /* ProfileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC362788442D00E240C5 /* ProfileStorage.swift */; };
@@ -528,6 +529,7 @@
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
 		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
+		74B51577281FE0FC001C4F1D /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B8EC342788442600E240C5 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		74B8EC362788442D00E240C5 /* ProfileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorage.swift; sourceTree = "<group>"; };
@@ -1480,6 +1482,7 @@
 				74C3004A2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift */,
 				74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */,
 				748FC7DD281F2BD30060E256 /* ActionStyle.swift */,
+				74B51577281FE0FC001C4F1D /* AlertAction.swift */,
 			);
 			path = RouteDescriptionHeader;
 			sourceTree = "<group>";
@@ -2143,6 +2146,7 @@
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,
 				74DE214D27F0F63D006863A3 /* UserState.swift in Sources */,
 				746BCCC526A8BA6C009CC823 /* RoutesViewController.swift in Sources */,
+				74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */,
 				749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */,
 				7402661126A76379006242FE /* SceneDelegate.swift in Sources */,
 				74668497279F237A00AFAA2E /* AccountConfirmationPresenter.swift in Sources */,
