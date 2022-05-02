@@ -128,7 +128,12 @@ final class RouteDescriptionHeaderPresenter {
                     AlertAction(title: "common.later".localized, style: .cancel)],
                 errorType: .userNotVerified))
             
-        default: break
+        default:
+            errorView?.display(PurchaseErrorViewModel(
+                title: nil,
+                subtitle: "purchase.purchase_unknown_error_subtitle".localized,
+                actions: [AlertAction(title: "common.ok".localized, style: .default, completion: nil)],
+                errorType: .unknown))
         }
     }
     

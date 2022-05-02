@@ -126,6 +126,24 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
                     AlertAction(title: localized("purchase.verify_account"), style: .default),
                     AlertAction(title: localized("common.later"), style: .cancel)])])
     }
+    
+    func test_headerButtonCompletion_displaysAlertIfErrorUnknown() {
+        let (sut, loader, coordinator) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        
+        sut.simulateHeaderButtonTap()
+        loader.completePurchase(with: anyNSError())
+        
+        XCTAssertEqual(
+            coordinator.receivedMessages,
+            [.displayAlert(
+                title: nil,
+                subtitle: localized("purchase.purchase_unknown_error_subtitle"),
+                actions: [
+                    AlertAction(title: localized("common.ok"), style: .default)])])
+    }
 
     // MARK: - Helpers
 

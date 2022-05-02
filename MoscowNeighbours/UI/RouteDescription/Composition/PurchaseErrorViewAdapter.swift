@@ -40,7 +40,11 @@ final class PurchaseErrorViewAdapter: PurchaseErrorView {
                 subtitle: viewModel.subtitle,
                 actions: viewModel.actions)
             
-        default: break
+        default:
+            coordinator.displayAlert(
+                title: viewModel.title,
+                subtitle: viewModel.subtitle,
+                actions: viewModel.actions)
         }
         
     }
