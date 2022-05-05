@@ -64,6 +64,8 @@ extension RoutesService: RoutesProvider {
             case .failure(let error):
                 Logger.log("Failed to load routes: \(error.localizedDescription)")
                 
+                saveRoutes([])
+                
                 completion(.failure(error))
             }
         }
@@ -81,7 +83,13 @@ extension RoutesService: RoutesProvider {
         let products = (try? response.get()) ?? []
         let routes = remoteRoutes.map { $0.toModel(products: products) }
         
+        saveRoutes(routes)
+        
         completion(.success(routes))
+    }
+    
+    private func saveRoutes(_ routes: [Route]) {
+        self.routes = routes
     }
 }
 
