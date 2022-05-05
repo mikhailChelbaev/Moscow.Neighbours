@@ -33,9 +33,13 @@ final class RoutesPresenter {
     private var routesService: RoutesProvider
     private let delayManager: DelayManager
     
-    init(routesService: RoutesProvider, delayManager: DelayManager) {
+    init(routesService: RoutesProvider, routesStateObserver: RoutesStateObserver, delayManager: DelayManager) {
         self.routesService = routesService
         self.delayManager = delayManager
+        
+        routesStateObserver.observe(for: String(describing: self)) { [weak self] routes in
+            self?.displayRoutes(routes)
+        }
     }
     
     var headerTitle: String {
@@ -60,7 +64,7 @@ final class RoutesPresenter {
             switch result {
             case let .success(routes):
                 self.delayManager.completeWithDelay {
-                    self.routesView?.display(routes: routes)
+                    self.displayRoutes(routes)
                 }
                 
             case let .failure(error):
@@ -71,5 +75,11 @@ final class RoutesPresenter {
             
             self.routeLoadingView?.display(isLoading: false)
         }
+    }
+}
+
+extension RoutesPresenter {
+    private func displayRoutes(_ routes: [Route]) {
+        routesView?.display(routes: routes)
     }
 }

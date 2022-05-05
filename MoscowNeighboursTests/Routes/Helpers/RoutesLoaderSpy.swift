@@ -7,7 +7,10 @@
 
 import MoscowNeighbours
 
-final class RoutesLoaderSpy: RoutesProvider {
+final class RoutesLoaderSpy: RoutesProvider, RoutesStateObserver {
+    
+    // MARK: - RoutesProvider
+    
     var completions = [(RoutesProvider.Result) -> Void]()
     
     func fetchRoutes(completion: @escaping (RoutesProvider.Result) -> Void) {
@@ -20,5 +23,17 @@ final class RoutesLoaderSpy: RoutesProvider {
     
     func completeRoutesLoading(with error: Error, at index: Int = 0) {
         completions[index](.failure(error))
+    }
+    
+    // MARK: - RoutesStateObserver
+    
+    private var observers = [String: RoutesStateObserver.Observer]()
+    
+    func observe(for key: String, completion: @escaping RoutesStateObserver.Observer) {
+        observers[key] = completion
+    }
+    
+    func notifyAboutRoutesChange(with routes: [Route]) {
+        observers.forEach { $0.value(routes) }
     }
 }

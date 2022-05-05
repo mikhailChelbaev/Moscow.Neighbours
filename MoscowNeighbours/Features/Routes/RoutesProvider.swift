@@ -12,3 +12,13 @@ public protocol RoutesProvider {
     
     func fetchRoutes(completion: @escaping (Result) -> Void)
 }
+
+public protocol RoutesState {
+    func updateRoute(_ route: Route)
+}
+
+public protocol RoutesStateObserver {
+    typealias Observer = ([Route]) -> Void
+    
+    func observe(for key: String, completion: @escaping Observer)
+}

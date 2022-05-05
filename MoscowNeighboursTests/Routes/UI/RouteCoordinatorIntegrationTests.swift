@@ -29,6 +29,7 @@ class RouteCoordinatorIntegrationTests: XCTestCase {
         let loader = RoutesLoaderSpy()
         let storage = RoutesStorage(
             routesService: loader,
+            routesStateObserver: loader,
             routesFetchDelayManager: TestDelayManager(),
             userState: builder.userState)
         let coordinator = RoutesCoordinatorStub(storage: storage)

@@ -7,23 +7,52 @@
 
 import Foundation
 
-final class RoutesService: BaseNetworkService, RoutesProvider {
+final class RoutesService: BaseNetworkService {
     
     // MARK: - Properties
     
     private let api: ApiRequestsFactory
     private let productsService: PurchaseProductsProvider
     
+    private var routes: [Route]
+    private var observers: [String: Observer]
+    
     // MARK: - Init
     
     init(api: ApiRequestsFactory, productsService: PurchaseProductsProvider) {
         self.api = api
         self.productsService = productsService
+        
+        self.routes = []
+        self.observers = [:]
     }
     
-    // MARK: - Internal Methods
+}
+
+extension RoutesService: RoutesStateObserver {
+    typealias Observer = RoutesStateObserver.Observer
     
+    func observe(for key: String, completion: @escaping Observer) {
+        observers[key] = completion
+    }
+}
+
+extension RoutesService: RoutesState {
+    func updateRoute(_ route: Route) {
+        guard let index = routes.firstIndex(where: { route.id == $0.id }) else {
+            return
+        }
+        
+        routes[index] = route
+        notifyObservers()
+    }
     
+    private func notifyObservers() {
+        observers.forEach { $0.value(routes) }
+    }
+}
+
+extension RoutesService: RoutesProvider {
     func fetchRoutes(completion: @escaping (RoutesService.Result) -> Void) {
         Task {
             let result = await requestSender.send(request: api.routesRequest, type: [RemoteRoute].self)
@@ -54,7 +83,6 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
         
         completion(.success(routes))
     }
-    
 }
 
 // MARK: - API

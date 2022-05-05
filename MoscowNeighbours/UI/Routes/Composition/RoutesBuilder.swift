@@ -9,11 +9,13 @@ import Foundation
 
 public struct RoutesStorage {
     let routesService: RoutesProvider
+    let routesStateObserver: RoutesStateObserver
     let routesFetchDelayManager: DelayManager
     let userState: UserState
 
-    init(routesService: RoutesProvider, routesFetchDelayManager: DelayManager, userState: UserState) {
+    init(routesService: RoutesProvider, routesStateObserver: RoutesStateObserver, routesFetchDelayManager: DelayManager, userState: UserState) {
         self.routesService = routesService
+        self.routesStateObserver = routesStateObserver
         self.routesFetchDelayManager = routesFetchDelayManager
         self.userState = userState
     }
@@ -22,6 +24,7 @@ public struct RoutesStorage {
 extension Builder {
     public func makeRoutesStorage() -> RoutesStorage {
         return RoutesStorage(routesService: routesService,
+                             routesStateObserver: routesService,
                              routesFetchDelayManager: DefaultDelayManager(minimumDuration: 1.0),
                              userState: userState)
     }
@@ -33,6 +36,7 @@ public final class RoutesUIComposer {
     public static func routesComposeWith(_ storage: RoutesStorage, coordinator: RoutesCoordinator) -> RoutesViewController {
         let presenter = RoutesPresenter(
             routesService: MainQueueDispatchDecorator(decoratee: storage.routesService),
+            routesStateObserver: storage.routesStateObserver,
             delayManager: storage.routesFetchDelayManager)
         
         let userStateObserver = UserStateObserver(completion: { [weak presenter] in

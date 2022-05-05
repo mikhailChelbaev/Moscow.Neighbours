@@ -64,6 +64,16 @@ class RouteUIIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.isLoaderVisible, "Expected loading indicator after current user change")
     }
     
+    func test_routesList_reloadsAfterRoutesUpdate() {
+        let updatedRoutes = [makeRoute(name: "Updated route", price: (.free, nil))]
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.notifyAboutRoutesChange(with: updatedRoutes)
+        
+        assertThat(sut, isRendering: updatedRoutes)
+    }
+    
     func test_fetchRoutesCompletion_dispatchesFromBackgroundToMainThread() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
@@ -98,6 +108,7 @@ class RouteUIIntegrationTests: XCTestCase {
         let loader = RoutesLoaderSpy()
         let storage = RoutesStorage(
             routesService: loader,
+            routesStateObserver: loader,
             routesFetchDelayManager: TestDelayManager(),
             userState: userState)
         let coordinator = RoutesCoordinator(builder: builder)
