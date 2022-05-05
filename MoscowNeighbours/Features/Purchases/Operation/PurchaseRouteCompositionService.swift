@@ -35,20 +35,20 @@ public final class PurchaseRouteCompositionService: PurchaseRouteProvider {
         operation.purchaseProduct(product: product) { [weak self] result in
             if case Result.success = result {
                 self?.confirmation.confirmRoutePurchase(routeId: route.id, completion: nil)
+                
+                let purchasedRoute = Route(
+                    id: route.id,
+                    name: route.name,
+                    description: route.description,
+                    coverUrl: route.coverUrl,
+                    duration: route.duration,
+                    distance: route.distance,
+                    personsInfo: route.personsInfo,
+                    purchase: .init(
+                        status: .purchased,
+                        product: route.purchase.product))
+                self?.routesState.updateRoute(purchasedRoute)
             }
-            
-            let purchasedRoute = Route(
-                id: route.id,
-                name: route.name,
-                description: route.description,
-                coverUrl: route.coverUrl,
-                duration: route.duration,
-                distance: route.distance,
-                personsInfo: route.personsInfo,
-                purchase: .init(
-                    status: .purchased,
-                    product: route.purchase.product))
-            self?.routesState.updateRoute(purchasedRoute)
             
             completion(result)
         }

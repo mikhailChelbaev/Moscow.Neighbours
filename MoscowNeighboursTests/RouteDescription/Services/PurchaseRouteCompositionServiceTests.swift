@@ -78,6 +78,15 @@ class PurchaseRouteCompositionServiceTests: XCTestCase {
         XCTAssertEqual(loader.updatedRoutes, [route])
     }
     
+    func test_purchaseRoute_doesNotUpdateRoutesStateIfPurchaseFailed() {
+        let (sut, loader) = makeSUT()
+        
+        sut.purchaseRoute(route: anyPaidRoute()) { _ in }
+        loader.completePurchase(with: anyNSError())
+        
+        XCTAssertTrue(loader.updatedRoutes.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseRouteProvider, loader: PurchaseSpy) {
