@@ -20,6 +20,13 @@ public final class PersonInfo: NSObject {
         self.place = place
         self.coordinates = coordinates
     }
+    
+    static func ==(lhs: PersonInfo, rhs: PersonInfo) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.person == rhs.person &&
+        lhs.place == rhs.place &&
+        lhs.coordinate == rhs.coordinate
+    }
 }
 
 extension PersonInfo: MKAnnotation {

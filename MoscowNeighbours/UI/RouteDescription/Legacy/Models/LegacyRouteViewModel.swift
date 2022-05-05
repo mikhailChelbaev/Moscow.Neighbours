@@ -57,7 +57,7 @@ final class LegacyRouteViewModel {
     }
 
     func updatePurchaseStatus(_ status: Purchase.Status) {
-        route.purchase.status = status
+//        route.purchase.status = statuslhs.
         purchaseStatus = status
         price = route.localizedPrice()
     }

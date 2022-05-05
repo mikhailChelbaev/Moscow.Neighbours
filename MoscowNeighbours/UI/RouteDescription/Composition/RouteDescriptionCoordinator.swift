@@ -28,7 +28,8 @@ public class RouteDescriptionCoordinator {
                     operation: PurchaseOperationService(
                         isAuthorized: builder.userState.isAuthorized,
                         isVerified: builder.userState.isVerified),
-                confirmation: RoutePurchaseConfirmationService(api: builder.api))),
+                    confirmation: RoutePurchaseConfirmationService(api: builder.api),
+                    routesState: builder.routesService)),
             coordinator: self)
     }
     

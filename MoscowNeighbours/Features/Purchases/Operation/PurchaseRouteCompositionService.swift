@@ -16,10 +16,12 @@ public protocol PurchaseRouteProvider {
 public final class PurchaseRouteCompositionService: PurchaseRouteProvider {
     private let operation: PurchaseOperationProvider
     private let confirmation: RoutePurchaseConfirmationProvider
+    private let routesState: RoutesState
     
-    public init(operation: PurchaseOperationProvider, confirmation: RoutePurchaseConfirmationProvider) {
+    public init(operation: PurchaseOperationProvider, confirmation: RoutePurchaseConfirmationProvider, routesState: RoutesState) {
         self.operation = operation
         self.confirmation = confirmation
+        self.routesState = routesState
     }
     
     public typealias Result = PurchaseRouteProvider.Result
@@ -34,6 +36,19 @@ public final class PurchaseRouteCompositionService: PurchaseRouteProvider {
             if case Result.success = result {
                 self?.confirmation.confirmRoutePurchase(routeId: route.id, completion: nil)
             }
+            
+            let purchasedRoute = Route(
+                id: route.id,
+                name: route.name,
+                description: route.description,
+                coverUrl: route.coverUrl,
+                duration: route.duration,
+                distance: route.distance,
+                personsInfo: route.personsInfo,
+                purchase: .init(
+                    status: .purchased,
+                    product: route.purchase.product))
+            self?.routesState.updateRoute(purchasedRoute)
             
             completion(result)
         }

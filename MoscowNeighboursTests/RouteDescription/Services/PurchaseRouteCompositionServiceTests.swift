@@ -67,11 +67,22 @@ class PurchaseRouteCompositionServiceTests: XCTestCase {
         })
     }
     
+    func test_purchaseRoute_updatesRoutesStateIfPurchaseSucceeded() {
+        var route = anyPaidRoute()
+        let (sut, loader) = makeSUT()
+        
+        sut.purchaseRoute(route: route) { _ in }
+        loader.completePurchaseSuccessfully()
+        
+        route.purchase.status = .purchased
+        XCTAssertEqual(loader.updatedRoutes, [route])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseRouteProvider, loader: PurchaseSpy) {
         let loader = PurchaseSpy()
-        let sut = PurchaseRouteCompositionService(operation: loader, confirmation: loader)
+        let sut = PurchaseRouteCompositionService(operation: loader, confirmation: loader, routesState: loader)
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)

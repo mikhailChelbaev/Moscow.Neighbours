@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ShortInfo {
+public struct ShortInfo: Equatable {
     public let title: String
     public let subtitle: String
     

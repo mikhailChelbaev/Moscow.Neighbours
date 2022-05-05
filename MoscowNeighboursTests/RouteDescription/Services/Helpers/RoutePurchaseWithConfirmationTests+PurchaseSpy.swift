@@ -9,9 +9,10 @@ import MoscowNeighbours
 
 extension PurchaseRouteCompositionServiceTests {
     
-    final class PurchaseSpy: PurchaseOperationProvider, RoutePurchaseConfirmationProvider {
+    final class PurchaseSpy: PurchaseOperationProvider, RoutePurchaseConfirmationProvider, RoutesState {
         
         // MARK: - Purchase Operation
+        
         private(set) var purchaseCompletions = [(PurchaseOperationProvider.Result) -> Void]()
         
         var operationCallCount: Int {
@@ -35,6 +36,7 @@ extension PurchaseRouteCompositionServiceTests {
         }
         
         // MARK: - Purchase Confirmation
+        
         private(set) var confirmedRouteIds = [String]()
         
         var confirmationCallCount: Int {
@@ -43,6 +45,14 @@ extension PurchaseRouteCompositionServiceTests {
         
         func confirmRoutePurchase(routeId: String, completion: ((RoutePurchaseConfirmationProvider.Result) -> Void)?) {
             confirmedRouteIds.append(routeId)
+        }
+        
+        // MARK: - RoutesState
+        
+        private(set) var updatedRoutes = [Route]()
+        
+        func updateRoute(_ route: Route) {
+            updatedRoutes.append(route)
         }
     }
     

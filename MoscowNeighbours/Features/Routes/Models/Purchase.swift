@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Purchase {
-    public enum Status: String {
+    public enum Status: String, Equatable {
         case free
         case buy
         case purchased
@@ -22,3 +22,10 @@ public struct Purchase {
         self.product = product
     }
 }
+
+extension Purchase: Equatable {
+    public static func == (lhs: Purchase, rhs: Purchase) -> Bool {
+        return lhs.status == rhs.status && lhs.product?.id == rhs.product?.id
+    }
+}
+ 
