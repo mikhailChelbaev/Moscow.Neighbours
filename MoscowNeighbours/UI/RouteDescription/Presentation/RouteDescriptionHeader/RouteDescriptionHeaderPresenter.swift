@@ -25,14 +25,14 @@ struct PurchaseErrorViewModel {
 final class RouteDescriptionHeaderPresenter {
     
     private let model: RouteDescriptionViewModel
-    private let purchaseService: PurchaseWithConfirmationProvider
+    private let purchaseService: PurchaseRouteProvider
     private let startRoutePassing: Action
     private let purchaseOperationCompletion: Action
     private let showAuthorizationScreen: Action
     private let showVerificationScreen: Action
     
     init(model: RouteDescriptionViewModel,
-         purchaseService: PurchaseWithConfirmationProvider,
+         purchaseService: PurchaseRouteProvider,
          startRoutePassing: @escaping Action,
          purchaseOperationCompletion: @escaping Action,
          showAuthorizationScreen: @escaping Action,

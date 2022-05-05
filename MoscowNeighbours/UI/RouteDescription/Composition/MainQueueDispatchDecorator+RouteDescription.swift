@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension MainQueueDispatchDecorator: PurchaseWithConfirmationProvider where T == PurchaseWithConfirmationProvider {
-    func purchaseRoute(route: Route, completion: @escaping (PurchaseWithConfirmationProvider.Result) -> Void) {
+extension MainQueueDispatchDecorator: PurchaseRouteProvider where T == PurchaseRouteProvider {
+    func purchaseRoute(route: Route, completion: @escaping (PurchaseRouteProvider.Result) -> Void) {
         decoratee.purchaseRoute(route: route) { [weak self] result in
             self?.dispatch { completion(result) }
         }

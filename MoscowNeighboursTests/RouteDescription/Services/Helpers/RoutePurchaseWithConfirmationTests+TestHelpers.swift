@@ -1,5 +1,5 @@
 //
-//  RoutePurchaseWithConfirmationTests+TestHelpers.swift
+//  PurchaseRouteCompositionServiceTests+TestHelpers.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 24.04.2022.
@@ -7,7 +7,7 @@
 
 import MoscowNeighbours
 
-extension RoutePurchaseWithConfirmationTests {
+extension PurchaseRouteCompositionServiceTests {
     
     func anyPaidRoute() -> Route {
         return makeRoute(price: (.buy, 200))

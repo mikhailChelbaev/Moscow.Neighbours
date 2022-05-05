@@ -10,12 +10,12 @@ import Foundation
 final class RouteDescriptionViewAdapter: RouteDescriptionView {
     private weak var controller: RouteDescriptionTableViewController?
     private let coordinator: RouteDescriptionCoordinator
-    private let purchaseService: PurchaseWithConfirmationProvider
+    private let purchaseService: PurchaseRouteProvider
     private let purchaseErrorView: PurchaseErrorView
     
     init(controller: RouteDescriptionTableViewController,
          coordinator: RouteDescriptionCoordinator,
-         purchaseService: PurchaseWithConfirmationProvider,
+         purchaseService: PurchaseRouteProvider,
          purchaseErrorView: PurchaseErrorView) {
         self.controller = controller
         self.coordinator = coordinator

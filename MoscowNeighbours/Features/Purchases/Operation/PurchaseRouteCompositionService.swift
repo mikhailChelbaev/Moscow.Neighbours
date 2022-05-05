@@ -1,5 +1,5 @@
 //
-//  RoutePurchaseWithConfirmationService.swift
+//  PurchaseRouteCompositionService.swift
 //  MoscowNeighbours
 //
 //  Created by Mikhail on 23.04.2022.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-public protocol PurchaseWithConfirmationProvider {
+public protocol PurchaseRouteProvider {
     typealias Result = Swift.Result<Void, Error>
     
     func purchaseRoute(route: Route, completion: @escaping (Result) -> Void)
 }
 
-public final class RoutePurchaseWithConfirmationService: PurchaseWithConfirmationProvider {
+public final class PurchaseRouteCompositionService: PurchaseRouteProvider {
     private let operation: PurchaseOperationProvider
     private let confirmation: RoutePurchaseConfirmationProvider
     
@@ -22,7 +22,7 @@ public final class RoutePurchaseWithConfirmationService: PurchaseWithConfirmatio
         self.confirmation = confirmation
     }
     
-    public typealias Result = PurchaseWithConfirmationProvider.Result
+    public typealias Result = PurchaseRouteProvider.Result
     private struct MissingProduct: Error {}
     
     public func purchaseRoute(route: Route, completion: @escaping (Result) -> Void) {

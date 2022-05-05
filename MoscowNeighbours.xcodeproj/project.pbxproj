@@ -202,8 +202,8 @@
 		7499D8CC277C5FA800BBCF6A /* AccountAdvantagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */; };
 		749FDCC827B8678A00CC4D43 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCC727B8678A00CC4D43 /* MessageResponse.swift */; };
 		749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */; };
-		74A0B86528148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */; };
-		74A0B86828149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */; };
+		74A0B86528148F6B00D96A76 /* PurchaseRouteCompositionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86428148F6B00D96A76 /* PurchaseRouteCompositionServiceTests.swift */; };
+		74A0B86828149ABC00D96A76 /* PurchaseRouteCompositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86728149ABC00D96A76 /* PurchaseRouteCompositionService.swift */; };
 		74A0B86B28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */; };
 		74A0B86D2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */; };
 		74A0B8702814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */; };
@@ -519,8 +519,8 @@
 		7499D8CB277C5FA800BBCF6A /* AccountAdvantagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAdvantagesCell.swift; sourceTree = "<group>"; };
 		749FDCC727B8678A00CC4D43 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseConfirmationService.swift; sourceTree = "<group>"; };
-		74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationTests.swift; sourceTree = "<group>"; };
-		74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePurchaseWithConfirmationService.swift; sourceTree = "<group>"; };
+		74A0B86428148F6B00D96A76 /* PurchaseRouteCompositionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRouteCompositionServiceTests.swift; sourceTree = "<group>"; };
+		74A0B86728149ABC00D96A76 /* PurchaseRouteCompositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRouteCompositionService.swift; sourceTree = "<group>"; };
 		74A0B86A28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainQueueDispatchDecorator+RouteDescription.swift"; sourceTree = "<group>"; };
 		74A0B86C2814A06500D96A76 /* RoutePurchaseWithConfirmationTests+PurchaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+PurchaseSpy.swift"; sourceTree = "<group>"; };
 		74A0B86F2814A07700D96A76 /* RoutePurchaseWithConfirmationTests+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -817,7 +817,7 @@
 				741D9BF32813FC3F0094EF3F /* PurchaseOperationProvider.swift */,
 				741D9BF72813FC690094EF3F /* PurchaseOperationService.swift */,
 				749FDCCA27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift */,
-				74A0B86728149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift */,
+				74A0B86728149ABC00D96A76 /* PurchaseRouteCompositionService.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -1410,7 +1410,7 @@
 			isa = PBXGroup;
 			children = (
 				74A0B86E2814A06900D96A76 /* Helpers */,
-				74A0B86428148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift */,
+				74A0B86428148F6B00D96A76 /* PurchaseRouteCompositionServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1983,7 +1983,7 @@
 				74C9EF67281007F200B8172E /* PersonViewAdapter.swift in Sources */,
 				74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */,
 				74DEA85E28082CB70050EF49 /* PersonCell.swift in Sources */,
-				74A0B86828149ABC00D96A76 /* RoutePurchaseWithConfirmationService.swift in Sources */,
+				74A0B86828149ABC00D96A76 /* PurchaseRouteCompositionService.swift in Sources */,
 				74F739FD272B50DE007C5450 /* CustomTableViewDataSource.swift in Sources */,
 				740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */,
 				742EFE8D26F14168009A5126 /* GradientView.swift in Sources */,
@@ -2164,7 +2164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				744B3F35280F38D900027C5D /* RouteDescriptionCoordinatorIntegrationTests.swift in Sources */,
-				74A0B86528148F6B00D96A76 /* RoutePurchaseWithConfirmationTests.swift in Sources */,
+				74A0B86528148F6B00D96A76 /* PurchaseRouteCompositionServiceTests.swift in Sources */,
 				744B3F40280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift in Sources */,
 				7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */,
 				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,

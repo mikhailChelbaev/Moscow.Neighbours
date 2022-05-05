@@ -7,7 +7,7 @@
 
 import MoscowNeighbours
 
-final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseWithConfirmationProvider {
+final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseRouteProvider {
     
     // MARK: - Route Transformer
     
@@ -27,9 +27,9 @@ final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseWithConfirmation
     
     // MARK: - Purchase Provider
     
-    var purchaseCompletions = [(PurchaseWithConfirmationProvider.Result) -> Void]()
+    var purchaseCompletions = [(PurchaseRouteProvider.Result) -> Void]()
     
-    func purchaseRoute(route: Route, completion: @escaping (PurchaseWithConfirmationProvider.Result) -> Void) {
+    func purchaseRoute(route: Route, completion: @escaping (PurchaseRouteProvider.Result) -> Void) {
         purchaseCompletions.append(completion)
     }
 

@@ -1,5 +1,5 @@
 //
-//  RoutePurchaseWithConfirmationTests.swift
+//  PurchaseRouteCompositionServiceTests.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 23.04.2022.
@@ -8,7 +8,7 @@
 import XCTest
 import MoscowNeighbours
 
-class RoutePurchaseWithConfirmationTests: XCTestCase {
+class PurchaseRouteCompositionServiceTests: XCTestCase {
     
     func test_init_doesNotPurchase() {
         let (_, loader) = makeSUT()
@@ -69,9 +69,9 @@ class RoutePurchaseWithConfirmationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseWithConfirmationProvider, loader: PurchaseSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: PurchaseRouteProvider, loader: PurchaseSpy) {
         let loader = PurchaseSpy()
-        let sut = RoutePurchaseWithConfirmationService(operation: loader, confirmation: loader)
+        let sut = PurchaseRouteCompositionService(operation: loader, confirmation: loader)
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)

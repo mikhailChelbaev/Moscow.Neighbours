@@ -1,5 +1,5 @@
 //
-//  RoutePurchaseWithConfirmationTests+Assertions.swift
+//  PurchaseRouteCompositionServiceTests+Assertions.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 24.04.2022.
@@ -8,9 +8,9 @@
 import XCTest
 import MoscowNeighbours
 
-extension RoutePurchaseWithConfirmationTests {
+extension PurchaseRouteCompositionServiceTests {
     
-    func expect(_ sut: PurchaseWithConfirmationProvider, toCompleteWith expectedResult: PurchaseWithConfirmationProvider.Result, when action: Action, file: StaticString = #file, line: UInt = #line) {
+    func expect(_ sut: PurchaseRouteProvider, toCompleteWith expectedResult: PurchaseRouteProvider.Result, when action: Action, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for completion")
         
         sut.purchaseRoute(route: anyPaidRoute()) { receivedResult in

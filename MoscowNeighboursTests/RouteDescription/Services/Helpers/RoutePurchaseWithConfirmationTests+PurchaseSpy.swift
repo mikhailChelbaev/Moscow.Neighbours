@@ -1,5 +1,5 @@
 //
-//  RoutePurchaseWithConfirmationTests+PurchaseSpy.swift
+//  PurchaseRouteCompositionServiceTests+PurchaseSpy.swift
 //  MoscowNeighboursTests
 //
 //  Created by Mikhail on 24.04.2022.
@@ -7,7 +7,7 @@
 
 import MoscowNeighbours
 
-extension RoutePurchaseWithConfirmationTests {
+extension PurchaseRouteCompositionServiceTests {
     
     final class PurchaseSpy: PurchaseOperationProvider, RoutePurchaseConfirmationProvider {
         

@@ -24,7 +24,7 @@ public class RouteDescriptionCoordinator {
                 model: route,
                 routeTransformer: RouteTransformer(),
                 mapService: builder.mapService,
-                purchaseService: RoutePurchaseWithConfirmationService(
+                purchaseService: PurchaseRouteCompositionService(
                     operation: PurchaseOperationService(
                         isAuthorized: builder.userState.isAuthorized,
                         isVerified: builder.userState.isVerified),
