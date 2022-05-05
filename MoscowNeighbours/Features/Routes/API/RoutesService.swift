@@ -35,9 +35,7 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
             case .failure(let error):
                 Logger.log("Failed to load routes: \(error.localizedDescription)")
                 
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
+                completion(.failure(error))
             }
         }
     }
@@ -54,9 +52,7 @@ final class RoutesService: BaseNetworkService, RoutesProvider {
         let products = (try? response.get()) ?? []
         let routes = remoteRoutes.map { $0.toModel(products: products) }
         
-        DispatchQueue.main.async {
-            completion(.success(routes))
-        }
+        completion(.success(routes))
     }
     
 }
