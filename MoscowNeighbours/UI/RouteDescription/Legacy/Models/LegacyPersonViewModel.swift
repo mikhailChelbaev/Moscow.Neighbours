@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import Markdown
 
 final class LegacyPersonViewModel: NSObject {
     private let parser: MarkdownParser = {

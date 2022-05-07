@@ -1,35 +1,15 @@
 //
-//  UIFont+CurrentFont.swift
+//  UIFont+MainFont.swift
 //  MoscowNeighbours
 //
-//  Created by Mikhail on 21.07.2021.
+//  Created by Mikhail on 07.05.2022.
 //
 
 import UIKit
+import AppConfiguration
 
 extension UIFont {
-
-    enum FontWeight {
-        case regular
-        case medium
-        case bold
-        case italic
-        case boldItalic
+    static func mainFont(ofSize size: CGFloat, weight: Font.Weight) -> UIFont {
+        return Font.main(ofSize: size, weight: weight)
     }
-    
-    static func mainFont(ofSize size: CGFloat, weight: FontWeight) -> UIFont {
-        switch weight {
-        case .regular:
-            return UIFont(name: "helveticaneuecyr-roman", size: size)!
-        case .medium:
-            return UIFont(name: "helveticaneuecyr-medium", size: size)!
-        case .bold:
-            return UIFont(name: "helveticaneuecyr-bold", size: size)!
-        case .italic:
-            return UIFont(name: "helveticaneuecyr-italic", size: size)!
-        case .boldItalic:
-            return UIFont(name: "helveticaneuecyr-bolditalic", size: size)!
-        }
-    }
-    
 }

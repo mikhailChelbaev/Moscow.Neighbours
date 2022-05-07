@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol MarkdownParser {
+public protocol MarkdownParser {
     func parse(text: String) -> NSAttributedString
     func clearCache()
 }
 
-final class DefaultMarkdownParser: MarkdownParser {
+public final class DefaultMarkdownParser: MarkdownParser {
     
     private let blockParser: BlockParser = .init()
     
@@ -25,13 +25,13 @@ final class DefaultMarkdownParser: MarkdownParser {
         UITraitCollection.current.userInterfaceStyle
     }
     
-    var configurator: MarkdownConfigurator = .default {
+    public var configurator: MarkdownConfigurator = .default {
         didSet {
             merger.configurator = configurator
         }
     }
     
-    init(configurator: MarkdownConfigurator = .default, withCache: Bool = true) {
+    public init(configurator: MarkdownConfigurator = .default, withCache: Bool = true) {
         self.configurator = configurator
         self.withCache = withCache
         
@@ -40,7 +40,7 @@ final class DefaultMarkdownParser: MarkdownParser {
         merger.configurator = configurator
     }
     
-    func parse(text: String) -> NSAttributedString {
+    public func parse(text: String) -> NSAttributedString {
         if text.isEmpty {
             return .init(string: "")
         }
@@ -60,7 +60,7 @@ final class DefaultMarkdownParser: MarkdownParser {
         return strings
     }
     
-    func clearCache() {
+    public func clearCache() {
         cache = [:]
     }
     

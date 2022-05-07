@@ -50,6 +50,16 @@
                ReferencedContainer = "container:MoscowNeighbours.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "745A684B2826DB5100DEC86F"
+               BuildableName = "MarkdownTests.xctest"
+               BlueprintName = "MarkdownTests"
+               ReferencedContainer = "container:MoscowNeighbours.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

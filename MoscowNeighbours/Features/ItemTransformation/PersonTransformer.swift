@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Markdown
 
 public final class PersonTransformer: ItemTransformer {
     public init() {}

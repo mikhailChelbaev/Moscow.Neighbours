@@ -5,15 +5,13 @@
 //  Created by Mikhail on 24.10.2021.
 //
 
-import Foundation
 import UIKit
+import AppConfiguration
 
 protocol MarkdownMerger {
-    
     var configurator: MarkdownConfigurator { set get }
     
     func merge(nodes: [MarkdownNode]) -> NSAttributedString
-    
 }
 
 final class DefaultMarkdownMerger: MarkdownMerger {
@@ -29,9 +27,9 @@ final class DefaultMarkdownMerger: MarkdownMerger {
             case .text(let string):
                 result.append(NSAttributedString(string: string, attributes: createAttributes()))
             case .bold(let string):
-                result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .bold))))
+                result.append(NSAttributedString(string: string, attributes: createAttributes(font: Font.main(ofSize: configurator.fontSize, weight: .bold))))
             case .italic(let string):
-                result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .italic))))
+                result.append(NSAttributedString(string: string, attributes: createAttributes(font: Font.main(ofSize: configurator.fontSize, weight: .italic))))
             case .quote(let string):
                 let (quoteImage, size) = drawQuoteText(for: string)
                 let attachment: NSTextAttachment = .init()
@@ -40,11 +38,11 @@ final class DefaultMarkdownMerger: MarkdownMerger {
                 let imageString: NSAttributedString = .init(attachment: attachment)
                 result.append(imageString)
             case .header(let string):
-                result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.headerSize, weight: .bold), textColor: .label)))
+                result.append(NSAttributedString(string: string, attributes: createAttributes(font: Font.main(ofSize: configurator.headerSize, weight: .bold), textColor: .label)))
             case .subheader(let string):
-                result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.subHeaderSize, weight: .bold), textColor: .label)))
+                result.append(NSAttributedString(string: string, attributes: createAttributes(font: Font.main(ofSize: configurator.subHeaderSize, weight: .bold), textColor: .label)))
             case .subsubheader(let string):
-                result.append(NSAttributedString(string: string, attributes: createAttributes(font: UIFont.mainFont(ofSize: configurator.subSubHeaderSize, weight: .bold), textColor: .label)))
+                result.append(NSAttributedString(string: string, attributes: createAttributes(font: Font.main(ofSize: configurator.subSubHeaderSize, weight: .bold), textColor: .label)))
             }
         }
         return result
@@ -55,7 +53,7 @@ final class DefaultMarkdownMerger: MarkdownMerger {
         textColor: UIColor? = nil
     ) -> [NSAttributedString.Key : Any] {
         var attributes: [NSAttributedString.Key : Any] = [
-            .font: font ?? .mainFont(ofSize: configurator.fontSize, weight: .regular),
+            .font: font ?? Font.main(ofSize: configurator.fontSize, weight: .regular),
             .foregroundColor: textColor ?? configurator.textColor,
         ]
         
@@ -68,7 +66,7 @@ final class DefaultMarkdownMerger: MarkdownMerger {
     }
     
     private func drawQuoteText(for text: String) -> (UIImage, CGSize) {
-        let attributes = createAttributes(font: UIFont.mainFont(ofSize: configurator.fontSize, weight: .boldItalic), textColor: .label)
+        let attributes = createAttributes(font: Font.main(ofSize: configurator.fontSize, weight: .boldItalic), textColor: .label)
         
         let width: CGFloat = UIScreen.main.bounds.width - 20 * 2
         let lineImageWidth: CGFloat = 22
@@ -80,7 +78,7 @@ final class DefaultMarkdownMerger: MarkdownMerger {
         
         let renderer = UIGraphicsImageRenderer(size: .init(width: width, height: height))
         let image = renderer.image { _ in
-            UIColor.background.setFill()
+            Color.background.setFill()
             UIBezierPath(rect: .init(x: 0, y: 0, width: width, height: height)).fill()
             
             UIColor.label.setFill()

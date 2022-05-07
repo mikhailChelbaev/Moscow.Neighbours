@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Markdown
 
 final class LegacyRouteViewModel {
     private let parser: MarkdownParser = {
