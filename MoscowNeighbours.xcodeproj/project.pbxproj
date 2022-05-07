@@ -26,12 +26,10 @@
 		740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */; };
 		740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535C2773A86A00E9C4E0 /* Builder.swift */; };
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
-		740B53612773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */; };
 		740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */; };
 		74114C7F2807815400C1CF12 /* InformationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C7E2807815400C1CF12 /* InformationCellController.swift */; };
 		74114C81280781B300C1CF12 /* InformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C80280781B300C1CF12 /* InformationCellViewModel.swift */; };
 		74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C822807831100C1CF12 /* SeparatorCellController.swift */; };
-		7415479326B08C8A006931DC /* LegacyPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415479226B08C89006931DC /* LegacyPersonCell.swift */; };
 		74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5127ADBC1A007E7118 /* UserProvider.swift */; };
 		74159E5427ADBC31007E7118 /* WeakRef+UserStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5327ADBC31007E7118 /* WeakRef+UserStateDelegate.swift */; };
 		74159E5627ADBC6A007E7118 /* UserStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74159E5527ADBC6A007E7118 /* UserStateDelegate.swift */; };
@@ -118,7 +116,6 @@
 		744B3F51280F601900027C5D /* PersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B3F50280F601900027C5D /* PersonTableViewController.swift */; };
 		744B6EC32774E348008BDF37 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC22774E348008BDF37 /* PersonPresenter.swift */; };
 		744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */; };
-		744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */; };
 		744CC9F1278A0D2C00D2CB2F /* AccountAchievementsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */; };
 		74569EDF26FA8BBF00D58821 /* UltraDrawerView in Frameworks */ = {isa = PBXBuildFile; productRef = 74569EDE26FA8BBF00D58821 /* UltraDrawerView */; };
 		7457756A279732E300123208 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74577569279732E300123208 /* AchievementsViewController.swift */; };
@@ -226,7 +223,6 @@
 		74A0B8722814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
-		74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B51577281FE0FC001C4F1D /* AlertAction.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -263,7 +259,6 @@
 		74CB2F002806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */; };
 		74D2CC5F280AE8F0000FE4B1 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */; };
 		74D2CC61280AE997000FE4B1 /* RouteCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */; };
-		74D4AB5A26AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */; };
 		74D4AB5C26AF446E009CAD3A /* BottomSheetsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */; };
 		74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4AB5D26AF4870009CAD3A /* Action.swift */; };
 		74D7DFB127746CB00087B7F6 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7DFB027746CB00087B7F6 /* MapPresenter.swift */; };
@@ -278,9 +273,7 @@
 		74DEA86028082CFE0050EF49 /* PersonCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA85F28082CFE0050EF49 /* PersonCellController.swift */; };
 		74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA86128082E690050EF49 /* PersonCellViewModel.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
-		74E1469A2779DB59007D00D1 /* LegacyPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146992779DB59007D00D1 /* LegacyPersonViewModel.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
-		74E729B526F2978200775D37 /* LegacyRouteHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */; };
 		74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7BF0D27A33644004B6F4E /* EmailService.swift */; };
 		74E7C3992783063900B16392 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C3982783063900B16392 /* UserService.swift */; };
 		74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7C39A2783075000B16392 /* StoreContainer.swift */; };
@@ -393,12 +386,10 @@
 		740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetConfiguration.swift; sourceTree = "<group>"; };
 		740B535C2773A86A00E9C4E0 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
-		740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionBuilder.swift; sourceTree = "<group>"; };
 		740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+Utils.swift"; sourceTree = "<group>"; };
 		74114C7E2807815400C1CF12 /* InformationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellController.swift; sourceTree = "<group>"; };
 		74114C80280781B300C1CF12 /* InformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellViewModel.swift; sourceTree = "<group>"; };
 		74114C822807831100C1CF12 /* SeparatorCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCellController.swift; sourceTree = "<group>"; };
-		7415479226B08C89006931DC /* LegacyPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPersonCell.swift; sourceTree = "<group>"; };
 		74159E5127ADBC1A007E7118 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		74159E5327ADBC31007E7118 /* WeakRef+UserStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+UserStateDelegate.swift"; sourceTree = "<group>"; };
 		74159E5527ADBC6A007E7118 /* UserStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateDelegate.swift; sourceTree = "<group>"; };
@@ -490,7 +481,6 @@
 		744B3F50280F601900027C5D /* PersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewController.swift; sourceTree = "<group>"; };
 		744B6EC22774E348008BDF37 /* PersonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		744B6EC42774E3DF008BDF37 /* PersonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonBuilder.swift; sourceTree = "<group>"; };
-		744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteViewModel.swift; sourceTree = "<group>"; };
 		744CC9F0278A0D2C00D2CB2F /* AccountAchievementsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAchievementsCell.swift; sourceTree = "<group>"; };
 		74577569279732E300123208 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
 		7457756B279732EB00123208 /* AchievementsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsPresenter.swift; sourceTree = "<group>"; };
@@ -586,7 +576,6 @@
 		74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+Assertions.swift"; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
-		74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionPresenter.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B51577281FE0FC001C4F1D /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -627,7 +616,6 @@
 		74CB2EFF2806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDescriptionHeaderViewModel.swift; sourceTree = "<group>"; };
 		74D2CC5E280AE8F0000FE4B1 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		74D2CC60280AE997000FE4B1 /* RouteCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCoordinatorTests.swift; sourceTree = "<group>"; };
-		74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteDescriptionViewController.swift; sourceTree = "<group>"; };
 		74D4AB5B26AF446E009CAD3A /* BottomSheetsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsManager.swift; sourceTree = "<group>"; };
 		74D4AB5D26AF4870009CAD3A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		74D7DFB027746CB00087B7F6 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
@@ -642,9 +630,7 @@
 		74DEA85F28082CFE0050EF49 /* PersonCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellController.swift; sourceTree = "<group>"; };
 		74DEA86128082E690050EF49 /* PersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellViewModel.swift; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
-		74E146992779DB59007D00D1 /* LegacyPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPersonViewModel.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
-		74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyRouteHeaderCell.swift; sourceTree = "<group>"; };
 		74E7BF0D27A33644004B6F4E /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 		74E7C3982783063900B16392 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		74E7C39A2783075000B16392 /* StoreContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreContainer.swift; sourceTree = "<group>"; };
@@ -850,15 +836,6 @@
 				74114C822807831100C1CF12 /* SeparatorCellController.swift */,
 			);
 			path = Separator;
-			sourceTree = "<group>";
-		};
-		7415479626B0974A006931DC /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				74E729B426F2978200775D37 /* LegacyRouteHeaderCell.swift */,
-				7415479226B08C89006931DC /* LegacyPersonCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		7415479726B09754006931DC /* Cells */ = {
@@ -1259,15 +1236,6 @@
 				740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		744B6EC727750333008BDF37 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				744B6EC82775033D008BDF37 /* LegacyRouteViewModel.swift */,
-				74E146992779DB59007D00D1 /* LegacyPersonViewModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		74577568279732C900123208 /* Achievements */ = {
@@ -1684,7 +1652,6 @@
 				74EDF8642805B32A00D0F6B1 /* Presentation */,
 				74EDF8652805B33300D0F6B1 /* Controllers */,
 				74EDF86E2805BC7400D0F6B1 /* Cells */,
-				74EDF8622805B1FA00D0F6B1 /* Legacy */,
 			);
 			path = RouteDescription;
 			sourceTree = "<group>";
@@ -1758,18 +1725,6 @@
 				746684A6279F4E8B00AFAA2E /* SignUpResponse.swift */,
 			);
 			path = SignUp;
-			sourceTree = "<group>";
-		};
-		74EDF8622805B1FA00D0F6B1 /* Legacy */ = {
-			isa = PBXGroup;
-			children = (
-				74D4AB5926AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift */,
-				74AB1D982770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift */,
-				740B53602773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift */,
-				7415479626B0974A006931DC /* Cells */,
-				744B6EC727750333008BDF37 /* Models */,
-			);
-			path = Legacy;
 			sourceTree = "<group>";
 		};
 		74EDF8632805B31400D0F6B1 /* Composition */ = {
@@ -2202,7 +2157,6 @@
 				74C9EF6928102B5000B8172E /* PersonCoordinator.swift in Sources */,
 				74967F7E276F55710096AA77 /* NetworkError.swift in Sources */,
 				7466849B279F27C900AFAA2E /* AccountConfirmationNotificationCell.swift in Sources */,
-				7415479326B08C8A006931DC /* LegacyPersonCell.swift in Sources */,
 				741BA1D828077513000B3C80 /* TextHeaderCellController.swift in Sources */,
 				74C9EF67281007F200B8172E /* PersonViewAdapter.swift in Sources */,
 				74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */,
@@ -2248,7 +2202,6 @@
 				746192E326AC55F700CCCB71 /* TableViewHeaderFooterViewWrapper.swift in Sources */,
 				74346FBA26F3E3FB0060357A /* MKMapView+Annotations.swift in Sources */,
 				74114C81280781B300C1CF12 /* InformationCellViewModel.swift in Sources */,
-				74AB1D992770F99C00DA961A /* LegacyRouteDescriptionPresenter.swift in Sources */,
 				746F061D27937181009D1163 /* EmailValidator.swift in Sources */,
 				743C3ABD277CF85800D4CB1C /* AuthorizationViewController.swift in Sources */,
 				742283C226BB2AC4003F814E /* UIView+Shadow.swift in Sources */,
@@ -2265,7 +2218,6 @@
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */,
 				74C3004B2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift in Sources */,
-				74E729B526F2978200775D37 /* LegacyRouteHeaderCell.swift in Sources */,
 				74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */,
 				74967F77276F554D0096AA77 /* DefaultJsonParser.swift in Sources */,
 				7457756E279732F300123208 /* AchievementsBuilder.swift in Sources */,
@@ -2281,7 +2233,6 @@
 				746684A5279F3FAA00AFAA2E /* UIApplication+Version.swift in Sources */,
 				743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */,
 				74C9EF6D28102E0600B8172E /* PersonTableViewModel.swift in Sources */,
-				740B53612773ACFE00E9C4E0 /* LegacyRouteDescriptionBuilder.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				7457756C279732EB00123208 /* AchievementsPresenter.swift in Sources */,
 				74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */,
@@ -2328,8 +2279,6 @@
 				74C9EF6B28102C9100B8172E /* WeakRef+Person.swift in Sources */,
 				748EE63D270F917600301552 /* ShortInfo.swift in Sources */,
 				7437B1D52785D35F0020AABE /* BaseRequestSender.swift in Sources */,
-				744B6EC92775033D008BDF37 /* LegacyRouteViewModel.swift in Sources */,
-				74E1469A2779DB59007D00D1 /* LegacyPersonViewModel.swift in Sources */,
 				74492520278AE3E3008BC446 /* ErrorResponse.swift in Sources */,
 				7444DA912801992E00A04F87 /* RemotePersonInfo.swift in Sources */,
 				743C3ABF277CF9A800D4CB1C /* AuthorizationPresenter.swift in Sources */,
@@ -2370,7 +2319,6 @@
 				7402661126A76379006242FE /* SceneDelegate.swift in Sources */,
 				74668497279F237A00AFAA2E /* AccountConfirmationPresenter.swift in Sources */,
 				740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */,
-				74D4AB5A26AF3F2C009CAD3A /* LegacyRouteDescriptionViewController.swift in Sources */,
 				74A0B86B28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift in Sources */,
 				740AF986280DE6D20049DEDE /* WeakRef+RouteDescription.swift in Sources */,
 			);

@@ -90,7 +90,7 @@ public final class RouteDescriptionViewController: BottomSheetViewController {
     public override func getBottomSheetConfiguration() -> BottomSheetConfiguration {
         return BottomSheetConfiguration(topInset: .fromTop(0),
                                         availableStates: [.top, .middle],
-                                        cornerRadius: LegacyRouteHeaderCell.Layout.cornerRadius)
+                                        cornerRadius: RouteHeaderCell.Layout.cornerRadius)
     }
 }
 
