@@ -30,7 +30,8 @@ public class RouteDescriptionCoordinator {
                         isVerified: builder.userState.isVerified),
                     confirmation: RoutePurchaseConfirmationService(api: builder.api),
                     routesState: builder.routesService)),
-            coordinator: self)
+            coordinator: self,
+            mapService: builder.mapService)
     }
     
     public func present(on view: UIViewController?, state: BottomSheet.State, completion: Action?) {

@@ -24,7 +24,11 @@ public struct RouteDescriptionStorage<Transformer: ItemTransformer> where Transf
 public final class RoutesDescriptionUIComposer {
     private init() {}
     
-    public static func routeDescriptionComposeWith<Transformer: ItemTransformer>(storage: RouteDescriptionStorage<Transformer>, coordinator: RouteDescriptionCoordinator) -> RouteDescriptionViewController where Transformer.Input == Route, Transformer.Output == RouteViewModel {
+    public static func routeDescriptionComposeWith<Transformer: ItemTransformer>(
+        storage: RouteDescriptionStorage<Transformer>,
+        coordinator: RouteDescriptionCoordinator,
+        mapService: MapService
+    ) -> RouteDescriptionViewController where Transformer.Input == Route, Transformer.Output == RouteViewModel {
         let closeCompletion: Action? = { [weak coordinator] in
             storage.mapService.hideRoute()
             coordinator?.dismiss(animated: true, completion: nil)
@@ -48,7 +52,12 @@ public final class RoutesDescriptionUIComposer {
             controller: tableViewController,
             coordinator: coordinator,
             purchaseService: MainQueueDispatchDecorator(decoratee: storage.purchaseService),
-            purchaseErrorView: PurchaseErrorViewAdapter(coordinator: coordinator))
+            purchaseErrorView: PurchaseErrorViewAdapter(coordinator: coordinator),
+            onPersonCellTapAction: { [weak coordinator, weak mapService] personInfo in
+                mapService?.selectAnnotation(personInfo)
+                mapService?.centerAnnotation(personInfo)
+                coordinator?.displayPerson(personInfo)
+            })
         presenter.routeDescriptionLoadingView = WeakRef(tableViewController)
         
         return controller

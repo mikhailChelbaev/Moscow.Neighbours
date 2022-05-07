@@ -12,15 +12,18 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
     private let coordinator: RouteDescriptionCoordinator
     private let purchaseService: PurchaseRouteProvider
     private let purchaseErrorView: PurchaseErrorView
+    private let onPersonCellTapAction: (PersonInfo) -> Void
     
     init(controller: RouteDescriptionTableViewController,
          coordinator: RouteDescriptionCoordinator,
          purchaseService: PurchaseRouteProvider,
-         purchaseErrorView: PurchaseErrorView) {
+         purchaseErrorView: PurchaseErrorView,
+         onPersonCellTapAction: @escaping (PersonInfo) -> Void) {
         self.controller = controller
         self.coordinator = coordinator
         self.purchaseService = purchaseService
         self.purchaseErrorView = purchaseErrorView
+        self.onPersonCellTapAction = onPersonCellTapAction
     }
     
     func display(_ viewModel: RouteDescriptionViewModel) {
@@ -66,7 +69,7 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
                 header: personsHeaderCellController,
                 footer: nil,
                 cells: viewModel.persons.map { personViewModel in
-                    return PersonCellController(viewModel: personViewModel, coordinator: coordinator)
+                    return PersonCellController(viewModel: personViewModel, onPersonCellTapAction: onPersonCellTapAction)
                 })
         ]
         

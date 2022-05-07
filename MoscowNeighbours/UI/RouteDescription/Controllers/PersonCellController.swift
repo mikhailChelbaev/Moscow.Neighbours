@@ -8,12 +8,12 @@
 import UIKit
 
 final class PersonCellController {
-    private let coordinator: RouteDescriptionCoordinator
-    let viewModel: PersonCellViewModel
+    private let viewModel: PersonCellViewModel
+    private let onPersonCellTapAction: (PersonInfo) -> Void
     
-    init(viewModel: PersonCellViewModel, coordinator: RouteDescriptionCoordinator) {
+    init(viewModel: PersonCellViewModel, onPersonCellTapAction: @escaping (PersonInfo) -> Void) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
+        self.onPersonCellTapAction = onPersonCellTapAction
     }
     
     private var view: PersonCell?
@@ -42,6 +42,6 @@ extension PersonCellController: CellController {
 
 extension PersonCellController: SelectableCellController {
     func didSelect() {
-        coordinator.displayPerson(viewModel.personInfo)
+        onPersonCellTapAction(viewModel.personInfo)
     }
 }
