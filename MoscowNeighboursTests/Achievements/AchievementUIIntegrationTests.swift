@@ -24,6 +24,16 @@ class AchievementUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.retrieveCallCount, 0)
     }
     
+    func test_loader_isVisibleWhileRetrievingAchievements() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isLoaderVisible)
+        
+        loader.completeRetrieveSuccessfully()
+        XCTAssertFalse(sut.isLoaderVisible)
+    }
+    
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: AchievementsViewController, loader: AchievementsLoaderSpy) {
@@ -35,11 +45,20 @@ class AchievementUIIntegrationTests: XCTestCase {
     }
     
     private final class AchievementsLoaderSpy: AchievementsProvider {
-        private(set) var retrieveCallCount: Int = 0
+        private var retrieveCompletions = [(AchievementsProvider.Result) -> Void]()
+        
+        var retrieveCallCount: Int {
+            return retrieveCompletions.count
+        }
         
         func retrieveAchievements(completion: @escaping (AchievementsProvider.Result) -> Void) {
-            retrieveCallCount += 1
+            retrieveCompletions.append(completion)
         }
+        
+        func completeRetrieveSuccessfully(at index: Int = 0) {
+            retrieveCompletions[index](.success([]))
+        }
+        
     }
 
 }

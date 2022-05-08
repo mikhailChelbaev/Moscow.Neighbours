@@ -11,17 +11,15 @@ import UIKit
 extension BottomSheetViewController {
     
     private var loader: LoadingCell? {
-        guard let tableView = getScrollView() as? UITableView else {
+        guard let tableView = getScrollView() as? UITableView,
+              let ds = tableView.dataSource,
+              ds.numberOfSections!(in: tableView) > loaderIndexPath.section,
+              ds.tableView(tableView, numberOfRowsInSection: loaderIndexPath.section) > loaderIndexPath.row
+        else {
             return nil
         }
         
-        let ds = tableView.dataSource
-        
-        guard ds!.tableView(tableView, numberOfRowsInSection: loaderIndexPath.section) > loaderIndexPath.row else {
-            return nil
-        }
-        
-        let cell = ds?.tableView(tableView, cellForRowAt: loaderIndexPath) as? TableCellWrapper<LoadingCell>
+        let cell = ds.tableView(tableView, cellForRowAt: loaderIndexPath) as? TableCellWrapper<LoadingCell>
         return cell?.view
     }
     

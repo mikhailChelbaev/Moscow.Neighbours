@@ -7,8 +7,20 @@
 
 import Foundation
 
+protocol AchievementsView {
+    func display(_ viewModel: AchievementsViewModel)
+}
+
+struct AchievementsViewModel {
+    
+}
+
 protocol AchievementsHeaderView {
     func display(_ viewModel: AchievementsHeaderViewModel)
+}
+
+protocol AchievementsLoadingView {
+    func display(isLoading: Bool)
 }
 
 struct AchievementsHeaderViewModel {
@@ -17,7 +29,15 @@ struct AchievementsHeaderViewModel {
 
 final class AchievementsPresenter {
     
+    private let achievementsProvider: AchievementsProvider
+    
+    init(achievementsProvider: AchievementsProvider) {
+        self.achievementsProvider = achievementsProvider
+    }
+    
+    var view: AchievementsView?
     var headerView: AchievementsHeaderView?
+    var loadingView: AchievementsLoadingView?
     
     private static var headerTitle: String {
         return "achievements.title".localized
@@ -28,7 +48,10 @@ final class AchievementsPresenter {
     }
     
     func didRequestAchievements() {
-        
+        loadingView?.display(isLoading: true)
+        achievementsProvider.retrieveAchievements { [weak self] result in
+            self?.view?.display(AchievementsViewModel())
+        }
     }
     
 }

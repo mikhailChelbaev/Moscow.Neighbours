@@ -229,6 +229,7 @@
 		74A84AF428283A2D0035A48E /* AchievementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF328283A2D0035A48E /* AchievementsProvider.swift */; };
 		74A84AF628283AAF0035A48E /* AchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF528283AAF0035A48E /* AchievementsService.swift */; };
 		74A84AF828283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF728283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift */; };
+		74A84AFA282841430035A48E /* AchievementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF9282841430035A48E /* AchievementsTableViewController.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B51577281FE0FC001C4F1D /* AlertAction.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -588,6 +589,7 @@
 		74A84AF328283A2D0035A48E /* AchievementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsProvider.swift; sourceTree = "<group>"; };
 		74A84AF528283AAF0035A48E /* AchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsService.swift; sourceTree = "<group>"; };
 		74A84AF728283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+IsLoaderVisible.swift"; sourceTree = "<group>"; };
+		74A84AF9282841430035A48E /* AchievementsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsTableViewController.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B51577281FE0FC001C4F1D /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -1586,6 +1588,7 @@
 			isa = PBXGroup;
 			children = (
 				74577569279732E300123208 /* AchievementsViewController.swift */,
+				74A84AF9282841430035A48E /* AchievementsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2332,6 +2335,7 @@
 				74C9EF61281003EE00B8172E /* PersonInfoCellController.swift in Sources */,
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,
 				74577574279747BA00123208 /* ErrorDelegate.swift in Sources */,
+				74A84AFA282841430035A48E /* AchievementsTableViewController.swift in Sources */,
 				74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */,
 				741D9BFA2813FC730094EF3F /* PurchaseProductsService.swift in Sources */,
 				743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */,
