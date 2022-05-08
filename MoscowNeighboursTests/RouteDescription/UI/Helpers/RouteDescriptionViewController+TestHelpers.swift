@@ -10,20 +10,6 @@ import MoscowNeighbours
 
 extension RouteDescriptionViewController {
     
-    // MARK: - Loader
-    
-    private var loader: LoadingCell? {
-        return getCell(at: loaderIndexPath)
-    }
-    
-    private var loaderIndexPath: IndexPath {
-        return IndexPath(row: 0, section: 0)
-    }
-    
-    var isLoaderVisible: Bool {
-        return loader != nil
-    }
-    
     // MARK: - Header Cell
     
     private var headerCell: RouteHeaderCell? {

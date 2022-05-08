@@ -228,6 +228,7 @@
 		74A84AF2282837F50035A48E /* AchievementUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF1282837F50035A48E /* AchievementUIIntegrationTests.swift */; };
 		74A84AF428283A2D0035A48E /* AchievementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF328283A2D0035A48E /* AchievementsProvider.swift */; };
 		74A84AF628283AAF0035A48E /* AchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF528283AAF0035A48E /* AchievementsService.swift */; };
+		74A84AF828283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF728283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B51577281FE0FC001C4F1D /* AlertAction.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -586,6 +587,7 @@
 		74A84AF1282837F50035A48E /* AchievementUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementUIIntegrationTests.swift; sourceTree = "<group>"; };
 		74A84AF328283A2D0035A48E /* AchievementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsProvider.swift; sourceTree = "<group>"; };
 		74A84AF528283AAF0035A48E /* AchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsService.swift; sourceTree = "<group>"; };
+		74A84AF728283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+IsLoaderVisible.swift"; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B51577281FE0FC001C4F1D /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -1087,6 +1089,7 @@
 				7444DAA72801E9A800A04F87 /* TestDelayManager.swift */,
 				744B3F41280F48F700027C5D /* UIButton+TestHelpers.swift */,
 				7444DAB52802F10800A04F87 /* Button+TestHelpers.swift */,
+				74A84AF728283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift */,
 				7492433328057ECB002363EA /* SharedTestHelpers.swift */,
 				742B4EEA280C4E1C00811AD1 /* PresentingControllerSpy.swift */,
 				74EA635528188DD500E63BB0 /* Localized.swift */,
@@ -2407,6 +2410,7 @@
 				74A0B86528148F6B00D96A76 /* PurchaseRouteCompositionServiceTests.swift in Sources */,
 				744B3F40280F486200027C5D /* RouteDescriptionUIIntegrationTests+Localization.swift in Sources */,
 				7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */,
+				74A84AF828283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift in Sources */,
 				742B4EED280C59DF00811AD1 /* RoutesCoordinatorStub.swift in Sources */,
 				744B3F38280F39BE00027C5D /* RouteDescriptionLoaderSpy.swift in Sources */,
 				744B3F42280F48F700027C5D /* UIButton+TestHelpers.swift in Sources */,

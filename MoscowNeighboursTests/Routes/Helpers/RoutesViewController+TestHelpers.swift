@@ -10,27 +10,6 @@ import UIKit
 
 extension RoutesViewController {
     
-    // MARK: - Loader
-    
-    private var loader: LoadingCell? {
-        let ds = tableView.dataSource
-        
-        guard ds!.tableView(tableView, numberOfRowsInSection: loaderIndexPath.section) > loaderIndexPath.row else {
-            return nil
-        }
-        
-        let cell = ds?.tableView(tableView, cellForRowAt: loaderIndexPath) as? TableCellWrapper<LoadingCell>
-        return cell?.view
-    }
-    
-    private var loaderIndexPath: IndexPath {
-        return IndexPath(row: 0, section: 0)
-    }
-    
-    var isLoaderVisible: Bool {
-        return loader != nil
-    }
-    
     // MARK: - Routes
     
     func numberOfRenderedRouteViews() -> Int {
