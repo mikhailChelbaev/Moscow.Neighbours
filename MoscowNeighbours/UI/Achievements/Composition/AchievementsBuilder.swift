@@ -24,6 +24,15 @@ public final class AchievementsUIComposer {
     public static func achievementsComposeWith(achievementsProvider: AchievementsProvider) -> AchievementsViewController {
         let presenter = AchievementsPresenter()
         let controller = AchievementsViewController(presenter: presenter)
+        
+        presenter.headerView = WeakRef(controller)
+        
         return controller
+    }
+}
+
+extension WeakRef: AchievementsHeaderView where T: AchievementsHeaderView {
+    func display(_ viewModel: AchievementsHeaderViewModel) {
+        object?.display(viewModel)
     }
 }

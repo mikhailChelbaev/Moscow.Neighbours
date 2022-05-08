@@ -10,6 +10,14 @@ import MoscowNeighbours
 
 class AchievementUIIntegrationTests: XCTestCase {
     
+    func test_headerView_hasTitle() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.headerView.title.text, localized("achievements.title"))
+    }
+    
     func test_init_doesNotRequestAchievements() {
         let (_, loader) = makeSUT()
         

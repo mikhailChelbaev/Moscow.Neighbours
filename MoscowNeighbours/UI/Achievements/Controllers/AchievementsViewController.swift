@@ -7,17 +7,13 @@
 
 import UIKit
 
-protocol AchievementsInput {
-    func didRequestAchievements()
-}
-
 public final class AchievementsViewController: BottomSheetViewController {
     
     private enum Layout {
         static let cornerRadius: CGFloat = 29
     }
     
-    typealias Presenter = AchievementsInput
+    typealias Presenter = AchievementsPresenter
     
 //    public let tableView: BaseTableView
     public let headerView: TitleHeaderView
@@ -42,7 +38,7 @@ public final class AchievementsViewController: BottomSheetViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        presenter.didLoadHeader()
         
         configureBottomSheet()
         configureLayout()
@@ -80,5 +76,8 @@ public final class AchievementsViewController: BottomSheetViewController {
     }
 }
 
-
-
+extension AchievementsViewController: AchievementsHeaderView {
+    func display(_ viewModel: AchievementsHeaderViewModel) {
+        headerView.title.text = viewModel.title
+    }
+}
