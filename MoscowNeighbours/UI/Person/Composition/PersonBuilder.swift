@@ -18,17 +18,18 @@ public final class PersonUIComposer {
     private init() {}
     
     public static func personComposeWith<Transformer: ItemTransformer>(storage: PersonStorage<Transformer>, coordinator: PersonCoordinator) -> PersonViewController where Transformer.Input == PersonInfo, Transformer.Output == PersonViewModel {
+        let dismiss: Action = { [weak coordinator] in
+            coordinator?.dismiss(animated: true, completion: {
+                storage.mapService.deselectAnnotation(storage.person)
+            })
+        }
         let presenter = PersonPresenter(
             person: storage.person,
             personTransformer: TransformerMainQueueDispatchDecorator(decoratee: storage.personTransformer),
             presentationState: storage.presentationState,
-            readyToGoButtonAction: { [weak coordinator] in
-                coordinator?.dismiss(animated: true)
-            })
+            readyToGoButtonAction: dismiss)
         let tableViewController = PersonTableViewController()
-        let backButtonController = BackButtonViewController(onBackButtonTap: { [weak coordinator] in
-            coordinator?.dismiss(animated: true)
-        })
+        let backButtonController = BackButtonViewController(onBackButtonTap: dismiss)
         let controller = PersonViewController(
             presenter: presenter,
             coordinator: coordinator,
