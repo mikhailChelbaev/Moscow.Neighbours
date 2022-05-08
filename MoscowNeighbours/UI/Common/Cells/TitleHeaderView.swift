@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class TitleHeaderView: CellView {
+public final class TitleHeaderView: CellView {
     
-    enum Layout {
+    public enum Layout {
         static let buttonSide: CGFloat = 46
         static var pullViewBorderInsets: CGFloat = 8
         static var pullViewHeight: CGFloat = 4
@@ -17,14 +17,14 @@ final class TitleHeaderView: CellView {
         static var cornerRadius: CGFloat = 29
     }
     
-    let handlerView: UIView = {
+    public let handlerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 2
         return view
     }()
     
-    let containerView: UIView = {
+    public let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .background
         view.layer.cornerRadius = Layout.cornerRadius
@@ -32,7 +32,7 @@ final class TitleHeaderView: CellView {
         return view
     }()
     
-    let backButton: UIButton = {
+    public let backButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .grayBackground
         button.setImage(#imageLiteral(resourceName: "backButton").withTintColor(.reversedBackground, renderingMode: .alwaysOriginal), for: .normal)
@@ -40,22 +40,22 @@ final class TitleHeaderView: CellView {
         return button
     }()
     
-    let title: UILabel = {
+    public let title: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 24, weight: .bold)
         label.numberOfLines = 2
         return label
     }()
     
-    let separator: UIView = {
+    public let separator: UIView = {
         let view = UIView()
         view.backgroundColor = .separator
         return view
     }()
     
-    var backButtonAction: Action?
+    public var backButtonAction: Action?
     
-    override func configureView() {
+    public override func configureView() {
         addSubview(handlerView)
         handlerView.top(Layout.pullViewBorderInsets)
         handlerView.centerHorizontally()
@@ -81,7 +81,7 @@ final class TitleHeaderView: CellView {
         backButton.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         backButton.updateShadowPath()
     }

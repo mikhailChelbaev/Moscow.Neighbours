@@ -225,6 +225,9 @@
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
 		74A84AE82827C2970035A48E /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AE72827C2970035A48E /* AlertController.swift */; };
 		74A84AEB2827EB760035A48E /* AchievementAlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AEA2827EB760035A48E /* AchievementAlertCell.swift */; };
+		74A84AF2282837F50035A48E /* AchievementUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF1282837F50035A48E /* AchievementUIIntegrationTests.swift */; };
+		74A84AF428283A2D0035A48E /* AchievementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF328283A2D0035A48E /* AchievementsProvider.swift */; };
+		74A84AF628283AAF0035A48E /* AchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF528283AAF0035A48E /* AchievementsService.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B51577281FE0FC001C4F1D /* AlertAction.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -580,6 +583,9 @@
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
 		74A84AE72827C2970035A48E /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		74A84AEA2827EB760035A48E /* AchievementAlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementAlertCell.swift; sourceTree = "<group>"; };
+		74A84AF1282837F50035A48E /* AchievementUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementUIIntegrationTests.swift; sourceTree = "<group>"; };
+		74A84AF328283A2D0035A48E /* AchievementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsProvider.swift; sourceTree = "<group>"; };
+		74A84AF528283AAF0035A48E /* AchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsService.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B51577281FE0FC001C4F1D /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -1060,6 +1066,7 @@
 				74C56AA328095EEF00EC4942 /* Map */,
 				7442C38F27FF81CC0025621B /* Routes */,
 				7489D0BF2804DC050098AED5 /* RouteDescription */,
+				74A84AF0282837CB0035A48E /* Achievements */,
 			);
 			path = MoscowNeighboursTests;
 			sourceTree = "<group>";
@@ -1244,9 +1251,10 @@
 		74577568279732C900123208 /* Achievements */ = {
 			isa = PBXGroup;
 			children = (
-				74577569279732E300123208 /* AchievementsViewController.swift */,
-				7457756B279732EB00123208 /* AchievementsPresenter.swift */,
-				7457756D279732F300123208 /* AchievementsBuilder.swift */,
+				74A84AEC282809800035A48E /* Composition */,
+				74A84AEE2828098E0035A48E /* Presentation */,
+				74A84AED282809860035A48E /* Controllers */,
+				74A84AEF282837A60035A48E /* Services */,
 			);
 			path = Achievements;
 			sourceTree = "<group>";
@@ -1561,6 +1569,47 @@
 				74A84AEA2827EB760035A48E /* AchievementAlertCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		74A84AEC282809800035A48E /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				7457756D279732F300123208 /* AchievementsBuilder.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		74A84AED282809860035A48E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				74577569279732E300123208 /* AchievementsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		74A84AEE2828098E0035A48E /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				7457756B279732EB00123208 /* AchievementsPresenter.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		74A84AEF282837A60035A48E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				74A84AF328283A2D0035A48E /* AchievementsProvider.swift */,
+				74A84AF528283AAF0035A48E /* AchievementsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		74A84AF0282837CB0035A48E /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				74A84AF1282837F50035A48E /* AchievementUIIntegrationTests.swift */,
+			);
+			path = Achievements;
 			sourceTree = "<group>";
 		};
 		74AB1DC727727CF100DA961A /* Collections */ = {
@@ -2124,6 +2173,7 @@
 				747A0E6226FE83BF00EB1973 /* RoutePointsCollectionCell.swift in Sources */,
 				7485E3792709BD52008DAB99 /* PersonContainerInfoCell.swift in Sources */,
 				74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */,
+				74A84AF628283AAF0035A48E /* AchievementsService.swift in Sources */,
 				74C72A51277BBC2500B73560 /* MenuBuilder.swift in Sources */,
 				74A84AEB2827EB760035A48E /* AchievementAlertCell.swift in Sources */,
 				74F73A01272B50DE007C5450 /* CustomCollectionViewDataSource.swift in Sources */,
@@ -2256,6 +2306,7 @@
 				746192DD26AC554D00CCCB71 /* TableCellWrapper.swift in Sources */,
 				746684A5279F3FAA00AFAA2E /* UIApplication+Version.swift in Sources */,
 				743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */,
+				74A84AF428283A2D0035A48E /* AchievementsProvider.swift in Sources */,
 				74C9EF6D28102E0600B8172E /* PersonTableViewModel.swift in Sources */,
 				74D4AB5E26AF4870009CAD3A /* Action.swift in Sources */,
 				7457756C279732EB00123208 /* AchievementsPresenter.swift in Sources */,
@@ -2372,6 +2423,7 @@
 				7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				74C56AA528095EFD00EC4942 /* MapCoordinatorTests.swift in Sources */,
 				7444DAAA2801EA0C00A04F87 /* RoutesLoaderSpy.swift in Sources */,
+				74A84AF2282837F50035A48E /* AchievementUIIntegrationTests.swift in Sources */,
 				7444DAA42801E93900A04F87 /* RoutesViewController+TestHelpers.swift in Sources */,
 				74A0B8722814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift in Sources */,
 				744B3F3E280F480800027C5D /* RouteDescriptionUIIntegrationTests+Assertions.swift in Sources */,
