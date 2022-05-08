@@ -223,6 +223,7 @@
 		74A0B8722814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */; };
 		74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */; };
 		74A4B8E427B9A70200153A05 /* RoutesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A4B8E327B9A70200153A05 /* RoutesProvider.swift */; };
+		74A84AE82827C2970035A48E /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AE72827C2970035A48E /* AlertController.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B51577281FE0FC001C4F1D /* AlertAction.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -576,6 +577,7 @@
 		74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutePurchaseWithConfirmationTests+Assertions.swift"; sourceTree = "<group>"; };
 		74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 		74A4B8E327B9A70200153A05 /* RoutesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesProvider.swift; sourceTree = "<group>"; };
+		74A84AE72827C2970035A48E /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B51577281FE0FC001C4F1D /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -1294,6 +1296,7 @@
 				742EFE8B26F1413F009A5126 /* Cells */,
 				746192E426AC560800CCCB71 /* BaseCells */,
 				742EFE8926F14132009A5126 /* BottomSheet */,
+				74A84AE62827C27F0035A48E /* Alert */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1539,6 +1542,14 @@
 				74A0B8712814A4E000D96A76 /* RoutePurchaseWithConfirmationTests+Assertions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		74A84AE62827C27F0035A48E /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				74A84AE72827C2970035A48E /* AlertController.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		74AB1DC727727CF100DA961A /* Collections */ = {
@@ -2089,6 +2100,7 @@
 				74F1856F2787307E00A0BF24 /* OneLineSettingsCell.swift in Sources */,
 				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
+				74A84AE82827C2970035A48E /* AlertController.swift in Sources */,
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
 				74EDF86D2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift in Sources */,
