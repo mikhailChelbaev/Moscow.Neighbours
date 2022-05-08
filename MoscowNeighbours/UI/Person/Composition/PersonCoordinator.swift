@@ -12,11 +12,13 @@ public class PersonCoordinator {
     private let builder: Builder
     private let personInfo: PersonInfo
     private let presentationState: PersonPresentationState
+    private let dismissCompletion: Action?
 
-    public init(personInfo: PersonInfo, presentationState: PersonPresentationState, builder: Builder) {
+    public init(personInfo: PersonInfo, presentationState: PersonPresentationState, builder: Builder, dismissCompletion: Action? = nil) {
         self.builder = builder
         self.personInfo = personInfo
         self.presentationState = presentationState
+        self.dismissCompletion = dismissCompletion
     }
     
     public func start() {
@@ -35,7 +37,10 @@ public class PersonCoordinator {
     }
     
     public func dismiss(animated: Bool, completion: Action? = nil) {
-        controller?.closeController(animated: animated, completion: completion)
+        controller?.closeController(animated: animated, completion: {
+            self.dismissCompletion?()
+            completion?()
+        })
         controller = nil
     }
 }

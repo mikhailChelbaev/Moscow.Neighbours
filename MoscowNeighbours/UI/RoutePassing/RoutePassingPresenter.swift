@@ -92,15 +92,19 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         mapService.selectAnnotation(person)
         mapService.centerAnnotation(person)
         
-        let personCoordinator = PersonCoordinator(personInfo: person,
-                                                  presentationState: .fullDescription,
-                                                  builder: Builder())
+        let personCoordinator = PersonCoordinator(
+            personInfo: person,
+            presentationState: .fullDescription,
+            builder: Builder(), dismissCompletion: { [weak self] in
+                self?.showAchievementIfCompleted()
+            })
         personCoordinator.start()
-        personCoordinator.present(on: viewController,
-                                  state: .top,
-                                  completion: {
-            self.viewController?.reloadData()
-        })
+        personCoordinator.present(
+            on: viewController,
+            state: .top,
+            completion: { [weak self] in
+                self?.viewController?.reloadData()
+            })
     }
     
     func onIndexChange(_ newIndex: Int) {
@@ -114,6 +118,17 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         } else {
             return .notVisited
         }
+    }
+    
+    private func showAchievementIfCompleted() {
+        guard visitedPersons.count == persons.count else {
+            return
+        }
+        
+        let view = AchievementAlertCell()
+        view.update()
+        let controller = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))
+        viewController?.present(controller, animated: true)
     }
 }
 
