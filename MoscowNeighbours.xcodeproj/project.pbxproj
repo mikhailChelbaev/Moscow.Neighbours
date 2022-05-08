@@ -755,7 +755,6 @@
 				7490F33527AE746400DCD9C7 /* Features */,
 				74DE214A27F0F616006863A3 /* GlobalStates */,
 				748FFD9426E55193009CA688 /* Network */,
-				742EFE8926F14132009A5126 /* BottomSheet */,
 				7402662226A7659F006242FE /* Helpers */,
 				742283BC26BB2998003F814E /* Assets */,
 				7402661C26A7637A006242FE /* Info.plist */,
@@ -1294,6 +1293,7 @@
 				742EFE8A26F14138009A5126 /* Views */,
 				742EFE8B26F1413F009A5126 /* Cells */,
 				746192E426AC560800CCCB71 /* BaseCells */,
+				742EFE8926F14132009A5126 /* BottomSheet */,
 			);
 			path = Common;
 			sourceTree = "<group>";
