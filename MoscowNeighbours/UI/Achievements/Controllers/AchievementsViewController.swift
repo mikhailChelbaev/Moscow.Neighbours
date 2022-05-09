@@ -17,6 +17,10 @@ public final class AchievementsViewController: BottomSheetViewController {
     private let presenter: Presenter
     private let tableViewController: AchievementsTableViewController
     
+    override var backgroundDimStyle: BackgroundDimStyle {
+        return .fullScreen
+    }
+    
     init(presenter: Presenter, tableViewController: AchievementsTableViewController) {
         self.presenter = presenter
         
