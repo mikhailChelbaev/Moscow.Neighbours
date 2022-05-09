@@ -40,6 +40,7 @@ public final class AchievementsViewController: BottomSheetViewController {
         super.viewDidLoad()
         
         configureBottomSheet()
+        configureTableView()
         
         presenter.didLoadHeader()
         presenter.didRequestAchievements()
@@ -48,6 +49,11 @@ public final class AchievementsViewController: BottomSheetViewController {
     private func configureBottomSheet() {
         bottomSheet.containerView.backgroundColor = .clear
         bottomSheet.containerView.clipsToBounds = true
+    }
+    
+    private func configureTableView() {
+        tableView.errorDelegate = self
+        tableView.loadingDelegate = self
     }
     
     // MARK: - Get Bottom Sheet Components
@@ -73,5 +79,19 @@ extension AchievementsViewController: AchievementsHeaderView {
     func display(_ viewModel: AchievementsHeaderViewModel) {
         headerView.title.text = viewModel.title
         headerView.backButtonAction = viewModel.backButtonAction
+    }
+}
+
+extension AchievementsViewController: ErrorDelegate, LoadingDelegate {
+    public func errorTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return visibleTableViewHeight()
+    }
+    
+    public func loadingTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return visibleTableViewHeight()
+    }
+    
+    private func visibleTableViewHeight() -> CGFloat {
+        max(UIScreen.main.bounds.height - bottomSheet.origin(for: bottomSheet.state ?? .middle) - headerView.frame.height - view.safeAreaInsets.bottom, 0)
     }
 }
