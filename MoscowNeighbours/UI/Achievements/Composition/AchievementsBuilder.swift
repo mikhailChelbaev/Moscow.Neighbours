@@ -23,7 +23,7 @@ public final class AchievementsUIComposer {
     
     public static func achievementsComposeWith(achievementsProvider: AchievementsProvider) -> AchievementsViewController {
         let tableViewController = AchievementsTableViewController()
-        let presenter = AchievementsPresenter(achievementsProvider: achievementsProvider)
+        let presenter = AchievementsPresenter(achievementsProvider: MainQueueDispatchDecorator(decoratee: achievementsProvider))
         let controller = AchievementsViewController(
             presenter: presenter,
             tableViewController: tableViewController)
@@ -70,5 +70,13 @@ final class AchievementsViewAdapter: AchievementsView {
                     cells: [achievementsCollectionCell])
             }
         controller?.status = .success
+    }
+}
+
+extension MainQueueDispatchDecorator: AchievementsProvider where T == AchievementsProvider {
+    func retrieveAchievements(completion: @escaping (AchievementsProvider.Result) -> Void) {
+        decoratee.retrieveAchievements { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
     }
 }
