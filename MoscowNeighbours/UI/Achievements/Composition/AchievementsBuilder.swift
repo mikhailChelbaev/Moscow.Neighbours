@@ -29,6 +29,7 @@ public final class AchievementsUIComposer {
             tableViewController: tableViewController)
         
         presenter.view = AchievementsViewAdapter(controller: tableViewController)
+        presenter.errorView = AchievementsErrorViewAdapter(controller: tableViewController)
         presenter.headerView = WeakRef(controller)
         presenter.loadingView = tableViewController
         
@@ -49,6 +50,18 @@ public final class AchievementsUIComposer {
 extension WeakRef: AchievementsHeaderView where T: AchievementsHeaderView {
     func display(_ viewModel: AchievementsHeaderViewModel) {
         object?.display(viewModel)
+    }
+}
+
+final class AchievementsErrorViewAdapter: AchievementsErrorView {
+    private weak var controller: AchievementsTableViewController?
+    
+    init(controller: AchievementsTableViewController) {
+        self.controller = controller
+    }
+    
+    func display(_ viewModel: AchievementsErrorViewModel) {
+        controller?.status = .error(DefaultEmptyStateProviders.mainError(action: viewModel.retryAction))
     }
 }
 

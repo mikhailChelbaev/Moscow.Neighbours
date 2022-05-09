@@ -19,6 +19,14 @@ protocol AchievementsLoadingView {
     func display(isLoading: Bool)
 }
 
+protocol AchievementsErrorView {
+    func display(_ viewModel: AchievementsErrorViewModel)
+}
+
+struct AchievementsErrorViewModel {
+    let retryAction: Action
+}
+
 final class AchievementsPresenter {
     
     private let achievementsProvider: AchievementsProvider
@@ -30,6 +38,7 @@ final class AchievementsPresenter {
     var view: AchievementsView?
     var headerView: AchievementsHeaderView?
     var loadingView: AchievementsLoadingView?
+    var errorView: AchievementsErrorView?
     
     var backButtonAction: Action?
     var onAchievementCellTap: ((Achievement) -> Void)?
@@ -66,7 +75,10 @@ final class AchievementsPresenter {
                         })
                 }))
                 
-            case .failure: break
+            case .failure:
+                self?.errorView?.display(AchievementsErrorViewModel(retryAction: { [weak self] in
+                    self?.didRequestAchievements()
+                }))
             }
         }
     }
