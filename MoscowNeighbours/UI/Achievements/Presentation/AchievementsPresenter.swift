@@ -7,19 +7,6 @@
 
 import Foundation
 
-struct AchievementsViewModel {
-    let sections: [AchievementSectionViewModel]
-}
-
-struct AchievementSectionViewModel {
-    let title: String
-    let achievements: [AchievementViewModel]
-}
-
-struct AchievementViewModel {
-    let onCellTap: Action
-}
-
 protocol AchievementsView {
     func display(_ viewModel: AchievementsViewModel)
 }
@@ -30,11 +17,6 @@ protocol AchievementsHeaderView {
 
 protocol AchievementsLoadingView {
     func display(isLoading: Bool)
-}
-
-struct AchievementsHeaderViewModel {
-    let title: String
-    let backButtonAction: Action
 }
 
 final class AchievementsPresenter {
