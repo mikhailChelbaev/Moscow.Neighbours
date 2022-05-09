@@ -20,7 +20,6 @@ final class AchievementsTableViewController: LoadingStatusProvider {
         view.contentInsetAdjustmentBehavior = .never
         view.showsVerticalScrollIndicator = false
         view.separatorStyle = .none
-        view.layer.cornerRadius = Layout.cornerRadius
         view.clipsToBounds = true
         
         view.successDataSource = self
