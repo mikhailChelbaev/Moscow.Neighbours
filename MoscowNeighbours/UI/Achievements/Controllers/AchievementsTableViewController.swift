@@ -26,6 +26,9 @@ final class AchievementsTableViewController: LoadingStatusProvider {
         view.successDataSource = self
         view.statusProvider = self
         
+        view.register(AchievementsCollectionCell.self)
+        view.register(TextCell.self)
+        
         return view
     }()
     

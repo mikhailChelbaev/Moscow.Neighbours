@@ -11,8 +11,12 @@ protocol HeaderFooterController {
     func view(in tableView: UITableView) -> UIView
 }
 
-protocol CellController {
+protocol TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
+}
+
+protocol CollectionCellController {
+    func view(in collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
 }
 
 protocol SelectableCellController {
@@ -22,15 +26,15 @@ protocol SelectableCellController {
 struct TableSection {
     let header: HeaderFooterController?
     let footer: HeaderFooterController?
-    let cells: [CellController]
+    let cells: [TableCellController]
     
-    init(header: HeaderFooterController?, footer: HeaderFooterController?, cells: [CellController]) {
+    init(header: HeaderFooterController?, footer: HeaderFooterController?, cells: [TableCellController]) {
         self.header = header
         self.footer = footer
         self.cells = cells
     }
     
-    init(cells: [CellController]) {
+    init(cells: [TableCellController]) {
         self.header = nil
         self.footer = nil
         self.cells = cells

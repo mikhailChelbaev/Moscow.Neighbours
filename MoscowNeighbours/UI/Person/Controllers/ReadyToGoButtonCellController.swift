@@ -25,7 +25,7 @@ final class ReadyToGoButtonCellController {
     }
 }
 
-extension ReadyToGoButtonCellController: CellController {
+extension ReadyToGoButtonCellController: TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(ButtonCell.self, for: indexPath)
         

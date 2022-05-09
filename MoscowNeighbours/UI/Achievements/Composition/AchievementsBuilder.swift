@@ -50,7 +50,15 @@ final class AchievementsViewAdapter: AchievementsView {
     }
     
     func display(_ viewModel: AchievementsViewModel) {
-        controller?.tableModels = []
+        controller?.tableModels = viewModel.sections
+            .map { sectionViewModel in
+                let textHeaderController = TextHeaderCellController(viewModel: TextHeaderCellViewModel(text: sectionViewModel.title))
+                let achievementsCollectionCell = AchievementsCollectionCellController(viewModels: sectionViewModel.achievements)
+                return TableSection(
+                    header: textHeaderController,
+                    footer: nil,
+                    cells: [achievementsCollectionCell])
+            }
         controller?.status = .success
     }
 }

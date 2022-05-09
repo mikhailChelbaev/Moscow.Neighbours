@@ -21,7 +21,7 @@ final class PersonInfoCellController {
     }
 }
 
-extension PersonInfoCellController: CellController {
+extension PersonInfoCellController: TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(PersonInfoCell.self, for: indexPath)
         

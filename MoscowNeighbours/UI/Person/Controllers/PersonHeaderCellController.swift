@@ -22,7 +22,7 @@ final class PersonHeaderCellController {
     }
 }
 
-extension PersonHeaderCellController: CellController {
+extension PersonHeaderCellController: TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(PersonHeaderCell.self, for: indexPath)
         

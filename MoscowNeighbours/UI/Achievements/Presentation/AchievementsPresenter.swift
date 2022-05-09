@@ -7,12 +7,21 @@
 
 import Foundation
 
-protocol AchievementsView {
-    func display(_ viewModel: AchievementsViewModel)
+struct AchievementsViewModel {
+    let sections: [AchievementSectionViewModel]
 }
 
-struct AchievementsViewModel {
+struct AchievementSectionViewModel {
+    let title: String
+    let achievements: [AchievementViewModel]
+}
+
+struct AchievementViewModel {
     
+}
+
+protocol AchievementsView {
+    func display(_ viewModel: AchievementsViewModel)
 }
 
 protocol AchievementsHeaderView {
@@ -50,7 +59,22 @@ final class AchievementsPresenter {
     func didRequestAchievements() {
         loadingView?.display(isLoading: true)
         achievementsProvider.retrieveAchievements { [weak self] result in
-            self?.view?.display(AchievementsViewModel())
+            self?.view?.display(AchievementsViewModel(sections: [
+                AchievementSectionViewModel(
+                    title: "My achievements",
+                    achievements: [
+                        AchievementViewModel(),
+                        AchievementViewModel()
+                    ]),
+                AchievementSectionViewModel(
+                    title: "Available achievements",
+                    achievements: [
+                        AchievementViewModel(),
+                        AchievementViewModel(),
+                        AchievementViewModel(),
+                        AchievementViewModel()
+                    ]),
+            ]))
         }
     }
     

@@ -12,7 +12,7 @@ final class AchievementsService: AchievementsProvider {
     typealias Result = AchievementsProvider.Result
     
     func retrieveAchievements(completion: @escaping (Result) -> Void) {
-        
+        completion(.success([]))
     }
     
 }

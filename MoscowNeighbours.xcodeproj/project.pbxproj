@@ -27,6 +27,7 @@
 		740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535C2773A86A00E9C4E0 /* Builder.swift */; };
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
 		740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */; };
+		7410ACC328290EB6008B947F /* AchievementCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACC228290EB6008B947F /* AchievementCellController.swift */; };
 		74114C7F2807815400C1CF12 /* InformationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C7E2807815400C1CF12 /* InformationCellController.swift */; };
 		74114C81280781B300C1CF12 /* InformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C80280781B300C1CF12 /* InformationCellViewModel.swift */; };
 		74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C822807831100C1CF12 /* SeparatorCellController.swift */; };
@@ -230,6 +231,9 @@
 		74A84AF628283AAF0035A48E /* AchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF528283AAF0035A48E /* AchievementsService.swift */; };
 		74A84AF828283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF728283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift */; };
 		74A84AFA282841430035A48E /* AchievementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AF9282841430035A48E /* AchievementsTableViewController.swift */; };
+		74A84AFD28284BCF0035A48E /* AchievementsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AFC28284BCF0035A48E /* AchievementsCollectionCell.swift */; };
+		74A84AFF28284FA90035A48E /* AchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84AFE28284FA90035A48E /* AchievementCell.swift */; };
+		74A84B01282850720035A48E /* AchievementsCollectionCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A84B00282850720035A48E /* AchievementsCollectionCellController.swift */; };
 		74AB1DC927728C4100DA961A /* UIViewController+PresentBS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */; };
 		74B51578281FE0FC001C4F1D /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B51577281FE0FC001C4F1D /* AlertAction.swift */; };
 		74B8EC332788441B00E240C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8EC322788441B00E240C5 /* ProfileViewController.swift */; };
@@ -394,6 +398,7 @@
 		740B535C2773A86A00E9C4E0 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
 		740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+Utils.swift"; sourceTree = "<group>"; };
+		7410ACC228290EB6008B947F /* AchievementCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCellController.swift; sourceTree = "<group>"; };
 		74114C7E2807815400C1CF12 /* InformationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellController.swift; sourceTree = "<group>"; };
 		74114C80280781B300C1CF12 /* InformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellViewModel.swift; sourceTree = "<group>"; };
 		74114C822807831100C1CF12 /* SeparatorCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCellController.swift; sourceTree = "<group>"; };
@@ -590,6 +595,9 @@
 		74A84AF528283AAF0035A48E /* AchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsService.swift; sourceTree = "<group>"; };
 		74A84AF728283FDD0035A48E /* BottomSheetController+IsLoaderVisible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+IsLoaderVisible.swift"; sourceTree = "<group>"; };
 		74A84AF9282841430035A48E /* AchievementsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsTableViewController.swift; sourceTree = "<group>"; };
+		74A84AFC28284BCF0035A48E /* AchievementsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCollectionCell.swift; sourceTree = "<group>"; };
+		74A84AFE28284FA90035A48E /* AchievementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCell.swift; sourceTree = "<group>"; };
+		74A84B00282850720035A48E /* AchievementsCollectionCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCollectionCellController.swift; sourceTree = "<group>"; };
 		74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentBS.swift"; sourceTree = "<group>"; };
 		74B51577281FE0FC001C4F1D /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		74B8EC322788441B00E240C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -842,6 +850,15 @@
 			path = Person;
 			sourceTree = "<group>";
 		};
+		7410ACC4282924B4008B947F /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				7404A61026B87FAF00524453 /* TextCell.swift */,
+				741BA1D728077513000B3C80 /* TextHeaderCellController.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
 		74114C842807831600C1CF12 /* Separator */ = {
 			isa = PBXGroup;
 			children = (
@@ -973,7 +990,7 @@
 			children = (
 				74C9EF782810385C00B8172E /* Alert */,
 				74114C842807831600C1CF12 /* Separator */,
-				7404A61026B87FAF00524453 /* TextCell.swift */,
+				7410ACC4282924B4008B947F /* Text */,
 				74E729B226F2946800775D37 /* EntityHeaderCell.swift */,
 				74C6CFC926BF1E0D00104457 /* ButtonCell.swift */,
 				74F73A03272B5213007C5450 /* LoadingCell.swift */,
@@ -1259,6 +1276,7 @@
 				74A84AEC282809800035A48E /* Composition */,
 				74A84AEE2828098E0035A48E /* Presentation */,
 				74A84AED282809860035A48E /* Controllers */,
+				74A84AFB28284BB80035A48E /* Cells */,
 				74A84AEF282837A60035A48E /* Services */,
 			);
 			path = Achievements;
@@ -1589,6 +1607,8 @@
 			children = (
 				74577569279732E300123208 /* AchievementsViewController.swift */,
 				74A84AF9282841430035A48E /* AchievementsTableViewController.swift */,
+				74A84B00282850720035A48E /* AchievementsCollectionCellController.swift */,
+				7410ACC228290EB6008B947F /* AchievementCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1616,6 +1636,15 @@
 				74A84AF1282837F50035A48E /* AchievementUIIntegrationTests.swift */,
 			);
 			path = Achievements;
+			sourceTree = "<group>";
+		};
+		74A84AFB28284BB80035A48E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74A84AFC28284BCF0035A48E /* AchievementsCollectionCell.swift */,
+				74A84AFE28284FA90035A48E /* AchievementCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		74AB1DC727727CF100DA961A /* Collections */ = {
@@ -1833,7 +1862,6 @@
 				74EDF86A2805B43F00D0F6B1 /* RouteDescriptionViewController.swift */,
 				74EDF8662805B42600D0F6B1 /* RouteDescriptionTableViewController.swift */,
 				74FC5B4C2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift */,
-				741BA1D728077513000B3C80 /* TextHeaderCellController.swift */,
 				74114C7E2807815400C1CF12 /* InformationCellController.swift */,
 				74DEA85F28082CFE0050EF49 /* PersonCellController.swift */,
 				740AF98F280E03A10049DEDE /* BackButtonViewController.swift */,
@@ -2163,6 +2191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74E7C39B2783075000B16392 /* StoreContainer.swift in Sources */,
+				74A84AFF28284FA90035A48E /* AchievementCell.swift in Sources */,
 				74F1856F2787307E00A0BF24 /* OneLineSettingsCell.swift in Sources */,
 				748EE637270F914600301552 /* LocationCoordinates.swift in Sources */,
 				7402662426A765AC006242FE /* UIView+Layout.swift in Sources */,
@@ -2170,6 +2199,7 @@
 				74967F7B276F55640096AA77 /* BaseNetworkService.swift in Sources */,
 				744B6EC52774E3DF008BDF37 /* PersonBuilder.swift in Sources */,
 				74EDF86D2805B51C00D0F6B1 /* RouteDescriptionBuilder.swift in Sources */,
+				74A84B01282850720035A48E /* AchievementsCollectionCellController.swift in Sources */,
 				74C9EF71281037C600B8172E /* PersonHeaderCellViewModel.swift in Sources */,
 				748FFD9626E55535009CA688 /* Logger.swift in Sources */,
 				74DE215627F1046D006863A3 /* SignUpRequest.swift in Sources */,
@@ -2214,6 +2244,7 @@
 				74BE346E28037F330086BB89 /* RouteCellController.swift in Sources */,
 				74967F89276F5A300096AA77 /* WeakRef.swift in Sources */,
 				744B3F48280F50AF00027C5D /* RouteTransformer.swift in Sources */,
+				74A84AFD28284BCF0035A48E /* AchievementsCollectionCell.swift in Sources */,
 				74D7DFB527746D1A0087B7F6 /* MapBuilder.swift in Sources */,
 				74EA63582818910700E63BB0 /* PurchaseErrorViewAdapter.swift in Sources */,
 				74E7C39D2783081A00B16392 /* JWTService.swift in Sources */,
@@ -2230,6 +2261,7 @@
 				74FFB59426EFE55B0060D948 /* RouteCell.swift in Sources */,
 				7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */,
 				74CB2F002806253E00B68A11 /* RouteDescriptionHeaderViewModel.swift in Sources */,
+				7410ACC328290EB6008B947F /* AchievementCellController.swift in Sources */,
 				74BE3476280390ED0086BB89 /* RoutesTableViewController.swift in Sources */,
 				74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */,
 				74BE34702803848F0086BB89 /* WeakRef+Routes.swift in Sources */,

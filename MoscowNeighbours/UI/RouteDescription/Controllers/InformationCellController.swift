@@ -26,7 +26,7 @@ final class InformationCellController {
     
 }
 
-extension InformationCellController: CellController {
+extension InformationCellController: TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(TextCell.self, for: indexPath)
         cell.selectionStyle = .none

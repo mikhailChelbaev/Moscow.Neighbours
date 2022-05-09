@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SeparatorCellController: CellController {
+final class SeparatorCellController: TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SeparatorCell.self, for: indexPath)
         cell.selectionStyle = .none

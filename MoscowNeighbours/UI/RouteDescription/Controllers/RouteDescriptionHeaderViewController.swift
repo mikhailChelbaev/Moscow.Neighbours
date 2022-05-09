@@ -17,7 +17,7 @@ final class RouteDescriptionHeaderViewController {
     private var view: RouteHeaderCell?
 }
 
-extension RouteDescriptionHeaderViewController: CellController {
+extension RouteDescriptionHeaderViewController: TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(RouteHeaderCell.self, for: indexPath)
         cell.selectionStyle = .none

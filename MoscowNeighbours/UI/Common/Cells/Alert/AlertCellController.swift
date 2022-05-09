@@ -24,7 +24,7 @@ final class AlertCellController {
     }
 }
 
-extension AlertCellController: CellController {
+extension AlertCellController: TableCellController {
     func view(in tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(AlertCell.self, for: indexPath)
         

@@ -32,7 +32,7 @@ final class PersonViewAdapter: PersonView {
         let descriptionCellModel = InformationCellViewModel(text: viewModel.description)
         let descriptionCellController = InformationCellController(viewModel: descriptionCellModel)
         
-        var descriptionCells: [CellController] = []
+        var descriptionCells: [TableCellController] = []
         if viewModel.showDescriptionSeparator {
             let descriptionSeparatorController = SeparatorCellController()
             descriptionCells = [descriptionCellController,
@@ -47,7 +47,7 @@ final class PersonViewAdapter: PersonView {
         
         // person info
         
-        var personInfoCells: [CellController] = []
+        var personInfoCells: [TableCellController] = []
         
         let personInfoViewModel = PersonInfoCellViewModel(info: viewModel.information)
         if viewModel.showInformationInContainer {
