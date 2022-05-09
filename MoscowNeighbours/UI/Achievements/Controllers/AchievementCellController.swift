@@ -19,8 +19,8 @@ final class AchievementCellController: CollectionCellController {
         
         let view = cell.view
         view.loader.startAnimating()
-        view.titleLabel.text = "route name that will be on 2 lines"
-        view.dateLabel.text = "10/20/2020"
+        view.titleLabel.text = viewModel.name
+        view.dateLabel.text = viewModel.date
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.5, delay: 0, options: [.transitionCrossDissolve]) {

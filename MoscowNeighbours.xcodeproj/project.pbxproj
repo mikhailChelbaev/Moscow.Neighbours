@@ -33,6 +33,7 @@
 		7410ACCA28299A01008B947F /* AchievementSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACC928299A01008B947F /* AchievementSectionViewModel.swift */; };
 		7410ACCC28299A0F008B947F /* AchievementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACCB28299A0F008B947F /* AchievementViewModel.swift */; };
 		7410ACCE28299A1D008B947F /* AchievementsHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACCD28299A1D008B947F /* AchievementsHeaderViewModel.swift */; };
+		7410ACD02829AC1E008B947F /* AchievementsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACCF2829AC1E008B947F /* AchievementsSection.swift */; };
 		74114C7F2807815400C1CF12 /* InformationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C7E2807815400C1CF12 /* InformationCellController.swift */; };
 		74114C81280781B300C1CF12 /* InformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C80280781B300C1CF12 /* InformationCellViewModel.swift */; };
 		74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C822807831100C1CF12 /* SeparatorCellController.swift */; };
@@ -409,6 +410,7 @@
 		7410ACC928299A01008B947F /* AchievementSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementSectionViewModel.swift; sourceTree = "<group>"; };
 		7410ACCB28299A0F008B947F /* AchievementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewModel.swift; sourceTree = "<group>"; };
 		7410ACCD28299A1D008B947F /* AchievementsHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsHeaderViewModel.swift; sourceTree = "<group>"; };
+		7410ACCF2829AC1E008B947F /* AchievementsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsSection.swift; sourceTree = "<group>"; };
 		74114C7E2807815400C1CF12 /* InformationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellController.swift; sourceTree = "<group>"; };
 		74114C80280781B300C1CF12 /* InformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellViewModel.swift; sourceTree = "<group>"; };
 		74114C822807831100C1CF12 /* SeparatorCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCellController.swift; sourceTree = "<group>"; };
@@ -867,6 +869,15 @@
 				741BA1D728077513000B3C80 /* TextHeaderCellController.swift */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		7410ACD12829AC2C008B947F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7410ACC5282999B8008B947F /* Achievement.swift */,
+				7410ACCF2829AC1E008B947F /* AchievementsSection.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		74114C842807831600C1CF12 /* Separator */ = {
@@ -1638,9 +1649,9 @@
 		74A84AEF282837A60035A48E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7410ACD12829AC2C008B947F /* Models */,
 				74A84AF328283A2D0035A48E /* AchievementsProvider.swift */,
 				74A84AF528283AAF0035A48E /* AchievementsService.swift */,
-				7410ACC5282999B8008B947F /* Achievement.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2342,6 +2353,7 @@
 				74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
 				7444DA972801999900A04F87 /* RemoteLocationCoordinates.swift in Sources */,
+				7410ACD02829AC1E008B947F /* AchievementsSection.swift in Sources */,
 				740AF98E280DEAC30049DEDE /* RouteDescriptionCoordinator.swift in Sources */,
 				746684AA279F5D5900AFAA2E /* AccountConfirmationService.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,

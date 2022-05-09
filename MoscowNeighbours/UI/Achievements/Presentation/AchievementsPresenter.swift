@@ -50,27 +50,36 @@ final class AchievementsPresenter {
     func didRequestAchievements() {
         loadingView?.display(isLoading: true)
         achievementsProvider.retrieveAchievements { [weak self] result in
-            self?.view?.display(AchievementsViewModel(sections: [
-                AchievementSectionViewModel(
-                    title: "My achievements",
-                    achievements: [
-                        AchievementViewModel(onCellTap: { [weak self] in
-                            self?.onAchievementCellTap?(Achievement(name: "name", imageURL: "dsfd", date: nil))
-                        }),
-                        AchievementViewModel(onCellTap: { [weak self] in
-                            self?.onAchievementCellTap?(Achievement(name: "name", imageURL: "dsfd", date: nil))
-                        }),
-                    ]),
-//                AchievementSectionViewModel(
-//                    title: "Available achievements",
-//                    achievements: [
-//                        AchievementViewModel(),
-//                        AchievementViewModel(),
-//                        AchievementViewModel(),
-//                        AchievementViewModel()
-//                    ]),
-            ]))
+            switch result {
+            case let .success(sections):
+                self?.view?.display(AchievementsViewModel(sections: sections.map { section in
+                    AchievementSectionViewModel(
+                        title: section.title,
+                        achievements: section.achievements.map { achievement in
+                            AchievementViewModel(
+                                name: achievement.name,
+                                imageURL: achievement.imageURL,
+                                date: self?.mapAchievementReceiveDate(achievement.date),
+                                onCellTap: { [weak self] in
+                                    self?.onAchievementCellTap?(achievement)
+                                })
+                        })
+                }))
+                
+            case .failure: break
+            }
         }
+    }
+    
+    private func mapAchievementReceiveDate(_ date: Date?) -> String? {
+        guard let date = date else {
+            return nil
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        return dateFormatter.string(from: date)
     }
     
 }

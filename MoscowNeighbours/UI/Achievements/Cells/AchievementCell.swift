@@ -51,11 +51,11 @@ final class AchievementCell: CellView {
         
         addSubview(titleLabel)
         titleLabel.top(7, to: imageView)
-        titleLabel.pinToSuperviewEdges([.left, .right], constant: 10)
+        titleLabel.pinToSuperviewEdges([.left, .right], constant: 5)
         
         addSubview(dateLabel)
         dateLabel.top(4, to: titleLabel)
-        dateLabel.pinToSuperviewEdges([.left, .right], constant: 10)
+        dateLabel.pinToSuperviewEdges([.left, .right], constant: 5)
     }
     
 }

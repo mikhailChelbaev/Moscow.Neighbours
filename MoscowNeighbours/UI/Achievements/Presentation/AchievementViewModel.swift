@@ -8,5 +8,8 @@
 import Foundation
 
 struct AchievementViewModel {
+    let name: String
+    let imageURL: String
+    let date: String?
     let onCellTap: Action
 }

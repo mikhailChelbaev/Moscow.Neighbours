@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol AchievementsProvider {
-    typealias Result = Swift.Result<[Achievement], Error>
+    typealias Result = Swift.Result<[AchievementsSection], Error>
     
     func retrieveAchievements(completion: @escaping (Result) -> Void)
 }
