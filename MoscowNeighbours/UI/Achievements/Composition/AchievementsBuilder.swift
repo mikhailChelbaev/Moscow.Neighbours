@@ -32,6 +32,10 @@ public final class AchievementsUIComposer {
         presenter.headerView = WeakRef(controller)
         presenter.loadingView = tableViewController
         
+        presenter.backButtonAction = { [weak controller] in
+            controller?.closeController(animated: true)
+        }
+        
         return controller
     }
 }

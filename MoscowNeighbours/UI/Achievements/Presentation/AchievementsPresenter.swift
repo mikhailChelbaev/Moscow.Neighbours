@@ -34,6 +34,7 @@ protocol AchievementsLoadingView {
 
 struct AchievementsHeaderViewModel {
     let title: String
+    let backButtonAction: Action
 }
 
 final class AchievementsPresenter {
@@ -48,12 +49,19 @@ final class AchievementsPresenter {
     var headerView: AchievementsHeaderView?
     var loadingView: AchievementsLoadingView?
     
+    var backButtonAction: Action?
+    
     private static var headerTitle: String {
         return "achievements.title".localized
     }
     
     func didLoadHeader() {
-        headerView?.display(AchievementsHeaderViewModel(title: AchievementsPresenter.headerTitle))
+        headerView?.display(AchievementsHeaderViewModel(
+            title: AchievementsPresenter.headerTitle,
+            backButtonAction: { [weak self] in
+                self?.backButtonAction?()
+            }
+        ))
     }
     
     func didRequestAchievements() {

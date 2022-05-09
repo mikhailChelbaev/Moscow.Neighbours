@@ -72,5 +72,6 @@ public final class AchievementsViewController: BottomSheetViewController {
 extension AchievementsViewController: AchievementsHeaderView {
     func display(_ viewModel: AchievementsHeaderViewModel) {
         headerView.title.text = viewModel.title
+        headerView.backButtonAction = viewModel.backButtonAction
     }
 }
