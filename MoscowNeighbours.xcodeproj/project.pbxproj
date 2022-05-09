@@ -35,6 +35,10 @@
 		7410ACCE28299A1D008B947F /* AchievementsHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACCD28299A1D008B947F /* AchievementsHeaderViewModel.swift */; };
 		7410ACD02829AC1E008B947F /* AchievementsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACCF2829AC1E008B947F /* AchievementsSection.swift */; };
 		7410ACD32829BF08008B947F /* AchievementsErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACD22829BF08008B947F /* AchievementsErrorViewModel.swift */; };
+		7410ACD52829BF62008B947F /* WeakRef+Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACD42829BF62008B947F /* WeakRef+Achievements.swift */; };
+		7410ACD72829BF6D008B947F /* AchievementsErrorViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACD62829BF6D008B947F /* AchievementsErrorViewAdapter.swift */; };
+		7410ACD92829BF7A008B947F /* AchievementsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACD82829BF7A008B947F /* AchievementsViewAdapter.swift */; };
+		7410ACDB2829BF91008B947F /* MainQueueDispatchDecorator+Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACDA2829BF91008B947F /* MainQueueDispatchDecorator+Achievements.swift */; };
 		74114C7F2807815400C1CF12 /* InformationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C7E2807815400C1CF12 /* InformationCellController.swift */; };
 		74114C81280781B300C1CF12 /* InformationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C80280781B300C1CF12 /* InformationCellViewModel.swift */; };
 		74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74114C822807831100C1CF12 /* SeparatorCellController.swift */; };
@@ -413,6 +417,10 @@
 		7410ACCD28299A1D008B947F /* AchievementsHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsHeaderViewModel.swift; sourceTree = "<group>"; };
 		7410ACCF2829AC1E008B947F /* AchievementsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsSection.swift; sourceTree = "<group>"; };
 		7410ACD22829BF08008B947F /* AchievementsErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsErrorViewModel.swift; sourceTree = "<group>"; };
+		7410ACD42829BF62008B947F /* WeakRef+Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeakRef+Achievements.swift"; sourceTree = "<group>"; };
+		7410ACD62829BF6D008B947F /* AchievementsErrorViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsErrorViewAdapter.swift; sourceTree = "<group>"; };
+		7410ACD82829BF7A008B947F /* AchievementsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewAdapter.swift; sourceTree = "<group>"; };
+		7410ACDA2829BF91008B947F /* MainQueueDispatchDecorator+Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainQueueDispatchDecorator+Achievements.swift"; sourceTree = "<group>"; };
 		74114C7E2807815400C1CF12 /* InformationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellController.swift; sourceTree = "<group>"; };
 		74114C80280781B300C1CF12 /* InformationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCellViewModel.swift; sourceTree = "<group>"; };
 		74114C822807831100C1CF12 /* SeparatorCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCellController.swift; sourceTree = "<group>"; };
@@ -1621,6 +1629,10 @@
 			isa = PBXGroup;
 			children = (
 				7457756D279732F300123208 /* AchievementsBuilder.swift */,
+				7410ACD42829BF62008B947F /* WeakRef+Achievements.swift */,
+				7410ACD62829BF6D008B947F /* AchievementsErrorViewAdapter.swift */,
+				7410ACD82829BF7A008B947F /* AchievementsViewAdapter.swift */,
+				7410ACDA2829BF91008B947F /* MainQueueDispatchDecorator+Achievements.swift */,
 			);
 			path = Composition;
 			sourceTree = "<group>";
@@ -2258,6 +2270,7 @@
 				7402661326A76379006242FE /* MapViewController.swift in Sources */,
 				7402660F26A76379006242FE /* AppDelegate.swift in Sources */,
 				7457757227973E1300123208 /* DelayManager.swift in Sources */,
+				7410ACD52829BF62008B947F /* WeakRef+Achievements.swift in Sources */,
 				7499D8CA277C57C700BBCF6A /* MenuItemCell.swift in Sources */,
 				7444DAB42801ED9C00A04F87 /* MainQueueDispatchDecorator+Routes.swift in Sources */,
 				74FC5B4F2805CF3D00CCFCBA /* RouteViewModel.swift in Sources */,
@@ -2302,6 +2315,7 @@
 				741BA1D828077513000B3C80 /* TextHeaderCellController.swift in Sources */,
 				74C9EF67281007F200B8172E /* PersonViewAdapter.swift in Sources */,
 				74681B8F2741B8CD00F7DE10 /* UITextView+SetAttributedText.swift in Sources */,
+				7410ACD92829BF7A008B947F /* AchievementsViewAdapter.swift in Sources */,
 				74DEA85E28082CB70050EF49 /* PersonCell.swift in Sources */,
 				74A0B86828149ABC00D96A76 /* PurchaseRouteCompositionService.swift in Sources */,
 				74F739FD272B50DE007C5450 /* CustomTableViewDataSource.swift in Sources */,
@@ -2401,6 +2415,7 @@
 				74DE215427F1034E006863A3 /* SignInRequest.swift in Sources */,
 				74C9EF61281003EE00B8172E /* PersonInfoCellController.swift in Sources */,
 				7410ACC8282999F1008B947F /* AchievementsViewModel.swift in Sources */,
+				7410ACD72829BF6D008B947F /* AchievementsErrorViewAdapter.swift in Sources */,
 				74967F76276F554D0096AA77 /* RequestResult.swift in Sources */,
 				74577574279747BA00123208 /* ErrorDelegate.swift in Sources */,
 				74A84AFA282841430035A48E /* AchievementsTableViewController.swift in Sources */,
@@ -2452,6 +2467,7 @@
 				743C3AC7277D04F100D4CB1C /* AuthorizationType.swift in Sources */,
 				74967F74276F554D0096AA77 /* ApiRequest.swift in Sources */,
 				741FE2FF2777A8A70065126A /* PersonPresentationState.swift in Sources */,
+				7410ACDB2829BF91008B947F /* MainQueueDispatchDecorator+Achievements.swift in Sources */,
 				7444DA932801995100A04F87 /* RemotePlace.swift in Sources */,
 				7422221E2781DC2500CFDD50 /* AuthorizationService.swift in Sources */,
 				74D2CC5F280AE8F0000FE4B1 /* MapCoordinator.swift in Sources */,
