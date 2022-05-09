@@ -23,10 +23,6 @@ protocol AchievementsErrorView {
     func display(_ viewModel: AchievementsErrorViewModel)
 }
 
-struct AchievementsErrorViewModel {
-    let retryAction: Action
-}
-
 final class AchievementsPresenter {
     
     private let achievementsProvider: AchievementsProvider
