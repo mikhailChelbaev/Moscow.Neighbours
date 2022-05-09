@@ -35,6 +35,12 @@ public final class AchievementsUIComposer {
         presenter.backButtonAction = { [weak controller] in
             controller?.closeController(animated: true)
         }
+        presenter.onAchievementCellTap = { [weak controller] achievement in
+            let alertCell = AchievementAlertCell()
+            alertCell.update()
+            let alertController = AlertController(view: alertCell, configuration: .init(margins: .init(top: 20, left: 20, bottom: 20, right: 20)))
+            controller?.present(alertController, animated: true)
+        }
         
         return controller
     }

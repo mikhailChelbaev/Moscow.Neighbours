@@ -51,6 +51,10 @@ extension AchievementsCollectionCellController: UICollectionViewDataSource, UICo
         return cellControllers[indexPath.item].view(in: collectionView, indexPath: indexPath)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        (cellControllers[indexPath.item] as? SelectableCellController)?.didSelect()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return sizeForCell()
     }

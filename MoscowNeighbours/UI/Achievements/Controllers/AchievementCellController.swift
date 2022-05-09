@@ -31,5 +31,10 @@ final class AchievementCellController: CollectionCellController {
         
         return cell
     }
-    
+}
+
+extension AchievementCellController: SelectableCellController {
+    func didSelect() {
+        viewModel.onCellTap()
+    }
 }

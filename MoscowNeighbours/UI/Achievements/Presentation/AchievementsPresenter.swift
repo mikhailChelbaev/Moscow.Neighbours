@@ -17,7 +17,7 @@ struct AchievementSectionViewModel {
 }
 
 struct AchievementViewModel {
-    
+    let onCellTap: Action
 }
 
 protocol AchievementsView {
@@ -50,6 +50,7 @@ final class AchievementsPresenter {
     var loadingView: AchievementsLoadingView?
     
     var backButtonAction: Action?
+    var onAchievementCellTap: ((Achievement) -> Void)?
     
     private static var headerTitle: String {
         return "achievements.title".localized
@@ -71,17 +72,21 @@ final class AchievementsPresenter {
                 AchievementSectionViewModel(
                     title: "My achievements",
                     achievements: [
-                        AchievementViewModel(),
-                        AchievementViewModel()
+                        AchievementViewModel(onCellTap: { [weak self] in
+                            self?.onAchievementCellTap?(Achievement(name: "name", imageURL: "dsfd", date: nil))
+                        }),
+                        AchievementViewModel(onCellTap: { [weak self] in
+                            self?.onAchievementCellTap?(Achievement(name: "name", imageURL: "dsfd", date: nil))
+                        }),
                     ]),
-                AchievementSectionViewModel(
-                    title: "Available achievements",
-                    achievements: [
-                        AchievementViewModel(),
-                        AchievementViewModel(),
-                        AchievementViewModel(),
-                        AchievementViewModel()
-                    ]),
+//                AchievementSectionViewModel(
+//                    title: "Available achievements",
+//                    achievements: [
+//                        AchievementViewModel(),
+//                        AchievementViewModel(),
+//                        AchievementViewModel(),
+//                        AchievementViewModel()
+//                    ]),
             ]))
         }
     }
