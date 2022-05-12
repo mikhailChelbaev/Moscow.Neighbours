@@ -8,6 +8,7 @@
 import Foundation
 
 public struct Achievement {
+    public let id: UUID
     public let name: String
     public let description: String
     public let imageURL: String

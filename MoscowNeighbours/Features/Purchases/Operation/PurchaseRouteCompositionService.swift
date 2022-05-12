@@ -46,7 +46,8 @@ public final class PurchaseRouteCompositionService: PurchaseRouteProvider {
                     personsInfo: route.personsInfo,
                     purchase: .init(
                         status: .purchased,
-                        product: route.purchase.product))
+                        product: route.purchase.product),
+                    achievement: route.achievement)
                 self?.routesState.updateRoute(purchasedRoute)
             }
             

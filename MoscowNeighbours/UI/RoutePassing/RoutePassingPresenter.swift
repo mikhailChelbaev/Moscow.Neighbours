@@ -29,6 +29,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     weak var viewController: RoutePassingView?
     
+    private let route: Route
     private let persons: [PersonInfo]
     
     private var routePassingService: RoutePassingService
@@ -39,7 +40,8 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     // MARK: - Init
     
     init(storage: RoutePassingStorage) {
-        persons = storage.persons
+        route = storage.route
+        persons = storage.route.personsInfo
         
         mapService = storage.mapService
         routePassingService = storage.routePassingService
@@ -121,14 +123,21 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     }
     
     private func showAchievementIfCompleted() {
-        guard visitedPersons.count == persons.count else {
+        guard visitedPersons.count == persons.count, let achievement = route.achievement else {
             return
         }
         
         let view = AchievementAlertCell()
-//        view.update()
-        let controller = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))
-        viewController?.present(controller, animated: true)
+        let alertController = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))
+        view.update(
+            title: "route_passing.achievement_title".localized,
+            subtitle: String(format: "route_passing.achievement_subtitle".localized, achievement.name),
+            imageURL: achievement.imageURL,
+            buttonTitle: "route_passing.achievement_buttonTitle".localized,
+            buttonAction: { [weak alertController] in
+                alertController?.dismiss(animated: true)
+            })
+        viewController?.present(alertController, animated: true)
     }
 }
 

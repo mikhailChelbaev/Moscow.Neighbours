@@ -16,4 +16,5 @@ struct RemoteRoute: Decodable {
     let distance: String
     let personsInfo: [RemotePersonInfo]
     let purchase: RemotePurchase
+    let achievement: RemoteRouteAchievement?
 }

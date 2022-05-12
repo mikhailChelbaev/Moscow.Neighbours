@@ -16,8 +16,9 @@ public struct Route: Equatable {
     public let distance: String
     public let personsInfo: [PersonInfo]
     public var purchase: Purchase
+    public let achievement: RouteAchievement?
     
-    public init(id: String, name: String, description: String, coverUrl: String?, duration: String, distance: String, personsInfo: [PersonInfo], purchase: Purchase) {
+    public init(id: String, name: String, description: String, coverUrl: String?, duration: String, distance: String, personsInfo: [PersonInfo], purchase: Purchase, achievement: RouteAchievement?) {
         self.id = id
         self.name = name
         self.description = description
@@ -26,6 +27,7 @@ public struct Route: Equatable {
         self.distance = distance
         self.personsInfo = personsInfo
         self.purchase = purchase
+        self.achievement = achievement
     }
 }
 

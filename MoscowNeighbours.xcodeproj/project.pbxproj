@@ -199,6 +199,11 @@
 		74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC7277EFCA9000FC446 /* SignInModel.swift */; };
 		74863DCA277EFCB0000FC446 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC9277EFCB0000FC446 /* SignUpModel.swift */; };
 		74870942282D17620057A6EC /* AchievementDescriptionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74870941282D17620057A6EC /* AchievementDescriptionViewAdapter.swift */; };
+		74870944282D1B900057A6EC /* RouteAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74870943282D1B900057A6EC /* RouteAchievement.swift */; };
+		74870946282D1BF60057A6EC /* RemoteRouteAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74870945282D1BF60057A6EC /* RemoteRouteAchievement.swift */; };
+		7487094B282D55E90057A6EC /* AchievementsSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487094A282D55E90057A6EC /* AchievementsSaver.swift */; };
+		7487094D282D8B140057A6EC /* RemoteCompletedAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487094C282D8B140057A6EC /* RemoteCompletedAchievement.swift */; };
+		7487094F282D8B520057A6EC /* CompletedAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7487094E282D8B520057A6EC /* CompletedAchievement.swift */; };
 		7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A160277E1C6B004E2D27 /* TextInputCell.swift */; };
 		7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A162277E3233004E2D27 /* OrSeparatorCell.swift */; };
 		7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */; };
@@ -575,6 +580,11 @@
 		74863DC7277EFCA9000FC446 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		74863DC9277EFCB0000FC446 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		74870941282D17620057A6EC /* AchievementDescriptionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDescriptionViewAdapter.swift; sourceTree = "<group>"; };
+		74870943282D1B900057A6EC /* RouteAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAchievement.swift; sourceTree = "<group>"; };
+		74870945282D1BF60057A6EC /* RemoteRouteAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRouteAchievement.swift; sourceTree = "<group>"; };
+		7487094A282D55E90057A6EC /* AchievementsSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsSaver.swift; sourceTree = "<group>"; };
+		7487094C282D8B140057A6EC /* RemoteCompletedAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCompletedAchievement.swift; sourceTree = "<group>"; };
+		7487094E282D8B520057A6EC /* CompletedAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedAchievement.swift; sourceTree = "<group>"; };
 		7488A160277E1C6B004E2D27 /* TextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
 		7488A162277E3233004E2D27 /* OrSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrSeparatorCell.swift; sourceTree = "<group>"; };
 		7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonCell.swift; sourceTree = "<group>"; };
@@ -890,6 +900,7 @@
 			children = (
 				7410ACC5282999B8008B947F /* Achievement.swift */,
 				7410ACCF2829AC1E008B947F /* AchievementsSection.swift */,
+				7487094E282D8B520057A6EC /* CompletedAchievement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1243,6 +1254,7 @@
 				748EE636270F914600301552 /* LocationCoordinates.swift */,
 				748EE63C270F917600301552 /* ShortInfo.swift */,
 				7444DA9E2801BF1800A04F87 /* Purchase.swift */,
+				74870943282D1B900057A6EC /* RouteAchievement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1312,7 +1324,6 @@
 				74A84AEE2828098E0035A48E /* Presentation */,
 				74A84AED282809860035A48E /* Controllers */,
 				74A84AFB28284BB80035A48E /* Cells */,
-				74A84AEF282837A60035A48E /* Services */,
 			);
 			path = Achievements;
 			sourceTree = "<group>";
@@ -1455,6 +1466,35 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		74870947282D558A0057A6EC /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				74A84AF528283AAF0035A48E /* AchievementsService.swift */,
+				74870949282D55D60057A6EC /* Loader */,
+				74870948282D55C00057A6EC /* Saver */,
+				7410ACD12829AC2C008B947F /* Models */,
+			);
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		74870948282D55C00057A6EC /* Saver */ = {
+			isa = PBXGroup;
+			children = (
+				7487094A282D55E90057A6EC /* AchievementsSaver.swift */,
+				7487094C282D8B140057A6EC /* RemoteCompletedAchievement.swift */,
+			);
+			path = Saver;
+			sourceTree = "<group>";
+		};
+		74870949282D55D60057A6EC /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				74A84AF328283A2D0035A48E /* AchievementsProvider.swift */,
+				74E0C436282C215F00FA716B /* RemoteAchievements.swift */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
 		7489D0BF2804DC050098AED5 /* RouteDescription */ = {
 			isa = PBXGroup;
 			children = (
@@ -1481,6 +1521,7 @@
 		7490F33527AE746400DCD9C7 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				74870947282D558A0057A6EC /* Achievements */,
 				74DC18AE27AEEA5700C5A02F /* Purchases */,
 				74159E5027ADBC07007E7118 /* User */,
 				74967F83276F57A90096AA77 /* Routes */,
@@ -1532,6 +1573,7 @@
 				7444DA962801999900A04F87 /* RemoteLocationCoordinates.swift */,
 				7444DA98280199B000A04F87 /* RemoteShortInfo.swift */,
 				7444DA9C2801B71F00A04F87 /* RemotePurchase.swift */,
+				74870945282D1BF60057A6EC /* RemoteRouteAchievement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1664,17 +1706,6 @@
 				7410ACD22829BF08008B947F /* AchievementsErrorViewModel.swift */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		74A84AEF282837A60035A48E /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				7410ACD12829AC2C008B947F /* Models */,
-				74A84AF328283A2D0035A48E /* AchievementsProvider.swift */,
-				74A84AF528283AAF0035A48E /* AchievementsService.swift */,
-				74E0C436282C215F00FA716B /* RemoteAchievements.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		74A84AF0282837CB0035A48E /* Achievements */ = {
@@ -2377,12 +2408,14 @@
 				74159E5227ADBC1A007E7118 /* UserProvider.swift in Sources */,
 				7404A61426B8874A00524453 /* PersonViewController.swift in Sources */,
 				7444DA972801999900A04F87 /* RemoteLocationCoordinates.swift in Sources */,
+				7487094B282D55E90057A6EC /* AchievementsSaver.swift in Sources */,
 				7410ACD02829AC1E008B947F /* AchievementsSection.swift in Sources */,
 				740AF98E280DEAC30049DEDE /* RouteDescriptionCoordinator.swift in Sources */,
 				746684AA279F5D5900AFAA2E /* AccountConfirmationService.swift in Sources */,
 				747A0E5C26FE214C00EB1973 /* EndRouteButtonView.swift in Sources */,
 				746684A1279F32ED00AFAA2E /* AccountConfirmationViewData.swift in Sources */,
 				74C3004B2813586800238EA3 /* RouteDescriptionHeaderPresenter.swift in Sources */,
+				7487094F282D8B520057A6EC /* CompletedAchievement.swift in Sources */,
 				74114C832807831100C1CF12 /* SeparatorCellController.swift in Sources */,
 				74967F77276F554D0096AA77 /* DefaultJsonParser.swift in Sources */,
 				7457756E279732F300123208 /* AchievementsBuilder.swift in Sources */,
@@ -2470,6 +2503,7 @@
 				741D9BF42813FC3F0094EF3F /* PurchaseOperationProvider.swift in Sources */,
 				74870942282D17620057A6EC /* AchievementDescriptionViewAdapter.swift in Sources */,
 				7444DA9F2801BF1800A04F87 /* Purchase.swift in Sources */,
+				74870944282D1B900057A6EC /* RouteAchievement.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,
 				7444DA9D2801B71F00A04F87 /* RemotePurchase.swift in Sources */,
 				743C3AC7277D04F100D4CB1C /* AuthorizationType.swift in Sources */,
@@ -2483,6 +2517,8 @@
 				74C9EF5E281000C900B8172E /* PersonHeaderCellController.swift in Sources */,
 				74C9EF6F28102F0800B8172E /* ReadyToGoButtonCellController.swift in Sources */,
 				748FC7DE281F2BD30060E256 /* ActionStyle.swift in Sources */,
+				74870946282D1BF60057A6EC /* RemoteRouteAchievement.swift in Sources */,
+				7487094D282D8B140057A6EC /* RemoteCompletedAchievement.swift in Sources */,
 				740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */,
 				74C9EF75281037E800B8172E /* AlertCellViewModel.swift in Sources */,
 				746192DB26AC54C800CCCB71 /* CellView.swift in Sources */,

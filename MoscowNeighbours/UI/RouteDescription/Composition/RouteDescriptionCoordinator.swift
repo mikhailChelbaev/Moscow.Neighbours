@@ -54,7 +54,7 @@ public class RouteDescriptionCoordinator {
     }
     
     public func startPassingRoute() {
-        let routePassingController = builder.buildRoutePassingViewController(persons: route.personsInfo)
+        let routePassingController = builder.buildRoutePassingViewController(route: route)
         controller?.present(routePassingController, state: .middle, completion: nil)
     }
     

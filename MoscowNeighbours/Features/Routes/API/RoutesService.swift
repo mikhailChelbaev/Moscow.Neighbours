@@ -107,7 +107,7 @@ private extension RemoteRoute {
     func toModel(products: [Product]) -> Route {
         let product = products.first { $0.id == purchase.productId }
         
-        return Route(id: id, name: name, description: description, coverUrl: coverUrl, duration: duration, distance: distance, personsInfo: personsInfo.toModels(), purchase: purchase.toModel(product: product))
+        return Route(id: id, name: name, description: description, coverUrl: coverUrl, duration: duration, distance: distance, personsInfo: personsInfo.toModels(), purchase: purchase.toModel(product: product), achievement: achievement?.toModel())
     }
 }
 
@@ -158,5 +158,11 @@ private extension RemotePurchase {
         }
         
         return Purchase(status: status, product: product)
+    }
+}
+
+private extension RemoteRouteAchievement {
+    func toModel() -> RouteAchievement {
+        return RouteAchievement(name: name, imageURL: imageUrl)
     }
 }
