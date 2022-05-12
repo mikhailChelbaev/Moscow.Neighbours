@@ -294,6 +294,7 @@
 		74DEA85E28082CB70050EF49 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA85D28082CB70050EF49 /* PersonCell.swift */; };
 		74DEA86028082CFE0050EF49 /* PersonCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA85F28082CFE0050EF49 /* PersonCellController.swift */; };
 		74DEA86228082E690050EF49 /* PersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA86128082E690050EF49 /* PersonCellViewModel.swift */; };
+		74E0C437282C215F00FA716B /* RemoteAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E0C436282C215F00FA716B /* RemoteAchievements.swift */; };
 		74E146962779D174007D00D1 /* LoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E146952779D174007D00D1 /* LoadingDelegate.swift */; };
 		74E729B326F2946800775D37 /* EntityHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E729B226F2946800775D37 /* EntityHeaderCell.swift */; };
 		74E7BF0E27A33644004B6F4E /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E7BF0D27A33644004B6F4E /* EmailService.swift */; };
@@ -673,6 +674,7 @@
 		74DEA85D28082CB70050EF49 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		74DEA85F28082CFE0050EF49 /* PersonCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellController.swift; sourceTree = "<group>"; };
 		74DEA86128082E690050EF49 /* PersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellViewModel.swift; sourceTree = "<group>"; };
+		74E0C436282C215F00FA716B /* RemoteAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAchievements.swift; sourceTree = "<group>"; };
 		74E146952779D174007D00D1 /* LoadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDelegate.swift; sourceTree = "<group>"; };
 		74E729B226F2946800775D37 /* EntityHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHeaderCell.swift; sourceTree = "<group>"; };
 		74E7BF0D27A33644004B6F4E /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
@@ -1667,6 +1669,7 @@
 				7410ACD12829AC2C008B947F /* Models */,
 				74A84AF328283A2D0035A48E /* AchievementsProvider.swift */,
 				74A84AF528283AAF0035A48E /* AchievementsService.swift */,
+				74E0C436282C215F00FA716B /* RemoteAchievements.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2450,6 +2453,7 @@
 				74B8EC352788442600E240C5 /* ProfilePresenter.swift in Sources */,
 				74F73A06272B528A007C5450 /* EmptyStateCell.swift in Sources */,
 				748EE633270F911800301552 /* Route.swift in Sources */,
+				74E0C437282C215F00FA716B /* RemoteAchievements.swift in Sources */,
 				746F06212793722A009D1163 /* UsernameValidator.swift in Sources */,
 				74FC5B4D2805CEB300CCFCBA /* RouteDescriptionHeaderViewController.swift in Sources */,
 				746192E626AC56ED00CCCB71 /* BottomSheetViewController.swift in Sources */,

@@ -7,51 +7,47 @@
 
 import Foundation
 
-final class AchievementsService: AchievementsProvider {
+final class AchievementsService: BaseNetworkService, AchievementsProvider {
+    private let api: ApiRequestsFactory
     
     typealias Result = AchievementsProvider.Result
     
-    func retrieveAchievements(completion: @escaping (Result) -> Void) {
-        completion(.success([
-            AchievementsSection(
-                title: "Полученные",
-                achievements: [
-                    Achievement(name: "Окрестности армянского переулка",
-                                imageURL: "some url",
-                                date: Date())
-                ]),
-            AchievementsSection(
-                title: "Доступные",
-                achievements: [
-                    Achievement(name: "Окрестности армянского переулка",
-                                imageURL: "some url",
-                                date: Date()),
-                    Achievement(name: "Рядом с писателями и художниками",
-                                imageURL: "some url",
-                                date: nil),
-                    Achievement(name: "Уголки замоскворечья",
-                                imageURL: "some url",
-                                date: nil)
-                ]),
-        ]))
+    init(api: ApiRequestsFactory) {
+        self.api = api
+        
+        super.init()
     }
     
+    func retrieveAchievements(completion: @escaping (Result) -> Void) {
+        Task {
+            let result = await requestSender.send(request: api.achievementsRequest, type: [RemoteAchievements].self)
+            
+            completion(result
+                .map { response in
+                    response.map { AchievementsService.map($0) }
+                }
+                .mapError { $0 as Error })
+        }
+    }
+    
+    private static func map(_ response: RemoteAchievements) -> AchievementsSection {
+        AchievementsSection(
+            title: response.title,
+            achievements: response.achievements.map { $0.toModel() })
+    }
 }
 
-extension AchievementsService {
-    private struct AchievementsResponse: Decodable {
-        struct Achievement: Decodable {
-            let id: UUID
-            let name: String
-            let date: Date?
-            let imageURL: String
-        }
-        
-        struct AchievementsSection: Decodable {
-            let title: String
-            let achievements: [Achievement]
-        }
-        
-        let sections: AchievementsSection
+private extension RemoteAchievements.Achievement {
+    func toModel() -> Achievement {
+        Achievement(
+            name: name,
+            imageURL: imageUrl,
+            date: date)
+    }
+}
+ 
+private extension ApiRequestsFactory {
+    var achievementsRequest: ApiRequest {
+        return makeRequest(url: host + "/api/v1/achievements", method: .get)
     }
 }

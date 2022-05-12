@@ -21,12 +21,8 @@ final class AchievementCellController: CollectionCellController {
         view.loader.startAnimating()
         view.titleLabel.text = viewModel.name
         view.dateLabel.text = viewModel.date
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            UIView.animate(withDuration: 0.5, delay: 0, options: [.transitionCrossDissolve]) {
-                view.loader.stopAnimating()
-                view.imageView.image = UIImage(named: "achievement")
-            }
+        view.imageView.loadImage(viewModel.imageURL) { [weak view] _ in
+            view?.loader.stopAnimating()
         }
         
         return cell

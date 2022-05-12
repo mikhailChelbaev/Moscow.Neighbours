@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import ImageView
 
 final class AchievementCell: CellView {
     
-    let imageView: UIImageView = {
-        let iv = UIImageView()
+    let imageView: ImageView = {
+        let iv = ImageView()
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFit
         return iv

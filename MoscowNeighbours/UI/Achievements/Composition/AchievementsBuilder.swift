@@ -13,7 +13,7 @@ protocol AchievementsBuilder {
 
 extension Builder: AchievementsBuilder {
     func buildAchievementsViewController() -> AchievementsViewController {
-        let achievementsService = AchievementsService()
+        let achievementsService = AchievementsService(api: api)
         return AchievementsUIComposer.achievementsComposeWith(achievementsProvider: achievementsService)
     }
 }
