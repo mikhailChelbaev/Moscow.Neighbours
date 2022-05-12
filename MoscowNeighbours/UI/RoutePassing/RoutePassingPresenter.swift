@@ -126,7 +126,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         }
         
         let view = AchievementAlertCell()
-        view.update()
+//        view.update()
         let controller = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))
         viewController?.present(controller, animated: true)
     }

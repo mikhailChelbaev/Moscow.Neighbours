@@ -41,6 +41,7 @@ private extension RemoteAchievements.Achievement {
     func toModel() -> Achievement {
         Achievement(
             name: name,
+            description: description,
             imageURL: imageUrl,
             date: date)
     }

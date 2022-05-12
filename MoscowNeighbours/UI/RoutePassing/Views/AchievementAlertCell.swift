@@ -6,18 +6,12 @@
 //
 
 import UIKit
+import ImageView
 
 final class AchievementAlertCell: CellView {
     
-//    private let contentView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .background
-//        view.layer.cornerRadius = 20
-//        return view
-//    }()
-    
-    private let imageView: UIImageView = {
-        let iv = UIImageView()
+    private let imageView: ImageView = {
+        let iv = ImageView()
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFit
         return iv
@@ -26,6 +20,7 @@ final class AchievementAlertCell: CellView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 24, weight: .bold)
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -71,11 +66,12 @@ final class AchievementAlertCell: CellView {
         completeButton.height(42)
     }
     
-    func update() {
-        titleLabel.text = "Новое достижение!"
-        subtitleLabel.text = "Вы получили новое достижение: \"Рыба-меч 5\""
-        completeButton.setTitle("Хорошо", for: .normal)
-        imageView.image = UIImage(named: "achievement")
+    func update(title: String, subtitle: String, imageURL: String, buttonTitle: String, buttonAction: Action?) {
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
+        completeButton.setTitle(buttonTitle, for: .normal)
+        completeButton.action = buttonAction
+        imageView.loadImage(imageURL)
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

@@ -198,6 +198,7 @@
 		7485E3792709BD52008DAB99 /* PersonContainerInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7485E3782709BD52008DAB99 /* PersonContainerInfoCell.swift */; };
 		74863DC8277EFCA9000FC446 /* SignInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC7277EFCA9000FC446 /* SignInModel.swift */; };
 		74863DCA277EFCB0000FC446 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74863DC9277EFCB0000FC446 /* SignUpModel.swift */; };
+		74870942282D17620057A6EC /* AchievementDescriptionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74870941282D17620057A6EC /* AchievementDescriptionViewAdapter.swift */; };
 		7488A161277E1C6B004E2D27 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A160277E1C6B004E2D27 /* TextInputCell.swift */; };
 		7488A163277E3233004E2D27 /* OrSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A162277E3233004E2D27 /* OrSeparatorCell.swift */; };
 		7488A165277E40AA004E2D27 /* SignInWithAppleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */; };
@@ -573,6 +574,7 @@
 		7485E3782709BD52008DAB99 /* PersonContainerInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonContainerInfoCell.swift; sourceTree = "<group>"; };
 		74863DC7277EFCA9000FC446 /* SignInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInModel.swift; sourceTree = "<group>"; };
 		74863DC9277EFCB0000FC446 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		74870941282D17620057A6EC /* AchievementDescriptionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDescriptionViewAdapter.swift; sourceTree = "<group>"; };
 		7488A160277E1C6B004E2D27 /* TextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
 		7488A162277E3233004E2D27 /* OrSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrSeparatorCell.swift; sourceTree = "<group>"; };
 		7488A164277E40AA004E2D27 /* SignInWithAppleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonCell.swift; sourceTree = "<group>"; };
@@ -1632,9 +1634,10 @@
 			children = (
 				7457756D279732F300123208 /* AchievementsBuilder.swift */,
 				7410ACD42829BF62008B947F /* WeakRef+Achievements.swift */,
+				7410ACDA2829BF91008B947F /* MainQueueDispatchDecorator+Achievements.swift */,
 				7410ACD62829BF6D008B947F /* AchievementsErrorViewAdapter.swift */,
 				7410ACD82829BF7A008B947F /* AchievementsViewAdapter.swift */,
-				7410ACDA2829BF91008B947F /* MainQueueDispatchDecorator+Achievements.swift */,
+				74870941282D17620057A6EC /* AchievementDescriptionViewAdapter.swift */,
 			);
 			path = Composition;
 			sourceTree = "<group>";
@@ -2465,6 +2468,7 @@
 				74A2AAF8277366CB00760088 /* BottomSheetContentView.swift in Sources */,
 				741D9BF62813FC480094EF3F /* PurchaseProductsProvider.swift in Sources */,
 				741D9BF42813FC3F0094EF3F /* PurchaseOperationProvider.swift in Sources */,
+				74870942282D17620057A6EC /* AchievementDescriptionViewAdapter.swift in Sources */,
 				7444DA9F2801BF1800A04F87 /* Purchase.swift in Sources */,
 				74967F82276F57A20096AA77 /* RoutesPresenter.swift in Sources */,
 				7444DA9D2801B71F00A04F87 /* RemotePurchase.swift in Sources */,

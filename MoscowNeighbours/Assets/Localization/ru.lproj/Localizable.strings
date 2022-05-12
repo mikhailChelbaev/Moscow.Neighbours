@@ -128,11 +128,7 @@
 
 /* Achievements */
 "achievements.title" = "Достижения";
-"achievements.error_button_title" = "Попробовать снова";
-"achievements.error_main_title" = "Раздел находится\n в стадии разработки";
-"achievements.error_yana_title" = "Раздел откроется,\n когда Яна доест бургер";
-"achievements.error_nikita_title" = "Механик Никита уже начал\n придумывать ачивки";
-"achievements.error_misha_title" = "Михаил уже разрабатывает\n этот раздел";
+"achievements.alert_button_done" = "Хорошо";
 
 /* Account confirmation */
 "account_confirmation.title" = "Подтверждение аккаунта";

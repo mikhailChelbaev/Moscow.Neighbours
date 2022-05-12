@@ -11,6 +11,7 @@ struct RemoteAchievements: Decodable {
     struct Achievement: Decodable {
         let id: UUID
         let name: String
+        let description: String
         let date: Date?
         let imageUrl: String
     }

@@ -23,6 +23,17 @@ protocol AchievementsErrorView {
     func display(_ viewModel: AchievementsErrorViewModel)
 }
 
+protocol AchievementDescriptionView {
+    func display(_ viewModel: AchievementDescriptionViewModel)
+}
+
+struct AchievementDescriptionViewModel {
+    let title: String
+    let subtitle: String
+    let imageURL: String
+    let buttonTitle: String
+}
+
 final class AchievementsPresenter {
     
     private let achievementsProvider: AchievementsProvider
@@ -35,9 +46,9 @@ final class AchievementsPresenter {
     var headerView: AchievementsHeaderView?
     var loadingView: AchievementsLoadingView?
     var errorView: AchievementsErrorView?
+    var achievementDescriptionView: AchievementDescriptionView?
     
     var backButtonAction: Action?
-    var onAchievementCellTap: ((Achievement) -> Void)?
     
     private static var headerTitle: String {
         return "achievements.title".localized
@@ -66,7 +77,7 @@ final class AchievementsPresenter {
                                 imageURL: achievement.imageURL,
                                 date: self?.mapAchievementReceiveDate(achievement.date),
                                 onCellTap: { [weak self] in
-                                    self?.onAchievementCellTap?(achievement)
+                                    self?.onAchievementCellTap(achievement)
                                 })
                         })
                 }))
@@ -77,6 +88,14 @@ final class AchievementsPresenter {
                 }))
             }
         }
+    }
+    
+    private func onAchievementCellTap(_ achievement: Achievement) {
+        achievementDescriptionView?.display(AchievementDescriptionViewModel(
+            title: achievement.name,
+            subtitle: achievement.description,
+            imageURL: achievement.imageURL,
+            buttonTitle: "achievements.alert_button_done".localized))
     }
     
     private func mapAchievementReceiveDate(_ date: Date?) -> String? {

@@ -9,6 +9,7 @@ import Foundation
 
 public struct Achievement {
     public let name: String
+    public let description: String
     public let imageURL: String
     public let date: Date?
 }
