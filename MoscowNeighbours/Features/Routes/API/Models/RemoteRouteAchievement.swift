@@ -8,6 +8,7 @@
 import Foundation
 
 struct RemoteRouteAchievement: Decodable {
+    let id: UUID
     let name: String
     let imageUrl: String
 }

@@ -12,3 +12,9 @@ protocol AchievementsSaver {
     
     func storeAchievement(_ completedAchievement: CompletedAchievement, completion: @escaping (Result) -> Void)
 }
+
+extension AchievementsSaver {
+    func storeAchievementIgnoringResult(_ completedAchievement: CompletedAchievement) {
+        storeAchievement(completedAchievement) { _ in }
+    }
+}

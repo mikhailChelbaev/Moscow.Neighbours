@@ -11,6 +11,7 @@ struct RoutePassingStorage {
     let route: Route
     let mapService: MapService
     let routePassingService: RoutePassingService
+    let achievementsSaver: AchievementsSaver
 }
 
 protocol RoutePassingBuilder {
@@ -21,7 +22,8 @@ extension Builder: RoutePassingBuilder {
     func buildRoutePassingViewController(route: Route) -> RoutePassingViewController {
         let storage = RoutePassingStorage(route: route,
                                           mapService: mapService,
-                                          routePassingService: routePassingService)
+                                          routePassingService: routePassingService,
+                                          achievementsSaver: achievementsService)
         let presenter = RoutePassingPresenter(storage: storage)
         let viewController = RoutePassingViewController(eventHandler: presenter)
         presenter.viewController = viewController

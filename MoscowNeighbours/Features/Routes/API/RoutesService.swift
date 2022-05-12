@@ -163,6 +163,6 @@ private extension RemotePurchase {
 
 private extension RemoteRouteAchievement {
     func toModel() -> RouteAchievement {
-        return RouteAchievement(name: name, imageURL: imageUrl)
+        return RouteAchievement(id: id, name: name, imageURL: imageUrl)
     }
 }

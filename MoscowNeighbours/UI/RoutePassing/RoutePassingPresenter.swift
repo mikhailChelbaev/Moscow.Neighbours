@@ -34,6 +34,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     private var routePassingService: RoutePassingService
     private var mapService: MapService
+    private let achievementsSaver: AchievementsSaver
     
     private var visitedPersons: Set<PersonInfo> = .init()
     
@@ -45,6 +46,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         
         mapService = storage.mapService
         routePassingService = storage.routePassingService
+        achievementsSaver = storage.achievementsSaver
         routePassingService.register(WeakRef(self))
         
         routePassingService.requestNotifications()
@@ -126,6 +128,8 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         guard visitedPersons.count == persons.count, let achievement = route.achievement else {
             return
         }
+        
+        achievementsSaver.storeAchievementIgnoringResult(.init(id: achievement.id, date: Date()))
         
         let view = AchievementAlertCell()
         let alertController = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))

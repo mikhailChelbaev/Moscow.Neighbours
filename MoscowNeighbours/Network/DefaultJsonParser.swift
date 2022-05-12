@@ -11,6 +11,7 @@ class DefaultJsonParser: Parser {
         do {
             let coder = JSONDecoder()
             coder.keyDecodingStrategy = .convertFromSnakeCase
+            coder.dateDecodingStrategy = .iso8601
             let parsedObject = try coder.decode(T.self, from: data)
             return parsedObject
         }

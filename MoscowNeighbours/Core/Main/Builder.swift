@@ -18,6 +18,7 @@ public class Builder {
     let userService: UserProvider
     let userState: UserState
     let logoutManager: LogoutManager
+    let achievementsService: AchievementsService
     
     public init() {
         api = ApiRequestsFactory.main
@@ -32,6 +33,7 @@ public class Builder {
         jwtService = JWTService.main
         userService = UserService()
         userState = UserState.shared
+        achievementsService = AchievementsService(api: api)
         routesService = RoutesService(
             api: api,
             productsService: PurchaseProductsService())

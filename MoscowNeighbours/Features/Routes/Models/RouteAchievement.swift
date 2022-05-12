@@ -8,6 +8,7 @@
 import Foundation
 
 public struct RouteAchievement: Equatable {
+    public let id: UUID
     public let name: String
     public let imageURL: String
 }
