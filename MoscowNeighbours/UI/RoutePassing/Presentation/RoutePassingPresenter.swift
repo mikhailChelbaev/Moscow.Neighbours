@@ -70,19 +70,29 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     }
     
     func onEndRouteButtonTap() {
+        let finishRoutePassing = { [weak self] in
+            self?.routePassingService.stopRoute()
+            self?.view?.closeController(animated: true, completion: nil)
+        }
+        
+        guard !checkIsRouteJustStartedOrFinished() else {
+            return finishRoutePassing()
+        }
+        
         let alertController = UIAlertController(title: "route_passing.end_route_title".localized,
                                                 message: "route_passing.end_route_message".localized,
                                                 preferredStyle: .alert)
-        let yes = UIAlertAction(title: "common.yes".localized, style: .default, handler: { [weak self] _ in
-            // stop route passing
-            self?.routePassingService.stopRoute()
-            // close controller
-            self?.view?.closeController(animated: true, completion: nil)
-        })
+        let yes = UIAlertAction(title: "common.yes".localized, style: .default) { _ in
+            finishRoutePassing()
+        }
         let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)
         alertController.addAction(yes)
         alertController.addAction(no)
         view?.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func checkIsRouteJustStartedOrFinished() -> Bool {
+        return visitedPersons.isEmpty || visitedPersons.count == persons.count
     }
     
     func onArrowUpButtonTap() {
