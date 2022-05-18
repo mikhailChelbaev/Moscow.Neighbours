@@ -180,6 +180,7 @@
 		746A101426F6276E002CB7E2 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746A101326F6276E002CB7E2 /* AlertCell.swift */; };
 		746BCCC526A8BA6C009CC823 /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC126A8BA6C009CC823 /* RoutesViewController.swift */; };
 		746BCCC826A8BD59009CC823 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746BCCC726A8BD59009CC823 /* HeaderView.swift */; };
+		746C2E2028358B76001CF0B0 /* FinishRouteAlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746C2E1F28358B76001CF0B0 /* FinishRouteAlertCell.swift */; };
 		746F061627936731009D1163 /* ErrorTextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061527936731009D1163 /* ErrorTextInputCell.swift */; };
 		746F061827936ACB009D1163 /* SignInErrorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061727936ACB009D1163 /* SignInErrorsModel.swift */; };
 		746F061A27937101009D1163 /* SignUpErrorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F061927937101009D1163 /* SignUpErrorsModel.swift */; };
@@ -564,6 +565,7 @@
 		746BCCC126A8BA6C009CC823 /* RoutesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesViewController.swift; sourceTree = "<group>"; };
 		746BCCC726A8BD59009CC823 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		746BCCC926A8BFB1009CC823 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		746C2E1F28358B76001CF0B0 /* FinishRouteAlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRouteAlertCell.swift; sourceTree = "<group>"; };
 		746F061527936731009D1163 /* ErrorTextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTextInputCell.swift; sourceTree = "<group>"; };
 		746F061727936ACB009D1163 /* SignInErrorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInErrorsModel.swift; sourceTree = "<group>"; };
 		746F061927937101009D1163 /* SignUpErrorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpErrorsModel.swift; sourceTree = "<group>"; };
@@ -1486,6 +1488,7 @@
 				747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */,
 				747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */,
 				74A84AEA2827EB760035A48E /* AchievementAlertCell.swift */,
+				746C2E1F28358B76001CF0B0 /* FinishRouteAlertCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2313,6 +2316,7 @@
 				74E7C3A027830F9100B16392 /* UserModel.swift in Sources */,
 				74F1856A2787293700A0BF24 /* SettingsBuilder.swift in Sources */,
 				74C9EF73281037D300B8172E /* PersonInfoCellViewModel.swift in Sources */,
+				746C2E2028358B76001CF0B0 /* FinishRouteAlertCell.swift in Sources */,
 				7410ACCE28299A1D008B947F /* AchievementsHeaderViewModel.swift in Sources */,
 				74C72A4F277BBC1F00B73560 /* MenuPresenter.swift in Sources */,
 				7444DAB22801ED7A00A04F87 /* MainQueueDispatchDecorator.swift in Sources */,
