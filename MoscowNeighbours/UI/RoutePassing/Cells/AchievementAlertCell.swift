@@ -41,7 +41,7 @@ final class AchievementAlertCell: CellView {
     }()
     
     override func configureView() {
-        backgroundColor = .background
+        backgroundColor = .alertBackground
         layer.cornerRadius = 20
         clipsToBounds = false
         
