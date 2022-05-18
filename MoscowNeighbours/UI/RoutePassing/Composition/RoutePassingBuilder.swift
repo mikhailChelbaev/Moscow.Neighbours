@@ -20,13 +20,16 @@ protocol RoutePassingBuilder {
 
 extension Builder: RoutePassingBuilder {
     func buildRoutePassingViewController(route: Route) -> RoutePassingViewController {
-        let storage = RoutePassingStorage(route: route,
-                                          mapService: mapService,
-                                          routePassingService: routePassingService,
-                                          achievementsSaver: achievementsService)
+        let storage = RoutePassingStorage(
+            route: route,
+            mapService: mapService,
+            routePassingService: routePassingService,
+            achievementsSaver: achievementsService)
         let presenter = RoutePassingPresenter(storage: storage)
         let viewController = RoutePassingViewController(eventHandler: presenter)
-        presenter.viewController = viewController
+        
+        presenter.view = viewController
+        
         return viewController
     }
 }

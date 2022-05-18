@@ -44,8 +44,8 @@ final class AchievementCell: CellView {
         let cellWidth = UIScreen.main.bounds.width / 3
         
         addSubview(imageView)
-        imageView.pinToSuperviewEdges([.left, .top, .right], constant: 15)
-        imageView.height(cellWidth - 30)
+        imageView.pinToSuperviewEdges([.left, .top, .right], constant: 5)
+        imageView.height(cellWidth - 10)
         
         imageView.addSubview(loader)
         loader.placeInCenter()

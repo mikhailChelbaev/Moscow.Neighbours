@@ -8,26 +8,25 @@
 import UIKit
 import MapKit
 
-enum PersonState {
-    case notVisited
-    case visited
+protocol RoutePassingView: BottomSheetViewController {
+    var selectedIndex: Int { set get }
+    
+    func reloadData()
+    func displayAchievement(_ viewModel: RoutePassingAchievementViewModel)
 }
 
-protocol RoutePassingEventHandler {
-    func getPersons() -> [PersonInfo]
-    func onViewDidAppear()
-    func onEndRouteButtonTap()
-    func onArrowUpButtonTap()
-    func onBecomeAcquaintedButtonTap(_ personInfo: PersonInfo)
-    func onIndexChange(_ newIndex: Int)
-    func getState(for person: PersonInfo) -> PersonState
+struct RoutePassingAchievementViewModel {
+    let title: String
+    let subtitle: String
+    let buttonTitle: String
+    let imageURL: String
 }
 
 class RoutePassingPresenter: RoutePassingEventHandler {
     
     // MARK: - Properties
     
-    weak var viewController: RoutePassingView?
+    weak var view: RoutePassingView?
     
     private let route: Route
     private let persons: [PersonInfo]
@@ -78,16 +77,16 @@ class RoutePassingPresenter: RoutePassingEventHandler {
             // stop route passing
             self?.routePassingService.stopRoute()
             // close controller
-            self?.viewController?.closeController(animated: true, completion: nil)
+            self?.view?.closeController(animated: true, completion: nil)
         })
         let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)
         alertController.addAction(yes)
         alertController.addAction(no)
-        viewController?.present(alertController, animated: true, completion: nil)
+        view?.present(alertController, animated: true, completion: nil)
     }
     
     func onArrowUpButtonTap() {
-        viewController?.bottomSheet.setState(.middle, animated: true, completion: nil)
+        view?.bottomSheet.setState(.middle, animated: true, completion: nil)
     }
     
     func onBecomeAcquaintedButtonTap(_ person: PersonInfo) {
@@ -104,15 +103,15 @@ class RoutePassingPresenter: RoutePassingEventHandler {
             })
         personCoordinator.start()
         personCoordinator.present(
-            on: viewController,
+            on: view,
             state: .top,
             completion: { [weak self] in
-                self?.viewController?.reloadData()
+                self?.view?.reloadData()
             })
     }
     
     func onIndexChange(_ newIndex: Int) {
-        viewController?.selectedIndex = newIndex
+        view?.selectedIndex = newIndex
         mapService.centerAnnotation(persons[newIndex])
     }
     
@@ -131,17 +130,11 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         
         achievementsSaver.storeAchievementIgnoringResult(.init(id: achievement.id, date: Date()))
         
-        let view = AchievementAlertCell()
-        let alertController = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))
-        view.update(
+        view?.displayAchievement(RoutePassingAchievementViewModel(
             title: "route_passing.achievement_title".localized,
             subtitle: String(format: "route_passing.achievement_subtitle".localized, achievement.name),
-            imageURL: achievement.imageURL,
             buttonTitle: "route_passing.achievement_buttonTitle".localized,
-            buttonAction: { [weak alertController] in
-                alertController?.dismiss(animated: true)
-            })
-        viewController?.present(alertController, animated: true)
+            imageURL: achievement.imageURL))
     }
 }
 
@@ -161,9 +154,9 @@ extension RoutePassingPresenter: RoutePassingServiceOutput {
             return
         }
         if let index = persons.firstIndex(where: { $0 == person }) {
-            viewController?.selectedIndex = index
-            viewController?.bottomSheet.setState(.middle, animated: true, completion: nil)
-            viewController?.reloadData()
+            view?.selectedIndex = index
+            view?.bottomSheet.setState(.middle, animated: true, completion: nil)
+            view?.reloadData()
         }
     }
 }
@@ -185,7 +178,10 @@ extension RoutePassingPresenter: MapServiceOutput {
         }
         
         visitedPersons.insert(person)
-        // update person state
-        viewController?.reloadData()
+        updatePersonState()
+    }
+    
+    private func updatePersonState() {
+        view?.reloadData()
     }
 }

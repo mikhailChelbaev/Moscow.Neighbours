@@ -1424,12 +1424,10 @@
 		746769EA26F9229900158FFC /* RoutePassing */ = {
 			isa = PBXGroup;
 			children = (
-				746769EB26F922B400158FFC /* RoutePassingViewController.swift */,
-				743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */,
-				743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */,
-				741FE3042777B4780065126A /* WeakRef+RoutePassing.swift */,
+				746C2E1C283583F1001CF0B0 /* Composition */,
+				746C2E1D283583FB001CF0B0 /* Presentation */,
+				746C2E1E28358401001CF0B0 /* Controllers */,
 				747A0E5826FE1F0800EB1973 /* Cells */,
-				74A84AE92827EB590035A48E /* Views */,
 				741FE3012777A9280065126A /* Service */,
 			);
 			path = RoutePassing;
@@ -1444,6 +1442,31 @@
 				7415479726B09754006931DC /* Cells */,
 			);
 			path = Routes;
+			sourceTree = "<group>";
+		};
+		746C2E1C283583F1001CF0B0 /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */,
+				741FE3042777B4780065126A /* WeakRef+RoutePassing.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		746C2E1D283583FB001CF0B0 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		746C2E1E28358401001CF0B0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				746769EB26F922B400158FFC /* RoutePassingViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		746F061B27937170009D1163 /* Validators */ = {
@@ -1462,6 +1485,7 @@
 				747A0E5B26FE214C00EB1973 /* EndRouteButtonView.swift */,
 				747A0E5D26FE2AB700EB1973 /* RoutePointCell.swift */,
 				747A0E6126FE83BF00EB1973 /* RoutePointsCollectionCell.swift */,
+				74A84AEA2827EB760035A48E /* AchievementAlertCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1661,14 +1685,6 @@
 				74A84AE72827C2970035A48E /* AlertController.swift */,
 			);
 			path = Alert;
-			sourceTree = "<group>";
-		};
-		74A84AE92827EB590035A48E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				74A84AEA2827EB760035A48E /* AchievementAlertCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		74A84AEC282809800035A48E /* Composition */ = {

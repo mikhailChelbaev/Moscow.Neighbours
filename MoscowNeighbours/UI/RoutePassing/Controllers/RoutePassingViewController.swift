@@ -8,10 +8,19 @@
 import UIKit
 import UltraDrawerView
 
-protocol RoutePassingView: BottomSheetViewController {
-    var selectedIndex: Int { set get }
-    
-    func reloadData()
+enum PersonState {
+    case notVisited
+    case visited
+}
+
+protocol RoutePassingEventHandler {
+    func getPersons() -> [PersonInfo]
+    func onViewDidAppear()
+    func onEndRouteButtonTap()
+    func onArrowUpButtonTap()
+    func onBecomeAcquaintedButtonTap(_ personInfo: PersonInfo)
+    func onIndexChange(_ newIndex: Int)
+    func getState(for person: PersonInfo) -> PersonState
 }
 
 public final class RoutePassingViewController: BottomSheetViewController, RoutePassingView {
@@ -83,6 +92,20 @@ public final class RoutePassingViewController: BottomSheetViewController, RouteP
     
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func displayAchievement(_ viewModel: RoutePassingAchievementViewModel) {
+        let view = AchievementAlertCell()
+        let alertController = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))
+        view.update(
+            title: viewModel.title,
+            subtitle: viewModel.subtitle,
+            imageURL: viewModel.imageURL,
+            buttonTitle: viewModel.buttonTitle,
+            buttonAction: { [weak alertController] in
+                alertController?.dismiss(animated: true)
+            })
+        present(alertController, animated: true)
     }
     
     // MARK: - Private methods
