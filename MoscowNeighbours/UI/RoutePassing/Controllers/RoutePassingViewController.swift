@@ -103,8 +103,26 @@ public final class RoutePassingViewController: BottomSheetViewController, RouteP
             imageURL: viewModel.imageURL,
             buttonTitle: viewModel.buttonTitle,
             buttonAction: { [weak alertController] in
-                alertController?.dismiss(animated: true)
+                alertController?.dismiss(animated: true, completion: viewModel.buttonAction)
             })
+        present(alertController, animated: true)
+    }
+    
+    func displayEndRouteAlert(_ viewModel: EndRouteAlertViewModel) {
+        let view = FinishRouteAlertCell()
+        let alertController = AlertController(view: view, configuration: .init(margins: .init(top: 0, left: 20, bottom: 20, right: 20)))
+        
+        view.titleLabel.text = viewModel.title
+        view.setRating(viewModel.stars)
+        view.completeButton.setTitle(viewModel.completeButtonTitle, for: .normal)
+        view.completeButton.action = { [weak alertController] in
+            alertController?.dismiss(animated: true, completion: viewModel.completeButtonAction)
+        }
+        view.continueButton.setTitle(viewModel.continueButtonTitle, for: .normal)
+        view.continueButton.action = { [weak alertController] in
+            alertController?.dismiss(animated: true, completion: viewModel.continueButtonAction)
+        }
+        
         present(alertController, animated: true)
     }
     

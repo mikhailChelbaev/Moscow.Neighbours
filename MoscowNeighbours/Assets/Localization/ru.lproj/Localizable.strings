@@ -57,9 +57,14 @@
 "route_passing.review_alert" = "Вы можете прочитать про этого героя в любой момент";
 "route_passing.end_route_title" = "Подтвердите действие";
 "route_passing.end_route_message" = "Вы уверены, что хотите закончить маршрут?";
+
 "route_passing.achievement_title" = "Новое достижение!";
 "route_passing.achievement_subtitle" = "Вы получили достижение «%@»";
 "route_passing.achievement_buttonTitle" = "Хорошо";
+
+"route_passing.end_route_alert_title" = "Вы закончили маршрут";
+"route_passing.end_route_complete_button_title" = "Выйти";
+"route_passing.end_route_continue_button_title" = "Продолжить смотреть";
 
 /* Person */
 "person.ready_to_go" = "Готов идти дальше";

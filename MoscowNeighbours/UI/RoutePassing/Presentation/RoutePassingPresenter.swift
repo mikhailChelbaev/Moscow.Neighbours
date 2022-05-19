@@ -13,13 +13,24 @@ protocol RoutePassingView: BottomSheetViewController {
     
     func reloadData()
     func displayAchievement(_ viewModel: RoutePassingAchievementViewModel)
+    func displayEndRouteAlert(_ viewModel: EndRouteAlertViewModel)
 }
 
 struct RoutePassingAchievementViewModel {
     let title: String
     let subtitle: String
-    let buttonTitle: String
     let imageURL: String
+    let buttonTitle: String
+    let buttonAction: Action
+}
+
+struct EndRouteAlertViewModel {
+    let title: String
+    let stars: Int
+    let completeButtonTitle: String
+    let completeButtonAction: Action
+    let continueButtonTitle: String
+    let continueButtonAction: Action
 }
 
 class RoutePassingPresenter: RoutePassingEventHandler {
@@ -36,12 +47,14 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     private let achievementsSaver: AchievementsSaver
     
     private var visitedPersons: Set<PersonInfo> = .init()
+    private var isAlertShown: Bool
     
     // MARK: - Init
     
     init(storage: RoutePassingStorage) {
         route = storage.route
         persons = storage.route.personsInfo
+        isAlertShown = false
         
         mapService = storage.mapService
         routePassingService = storage.routePassingService
@@ -70,29 +83,37 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     }
     
     func onEndRouteButtonTap() {
-        let finishRoutePassing = { [weak self] in
-            self?.routePassingService.stopRoute()
-            self?.view?.closeController(animated: true, completion: nil)
-        }
-        
         guard !checkIsRouteJustStartedOrFinished() else {
             return finishRoutePassing()
         }
         
-        let alertController = UIAlertController(title: "route_passing.end_route_title".localized,
-                                                message: "route_passing.end_route_message".localized,
-                                                preferredStyle: .alert)
-        let yes = UIAlertAction(title: "common.yes".localized, style: .default) { _ in
-            finishRoutePassing()
+        let alertController = UIAlertController(
+            title: "route_passing.end_route_title".localized,
+            message: "route_passing.end_route_message".localized,
+            preferredStyle: .alert)
+        
+        let yes = UIAlertAction(title: "common.yes".localized, style: .default) { [weak self] _ in
+            self?.finishRoutePassing()
         }
-        let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)
         alertController.addAction(yes)
+        
+        let no = UIAlertAction(title: "common.cancel".localized, style: .cancel)
         alertController.addAction(no)
+        
         view?.present(alertController, animated: true, completion: nil)
     }
     
+    private func checkIsRouteFinished() -> Bool {
+        return visitedPersons.count == persons.count
+    }
+    
     private func checkIsRouteJustStartedOrFinished() -> Bool {
-        return visitedPersons.isEmpty || visitedPersons.count == persons.count
+        return visitedPersons.isEmpty || checkIsRouteFinished()
+    }
+    
+    private func finishRoutePassing() {
+        routePassingService.stopRoute()
+        view?.closeController(animated: true, completion: nil)
     }
     
     func onArrowUpButtonTap() {
@@ -108,8 +129,9 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         let personCoordinator = PersonCoordinator(
             personInfo: person,
             presentationState: .fullDescription,
-            builder: Builder(), dismissCompletion: { [weak self] in
-                self?.showAchievementIfCompleted()
+            builder: Builder(),
+            dismissCompletion: { [weak self] in
+                self?.checkRouteCompletion()
             })
         personCoordinator.start()
         personCoordinator.present(
@@ -133,18 +155,41 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         }
     }
     
-    private func showAchievementIfCompleted() {
-        guard visitedPersons.count == persons.count, let achievement = route.achievement else {
-            return
+    private func checkRouteCompletion() {
+        guard checkIsRouteFinished(), !isAlertShown else { return }
+         
+        if let achievement = route.achievement {
+            showAchievement(achievement)
+        } else {
+            showEndRouteAlert()
         }
         
+        isAlertShown = true
+    }
+    
+    private func showAchievement(_ achievement: RouteAchievement) {
         achievementsSaver.storeAchievementIgnoringResult(.init(id: achievement.id, date: Date()))
         
         view?.displayAchievement(RoutePassingAchievementViewModel(
             title: "route_passing.achievement_title".localized,
             subtitle: String(format: "route_passing.achievement_subtitle".localized, achievement.name),
+            imageURL: achievement.imageURL,
             buttonTitle: "route_passing.achievement_buttonTitle".localized,
-            imageURL: achievement.imageURL))
+            buttonAction: { [weak self] in
+                self?.showEndRouteAlert()
+            }))
+    }
+    
+    private func showEndRouteAlert() {
+        view?.displayEndRouteAlert(EndRouteAlertViewModel(
+            title: "route_passing.end_route_alert_title".localized,
+            stars: -1,
+            completeButtonTitle: "route_passing.end_route_complete_button_title".localized,
+            completeButtonAction: { [weak self] in
+                self?.finishRoutePassing()
+            },
+            continueButtonTitle: "route_passing.end_route_continue_button_title".localized,
+            continueButtonAction: {}))
     }
 }
 
