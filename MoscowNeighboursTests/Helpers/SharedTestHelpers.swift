@@ -34,7 +34,8 @@ func makeRoute(name: String = "Route", price: (status: Purchase.Status, value: N
         personsInfo: personsInfo,
         purchase: .init(
             status: price.status,
-            product: price.status == .free ? nil : product))
+            product: price.status == .free ? nil : product),
+        achievement: nil)
 }
 
 func makePersonInfo() -> PersonInfo {
