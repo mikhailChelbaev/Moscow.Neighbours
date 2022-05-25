@@ -94,7 +94,6 @@
 		743DE72C2776216400B5CED8 /* RoutePassingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72B2776216400B5CED8 /* RoutePassingPresenter.swift */; };
 		743DE72E2776289100B5CED8 /* RoutePassingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DE72D2776289100B5CED8 /* RoutePassingBuilder.swift */; };
 		74427C1E283EBB8D00B2C4A1 /* AppConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745A686D2826DE5000DEC86F /* AppConfiguration.framework */; };
-		74427C1F283EBB8D00B2C4A1 /* AppConfiguration.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 745A686D2826DE5000DEC86F /* AppConfiguration.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7442C39127FF81DD0025621B /* RouteUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39027FF81DD0025621B /* RouteUIIntegrationTests.swift */; };
 		7442C39427FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442C39327FF86EB0025621B /* XCTestCase+MemoryLeakTracking.swift */; };
 		7444DA8F280198F900A04F87 /* RemoteRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444DA8E280198F900A04F87 /* RemoteRoute.swift */; };
@@ -349,13 +348,6 @@
 			remoteGlobalIDString = 745A686C2826DE5000DEC86F;
 			remoteInfo = AppConfiguration;
 		};
-		74427C20283EBB8D00B2C4A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7402660326A76379006242FE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 745A686C2826DE5000DEC86F;
-			remoteInfo = AppConfiguration;
-		};
 		7442C38A27FF81BE0025621B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7402660326A76379006242FE /* Project object */;
@@ -380,17 +372,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		74427C22283EBB8D00B2C4A1 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				74427C1F283EBB8D00B2C4A1 /* AppConfiguration.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		745A685A2826DB5100DEC86F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2094,13 +2075,11 @@
 				745A68412826DB5100DEC86F /* Sources */,
 				745A68422826DB5100DEC86F /* Frameworks */,
 				745A68432826DB5100DEC86F /* Resources */,
-				74427C22283EBB8D00B2C4A1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				74427C1D283EBB8300B2C4A1 /* PBXTargetDependency */,
-				74427C21283EBB8D00B2C4A1 /* PBXTargetDependency */,
 			);
 			name = Markdown;
 			productName = Markdown;
@@ -2587,11 +2566,6 @@
 			isa = PBXTargetDependency;
 			target = 745A686C2826DE5000DEC86F /* AppConfiguration */;
 			targetProxy = 74427C1C283EBB8300B2C4A1 /* PBXContainerItemProxy */;
-		};
-		74427C21283EBB8D00B2C4A1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 745A686C2826DE5000DEC86F /* AppConfiguration */;
-			targetProxy = 74427C20283EBB8D00B2C4A1 /* PBXContainerItemProxy */;
 		};
 		7442C38B27FF81BE0025621B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
