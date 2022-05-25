@@ -58,6 +58,14 @@
 "route_passing.end_route_title" = "Confirm the action";
 "route_passing.end_route_message" = "Are you sure you want to finish the route?";
 
+"route_passing.achievement_title" = "New achievement!";
+"route_passing.achievement_subtitle" = "You received new achievement «%@»";
+"route_passing.achievement_buttonTitle" = "Done";
+
+"route_passing.end_route_alert_title" = "You finished the route";
+"route_passing.end_route_complete_button_title" = "Exit";
+"route_passing.end_route_continue_button_title" = "Continue watching";
+
 /* Person */
 "person.ready_to_go" = "Ready to go";
 "person.information" = "Information:";
@@ -128,11 +136,7 @@
 
 /* Achievements */
 "achievements.title" = "Achievements";
-"achievements.error_button_title" = "Try again";
-"achievements.error_main_title" = "Section is under development";
-"achievements.error_yana_title" = "The section will open when Yana finishes the burger";
-"achievements.error_nikita_title" = "Mechanic Nikita has started to design the achievements";
-"achievements.error_misha_title" = "Mikhail is now developing this section";
+"achievements.alert_button_done" = "Done";
 
 /* Account confirmation */
 "account_confirmation.title" = "Account confirmation";
