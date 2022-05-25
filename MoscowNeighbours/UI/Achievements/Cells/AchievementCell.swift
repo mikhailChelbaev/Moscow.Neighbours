@@ -27,7 +27,7 @@ final class AchievementCell: CellView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .mainFont(ofSize: 14, weight: .regular)
-        label.numberOfLines = 2
+        label.numberOfLines = 3
         label.textAlignment = .center
         return label
     }()

@@ -32,7 +32,7 @@ extension AchievementsCollectionCellController {
     private func sizeForCell() -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
         let width = screenWidth / 3
-        let height = width + 50
+        let height = width + 60
         return CGSize(width: width, height: height)
     }
     
