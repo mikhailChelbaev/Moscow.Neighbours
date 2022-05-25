@@ -136,8 +136,6 @@
 		745775702797366D00123208 /* ObservableNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7457756F2797366D00123208 /* ObservableNetworkService.swift */; };
 		7457757227973E1300123208 /* DelayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7457757127973E1300123208 /* DelayManager.swift */; };
 		74577574279747BA00123208 /* ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74577573279747BA00123208 /* ErrorDelegate.swift */; };
-		745A684D2826DB5100DEC86F /* Markdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745A68452826DB5100DEC86F /* Markdown.framework */; };
-		745A68542826DB5100DEC86F /* MarkdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745A68532826DB5100DEC86F /* MarkdownTests.swift */; };
 		745A68582826DB5100DEC86F /* Markdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745A68452826DB5100DEC86F /* Markdown.framework */; };
 		745A68592826DB5100DEC86F /* Markdown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 745A68452826DB5100DEC86F /* Markdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		745A68612826DB6F00DEC86F /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F52A30272593CC00343334 /* MarkdownParser.swift */; };
@@ -349,20 +347,6 @@
 			remoteGlobalIDString = 7402660A26A76379006242FE;
 			remoteInfo = MoscowNeighbours;
 		};
-		745A684E2826DB5100DEC86F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7402660326A76379006242FE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 745A68442826DB5100DEC86F;
-			remoteInfo = Markdown;
-		};
-		745A68502826DB5100DEC86F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7402660326A76379006242FE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7402660A26A76379006242FE;
-			remoteInfo = MoscowNeighbours;
-		};
 		745A68562826DB5100DEC86F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7402660326A76379006242FE /* Project object */;
@@ -531,8 +515,6 @@
 		7457757127973E1300123208 /* DelayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayManager.swift; sourceTree = "<group>"; };
 		74577573279747BA00123208 /* ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDelegate.swift; sourceTree = "<group>"; };
 		745A68452826DB5100DEC86F /* Markdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Markdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		745A684C2826DB5100DEC86F /* MarkdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarkdownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		745A68532826DB5100DEC86F /* MarkdownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTests.swift; sourceTree = "<group>"; };
 		745A686D2826DE5000DEC86F /* AppConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppConfiguration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		745A68792826DEBF00DEC86F /* UIFont+MainFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+MainFont.swift"; sourceTree = "<group>"; };
 		745A687D2826DFDA00DEC86F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -762,14 +744,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		745A68492826DB5100DEC86F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				745A684D2826DB5100DEC86F /* Markdown.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		745A686A2826DE5000DEC86F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -788,7 +762,6 @@
 				7442C38727FF81BE0025621B /* MoscowNeighboursTests */,
 				745A686E2826DE5000DEC86F /* AppConfiguration */,
 				745A68462826DB5100DEC86F /* Markdown */,
-				745A68522826DB5100DEC86F /* MarkdownTests */,
 				7402660C26A76379006242FE /* Products */,
 				7402E43E2739AE020092C8C4 /* Frameworks */,
 			);
@@ -800,7 +773,6 @@
 				7402660B26A76379006242FE /* MoscowNeighbours.app */,
 				7442C38627FF81BE0025621B /* MoscowNeighboursTests.xctest */,
 				745A68452826DB5100DEC86F /* Markdown.framework */,
-				745A684C2826DB5100DEC86F /* MarkdownTests.xctest */,
 				745A686D2826DE5000DEC86F /* AppConfiguration.framework */,
 			);
 			name = Products;
@@ -1342,14 +1314,6 @@
 				74C51A2B2725EFF90066C43E /* String+Subscript.swift */,
 			);
 			path = Markdown;
-			sourceTree = "<group>";
-		};
-		745A68522826DB5100DEC86F /* MarkdownTests */ = {
-			isa = PBXGroup;
-			children = (
-				745A68532826DB5100DEC86F /* MarkdownTests.swift */,
-			);
-			path = MarkdownTests;
 			sourceTree = "<group>";
 		};
 		745A686E2826DE5000DEC86F /* AppConfiguration */ = {
@@ -2112,25 +2076,6 @@
 			productReference = 745A68452826DB5100DEC86F /* Markdown.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		745A684B2826DB5100DEC86F /* MarkdownTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 745A68602826DB5100DEC86F /* Build configuration list for PBXNativeTarget "MarkdownTests" */;
-			buildPhases = (
-				745A68482826DB5100DEC86F /* Sources */,
-				745A68492826DB5100DEC86F /* Frameworks */,
-				745A684A2826DB5100DEC86F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				745A684F2826DB5100DEC86F /* PBXTargetDependency */,
-				745A68512826DB5100DEC86F /* PBXTargetDependency */,
-			);
-			name = MarkdownTests;
-			productName = MarkdownTests;
-			productReference = 745A684C2826DB5100DEC86F /* MarkdownTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		745A686C2826DE5000DEC86F /* AppConfiguration */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 745A68752826DE5000DEC86F /* Build configuration list for PBXNativeTarget "AppConfiguration" */;
@@ -2170,10 +2115,6 @@
 					745A68442826DB5100DEC86F = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
-					745A684B2826DB5100DEC86F = {
-						CreatedOnToolsVersion = 13.3.1;
-						TestTargetID = 7402660A26A76379006242FE;
-					};
 					745A686C2826DE5000DEC86F = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -2202,7 +2143,6 @@
 				7402660A26A76379006242FE /* MoscowNeighbours */,
 				7442C38527FF81BE0025621B /* MoscowNeighboursTests */,
 				745A68442826DB5100DEC86F /* Markdown */,
-				745A684B2826DB5100DEC86F /* MarkdownTests */,
 				745A686C2826DE5000DEC86F /* AppConfiguration */,
 			);
 		};
@@ -2236,13 +2176,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		745A68432826DB5100DEC86F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		745A684A2826DB5100DEC86F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2607,14 +2540,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		745A68482826DB5100DEC86F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				745A68542826DB5100DEC86F /* MarkdownTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		745A68692826DE5000DEC86F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2631,16 +2556,6 @@
 			isa = PBXTargetDependency;
 			target = 7402660A26A76379006242FE /* MoscowNeighbours */;
 			targetProxy = 7442C38A27FF81BE0025621B /* PBXContainerItemProxy */;
-		};
-		745A684F2826DB5100DEC86F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 745A68442826DB5100DEC86F /* Markdown */;
-			targetProxy = 745A684E2826DB5100DEC86F /* PBXContainerItemProxy */;
-		};
-		745A68512826DB5100DEC86F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7402660A26A76379006242FE /* MoscowNeighbours */;
-			targetProxy = 745A68502826DB5100DEC86F /* PBXContainerItemProxy */;
 		};
 		745A68572826DB5100DEC86F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2980,46 +2895,6 @@
 			};
 			name = Release;
 		};
-		745A685D2826DB5100DEC86F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W5ZZPB5BG7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.mikhail-chelbaev.MarkdownTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoscowNeighbours.app/MoscowNeighbours";
-			};
-			name = Debug;
-		};
-		745A685E2826DB5100DEC86F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W5ZZPB5BG7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.mikhail-chelbaev.MarkdownTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoscowNeighbours.app/MoscowNeighbours";
-			};
-			name = Release;
-		};
 		745A68762826DE5000DEC86F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3119,15 +2994,6 @@
 			buildConfigurations = (
 				745A685B2826DB5100DEC86F /* Debug */,
 				745A685C2826DB5100DEC86F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		745A68602826DB5100DEC86F /* Build configuration list for PBXNativeTarget "MarkdownTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				745A685D2826DB5100DEC86F /* Debug */,
-				745A685E2826DB5100DEC86F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
