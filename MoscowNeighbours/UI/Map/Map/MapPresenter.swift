@@ -76,23 +76,23 @@ class MapPresenter: MapEventHandler {
     }
     
     func onAnnotationSelection(_ view: MKAnnotationView) {
-        mapService.didSelectAnnotation(view)
-        
-        guard !annotationSelectedProgrammatically else {
-            annotationSelectedProgrammatically = false
-            return
-        }
-        
-        if let person = view.annotation as? PersonInfo {
-            let presentationState: PersonPresentationState = routePassingService.isPassingRoute ?
-                .fullDescription :
-                .shortDescription
-            coordinator.displayPerson(person, presentationState: presentationState)
-        } else {
-            if let cluster = view.annotation as? MKClusterAnnotation {
-                viewController?.zoomAnnotations(cluster.memberAnnotations)
-            }
-        }
+//        mapService.didSelectAnnotation(view)
+//
+//        guard !annotationSelectedProgrammatically else {
+//            annotationSelectedProgrammatically = false
+//            return
+//        }
+//
+//        if let person = view.annotation as? PersonInfo {
+//            let presentationState: PersonPresentationState = routePassingService.isPassingRoute ?
+//                .fullDescription :
+//                .shortDescription
+//            coordinator.displayPerson(person, presentationState: presentationState)
+//        } else {
+//            if let cluster = view.annotation as? MKClusterAnnotation {
+//                viewController?.zoomAnnotations(cluster.memberAnnotations)
+//            }
+//        }
     }
     
     func centerAnnotation(_ annotation: MKAnnotation) {

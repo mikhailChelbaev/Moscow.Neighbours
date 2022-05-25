@@ -48,6 +48,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     
     private var visitedPersons: Set<PersonInfo> = .init()
     private var isAlertShown: Bool
+    private var isFirstViewAppear: Bool
     
     // MARK: - Init
     
@@ -55,6 +56,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         route = storage.route
         persons = storage.route.personsInfo
         isAlertShown = false
+        isFirstViewAppear = true
         
         mapService = storage.mapService
         routePassingService = storage.routePassingService
@@ -64,9 +66,6 @@ class RoutePassingPresenter: RoutePassingEventHandler {
         routePassingService.requestNotifications()
         routePassingService.startRoute(persons)
         
-        if let person = persons.first {
-            mapService.centerAnnotation(person)
-        }
         mapService.register(WeakRef(self))
     }
     
@@ -77,8 +76,9 @@ class RoutePassingPresenter: RoutePassingEventHandler {
     }
     
     func onViewDidAppear() {
-        if let person = persons.first {
+        if let person = persons.first, isFirstViewAppear {
             mapService.centerAnnotation(person)
+            isFirstViewAppear = false
         }
     }
     
@@ -131,6 +131,7 @@ class RoutePassingPresenter: RoutePassingEventHandler {
             presentationState: .fullDescription,
             builder: Builder(),
             dismissCompletion: { [weak self] in
+                self?.mapService.deselectAnnotation(person)
                 self?.checkRouteCompletion()
             })
         personCoordinator.start()
