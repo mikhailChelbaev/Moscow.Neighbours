@@ -234,8 +234,8 @@ extension MenuViewController {
         case .settings:
             eventHandler.onSettingsCellTap()
             
-        case .account:
-            eventHandler.onAccountCellTap()
+//        case .account:
+//            eventHandler.onAccountCellTap()
             
         case .achievements:
             eventHandler.onAchievementsCellTap()
@@ -287,7 +287,8 @@ extension MenuViewController {
         let cell = tableView.dequeue(UserAccountPreviewCell.self, for: indexPath)
         cell.view.usernameLabel.text = eventHandler.username
         cell.view.emailLabel.text = eventHandler.email
-        cell.accessoryType = .disclosureIndicator
+//        cell.accessoryType = .disclosureIndicator
+        cell.selectionStyle = .none
         return cell
     }
     
