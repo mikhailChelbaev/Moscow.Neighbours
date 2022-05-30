@@ -8,7 +8,9 @@
 import Foundation
 
 struct EmailValidator {
-    func isValid(email: String) -> String? {
+    private init() {}
+  
+    static func isValid(email: String) -> String? {
         if email.contains("@") && email.count > 5 {
             return nil
         } else {

@@ -34,10 +34,6 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     private var userState: UserState
     private var userService: UserProvider
     
-    private let emailValidator: EmailValidator
-    private let usernameValidator: UsernameValidator
-    private let passwordValidator: PasswordValidator
-    
     private let accountConfirmationBuilder: AccountConfirmationBuilder
     
     // MARK: - Init
@@ -50,10 +46,6 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
         jwtService = storage.jwtService
         userState = storage.userState
         userService = storage.userService
-        
-        emailValidator = .init()
-        usernameValidator = .init()
-        passwordValidator = .init()
         
         accountConfirmationBuilder = storage.accountConfirmationBuilder
         
@@ -162,9 +154,9 @@ class AuthorizationPresenter: NSObject, AuthorizationEventHandler {
     private func validateSignUpInputedData() -> Bool {
         var signUpErrorModel = SignUpErrorsModel()
         
-        signUpErrorModel.email = emailValidator.isValid(email: signUpModel.email)
-        signUpErrorModel.username = usernameValidator.isValid(username: signUpModel.username)
-        signUpErrorModel.password = passwordValidator.isValid(password: signUpModel.password)
+        signUpErrorModel.email = EmailValidator.isValid(email: signUpModel.email)
+        signUpErrorModel.username = UsernameValidator.isValid(username: signUpModel.username)
+        signUpErrorModel.password = PasswordValidator.isValid(password: signUpModel.password)
         
         viewController?.updateSignUpError(signUpErrorModel)
         

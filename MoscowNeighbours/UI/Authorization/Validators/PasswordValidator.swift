@@ -8,7 +8,9 @@
 import Foundation
 
 struct PasswordValidator {
-    func isValid(password: String) -> String? {
+    private init() {}
+    
+    static func isValid(password: String) -> String? {
         if password.count < 8 {
             return "auth.password_error_short".localized
         } else if password.count > 12 {
