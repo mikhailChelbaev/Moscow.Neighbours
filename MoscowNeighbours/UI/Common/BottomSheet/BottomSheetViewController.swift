@@ -78,7 +78,7 @@ open class BottomSheetViewController: UIViewController, DrawerViewListener {
         
         view.addSubview(cover)
         cover.pinToSuperviewEdges(.all)
-
+        
         view.addSubview(bottomSheet)
         bottomSheet.pinToSuperviewEdges(.all)
     }
@@ -131,7 +131,7 @@ open class BottomSheetViewController: UIViewController, DrawerViewListener {
         
         return bottomSheet
     }
-
+    
     // MARK: - protocol DrawerViewListener
     
     public func drawerView(_ drawerView: DrawerView, willBeginUpdatingOrigin origin: CGFloat, source: DrawerOriginChangeSource) { }
@@ -170,7 +170,7 @@ open class BottomSheetViewController: UIViewController, DrawerViewListener {
             
             let states = bottomSheet.availableStates.subtracting([.dismissed])
             let heights: [CGFloat] = states.compactMap({ bottomSheet.origin(for: $0) }).sorted(by: { $0 < $1 })
-        
+            
             guard heights.count > 1 else { return }
             
             let top = heights.first!
@@ -179,6 +179,53 @@ open class BottomSheetViewController: UIViewController, DrawerViewListener {
             
         case .none:
             break
+        }
+    }
+    
+    // MARK: - Close controller
+    
+    open func closeController(animated flag: Bool,
+                              completion: (() -> Void)? = nil) {
+        let states = bottomSheet.availableStates
+        bottomSheet.availableStates = states.union([.dismissed])
+        
+        // show parent's bottom sheet
+        if let parent = presentingViewController as? BottomSheetViewController {
+            parent.viewWillAppear(true)
+            parent.show(state: presentingControllerState, animated: true) { _ in
+                parent.viewDidAppear(true)
+            }
+        }
+        
+        // hide bottom sheet and dismiss controller
+        viewWillDisappear(true)
+        bottomSheet.setState(.dismissed, animated: flag) { _ in
+            self.dismiss(animated: false) {
+                self.bottomSheet.availableStates = states
+                self.viewDidAppear(true)
+                completion?()
+            }
+        }
+    }
+    
+    // MARK: - Hide
+    
+    open func hide(animated flag: Bool, completion: ((Bool) -> Void)?) {
+        let states = bottomSheet.availableStates
+        
+        bottomSheet.availableStates = states.union([.dismissed])
+        bottomSheet.setState(.dismissed, animated: flag, completion: completion)
+    }
+    
+    // MARK: - Show
+    
+    open func show(state: BottomSheet.State,
+              animated flag: Bool,
+              completion: ((Bool) -> Void)? = nil) {
+        bottomSheet.setState(state, animated: flag) { _ in
+            let states = self.bottomSheet.availableStates
+            self.bottomSheet.availableStates = states.subtracting([.dismissed])
+            completion?(true)
         }
     }
 }

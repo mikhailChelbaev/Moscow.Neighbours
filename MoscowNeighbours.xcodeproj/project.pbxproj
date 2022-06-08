@@ -25,7 +25,6 @@
 		740B535B27739D0400E9C4E0 /* BottomSheetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */; };
 		740B535D2773A86A00E9C4E0 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535C2773A86A00E9C4E0 /* Builder.swift */; };
 		740B535F2773A93200E9C4E0 /* RoutesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */; };
-		740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */; };
 		7410ACC328290EB6008B947F /* AchievementCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACC228290EB6008B947F /* AchievementCellController.swift */; };
 		7410ACC6282999B8008B947F /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACC5282999B8008B947F /* Achievement.swift */; };
 		7410ACC8282999F1008B947F /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410ACC7282999F1008B947F /* AchievementsViewModel.swift */; };
@@ -402,7 +401,6 @@
 		740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetConfiguration.swift; sourceTree = "<group>"; };
 		740B535C2773A86A00E9C4E0 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		740B535E2773A93200E9C4E0 /* RoutesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesBuilder.swift; sourceTree = "<group>"; };
-		740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BottomSheetController+Utils.swift"; sourceTree = "<group>"; };
 		7410ACC228290EB6008B947F /* AchievementCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCellController.swift; sourceTree = "<group>"; };
 		7410ACC5282999B8008B947F /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		7410ACC7282999F1008B947F /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
@@ -986,10 +984,10 @@
 		742EFE8926F14132009A5126 /* BottomSheet */ = {
 			isa = PBXGroup;
 			children = (
+				744B6EC6277500D3008BDF37 /* Helpers */,
 				740B535A27739D0400E9C4E0 /* BottomSheetConfiguration.swift */,
 				74A2AAF7277366CB00760088 /* BottomSheetContentView.swift */,
 				746192E526AC56ED00CCCB71 /* BottomSheetViewController.swift */,
-				744B6EC6277500D3008BDF37 /* Helpers */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -1292,7 +1290,6 @@
 			isa = PBXGroup;
 			children = (
 				74AB1DC827728C4100DA961A /* UIViewController+PresentBS.swift */,
-				740B53632773BA0E00E9C4E0 /* BottomSheetController+Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2481,7 +2478,6 @@
 				749FDCCB27B8681F00CC4D43 /* RoutePurchaseConfirmationService.swift in Sources */,
 				7402661126A76379006242FE /* SceneDelegate.swift in Sources */,
 				74668497279F237A00AFAA2E /* AccountConfirmationPresenter.swift in Sources */,
-				740B53642773BA0E00E9C4E0 /* BottomSheetController+Utils.swift in Sources */,
 				74A0B86B28149F3600D96A76 /* MainQueueDispatchDecorator+RouteDescription.swift in Sources */,
 				740AF986280DE6D20049DEDE /* WeakRef+RouteDescription.swift in Sources */,
 			);

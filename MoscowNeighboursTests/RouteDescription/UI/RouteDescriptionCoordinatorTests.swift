@@ -36,16 +36,11 @@ class RouteDescriptionCoordinatorTests: XCTestCase {
     
     func test_dismiss_releasesController() {
         let sut = makeSUT(replaceControllerWith: PresentingControllerSpy())
-        sut.start()
         
-        weak var controller = sut.controller
+        weak var controller: UIViewController? = sut.controller
         XCTAssertNotNil(controller)
         
-        let exp = expectation(description: "Wait for completion")
-        sut.dismiss(animated: false) {
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        sut.dismiss(animated: false)
         XCTAssertNil(controller)
     }
     

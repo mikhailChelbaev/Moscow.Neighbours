@@ -18,4 +18,8 @@ final class PresentingControllerSpy: BottomSheetViewController {
     override func getScrollView() -> UIScrollView {
         return UIScrollView()
     }
+    
+    override func closeController(animated flag: Bool, completion: (() -> Void)? = nil) {
+        completion?()
+    }
 }
