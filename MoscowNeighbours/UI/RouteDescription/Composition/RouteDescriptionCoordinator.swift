@@ -22,7 +22,7 @@ public class RouteDescriptionCoordinator {
         controller = RoutesDescriptionUIComposer.routeDescriptionComposeWith(
             storage: RouteDescriptionStorage(
                 model: route,
-                routeTransformer: RouteTransformer(),
+                markdownTransformer: BackgroundMarkdownTransformer(),
                 mapService: builder.mapService,
                 purchaseService: PurchaseRouteCompositionService(
                     operation: PurchaseOperationService(

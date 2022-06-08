@@ -21,11 +21,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     func test_personCellTap_displaysPersonController() {
         let person = makePersonInfo()
         let route = makeRoute(personsInfo: [person])
-        let routeModel = makeRouteModel(from: route)
-        let (sut, loader, coordinator) = makeSUT()
+        let text = NSAttributedString(string: route.description)
+        let (sut, loader, coordinator) = makeSUT(route: route)
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: routeModel)
+        loader.completeRoutesTransforming(with: text)
         sut.simulatePersonCellTap(at: 0)
         
         XCTAssertEqual(coordinator.receivedMessages, [.displayPerson])
@@ -33,11 +33,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     
     func test_headerViewButton_startsRoutePassingIfPurchaseStatusIsFree() {
         let route = makeRoute(price: (.free, nil))
-        let routeModel = makeRouteModel(from: route)
+        let text = NSAttributedString(string: route.description)
         let (sut, loader, coordinator) = makeSUT()
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: routeModel)
+        loader.completeRoutesTransforming(with: text)
         sut.simulateHeaderButtonTap()
         
         XCTAssertEqual(coordinator.receivedMessages, [.startRoutePassing])
@@ -45,21 +45,22 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     
     func test_headerViewButton_startsRoutePassingIfPurchaseStatusIsPurchased() {
         let route = makeRoute(price: (.purchased, nil))
-        let routeModel = makeRouteModel(from: route)
+        let text = NSAttributedString(string: route.description)
         let (sut, loader, coordinator) = makeSUT()
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: routeModel)
+        loader.completeRoutesTransforming(with: text)
         sut.simulateHeaderButtonTap()
         
         XCTAssertEqual(coordinator.receivedMessages, [.startRoutePassing])
     }
     
     func test_headerButtonCompletion_displaysAlertIfPurchaseInProgress() {
-        let (sut, loader, coordinator) = makeSUT()
+        let route = anyPaidRoute()
+        let (sut, loader, coordinator) = makeSUT(route: route)
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        loader.completeRouteTransformingSuccessfully()
         
         sut.simulateHeaderButtonTap()
         loader.completePurchase(with: PurchasesError.purchaseInProgress)
@@ -73,10 +74,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     }
     
     func test_headerButtonCompletion_displaysAlertIfPaymentsRestricted() {
-        let (sut, loader, coordinator) = makeSUT()
+        let route = anyPaidRoute()
+        let (sut, loader, coordinator) = makeSUT(route: route)
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        loader.completeRouteTransformingSuccessfully()
         
         sut.simulateHeaderButtonTap()
         loader.completePurchase(with: PurchasesError.paymentsRestricted)
@@ -90,10 +92,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     }
     
     func test_headerButtonCompletion_displaysAlertIfUserNotAuthorized() {
-        let (sut, loader, coordinator) = makeSUT()
+        let route = anyPaidRoute()
+        let (sut, loader, coordinator) = makeSUT(route: route)
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        loader.completeRouteTransformingSuccessfully()
         
         sut.simulateHeaderButtonTap()
         loader.completePurchase(with: PurchasesError.userNotAuthorized)
@@ -109,10 +112,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     }
     
     func test_headerButtonCompletion_displaysAlertIfUserNotVerified() {
-        let (sut, loader, coordinator) = makeSUT()
+        let route = anyPaidRoute()
+        let (sut, loader, coordinator) = makeSUT(route: route)
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        loader.completeRouteTransformingSuccessfully()
         
         sut.simulateHeaderButtonTap()
         loader.completePurchase(with: PurchasesError.userNotVerified)
@@ -128,10 +132,11 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
     }
     
     func test_headerButtonCompletion_displaysAlertIfErrorUnknown() {
-        let (sut, loader, coordinator) = makeSUT()
+        let route = anyPaidRoute()
+        let (sut, loader, coordinator) = makeSUT(route: route)
 
         sut.loadViewIfNeeded()
-        loader.completeRoutesTransforming(with: anyPaidRouteModel())
+        loader.completeRouteTransformingSuccessfully()
         
         sut.simulateHeaderButtonTap()
         loader.completePurchase(with: anyNSError())
@@ -147,19 +152,17 @@ class RouteDescriptionCoordinatorIntegrationTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: RouteDescriptionLoaderSpy, coordinator: RouteDescriptionCoordinatorSpy) {
+    private func makeSUT(route: Route = makeRoute(), file: StaticString = #file, line: UInt = #line) -> (sut: RouteDescriptionViewController, loader: RouteDescriptionLoaderSpy, coordinator: RouteDescriptionCoordinatorSpy) {
         let builder = Builder()
-        let route = makeRoute()
         let loader = RouteDescriptionLoaderSpy()
         let coordinator = RouteDescriptionCoordinatorSpy(route: route, builder: Builder())
-        let storage = RouteDescriptionStorage(model: route, routeTransformer: loader, mapService: builder.mapService, purchaseService: loader)
+        let storage = RouteDescriptionStorage(model: route, markdownTransformer: loader, mapService: builder.mapService, purchaseService: loader)
         let sut = RoutesDescriptionUIComposer.routeDescriptionComposeWith(storage: storage, coordinator: coordinator, mapService: builder.mapService)
         return (sut, loader, coordinator)
     }
     
-    private func anyPaidRouteModel() -> RouteViewModel {
-        let route = makeRoute(price: (.buy, 200))
-        return makeRouteModel(from: route)
+    private func anyPaidRoute() -> Route {
+        return makeRoute(price: (.buy, 200))
     }
     
 }

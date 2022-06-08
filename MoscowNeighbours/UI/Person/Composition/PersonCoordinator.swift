@@ -27,7 +27,7 @@ public class PersonCoordinator {
                 person: personInfo,
                 presentationState: presentationState,
                 mapService: builder.mapService,
-                personTransformer: PersonTransformer()),
+                markdownTransformer: BackgroundMarkdownTransformer()),
             coordinator: self)
     }
     

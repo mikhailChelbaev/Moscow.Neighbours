@@ -15,19 +15,19 @@ protocol PersonView {
     func display(_ viewModel: PersonTableViewModel)
 }
 
-final class PersonPresenter<Transformer: ItemTransformer> where Transformer.Input == PersonInfo, Transformer.Output == PersonViewModel {
+final class PersonPresenter {
     
-    private let person: PersonInfo
-    private let personTransformer: Transformer
+    private let model: PersonInfo
+    private let markdownTransformer: MarkdownTransformer
     private let presentationState: PersonPresentationState
     private let readyToGoButtonAction: Action?
     
     init(person: PersonInfo,
-         personTransformer: Transformer,
+         markdownTransformer: MarkdownTransformer,
          presentationState: PersonPresentationState,
          readyToGoButtonAction: Action?) {
-        self.person = person
-        self.personTransformer = personTransformer
+        self.model = person
+        self.markdownTransformer = markdownTransformer
         self.presentationState = presentationState
         self.readyToGoButtonAction = readyToGoButtonAction
     }
@@ -51,19 +51,22 @@ extension PersonPresenter: PersonInput {
     
     func didTransformPerson() {
         personLoadingView?.display(isLoading: true)
-        personTransformer.transform(person) { [weak self] personViewModel in
+        
+        let isFullDescription = presentationState == .fullDescription
+        let description = isFullDescription ? model.person.description : model.person.shortDescription
+        markdownTransformer.transform(description) { [weak self] description in
             self?.personLoadingView?.display(isLoading: false)
             
-            let isFullDescription = self?.presentationState == .fullDescription
-            let description = isFullDescription ? personViewModel.fullDescription : personViewModel.shortDescription
+            guard let model = self?.model else { return }
+            
             let alert = isFullDescription ? nil : (PersonPresenter.alertText, AlertImage.exclamationMark)
             let button = isFullDescription ? (PersonPresenter.readyToGoButtonTitle, self?.readyToGoButtonAction) : nil
             self?.personView?.display(PersonTableViewModel(
-                name: personViewModel.name,
-                avatarURL: personViewModel.avatarUrl,
+                name: model.person.name,
+                avatarURL: model.person.avatarUrl,
                 descriptionHeader: PersonPresenter.descriptionHeader,
                 description: description,
-                information: personViewModel.info,
+                information: model.person.info,
                 showInformationInContainer: isFullDescription,
                 showInformationBeforeDescription: isFullDescription,
                 showInformationSeparator: !isFullDescription,

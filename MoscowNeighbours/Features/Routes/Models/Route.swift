@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Route: Equatable {
+public final class Route {
     public let id: String
     public let name: String
     public let description: String
@@ -43,5 +43,11 @@ public extension Route {
         case .buy:
             return String(format: "purchase.buy".localized, purchase.product?.localizedPrice ?? "0")
         }
+    }
+}
+
+extension Route: Equatable {
+    public static func == (lhs: Route, rhs: Route) -> Bool {
+        return lhs.id == rhs.id
     }
 }

@@ -5,24 +5,29 @@
 //  Created by Mikhail on 19.04.2022.
 //
 
+import Foundation
 import MoscowNeighbours
 
-final class RouteDescriptionLoaderSpy: ItemTransformer, PurchaseRouteProvider {
+final class RouteDescriptionLoaderSpy: MarkdownTransformer, PurchaseRouteProvider {
     
     // MARK: - Route Transformer
     
-    var transformationCompletions = [(RouteViewModel) -> Void]()
+    var transformationCompletions = [(NSAttributedString) -> Void]()
     
     var transfromCallCount: Int {
         return transformationCompletions.count
     }
     
-    func transform(_ route: Route, completion: @escaping (RouteViewModel) -> Void) {
+    func transform(_ markdown: String, completion: @escaping (NSAttributedString) -> Void) {
         transformationCompletions.append(completion)
     }
     
-    func completeRoutesTransforming(with route: RouteViewModel, at index: Int = 0) {
-        transformationCompletions[index](route)
+    func completeRoutesTransforming(with text: NSAttributedString, at index: Int = 0) {
+        transformationCompletions[index](text)
+    }
+    
+    func completeRouteTransformingSuccessfully(at index: Int = 0) {
+        transformationCompletions[index](NSAttributedString(string: ""))
     }
     
     // MARK: - Purchase Provider

@@ -32,8 +32,10 @@ final class RouteDescriptionViewAdapter: RouteDescriptionView {
             purchaseService: purchaseService,
             startRoutePassing: { [weak coordinator] in
                 coordinator?.startPassingRoute()
-            }, purchaseOperationCompletion: { [weak self] in
-                self?.reloadTableView()
+            }, purchaseOperationCompletion: { isProductPurchasedSuccessfully in
+                if isProductPurchasedSuccessfully {
+                    viewModel.setPurchasedStatus()
+                }
             }, showAuthorizationScreen: { [weak self] in
                 self?.coordinator.displayAuthorization()
             }, showVerificationScreen: { [weak self] in

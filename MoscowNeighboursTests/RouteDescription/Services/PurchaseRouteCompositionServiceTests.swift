@@ -68,13 +68,12 @@ class PurchaseRouteCompositionServiceTests: XCTestCase {
     }
     
     func test_purchaseRoute_updatesRoutesStateIfPurchaseSucceeded() {
-        var route = anyPaidRoute()
+        let route = anyPaidRoute()
         let (sut, loader) = makeSUT()
         
         sut.purchaseRoute(route: route) { _ in }
         loader.completePurchaseSuccessfully()
         
-        route.purchase.status = .purchased
         XCTAssertEqual(loader.updatedRoutes, [route])
     }
     

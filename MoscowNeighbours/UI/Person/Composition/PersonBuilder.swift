@@ -7,17 +7,17 @@
 
 import Foundation
 
-public struct PersonStorage<Transformer: ItemTransformer> where Transformer.Input == PersonInfo, Transformer.Output == PersonViewModel {
+public struct PersonStorage {
     public let person: PersonInfo
     public let presentationState: PersonPresentationState
     let mapService: MapService
-    public let personTransformer: Transformer
+    public let markdownTransformer: MarkdownTransformer
 }
 
 public final class PersonUIComposer {
     private init() {}
     
-    public static func personComposeWith<Transformer: ItemTransformer>(storage: PersonStorage<Transformer>, coordinator: PersonCoordinator) -> PersonViewController where Transformer.Input == PersonInfo, Transformer.Output == PersonViewModel {
+    public static func personComposeWith(storage: PersonStorage, coordinator: PersonCoordinator) -> PersonViewController {
         let dismiss: Action = { [weak coordinator] in
             coordinator?.dismiss(animated: true, completion: {
                 storage.mapService.deselectAnnotation(storage.person)
@@ -25,7 +25,7 @@ public final class PersonUIComposer {
         }
         let presenter = PersonPresenter(
             person: storage.person,
-            personTransformer: TransformerMainQueueDispatchDecorator(decoratee: storage.personTransformer),
+            markdownTransformer: MainQueueDispatchDecorator(decoratee: storage.markdownTransformer),
             presentationState: storage.presentationState,
             readyToGoButtonAction: dismiss)
         let tableViewController = PersonTableViewController()

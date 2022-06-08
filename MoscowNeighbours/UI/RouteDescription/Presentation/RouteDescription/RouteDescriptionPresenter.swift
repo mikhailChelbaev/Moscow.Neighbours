@@ -15,13 +15,14 @@ protocol RouteDescriptionLoadingView {
     func display(isLoading: Bool)
 }
 
-final class RouteDescriptionPresenter<RouteTransformer: ItemTransformer> where RouteTransformer.Input == Route, RouteTransformer.Output == RouteViewModel {
+final class RouteDescriptionPresenter {
     private let model: Route
-    private let routeTransformer: RouteTransformer
+    private let markdownTransformer: MarkdownTransformer
+    private var routeDescription: NSAttributedString?
     
-    init(model: Route, routeTransformer: RouteTransformer) {
+    init(model: Route, markdownTransformer: MarkdownTransformer) {
         self.model = model
-        self.routeTransformer = routeTransformer
+        self.markdownTransformer = markdownTransformer
     }
     
     private static var startRouteText: String {
@@ -43,21 +44,10 @@ final class RouteDescriptionPresenter<RouteTransformer: ItemTransformer> where R
 extension RouteDescriptionPresenter: RouteDescriptionInput {
     func didTransformRoute() {
         routeDescriptionLoadingView?.display(isLoading: true)
-        routeTransformer.transform(model) { [weak self] viewModel in
-            guard let self = self else { return }
-            
-            let buttonTitle = viewModel.purchaseStatus == .buy ? viewModel.price : RouteDescriptionPresenter.startRouteText
-            self.routeDescriptionView?.display(RouteDescriptionViewModel(
-                name: viewModel.name,
-                descriptionHeader: RouteDescriptionPresenter.descriptionHeader,
-                description: viewModel.description,
-                coverUrl: viewModel.coverUrl,
-                personsHeader: RouteDescriptionPresenter.personsHeader,
-                persons: RouteDescriptionPresenter.map(viewModel.persons),
-                information: viewModel.routeInformation,
-                buttonTitle: buttonTitle,
-                purchaseStatus: viewModel.purchaseStatus,
-                route: self.model))
+        
+        markdownTransformer.transform(model.description) { [weak self] description in
+            self?.routeDescription = description
+            self?.displayRouteDescription()
         }
     }
     
@@ -72,5 +62,33 @@ extension RouteDescriptionPresenter: RouteDescriptionInput {
                 isFirst: index == 0,
                 isLast: index == persons.count - 1)
         }
+    }
+    
+    private func setPurchasedStatus() {
+        model.purchase.status = .purchased
+        displayRouteDescription()
+    }
+    
+    private func displayRouteDescription() {
+        guard let description = routeDescription else { return }
+        
+        let purchaseStatus = model.purchase.status
+        let buttonTitle = purchaseStatus == .buy ? model.localizedPrice() : RouteDescriptionPresenter.startRouteText
+        let information = "\(model.distance) • \(model.duration)"
+        
+        routeDescriptionView?.display(RouteDescriptionViewModel(
+            name: model.name,
+            descriptionHeader: RouteDescriptionPresenter.descriptionHeader,
+            description: description,
+            coverUrl: model.coverUrl,
+            personsHeader: RouteDescriptionPresenter.personsHeader,
+            persons: RouteDescriptionPresenter.map(model.personsInfo),
+            information: information,
+            buttonTitle: buttonTitle,
+            purchaseStatus: purchaseStatus,
+            route: model,
+            setPurchasedStatus: { [weak self] in
+                self?.setPurchasedStatus()
+            }))
     }
 }

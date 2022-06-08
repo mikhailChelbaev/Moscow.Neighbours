@@ -7,15 +7,15 @@
 
 import Foundation
 
-public struct RouteDescriptionStorage<Transformer: ItemTransformer> where Transformer.Input == Route, Transformer.Output == RouteViewModel {
+public struct RouteDescriptionStorage {
     let model: Route
-    let routeTransformer: Transformer
+    let markdownTransformer: MarkdownTransformer
     let mapService: MapService
     let purchaseService: PurchaseRouteProvider
     
-    public init(model: Route, routeTransformer: Transformer, mapService: MapService, purchaseService: PurchaseRouteProvider) {
+    public init(model: Route, markdownTransformer: MarkdownTransformer, mapService: MapService, purchaseService: PurchaseRouteProvider) {
         self.model = model
-        self.routeTransformer = routeTransformer
+        self.markdownTransformer = markdownTransformer
         self.mapService = mapService
         self.purchaseService = purchaseService
     }
@@ -24,11 +24,11 @@ public struct RouteDescriptionStorage<Transformer: ItemTransformer> where Transf
 public final class RoutesDescriptionUIComposer {
     private init() {}
     
-    public static func routeDescriptionComposeWith<Transformer: ItemTransformer>(
-        storage: RouteDescriptionStorage<Transformer>,
+    public static func routeDescriptionComposeWith(
+        storage: RouteDescriptionStorage,
         coordinator: RouteDescriptionCoordinator,
         mapService: MapService
-    ) -> RouteDescriptionViewController where Transformer.Input == Route, Transformer.Output == RouteViewModel {
+    ) -> RouteDescriptionViewController {
         let closeCompletion: Action? = { [weak coordinator] in
             storage.mapService.hideRoute()
             coordinator?.dismiss(animated: true, completion: nil)
@@ -36,7 +36,7 @@ public final class RoutesDescriptionUIComposer {
         
         let presenter = RouteDescriptionPresenter(
             model: storage.model,
-            routeTransformer: TransformerMainQueueDispatchDecorator(decoratee: storage.routeTransformer))
+            markdownTransformer: MainQueueDispatchDecorator(decoratee: storage.markdownTransformer))
         let tableViewController = RouteDescriptionTableViewController()
         let backButtonController = BackButtonViewController(onBackButtonTap: closeCompletion)
         let controller = RouteDescriptionViewController(

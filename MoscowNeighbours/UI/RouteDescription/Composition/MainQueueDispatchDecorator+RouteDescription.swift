@@ -14,3 +14,11 @@ extension MainQueueDispatchDecorator: PurchaseRouteProvider where T == PurchaseR
         }
     }
 }
+
+extension MainQueueDispatchDecorator: MarkdownTransformer where T == MarkdownTransformer {
+    func transform(_ markdown: String, completion: @escaping (NSAttributedString) -> Void) {
+        decoratee.transform(markdown) { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
+    }
+}

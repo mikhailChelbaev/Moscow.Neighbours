@@ -27,14 +27,14 @@ final class RouteDescriptionHeaderPresenter {
     private let model: RouteDescriptionViewModel
     private let purchaseService: PurchaseRouteProvider
     private let startRoutePassing: Action
-    private let purchaseOperationCompletion: Action
+    private let purchaseOperationCompletion: (Bool) -> Void
     private let showAuthorizationScreen: Action
     private let showVerificationScreen: Action
     
     init(model: RouteDescriptionViewModel,
          purchaseService: PurchaseRouteProvider,
          startRoutePassing: @escaping Action,
-         purchaseOperationCompletion: @escaping Action,
+         purchaseOperationCompletion: @escaping (Bool) -> Void,
          showAuthorizationScreen: @escaping Action,
          showVerificationScreen: @escaping Action) {
         self.model = model
@@ -70,12 +70,14 @@ final class RouteDescriptionHeaderPresenter {
         
         purchaseService.purchaseRoute(route: model.route) { [weak self] result in
             self?.isPurchasingProduct = false
+            var isProductPurchasedSuccessfully: Bool = true
             
             if case let Result.failure(error) = result {
                 self?.handlePurchaseError(error)
+                isProductPurchasedSuccessfully = false
             }
             
-            self?.purchaseOperationCompletion()
+            self?.purchaseOperationCompletion(isProductPurchasedSuccessfully)
         }
     }
     
